@@ -22,6 +22,24 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Card(
+            child: InkWell(
+              splashColor: Colors.blue.withAlpha(30),
+              onTap: () {
+                print('Pressed');
+              },
+              child: Container(
+                width: 300,
+                height: 100,
+                child: Text('Card item'),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
