@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/sizeconfig.dart';
 
 void main() {
@@ -58,25 +59,57 @@ class AppBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Text(
-                  '45:71 am\nPahang',
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
+                  'Subuh',
+                  style: GoogleFonts.robotoCondensed(
+                      textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '5:71 am',
+                      style: GoogleFonts.sourceSansPro(
+                        textStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Selangor',
+                      style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      )),
+                    )
+                  ],
                 )
               ],
             ),
           ),
-          Card(
-            child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () {
-                print('Pressed');
-              },
-              child: Container(
-                width: 300,
-                height: 100,
-                child: Text('Card item'),
-              ),
+          Container(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              children: <Widget>[
+                Card(
+                  elevation: 6.0,
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      print('Pressed');
+                    },
+                    child: Container(
+                      width: 300,
+                      height: 100,
+                      child: Text('Card item'),
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
         ],
