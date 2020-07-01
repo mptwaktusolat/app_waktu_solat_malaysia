@@ -28,7 +28,8 @@ class MyHomePage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.cyan.shade900,
-          title: Text('Malaysia Prayer Time'),
+          //add action button here
+          title: Text('MY Prayer Time BETA'),
           elevation: 0.0,
         ),
         body: AppBody(),
@@ -96,6 +97,8 @@ class AppBody extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)),
                   elevation: 6.0,
                   child: InkWell(
                     splashColor: Colors.blue.withAlpha(30),
