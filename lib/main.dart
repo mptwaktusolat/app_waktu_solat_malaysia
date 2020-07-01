@@ -28,9 +28,23 @@ class MyHomePage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.cyan.shade900,
-          //add action button here
           title: Text('MY Prayer Time BETA'),
           elevation: 0.0,
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: GestureDetector(
+                onTap: () {
+                  print('Tapped object');
+                },
+                child: Icon(
+                  //use microsoft fluent icon
+                  Icons.share,
+                  size: 26.0,
+                ),
+              ),
+            )
+          ],
         ),
         body: AppBody(),
       ),
