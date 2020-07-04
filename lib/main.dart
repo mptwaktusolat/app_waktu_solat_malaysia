@@ -31,18 +31,12 @@ class MyHomePage extends StatelessWidget {
           title: Text('MY Prayer Time BETA'),
           elevation: 0.0,
           actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(right: 10.0),
-              child: GestureDetector(
-                onTap: () {
-                  print('Tapped object');
-                },
-                child: Icon(
-                  //use microsoft fluent icon
-                  Icons.share,
-                  size: 26.0,
-                ),
-              ),
+            IconButton(
+              icon: Icon(Icons.share),
+              tooltip: 'Share timetable',
+              onPressed: () {
+                print('button ditekan');
+              },
             )
           ],
         ),
