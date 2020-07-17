@@ -117,7 +117,7 @@ class AppBody extends StatelessWidget {
                     child: Container(
                       width: 300,
                       height: 100,
-                      child: GetPrayerTime(),
+                      child: Text('Content'),
                     ),
                   ),
                 ),

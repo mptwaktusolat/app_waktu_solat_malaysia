@@ -16,35 +16,33 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   void initState() {
     super.initState();
-    _bloc = PrayTimeBloc();
+    _bloc = PrayTimeBloc(location);
   }
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-        onRefresh: () => _bloc.fetchPrayerTime(location),
-        child: StreamBuilder<Response<PrayerTime>>(
-          stream: _bloc.prayDataStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data.status) {
-                case Status.LOADING:
-                  return Loading(loadingMessage: snapshot.data.message);
-                  break;
-                case Status.COMPLETED:
-                  return PrayTimeList(prayerTime: snapshot.data.data);
-                  break;
-                case Status.ERROR:
-                  return Error(
-                    errorMessage: snapshot.data.message,
-                    onRetryPressed: () => _bloc.fetchPrayerTime(location),
-                  );
-                  break;
-              }
-            }
-            return Container();
-          },
-        ));
+    return StreamBuilder<Response<PrayerTime>>(
+      stream: _bloc.prayDataStream,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          switch (snapshot.data.status) {
+            case Status.LOADING:
+              return Loading(loadingMessage: snapshot.data.message);
+              break;
+            case Status.COMPLETED:
+              return PrayTimeList(prayerTime: snapshot.data.data);
+              break;
+            case Status.ERROR:
+              return Error(
+                errorMessage: snapshot.data.message,
+                onRetryPressed: () => _bloc.fetchPrayerTime(location),
+              );
+              break;
+          }
+        }
+        return Container();
+      },
+    );
   }
 
   @override

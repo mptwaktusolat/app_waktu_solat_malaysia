@@ -6,14 +6,16 @@ import 'package:waktusolatmalaysia/models/azanproapi.dart';
 class PrayTimeBloc {
   AzanTimesTodayRepository _prayerTimeRepository;
   StreamController _prayDataController;
+  bool _isStreaming;
 
   StreamSink<Response<PrayerTime>> get prayDataSink => _prayDataController.sink;
 
   Stream<Response<PrayerTime>> get prayDataStream => _prayDataController.stream;
 
-  Prayloc(String category) {
+  PrayTimeBloc(String category) {
     _prayDataController = StreamController<Response<PrayerTime>>();
     _prayerTimeRepository = AzanTimesTodayRepository();
+    _isStreaming = true;
     fetchPrayerTime(category);
   }
 
@@ -25,11 +27,12 @@ class PrayTimeBloc {
       prayDataSink.add(Response.completed(prayerTime));
     } catch (e) {
       prayDataSink.add(Response.error(e.toString()));
-      print(e);
+      print('Error caught: ' + e);
     }
   }
 
   dispose() {
+    _isStreaming = false;
     _prayDataController?.close();
   }
 }
