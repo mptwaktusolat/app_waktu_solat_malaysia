@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
+import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 import 'networking/Response.dart';
 
@@ -59,12 +60,49 @@ class PrayTimeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(itemBuilder: (context, snapshot) {
-        return Text('test');
-      }),
+    return Column(
+      children: <Widget>[
+        SolatCard(prayerTime.prayerTimes.subuh, null),
+        SizedBox(
+          height: SizeConfig.screenHeight / 100,
+        ),
+        SolatCard(null, null),
+        SizedBox(
+          height: SizeConfig.screenHeight / 100,
+        ),
+        SolatCard(null, null),
+        SizedBox(
+          height: SizeConfig.screenHeight / 100,
+        ),
+        SolatCard(null, null),
+        SizedBox(
+          height: SizeConfig.screenHeight / 100,
+        ),
+        SolatCard(null, null),
+        SizedBox(
+          height: SizeConfig.screenHeight / 100,
+        ),
+      ],
     );
   }
+}
+
+Widget SolatCard(String time, String name) {
+  return Container(
+      width: 300,
+      height: 80,
+      child: Card(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        elevation: 6.0,
+        child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            print('Pressed');
+          },
+          child: Text('sample'),
+        ),
+      ));
 }
 
 class Error extends StatelessWidget {

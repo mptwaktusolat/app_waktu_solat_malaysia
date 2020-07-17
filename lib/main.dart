@@ -57,7 +57,7 @@ class AppBody extends StatelessWidget {
         children: <Widget>[
           Container(
             width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight / 5,
+            height: SizeConfig.screenHeight / 6,
             decoration: BoxDecoration(
               color: Colors.cyan.shade900,
               borderRadius: BorderRadius.only(
@@ -103,26 +103,7 @@ class AppBody extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(10.0),
-            child: Column(
-              children: <Widget>[
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0)),
-                  elevation: 6.0,
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      print('Pressed');
-                    },
-                    child: Container(
-                      width: 300,
-                      height: 100,
-                      child: Text('Content'),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: GetPrayerTime(),
           )
         ],
       ),
