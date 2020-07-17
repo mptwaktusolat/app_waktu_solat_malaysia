@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waktusolatmalaysia/GetPrayerTime.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 void main() {
@@ -116,7 +117,7 @@ class AppBody extends StatelessWidget {
                     child: Container(
                       width: 300,
                       height: 100,
-                      child: Text('Card item'),
+                      child: GetPrayerTime(),
                     ),
                   ),
                 ),
