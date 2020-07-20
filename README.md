@@ -3,18 +3,20 @@
 App waktu solat seluruh Malaysia
 
 ## API
+
 https://api.azanpro.com/ - Solat Jakim API (Unofficial)
 
-## Wiki
+## Changelogs History
+
+Wondering what changed with every new releases? View more [here](https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20)
 
 ## App Releases
 
-**Android** *(coming soon)*
+**Android** _(coming soon)_
+
 - Google Play Store
 - Huawei App Gallery
 
+**Web app** _(coming soon)_
 
-**Web app** *(coming soon)*
-
-## Read wiki
-Go to wiki section of this repo
+_By installing and using this app, you will accept the Terms and Conditions and Privacy Policy_
