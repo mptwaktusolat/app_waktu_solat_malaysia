@@ -62,11 +62,11 @@ class PrayTimeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SolatCard(prayerTime.prayerTimes.subuh, null),
+        SolatCard(prayerTime.prayerTimes.subuh.toString(), null),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
-        SolatCard(null, null),
+        SolatCard(prayerTime.prayerTimes.zohor.toString(), null),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
@@ -96,12 +96,11 @@ Widget SolatCard(String time, String name) {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         elevation: 6.0,
         child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
-          onTap: () {
-            print('Pressed');
-          },
-          child: Text('sample'),
-        ),
+            splashColor: Colors.blue.withAlpha(30),
+            onTap: () {
+              print('Pressed');
+            },
+            child: Text('time is $time')),
       ));
 }
 
