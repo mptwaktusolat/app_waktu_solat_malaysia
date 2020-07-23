@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
@@ -17,6 +19,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting('en_US', null);
     _bloc = PrayTimeBloc(location);
   }
 
@@ -62,46 +65,59 @@ class PrayTimeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SolatCard(prayerTime.prayerTimes.subuh.toString(), null),
+        SizedBox(
+          height: 5,
+        ),
+        solatCard(prayerTime.prayerTimes.subuh, 'Subuh'),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
-        SolatCard(prayerTime.prayerTimes.zohor.toString(), null),
+        solatCard(prayerTime.prayerTimes.zohor, 'Zohor'),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
-        SolatCard(null, null),
+        solatCard(prayerTime.prayerTimes.asar, 'Asar'),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
-        SolatCard(null, null),
+        solatCard(prayerTime.prayerTimes.maghrib, 'Maghrib'),
         SizedBox(
           height: SizeConfig.screenHeight / 100,
         ),
-        SolatCard(null, null),
-        SizedBox(
-          height: SizeConfig.screenHeight / 100,
-        ),
+        solatCard(prayerTime.prayerTimes.isyak, 'Isyak'),
       ],
     );
   }
 }
 
-Widget SolatCard(String time, String name) {
+Widget solatCard(int time, String name) {
+  var formatTime = formattedTime(time);
+
   return Container(
-      width: 300,
-      height: 80,
-      child: Card(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        elevation: 6.0,
-        child: InkWell(
-            splashColor: Colors.blue.withAlpha(30),
-            onTap: () {
-              print('Pressed');
-            },
-            child: Text('time is $time')),
-      ));
+    width: 300,
+    height: 80,
+    child: Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      elevation: 6.0,
+      child: InkWell(
+        splashColor: Colors.teal.withAlpha(30),
+        onTap: () {
+          print('Pressed');
+        },
+        child: Center(child: Text(name + ' is ' + formatTime)),
+      ),
+    ),
+  );
+}
+
+String formattedTime(int unixTime) {
+  DateTime time = new DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
+
+  var format = new DateFormat.jm();
+  var timeString = format.format(time);
+  print(timeString);
+
+  return timeString;
 }
 
 class Error extends StatelessWidget {
@@ -122,7 +138,7 @@ class Error extends StatelessWidget {
             errorMessage,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 18,
             ),
           ),
@@ -153,13 +169,13 @@ class Loading extends StatelessWidget {
             loadingMessage,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 24,
             ),
           ),
           SizedBox(height: 24),
           CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
           ),
         ],
       ),

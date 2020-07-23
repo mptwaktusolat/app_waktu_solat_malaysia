@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.cyan.shade900,
-          title: Text('MY Prayer Time BETA'),
+          title: Text('MY Prayer Time ALPHA'),
           elevation: 0.0,
           actions: <Widget>[
             IconButton(
@@ -102,8 +102,8 @@ class AppBody extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10.0),
-            child: GetPrayerTime(),
+            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
+            child: Center(child: GetPrayerTime()),
           )
         ],
       ),
