@@ -19,4 +19,4 @@ Wondering what changed with every new releases? View more [here](https://telegra
 
 **Web app** _(coming soon)_
 
-_By installing and using this app, you will accept the Terms and Conditions and Privacy Policy_
+_By installing and using this app, you will accept the [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24) and [Privacy Policy](https://telegra.ph/MPT-Privacy-Policy-07-24)_
