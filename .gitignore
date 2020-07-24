@@ -45,3 +45,6 @@ app.*.map.json
 # App releases
 *.apk
 *.aab
+
+# key file
+key.properties
