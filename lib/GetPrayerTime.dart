@@ -64,26 +64,12 @@ class PrayTimeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        SizedBox(
-          height: 5,
-        ),
         solatCard(prayerTime.prayerTimes.subuh, 'Subuh'),
-        SizedBox(
-          height: SizeConfig.screenHeight / 100,
-        ),
         solatCard(prayerTime.prayerTimes.zohor, 'Zohor'),
-        SizedBox(
-          height: SizeConfig.screenHeight / 100,
-        ),
         solatCard(prayerTime.prayerTimes.asar, 'Asar'),
-        SizedBox(
-          height: SizeConfig.screenHeight / 100,
-        ),
         solatCard(prayerTime.prayerTimes.maghrib, 'Maghrib'),
-        SizedBox(
-          height: SizeConfig.screenHeight / 100,
-        ),
         solatCard(prayerTime.prayerTimes.isyak, 'Isyak'),
       ],
     );
@@ -97,14 +83,15 @@ Widget solatCard(int time, String name) {
     width: 300,
     height: 80,
     child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 6.0,
       child: InkWell(
+        borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
         onTap: () {
           print('Pressed');
         },
-        child: Center(child: Text(name + ' is ' + formatTime)),
+        child: Center(child: Text(name + ' at ' + formatTime)),
       ),
     ),
   );
@@ -115,7 +102,7 @@ String formattedTime(int unixTime) {
 
   var format = new DateFormat.jm();
   var timeString = format.format(time);
-  print(timeString);
+  // print(timeString);
 
   return timeString;
 }

@@ -57,7 +57,7 @@ class AppBody extends StatelessWidget {
         children: <Widget>[
           Container(
             width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight / 6,
+            height: SizeConfig.screenHeight / 5.5,
             decoration: BoxDecoration(
               color: Colors.cyan.shade900,
               borderRadius: BorderRadius.only(
@@ -101,9 +101,11 @@ class AppBody extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0),
+          Expanded(
             child: Center(child: GetPrayerTime()),
+          ),
+          SizedBox(
+            height: SizeConfig.screenHeight / 45,
           )
         ],
       ),
