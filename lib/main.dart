@@ -8,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,24 +27,22 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.cyan.shade900,
-          title: Text('MY Prayer Time ALPHA'),
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.share),
-              tooltip: 'Share timetable',
-              onPressed: () {
-                print('button ditekan');
-              },
-            )
-          ],
-        ),
-        body: AppBody(),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.cyan.shade900,
+        title: Text('MY Prayer Time ALPHA'),
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.share),
+            tooltip: 'Share timetable',
+            onPressed: () {
+              print('button ditekan');
+            },
+          )
+        ],
       ),
+      body: AppBody(),
     );
   }
 }
