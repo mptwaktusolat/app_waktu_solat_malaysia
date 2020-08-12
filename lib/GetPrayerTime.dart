@@ -55,6 +55,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   }
 }
 
+//TODO: Stop using timestamp converter, may introduce error or incompatibility issues
+
 class PrayTimeList extends StatelessWidget {
   final PrayerTime prayerTime;
 
@@ -87,6 +89,10 @@ Widget solatCard(int time, String name) {
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
+        onLongPress: () {
+          print('Copied');
+          //TODO: Copy function and toast
+        },
         onTap: () {
           print('Pressed');
         },

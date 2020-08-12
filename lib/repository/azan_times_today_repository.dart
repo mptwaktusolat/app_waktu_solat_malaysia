@@ -1,7 +1,6 @@
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 import 'package:waktusolatmalaysia/networking/ApiProvider.dart';
-import 'package:waktusolatmalaysia/networking/Response.dart';
 
 class AzanTimesTodayRepository {
   ApiProvider _provider = ApiProvider();
