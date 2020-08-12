@@ -12,6 +12,10 @@ https://api.azanpro.com/ - Solat Jakim API (Unofficial)
 
 Wondering what changed with every :new: releases? Or what bug :bug: has been fixed? View more [here](https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20)
 
+## Web demo
+
+https://malaysia-waktu-solat.web.app/ - _Not working_
+
 ## App Releases
 
 **Android** _(coming soon)_
