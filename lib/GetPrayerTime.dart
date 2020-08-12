@@ -12,20 +12,20 @@ class GetPrayerTime extends StatefulWidget {
 }
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
-  PrayTimeBloc _bloc;
+  PrayTimeBloc _timeBloc;
   String location = "sgr01";
 
   @override
   void initState() {
     super.initState();
     initializeDateFormatting('en_US', null);
-    _bloc = PrayTimeBloc(location);
+    _timeBloc = PrayTimeBloc(location);
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Response<PrayerTime>>(
-      stream: _bloc.prayDataStream,
+      stream: _timeBloc.prayDataStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           switch (snapshot.data.status) {
@@ -38,7 +38,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
             case Status.ERROR:
               return Error(
                 errorMessage: snapshot.data.message,
-                onRetryPressed: () => _bloc.fetchPrayerTime(location),
+                onRetryPressed: () => _timeBloc.fetchPrayerTime(location),
               );
               break;
           }
@@ -50,7 +50,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 
   @override
   void dispose() {
-    _bloc.dispose();
+    _timeBloc.dispose();
     super.dispose();
   }
 }

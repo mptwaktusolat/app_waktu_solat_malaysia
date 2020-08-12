@@ -22,8 +22,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//ade dua material app?
-
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,7 @@ class MyHomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.share),
-            tooltip: 'Share timetable',
+            tooltip: 'Share prayer time',
             onPressed: () {
               print('button ditekan');
             },
