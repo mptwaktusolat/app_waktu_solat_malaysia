@@ -86,21 +86,42 @@ class AppBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(
-                      'Selangor',
-                      style: GoogleFonts.montserrat(
-                          textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      )),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(8.0)),
+                      child: Row(
+                        children: [
+                          Text(
+                            'SGR 01',
+                            style: GoogleFonts.montserrat(
+                                textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            )),
+                          ),
+                          Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.white,
+                          )
+                        ],
+                      ),
                     )
                   ],
                 )
               ],
             ),
           ),
-          Expanded(
-            child: Center(child: GetPrayerTime()),
+          SizedBox(
+            height: SizeConfig.screenHeight / 45,
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
+                  SizeConfig.screenWidth / 10, 8.0),
+              child: GetPrayerTime(),
+            ),
           ),
           SizedBox(
             height: SizeConfig.screenHeight / 45,

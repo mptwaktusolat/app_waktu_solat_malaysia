@@ -14,12 +14,13 @@ class GetPrayerTime extends StatefulWidget {
 class _GetPrayerTimeState extends State<GetPrayerTime> {
   PrayTimeBloc _timeBloc;
   String location = "sgr01";
+  String timeFormat = "&format=12-hour";
 
   @override
   void initState() {
     super.initState();
     initializeDateFormatting('en_US', null);
-    _timeBloc = PrayTimeBloc(location);
+    _timeBloc = PrayTimeBloc(location, timeFormat);
   }
 
   @override
@@ -38,7 +39,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
             case Status.ERROR:
               return Error(
                 errorMessage: snapshot.data.message,
-                onRetryPressed: () => _timeBloc.fetchPrayerTime(location),
+                onRetryPressed: () =>
+                    _timeBloc.fetchPrayerTime(location, timeFormat),
               );
               break;
           }
@@ -55,8 +57,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   }
 }
 
-//TODO: Stop using timestamp converter, may introduce error or incompatibility issues
-
 class PrayTimeList extends StatelessWidget {
   final PrayerTime prayerTime;
 
@@ -65,7 +65,8 @@ class PrayTimeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         solatCard(prayerTime.prayerTimes.subuh, 'Subuh'),
         solatCard(prayerTime.prayerTimes.zohor, 'Zohor'),
@@ -77,9 +78,7 @@ class PrayTimeList extends StatelessWidget {
   }
 }
 
-Widget solatCard(int time, String name) {
-  var formatTime = formattedTime(time);
-
+Widget solatCard(String time, String name) {
   return Container(
     width: 300,
     height: 80,
@@ -96,7 +95,7 @@ Widget solatCard(int time, String name) {
         onTap: () {
           print('Pressed');
         },
-        child: Center(child: Text(name + ' at ' + formatTime)),
+        child: Center(child: Text(name + ' at $time')),
       ),
     ),
   );

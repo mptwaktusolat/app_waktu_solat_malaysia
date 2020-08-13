@@ -14,7 +14,7 @@ Wondering what changed with every :new: releases? Or what bug :bug: has been fix
 
 ## Web demo
 
-https://malaysia-waktu-solat.web.app/ - _Not working_
+https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
 
 ## App Releases
 

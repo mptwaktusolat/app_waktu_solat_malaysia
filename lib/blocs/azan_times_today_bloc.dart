@@ -12,18 +12,18 @@ class PrayTimeBloc {
 
   Stream<Response<PrayerTime>> get prayDataStream => _prayDataController.stream;
 
-  PrayTimeBloc(String category) {
+  PrayTimeBloc(String category, String format) {
     _prayDataController = StreamController<Response<PrayerTime>>();
     _prayerTimeRepository = AzanTimesTodayRepository();
     _isStreaming = true;
-    fetchPrayerTime(category);
+    fetchPrayerTime(category, format);
   }
 
-  fetchPrayerTime(String category) async {
+  fetchPrayerTime(String category, String format) async {
     prayDataSink.add(Response.loading('Getting prayer times'));
     try {
       PrayerTime prayerTime =
-          await _prayerTimeRepository.fetchAzanToday(category);
+          await _prayerTimeRepository.fetchAzanToday(category, format);
       prayDataSink.add(Response.completed(prayerTime));
     } catch (e) {
       prayDataSink.add(Response.error(e.toString()));

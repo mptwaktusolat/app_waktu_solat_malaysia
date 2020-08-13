@@ -34,13 +34,13 @@ class PrayerTime {
 class PrayerTimes {
   String date;
   int datestamp;
-  int imsak;
-  int subuh;
-  int syuruk;
-  int zohor;
-  int asar;
-  int maghrib;
-  int isyak;
+  String imsak;
+  String subuh;
+  String syuruk;
+  String zohor;
+  String asar;
+  String maghrib;
+  String isyak;
 
   PrayerTimes(
       {this.date,
