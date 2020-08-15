@@ -1,9 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
+
+String currentChoice;
+String locationShortCode = '999';
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -25,7 +28,9 @@ class _LocationChooserState extends State<LocationChooser> {
   );
 
   int selection = 0;
-  String locationShortCode = 'SGR 01';
+
+  //TODO: Remove duplicate in JSON
+  //Linkkan dgn getprayertime
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +49,9 @@ class _LocationChooserState extends State<LocationChooser> {
       child: Row(
         children: [
           Text(
-            locationShortCode,
+            locationShortCode.substring(0, 3) +
+                ' ' +
+                locationShortCode.substring(3, 5),
             style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
               color: Colors.white,
@@ -61,7 +68,7 @@ class _LocationChooserState extends State<LocationChooser> {
   }
 
   Future _openshowModalBottomSheet() async {
-    final option = await showModalBottomSheet(
+    await showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
@@ -72,11 +79,10 @@ class _LocationChooserState extends State<LocationChooser> {
                     .loadString('assets/grouped.json'),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    print(
-                        'Snapshot has data is ' + snapshot.hasData.toString());
-                    return Text('Still empty');
+                    return ZonesList(
+                      groupedZones: parseJson(snapshot.data),
+                    );
                   } else if (snapshot.hasError) {
-                    print('Snapshot has error' + snapshot.hasError.toString());
                     return Text('Snapshot has error');
                   } else {
                     return CircularProgressIndicator();
@@ -85,9 +91,7 @@ class _LocationChooserState extends State<LocationChooser> {
           );
         });
     setState(() {
-      selection = option;
-      print('Selection is $selection, option is $option');
-      locationShortCode = 'SGR $option';
+      print('It callled');
     });
   }
 }
@@ -112,16 +116,21 @@ class ZonesList extends StatelessWidget {
       itemCount: groupedZones == null ? 0 : groupedZones.length,
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
-          // title: Text(groupedZones[index].results[index].negeri),
-          // subtitle: Text(groupedZones[index].results[index].lokasi),
-          title: Text('Hello world'),
+          onTap: () {
+            currentChoice = groupedZones[index].zone;
+            locationShortCode = currentChoice;
+            Navigator.pop(context, index);
+          },
+          title: Text(groupedZones[index].lokasi),
+          subtitle: Text(groupedZones[index].negeri),
+          trailing: locationBubble(groupedZones[index].zone),
         );
       },
     );
   }
 }
 
-List<Map<String, dynamic>> parseJson(String response) {
+List<GroupedZones> parseJson(String response) {
   if (response == null) {
     return [];
   }
