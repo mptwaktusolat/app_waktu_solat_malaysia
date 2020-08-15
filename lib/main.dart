@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/GetPrayerTime.dart';
+import 'package:waktusolatmalaysia/ZoneChooser.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 void main() {
@@ -86,34 +87,9 @@ class AppBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    FlatButton(
-                      padding: const EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.white),
-                      ),
-                      onPressed: () {
-                        print('Opened zone chooser');
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            'SGR 01',
-                            style: GoogleFonts.montserrat(
-                                textStyle: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            )),
-                          ),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            color: Colors.white,
-                          )
-                        ],
-                      ),
-                    )
+                    LocationChooser(),
                   ],
-                )
+                ),
               ],
             ),
           ),
