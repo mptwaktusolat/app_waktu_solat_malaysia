@@ -1,50 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waktusolatmalaysia/blocs/zone_bloc.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
-
-import 'networking/Response.dart';
-
-//TODO: Make sure this things works
-
-class GetGroupedZone extends StatefulWidget {
-  @override
-  _GetGroupedZoneState createState() => _GetGroupedZoneState();
-}
-
-class _GetGroupedZoneState extends State<GetGroupedZone> {
-  ZoneBloc _zoneBloc;
-
-  void initState() {
-    _zoneBloc = ZoneBloc();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<Response<GroupedZones>>(
-      stream: _zoneBloc.zoneDataStream,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          switch (snapshot.data.status) {
-            case Status.LOADING:
-              return Loading(loadingMessage: snapshot.data.message);
-              break;
-            case Status.COMPLETED:
-              return LocationChooser(zone: snapshot.data.data);
-              break;
-            case Status.ERROR:
-              return Error(
-                errorMessage: snapshot.data.message,
-                onRetryPressed: () => _zoneBloc.fetchZone(),
-              );
-              break;
-          }
-        }
-        return Container();
-      },
-    );
-  }
-}
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -108,18 +67,21 @@ class _LocationChooserState extends State<LocationChooser> {
         builder: (BuildContext context) {
           return FractionallySizedBox(
             heightFactor: 0.68,
-            child: ListView(
-              children: List.generate(40, (index) {
-                return ListTile(
-                  title: Text('0'),
-                  subtitle: Text('Hai saya $index'),
-                  trailing: locationBubble('SGR $index'),
-                  onTap: () {
-                    Navigator.pop(context, index);
-                  },
-                );
-              }),
-            ),
+            child: FutureBuilder(
+                future: DefaultAssetBundle.of(context)
+                    .loadString('assets/grouped.json'),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    print(
+                        'Snapshot has data is ' + snapshot.hasData.toString());
+                    return Text('Still empty');
+                  } else if (snapshot.hasError) {
+                    print('Snapshot has error' + snapshot.hasError.toString());
+                    return Text('Snapshot has error');
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                }),
           );
         });
     setState(() {
@@ -141,65 +103,30 @@ Widget locationBubble(String shortCode) {
   );
 }
 
-class Error extends StatelessWidget {
-  final String errorMessage;
-
-  final Function onRetryPressed;
-
-  const Error({Key key, this.errorMessage, this.onRetryPressed})
-      : super(key: key);
-
+class ZonesList extends StatelessWidget {
+  final List<GroupedZones> groupedZones;
+  ZonesList({Key key, this.groupedZones}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            errorMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-            ),
-          ),
-          SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.white,
-            child: Text('Retry', style: TextStyle(color: Colors.black)),
-            onPressed: onRetryPressed,
-          )
-        ],
-      ),
+    return ListView.builder(
+      itemCount: groupedZones == null ? 0 : groupedZones.length,
+      itemBuilder: (BuildContext context, int index) {
+        return ListTile(
+          // title: Text(groupedZones[index].results[index].negeri),
+          // subtitle: Text(groupedZones[index].results[index].lokasi),
+          title: Text('Hello world'),
+        );
+      },
     );
   }
 }
 
-class Loading extends StatelessWidget {
-  final String loadingMessage;
-
-  const Loading({Key key, this.loadingMessage}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            loadingMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-            ),
-          ),
-          SizedBox(height: 24),
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
-          ),
-        ],
-      ),
-    );
+List<Map<String, dynamic>> parseJson(String response) {
+  if (response == null) {
+    return [];
   }
+  final parsed = json.decode(response.toString()).cast<Map<String, dynamic>>();
+  return parsed
+      .map<GroupedZones>((json) => GroupedZones.fromJson(json))
+      .toList();
 }

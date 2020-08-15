@@ -1,1965 +1,2697 @@
-{
-  "states": [
-    "Johor",
-    "Kedah",
-    "Kelantan",
-    "Melaka",
-    "Negeri Sembilan",
-    "Pahang",
-    "Perak",
-    "Perlis",
-    "Pulau Pinang",
-    "Sabah",
-    "Sarawak",
-    "Selangor",
-    "Terengganu",
-    "Putrajaya",
-    "Kuala Lumpur",
-    "Labuan"
-  ],
-  "results": [
-    { "zone": "JHR01", "negeri": "Johor", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Johor",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Johor", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Johor",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    { "zone": "JHR01", "negeri": "Kedah", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Kedah",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Kedah", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Kedah",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Kedah",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Kedah", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Kedah", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Kedah", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Kedah", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Kedah", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Kedah", "lokasi": "Gunung Jerai" },
-    { "zone": "JHR01", "negeri": "Kelantan", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Kelantan",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Kelantan", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Kelantan",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Kelantan",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Kelantan",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Kelantan", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Kelantan", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Kelantan", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Kelantan", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Kelantan", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Kelantan",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Kelantan",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    { "zone": "JHR01", "negeri": "Melaka", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Melaka",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Melaka", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Melaka",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Melaka",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Melaka", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Melaka", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Melaka", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Melaka", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Melaka", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Melaka", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Melaka",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Melaka",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Melaka",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    {
-      "zone": "JHR01",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Pulau Aur,Pemanggil"
-    },
-    {
-      "zone": "JHR02",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    {
-      "zone": "JHR03",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Kluang,Pontian"
-    },
-    {
-      "zone": "JHR04",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    {
-      "zone": "KDH03",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Padang Terap,Sik"
-    },
-    { "zone": "KDH04", "negeri": "Negeri Sembilan", "lokasi": "Baling" },
-    {
-      "zone": "KDH05",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Kulim,Bandar Bahru"
-    },
-    { "zone": "KDH06", "negeri": "Negeri Sembilan", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Negeri Sembilan", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Negeri Sembilan", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Negeri Sembilan",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "JHR01", "negeri": "Pahang", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Pahang",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Pahang", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Pahang",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Pahang",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Pahang", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Pahang", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Pahang", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Pahang", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Pahang", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Pahang", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Pahang",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Pahang",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Pahang",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Pahang", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Pahang",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Pahang", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Pahang",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Pahang",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Pahang",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Pahang",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Pahang",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    { "zone": "JHR01", "negeri": "Perak", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Perak",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Perak", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Perak",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Perak",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Perak", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Perak", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Perak", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Perak", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Perak", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Perak", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Perak",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Perak",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Perak",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Perak", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Perak",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Perak", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Perak",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Perak",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Perak",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Perak",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Perak",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Perak",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Perak",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Perak",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Perak", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Perak",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Perak",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Perak", "lokasi": "Bukit Larut" },
-    { "zone": "JHR01", "negeri": "Perlis", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Perlis",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Perlis", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Perlis",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Perlis",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Perlis", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Perlis", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Perlis", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Perlis", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Perlis", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Perlis", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Perlis",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Perlis",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Perlis",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Perlis", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Perlis",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Perlis", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Perlis",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Perlis",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Perlis",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Perlis",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Perlis",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Perlis",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Perlis",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Perlis",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Perlis", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Perlis",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Perlis",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Perlis", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Perlis",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    {
-      "zone": "JHR01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Pulau Aur,Pemanggil"
-    },
-    {
-      "zone": "JHR02",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Pulau Pinang", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Pulau Pinang", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Pulau Pinang", "lokasi": "Baling" },
-    {
-      "zone": "KDH05",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kulim,Bandar Bahru"
-    },
-    { "zone": "KDH06", "negeri": "Pulau Pinang", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Pulau Pinang", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Pulau Pinang", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Pulau Pinang", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Pulau Pinang", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Pulau Pinang", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Pulau Pinang",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Pulau Pinang", "lokasi": "Pulau Pinang" },
-    { "zone": "JHR01", "negeri": "Sabah", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Sabah",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Sabah", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Sabah",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Sabah",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Sabah", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Sabah", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Sabah", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Sabah", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Sabah", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Sabah", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Sabah",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Sabah",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Sabah",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Sabah", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Sabah",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Sabah", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Sabah",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Sabah",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Sabah",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Sabah",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Sabah",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Sabah",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Sabah",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Sabah",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Sabah", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Sabah",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Sabah",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Sabah", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Sabah",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Sabah", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Sabah",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Sabah",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Sabah",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Sabah",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Sabah",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Sabah", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Sabah",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Sabah",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Sabah",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    { "zone": "JHR01", "negeri": "Sarawak", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Sarawak",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Sarawak", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Sarawak",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Sarawak",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Sarawak",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Sarawak", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Sarawak", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Sarawak", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Sarawak", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Sarawak", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Sarawak",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Sarawak",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Sarawak",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Sarawak", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Sarawak",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Sarawak", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Sarawak",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Sarawak",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Sarawak",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Sarawak",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Sarawak",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Sarawak",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Sarawak",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Sarawak",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Sarawak", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Sarawak",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Sarawak",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Sarawak", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Sarawak",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Sarawak", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Sarawak",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Sarawak",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Sarawak",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Sarawak",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Sarawak",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Sarawak", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Sarawak",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Sarawak",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Sarawak",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Sarawak",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Sarawak",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Sarawak",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Sarawak",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Sarawak",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Sarawak",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Sarawak",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Sarawak",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Sarawak", "lokasi": "Zon Khas" },
-    { "zone": "JHR01", "negeri": "Selangor", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Selangor",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Selangor", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Selangor",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Selangor",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Selangor",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Selangor", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Selangor", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Selangor", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Selangor", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Selangor", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Selangor",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Selangor",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Selangor",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Selangor", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Selangor",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Selangor", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Selangor",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Selangor",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Selangor",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Selangor",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Selangor",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Selangor",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Selangor",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Selangor",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Selangor", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Selangor",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Selangor",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Selangor", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Selangor",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Selangor", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Selangor",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Selangor",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Selangor",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Selangor",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Selangor",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Selangor", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Selangor",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Selangor",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Selangor",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Selangor",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Selangor",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Selangor",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Selangor",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Selangor",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Selangor",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Selangor",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Selangor",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Selangor", "lokasi": "Zon Khas" },
-    {
-      "zone": "SGR01",
-      "negeri": "Selangor",
-      "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
-    },
-    {
-      "zone": "SGR02",
-      "negeri": "Selangor",
-      "lokasi": "Sabak Bernam,Kuala Selangor"
-    },
-    { "zone": "SGR03", "negeri": "Selangor", "lokasi": "Klang,Kuala Langat" },
-    {
-      "zone": "JHR01",
-      "negeri": "Terengganu",
-      "lokasi": "Pulau Aur,Pemanggil"
-    },
-    {
-      "zone": "JHR02",
-      "negeri": "Terengganu",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Terengganu", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Terengganu",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Terengganu",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Terengganu",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Terengganu", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Terengganu", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Terengganu", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Terengganu", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Terengganu", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Terengganu",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Terengganu",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Terengganu",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Terengganu", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Terengganu",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Terengganu", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Terengganu",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Terengganu",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Terengganu",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Terengganu",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Terengganu",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Terengganu",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Terengganu",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Terengganu",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Terengganu", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Terengganu",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Terengganu",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Terengganu", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Terengganu",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Terengganu", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Terengganu",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Terengganu",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Terengganu",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Terengganu",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Terengganu",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Terengganu", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Terengganu",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Terengganu",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Terengganu",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Terengganu",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Terengganu",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Terengganu",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Terengganu",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Terengganu",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Terengganu",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Terengganu",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Terengganu",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Terengganu", "lokasi": "Zon Khas" },
-    {
-      "zone": "SGR01",
-      "negeri": "Terengganu",
-      "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
-    },
-    {
-      "zone": "SGR02",
-      "negeri": "Terengganu",
-      "lokasi": "Sabak Bernam,Kuala Selangor"
-    },
-    { "zone": "SGR03", "negeri": "Terengganu", "lokasi": "Klang,Kuala Langat" },
-    {
-      "zone": "TRG01",
-      "negeri": "Terengganu",
-      "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
-    },
-    { "zone": "TRG02", "negeri": "Terengganu", "lokasi": "Besut,Setiu" },
-    { "zone": "TRG03", "negeri": "Terengganu", "lokasi": "Hulu Terengganu" },
-    { "zone": "TRG04", "negeri": "Terengganu", "lokasi": "Kemaman,Dungun" },
-    { "zone": "JHR01", "negeri": "Putrajaya", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Putrajaya",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Putrajaya", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Putrajaya",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Putrajaya",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Putrajaya",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Putrajaya", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Putrajaya", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Putrajaya", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Putrajaya", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Putrajaya", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Putrajaya",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Putrajaya",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Putrajaya",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Putrajaya", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Putrajaya",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Putrajaya", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Putrajaya",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Putrajaya",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Putrajaya",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Putrajaya",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Putrajaya",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Putrajaya",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Putrajaya",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Putrajaya",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Putrajaya", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Putrajaya",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Putrajaya",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Putrajaya", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Putrajaya",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Putrajaya", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Putrajaya",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Putrajaya",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Putrajaya",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Putrajaya",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Putrajaya",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Putrajaya", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Putrajaya",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Putrajaya",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Putrajaya",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Putrajaya",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Putrajaya",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Putrajaya",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Putrajaya",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Putrajaya",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Putrajaya",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Putrajaya",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Putrajaya",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Putrajaya", "lokasi": "Zon Khas" },
-    {
-      "zone": "SGR01",
-      "negeri": "Putrajaya",
-      "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
-    },
-    {
-      "zone": "SGR02",
-      "negeri": "Putrajaya",
-      "lokasi": "Sabak Bernam,Kuala Selangor"
-    },
-    { "zone": "SGR03", "negeri": "Putrajaya", "lokasi": "Klang,Kuala Langat" },
-    {
-      "zone": "TRG01",
-      "negeri": "Putrajaya",
-      "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
-    },
-    { "zone": "TRG02", "negeri": "Putrajaya", "lokasi": "Besut,Setiu" },
-    { "zone": "TRG03", "negeri": "Putrajaya", "lokasi": "Hulu Terengganu" },
-    { "zone": "TRG04", "negeri": "Putrajaya", "lokasi": "Kemaman,Dungun" },
-    { "zone": "WLY01", "negeri": "Putrajaya", "lokasi": "Putrajaya" },
-    {
-      "zone": "JHR01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Pulau Aur,Pemanggil"
-    },
-    {
-      "zone": "JHR02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Kuala Lumpur", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    {
-      "zone": "KDH02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Pendang,Kuala Muda,Yan"
-    },
-    { "zone": "KDH03", "negeri": "Kuala Lumpur", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Kuala Lumpur", "lokasi": "Baling" },
-    {
-      "zone": "KDH05",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kulim,Bandar Bahru"
-    },
-    { "zone": "KDH06", "negeri": "Kuala Lumpur", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Kuala Lumpur", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Kuala Lumpur", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Kuala Lumpur", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Kuala Lumpur", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Kuala Lumpur", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Kuala Lumpur", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Kuala Lumpur", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Kuala Lumpur", "lokasi": "Zon Khas" },
-    {
-      "zone": "SGR01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
-    },
-    {
-      "zone": "SGR02",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Sabak Bernam,Kuala Selangor"
-    },
-    {
-      "zone": "SGR03",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Klang,Kuala Langat"
-    },
-    {
-      "zone": "TRG01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
-    },
-    { "zone": "TRG02", "negeri": "Kuala Lumpur", "lokasi": "Besut,Setiu" },
-    { "zone": "TRG03", "negeri": "Kuala Lumpur", "lokasi": "Hulu Terengganu" },
-    { "zone": "TRG04", "negeri": "Kuala Lumpur", "lokasi": "Kemaman,Dungun" },
-    {
-      "zone": "WLY01",
-      "negeri": "Kuala Lumpur",
-      "lokasi": "Putrajaya,Kuala Lumpur"
-    },
-    { "zone": "JHR01", "negeri": "Labuan", "lokasi": "Pulau Aur,Pemanggil" },
-    {
-      "zone": "JHR02",
-      "negeri": "Labuan",
-      "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
-    },
-    { "zone": "JHR03", "negeri": "Labuan", "lokasi": "Kluang,Pontian" },
-    {
-      "zone": "JHR04",
-      "negeri": "Labuan",
-      "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
-    },
-    {
-      "zone": "KDH01",
-      "negeri": "Labuan",
-      "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
-    },
-    { "zone": "KDH02", "negeri": "Labuan", "lokasi": "Pendang,Kuala Muda,Yan" },
-    { "zone": "KDH03", "negeri": "Labuan", "lokasi": "Padang Terap,Sik" },
-    { "zone": "KDH04", "negeri": "Labuan", "lokasi": "Baling" },
-    { "zone": "KDH05", "negeri": "Labuan", "lokasi": "Kulim,Bandar Bahru" },
-    { "zone": "KDH06", "negeri": "Labuan", "lokasi": "Langkawi" },
-    { "zone": "KDH07", "negeri": "Labuan", "lokasi": "Gunung Jerai" },
-    {
-      "zone": "KTN01",
-      "negeri": "Labuan",
-      "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
-    },
-    {
-      "zone": "KTN03",
-      "negeri": "Labuan",
-      "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
-    },
-    {
-      "zone": "MLK01",
-      "negeri": "Labuan",
-      "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
-    },
-    { "zone": "NGS01", "negeri": "Labuan", "lokasi": "Jempol,Tampin" },
-    {
-      "zone": "NGS02",
-      "negeri": "Labuan",
-      "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
-    },
-    { "zone": "PHG01", "negeri": "Labuan", "lokasi": "Pulau Tioman" },
-    {
-      "zone": "PHG02",
-      "negeri": "Labuan",
-      "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
-    },
-    {
-      "zone": "PHG03",
-      "negeri": "Labuan",
-      "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
-    },
-    {
-      "zone": "PHG04",
-      "negeri": "Labuan",
-      "lokasi": "Bentong,Raub,Kuala Lipis"
-    },
-    {
-      "zone": "PHG05",
-      "negeri": "Labuan",
-      "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
-    },
-    {
-      "zone": "PHG06",
-      "negeri": "Labuan",
-      "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
-    },
-    {
-      "zone": "PRK01",
-      "negeri": "Labuan",
-      "lokasi": "Tapah,Slim River,Tanjung Malim"
-    },
-    {
-      "zone": "PRK02",
-      "negeri": "Labuan",
-      "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
-    },
-    {
-      "zone": "PRK03",
-      "negeri": "Labuan",
-      "lokasi": "Pengkalan Hulu,Grik,Lenggong"
-    },
-    { "zone": "PRK04", "negeri": "Labuan", "lokasi": "Temengor,Belum" },
-    {
-      "zone": "PRK05",
-      "negeri": "Labuan",
-      "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
-    },
-    {
-      "zone": "PRK06",
-      "negeri": "Labuan",
-      "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
-    },
-    { "zone": "PRK07", "negeri": "Labuan", "lokasi": "Bukit Larut" },
-    {
-      "zone": "PLS01",
-      "negeri": "Labuan",
-      "lokasi": "Kangar,Padang Besar,Arau"
-    },
-    { "zone": "PNG01", "negeri": "Labuan", "lokasi": "Pulau Pinang" },
-    {
-      "zone": "SBH01",
-      "negeri": "Labuan",
-      "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
-    },
-    {
-      "zone": "SBH02",
-      "negeri": "Labuan",
-      "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
-    },
-    {
-      "zone": "SBH03",
-      "negeri": "Labuan",
-      "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
-    },
-    {
-      "zone": "SBH04",
-      "negeri": "Labuan",
-      "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
-    },
-    {
-      "zone": "SBH05",
-      "negeri": "Labuan",
-      "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
-    },
-    { "zone": "SBH06", "negeri": "Labuan", "lokasi": "Gunung Kinabalu" },
-    {
-      "zone": "SBH07",
-      "negeri": "Labuan",
-      "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
-    },
-    {
-      "zone": "SBH08",
-      "negeri": "Labuan",
-      "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
-    },
-    {
-      "zone": "SBH09",
-      "negeri": "Labuan",
-      "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
-    },
-    {
-      "zone": "SWK01",
-      "negeri": "Labuan",
-      "lokasi": "Limbang,Sundar,Terusan,Lawas"
-    },
-    {
-      "zone": "SWK02",
-      "negeri": "Labuan",
-      "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
-    },
-    {
-      "zone": "SWK03",
-      "negeri": "Labuan",
-      "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
-    },
-    {
-      "zone": "SWK04",
-      "negeri": "Labuan",
-      "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
-    },
-    {
-      "zone": "SWK05",
-      "negeri": "Labuan",
-      "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
-    },
-    {
-      "zone": "SWK06",
-      "negeri": "Labuan",
-      "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
-    },
-    {
-      "zone": "SWK07",
-      "negeri": "Labuan",
-      "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
-    },
-    {
-      "zone": "SWK08",
-      "negeri": "Labuan",
-      "lokasi": "Kuching,Bau,Lundu,Sematan"
-    },
-    { "zone": "SWK09", "negeri": "Labuan", "lokasi": "Zon Khas" },
-    {
-      "zone": "SGR01",
-      "negeri": "Labuan",
-      "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
-    },
-    {
-      "zone": "SGR02",
-      "negeri": "Labuan",
-      "lokasi": "Sabak Bernam,Kuala Selangor"
-    },
-    { "zone": "SGR03", "negeri": "Labuan", "lokasi": "Klang,Kuala Langat" },
-    {
-      "zone": "TRG01",
-      "negeri": "Labuan",
-      "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
-    },
-    { "zone": "TRG02", "negeri": "Labuan", "lokasi": "Besut,Setiu" },
-    { "zone": "TRG03", "negeri": "Labuan", "lokasi": "Hulu Terengganu" },
-    { "zone": "TRG04", "negeri": "Labuan", "lokasi": "Kemaman,Dungun" },
-    { "zone": "WLY01", "negeri": "Labuan", "lokasi": "Putrajaya,Kuala Lumpur" },
-    { "zone": "WLY02", "negeri": "Labuan", "lokasi": "Labuan" }
-  ]
-}
+[
+  {
+    "zone": "JHR01",
+    "negeri": "Johor",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Johor",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Johor",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Johor",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Kedah",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Kedah",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Kedah",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Kedah",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Kedah",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Kedah",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Kedah",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Kedah",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Kedah",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Kedah",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Kedah",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Kelantan",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Kelantan",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Kelantan",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Kelantan",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Kelantan",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Kelantan",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Kelantan",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Kelantan",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Kelantan",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Kelantan",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Kelantan",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Kelantan",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Kelantan",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Melaka",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Melaka",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Melaka",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Melaka",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Melaka",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Melaka",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Melaka",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Melaka",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Melaka",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Melaka",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Melaka",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Melaka",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Melaka",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Melaka",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Negeri Sembilan",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Pahang",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Pahang",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Pahang",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Pahang",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Pahang",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Pahang",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Pahang",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Pahang",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Pahang",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Pahang",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Pahang",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Pahang",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Pahang",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Pahang",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Pahang",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Pahang",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Pahang",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Pahang",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Pahang",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Pahang",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Pahang",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Pahang",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Perak",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Perak",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Perak",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Perak",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Perak",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Perak",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Perak",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Perak",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Perak",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Perak",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Perak",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Perak",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Perak",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Perak",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Perak",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Perak",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Perak",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Perak",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Perak",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Perak",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Perak",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Perak",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Perak",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Perak",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Perak",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Perak",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Perak",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Perak",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Perak",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Perlis",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Perlis",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Perlis",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Perlis",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Perlis",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Perlis",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Perlis",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Perlis",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Perlis",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Perlis",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Perlis",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Perlis",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Perlis",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Perlis",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Perlis",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Perlis",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Perlis",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Perlis",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Perlis",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Perlis",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Perlis",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Perlis",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Perlis",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Perlis",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Perlis",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Perlis",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Perlis",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Perlis",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Perlis",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Perlis",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Pulau Pinang",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Sabah",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Sabah",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Sabah",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Sabah",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Sabah",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Sabah",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Sabah",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Sabah",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Sabah",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Sabah",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Sabah",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Sabah",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Sabah",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Sabah",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Sabah",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Sabah",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Sabah",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Sabah",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Sabah",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Sabah",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Sabah",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Sabah",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Sabah",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Sabah",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Sabah",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Sabah",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Sabah",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Sabah",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Sabah",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Sabah",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Sabah",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Sabah",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Sabah",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Sabah",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Sabah",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Sabah",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Sabah",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Sabah",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Sabah",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Sabah",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Sarawak",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Sarawak",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Sarawak",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Sarawak",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Sarawak",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Sarawak",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Sarawak",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Sarawak",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Sarawak",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Sarawak",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Sarawak",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Sarawak",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Sarawak",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Sarawak",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Sarawak",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Sarawak",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Sarawak",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Sarawak",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Sarawak",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Sarawak",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Sarawak",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Sarawak",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Sarawak",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Sarawak",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Sarawak",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Sarawak",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Sarawak",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Sarawak",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Sarawak",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Sarawak",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Sarawak",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Sarawak",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Sarawak",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Sarawak",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Sarawak",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Sarawak",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Sarawak",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Sarawak",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Sarawak",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Sarawak",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Sarawak",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Sarawak",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Sarawak",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Sarawak",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Sarawak",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Sarawak",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Sarawak",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Sarawak",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Sarawak",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Selangor",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Selangor",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Selangor",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Selangor",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Selangor",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Selangor",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Selangor",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Selangor",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Selangor",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Selangor",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Selangor",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Selangor",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Selangor",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Selangor",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Selangor",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Selangor",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Selangor",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Selangor",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Selangor",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Selangor",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Selangor",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Selangor",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Selangor",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Selangor",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Selangor",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Selangor",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Selangor",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Selangor",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Selangor",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Selangor",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Selangor",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Selangor",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Selangor",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Selangor",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Selangor",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Selangor",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Selangor",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Selangor",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Selangor",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Selangor",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Selangor",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Selangor",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Selangor",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Selangor",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Selangor",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Selangor",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Selangor",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Selangor",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Selangor",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "SGR01",
+    "negeri": "Selangor",
+    "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
+  },
+  {
+    "zone": "SGR02",
+    "negeri": "Selangor",
+    "lokasi": "Sabak Bernam,Kuala Selangor"
+  },
+  {
+    "zone": "SGR03",
+    "negeri": "Selangor",
+    "lokasi": "Klang,Kuala Langat"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Terengganu",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Terengganu",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Terengganu",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Terengganu",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Terengganu",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Terengganu",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Terengganu",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Terengganu",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Terengganu",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Terengganu",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Terengganu",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Terengganu",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Terengganu",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Terengganu",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Terengganu",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Terengganu",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Terengganu",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Terengganu",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Terengganu",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Terengganu",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Terengganu",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Terengganu",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Terengganu",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Terengganu",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Terengganu",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Terengganu",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Terengganu",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Terengganu",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Terengganu",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Terengganu",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Terengganu",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Terengganu",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Terengganu",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Terengganu",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Terengganu",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Terengganu",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Terengganu",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Terengganu",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Terengganu",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Terengganu",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Terengganu",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Terengganu",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Terengganu",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Terengganu",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Terengganu",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Terengganu",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Terengganu",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Terengganu",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Terengganu",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "SGR01",
+    "negeri": "Terengganu",
+    "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
+  },
+  {
+    "zone": "SGR02",
+    "negeri": "Terengganu",
+    "lokasi": "Sabak Bernam,Kuala Selangor"
+  },
+  {
+    "zone": "SGR03",
+    "negeri": "Terengganu",
+    "lokasi": "Klang,Kuala Langat"
+  },
+  {
+    "zone": "TRG01",
+    "negeri": "Terengganu",
+    "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
+  },
+  {
+    "zone": "TRG02",
+    "negeri": "Terengganu",
+    "lokasi": "Besut,Setiu"
+  },
+  {
+    "zone": "TRG03",
+    "negeri": "Terengganu",
+    "lokasi": "Hulu Terengganu"
+  },
+  {
+    "zone": "TRG04",
+    "negeri": "Terengganu",
+    "lokasi": "Kemaman,Dungun"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Putrajaya",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Putrajaya",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Putrajaya",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Putrajaya",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Putrajaya",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Putrajaya",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Putrajaya",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Putrajaya",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Putrajaya",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Putrajaya",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Putrajaya",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Putrajaya",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Putrajaya",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Putrajaya",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Putrajaya",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Putrajaya",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Putrajaya",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Putrajaya",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Putrajaya",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Putrajaya",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Putrajaya",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Putrajaya",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Putrajaya",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Putrajaya",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Putrajaya",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Putrajaya",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Putrajaya",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Putrajaya",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Putrajaya",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Putrajaya",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Putrajaya",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Putrajaya",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Putrajaya",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Putrajaya",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Putrajaya",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Putrajaya",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Putrajaya",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Putrajaya",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Putrajaya",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Putrajaya",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Putrajaya",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Putrajaya",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Putrajaya",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Putrajaya",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Putrajaya",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Putrajaya",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Putrajaya",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Putrajaya",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Putrajaya",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "SGR01",
+    "negeri": "Putrajaya",
+    "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
+  },
+  {
+    "zone": "SGR02",
+    "negeri": "Putrajaya",
+    "lokasi": "Sabak Bernam,Kuala Selangor"
+  },
+  {
+    "zone": "SGR03",
+    "negeri": "Putrajaya",
+    "lokasi": "Klang,Kuala Langat"
+  },
+  {
+    "zone": "TRG01",
+    "negeri": "Putrajaya",
+    "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
+  },
+  {
+    "zone": "TRG02",
+    "negeri": "Putrajaya",
+    "lokasi": "Besut,Setiu"
+  },
+  {
+    "zone": "TRG03",
+    "negeri": "Putrajaya",
+    "lokasi": "Hulu Terengganu"
+  },
+  {
+    "zone": "TRG04",
+    "negeri": "Putrajaya",
+    "lokasi": "Kemaman,Dungun"
+  },
+  {
+    "zone": "WLY01",
+    "negeri": "Putrajaya",
+    "lokasi": "Putrajaya"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "SGR01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
+  },
+  {
+    "zone": "SGR02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Sabak Bernam,Kuala Selangor"
+  },
+  {
+    "zone": "SGR03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Klang,Kuala Langat"
+  },
+  {
+    "zone": "TRG01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
+  },
+  {
+    "zone": "TRG02",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Besut,Setiu"
+  },
+  {
+    "zone": "TRG03",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Hulu Terengganu"
+  },
+  {
+    "zone": "TRG04",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Kemaman,Dungun"
+  },
+  {
+    "zone": "WLY01",
+    "negeri": "Kuala Lumpur",
+    "lokasi": "Putrajaya,Kuala Lumpur"
+  },
+  {
+    "zone": "JHR01",
+    "negeri": "Labuan",
+    "lokasi": "Pulau Aur,Pemanggil"
+  },
+  {
+    "zone": "JHR02",
+    "negeri": "Labuan",
+    "lokasi": "Kota Tinggi,Mersing,Johor Bahru"
+  },
+  {
+    "zone": "JHR03",
+    "negeri": "Labuan",
+    "lokasi": "Kluang,Pontian"
+  },
+  {
+    "zone": "JHR04",
+    "negeri": "Labuan",
+    "lokasi": "Batu Pahat,Muar,Segamat,Gemas"
+  },
+  {
+    "zone": "KDH01",
+    "negeri": "Labuan",
+    "lokasi": "Kota Setar,Kubang Pasu,Pokok Sena"
+  },
+  {
+    "zone": "KDH02",
+    "negeri": "Labuan",
+    "lokasi": "Pendang,Kuala Muda,Yan"
+  },
+  {
+    "zone": "KDH03",
+    "negeri": "Labuan",
+    "lokasi": "Padang Terap,Sik"
+  },
+  {
+    "zone": "KDH04",
+    "negeri": "Labuan",
+    "lokasi": "Baling"
+  },
+  {
+    "zone": "KDH05",
+    "negeri": "Labuan",
+    "lokasi": "Kulim,Bandar Bahru"
+  },
+  {
+    "zone": "KDH06",
+    "negeri": "Labuan",
+    "lokasi": "Langkawi"
+  },
+  {
+    "zone": "KDH07",
+    "negeri": "Labuan",
+    "lokasi": "Gunung Jerai"
+  },
+  {
+    "zone": "KTN01",
+    "negeri": "Labuan",
+    "lokasi": "Kota Bahru,Bachok,Pasir Puteh,Tumpat,Pasir Mas,Tanah Merah,Machang,Kuala Krai,Mukim Chiku"
+  },
+  {
+    "zone": "KTN03",
+    "negeri": "Labuan",
+    "lokasi": "Jeli,Gua Musang,Mukim Galas,Bertam"
+  },
+  {
+    "zone": "MLK01",
+    "negeri": "Labuan",
+    "lokasi": "Bandar Melaka,Alor Gajah,Jasin,Masjid Tanah,Merlimau,Nyalas"
+  },
+  {
+    "zone": "NGS01",
+    "negeri": "Labuan",
+    "lokasi": "Jempol,Tampin"
+  },
+  {
+    "zone": "NGS02",
+    "negeri": "Labuan",
+    "lokasi": "Port Dickson,Seremban,Kuala Pilah,Jelebu,Rembau"
+  },
+  {
+    "zone": "PHG01",
+    "negeri": "Labuan",
+    "lokasi": "Pulau Tioman"
+  },
+  {
+    "zone": "PHG02",
+    "negeri": "Labuan",
+    "lokasi": "Kuantan,Pekan,Rompin,Muadzam Shah"
+  },
+  {
+    "zone": "PHG03",
+    "negeri": "Labuan",
+    "lokasi": "Maran,Chenor,Temerloh,Bera,Jerantut,Jengka"
+  },
+  {
+    "zone": "PHG04",
+    "negeri": "Labuan",
+    "lokasi": "Bentong,Raub,Kuala Lipis"
+  },
+  {
+    "zone": "PHG05",
+    "negeri": "Labuan",
+    "lokasi": "Genting Sempah,Janda Baik,Bukit Tinggi"
+  },
+  {
+    "zone": "PHG06",
+    "negeri": "Labuan",
+    "lokasi": "Bukit Fraser,Genting Highlands,Cameron Highlands"
+  },
+  {
+    "zone": "PRK01",
+    "negeri": "Labuan",
+    "lokasi": "Tapah,Slim River,Tanjung Malim"
+  },
+  {
+    "zone": "PRK02",
+    "negeri": "Labuan",
+    "lokasi": "Ipoh,Batu Gajah,Kampar,Sungai Siput,Kuala Kangsar"
+  },
+  {
+    "zone": "PRK03",
+    "negeri": "Labuan",
+    "lokasi": "Pengkalan Hulu,Grik,Lenggong"
+  },
+  {
+    "zone": "PRK04",
+    "negeri": "Labuan",
+    "lokasi": "Temengor,Belum"
+  },
+  {
+    "zone": "PRK05",
+    "negeri": "Labuan",
+    "lokasi": "Teluk Intan,Bagan Datuk,Kampung Gajah,Seri Iskandar,Beruas,Parit,Lumut,Sitiawan,Pulau Pangkor"
+  },
+  {
+    "zone": "PRK06",
+    "negeri": "Labuan",
+    "lokasi": "Selama,Taiping,Bagan Serai,Parit Buntar"
+  },
+  {
+    "zone": "PRK07",
+    "negeri": "Labuan",
+    "lokasi": "Bukit Larut"
+  },
+  {
+    "zone": "PLS01",
+    "negeri": "Labuan",
+    "lokasi": "Kangar,Padang Besar,Arau"
+  },
+  {
+    "zone": "PNG01",
+    "negeri": "Labuan",
+    "lokasi": "Pulau Pinang"
+  },
+  {
+    "zone": "SBH01",
+    "negeri": "Labuan",
+    "lokasi": "Sandakan Timur,Bukit Garam,Semawang,Temanggong,Tambisan,Sukau"
+  },
+  {
+    "zone": "SBH02",
+    "negeri": "Labuan",
+    "lokasi": "Pinangah,Terusan,Beluran,Kuamut,Telupid,Sandakan Barat"
+  },
+  {
+    "zone": "SBH03",
+    "negeri": "Labuan",
+    "lokasi": "Lahad Datu,Kunak,Silabukan,Tungku,Sahabat,Semporna,Tawau Timur"
+  },
+  {
+    "zone": "SBH04",
+    "negeri": "Labuan",
+    "lokasi": "Bandar Tawau,Balong,Merotai,Kalabakan,Tawau Barat"
+  },
+  {
+    "zone": "SBH05",
+    "negeri": "Labuan",
+    "lokasi": "Kudat,Kota Marudu,Pitas,Pulau Banggi"
+  },
+  {
+    "zone": "SBH06",
+    "negeri": "Labuan",
+    "lokasi": "Gunung Kinabalu"
+  },
+  {
+    "zone": "SBH07",
+    "negeri": "Labuan",
+    "lokasi": "Papar,Ranau,Kota Belud,Tuaran,Penampang,Kota Kinabalu,Putatan,Pantai Barat"
+  },
+  {
+    "zone": "SBH08",
+    "negeri": "Labuan",
+    "lokasi": "Pensiangan,Keningau,Tambunan,Nabawan"
+  },
+  {
+    "zone": "SBH09",
+    "negeri": "Labuan",
+    "lokasi": "Sipitang,Membakut,Beaufort,Kuala Penyu,Weston,Tenom,Long Pa Sia"
+  },
+  {
+    "zone": "SWK01",
+    "negeri": "Labuan",
+    "lokasi": "Limbang,Sundar,Terusan,Lawas"
+  },
+  {
+    "zone": "SWK02",
+    "negeri": "Labuan",
+    "lokasi": "Niah,Belaga,Sibuti,Miri,Bekenu,Marudi"
+  },
+  {
+    "zone": "SWK03",
+    "negeri": "Labuan",
+    "lokasi": "Song,Balingian,Sebauh,Bintulu,Tatau,Kapit"
+  },
+  {
+    "zone": "SWK04",
+    "negeri": "Labuan",
+    "lokasi": "Igan,Kanowit,Sibu,Dalat,Oya"
+  },
+  {
+    "zone": "SWK05",
+    "negeri": "Labuan",
+    "lokasi": "Belawai,Matu,Daro,Sarikei,Julau,Bitangor,Rajang"
+  },
+  {
+    "zone": "SWK06",
+    "negeri": "Labuan",
+    "lokasi": "Kabong,Lingga,Sri Aman,Engkelili,Betong,Spaoh,Pusa,Saratok,Roban,Debak"
+  },
+  {
+    "zone": "SWK07",
+    "negeri": "Labuan",
+    "lokasi": "Samarahan,Simunjan,Serian,Sebuyau,Meludam"
+  },
+  {
+    "zone": "SWK08",
+    "negeri": "Labuan",
+    "lokasi": "Kuching,Bau,Lundu,Sematan"
+  },
+  {
+    "zone": "SWK09",
+    "negeri": "Labuan",
+    "lokasi": "Zon Khas"
+  },
+  {
+    "zone": "SGR01",
+    "negeri": "Labuan",
+    "lokasi": "Gombak,Hulu Selangor,Rawang,Hulu Langat,Sepang,Petaling,Shah Alam"
+  },
+  {
+    "zone": "SGR02",
+    "negeri": "Labuan",
+    "lokasi": "Sabak Bernam,Kuala Selangor"
+  },
+  {
+    "zone": "SGR03",
+    "negeri": "Labuan",
+    "lokasi": "Klang,Kuala Langat"
+  },
+  {
+    "zone": "TRG01",
+    "negeri": "Labuan",
+    "lokasi": "Kuala Terengganu,Marang,Kuala Nerus"
+  },
+  {
+    "zone": "TRG02",
+    "negeri": "Labuan",
+    "lokasi": "Besut,Setiu"
+  },
+  {
+    "zone": "TRG03",
+    "negeri": "Labuan",
+    "lokasi": "Hulu Terengganu"
+  },
+  {
+    "zone": "TRG04",
+    "negeri": "Labuan",
+    "lokasi": "Kemaman,Dungun"
+  },
+  {
+    "zone": "WLY01",
+    "negeri": "Labuan",
+    "lokasi": "Putrajaya,Kuala Lumpur"
+  },
+  {
+    "zone": "WLY02",
+    "negeri": "Labuan",
+    "lokasi": "Labuan"
+  }
+]
