@@ -86,11 +86,15 @@ class AppBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
+                    FlatButton(
                       padding: const EdgeInsets.fromLTRB(8.0, 2.0, 4.0, 2.0),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8.0)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.white),
+                      ),
+                      onPressed: () {
+                        print('Opened zone chooser');
+                      },
                       child: Row(
                         children: [
                           Text(
