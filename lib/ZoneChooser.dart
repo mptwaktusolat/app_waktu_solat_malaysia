@@ -28,9 +28,7 @@ class _LocationChooserState extends State<LocationChooser> {
   );
 
   int selection = 0;
-
-  //TODO: Remove duplicate in JSON
-  //Linkkan dgn getprayertime
+  //TODO:Linkkan location dgn getprayertime
 
   @override
   Widget build(BuildContext context) {
