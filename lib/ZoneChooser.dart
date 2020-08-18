@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
-String currentChoice;
-String locationShortCode = '999';
+String locationShortCode = 'SGR01';
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -88,9 +87,7 @@ class _LocationChooserState extends State<LocationChooser> {
                 }),
           );
         });
-    setState(() {
-      print('It callled');
-    });
+    setState(() {});
   }
 }
 
@@ -115,9 +112,9 @@ class ZonesList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
           onTap: () {
-            currentChoice = groupedZones[index].zone;
-            locationShortCode = currentChoice;
+            locationShortCode = groupedZones[index].zone;
             Navigator.pop(context, index);
+            print(index);
           },
           title: Text(groupedZones[index].lokasi),
           subtitle: Text(groupedZones[index].negeri),
