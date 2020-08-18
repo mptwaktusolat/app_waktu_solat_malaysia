@@ -25,6 +25,13 @@ https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
 
 **Web app** _(coming soon)_
 
+## Honourable mention
+
+Article that help me througout the development(Read: Website yg function teruk. The real MVP!. Lifesaver!)
+
+1. https://github.com/rgodlontonshaw/apicallsboss
+2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
+
 ## Miscs
 
 - [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24)

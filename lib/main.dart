@@ -5,7 +5,9 @@ import 'package:waktusolatmalaysia/ZoneChooser.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(RestartWidget(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -108,6 +110,35 @@ class AppBody extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class RestartWidget extends StatefulWidget {
+  RestartWidget({this.child});
+  final Widget child;
+  static void restartApp(BuildContext context) {
+    context.findAncestorStateOfType<_RestartWidgetState>().restartApp();
+  }
+
+  @override
+  _RestartWidgetState createState() => _RestartWidgetState();
+}
+
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
+  void restartApp() {
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: key,
+      child: widget.child,
     );
   }
 }

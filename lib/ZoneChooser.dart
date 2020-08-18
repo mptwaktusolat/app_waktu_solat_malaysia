@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'GetPrayerTime.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'main.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
 String locationShortCode = 'SGR01';
+String currentlySetNegeri = '';
+String currentlySetLocation = '';
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -15,19 +18,9 @@ class LocationChooser extends StatefulWidget {
 }
 
 class _LocationChooserState extends State<LocationChooser> {
-  final locationSnackbar = SnackBar(
-    content: Text('Currently set to Puchong blexample'),
-    behavior: SnackBarBehavior.floating,
-    action: SnackBarAction(
-      label: 'Change',
-      onPressed: () {
-        print('Pressed change loc');
-      },
-    ),
-  );
+  // final locationSnackbar =
 
-  int selection = 0;
-  //TODO:Linkkan location dgn getprayertime
+  // int selection = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +34,18 @@ class _LocationChooserState extends State<LocationChooser> {
         _openshowModalBottomSheet();
       },
       onLongPress: () {
-        Scaffold.of(context).showSnackBar(locationSnackbar);
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text(
+              'Currently set to $currentlySetLocation in $currentlySetNegeri'),
+          behavior: SnackBarBehavior.floating,
+          action: SnackBarAction(
+            label: 'Change',
+            onPressed: () {
+              print('Pressed change loc');
+              _openshowModalBottomSheet();
+            },
+          ),
+        ));
       },
       child: Row(
         children: [
@@ -113,6 +117,9 @@ class ZonesList extends StatelessWidget {
         return ListTile(
           onTap: () {
             locationShortCode = groupedZones[index].zone;
+            currentlySetLocation = groupedZones[index].lokasi;
+            currentlySetNegeri = groupedZones[index].negeri;
+            location = locationShortCode;
             Navigator.pop(context, index);
             print(index);
           },

@@ -3,8 +3,11 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
+import 'main.dart';
 
 import 'networking/Response.dart';
+
+String location = "sgr01";
 
 class GetPrayerTime extends StatefulWidget {
   @override
@@ -13,7 +16,7 @@ class GetPrayerTime extends StatefulWidget {
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
   PrayTimeBloc _timeBloc;
-  String location = "sgr01";
+
   String timeFormat = "&format=12-hour";
 
   @override
@@ -73,6 +76,14 @@ class PrayTimeList extends StatelessWidget {
         solatCard(prayerTime.prayerTimes.asar, 'Asar'),
         solatCard(prayerTime.prayerTimes.maghrib, 'Maghrib'),
         solatCard(prayerTime.prayerTimes.isyak, 'Isyak'),
+        RaisedButton(
+          child: Text('DEBUG BUTTON'),
+          color: Colors.red,
+          onPressed: () {
+            print('location is ' + location);
+            RestartWidget.restartApp(context);
+          },
+        )
       ],
     );
   }
