@@ -22,6 +22,7 @@ https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
 
 - [Google Play Store](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 - Huawei App Gallery
+- [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases)
 
 **Web app** _(coming soon)_
 
