@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'GetPrayerTime.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
 String locationShortCode = 'SGR01';
@@ -70,6 +70,7 @@ class _LocationChooserState extends State<LocationChooser> {
 
   Future _openshowModalBottomSheet() async {
     await showModalBottomSheet(
+        backgroundColor: Colors.transparent,
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
@@ -90,8 +91,14 @@ class _LocationChooserState extends State<LocationChooser> {
                   }
                 }),
           );
-        });
-    setState(() {});
+        }).then((value) {
+      Future.delayed(const Duration(milliseconds: 450), () {
+        RestartWidget.restartApp(context);
+      });
+    });
+    // setState(() {
+    //   RestartWidget.restartApp(context);
+    // });
   }
 }
 
@@ -100,9 +107,11 @@ Widget locationBubble(String shortCode) {
     padding: EdgeInsets.all(4.0),
     decoration: BoxDecoration(
       border: Border.all(color: Colors.black),
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
-    child: Text(shortCode),
+    child: Text(
+      shortCode,
+    ),
   );
 }
 
@@ -111,23 +120,31 @@ class ZonesList extends StatelessWidget {
   ZonesList({Key key, this.groupedZones}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: groupedZones == null ? 0 : groupedZones.length,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          onTap: () {
-            locationShortCode = groupedZones[index].zone;
-            currentlySetLocation = groupedZones[index].lokasi;
-            currentlySetNegeri = groupedZones[index].negeri;
-            location = locationShortCode;
-            Navigator.pop(context, index);
-            print(index);
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(26.0), topRight: Radius.circular(26.0)),
+      child: Container(
+        color: Colors.white,
+        child: ListView.builder(
+          itemCount: groupedZones == null ? 0 : groupedZones.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              onTap: () {
+                locationShortCode = groupedZones[index].zone;
+                currentlySetLocation = groupedZones[index].lokasi;
+                currentlySetNegeri = groupedZones[index].negeri;
+                location = locationShortCode;
+                Navigator.pop(context, index);
+
+                print(index);
+              },
+              title: Text(groupedZones[index].lokasi),
+              subtitle: Text(groupedZones[index].negeri),
+              trailing: locationBubble(groupedZones[index].zone),
+            );
           },
-          title: Text(groupedZones[index].lokasi),
-          subtitle: Text(groupedZones[index].negeri),
-          trailing: locationBubble(groupedZones[index].zone),
-        );
-      },
+        ),
+      ),
     );
   }
 }

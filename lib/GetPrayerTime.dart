@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
@@ -37,6 +39,10 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               return Loading(loadingMessage: snapshot.data.message);
               break;
             case Status.COMPLETED:
+              // Fluttertoast.showToast(
+              //     msg: 'Updated just now',
+              //     backgroundColor: Colors.black12,
+              //     textColor: Colors.white);
               return PrayTimeList(prayerTime: snapshot.data.data);
               break;
             case Status.ERROR:
@@ -76,14 +82,14 @@ class PrayTimeList extends StatelessWidget {
         solatCard(prayerTime.prayerTimes.asar, 'Asar'),
         solatCard(prayerTime.prayerTimes.maghrib, 'Maghrib'),
         solatCard(prayerTime.prayerTimes.isyak, 'Isyak'),
-        RaisedButton(
-          child: Text('DEBUG BUTTON'),
-          color: Colors.red,
-          onPressed: () {
-            print('location is ' + location);
-            RestartWidget.restartApp(context);
-          },
-        )
+        // RaisedButton(
+        //   child: Text('DEBUG BUTTON'),
+        //   color: Colors.red,
+        //   onPressed: () {
+        //     print('location is ' + location);
+        //     RestartWidget.restartApp(context);
+        //   },
+        // )
       ],
     );
   }
@@ -101,10 +107,15 @@ Widget solatCard(String time, String name) {
         splashColor: Colors.teal.withAlpha(30),
         onLongPress: () {
           print('Copied');
-          //TODO: Copy function and toast
-        },
-        onTap: () {
-          print('Pressed');
+
+          Clipboard.setData(new ClipboardData(text: '$name: $time'))
+              .then((value) {
+            Fluttertoast.showToast(
+                msg: 'Copied to clipboard',
+                toastLength: Toast.LENGTH_SHORT,
+                backgroundColor: Colors.grey.shade800,
+                textColor: Colors.white);
+          });
         },
         child: Center(child: Text(name + ' at $time')),
       ),
