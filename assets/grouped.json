@@ -2,7 +2,7 @@
   {
     "zone": "JHR01",
     "negeri": "Johor",
-    "lokasi": "Pulau Aur, Pemanggil"
+    "lokasi": "Pulau Aur dan Pulau Pemanggil"
   },
   {
     "zone": "JHR02",
@@ -53,7 +53,7 @@
   {
     "zone": "KDH07",
     "negeri": "Kedah",
-    "lokasi": "Gunung Jerai"
+    "lokasi": "Puncak Gunung Jerai"
   },
   {
     "zone": "KTN01",
@@ -63,12 +63,12 @@
   {
     "zone": "KTN03",
     "negeri": "Kelantan",
-    "lokasi": "Jeli, Gua Musang,Mukim Galas, Bertam"
+    "lokasi": "Jeli, Gua Musang (Daerah Galas dan Bertam)"
   },
   {
     "zone": "MLK01",
     "negeri": "Melaka",
-    "lokasi": "SELLURUH NEGERI MELAKA"
+    "lokasi": "SELURUH NEGERI MELAKA"
   },
   {
     "zone": "NGS01",
@@ -118,7 +118,7 @@
   {
     "zone": "PRK02",
     "negeri": "Perak",
-    "lokasi": "Ipoh, Batu Gajah, Kampar, Sungai Siput, Kuala Kangsar"
+    "lokasi": "Ipoh, Batu Gajah, Kampar, Sungai Siput (Daerah Kecil), Kuala Kangsar"
   },
   {
     "zone": "PRK03",
@@ -133,7 +133,7 @@
   {
     "zone": "PRK05",
     "negeri": "Perak",
-    "lokasi": "Teluk Intan, Bagan Datuk, Kampung Gajah, Seri Iskandar, Beruas, Parit, Lumut, Sitiawan, Pulau Pangkor"
+    "lokasi": "Teluk Intan, Bagan Datuk, Kg Gajah, Seri Iskandar, Beruas, Parit, Lumut, Sitiawan, Pulau Pangkor"
   },
   {
     "zone": "PRK06",
@@ -153,12 +153,12 @@
   {
     "zone": "PNG01",
     "negeri": "Pulau Pinang",
-    "lokasi": "Pulau Pinang"
+    "lokasi": "SELURUH NEGERI PULAU PINANG"
   },
   {
     "zone": "SBH01",
     "negeri": "Sabah",
-    "lokasi": "Sandakan Timur, Bukit Garam, Semawang, Temanggong, Tambisan, Sukau"
+    "lokasi": "Sandakan Timur, Bdr Sandakan, Bukit Garam, Semawang, Temanggong, Tambisan, Sukau"
   },
   {
     "zone": "SBH02",
@@ -193,12 +193,12 @@
   {
     "zone": "SBH08",
     "negeri": "Sabah",
-    "lokasi": "Pensiangan, Keningau, Tambunan, Nabawan"
+    "lokasi": "Pensiangan, Keningau, Tambunan, Nabawan, Bahagian Pendalaman (Atas)"
   },
   {
     "zone": "SBH09",
     "negeri": "Sabah",
-    "lokasi": "Sipitang, Membakut, Beaufort, Kuala Penyu, Weston, Tenom, Long Pa Sia"
+    "lokasi": "Sipitang, Membakut, Beaufort, Kuala Penyu, Weston, Tenom, Long Pa Sia, Pendalaman (Bawah)"
   },
   {
     "zone": "SWK01",
@@ -282,12 +282,12 @@
   },
   {
     "zone": "WLY01",
-    "negeri": "Kuala Lumpur",
-    "lokasi": "Putrajaya,Kuala Lumpur"
+    "negeri": "Wilayah Persekutuan",
+    "lokasi": "Putrajaya, Kuala Lumpur"
   },
   {
     "zone": "WLY02",
-    "negeri": "Labuan",
+    "negeri": "Wilayah Persekutuan",
     "lokasi": "Labuan"
   }
 ]
