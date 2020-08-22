@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Malaysia Prayer Time 2020',
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
+      theme: ThemeData.light().copyWith(
+        primaryColor: Colors.cyan,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -31,7 +31,11 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan.shade900,
-        title: Text('MY Prayer Time ALPHA'),
+        brightness: Brightness.dark,
+        title: Text(
+          'MY Prayer Time BETA',
+          style: GoogleFonts.balooTamma(),
+        ),
         elevation: 0.0,
         actions: <Widget>[
           IconButton(
