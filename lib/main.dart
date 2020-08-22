@@ -47,7 +47,7 @@ class MyHomePage extends StatelessWidget {
           )
         ],
       ),
-      body: AppBody(),
+      body: SingleChildScrollView(child: AppBody()),
     );
   }
 }
@@ -62,52 +62,68 @@ class AppBody extends StatelessWidget {
         children: <Widget>[
           Container(
             width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight / 5.5,
+            height: SizeConfig.screenHeight / 6,
             decoration: BoxDecoration(
               color: Colors.cyan.shade900,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
             ),
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  'Subuh',
-                  style: GoogleFonts.robotoCondensed(
-                      textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold)),
-                ),
-                Column(
+            padding: EdgeInsets.all(5.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      '5:71 am',
-                      style: GoogleFonts.sourceSansPro(
-                        textStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40,
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withAlpha(70),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    '03 Muharram 1442',
+                                    style:
+                                        GoogleFonts.acme(color: Colors.white),
+                                  ),
+                                  Text('Before next prayer time'),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    LocationChooser(),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        margin: EdgeInsets.all(5.0),
+                        padding: EdgeInsets.all(18.0),
+                        child: LocationChooser(),
+                      ),
+                    ),
                   ],
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: SizeConfig.screenHeight / 45,
+            height: SizeConfig.screenHeight / 69,
           ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
-                  SizeConfig.screenWidth / 10, 8.0),
-              child: GetPrayerTime(),
-            ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
+                SizeConfig.screenWidth / 10, 8.0),
+            child: GetPrayerTime(),
           ),
           SizedBox(
             height: SizeConfig.screenHeight / 45,

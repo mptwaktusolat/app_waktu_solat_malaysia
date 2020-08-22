@@ -25,8 +25,9 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
+      padding: EdgeInsets.all(-5.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(8.0),
         side: BorderSide(color: Colors.white),
       ),
       onPressed: () {
@@ -48,6 +49,7 @@ class _LocationChooserState extends State<LocationChooser> {
         ));
       },
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             locationShortCode.substring(0, 3) +
@@ -56,7 +58,7 @@ class _LocationChooserState extends State<LocationChooser> {
             style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
               color: Colors.white,
-              fontSize: 15,
+              fontSize: 13,
             )),
           ),
           Icon(

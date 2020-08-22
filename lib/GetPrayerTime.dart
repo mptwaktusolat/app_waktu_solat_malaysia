@@ -110,10 +110,11 @@ Widget solatCard(String time, String name) {
 
           Clipboard.setData(new ClipboardData(text: '$name: $time'))
               .then((value) {
+            // Vibration.vibrate();
             Fluttertoast.showToast(
                 msg: 'Copied to clipboard',
                 toastLength: Toast.LENGTH_SHORT,
-                backgroundColor: Colors.grey.shade800,
+                backgroundColor: Colors.grey.shade700,
                 textColor: Colors.white);
           });
         },
@@ -123,15 +124,15 @@ Widget solatCard(String time, String name) {
   );
 }
 
-String formattedTime(int unixTime) {
-  DateTime time = new DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
+// String formattedTime(int unixTime) {
+//   DateTime time = new DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
 
-  var format = new DateFormat.jm();
-  var timeString = format.format(time);
-  // print(timeString);
+//   var format = new DateFormat.jm();
+//   var timeString = format.format(time);
+//   // print(timeString);
 
-  return timeString;
-}
+//   return timeString;
+// }
 
 class Error extends StatelessWidget {
   final String errorMessage;
