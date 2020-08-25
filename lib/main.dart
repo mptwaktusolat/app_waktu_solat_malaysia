@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
+import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
 
 void main() {
   runApp(
@@ -41,6 +42,16 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
         toolbarHeight: 50,
       ),
+      bottomNavigationBar: MyBottomAppBar(),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Icon(Icons.share),
+          mini: true,
+          tooltip: 'Share',
+          onPressed: () {
+            print('FAB pressed');
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),
     );
   }
