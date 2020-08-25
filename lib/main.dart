@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/GetPrayerTime.dart';
 import 'package:waktusolatmalaysia/ZoneChooser.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
+import 'package:hijri/hijri_calendar.dart';
 
 void main() {
   runApp(RestartWidget(
@@ -33,19 +35,22 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.cyan.shade900,
         brightness: Brightness.dark,
         title: Text(
-          'MY Prayer Time BETA',
+          '🇲🇾 Prayer Time BETA',
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.share),
-            tooltip: 'Share prayer time',
-            onPressed: () {
-              print('button ditekan');
-            },
-          )
-        ],
+        centerTitle: true,
+        toolbarHeight: 50,
+
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Icon(Icons.share),
+        //     tooltip: 'Share prayer time',
+        //     onPressed: () {
+        //       print('button ditekan');
+        //     },
+        //   )
+        // ],
       ),
       body: SingleChildScrollView(child: AppBody()),
     );
@@ -53,6 +58,11 @@ class MyHomePage extends StatelessWidget {
 }
 
 class AppBody extends StatelessWidget {
+  final _today = HijriCalendar.now();
+  // final DateTime date = DateTime.now();
+  final dayFormat = DateFormat('EEEE').format(DateTime.now());
+  final dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -79,12 +89,13 @@ class AppBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: Container(
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 8.0),
                               decoration: BoxDecoration(
                                 color: Colors.white.withAlpha(70),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -92,11 +103,20 @@ class AppBody extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    '03 Muharram 1442',
-                                    style:
-                                        GoogleFonts.acme(color: Colors.white),
+                                    dayFormat,
+                                    style: GoogleFonts.spartan(
+                                        color: Colors.white),
                                   ),
-                                  Text('Before next prayer time'),
+                                  Text(
+                                    _today.toFormat("dd MMMM yyyy"),
+                                    style: GoogleFonts.acme(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  Text(
+                                    dateFormat,
+                                    style:
+                                        TextStyle(color: Colors.teal.shade100),
+                                  ),
                                 ],
                               ),
                             ),
