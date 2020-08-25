@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:waktusolatmalaysia/utils/restartWidget.dart';
+
 import 'GetPrayerTime.dart';
 import 'package:flutter/material.dart';
-import 'main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 

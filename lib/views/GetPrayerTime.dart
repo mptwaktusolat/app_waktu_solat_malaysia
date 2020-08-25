@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
-import 'main.dart';
 
-import 'networking/Response.dart';
+import '../networking/Response.dart';
 
 String location = "sgr01";
 
