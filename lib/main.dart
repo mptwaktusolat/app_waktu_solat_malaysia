@@ -44,6 +44,7 @@ class MyHomePage extends StatelessWidget {
       ),
       bottomNavigationBar: MyBottomAppBar(),
       floatingActionButton: FloatingActionButton(
+          //TODO: Disable temporarily
           backgroundColor: Theme.of(context).primaryColor,
           child: Icon(Icons.share),
           mini: true,
