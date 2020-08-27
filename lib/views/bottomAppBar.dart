@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import '../utils/AppInformation.dart';
+
+AppInfo info = AppInfo();
 
 class MyBottomAppBar extends StatelessWidget {
   @override
@@ -22,12 +24,6 @@ class MyBottomAppBar extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<String> getPackageInfo() async {
-  PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  String version = packageInfo.version;
-  return version;
 }
 
 void menuModalBottomSheet(BuildContext context) {
@@ -61,23 +57,24 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text('About app'),
-              subtitle: FutureBuilder(
-                future: getPackageInfo(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<String> snapshot) =>
-                        Text(
-                  snapshot.hasData ? snapshot.data : "Loading ...",
-                  style: TextStyle(color: Colors.black38),
-                ),
-              ),
+              subtitle: Text(info.version),
               leading: Icon(Icons.info_outline),
               onTap: () {
-                print('Hello');
+                myAboutDialog(context);
               },
             ),
           ]),
         );
       });
 
-//TODO: Add icon, add about dialog, rate Google PLay dialog
+//TODO: Add icon,  rate Google PLay dialog
+//TODO: AppIcon kena letak
+}
+
+void myAboutDialog(BuildContext context) {
+  return showAboutDialog(
+      context: context,
+      applicationIcon: FlutterLogo(),
+      applicationLegalese: '© Fareez 2020',
+      applicationVersion: info.version);
 }
