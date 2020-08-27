@@ -43,16 +43,16 @@ class MyHomePage extends StatelessWidget {
         toolbarHeight: 50,
       ),
       bottomNavigationBar: MyBottomAppBar(),
-      floatingActionButton: FloatingActionButton(
-          //TODO: Disable temporarily
-          backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.share),
-          mini: true,
-          tooltip: 'Share',
-          onPressed: () {
-            print('FAB pressed');
-          }),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: FloatingActionButton(
+      //     //TODO: enable later
+      //     backgroundColor: Theme.of(context).primaryColor,
+      //     child: Icon(Icons.share),
+      //     mini: true,
+      //     tooltip: 'Share',
+      //     onPressed: () {
+      //       print('FAB pressed');
+      //     }),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),
     );
   }
