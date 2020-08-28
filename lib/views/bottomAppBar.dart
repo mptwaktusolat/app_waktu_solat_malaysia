@@ -36,7 +36,7 @@ void menuModalBottomSheet(BuildContext context) {
       ),
       builder: (BuildContext context) {
         return Container(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(4.0),
           child: Wrap(children: <Widget>[
             ListTile(
               title: Text('Rate app'),
@@ -54,10 +54,11 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             Divider(
               thickness: 2,
+              height: 0.0,
             ),
             ListTile(
               title: Text('About app'),
-              subtitle: Text(info.version),
+              // subtitle: Text(info.version),
               leading: Icon(Icons.info_outline),
               onTap: () {
                 myAboutDialog(context);
