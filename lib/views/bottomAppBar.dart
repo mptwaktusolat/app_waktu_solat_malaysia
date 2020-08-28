@@ -76,5 +76,12 @@ void myAboutDialog(BuildContext context) {
       context: context,
       applicationIcon: FlutterLogo(),
       applicationLegalese: '© Fareez 2020',
-      applicationVersion: info.version);
+      applicationVersion: info.version,
+      children: <Widget>[
+        FlatButton(
+            onPressed: () {
+              //add launch url
+            },
+            child: Text('Privacy Policy'))
+      ]);
 }
