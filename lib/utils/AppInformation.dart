@@ -17,12 +17,4 @@ class AppInfo {
     version = packageInfo.version;
     buildNumber = packageInfo.buildNumber;
   }
-
-  String getAppName() {
-    return appName;
-  }
-
-  void debugTest() {
-    print('Called here on debug tets');
-  }
 }

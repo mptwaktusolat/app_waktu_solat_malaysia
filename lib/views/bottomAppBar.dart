@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
 
 AppInfo info = AppInfo();
@@ -8,6 +9,8 @@ AppInfo info = AppInfo();
 class MyBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    String init = info.appName; //just to init the class
     return BottomAppBar(
       elevation: 18.0,
       shape: CircularNotchedRectangle(),
@@ -51,18 +54,21 @@ void menuModalBottomSheet(BuildContext context) {
               title: Text('Send feedback'),
               leading: Icon(Icons.feedback),
               onTap: () {
-                print('Hello');
+                Navigator.pop(context);
+                print('Opening feedback dialog');
+                openFeedbackDialog(context);
               },
             ),
             Divider(
-              thickness: 2,
+              thickness: 1,
               height: 0.0,
             ),
             ListTile(
               title: Text('About app'),
               // subtitle: Text(info.version),
-              leading: Icon(Icons.info_outline),
+              leading: Icon(Icons.info),
               onTap: () {
+                Navigator.pop(context);
                 myAboutDialog(context);
               },
             ),
@@ -103,4 +109,15 @@ void myAboutDialog(BuildContext context) {
             },
             child: Text('Changelogs history'))
       ]);
+}
+
+void openFeedbackDialog(BuildContext context) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (BuildContext context) {
+          return FeedbackPage();
+        },
+        fullscreenDialog: true),
+  );
 }

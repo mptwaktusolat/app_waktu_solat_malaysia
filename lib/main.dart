@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Malaysia Prayer Time 2020',
       theme: ThemeData.light().copyWith(
-        primaryColor: Colors.cyan,
+        primaryColor: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
