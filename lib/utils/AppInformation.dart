@@ -3,7 +3,7 @@ import 'package:package_info/package_info.dart';
 class AppInfo {
   AppInfo() {
     getAppInfo();
-    //constructor to call the async method
+    print('appinfo is constructed');
   }
   String appName = "";
   String packageName = "";

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
 
 import '../networking/Response.dart';
 
-String location = "sgr01";
+String location = GetStorage().read(kStoredLocationKey);
 
 class GetPrayerTime extends StatefulWidget {
   @override
@@ -23,6 +25,10 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   void initState() {
     super.initState();
     initializeDateFormatting('en_US', null);
+    GetStorage().writeIfNull(kStoredLocationKey, "sgr01");
+    GetStorage().writeIfNull(kStoredKawasanKey,
+        "Gombak, Hulu Selangor, Rawang, Hulu Langat, Sepang, Petaling, Shah Alam");
+    GetStorage().writeIfNull(kStoredNegeriKey, "Selangor");
     _timeBloc = PrayTimeBloc(location, timeFormat);
   }
 

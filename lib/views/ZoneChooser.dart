@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 
 import 'GetPrayerTime.dart';
@@ -7,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
-String locationShortCode = 'SGR01';
+String locationShortCode = GetStorage().read(kStoredLocationKey);
 String currentlySetNegeri = '';
-String currentlySetLocation = '';
+String currentlySetKawasan = '';
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -19,9 +21,12 @@ class LocationChooser extends StatefulWidget {
 }
 
 class _LocationChooserState extends State<LocationChooser> {
-  // final locationSnackbar =
-
-  // int selection = 0;
+  @override
+  void initState() {
+    super.initState();
+    currentlySetNegeri = GetStorage().read(kStoredNegeriKey);
+    currentlySetKawasan = GetStorage().read(kStoredKawasanKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,7 @@ class _LocationChooserState extends State<LocationChooser> {
       onLongPress: () {
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Currently set to $currentlySetLocation in $currentlySetNegeri'),
+              'Currently set to $currentlySetKawasan in $currentlySetNegeri'),
           behavior: SnackBarBehavior.floating,
           action: SnackBarAction(
             label: 'Change',
@@ -53,7 +58,7 @@ class _LocationChooserState extends State<LocationChooser> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            locationShortCode.substring(0, 3) +
+            locationShortCode.substring(0, 3).toUpperCase() +
                 ' ' +
                 locationShortCode.substring(3, 5),
             style: GoogleFonts.montserrat(
@@ -134,9 +139,13 @@ class ZonesList extends StatelessWidget {
             return ListTile(
               onTap: () {
                 locationShortCode = groupedZones[index].zone;
-                currentlySetLocation = groupedZones[index].lokasi;
+                currentlySetKawasan = groupedZones[index].lokasi;
                 currentlySetNegeri = groupedZones[index].negeri;
                 location = locationShortCode;
+                saveToGetStorage(
+                    shortCode: locationShortCode,
+                    kawasan: currentlySetKawasan,
+                    negeri: currentlySetNegeri);
                 Navigator.pop(context, index);
 
                 print(index);
@@ -160,4 +169,10 @@ List<GroupedZones> parseJson(String response) {
   return parsed
       .map<GroupedZones>((json) => GroupedZones.fromJson(json))
       .toList();
+}
+
+void saveToGetStorage({String shortCode, String kawasan, String negeri}) {
+  GetStorage().write(kStoredLocationKey, shortCode);
+  GetStorage().write(kStoredKawasanKey, kawasan);
+  GetStorage().write(kStoredNegeriKey, negeri);
 }
