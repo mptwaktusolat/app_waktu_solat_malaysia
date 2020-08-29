@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import '../utils/AppInformation.dart';
 
 AppInfo info = AppInfo();
@@ -75,14 +77,30 @@ void menuModalBottomSheet(BuildContext context) {
 void myAboutDialog(BuildContext context) {
   return showAboutDialog(
       context: context,
-      applicationIcon: FlutterLogo(),
+      applicationIcon: CachedNetworkImage(
+        width: 60,
+        imageUrl: kAppIconUrl,
+        progressIndicatorBuilder: (context, url, downloadProgress) =>
+            CircularProgressIndicator(value: downloadProgress.progress),
+        errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
       applicationLegalese: '© Fareez 2020',
       applicationVersion: info.version,
       children: <Widget>[
+        SizedBox(
+          height: 10,
+        ),
         FlatButton(
+            color: Colors.teal.shade50,
             onPressed: () {
               //add launch url
             },
-            child: Text('Privacy Policy'))
+            child: Text('Privacy Policy')),
+        FlatButton(
+            color: Colors.teal.shade50,
+            onPressed: () {
+              //add launch url
+            },
+            child: Text('Changelogs history'))
       ]);
 }
