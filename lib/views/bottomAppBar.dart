@@ -108,8 +108,7 @@ void myAboutDialog(BuildContext context) {
           onPressed: () {
             LaunchUrl.customTabsUrl('test url ');
           },
-          child: Text(
-              'Changelogs history'), //TODO: Change to 'Release notes' in later releases
+          child: Text('Release notes'),
         )
       ]);
 }

@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
-String locationShortCode = GetStorage().read(kStoredLocationKey);
-String currentlySetNegeri = '';
-String currentlySetKawasan = '';
+String locationShortCode;
+String currentlySetNegeri;
+String currentlySetKawasan;
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -24,8 +24,13 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
+    GetStorage().writeIfNull(kStoredLocationKey, "sgr01");
+    GetStorage().writeIfNull(kStoredKawasanKey,
+        "Gombak, Hulu Selangor, Rawang, Hulu Langat, Sepang, Petaling, Shah Alam");
+    GetStorage().writeIfNull(kStoredNegeriKey, "Selangor");
     currentlySetNegeri = GetStorage().read(kStoredNegeriKey);
     currentlySetKawasan = GetStorage().read(kStoredKawasanKey);
+    locationShortCode = GetStorage().read(kStoredLocationKey);
   }
 
   @override

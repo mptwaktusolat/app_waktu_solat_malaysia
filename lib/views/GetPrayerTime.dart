@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
+import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 import '../networking/Response.dart';
 
@@ -25,10 +26,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   void initState() {
     super.initState();
     initializeDateFormatting('en_US', null);
-    GetStorage().writeIfNull(kStoredLocationKey, "sgr01");
-    GetStorage().writeIfNull(kStoredKawasanKey,
-        "Gombak, Hulu Selangor, Rawang, Hulu Langat, Sepang, Petaling, Shah Alam");
-    GetStorage().writeIfNull(kStoredNegeriKey, "Selangor");
     _timeBloc = PrayTimeBloc(location, timeFormat);
   }
 
@@ -78,7 +75,8 @@ class PrayTimeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         solatCard(prayerTime.prayerTimes.subuh, 'Subuh'),
@@ -101,11 +99,12 @@ class PrayTimeList extends StatelessWidget {
 
 Widget solatCard(String time, String name) {
   return Container(
+    margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 500),
     width: 300,
     height: 80,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      elevation: 6.0,
+      elevation: 4.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
