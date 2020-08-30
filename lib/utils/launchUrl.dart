@@ -1,10 +1,10 @@
 class LaunchUrl {
-  void normalLaunchUrl() {
-    print('Called normal laucnh');
+  static void normalLaunchUrl({String url}) {
+    print('Called normal laucnh: $url');
   }
 
-  void customTabsUrl() {
-    print('Called custom tabs');
+  static void customTabsUrl(String url) {
+    print('Called custom tabs: $url');
     //TODO: Custom tabs
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
 
@@ -99,15 +100,17 @@ void myAboutDialog(BuildContext context) {
         FlatButton(
             color: Colors.teal.shade50,
             onPressed: () {
-              //add launch url
+              LaunchUrl.normalLaunchUrl(url: 'testurl');
             },
             child: Text('Privacy Policy')),
         FlatButton(
-            color: Colors.teal.shade50,
-            onPressed: () {
-              //add launch url
-            },
-            child: Text('Changelogs history'))
+          color: Colors.teal.shade50,
+          onPressed: () {
+            LaunchUrl.customTabsUrl('test url ');
+          },
+          child: Text(
+              'Changelogs history'), //TODO: Change to 'Release notes' in later releases
+        )
       ]);
 }
 

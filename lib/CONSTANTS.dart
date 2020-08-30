@@ -18,3 +18,16 @@ const kWaktuMaghribImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay1%20(Custom).png?alt=media&token=b3a669f1-1403-42f4-bd94-675b1a8ba81c';
 const kWaktuIsyakImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay4%20(Custom).jpg?alt=media&token=429b449c-6573-40df-acef-aaf0a67a8695';
+
+//External links
+const kPrivacyPolicyLink = 'https://telegra.ph/MPT-Privacy-Policy-07-24';
+const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
+const kReleaseNotesLink =
+    'https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20';
+const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
+
+//Developer info
+const kDevEmail = '';
+const kDevTwitter = 'https://twitter.com/iqfareez2';
+const kDevInstagram = '';
+const kGithubLink = 'https://github.com/fareezMaple';
