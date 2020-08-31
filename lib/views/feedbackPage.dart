@@ -6,6 +6,7 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
+  bool _logIsChecked = true;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -60,9 +61,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       ),
                     ],
                   ),
-                  EmojiReaction(
-                    emoji: '😡 😢 🥰 😐 🐱',
-                  ),
                   Divider(),
                   Text('Please select feedback category below'),
                   SizedBox(
@@ -94,8 +92,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     maxLines: 4,
                   ),
                   Container(
-                    height: 10.0,
-                    color: Colors.cyan,
+                    child: CheckboxListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        title: Text(
+                          'Include debug info (Recommended)',
+                        ),
+                        value: _logIsChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            _logIsChecked = value;
+                          });
+                        }),
                   )
                 ],
               ),
@@ -160,5 +168,3 @@ class FeedbackCategoryButton extends StatelessWidget {
     );
   }
 }
-
-//inspiration:
