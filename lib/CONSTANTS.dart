@@ -20,7 +20,8 @@ const kWaktuIsyakImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay4%20(Custom).jpg?alt=media&token=429b449c-6573-40df-acef-aaf0a67a8695';
 
 //App info
-const kPlayStoreListingLink = '';
+const kPlayStoreListingLink =
+    'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
 const kPrivacyPolicyLink = 'https://telegra.ph/MPT-Privacy-Policy-07-24';
 const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
 const kReleaseNotesLink =
@@ -30,6 +31,7 @@ const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';
 const kDevTwitter = 'https://twitter.com/iqfareez2';
-const kDevInstagram = '';
+const kDevInstagram = 'https://www.instagram.com/iqfareez/';
 const kGithubLink = 'https://github.com/fareezMaple';
-const kPlayStoreDevLink = '';
+const kPlayStoreDevLink =
+    'https://play.google.com/store/apps/dev?id=9200064795631584674';

@@ -48,7 +48,7 @@ void menuModalBottomSheet(BuildContext context) {
               title: Text('Rate app'),
               leading: Icon(Icons.star),
               onTap: () {
-                LaunchUrl.normalLaunchUrl();
+                LaunchUrl.normalLaunchUrl(); //TODO: Add link
               },
             ),
             ListTile(
