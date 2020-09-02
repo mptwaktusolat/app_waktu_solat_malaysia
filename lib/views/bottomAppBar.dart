@@ -48,7 +48,7 @@ void menuModalBottomSheet(BuildContext context) {
               title: Text('Rate app'),
               leading: Icon(Icons.star),
               onTap: () {
-                print('Hello');
+                LaunchUrl.normalLaunchUrl();
               },
             ),
             ListTile(
@@ -76,9 +76,6 @@ void menuModalBottomSheet(BuildContext context) {
           ]),
         );
       });
-
-//TODO: Add icon,  rate Google PLay dialog
-//TODO: AppIcon kena letak
 }
 
 void myAboutDialog(BuildContext context) {
