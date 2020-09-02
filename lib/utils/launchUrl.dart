@@ -7,12 +7,10 @@ class LaunchUrl {
     _launchURL(url);
   }
 
-  static void sendViaEmail(String emailAddress, String messageContent) {
-    final Uri _emailLaunchUri = Uri(
-        scheme: 'mailto',
-        path: kDevEmail,
-        queryParameters: {'subject': messageContent});
-    print(_emailLaunchUri.toString());
+  static void sendViaEmail(String messageContent) {
+    final emailLink = Uri.encodeFull(
+        'mailto:$kDevEmail?subject=Feedback MPT&body=$messageContent');
+    print(emailLink);
     // _launchURL(_emailLaunchUri.toString());
   }
 

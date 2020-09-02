@@ -1,6 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:waktusolatmalaysia/utils/AppInformation.dart';
+import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 
 enum FeedbackCategory { suggestion, bug, compliment }
+
+class FeedbackToEmail {
+  String _emoji;
+  String _feedbackType;
+  String _message;
+  String _debugLog;
+
+  void emojiSetter(String emoji) {
+    this._emoji = emoji;
+  }
+
+  void feedbackTypeSetter(String feedbackCategory) {
+    this._feedbackType = feedbackCategory;
+  }
+
+  void messageSetter(String message) {
+    this._message = message;
+  }
+
+  void debugLogSetter(String debugLog) {
+    this._debugLog = debugLog;
+  }
+
+  String getAllData() {
+    String data = '''$_emoji $_emoji $_emoji $_emoji $_emoji
+
+    category: $_feedbackType, 
+    Message: $_message, 
+    <---------Debug log:---------------
+    $_debugLog
+    --------------------------------->''';
+    print(data);
+    return data;
+  }
+}
 
 class Feedmoji {
   bool isSelected;
@@ -15,11 +52,14 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
+  AppInfo appInfo = AppInfo();
   FeedbackCategory feedbackCategory;
   double selectedOutlineWidth = 4.0;
   double unselectedOutlineWidth = 1.0;
   String hintTextForFeedback = 'Please leave your feedback below';
   List<Feedmoji> feedmoji = List<Feedmoji>();
+  FeedbackToEmail feedbackToEmail = FeedbackToEmail();
+  TextEditingController messageController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -48,6 +88,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 icon: Icon(Icons.send),
                 onPressed: () {
                   print('Pressed send');
+                  if (_logIsChecked) {
+                    feedbackToEmail
+                        .debugLogSetter('''Versiom: ${appInfo.version}
+                    Screen h/w ${MediaQuery.of(context).size.height}, ${MediaQuery.of(context).size.width}
+                    ''');
+                  }
+                  feedbackToEmail.messageSetter(messageController.text);
+                  feedbackToEmail.getAllData();
+                  LaunchUrl.sendViaEmail(feedbackToEmail.getAllData());
                   FocusScope.of(context).unfocus();
                 })
           ],
@@ -78,6 +127,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               feedmoji.forEach((element) {
                                 element.isSelected = false;
                                 feedmoji[index].isSelected = true;
+                                feedbackToEmail
+                                    .emojiSetter(feedmoji[index].emojiText);
                               });
                             },
                           );
@@ -106,6 +157,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       setState(() {
                         feedbackCategory = FeedbackCategory.suggestion;
                         hintTextForFeedback = 'Urmm I\'ve a suggestion...';
+                        feedbackToEmail.feedbackTypeSetter('Suggestion');
                       });
                     },
                   ),
@@ -118,6 +170,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       setState(() {
                         feedbackCategory = FeedbackCategory.bug;
                         hintTextForFeedback = 'Eww I found a bug(s)';
+                        feedbackToEmail
+                            .feedbackTypeSetter('Something not quite right');
                       });
                     },
                   ),
@@ -131,6 +185,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       setState(() {
                         feedbackCategory = FeedbackCategory.compliment;
                         hintTextForFeedback = 'haha write anything you want';
+                        feedbackToEmail.feedbackTypeSetter('Compliment');
                       });
                     },
                   )
@@ -139,12 +194,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
+                controller: messageController,
                 decoration: InputDecoration(
                   hintText: hintTextForFeedback,
                   border: OutlineInputBorder(),
                 ),
                 // textInputAction: TextInputAction.done,
-                keyboardType: TextInputType.multiline,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
                 maxLines: 4,
               ),
             ),

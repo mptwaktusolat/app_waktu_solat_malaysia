@@ -48,7 +48,7 @@ void menuModalBottomSheet(BuildContext context) {
               title: Text('Rate app'),
               leading: Icon(Icons.star),
               onTap: () {
-                LaunchUrl.normalLaunchUrl(); //TODO: Add link
+                LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),
             ListTile(
@@ -97,13 +97,14 @@ void myAboutDialog(BuildContext context) {
         FlatButton(
             color: Colors.teal.shade50,
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: 'testurl');
+              LaunchUrl.normalLaunchUrl(url: kPrivacyPolicyLink);
             },
             child: Text('Privacy Policy')),
         FlatButton(
           color: Colors.teal.shade50,
           onPressed: () {
-            LaunchUrl.customTabsUrl('test url ');
+            // LaunchUrl.customTabsUrl();
+            LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
           },
           child: Text('Release notes'),
         )
