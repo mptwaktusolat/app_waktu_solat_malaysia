@@ -12,7 +12,7 @@ class LaunchUrl {
     final emailLink = Uri.encodeFull(
         'mailto:$kDevEmail?subject=Feedback MPT&body=$messageContent');
     print(emailLink);
-    // _launchURL(_emailLaunchUri.toString());
+    _launchURL(emailLink);
   }
 
   static void customTabsUrl(String url) {

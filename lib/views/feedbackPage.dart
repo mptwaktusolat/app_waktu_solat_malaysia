@@ -1,3 +1,4 @@
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
@@ -26,14 +27,25 @@ class FeedbackToEmail {
     this._debugLog = debugLog;
   }
 
+  void clearDebugLog() {
+    this._debugLog = '';
+  }
+
   String getAllData() {
     String data = '''$_emoji $_emoji $_emoji $_emoji $_emoji
 
-    category: $_feedbackType, 
+    category: "$_feedbackType, "
+
     Message: $_message, 
+
     <---------Debug log:---------------
     $_debugLog
-    --------------------------------->''';
+    ------------------EO🐛---------------->
+    
+    Thanks for ur feedback. Have a niceday.''';
+    //add github issue link
+
+    //EOF is end of feedback
     print(data);
     return data;
   }
@@ -60,6 +72,22 @@ class _FeedbackPageState extends State<FeedbackPage> {
   List<Feedmoji> feedmoji = List<Feedmoji>();
   FeedbackToEmail feedbackToEmail = FeedbackToEmail();
   TextEditingController messageController = TextEditingController();
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  String board,
+      brand,
+      device,
+      hardware,
+      host,
+      id,
+      manufacture,
+      model,
+      product,
+      type,
+      androidid,
+      sdkInt,
+      release;
+  bool isPhysicalDevice;
+
   @override
   void initState() {
     super.initState();
@@ -68,6 +96,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
     feedmoji.add(Feedmoji(true, '😐'));
     feedmoji.add(Feedmoji(true, '😄'));
     feedmoji.add(Feedmoji(true, '😍'));
+
+    getDeviceInfo();
   }
 
   bool _logIsChecked = true;
@@ -89,10 +119,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onPressed: () {
                   print('Pressed send');
                   if (_logIsChecked) {
-                    feedbackToEmail
-                        .debugLogSetter('''Versiom: ${appInfo.version}
-                        Screen size ${MediaQuery.of(context).size}
-                    Screen h/w ${MediaQuery.of(context).size.height}, ${MediaQuery.of(context).size.width}
+                    feedbackToEmail.debugLogSetter('''
+                        ----------------------APP--------------------------
+                        Version: ${appInfo.version}, VersionCode: ${appInfo.buildNumber}
+                        ---------------------DEVICE---------------------
+                        Android $release (SDK $sdkInt), $manufacture $model
+                        Hardware: $hardware
+                        Screen size ${MediaQuery.of(context).size.toString().substring(4)} DiP
+                        PixRatio ${MediaQuery.of(context).devicePixelRatio}
+                        Screen size (again) ${MediaQuery.of(context).size.toString().substring(4)} px
+                    
                     ''');
                   }
                   feedbackToEmail.messageSetter(messageController.text);
@@ -219,6 +255,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   onChanged: (value) {
                     setState(() {
                       _logIsChecked = value;
+                      feedbackToEmail.clearDebugLog();
                     });
                   }),
             )
@@ -226,6 +263,35 @@ class _FeedbackPageState extends State<FeedbackPage> {
         ),
       ),
     );
+  }
+
+  void getDeviceInfo() async {
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
+    setState(() {
+      board = androidInfo.board;
+      brand = androidInfo.brand;
+      device = androidInfo.device;
+      hardware = androidInfo.hardware;
+      host = androidInfo.host;
+      id = androidInfo.id;
+      manufacture = androidInfo.manufacturer;
+      model = androidInfo.model;
+      product = androidInfo.product;
+      type = androidInfo.type;
+      isPhysicalDevice = androidInfo.isPhysicalDevice;
+      androidid = androidInfo.androidId;
+      sdkInt = androidInfo.version.sdkInt.toString();
+      release = androidInfo.version.release;
+    });
+
+    // print(
+    //     '$board, $brand, $device, $hardware,\n $host, $id, $manufacture, $model,\n $product, $type, $isPhysicalDevice, $androidid \n $sdkInt, $release');
+    // print(
+    //     'Screen size ${MediaQuery.of(context).size} \n Screen h/w ${MediaQuery.of(context).size.height}, ${MediaQuery.of(context).size.width}');
+    // print('Device pix ratio: ${MediaQuery.of(context).devicePixelRatio}');
+    // print(
+    //     '${MediaQuery.of(context).size * MediaQuery.of(context).devicePixelRatio}');
   }
 }
 
