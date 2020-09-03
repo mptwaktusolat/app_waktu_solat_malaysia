@@ -91,6 +91,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   if (_logIsChecked) {
                     feedbackToEmail
                         .debugLogSetter('''Versiom: ${appInfo.version}
+                        Screen size ${MediaQuery.of(context).size}
                     Screen h/w ${MediaQuery.of(context).size.height}, ${MediaQuery.of(context).size.width}
                     ''');
                   }
@@ -160,6 +161,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         feedbackToEmail.feedbackTypeSetter('Suggestion');
                       });
                     },
+                    //THIS FILE IS THE MOST SPAGHETTI EVER
                   ),
                   FeedbackCategoryButton(
                     label: 'Something not quite right',
