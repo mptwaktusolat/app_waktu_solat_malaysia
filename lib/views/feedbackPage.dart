@@ -133,6 +133,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   }
                   feedbackToEmail.messageSetter(messageController.text);
                   feedbackToEmail.getAllData();
+                  Navigator.pop(context);
                   LaunchUrl.sendViaEmail(feedbackToEmail.getAllData());
                   FocusScope.of(context).unfocus();
                 })

@@ -37,7 +37,7 @@ class MyHomePage extends StatelessWidget {
         backgroundColor: Colors.cyan.shade900,
         brightness: Brightness.dark,
         title: Text(
-          '🇲🇾 Prayer Time BETA',
+          '🇲🇾 Prayer Time',
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,

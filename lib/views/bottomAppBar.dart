@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
@@ -45,9 +46,15 @@ void menuModalBottomSheet(BuildContext context) {
           padding: EdgeInsets.all(4.0),
           child: Wrap(children: <Widget>[
             ListTile(
-              title: Text('Rate app'),
+              title: Text('Rate and review'),
               leading: Icon(Icons.star),
               onTap: () {
+                Navigator.pop(context);
+                Fluttertoast.showToast(
+                  msg: '⭐⭐⭐⭐⭐',
+                  toastLength: Toast.LENGTH_LONG,
+                  backgroundColor: Colors.grey.shade700,
+                );
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),
@@ -82,14 +89,14 @@ void myAboutDialog(BuildContext context) {
   return showAboutDialog(
       context: context,
       applicationIcon: CachedNetworkImage(
-        width: 60,
+        width: 45,
         imageUrl: kAppIconUrl,
         progressIndicatorBuilder: (context, url, downloadProgress) =>
             CircularProgressIndicator(value: downloadProgress.progress),
         errorWidget: (context, url, error) => Icon(Icons.error),
       ),
-      applicationLegalese: '© Fareez 2020',
-      applicationVersion: info.version,
+      applicationLegalese: '© 2020 Fareez Iqmal',
+      applicationVersion: 'Version ${info.version}',
       children: <Widget>[
         SizedBox(
           height: 10,
@@ -107,7 +114,20 @@ void myAboutDialog(BuildContext context) {
             LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
           },
           child: Text('Release notes'),
-        )
+        ),
+        // FlatButton(
+        //     padding: EdgeInsets.only(right: 4),
+        //     color: Colors.teal.shade50,
+        //     onPressed: () {},
+        //     child: SvgPicture.asset('assets/svgIcons/twitter.svg',
+        //         width: 10, semanticsLabel: 'A twitter logo')),
+        // FlatButton(
+        //   padding: EdgeInsets.only(left: 4),
+        //   color: Colors.teal.shade50,
+        //   onPressed: () {},
+        //   child: SvgPicture.asset('assets/svgIcons/instagram.svg',
+        //       width: 10, semanticsLabel: 'A instagram logo'),
+        // )
       ]);
 }
 
