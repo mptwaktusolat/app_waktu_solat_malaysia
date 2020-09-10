@@ -28,7 +28,9 @@ https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
 
 ## App Releases
 
-**Android**
+_Only available for Android_
+
+Get it on:
 
 <!-- - [Google Play Store](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 - Huawei App Gallery _(coming soon)_ -->
@@ -36,7 +38,7 @@ https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
 <a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
-- [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases)
+or sideload [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases)
 
 ## Honourable mention
 
@@ -54,3 +56,4 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24)
 - [Privacy Policy](https://telegra.ph/MPT-Privacy-Policy-07-24)
 - Google Play and the Google Play logo are trademarks of Google LLC.
+- Huawei logo and are trademarks of Huawei Technologies Co., Ltd.
