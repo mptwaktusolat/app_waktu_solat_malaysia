@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
+import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 import '../networking/Response.dart';
@@ -74,16 +75,28 @@ class PrayTimeList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String subuhTime = prayerTime.prayerTimes.subuh;
+    String zohorTime = prayerTime.prayerTimes.zohor;
+    String asarTime = prayerTime.prayerTimes.asar;
+    String maghribTime = prayerTime.prayerTimes.maghrib;
+    String isyaTime = prayerTime.prayerTimes.isyak;
+
+    CachedPrayerTimeData.subuhTime = subuhTime;
+    CachedPrayerTimeData.zohorTime = zohorTime;
+    CachedPrayerTimeData.asarTime = asarTime;
+    CachedPrayerTimeData.maghribTime = maghribTime;
+    CachedPrayerTimeData.isyaTime = isyaTime;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        solatCard(prayerTime.prayerTimes.subuh, 'Subuh'),
-        solatCard(prayerTime.prayerTimes.zohor, 'Zohor'),
-        solatCard(prayerTime.prayerTimes.asar, 'Asar'),
-        solatCard(prayerTime.prayerTimes.maghrib, 'Maghrib'),
-        solatCard(prayerTime.prayerTimes.isyak, 'Isyak'),
+        solatCard(subuhTime, 'Subuh'),
+        solatCard(zohorTime, 'Zohor'),
+        solatCard(asarTime, 'Asar'),
+        solatCard(maghribTime, 'Maghrib'),
+        solatCard(isyaTime, 'Isyak'),
         // RaisedButton(
         //   child: Text('DEBUG BUTTON'),
         //   color: Colors.red,

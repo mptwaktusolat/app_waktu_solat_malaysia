@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
 import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
@@ -45,16 +46,15 @@ class MyHomePage extends StatelessWidget {
         toolbarHeight: 50,
       ),
       bottomNavigationBar: MyBottomAppBar(),
-      // floatingActionButton: FloatingActionButton(
-      //     //TODO: enable later
-      //     backgroundColor: Theme.of(context).primaryColor,
-      //     child: Icon(Icons.share),
-      //     mini: true,
-      //     tooltip: 'Share',
-      //     onPressed: () {
-      //       print('FAB pressed');
-      //     }),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Icon(Icons.share),
+          mini: true,
+          tooltip: 'Share',
+          onPressed: () {
+            print(CachedPrayerTimeData.allPrayerTime());
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),
     );
   }

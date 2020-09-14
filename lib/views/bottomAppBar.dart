@@ -99,11 +99,11 @@ void myAboutDialog(BuildContext context) {
       applicationVersion: 'Version ${info.version}',
       children: <Widget>[
         SizedBox(
-          height: 8,
+          height: 10,
         ),
-        Text('Prayer time data provided by JAKIM'),
+        Text('Prayer time data provided by JAKIM', textAlign: TextAlign.center),
         SizedBox(
-          height: 4,
+          height: 6,
         ),
         FlatButton(
             color: Colors.teal.shade50,
