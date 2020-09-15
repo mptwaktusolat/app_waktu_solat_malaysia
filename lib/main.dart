@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
+import 'package:share/share.dart';
+import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
 import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  CopyAndShare copyAndShare = CopyAndShare();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +55,8 @@ class MyHomePage extends StatelessWidget {
           mini: true,
           tooltip: 'Share',
           onPressed: () {
-            print(CachedPrayerTimeData.allPrayerTime());
+            copyAndShare.updateMessage();
+            Share.share(copyAndShare.getMessage());
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),

@@ -9,7 +9,6 @@ import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
   final _today = HijriCalendar.now();
-  // final DateTime date = DateTime.now();
   final dayFormat = DateFormat('EEEE').format(DateTime.now());
   final dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
 

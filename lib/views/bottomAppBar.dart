@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
@@ -9,6 +11,7 @@ import '../utils/AppInformation.dart';
 AppInfo info = AppInfo();
 
 class MyBottomAppBar extends StatelessWidget {
+  CopyAndShare copyAndShare = CopyAndShare();
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -26,7 +29,14 @@ class MyBottomAppBar extends StatelessWidget {
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
-          //TODO: Copy, setting buton
+          IconButton(
+              icon: Icon(Icons.copy),
+              color: Colors.grey,
+              onPressed: () {
+                copyAndShare.updateMessage();
+                Clipboard.setData(
+                    new ClipboardData(text: copyAndShare.getMessage()));
+              })
         ],
       ),
     );
@@ -101,7 +111,13 @@ void myAboutDialog(BuildContext context) {
         SizedBox(
           height: 10,
         ),
-        Text('Prayer time data provided by JAKIM', textAlign: TextAlign.center),
+        Text(
+          'Prayer time data provided by JAKIM',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 12,
+          ),
+        ),
         SizedBox(
           height: 6,
         ),

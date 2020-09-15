@@ -22,6 +22,7 @@ const kWaktuIsyakImage =
 //App info
 const kPlayStoreListingLink =
     'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
+const kPlayStoreListingShortLink = 'http://bit.ly/MPTdl';
 const kPrivacyPolicyLink = 'https://telegra.ph/MPT-Privacy-Policy-07-24';
 const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
 const kReleaseNotesLink =
