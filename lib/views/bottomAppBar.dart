@@ -11,7 +11,7 @@ import '../utils/AppInformation.dart';
 AppInfo info = AppInfo();
 
 class MyBottomAppBar extends StatelessWidget {
-  CopyAndShare copyAndShare = CopyAndShare();
+  final CopyAndShare copyAndShare = CopyAndShare();
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -31,11 +31,13 @@ class MyBottomAppBar extends StatelessWidget {
               }),
           IconButton(
               icon: Icon(Icons.copy),
+              tooltip: 'Copy timetable',
               color: Colors.grey,
               onPressed: () {
                 copyAndShare.updateMessage();
                 Clipboard.setData(
                     new ClipboardData(text: copyAndShare.getMessage()));
+                Fluttertoast.showToast(msg: 'Copied');
               })
         ],
       ),

@@ -13,7 +13,8 @@ class CopyAndShare {
 
   void updateMessage() {
     message = '''
-Solat timetable today 
+Solat timetable today
+
 📍 ${GetStorage().read(Constants.kStoredKawasanKey)} (${GetStorage().read(Constants.kStoredNegeriKey)})
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
@@ -24,7 +25,7 @@ Solat timetable today
   🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
   ⭐ Isya': ${CachedPrayerTimeData.allPrayerTime()[4]}
 
-Download app on Android: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kPlayStoreListingShortLink}''';
     print(message);
   }
 

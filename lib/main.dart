@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  CopyAndShare copyAndShare = CopyAndShare();
+  final CopyAndShare copyAndShare = CopyAndShare();
 
   @override
   Widget build(BuildContext context) {
