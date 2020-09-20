@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
 import 'package:waktusolatmalaysia/blocs/waktusolatapp_bloc.dart';
-import 'package:waktusolatmalaysia/models/azanproapi.dart';
 import 'package:waktusolatmalaysia/models/waktusolatappapi.dart';
+import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
@@ -23,12 +22,12 @@ class GetPrayerTime extends StatefulWidget {
 class _GetPrayerTimeState extends State<GetPrayerTime> {
   WaktusolatappBloc _timeBloc;
 
-  String timeFormat = "&format=12-hour";
+  // String timeFormat = "&format=12-hour";
 
   @override
   void initState() {
     super.initState();
-    initializeDateFormatting('en_US', null);
+    // initializeDateFormatting('en_US', null);
     _timeBloc = WaktusolatappBloc(location, null);
   }
 
@@ -76,23 +75,31 @@ class PrayTimeList extends StatelessWidget {
   // final AzanPro prayerTime;
   final WaktuSolatApp prayerTime;
 
-  const PrayTimeList({Key key, this.prayerTime}) : super(key: key);
+  PrayTimeList({Key key, this.prayerTime}) : super(key: key);
+
+  int day = int.parse(DateFormat('d').format(DateTime.now())); //example: 21
+
+  //since array start at 0, the date should be minus 1
 
   @override
   Widget build(BuildContext context) {
-    String subuhTime = prayerTime.data.prayTimes[1].subuh.toString();
-    String zohorTime = prayerTime.data.prayTimes[1].zohor.toString();
-    String asarTime = prayerTime.data.prayTimes[1].asar.toString();
-    String maghribTime = prayerTime.data.prayTimes[1].maghrib.toString();
-    String isyaTime = prayerTime.data.prayTimes[1].isyak.toString();
+    int arrayDay = day - 1;
+    String subuhTime =
+        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].subuh);
+    String zohorTime =
+        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].zohor);
+    String asarTime =
+        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].asar);
+    String maghribTime =
+        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].maghrib);
+    String isyaTime =
+        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].isyak);
 
-    // String subuhTime = prayerTime.success.toString();
-
-    // CachedPrayerTimeData.subuhTime = subuhTime;
-    // CachedPrayerTimeData.zohorTime = zohorTime;
-    // CachedPrayerTimeData.asarTime = asarTime;
-    // CachedPrayerTimeData.maghribTime = maghribTime;
-    // CachedPrayerTimeData.isyaTime = isyaTime;
+    CachedPrayerTimeData.subuhTime = subuhTime;
+    CachedPrayerTimeData.zohorTime = zohorTime;
+    CachedPrayerTimeData.asarTime = asarTime;
+    CachedPrayerTimeData.maghribTime = maghribTime;
+    CachedPrayerTimeData.isyaTime = isyaTime;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -105,7 +112,7 @@ class PrayTimeList extends StatelessWidget {
         solatCard(zohorTime, 'Zohor'),
         solatCard(asarTime, 'Asr'),
         solatCard(maghribTime, 'Maghrib'),
-        solatCard(isyaTime, 'Isyak'),
+        solatCard(isyaTime, 'Isya\''),
 
         // RaisedButton(
         //   child: Text('DEBUG BUTTON'),

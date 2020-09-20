@@ -37,7 +37,7 @@ class MyBottomAppBar extends StatelessWidget {
                 copyAndShare.updateMessage();
                 Clipboard.setData(
                     new ClipboardData(text: copyAndShare.getMessage()));
-                Fluttertoast.showToast(msg: 'Copied');
+                Fluttertoast.showToast(msg: 'Timetable copied');
               })
         ],
       ),
