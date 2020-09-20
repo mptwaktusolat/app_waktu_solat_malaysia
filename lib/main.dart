@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Malaysia Prayer Time 2020',
+      title: 'My Prayer Time',
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,

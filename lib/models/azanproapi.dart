@@ -1,14 +1,13 @@
-class PrayerTime {
+class AzanPro {
   String zone;
   String start;
   String end;
   List<String> locations;
   PrayerTimes prayerTimes;
 
-  PrayerTime(
-      {this.zone, this.start, this.end, this.locations, this.prayerTimes});
+  AzanPro({this.zone, this.start, this.end, this.locations, this.prayerTimes});
 
-  PrayerTime.fromJson(Map<String, dynamic> json) {
+  AzanPro.fromJson(Map<String, dynamic> json) {
     zone = json['zone'];
     start = json['start'];
     end = json['end'];

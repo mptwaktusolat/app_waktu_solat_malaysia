@@ -5,7 +5,7 @@ import 'CustomException.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  final String _baseUrl = "https://api.azanpro.com/";
+  final String _baseUrl = "http://waktusolatapp.com/api/v2/waktu-solat";
 
   Future<dynamic> get(String url) async {
     var responseJson;
@@ -13,7 +13,7 @@ class ApiProvider {
       final response = await http.get(_baseUrl + url);
       responseJson = _response(response);
     } on SocketException {
-      throw FetchDataException('No internet connection');
+      throw FetchDataException('No Internet connection');
     }
     print(_baseUrl + url);
     return responseJson;

@@ -5,7 +5,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/azan_times_today_bloc.dart';
+import 'package:waktusolatmalaysia/blocs/waktusolatapp_bloc.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
+import 'package:waktusolatmalaysia/models/waktusolatappapi.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
@@ -19,7 +21,7 @@ class GetPrayerTime extends StatefulWidget {
 }
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
-  PrayTimeBloc _timeBloc;
+  WaktusolatappBloc _timeBloc;
 
   String timeFormat = "&format=12-hour";
 
@@ -27,15 +29,16 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   void initState() {
     super.initState();
     initializeDateFormatting('en_US', null);
-    _timeBloc = PrayTimeBloc(location, timeFormat);
+    _timeBloc = WaktusolatappBloc(location, null);
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Response<PrayerTime>>(
+    return StreamBuilder<Response<WaktuSolatApp>>(
       stream: _timeBloc.prayDataStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
+          print('snapshot.hasData');
           switch (snapshot.data.status) {
             case Status.LOADING:
               return Loading(loadingMessage: snapshot.data.message);
@@ -50,13 +53,14 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
             case Status.ERROR:
               return Error(
                 errorMessage: snapshot.data.message,
-                onRetryPressed: () =>
-                    _timeBloc.fetchPrayerTime(location, timeFormat),
+                onRetryPressed: () => _timeBloc.fetchPrayerTime(location, null),
               );
               break;
           }
         }
-        return Container();
+        return Container(
+          child: Text('empty here'),
+        );
       },
     );
   }
@@ -69,40 +73,45 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 }
 
 class PrayTimeList extends StatelessWidget {
-  final PrayerTime prayerTime;
+  // final AzanPro prayerTime;
+  final WaktuSolatApp prayerTime;
 
   const PrayTimeList({Key key, this.prayerTime}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String subuhTime = prayerTime.prayerTimes.subuh;
-    String zohorTime = prayerTime.prayerTimes.zohor;
-    String asarTime = prayerTime.prayerTimes.asar;
-    String maghribTime = prayerTime.prayerTimes.maghrib;
-    String isyaTime = prayerTime.prayerTimes.isyak;
+    String subuhTime = prayerTime.data.prayTimes[1].subuh.toString();
+    String zohorTime = prayerTime.data.prayTimes[1].zohor.toString();
+    String asarTime = prayerTime.data.prayTimes[1].asar.toString();
+    String maghribTime = prayerTime.data.prayTimes[1].maghrib.toString();
+    String isyaTime = prayerTime.data.prayTimes[1].isyak.toString();
 
-    CachedPrayerTimeData.subuhTime = subuhTime;
-    CachedPrayerTimeData.zohorTime = zohorTime;
-    CachedPrayerTimeData.asarTime = asarTime;
-    CachedPrayerTimeData.maghribTime = maghribTime;
-    CachedPrayerTimeData.isyaTime = isyaTime;
+    // String subuhTime = prayerTime.success.toString();
+
+    // CachedPrayerTimeData.subuhTime = subuhTime;
+    // CachedPrayerTimeData.zohorTime = zohorTime;
+    // CachedPrayerTimeData.asarTime = asarTime;
+    // CachedPrayerTimeData.maghribTime = maghribTime;
+    // CachedPrayerTimeData.isyaTime = isyaTime;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        // solatCard('$subuhTime', 'Status'),
+
         solatCard(subuhTime, 'Subuh'),
         solatCard(zohorTime, 'Zohor'),
         solatCard(asarTime, 'Asr'),
         solatCard(maghribTime, 'Maghrib'),
         solatCard(isyaTime, 'Isyak'),
+
         // RaisedButton(
         //   child: Text('DEBUG BUTTON'),
         //   color: Colors.red,
         //   onPressed: () {
         //     print('location is ' + location);
-        //     RestartWidget.restartApp(context);
         //   },
         // )
       ],
@@ -160,6 +169,7 @@ class Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(errorMessage);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
