@@ -46,6 +46,7 @@ Article that help me througout the development(Read: Website yg function teruk. 
 
 1. https://github.com/rgodlontonshaw/apicallsboss
 2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
+3. https://javiercbk.github.io/json_to_dart/
 
 <!-- ## Attribution
 
