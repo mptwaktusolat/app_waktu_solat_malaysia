@@ -38,7 +38,7 @@ class AppBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
-                      flex: 4,
+                      // flex: 4,
                       child: Container(
                         child: Column(
                           children: [
@@ -74,7 +74,7 @@ class AppBody extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      flex: 3,
+                      // flex: 3,
                       child: Container(
                         margin: EdgeInsets.all(5.0),
                         padding: EdgeInsets.all(18.0),

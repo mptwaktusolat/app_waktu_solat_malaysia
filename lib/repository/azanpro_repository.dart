@@ -20,8 +20,8 @@ class AzanTimesTodayRepository {
 
   Future<WaktuSolatApp> fetchAzanTodayWSA(
       String category, String format) async {
-    final response = await _provider
-        .get("?month=$currentMonth&year=$currentYear&zone=$category");
+    final response = await _provider.get(
+        "http://waktusolatapp.com/api/v2/waktu-solat?month=$currentMonth&year=$currentYear&zone=$category");
     return WaktuSolatApp.fromJson(response);
   }
 }

@@ -24,6 +24,7 @@ dependencies:
   url_launcher: ^5.5.1
   device_info: ^0.4.2+7
   share: ^0.6.5
+  geolocator: ^6.0.0+4
   # flutter_svg: ^0.18.1
 
 dev_dependencies:
