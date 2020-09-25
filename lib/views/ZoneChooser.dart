@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
@@ -28,7 +29,6 @@ class LocationChooser extends StatefulWidget {
 }
 
 class _LocationChooserState extends State<LocationChooser> {
-  Mpti906Bloc _mpti906bloc;
   @override
   void initState() {
     super.initState();
@@ -324,7 +324,9 @@ class Completed extends StatelessWidget {
                     'Accept this location',
                     style: TextStyle(color: Colors.teal.shade800),
                   ),
-                  onPressed: () => openshowModalBottomSheet(context),
+                  onPressed: () {
+                    locationShortCode = jakimCode.toUpperCase();
+                  },
                 ),
               ],
             ),
@@ -390,9 +392,12 @@ class Loading extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24),
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
-          ),
+          // CircularProgressIndicator(
+          //   valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
+          // ),
+          SpinKitPulse(
+            color: Colors.teal,
+          )
         ],
       ),
     );

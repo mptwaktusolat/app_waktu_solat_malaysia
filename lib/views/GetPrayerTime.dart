@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
@@ -221,8 +222,12 @@ class Loading extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24),
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
+          // CircularProgressIndicator(
+          //   valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
+          // ),
+          SpinKitChasingDots(
+            size: 35,
+            color: Colors.teal,
           ),
         ],
       ),
