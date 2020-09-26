@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -9,10 +8,8 @@ import 'package:waktusolatmalaysia/blocs/mpti906_bloc.dart';
 import 'package:waktusolatmalaysia/models/mpti906api.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
+import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
-
-import '../main.dart';
-import 'GetPrayerTime.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
@@ -20,6 +17,9 @@ import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 String locationShortCode;
 String currentlySetNegeri;
 String currentlySetKawasan;
+int globalIndex;
+
+LocationDatabase locationDatabase = LocationDatabase();
 
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
@@ -32,18 +32,14 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
-
-    GetStorage().writeIfNull(kStoredLocationKey, "sgr01");
-    GetStorage().writeIfNull(kStoredKawasanKey,
-        "Gombak, Hulu Selangor, Rawang, Hulu Langat, Sepang, Petaling, Shah Alam");
-    GetStorage().writeIfNull(kStoredNegeriKey, "Selangor");
-    currentlySetNegeri = GetStorage().read(kStoredNegeriKey);
-    currentlySetKawasan = GetStorage().read(kStoredKawasanKey);
-    locationShortCode = GetStorage().read(kStoredLocationKey);
+    GetStorage().writeIfNull(kStoredGlobalIndex, 1);
+    globalIndex = GetStorage().read(kStoredGlobalIndex);
   }
 
   @override
   Widget build(BuildContext context) {
+    var shortCode = locationDatabase.getJakimCode(globalIndex);
+    print(shortCode);
     return FlatButton(
       padding: EdgeInsets.all(-5.0),
       shape: RoundedRectangleBorder(
@@ -57,12 +53,12 @@ class _LocationChooserState extends State<LocationChooser> {
         );
         print('Opened zone chooser');
 
-        // _openshowModalBottomSheet();
+        // openshowModalBottomSheet(context);
       },
       onLongPress: () {
         Scaffold.of(context).showSnackBar(SnackBar(
           content: Text(
-              'Currently set to $currentlySetKawasan in $currentlySetNegeri'),
+              'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
           behavior: SnackBarBehavior.floating,
           action: SnackBarAction(
             label: 'Change',
@@ -84,9 +80,9 @@ class _LocationChooserState extends State<LocationChooser> {
           ),
           Text(
             '  ' +
-                locationShortCode.substring(0, 3).toUpperCase() +
+                shortCode.substring(0, 3).toUpperCase() +
                 ' ' +
-                locationShortCode.substring(3, 5),
+                shortCode.substring(3, 5),
             style: GoogleFonts.montserrat(
                 textStyle: TextStyle(
               color: Colors.white,
@@ -107,20 +103,7 @@ Future openshowModalBottomSheet(BuildContext context) async {
       builder: (BuildContext context) {
         return FractionallySizedBox(
           heightFactor: 0.68,
-          child: FutureBuilder(
-              future: DefaultAssetBundle.of(context)
-                  .loadString('assets/grouped.json'),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ZonesList(
-                    groupedZones: parseJson(snapshot.data),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('Snapshot has error');
-                } else {
-                  return CircularProgressIndicator();
-                }
-              }),
+          child: ZonesList(),
         );
       }).then((value) {
     Future.delayed(const Duration(milliseconds: 450), () {
@@ -146,8 +129,7 @@ Widget locationBubble(String shortCode) {
 }
 
 class ZonesList extends StatelessWidget {
-  final List<GroupedZones> groupedZones;
-  ZonesList({Key key, this.groupedZones}) : super(key: key);
+  ZonesList({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -156,47 +138,24 @@ class ZonesList extends StatelessWidget {
       child: Container(
         color: Colors.white,
         child: ListView.builder(
-          itemCount: groupedZones == null ? 0 : groupedZones.length,
+          itemCount: locationDatabase.getLocationDatabaseLength(),
           itemBuilder: (BuildContext context, int index) {
             return ListTile(
               onTap: () {
-                locationShortCode = groupedZones[index].zone;
-                currentlySetKawasan = groupedZones[index].lokasi;
-                currentlySetNegeri = groupedZones[index].negeri;
-                location = locationShortCode;
-                saveToGetStorage(
-                    shortCode: locationShortCode,
-                    kawasan: currentlySetKawasan,
-                    negeri: currentlySetNegeri);
+                GetStorage().write(kStoredGlobalIndex, index);
+                print('Index inside modal bottom sheet is $index');
+                print('GetStorage is ${GetStorage().read(kStoredGlobalIndex)}');
                 Navigator.pop(context, index);
-
-                print(index);
               },
-              title: Text(groupedZones[index].lokasi),
-              subtitle: Text(groupedZones[index].negeri),
-              trailing: locationBubble(groupedZones[index].zone),
+              title: Text(locationDatabase.getDaerah(index)),
+              subtitle: Text(locationDatabase.getNegeri(index)),
+              trailing: locationBubble(locationDatabase.getJakimCode(index)),
             );
           },
         ),
       ),
     );
   }
-}
-
-List<GroupedZones> parseJson(String response) {
-  if (response == null) {
-    return [];
-  }
-  final parsed = json.decode(response.toString()).cast<Map<String, dynamic>>();
-  return parsed
-      .map<GroupedZones>((json) => GroupedZones.fromJson(json))
-      .toList();
-}
-
-void saveToGetStorage({String shortCode, String kawasan, String negeri}) {
-  GetStorage().write(kStoredLocationKey, shortCode);
-  GetStorage().write(kStoredKawasanKey, kawasan);
-  GetStorage().write(kStoredNegeriKey, negeri);
 }
 
 class GetGPS extends StatefulWidget {
@@ -238,7 +197,6 @@ class _GetGPSState extends State<GetGPS> {
                       jakimCode: snapshot.data.data.data.attributes.jakimCode,
                       place: snapshot.data.data.data.place,
                     );
-
                     break;
                   case Status.ERROR:
                     print('has error');
@@ -282,26 +240,49 @@ class Completed extends StatelessWidget {
   final String place;
   @override
   Widget build(BuildContext context) {
+    var index = locationDatabase.indexOfLocation(jakimCode);
+    globalIndex = index;
+    print('detected index is $index');
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
-            flex: 1,
-            child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: locationBubble(
-                  jakimCode.substring(0, 3).toUpperCase() +
-                      ' ' +
-                      jakimCode.substring(3, 5),
-                ))),
+          flex: 1,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text('Your location'),
+          ),
+        ),
         Expanded(
-          flex: 3,
-          child: Center(
-            child: Text(
-              place,
-              style: TextStyle(fontSize: 20),
+            flex: 3,
+            child: Center(
+              child: Text(
+                place,
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+              ),
+            )),
+        Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.teal.shade50),
+          child: ListTile(
+            leading: locationBubble(
+              jakimCode.substring(0, 3).toUpperCase() +
+                  ' ' +
+                  jakimCode.substring(3, 5),
+            ),
+            title: Text(
+              locationDatabase.getDaerah(index),
+              style: TextStyle(fontSize: 13),
+            ),
+            subtitle: Text(
+              locationDatabase.getNegeri(index),
+              style: TextStyle(fontSize: 11),
             ),
           ),
+        ),
+        SizedBox(
+          height: 5,
         ),
         Expanded(
           flex: 1,
@@ -325,7 +306,9 @@ class Completed extends StatelessWidget {
                     style: TextStyle(color: Colors.teal.shade800),
                   ),
                   onPressed: () {
-                    locationShortCode = jakimCode.toUpperCase();
+                    // globalIndex = index;
+                    GetStorage().write(kStoredGlobalIndex, index);
+                    RestartWidget.restartApp(context);
                   },
                 ),
               ],

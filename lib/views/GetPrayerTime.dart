@@ -9,11 +9,13 @@ import 'package:waktusolatmalaysia/blocs/waktusolatapp_bloc.dart';
 import 'package:waktusolatmalaysia/models/waktusolatappapi.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
+import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
 import '../networking/Response.dart';
 
-String location = GetStorage().read(kStoredLocationKey);
+LocationDatabase locationDatabase = LocationDatabase();
+String location;
 
 class GetPrayerTime extends StatefulWidget {
   @override
@@ -28,8 +30,11 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   void initState() {
     super.initState();
+    location =
+        locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
     // initializeDateFormatting('en_US', null);
     _timeBloc = WaktusolatappBloc(location, null);
+    print('$location');
   }
 
   @override
@@ -78,7 +83,8 @@ class PrayTimeList extends StatelessWidget {
 
   PrayTimeList({Key key, this.prayerTime}) : super(key: key);
 
-  int day = int.parse(DateFormat('d').format(DateTime.now())); //example: 21
+  final int day =
+      int.parse(DateFormat('d').format(DateTime.now())); //example: 21
 
   //since array start at 0, the date should be minus 1
 

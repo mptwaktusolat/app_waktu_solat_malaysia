@@ -2,6 +2,7 @@
 const kStoredLocationKey = "storedLoc";
 const kStoredKawasanKey = "storedKaw";
 const kStoredNegeriKey = "storedNeg";
+const kStoredGlobalIndex = "storedGlobalIndex";
 
 //Network image (AppIcon)
 const kAppIconUrl =
