@@ -20,7 +20,7 @@ class Mpti906Bloc {
   }
 
   fetchLocationData(double lat, double long) async {
-    mptDataSink.add(Response.loading('Getting prayer times'));
+    mptDataSink.add(Response.loading('Getting location data'));
     try {
       Mpti906 locationJakim =
           await _mptRepository.fetchLocation(lat.toString(), long.toString());

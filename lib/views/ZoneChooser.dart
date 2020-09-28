@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
@@ -38,6 +37,17 @@ class _LocationChooserState extends State<LocationChooser> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (GetStorage().read(kStoredFirstRun)) {
+        GetStorage().write(kStoredFirstRun, false);
+        return Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Location initialozed'),
+            duration: Duration(seconds: 6),
+          ),
+        );
+      }
+    });
     var shortCode = locationDatabase.getJakimCode(globalIndex);
     print(shortCode);
     return FlatButton(
@@ -46,14 +56,17 @@ class _LocationChooserState extends State<LocationChooser> {
         borderRadius: BorderRadius.circular(8.0),
         side: BorderSide(color: Colors.white),
       ),
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (context) => GetGPS(),
-        );
-        print('Opened zone chooser');
-
-        // openshowModalBottomSheet(context);
+      onPressed: () async {
+        LocationPermission permission = await checkPermission();
+        if (permission == LocationPermission.deniedForever) {
+          openshowModalBottomSheet(context);
+        } else {
+          showDialog(
+            context: context,
+            builder: (context) => GetGPS(),
+          );
+          print('Opened zone chooser');
+        }
       },
       onLongPress: () {
         Scaffold.of(context).showSnackBar(SnackBar(
@@ -165,6 +178,7 @@ class GetGPS extends StatefulWidget {
 
 class _GetGPSState extends State<GetGPS> {
   Mpti906Bloc _mpti906bloc;
+  // LocationData.getCurrentLocation();
 
   @override
   void initState() {
@@ -176,60 +190,52 @@ class _GetGPSState extends State<GetGPS> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Container(
-          padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
-          height: 250,
-          child: StreamBuilder<Response<Mpti906>>(
-            stream: _mpti906bloc.mptDataStream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                print('mpt snapshot hasData');
-                switch (snapshot.data.status) {
-                  case Status.LOADING:
-                    return Loading(
-                      loadingMessage: 'Getting location',
-                    );
-                  case Status.COMPLETED:
-                    return Completed(
-                      jakimCode: snapshot.data.data.data.attributes.jakimCode,
-                      place: snapshot.data.data.data.place,
-                    );
-                    break;
-                  case Status.ERROR:
-                    print('has error');
-                    return Error(
-                        errorMessage: snapshot.data.message,
-                        onRetryPressed: () {
-                          Fluttertoast.showToast(
-                              msg:
-                                  'Failed to get GPS data. Fallback to manual selection');
-                          openshowModalBottomSheet(context);
-                        });
-                    break;
-                }
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Container(
+        padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
+        height: 250,
+        child: StreamBuilder<Response<Mpti906>>(
+          stream: _mpti906bloc.mptDataStream,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              print('mpt snapshot hasData');
+              switch (snapshot.data.status) {
+                // switch (Status.ERROR) {
+                case Status.LOADING:
+                  return Loading(
+                    loadingMessage: 'Getting location',
+                  );
+                case Status.COMPLETED:
+                  return Completed(
+                    jakimCode: snapshot.data.data.data.attributes.jakimCode,
+                    place: snapshot.data.data.data.place,
+                  );
+                  break;
+                case Status.ERROR:
+                  print('has error');
+                  return Error(
+                      errorMessage: snapshot.data.message,
+                      onRetryPressed: () => _mpti906bloc.fetchLocationData(
+                          LocationData.latitude, LocationData.longitude));
+                  break;
               }
-              return Container(
-                child: Text('snapshot empty'),
-              );
-            },
-          ),
-        ));
+            }
+            return Container(
+              child: Text('snapshot empty'),
+            );
+          },
+        ),
+      ),
+    );
   }
 
   @override
   void dispose() {
+    LocationData.getCurrentLocation(); //refresh new gps data
     _mpti906bloc.dispose();
     super.dispose();
-  }
-
-  void getLocation() async {
-    Position position =
-        await getCurrentPosition(desiredAccuracy: LocationAccuracy.medium);
-
-    print(position);
   }
 }
 
@@ -258,7 +264,8 @@ class Completed extends StatelessWidget {
             child: Center(
               child: Text(
                 place,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
             )),
         Container(
@@ -266,10 +273,11 @@ class Completed extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
               color: Colors.teal.shade50),
           child: ListTile(
-            leading: locationBubble(
-              jakimCode.substring(0, 3).toUpperCase() +
-                  ' ' +
-                  jakimCode.substring(3, 5),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                locationBubble(jakimCode.toUpperCase()),
+              ],
             ),
             title: Text(
               locationDatabase.getDaerah(index),
@@ -297,7 +305,9 @@ class Completed extends StatelessWidget {
                     'Set manually',
                     style: TextStyle(color: Colors.teal.shade800),
                   ),
-                  onPressed: () => openshowModalBottomSheet(context),
+                  onPressed: () {
+                    openshowModalBottomSheet(context);
+                  },
                 ),
                 FlatButton(
                   // color: Colors.teal[50],
@@ -334,20 +344,102 @@ class Error extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Text(
-            errorMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
+          Expanded(
+              flex: 1,
+              child: Text(
+                'Error',
+              )),
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                RichText(
+                  textAlign: TextAlign.left,
+                  text: TextSpan(
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(text: 'Tap '),
+                      TextSpan(
+                        text: 'retry',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                          text:
+                              ', or try closing this dialog and open it back.'),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: 'If it didn\'t work, please '),
+                      TextSpan(
+                        text: 'set your location manually.',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                RichText(
+                  text: TextSpan(
+                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: 'Make sure your '),
+                      TextSpan(
+                        text: 'GPS turned on, ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(text: 'then restart this app.'),
+                    ],
+                  ),
+                ),
+                Spacer(),
+              ],
             ),
           ),
-          SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.white,
-            child: Text('Retry', style: TextStyle(color: Colors.black)),
-            onPressed: onRetryPressed,
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: Text(
+                errorMessage,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 9,
+                    fontStyle: FontStyle.italic),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FlatButton(
+                    onPressed: () {
+                      openshowModalBottomSheet(context);
+                    },
+                    child: Text(
+                      'Set manually',
+                      style: TextStyle(color: Colors.teal.shade800),
+                    )),
+                FlatButton(
+                  onPressed: onRetryPressed,
+                  child: Text(
+                    'Retry',
+                    style: TextStyle(color: Colors.teal.shade800),
+                  ),
+                )
+              ],
+            ),
           )
         ],
       ),
@@ -375,9 +467,6 @@ class Loading extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24),
-          // CircularProgressIndicator(
-          //   valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
-          // ),
           SpinKitPulse(
             color: Colors.teal,
           )
@@ -386,3 +475,6 @@ class Loading extends StatelessWidget {
     );
   }
 }
+
+//Error message and troubleshoot(GPS)
+// var kGpsErrorMessage = ;

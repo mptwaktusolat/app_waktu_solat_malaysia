@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
@@ -7,10 +8,12 @@ import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
 import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
+import 'CONSTANTS.dart';
 
 void main() async {
   await GetStorage.init();
   LocationData.getCurrentLocation();
+  GetStorage().writeIfNull(kStoredFirstRun, true);
   runApp(
     RestartWidget(
       child: MyApp(),

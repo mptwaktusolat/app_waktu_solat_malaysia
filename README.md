@@ -44,7 +44,7 @@ or sideload [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releas
 
 Article that help me througout the development(Read: Website yg function teruk. The real MVP!. Banyak lagi website/blog2 lain tpi yang kt bwawh ni is da real lifesaver!)
 
-1. https://github.com/rgodlontonshaw/apicallsboss
+1. https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97
 2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
 3. https://javiercbk.github.io/json_to_dart/
 

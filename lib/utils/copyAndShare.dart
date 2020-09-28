@@ -2,20 +2,25 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
+import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 
 import 'cachedPrayerData.dart';
 
 class CopyAndShare {
+  LocationDatabase _locationDatabase = LocationDatabase();
   String message;
   var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
   var dayFormat = DateFormat('EEEE').format(DateTime.now());
   var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
+  var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
 
   void updateMessage() {
+    var daerah = _locationDatabase.getDaerah(_globalIndex);
+    var negeri = _locationDatabase.getNegeri(_globalIndex);
     message = '''
 Solat timetable today
 
-📍 ${GetStorage().read(Constants.kStoredKawasanKey)} (${GetStorage().read(Constants.kStoredNegeriKey)})
+📍 $daerah ($negeri})
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 

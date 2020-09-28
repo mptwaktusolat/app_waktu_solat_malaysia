@@ -6,7 +6,6 @@ import 'package:waktusolatmalaysia/repository/azanpro_repository.dart';
 class WaktusolatappBloc {
   AzanTimesTodayRepository _prayerTimeRepository;
   StreamController _prayDataController;
-  bool _isStreaming;
 
   StreamSink<Response<WaktuSolatApp>> get prayDataSink =>
       _prayDataController.sink;
@@ -17,7 +16,6 @@ class WaktusolatappBloc {
   WaktusolatappBloc(String category, String format) {
     _prayDataController = StreamController<Response<WaktuSolatApp>>();
     _prayerTimeRepository = AzanTimesTodayRepository();
-    _isStreaming = true;
     // format = format == null ? '' : format;
     fetchPrayerTime(category, format);
   }
@@ -35,7 +33,6 @@ class WaktusolatappBloc {
   }
 
   dispose() {
-    _isStreaming = false;
     _prayDataController?.close();
   }
 }
