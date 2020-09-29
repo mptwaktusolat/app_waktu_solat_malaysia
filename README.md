@@ -12,7 +12,7 @@ Focusing on lightweight app, easy-to-use and modern UI :wink:
 
 | GIF                                                                                                                                        | Screenshot                                                                                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| <img src="https://user-images.githubusercontent.com/60868965/94334737-4f988280-000a-11eb-92e8-161c9655be9b.gif" heigth="512" width="288"/> | <img src="https://user-images.githubusercontent.com/60868965/94504603-c36da180-023b-11eb-9c8e-97b63557ec5b.jpg" heigth="512" width="288"/> |
+| <img src="https://user-images.githubusercontent.com/60868965/94505796-77702c00-023e-11eb-8973-d8050f8ad369.gif" heigth="512" width="288"/> | <img src="https://user-images.githubusercontent.com/60868965/94504603-c36da180-023b-11eb-9c8e-97b63557ec5b.jpg" heigth="512" width="288"/> |
 
 ## API
 
