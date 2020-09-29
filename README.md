@@ -4,13 +4,22 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2020?style=flat-square)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
-App waktu solat seluruh Malaysia.
+App waktu solat seluruh Malaysia. Prayer time app across Malaysia
 
-Focusing on lightweight app and modern UI :wink:
+Focusing on lightweight app, easy-to-use and modern UI :wink:
+
+## App UI
+
+| GIF                                                                                                                                        | Screenshot                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| <img src="https://user-images.githubusercontent.com/60868965/94334737-4f988280-000a-11eb-92e8-161c9655be9b.gif" heigth="512" width="288"/> | <img src="https://user-images.githubusercontent.com/60868965/94504603-c36da180-023b-11eb-9c8e-97b63557ec5b.jpg" heigth="512" width="288"/> |
 
 ## API
 
-https://api.azanpro.com/ - Solat Jakim API (Unofficial)
+<!-- https://api.azanpro.com/ - Solat Jakim API (Unofficial) -->
+
+1. http://waktusolatapp.com/ (For prayer time)
+2. https://mpt.i906.my/ (For getting JAKIM location)
 
 ## Changelogs History
 
@@ -58,3 +67,5 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - [Privacy Policy](https://telegra.ph/MPT-Privacy-Policy-07-24)
 - Google Play and the Google Play logo are trademarks of Google LLC.
 - Huawei logo and are trademarks of Huawei Technologies Co., Ltd.
+
+<!-- **No redistruba -->

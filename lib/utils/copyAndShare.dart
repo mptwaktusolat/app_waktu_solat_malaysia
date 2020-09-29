@@ -20,7 +20,7 @@ class CopyAndShare {
     message = '''
 Solat timetable today
 
-📍 $daerah ($negeri})
+📍 $daerah ($negeri)
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 

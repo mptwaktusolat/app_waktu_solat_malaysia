@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
@@ -31,7 +32,7 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
-    GetStorage().writeIfNull(kStoredGlobalIndex, 1);
+    GetStorage().writeIfNull(kStoredGlobalIndex, 0);
     globalIndex = GetStorage().read(kStoredGlobalIndex);
   }
 
@@ -42,8 +43,16 @@ class _LocationChooserState extends State<LocationChooser> {
         GetStorage().write(kStoredFirstRun, false);
         return Scaffold.of(context).showSnackBar(
           SnackBar(
-            content: Text('Location initialozed'),
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+                'Please update your location (if necessary) by tapping JHR 01 button above'),
             duration: Duration(seconds: 6),
+            action: SnackBarAction(
+              label: 'Got it!',
+              onPressed: () {
+                Scaffold.of(context).hideCurrentSnackBar();
+              },
+            ),
           ),
         );
       }
@@ -116,11 +125,46 @@ Future openshowModalBottomSheet(BuildContext context) async {
       builder: (BuildContext context) {
         return FractionallySizedBox(
           heightFactor: 0.68,
-          child: ZonesList(),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(26.0),
+                topRight: Radius.circular(26.0)),
+            child: Container(
+              color: Colors.white,
+              child: ListView.builder(
+                itemCount: locationDatabase.getLocationDatabaseLength(),
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    onTap: () {
+                      GetStorage().write(kStoredGlobalIndex, index);
+                      // print('Index inside modal bottom sheet is $index');
+                      // print('GetStorage is ${GetStorage().read(kStoredGlobalIndex)}');
+                      Navigator.pop(context, index);
+                    },
+                    title: Text(locationDatabase.getDaerah(index)),
+                    subtitle: Text(locationDatabase.getNegeri(index)),
+                    trailing:
+                        locationBubble(locationDatabase.getJakimCode(index)),
+                  );
+                },
+              ),
+            ),
+          ),
         );
-      }).then((value) {
+      }).then((selectedIndex) {
     Future.delayed(const Duration(milliseconds: 450), () {
-      RestartWidget.restartApp(context);
+      /*
+      SelectedIndex is location index coming from Navigator.pop()
+      app should restart when index changed
+      when user close bottom sheet without selecting location, selectedIndex simply return null 
+      */
+      print('selectedIndex is $selectedIndex and globalIndex is $globalIndex');
+      if (selectedIndex != globalIndex) {
+        if (selectedIndex != null) {
+          RestartWidget.restartApp(context);
+          Fluttertoast.showToast(msg: 'Location updated');
+        }
+      }
     });
   });
   // setState(() {
@@ -139,36 +183,6 @@ Widget locationBubble(String shortCode) {
       shortCode,
     ),
   );
-}
-
-class ZonesList extends StatelessWidget {
-  ZonesList({Key key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(26.0), topRight: Radius.circular(26.0)),
-      child: Container(
-        color: Colors.white,
-        child: ListView.builder(
-          itemCount: locationDatabase.getLocationDatabaseLength(),
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              onTap: () {
-                GetStorage().write(kStoredGlobalIndex, index);
-                print('Index inside modal bottom sheet is $index');
-                print('GetStorage is ${GetStorage().read(kStoredGlobalIndex)}');
-                Navigator.pop(context, index);
-              },
-              title: Text(locationDatabase.getDaerah(index)),
-              subtitle: Text(locationDatabase.getNegeri(index)),
-              trailing: locationBubble(locationDatabase.getJakimCode(index)),
-            );
-          },
-        ),
-      ),
-    );
-  }
 }
 
 class GetGPS extends StatefulWidget {
@@ -265,7 +279,7 @@ class Completed extends StatelessWidget {
               child: Text(
                 place,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             )),
         Container(
@@ -300,7 +314,6 @@ class Completed extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 FlatButton(
-                  // color: Colors.teal[50],
                   child: Text(
                     'Set manually',
                     style: TextStyle(color: Colors.teal.shade800),
@@ -337,6 +350,8 @@ class Error extends StatelessWidget {
 
   const Error({Key key, this.errorMessage, this.onRetryPressed})
       : super(key: key);
+
+  //show error according to condition, eg if no gps, no internet
 
   @override
   Widget build(BuildContext context) {
