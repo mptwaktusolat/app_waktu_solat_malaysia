@@ -32,7 +32,6 @@ class Mpti906Bloc {
   }
 
   dispose() {
-    // _isStreaming = false;
     _mptDataController?.close();
   }
 }

@@ -3,8 +3,8 @@ import 'package:package_info/package_info.dart';
 class AppInfo {
   AppInfo() {
     getAppInfo();
-    print('appinfo is constructed');
   }
+
   String appName = "";
   String packageName = "";
   String version = "";

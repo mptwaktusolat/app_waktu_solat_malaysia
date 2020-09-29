@@ -1,3 +1,6 @@
+//All location data get from https://api.azanpro.com/reference/zone/grouped based on JAKIM website
+//Previosly, location data is fetch from JSON https://gist.github.com/fareezMaple/02648187370acb6db11e20ee143e471e also come from same API.
+
 import 'package:waktusolatmalaysia/utils/location/location.dart';
 
 class LocationDatabase {

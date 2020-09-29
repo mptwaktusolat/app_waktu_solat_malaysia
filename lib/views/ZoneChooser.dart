@@ -1,3 +1,5 @@
+//This widget is rendered as Location button at header part
+
 import 'dart:async';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,9 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 
-String locationShortCode;
-String currentlySetNegeri;
-String currentlySetKawasan;
 int globalIndex;
 
 LocationDatabase locationDatabase = LocationDatabase();
@@ -39,6 +38,7 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      //if first run, then ask to change location
       if (GetStorage().read(kStoredFirstRun)) {
         GetStorage().write(kStoredFirstRun, false);
         return Scaffold.of(context).showSnackBar(
@@ -57,8 +57,9 @@ class _LocationChooserState extends State<LocationChooser> {
         );
       }
     });
+
     var shortCode = locationDatabase.getJakimCode(globalIndex);
-    print(shortCode);
+
     return FlatButton(
       padding: EdgeInsets.all(-5.0),
       shape: RoundedRectangleBorder(
@@ -137,14 +138,14 @@ Future openshowModalBottomSheet(BuildContext context) async {
                   return ListTile(
                     onTap: () {
                       GetStorage().write(kStoredGlobalIndex, index);
-                      // print('Index inside modal bottom sheet is $index');
-                      // print('GetStorage is ${GetStorage().read(kStoredGlobalIndex)}');
-                      Navigator.pop(context, index);
+                      Navigator.pop(context,
+                          index); //index param here will pass as selectedindex below
                     },
                     title: Text(locationDatabase.getDaerah(index)),
                     subtitle: Text(locationDatabase.getNegeri(index)),
                     trailing:
                         locationBubble(locationDatabase.getJakimCode(index)),
+                    selected: globalIndex == index ? true : false,
                   );
                 },
               ),
@@ -161,15 +162,13 @@ Future openshowModalBottomSheet(BuildContext context) async {
       print('selectedIndex is $selectedIndex and globalIndex is $globalIndex');
       if (selectedIndex != globalIndex) {
         if (selectedIndex != null) {
+          globalIndex = selectedIndex;
+          Fluttertoast.showToast(msg: 'Location updated and saved');
           RestartWidget.restartApp(context);
-          Fluttertoast.showToast(msg: 'Location updated');
         }
       }
     });
   });
-  // setState(() {
-  //   RestartWidget.restartApp(context);
-  // });
 }
 
 Widget locationBubble(String shortCode) {
@@ -197,7 +196,6 @@ class _GetGPSState extends State<GetGPS> {
   @override
   void initState() {
     super.initState();
-    print('${LocationData.latitude}, ${LocationData.longitude}');
     _mpti906bloc = Mpti906Bloc(LocationData.latitude, LocationData.longitude);
   }
 
@@ -247,13 +245,14 @@ class _GetGPSState extends State<GetGPS> {
 
   @override
   void dispose() {
-    LocationData.getCurrentLocation(); //refresh new gps data
+    LocationData
+        .getCurrentLocation(); //refresh new gps data (if available), if not available, previously set data is still there
     _mpti906bloc.dispose();
     super.dispose();
   }
 }
 
-//////////////////////////
+/////////////////////////////////////////////////////////////////////
 class Completed extends StatelessWidget {
   Completed({this.jakimCode, this.place});
   final String jakimCode;
@@ -323,14 +322,13 @@ class Completed extends StatelessWidget {
                   },
                 ),
                 FlatButton(
-                  // color: Colors.teal[50],
                   child: Text(
                     'Accept this location',
                     style: TextStyle(color: Colors.teal.shade800),
                   ),
                   onPressed: () {
-                    // globalIndex = index;
                     GetStorage().write(kStoredGlobalIndex, index);
+                    Fluttertoast.showToast(msg: 'Location updated and saved');
                     RestartWidget.restartApp(context);
                   },
                 ),

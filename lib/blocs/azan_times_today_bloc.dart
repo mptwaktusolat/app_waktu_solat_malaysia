@@ -1,3 +1,5 @@
+//No longer use azanpro api but keep this file in case of emergency
+
 import 'dart:async';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';

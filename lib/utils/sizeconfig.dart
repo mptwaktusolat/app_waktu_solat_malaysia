@@ -1,3 +1,5 @@
+//Can't remember where this code snippet came from
+
 import 'package:flutter/material.dart';
 
 class SizeConfig {

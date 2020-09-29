@@ -6,8 +6,9 @@ class LocationData {
 
   static Future<void> getCurrentLocation() async {
     try {
-      Position position =
-          await getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
+      Position position = await getCurrentPosition(
+          desiredAccuracy:
+              LocationAccuracy.low); //on Android, low is in 500m radius
       latitude = position.latitude;
       longitude = position.longitude;
     } catch (e) {

@@ -5,8 +5,6 @@ import 'CustomException.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  // final String _baseUrl = "";
-
   Future<dynamic> get(String url) async {
     var responseJson;
     try {
@@ -35,7 +33,7 @@ class ApiProvider {
 
       default:
         throw FetchDataException(
-            'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+            'Error occured while communication with server with StatusCode : ${response.statusCode}');
     }
   }
 }

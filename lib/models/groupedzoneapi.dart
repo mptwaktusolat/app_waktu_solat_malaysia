@@ -1,3 +1,6 @@
+//No longer use azanpro api but keep this file in case of emergency
+//This file was originally worked with location JSON file but was removed in previous commit.
+
 class GroupedZones {
   String zone;
   String negeri;

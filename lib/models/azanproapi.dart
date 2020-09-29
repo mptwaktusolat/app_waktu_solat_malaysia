@@ -1,3 +1,5 @@
+//No longer use azanpro api but keep this file in case of emergency
+
 class AzanPro {
   String zone;
   String start;

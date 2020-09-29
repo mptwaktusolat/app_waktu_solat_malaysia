@@ -9,4 +9,6 @@ class DateAndTime {
     var formattedTime = format12.format(date);
     return (formattedTime);
   }
+
+  //TODO: Setting to switch from 24 hour and 12 hour system
 }

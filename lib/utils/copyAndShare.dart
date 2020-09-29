@@ -31,7 +31,8 @@ Solat timetable today
   ⭐ Isya': ${CachedPrayerTimeData.allPrayerTime()[4]}
 
 Get the app: ${Constants.kPlayStoreListingShortLink}''';
-    print(message);
+
+    // print('share and copy message is $message');
   }
 
   String getMessage() {
