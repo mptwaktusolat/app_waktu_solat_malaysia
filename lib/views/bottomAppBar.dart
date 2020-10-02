@@ -71,6 +71,15 @@ void menuModalBottomSheet(BuildContext context) {
               },
             ),
             ListTile(
+              title: Text('Contribution and Support'),
+              leading: Icon(Icons.support),
+              onTap: () {
+                Navigator.pop(context);
+                print('Opening contribution page');
+                openFeedbackDialog(context);
+              },
+            ),
+            ListTile(
               title: Text('Send feedback'),
               leading: Icon(Icons.feedback),
               onTap: () {
@@ -163,3 +172,7 @@ void openFeedbackDialog(BuildContext context) {
         fullscreenDialog: true),
   );
 }
+
+// void openContributionDialog(BuildContext context) {
+//   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>))
+// }

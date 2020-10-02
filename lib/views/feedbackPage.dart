@@ -51,13 +51,6 @@ class FeedbackToEmail {
   }
 }
 
-class Feedmoji {
-  bool isSelected;
-  final String emojiText;
-
-  Feedmoji(this.isSelected, this.emojiText);
-}
-
 class FeedbackPage extends StatefulWidget {
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
@@ -69,7 +62,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   double selectedOutlineWidth = 4.0;
   double unselectedOutlineWidth = 1.0;
   String hintTextForFeedback = 'Please leave your feedback below';
-  List<Feedmoji> feedmoji = List<Feedmoji>();
   FeedbackToEmail feedbackToEmail = FeedbackToEmail();
   TextEditingController messageController = TextEditingController();
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -91,12 +83,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   void initState() {
     super.initState();
-    feedmoji.add(Feedmoji(true, '😠'));
-    feedmoji.add(Feedmoji(true, '🙁'));
-    feedmoji.add(Feedmoji(true, '😐'));
-    feedmoji.add(Feedmoji(true, '😄'));
-    feedmoji.add(Feedmoji(true, '😍'));
-
     getDeviceInfo();
   }
 
@@ -144,37 +130,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('I would like to hear from you :)))'),
+            Text('Any suggestion or bug report'),
             Divider(
               height: 25.0,
-            ),
-            Text('What is your opinion for this app?'),
-            Flexible(
-              child: Container(
-                height: 60,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: feedmoji.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              feedmoji.forEach((element) {
-                                element.isSelected = false;
-                                feedmoji[index].isSelected = true;
-                                feedbackToEmail
-                                    .emojiSetter(feedmoji[index].emojiText);
-                              });
-                            },
-                          );
-                        },
-                        child: EmojiReaction(feedmoji[index]),
-                      );
-                    }),
-              ),
             ),
             Divider(),
             Text('Please select feedback category below'),
@@ -223,7 +181,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     onTap: () {
                       setState(() {
                         feedbackCategory = FeedbackCategory.compliment;
-                        hintTextForFeedback = 'haha write anything you want';
+                        hintTextForFeedback = 'Anything...';
                         feedbackToEmail.feedbackTypeSetter('Compliment');
                       });
                     },
@@ -293,26 +251,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
     // print('Device pix ratio: ${MediaQuery.of(context).devicePixelRatio}');
     // print(
     //     '${MediaQuery.of(context).size * MediaQuery.of(context).devicePixelRatio}');
-  }
-}
-
-class EmojiReaction extends StatelessWidget {
-  EmojiReaction(this.feedmoji);
-  final Feedmoji feedmoji;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Opacity(
-        // opacity: 0.5,
-        opacity: feedmoji.isSelected ? 1.0 : 0.37,
-        child: Text(
-          feedmoji.emojiText,
-          style: TextStyle(fontSize: 30.0),
-        ),
-      ),
-    );
   }
 }
 

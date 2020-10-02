@@ -488,6 +488,3 @@ class Loading extends StatelessWidget {
     );
   }
 }
-
-//Error message and troubleshoot(GPS)
-// var kGpsErrorMessage = ;
