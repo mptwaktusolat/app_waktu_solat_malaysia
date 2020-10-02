@@ -61,7 +61,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   FeedbackCategory feedbackCategory;
   double selectedOutlineWidth = 4.0;
   double unselectedOutlineWidth = 1.0;
-  String hintTextForFeedback = 'Please leave your feedback below';
+  String hintTextForFeedback = 'Please leave your feedback here';
   FeedbackToEmail feedbackToEmail = FeedbackToEmail();
   TextEditingController messageController = TextEditingController();
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
@@ -126,68 +126,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
           ],
         ),
         body: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Any suggestion or bug report'),
-            Divider(
-              height: 25.0,
-            ),
-            Divider(),
-            Text('Please select feedback category below'),
             SizedBox(
-              height: 10.0,
+              height: 10,
             ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FeedbackCategoryButton(
-                    label: 'Suggestion',
-                    outlineWidth:
-                        feedbackCategory == FeedbackCategory.suggestion
-                            ? selectedOutlineWidth
-                            : unselectedOutlineWidth,
-                    onTap: () {
-                      setState(() {
-                        feedbackCategory = FeedbackCategory.suggestion;
-                        hintTextForFeedback = 'Urmm I\'ve a suggestion...';
-                        feedbackToEmail.feedbackTypeSetter('Suggestion');
-                      });
-                    },
-                    //THIS FILE IS THE MOST SPAGHETTI EVER
-                  ),
-                  FeedbackCategoryButton(
-                    label: 'Something not quite right',
-                    outlineWidth: feedbackCategory == FeedbackCategory.bug
-                        ? selectedOutlineWidth
-                        : unselectedOutlineWidth,
-                    onTap: () {
-                      setState(() {
-                        feedbackCategory = FeedbackCategory.bug;
-                        hintTextForFeedback = 'Eww I found a bug(s)';
-                        feedbackToEmail
-                            .feedbackTypeSetter('Something not quite right');
-                      });
-                    },
-                  ),
-                  FeedbackCategoryButton(
-                    label: 'Compliment',
-                    outlineWidth:
-                        feedbackCategory == FeedbackCategory.compliment
-                            ? selectedOutlineWidth
-                            : unselectedOutlineWidth,
-                    onTap: () {
-                      setState(() {
-                        feedbackCategory = FeedbackCategory.compliment;
-                        hintTextForFeedback = 'Anything...';
-                        feedbackToEmail.feedbackTypeSetter('Compliment');
-                      });
-                    },
-                  )
-                ]),
-            Divider(),
+            Text(
+              'Any suggestion or bug report',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
