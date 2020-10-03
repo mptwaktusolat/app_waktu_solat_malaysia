@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import 'package:waktusolatmalaysia/views/contributionPage.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
 
@@ -76,7 +79,7 @@ void menuModalBottomSheet(BuildContext context) {
               onTap: () {
                 Navigator.pop(context);
                 print('Opening contribution page');
-                openFeedbackDialog(context);
+                openContributionDialog(context);
               },
             ),
             ListTile(
@@ -107,14 +110,27 @@ void menuModalBottomSheet(BuildContext context) {
 }
 
 void myAboutDialog(BuildContext context) {
+  int i = 0;
   return showAboutDialog(
       context: context,
-      applicationIcon: CachedNetworkImage(
-        width: 45,
-        imageUrl: kAppIconUrl,
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            CircularProgressIndicator(value: downloadProgress.progress),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+      applicationIcon: GestureDetector(
+        onTap: () {
+          i++;
+          if (i == 5) {
+            print('show debug hidden fx');
+          }
+          Timer(Duration(seconds: 1), () {
+            i = 0;
+            print('cleared');
+          });
+        },
+        child: CachedNetworkImage(
+          width: 45,
+          imageUrl: kAppIconUrl,
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
       ),
       applicationLegalese: '© 2020 Fareez Iqmal',
       applicationVersion: 'Version ${info.version}',
@@ -173,6 +189,7 @@ void openFeedbackDialog(BuildContext context) {
   );
 }
 
-// void openContributionDialog(BuildContext context) {
-//   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>))
-// }
+void openContributionDialog(BuildContext context) {
+  Navigator.push(context,
+      MaterialPageRoute(builder: (BuildContext context) => ContributionPage()));
+}
