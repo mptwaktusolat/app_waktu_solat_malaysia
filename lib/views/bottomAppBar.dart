@@ -61,6 +61,10 @@ void menuModalBottomSheet(BuildContext context) {
           padding: EdgeInsets.all(4.0),
           child: Wrap(children: <Widget>[
             ListTile(
+              title: Text('Themes'),
+              leading: Icon(Icons.color_lens),
+            ),
+            ListTile(
               title: Text('Rate and review'),
               leading: Icon(Icons.star),
               onTap: () {
@@ -82,6 +86,10 @@ void menuModalBottomSheet(BuildContext context) {
                 openContributionDialog(context);
               },
             ),
+            Divider(
+              thickness: 1,
+              height: 0.0,
+            ),
             ListTile(
               title: Text('Send feedback'),
               leading: Icon(Icons.feedback),
@@ -90,10 +98,6 @@ void menuModalBottomSheet(BuildContext context) {
                 print('Opening feedback dialog');
                 openFeedbackDialog(context);
               },
-            ),
-            Divider(
-              thickness: 1,
-              height: 0.0,
             ),
             ListTile(
               title: Text('About app'),
@@ -110,19 +114,33 @@ void menuModalBottomSheet(BuildContext context) {
 }
 
 void myAboutDialog(BuildContext context) {
-  int i = 0;
+  bool isFirstTry = true;
   return showAboutDialog(
       context: context,
       applicationIcon: GestureDetector(
-        onTap: () {
-          i++;
-          if (i == 5) {
-            print('show debug hidden fx');
+        onLongPress: () {
+          if (isFirstTry) {
+            Fluttertoast.showToast(msg: '(⌐■_■)');
+            isFirstTry = false;
           }
-          Timer(Duration(seconds: 1), () {
-            i = 0;
-            print('cleared');
-          });
+          //  else {
+          //   print('Show debug dialog');
+          //   showDialog(
+          //     //TODO: Enable when i made about dialog in full screen
+          //     context: context,
+          //     builder: (context) => Dialog(
+          //       backgroundColor: Colors.white,
+          //       child: ListView(
+          //         children: [
+          //           ListTile(
+          //             title: Text('Prayer time API calls'),
+          //             subtitle: Text('example link'),
+          //           )
+          //         ],
+          //       ),
+          //     ),
+          //   );
+          // }
         },
         child: CachedNetworkImage(
           width: 45,
@@ -162,19 +180,6 @@ void myAboutDialog(BuildContext context) {
           },
           child: Text('Release notes'),
         ),
-        // FlatButton(
-        //     padding: EdgeInsets.only(right: 4),
-        //     color: Colors.teal.shade50,
-        //     onPressed: () {},
-        //     child: SvgPicture.asset('assets/svgIcons/twitter.svg',
-        //         width: 10, semanticsLabel: 'A twitter logo')),
-        // FlatButton(
-        //   padding: EdgeInsets.only(left: 4),
-        //   color: Colors.teal.shade50,
-        //   onPressed: () {},
-        //   child: SvgPicture.asset('assets/svgIcons/instagram.svg',
-        //       width: 10, semanticsLabel: 'A instagram logo'),
-        // )
       ]);
 }
 

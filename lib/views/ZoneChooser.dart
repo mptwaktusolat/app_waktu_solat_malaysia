@@ -219,6 +219,7 @@ class _GetGPSState extends State<GetGPS> {
                   return Loading(
                     loadingMessage: 'Getting location',
                   );
+                //TODO: timeup bila failed fetch location, show manual method instead
                 case Status.COMPLETED:
                   return Completed(
                     jakimCode: snapshot.data.data.data.attributes.jakimCode,
