@@ -63,6 +63,8 @@ void menuModalBottomSheet(BuildContext context) {
             ListTile(
               title: Text('Themes'),
               leading: Icon(Icons.color_lens),
+              // onTap: ,
+              //TODO: onTap dark mode screen
             ),
             ListTile(
               title: Text('Rate and review'),
