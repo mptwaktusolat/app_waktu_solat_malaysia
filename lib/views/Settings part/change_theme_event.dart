@@ -9,12 +9,12 @@ class LightTheme extends ChangeThemeEvent {
   String toString() => 'LightTheme';
 }
 
-class DarkTheme {
+class DarkTheme extends ChangeThemeEvent {
   @override
-  String toString() => 'Dark Theme';
+  String toString() => 'DarkTheme';
 }
 
-class AmoledDarkTheme {
+class AmoledDarkTheme extends ChangeThemeEvent {
   @override
   String toString() => 'AmoledDarkTheme';
 }
