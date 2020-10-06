@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
 import 'package:waktusolatmalaysia/views/contributionPage.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
@@ -63,8 +64,10 @@ void menuModalBottomSheet(BuildContext context) {
             ListTile(
               title: Text('Themes'),
               leading: Icon(Icons.color_lens),
-              // onTap: ,
-              //TODO: onTap dark mode screen
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ThemesPage()));
+              },
             ),
             ListTile(
               title: Text('Rate and review'),
