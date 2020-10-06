@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
@@ -24,12 +25,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'My Prayer Time',
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.teal),
+      themeMode: ThemeMode.light,
       home: MyHomePage(),
     );
   }
