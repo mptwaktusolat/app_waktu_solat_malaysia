@@ -24,7 +24,7 @@ Solat timetable today
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 
-  ☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
+  ☁ Fajr: ${CachedPrayerTimeData.allPrayerTime()[0]}
   🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
   ☀ Asr: ${CachedPrayerTimeData.allPrayerTime()[2]}
   🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}

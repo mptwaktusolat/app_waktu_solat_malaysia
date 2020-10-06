@@ -131,7 +131,7 @@ Future openshowModalBottomSheet(BuildContext context) async {
                 topLeft: Radius.circular(26.0),
                 topRight: Radius.circular(26.0)),
             child: Container(
-              color: Colors.white,
+              color: Theme.of(context).canvasColor,
               child: ListView.builder(
                 itemCount: locationDatabase.getLocationDatabaseLength(),
                 itemBuilder: (BuildContext context, int index) {
@@ -143,8 +143,8 @@ Future openshowModalBottomSheet(BuildContext context) async {
                     },
                     title: Text(locationDatabase.getDaerah(index)),
                     subtitle: Text(locationDatabase.getNegeri(index)),
-                    trailing:
-                        locationBubble(locationDatabase.getJakimCode(index)),
+                    trailing: locationBubble(
+                        context, locationDatabase.getJakimCode(index)),
                     selected: globalIndex == index ? true : false,
                   );
                 },
@@ -171,11 +171,14 @@ Future openshowModalBottomSheet(BuildContext context) async {
   });
 }
 
-Widget locationBubble(String shortCode) {
+Widget locationBubble(BuildContext context, String shortCode) {
   return Container(
     padding: EdgeInsets.all(4.0),
     decoration: BoxDecoration(
-      border: Border.all(color: Colors.black),
+      border: Border.all(
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.black
+              : Colors.white),
       borderRadius: BorderRadius.circular(10.0),
     ),
     child: Text(
@@ -284,13 +287,14 @@ class Completed extends StatelessWidget {
             )),
         Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              color: Colors.teal.shade50),
+            borderRadius: BorderRadius.circular(16),
+            color: Theme.of(context).primaryColor.withOpacity(0.45),
+          ),
           child: ListTile(
             trailing: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                locationBubble(jakimCode.toUpperCase()),
+                locationBubble(context, jakimCode.toUpperCase()),
               ],
             ),
             title: Text(
@@ -313,7 +317,7 @@ class Completed extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                FlatButton(
+                TextButton(
                   child: Text(
                     'Set manually',
                     style: TextStyle(color: Colors.teal.shade800),
@@ -322,7 +326,7 @@ class Completed extends StatelessWidget {
                     openshowModalBottomSheet(context);
                   },
                 ),
-                FlatButton(
+                TextButton(
                   child: Text(
                     'Accept this location',
                     style: TextStyle(color: Colors.teal.shade800),
@@ -374,7 +378,7 @@ class Error extends StatelessWidget {
                   text: TextSpan(
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.black,
+                      // color: Colors.black,
                     ),
                     children: <TextSpan>[
                       TextSpan(text: 'Tap '),
@@ -391,7 +395,10 @@ class Error extends StatelessWidget {
                 Spacer(),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 12,
+                      // color: Colors.black,
+                    ),
                     children: <TextSpan>[
                       TextSpan(text: 'If it didn\'t work, please '),
                       TextSpan(
@@ -409,7 +416,9 @@ class Error extends StatelessWidget {
                       TextSpan(text: 'Make sure your '),
                       TextSpan(
                         text: 'GPS turned on, ',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       TextSpan(text: 'then restart this app.'),
                     ],
@@ -437,7 +446,7 @@ class Error extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FlatButton(
+                TextButton(
                     onPressed: () {
                       openshowModalBottomSheet(context);
                     },
@@ -445,7 +454,7 @@ class Error extends StatelessWidget {
                       'Set manually',
                       style: TextStyle(color: Colors.teal.shade800),
                     )),
-                FlatButton(
+                TextButton(
                   onPressed: onRetryPressed,
                   child: Text(
                     'Retry',
@@ -476,7 +485,6 @@ class Loading extends StatelessWidget {
             loadingMessage,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
               fontSize: 24,
             ),
           ),

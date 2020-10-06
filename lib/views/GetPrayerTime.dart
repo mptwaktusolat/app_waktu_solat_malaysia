@@ -115,7 +115,7 @@ class PrayTimeList extends StatelessWidget {
       children: <Widget>[
         // solatCard('$subuhTime', 'Status'),
 
-        solatCard(subuhTime, 'Subuh'),
+        solatCard(subuhTime, 'Fajr'),
         solatCard(zohorTime, 'Zohor'),
         solatCard(asarTime, 'Asr'),
         solatCard(maghribTime, 'Maghrib'),

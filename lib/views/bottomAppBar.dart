@@ -28,14 +28,18 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
               tooltip: 'Open menu',
               icon: Icon(Icons.menu),
-              color: Colors.grey,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.grey.shade600
+                  : Colors.white60,
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
           IconButton(
               icon: Icon(Icons.copy),
               tooltip: 'Copy timetable',
-              color: Colors.grey,
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.grey.shade600
+                  : Colors.white60,
               onPressed: () {
                 copyAndShare.updateMessage();
                 Clipboard.setData(
