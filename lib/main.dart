@@ -6,6 +6,7 @@ import 'package:share/share.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/ThemeController.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
 import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
 import 'CONSTANTS.dart';
@@ -14,6 +15,7 @@ void main() async {
   await GetStorage.init();
   LocationData.getCurrentLocation();
   GetStorage().writeIfNull(kStoredFirstRun, true);
+  Get.lazyPut<ThemeController>(() => ThemeController());
   runApp(
     RestartWidget(
       child: MyApp(),
@@ -25,14 +27,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root
   @override
   Widget build(BuildContext context) {
+    ThemeController.to.getThemeModeFromPreferences();
     return GetMaterialApp(
       title: 'My Prayer Time',
       theme: ThemeData.light().copyWith(
         primaryColor: Colors.teal,
+        bottomAppBarColor: Colors.teal.shade50,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      darkTheme: ThemeData.dark().copyWith(primaryColor: Colors.teal),
-      themeMode: ThemeMode.light,
+      darkTheme: ThemeData.dark().copyWith(
+        primaryColor: Colors.teal,
+        bottomAppBarColor: Colors.teal.shade900,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      themeMode: ThemeController.to.themeMode,
       home: MyHomePage(),
     );
   }

@@ -23,7 +23,6 @@ class MyBottomAppBar extends StatelessWidget {
     return BottomAppBar(
       elevation: 18.0,
       shape: CircularNotchedRectangle(),
-      color: Colors.teal[50],
       child: Row(
         children: [
           IconButton(
@@ -65,6 +64,7 @@ void menuModalBottomSheet(BuildContext context) {
               title: Text('Themes'),
               leading: Icon(Icons.color_lens),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ThemesPage()));
               },

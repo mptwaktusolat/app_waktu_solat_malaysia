@@ -5,9 +5,11 @@
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
 
-//Network image (AppIcon)
+//Network image
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
+const kThemeUiUrl =
+    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/mpt%20themes.png?alt=media&token=3c2a39d9-5c6f-429e-8887-07885034b0b5';
 
 //Network Image (Scenery time images)
 const kWaktuSubuhImage =
