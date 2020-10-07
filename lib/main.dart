@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:share/share.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
+import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/ThemeController.dart';
@@ -33,10 +34,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'My Prayer Time',
       theme: ThemeData.light().copyWith(
-          primaryColor: _primaryColour,
-          bottomAppBarColor: Colors.teal.shade50,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: AppBarTheme(color: _primaryColour)),
+        primaryColor: _primaryColour,
+        bottomAppBarColor: Colors.teal.shade50,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        appBarTheme: AppBarTheme(color: _primaryColour),
+      ),
       darkTheme: ThemeData.dark().copyWith(
           primaryColor: _primaryColour,
           bottomAppBarColor: Colors.teal.withOpacity(0.4),
@@ -70,6 +72,7 @@ class MyHomePage extends StatelessWidget {
           mini: true,
           tooltip: 'Share',
           onPressed: () {
+            print(CachedPrayerTimeData.allPrayerTime().toString());
             copyAndShare.updateMessage();
             Share.share(copyAndShare.getMessage());
           }),

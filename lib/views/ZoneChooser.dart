@@ -334,7 +334,6 @@ class Completed extends StatelessWidget {
                 TextButton(
                   child: Text(
                     'Set manually',
-                    style: TextStyle(color: Colors.teal.shade800),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -344,7 +343,6 @@ class Completed extends StatelessWidget {
                 TextButton(
                   child: Text(
                     'Accept this location',
-                    style: TextStyle(color: Colors.teal.shade800),
                   ),
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
@@ -472,13 +470,13 @@ class Error extends StatelessWidget {
                     },
                     child: Text(
                       'Set manually',
-                      style: TextStyle(color: Colors.teal.shade800),
+                      // style: TextStyle(color: Colors.teal.shade800),
                     )),
                 TextButton(
                   onPressed: onRetryPressed,
                   child: Text(
                     'Retry',
-                    style: TextStyle(color: Colors.teal.shade800),
+                    // style: TextStyle(color: Colors.teal.shade800),
                   ),
                 )
               ],

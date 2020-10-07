@@ -131,25 +131,25 @@ void myAboutDialog(BuildContext context) {
           if (isFirstTry) {
             Fluttertoast.showToast(msg: '(⌐■_■)');
             isFirstTry = false;
+          } else {
+            Fluttertoast.showToast(msg: '(❁´◡`❁)');
+            //   print('Show debug dialog');
+            //   showDialog(
+            //     //TODO: Enable when i made about dialog in full screen
+            //     context: context,
+            //     builder: (context) => Dialog(
+            //       backgroundColor: Colors.white,
+            //       child: ListView(
+            //         children: [
+            //           ListTile(
+            //             title: Text('Prayer time API calls'),
+            //             subtitle: Text('example link'),
+            //           )
+            //         ],
+            //       ),
+            //     ),
+            //   );
           }
-          //  else {
-          //   print('Show debug dialog');
-          //   showDialog(
-          //     //TODO: Enable when i made about dialog in full screen
-          //     context: context,
-          //     builder: (context) => Dialog(
-          //       backgroundColor: Colors.white,
-          //       child: ListView(
-          //         children: [
-          //           ListTile(
-          //             title: Text('Prayer time API calls'),
-          //             subtitle: Text('example link'),
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   );
-          // }
         },
         child: CachedNetworkImage(
           width: 45,
@@ -176,18 +176,18 @@ void myAboutDialog(BuildContext context) {
           height: 6,
         ),
         FlatButton(
-            color: Colors.teal.shade50,
+            color: Theme.of(context).bottomAppBarColor,
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: kPrivacyPolicyLink);
             },
             child: Text('Privacy Policy')),
         FlatButton(
-          color: Colors.teal.shade50,
+          color: Theme.of(context).bottomAppBarColor,
           onPressed: () {
             // LaunchUrl.customTabsUrl();
             LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
           },
-          child: Text('Release notes'),
+          child: Text('Release Notes'),
         ),
       ]);
 }

@@ -138,7 +138,7 @@ class PrayTimeList extends StatelessWidget {
 
 Widget solatCard(String time, String name) {
   return Container(
-    margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 500),
+    margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
     width: 300,
     height: 80,
     child: Card(

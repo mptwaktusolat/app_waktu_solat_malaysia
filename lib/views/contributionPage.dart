@@ -44,10 +44,10 @@ class ContributionPage extends StatelessWidget {
                     'One cup of nescafe usually enough for me to code all night.\n\n${Constants.kBuyMeACoffeeLink.substring(12)}', //substring will remove 'https://www' stuffs.
                 buttonContent: [
                   ButtonContent(
-                    'Copy link',
+                    'Copy',
                     () => copyClipboard(Constants.kBuyMeACoffeeLink),
                   ),
-                  ButtonContent('Open link', () {
+                  ButtonContent('Open', () {
                     LaunchUrl.normalLaunchUrl(url: Constants.kBuyMeACoffeeLink);
                   })
                 ],
@@ -57,17 +57,22 @@ class ContributionPage extends StatelessWidget {
                 description: '${Constants.kPaypalDonateShortLink}',
                 buttonContent: [
                   ButtonContent(
-                    'Copy link',
+                    'Copy',
                     () => copyClipboard(Constants.kPaypalDonateFullLink),
                   ),
                   ButtonContent(
-                    'Open link',
+                    'Open',
                     () => LaunchUrl.normalLaunchUrl(
                         url: Constants.kPaypalDonateFullLink),
-                  )
-                  //TODO: Remove word link (repetition??)
+                  ),
+
                   //TODO: Add any illustrattion
                 ],
+              ),
+              MyCard(
+                title: 'Contribute to source',
+                description: 'MPT will become open source soon. Stay tuned.\n',
+                buttonContent: [],
               )
             ],
           ),
