@@ -25,21 +25,23 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root
+  var _primaryColour = Colors.teal;
+
   @override
   Widget build(BuildContext context) {
     ThemeController.to.getThemeModeFromPreferences();
     return GetMaterialApp(
       title: 'My Prayer Time',
       theme: ThemeData.light().copyWith(
-        primaryColor: Colors.teal,
-        bottomAppBarColor: Colors.teal.shade50,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          primaryColor: _primaryColour,
+          bottomAppBarColor: Colors.teal.shade50,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(color: _primaryColour)),
       darkTheme: ThemeData.dark().copyWith(
-        primaryColor: Colors.teal,
-        bottomAppBarColor: Colors.teal.withOpacity(0.4),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+          primaryColor: _primaryColour,
+          bottomAppBarColor: Colors.teal.withOpacity(0.4),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
       themeMode: ThemeController.to.themeMode,
       home: MyHomePage(),
     );
@@ -53,8 +55,6 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan.shade900,
-        brightness: Brightness.dark,
         title: Text(
           '🇲🇾 Prayer Time',
           style: GoogleFonts.balooTamma(),

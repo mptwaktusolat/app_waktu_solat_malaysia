@@ -56,7 +56,7 @@ Article that help me througout the development(Read: Website yg function teruk. 
 1. https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97
 2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
 3. https://javiercbk.github.io/json_to_dart/
-4. https://medium.com/@bimsina/changing-theme-at-run-time-flutter-d634c307de8a
+4. https://medium.com/swlh/flutter-dynamic-themes-in-3-lines-c3b375f292e3
 
 <!-- ## Attribution
 

@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/ThemeController.dart';
 

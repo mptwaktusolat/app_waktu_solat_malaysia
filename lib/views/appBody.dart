@@ -15,6 +15,7 @@ class AppBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -23,7 +24,7 @@ class AppBody extends StatelessWidget {
             width: SizeConfig.screenWidth,
             height: SizeConfig.screenHeight / 6,
             decoration: BoxDecoration(
-              color: Colors.cyan.shade900,
+              color: Theme.of(context).appBarTheme.color,
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
@@ -31,14 +32,11 @@ class AppBody extends StatelessWidget {
             padding: EdgeInsets.all(5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
-                      // flex: 4,
                       child: Container(
                         child: Column(
                           children: [

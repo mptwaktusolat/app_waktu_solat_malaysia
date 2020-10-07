@@ -21,7 +21,8 @@ class ThemeController extends GetxController {
   getThemeModeFromPreferences() async {
     ThemeMode themeMode;
 
-    String themeText = GetStorage().read('theme') ?? 'system';
+    String themeText = GetStorage().read('theme') ??
+        'light'; //at first run default it to light mode
     try {
       themeMode =
           ThemeMode.values.firstWhere((e) => describeEnum(e) == themeText);

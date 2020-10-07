@@ -11,10 +11,10 @@ import 'package:waktusolatmalaysia/models/mpti906api.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
-import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
+import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 
 int globalIndex;
 
@@ -23,6 +23,7 @@ LocationDatabase locationDatabase = LocationDatabase();
 class LocationChooser extends StatefulWidget {
   final GroupedZones zone;
   LocationChooser({Key key, this.zone}) : super(key: key);
+
   @override
   _LocationChooserState createState() => _LocationChooserState();
 }
@@ -31,14 +32,15 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
-    GetStorage().writeIfNull(kStoredGlobalIndex, 0);
+    GetStorage().writeIfNull(kStoredGlobalIndex,
+        0); //null when first run, defaulted to JHR 01 (top of the list)
     globalIndex = GetStorage().read(kStoredGlobalIndex);
   }
 
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //if first run, then ask to change location
+      //if first run, then promote to change location
       if (GetStorage().read(kStoredFirstRun)) {
         GetStorage().write(kStoredFirstRun, false);
         return Scaffold.of(context).showSnackBar(
@@ -60,6 +62,13 @@ class _LocationChooserState extends State<LocationChooser> {
 
     var shortCode = locationDatabase.getJakimCode(globalIndex);
 
+    void _updateUI() {
+      //this setState will be called when user select a new location, this will update the Text short code
+      setState(() {
+        shortCode = locationDatabase.getJakimCode(globalIndex);
+      });
+    }
+
     return FlatButton(
       padding: EdgeInsets.all(-5.0),
       shape: RoundedRectangleBorder(
@@ -69,13 +78,13 @@ class _LocationChooserState extends State<LocationChooser> {
       onPressed: () async {
         LocationPermission permission = await checkPermission();
         if (permission == LocationPermission.deniedForever) {
-          openshowModalBottomSheet(context);
+          //if deniedForever, it will skip the GPS methof
+          openshowModalBottomSheet(context, _updateUI);
         } else {
           showDialog(
             context: context,
-            builder: (context) => GetGPS(),
+            builder: (context) => GetGPS(_updateUI),
           );
-          print('Opened zone chooser');
         }
       },
       onLongPress: () {
@@ -87,7 +96,7 @@ class _LocationChooserState extends State<LocationChooser> {
             label: 'Change',
             onPressed: () {
               print('Pressed change loc');
-              openshowModalBottomSheet(context);
+              openshowModalBottomSheet(context, _updateUI);
             },
           ),
         ));
@@ -118,7 +127,8 @@ class _LocationChooserState extends State<LocationChooser> {
   }
 }
 
-Future openshowModalBottomSheet(BuildContext context) async {
+Future openshowModalBottomSheet(BuildContext context, Function callback) async {
+  print(globalIndex);
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
@@ -153,21 +163,21 @@ Future openshowModalBottomSheet(BuildContext context) async {
           ),
         );
       }).then((selectedIndex) {
-    Future.delayed(const Duration(milliseconds: 450), () {
-      /*
+    /*
       SelectedIndex is location index coming from Navigator.pop()
       app should restart when index changed
       when user close bottom sheet without selecting location, selectedIndex simply return null 
       */
-      print('selectedIndex is $selectedIndex and globalIndex is $globalIndex');
-      if (selectedIndex != globalIndex) {
-        if (selectedIndex != null) {
-          globalIndex = selectedIndex;
-          Fluttertoast.showToast(msg: 'Location updated and saved');
-          RestartWidget.restartApp(context);
-        }
+    print('selectedIndex is $selectedIndex and globalIndex is $globalIndex');
+    if (selectedIndex != globalIndex) {
+      if (selectedIndex != null) {
+        globalIndex = selectedIndex;
+        Fluttertoast.showToast(msg: 'Location updated and saved');
+        // RestartWidget.restartApp(context);
+        callback();
+        GetPrayerTime.updateUI(locationDatabase.getJakimCode(selectedIndex));
       }
-    });
+    }
   });
 }
 
@@ -188,6 +198,8 @@ Widget locationBubble(BuildContext context, String shortCode) {
 }
 
 class GetGPS extends StatefulWidget {
+  GetGPS(this.callback);
+  final Function callback;
   @override
   _GetGPSState createState() => _GetGPSState();
 }
@@ -227,6 +239,7 @@ class _GetGPSState extends State<GetGPS> {
                   return Completed(
                     jakimCode: snapshot.data.data.data.attributes.jakimCode,
                     place: snapshot.data.data.data.place,
+                    onCallback: widget.callback,
                   );
                   break;
                 case Status.ERROR:
@@ -258,13 +271,14 @@ class _GetGPSState extends State<GetGPS> {
 
 /////////////////////////////////////////////////////////////////////
 class Completed extends StatelessWidget {
-  Completed({this.jakimCode, this.place});
+  Completed({this.jakimCode, this.place, this.onCallback});
   final String jakimCode;
   final String place;
+  final Function onCallback;
   @override
   Widget build(BuildContext context) {
     var index = locationDatabase.indexOfLocation(jakimCode);
-    globalIndex = index;
+
     print('detected index is $index');
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -288,7 +302,7 @@ class Completed extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).primaryColor.withOpacity(0.45),
+            color: Theme.of(context).bottomAppBarColor,
           ),
           child: ListTile(
             trailing: Column(
@@ -323,7 +337,8 @@ class Completed extends StatelessWidget {
                     style: TextStyle(color: Colors.teal.shade800),
                   ),
                   onPressed: () {
-                    openshowModalBottomSheet(context);
+                    Navigator.pop(context);
+                    openshowModalBottomSheet(context, onCallback);
                   },
                 ),
                 TextButton(
@@ -333,8 +348,11 @@ class Completed extends StatelessWidget {
                   ),
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
+                    globalIndex = index;
                     Fluttertoast.showToast(msg: 'Location updated and saved');
-                    RestartWidget.restartApp(context);
+                    onCallback();
+                    Navigator.pop(context);
+                    GetPrayerTime.updateUI(jakimCode); //refresh prayer time
                   },
                 ),
               ],
@@ -351,7 +369,9 @@ class Error extends StatelessWidget {
 
   final Function onRetryPressed;
 
-  const Error({Key key, this.errorMessage, this.onRetryPressed})
+  final Function callback;
+
+  const Error({Key key, this.errorMessage, this.onRetryPressed, this.callback})
       : super(key: key);
 
   //show error according to condition, eg if no gps, no internet
@@ -448,7 +468,7 @@ class Error extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {
-                      openshowModalBottomSheet(context);
+                      openshowModalBottomSheet(context, callback);
                     },
                     child: Text(
                       'Set manually',

@@ -16,15 +16,18 @@ import '../networking/Response.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
 String location;
+WaktusolatappBloc _timeBloc;
 
 class GetPrayerTime extends StatefulWidget {
+  static void updateUI(String location) {
+    _timeBloc.fetchPrayerTime(location, null);
+  }
+
   @override
   _GetPrayerTimeState createState() => _GetPrayerTimeState();
 }
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
-  WaktusolatappBloc _timeBloc;
-
   // String timeFormat = "&format=12-hour";
 
   @override
@@ -32,8 +35,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
     super.initState();
     location =
         locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
-    // initializeDateFormatting('en_US', null);
     _timeBloc = WaktusolatappBloc(location, null);
+
     print('$location');
   }
 
@@ -116,7 +119,7 @@ class PrayTimeList extends StatelessWidget {
         // solatCard('$subuhTime', 'Status'),
 
         solatCard(subuhTime, 'Fajr'),
-        solatCard(zohorTime, 'Zohor'),
+        solatCard(zohorTime, 'Zuhr'),
         solatCard(asarTime, 'Asr'),
         solatCard(maghribTime, 'Maghrib'),
         solatCard(isyaTime, 'Isya\''),
@@ -163,16 +166,6 @@ Widget solatCard(String time, String name) {
   );
 }
 
-// String formattedTime(int unixTime) {
-//   DateTime time = new DateTime.fromMillisecondsSinceEpoch(unixTime * 1000);
-
-//   var format = new DateFormat.jm();
-//   var timeString = format.format(time);
-//   // print(timeString);
-
-//   return timeString;
-// }
-
 class Error extends StatelessWidget {
   final String errorMessage;
 
@@ -192,7 +185,6 @@ class Error extends StatelessWidget {
             errorMessage,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
               fontSize: 18,
             ),
           ),
@@ -223,14 +215,10 @@ class Loading extends StatelessWidget {
             loadingMessage,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
               fontSize: 24,
             ),
           ),
           SizedBox(height: 24),
-          // CircularProgressIndicator(
-          //   valueColor: AlwaysStoppedAnimation<Color>(Colors.teal.shade900),
-          // ),
           SpinKitChasingDots(
             size: 35,
             color: Colors.teal,
