@@ -24,7 +24,7 @@ class ContributionPage extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                  'Alhamdulillah. Thank you for your interest in donating to Malaysia Prayer Times. May Allah SWT reward your kindness'),
+                  'Alhamdulillah. Thank you for your interest in donating to Malaysia Prayer Time app. May Allah SWT reward your kindness.'),
               SizedBox(
                 height: 8,
               ),

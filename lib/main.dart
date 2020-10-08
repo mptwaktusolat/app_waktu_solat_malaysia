@@ -24,6 +24,7 @@ void main() async {
   );
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   // This widget is the root
   var _primaryColour = Colors.teal;
@@ -51,8 +52,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final CopyAndShare copyAndShare = CopyAndShare();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +72,7 @@ class MyHomePage extends StatelessWidget {
           tooltip: 'Share',
           onPressed: () {
             print(CachedPrayerTimeData.allPrayerTime().toString());
-            copyAndShare.updateMessage();
-            Share.share(copyAndShare.getMessage());
+            Share.share(CopyAndShare.getMessage());
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),

@@ -7,17 +7,15 @@ import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'cachedPrayerData.dart';
 
 class CopyAndShare {
-  LocationDatabase _locationDatabase = LocationDatabase();
-  String message;
-  var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
-  var dayFormat = DateFormat('EEEE').format(DateTime.now());
-  var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
-  var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
-
-  void updateMessage() {
+  static String getMessage() {
+    var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
+    var dayFormat = DateFormat('EEEE').format(DateTime.now());
+    var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
+    var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
+    LocationDatabase _locationDatabase = LocationDatabase();
     var daerah = _locationDatabase.getDaerah(_globalIndex);
     var negeri = _locationDatabase.getNegeri(_globalIndex);
-    message = '''
+    String message = '''
 Solat timetable today
 
 📍 $daerah ($negeri)
@@ -33,9 +31,7 @@ Solat timetable today
 Get the app: ${Constants.kPlayStoreListingShortLink}''';
 
     // print('share and copy message is $message');
-  }
 
-  String getMessage() {
     return message;
   }
 }

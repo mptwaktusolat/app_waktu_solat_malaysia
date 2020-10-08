@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +13,6 @@ import '../utils/AppInformation.dart';
 AppInfo info = AppInfo();
 
 class MyBottomAppBar extends StatelessWidget {
-  final CopyAndShare copyAndShare = CopyAndShare();
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -41,10 +38,11 @@ class MyBottomAppBar extends StatelessWidget {
                   ? Colors.grey.shade600
                   : Colors.white60,
               onPressed: () {
-                copyAndShare.updateMessage();
                 Clipboard.setData(
-                    new ClipboardData(text: copyAndShare.getMessage()));
-                Fluttertoast.showToast(msg: 'Timetable copied');
+                        ClipboardData(text: CopyAndShare.getMessage()))
+                    .then((value) {
+                  Fluttertoast.showToast(msg: 'Timetable copied');
+                });
               })
         ],
       ),
@@ -87,7 +85,7 @@ void menuModalBottomSheet(BuildContext context) {
               },
             ),
             ListTile(
-              title: Text('Contribution and Support'),
+              title: Text('Contribution and support'),
               leading: Icon(Icons.support),
               onTap: () {
                 Navigator.pop(context);

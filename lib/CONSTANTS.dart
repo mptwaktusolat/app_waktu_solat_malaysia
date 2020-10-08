@@ -6,7 +6,7 @@ const kStoredFirstRun = "storedFirstRunApp";
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
 const kThemeUiUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/mpt%20themes.png?alt=media&token=3c2a39d9-5c6f-429e-8887-07885034b0b5';
+    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes%20(1).png?alt=media&token=c6274576-320f-4031-990e-b8e2b554a94e';
 
 //Network Image (Scenery time images)
 const kWaktuSubuhImage =
