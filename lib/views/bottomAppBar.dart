@@ -17,6 +17,9 @@ class MyBottomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
     String init = info.appName; //just to init the class
+    var iconColour = Theme.of(context).brightness == Brightness.light
+        ? Colors.grey.shade600
+        : Colors.white60;
     return BottomAppBar(
       elevation: 18.0,
       shape: CircularNotchedRectangle(),
@@ -25,18 +28,23 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
               tooltip: 'Open menu',
               icon: Icon(Icons.menu),
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.grey.shade600
-                  : Colors.white60,
+              color: iconColour,
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
           IconButton(
+              icon: Icon(
+                Icons.color_lens,
+                color: iconColour,
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ThemesPage()));
+              }),
+          IconButton(
               icon: Icon(Icons.copy),
               tooltip: 'Copy timetable',
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.grey.shade600
-                  : Colors.white60,
+              color: iconColour,
               onPressed: () {
                 Clipboard.setData(
                         ClipboardData(text: CopyAndShare.getMessage()))
