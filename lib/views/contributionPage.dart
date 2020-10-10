@@ -73,7 +73,7 @@ class ContributionPage extends StatelessWidget {
               MyCard(
                 title: 'Contribute to source',
                 description:
-                    'MPT is now open source. Report any bugs or contribute directly to the source code.',
+                    'MPT is now open source. Report any bugs or contribute directly to the source code. Licensed under GNU GPLv3',
                 buttonContent: [
                   ButtonContent(
                       'Copy', () => copyClipboard(Constants.kGithubRepoLink)),

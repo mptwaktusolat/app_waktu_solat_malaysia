@@ -163,6 +163,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
     );
   }
 
+  //TODO: Added follow issue on GitHub / report directly to there
+
   void getDeviceInfo() async {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
