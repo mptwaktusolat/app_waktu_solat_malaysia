@@ -6,18 +6,8 @@ import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 enum FeedbackCategory { suggestion, bug, compliment }
 
 class FeedbackToEmail {
-  String _emoji;
-  String _feedbackType;
   String _message;
   String _debugLog;
-
-  void emojiSetter(String emoji) {
-    this._emoji = emoji;
-  }
-
-  void feedbackTypeSetter(String feedbackCategory) {
-    this._feedbackType = feedbackCategory;
-  }
 
   void messageSetter(String message) {
     this._message = message;
@@ -32,17 +22,18 @@ class FeedbackToEmail {
   }
 
   String getAllData() {
-    String data = '''$_emoji $_emoji $_emoji $_emoji $_emoji
-
-    category: "$_feedbackType, "
+    String data = '''
 
     Message: $_message, 
 
     <---------Debug log:---------------
+
     $_debugLog
+    
     ------------------EO🐛---------------->
     
-    Thanks for ur feedback. Have a niceday.''';
+    Thank you for submitting feedback. This means a lot to us. 
+    ''';
     //add github issue link
 
     //EOF is end of feedback
@@ -115,7 +106,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
                         Screen size (again) ${MediaQuery.of(context).size.toString().substring(4)} px
                     
-                    ''');
+                      ''');
                   }
                   feedbackToEmail.messageSetter(messageController.text);
                   feedbackToEmail.getAllData();

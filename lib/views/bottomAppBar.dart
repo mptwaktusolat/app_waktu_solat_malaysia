@@ -176,14 +176,16 @@ void myAboutDialog(BuildContext context) {
         FlatButton(
             color: Theme.of(context).bottomAppBarColor,
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: kPrivacyPolicyLink);
+              LaunchUrl.normalLaunchUrl(
+                  url: kPrivacyPolicyLink, usesWebView: true);
             },
             child: Text('Privacy Policy')),
         FlatButton(
           color: Theme.of(context).bottomAppBarColor,
           onPressed: () {
             // LaunchUrl.customTabsUrl();
-            LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
+            LaunchUrl.normalLaunchUrl(
+                url: kReleaseNotesLink, usesWebView: true);
           },
           child: Text('Release Notes'),
         ),

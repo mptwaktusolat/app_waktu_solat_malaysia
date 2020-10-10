@@ -31,7 +31,7 @@ class ContributionPage extends StatelessWidget {
               MyCard(
                   title: 'Share the app',
                   description:
-                      'One of tiny acts of kindness. It cost you \$0.00. Share your experience on using this app to your family and friends.',
+                      'One of tiny acts of kindness. Share your experience on using this app to your family and friends.',
                   buttonContent: [
                     ButtonContent('Share the app', () {
                       print('pressed form class');
@@ -71,8 +71,16 @@ class ContributionPage extends StatelessWidget {
               ),
               MyCard(
                 title: 'Contribute to source',
-                description: 'MPT will become open source soon. Stay tuned.\n',
-                buttonContent: [],
+                description:
+                    'MPT is now open source. Report any bugs or contribute directly to the source code.',
+                buttonContent: [
+                  ButtonContent(
+                      'Copy', () => copyClipboard(Constants.kGithubRepoLink)),
+                  ButtonContent(
+                      'Open GitHub',
+                      () => LaunchUrl.normalLaunchUrl(
+                          url: Constants.kGithubRepoLink)),
+                ],
               )
             ],
           ),

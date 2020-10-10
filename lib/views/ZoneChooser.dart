@@ -396,7 +396,9 @@ class Error extends StatelessWidget {
                   text: TextSpan(
                     style: TextStyle(
                       fontSize: 12,
-                      // color: Colors.black,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? Colors.black
+                          : Colors.white,
                     ),
                     children: <TextSpan>[
                       TextSpan(text: 'Tap '),
@@ -414,9 +416,10 @@ class Error extends StatelessWidget {
                 RichText(
                   text: TextSpan(
                     style: TextStyle(
-                      fontSize: 12,
-                      // color: Colors.black,
-                    ),
+                        fontSize: 12,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                     children: <TextSpan>[
                       TextSpan(text: 'If it didn\'t work, please '),
                       TextSpan(
@@ -429,7 +432,11 @@ class Error extends StatelessWidget {
                 Spacer(),
                 RichText(
                   text: TextSpan(
-                    style: TextStyle(fontSize: 12, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.black
+                            : Colors.white),
                     children: <TextSpan>[
                       TextSpan(text: 'Make sure your '),
                       TextSpan(
