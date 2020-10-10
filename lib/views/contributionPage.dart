@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
@@ -81,7 +82,14 @@ class ContributionPage extends StatelessWidget {
                       () => LaunchUrl.normalLaunchUrl(
                           url: Constants.kGithubRepoLink)),
                 ],
-              )
+              ),
+              FittedBox(
+                  fit: BoxFit.contain,
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child:
+                        SvgPicture.network(Constants.kDeveloperActivityImage),
+                  ))
             ],
           ),
         ),
