@@ -245,9 +245,11 @@ class _GetGPSState extends State<GetGPS> {
                 case Status.ERROR:
                   print('has error');
                   return Error(
-                      errorMessage: snapshot.data.message,
-                      onRetryPressed: () => _mpti906bloc.fetchLocationData(
-                          LocationData.latitude, LocationData.longitude));
+                    errorMessage: snapshot.data.message,
+                    onRetryPressed: () => _mpti906bloc.fetchLocationData(
+                        LocationData.latitude, LocationData.longitude),
+                    onCallback: widget.callback,
+                  );
                   break;
               }
             }
@@ -367,9 +369,10 @@ class Error extends StatelessWidget {
 
   final Function onRetryPressed;
 
-  final Function callback;
+  final Function onCallback;
 
-  const Error({Key key, this.errorMessage, this.onRetryPressed, this.callback})
+  const Error(
+      {Key key, this.errorMessage, this.onRetryPressed, this.onCallback})
       : super(key: key);
 
   //show error according to condition, eg if no gps, no internet
@@ -473,7 +476,7 @@ class Error extends StatelessWidget {
               children: [
                 TextButton(
                     onPressed: () {
-                      openshowModalBottomSheet(context, callback);
+                      openshowModalBottomSheet(context, onCallback);
                     },
                     child: Text(
                       'Set manually',
