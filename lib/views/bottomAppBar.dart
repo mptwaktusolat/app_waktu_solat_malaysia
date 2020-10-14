@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/SettingsPage.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
 import 'package:waktusolatmalaysia/views/contributionPage.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
@@ -77,6 +78,15 @@ void menuModalBottomSheet(BuildContext context) {
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ThemesPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              leading: Icon(Icons.settings),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()));
               },
             ),
             ListTile(
