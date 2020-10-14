@@ -11,7 +11,7 @@ import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
-
+import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import '../networking/Response.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
@@ -36,7 +36,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
     location =
         locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
     _timeBloc = WaktusolatappBloc(location, null);
-
     print('$location');
   }
 

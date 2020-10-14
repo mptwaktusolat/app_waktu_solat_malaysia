@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
+import 'package:waktusolatmalaysia/utils/AppInformation.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
 
 class SettingsPage extends StatefulWidget {
+  SettingsPage({this.info});
+  final AppInfo info;
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String timeFormatValue;
+  String timeFormat;
 
   @override
   void initState() {
     super.initState();
-    timeFormatValue =
-        '${GetStorage().read(Constants.kStoredTimeFormatValue) ?? "12-hour"}';
-    ;
+    timeFormat =
+        GetStorage().read(Constants.kStoredTimeIs12) ? '12 hour' : '24 hour';
+    print(timeFormat);
   }
 
   @override
@@ -41,11 +45,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     );
                   }).toList(),
                   onChanged: (String newValue) {
+                    GetStorage().write(
+                        Constants.kStoredTimeIs12, newValue == '12 hour');
                     setState(() {
-                      timeFormatValue = newValue;
+                      timeFormat = newValue;
+                      print(GetStorage().read(Constants.kStoredTimeIs12));
                     });
                   },
-                  value: timeFormatValue,
+                  value: timeFormat,
                 ),
               ),
             ),
@@ -55,6 +62,11 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
               child: ListTile(
                 title: Text('About app'),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutAppPage()));
+                },
+                subtitle: Text(widget.info.version),
               ),
             ),
           ],

@@ -85,8 +85,12 @@ void menuModalBottomSheet(BuildContext context) {
               leading: Icon(Icons.settings),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SettingsPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SettingsPage(
+                              info: info,
+                            )));
               },
             ),
             ListTile(

@@ -9,7 +9,7 @@ class AppInfo {
   String packageName = "";
   String version = "";
   String buildNumber = "";
-  void getAppInfo() async {
+  Future getAppInfo() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
     appName = packageInfo.appName;

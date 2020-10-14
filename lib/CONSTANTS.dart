@@ -1,7 +1,7 @@
 //GetStorage
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
-const kStoredTimeFormatValue = "storedFirstRunApp";
+const kStoredTimeIs12 = "storedTimeFormat";
 
 //Network image
 const kAppIconUrl =

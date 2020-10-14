@@ -16,6 +16,7 @@ void main() async {
   await GetStorage.init();
   LocationData.getCurrentLocation();
   GetStorage().writeIfNull(kStoredFirstRun, true);
+  GetStorage().writeIfNull(kStoredTimeIs12, true);
   Get.lazyPut<ThemeController>(() => ThemeController());
   runApp(
     RestartWidget(
