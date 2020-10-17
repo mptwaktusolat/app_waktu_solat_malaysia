@@ -61,12 +61,14 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Card(
               child: ListTile(
-                title: Text('About app'),
+                title: Text('About app (Ver. ${widget.info.version})'),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => AboutAppPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AboutAppPage(widget.info)));
                 },
-                subtitle: Text(widget.info.version),
+                subtitle: Text('Privacy Policy, Release Notes etc'),
               ),
             ),
           ],

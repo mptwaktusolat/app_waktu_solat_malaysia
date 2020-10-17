@@ -128,90 +128,9 @@ void menuModalBottomSheet(BuildContext context) {
                 openFeedbackDialog(context);
               },
             ),
-            ListTile(
-              title: Text('About app'),
-              // subtitle: Text(info.version),
-              leading: Icon(Icons.info),
-              onTap: () {
-                Navigator.pop(context);
-                myAboutDialog(context);
-              },
-            ),
           ]),
         );
       });
-}
-
-void myAboutDialog(BuildContext context) {
-  bool isFirstTry = true;
-  return showAboutDialog(
-      context: context,
-      applicationIcon: GestureDetector(
-        onLongPress: () {
-          if (isFirstTry) {
-            Fluttertoast.showToast(msg: '(⌐■_■)');
-            isFirstTry = false;
-          } else {
-            Fluttertoast.showToast(msg: '(❁´◡`❁)');
-            //   print('Show debug dialog');
-            //   showDialog(
-            //     //TODO: Enable when i made about dialog in full screen
-            //     context: context,
-            //     builder: (context) => Dialog(
-            //       backgroundColor: Colors.white,
-            //       child: ListView(
-            //         children: [
-            //           ListTile(
-            //             title: Text('Prayer time API calls'),
-            //             subtitle: Text('example link'),
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //   );
-          }
-        },
-        child: CachedNetworkImage(
-          width: 45,
-          imageUrl: kAppIconUrl,
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
-      ),
-      applicationLegalese: '© 2020 Fareez Iqmal',
-      applicationVersion: 'Version ${info.version}',
-      children: <Widget>[
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          'Prayer time data provided by JAKIM',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 12,
-          ),
-        ),
-        SizedBox(
-          height: 6,
-        ),
-        FlatButton(
-            color: Theme.of(context).bottomAppBarColor,
-            onPressed: () {
-              LaunchUrl.normalLaunchUrl(
-                  url: kPrivacyPolicyLink, usesWebView: true);
-            },
-            child: Text('Privacy Policy')),
-        FlatButton(
-          color: Theme.of(context).bottomAppBarColor,
-          onPressed: () {
-            // LaunchUrl.customTabsUrl();
-            LaunchUrl.normalLaunchUrl(
-                url: kReleaseNotesLink, usesWebView: true);
-          },
-          child: Text('Release Notes'),
-        ),
-      ]);
 }
 
 void openFeedbackDialog(BuildContext context) {

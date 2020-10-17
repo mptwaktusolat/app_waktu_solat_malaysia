@@ -6,7 +6,6 @@ import 'package:share/share.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
-import 'package:waktusolatmalaysia/utils/restartWidget.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/ThemeController.dart';
 import 'package:waktusolatmalaysia/views/appBody.dart';
 import 'package:waktusolatmalaysia/views/bottomAppBar.dart';
@@ -18,11 +17,7 @@ void main() async {
   GetStorage().writeIfNull(kStoredFirstRun, true);
   GetStorage().writeIfNull(kStoredTimeIs12, true);
   Get.lazyPut<ThemeController>(() => ThemeController());
-  runApp(
-    RestartWidget(
-      child: MyApp(),
-    ),
-  );
+  runApp(MyApp());
 }
 
 // ignore: must_be_immutable
