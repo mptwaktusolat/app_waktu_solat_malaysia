@@ -68,7 +68,8 @@ class _SettingsPageState extends State<SettingsPage> {
                       MaterialPageRoute(
                           builder: (context) => AboutAppPage(widget.info)));
                 },
-                subtitle: Text('Privacy Policy, Release Notes etc'),
+                subtitle:
+                    Text('Privacy Policy, Release Notes, Contribution etc.'),
               ),
             ),
           ],

@@ -106,15 +106,6 @@ void menuModalBottomSheet(BuildContext context) {
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),
-            ListTile(
-              title: Text('Contribution and support'),
-              leading: Icon(Icons.support),
-              onTap: () {
-                Navigator.pop(context);
-                print('Opening contribution page');
-                openContributionDialog(context);
-              },
-            ),
             Divider(
               thickness: 1,
               height: 0.0,
@@ -142,9 +133,4 @@ void openFeedbackDialog(BuildContext context) {
         },
         fullscreenDialog: true),
   );
-}
-
-void openContributionDialog(BuildContext context) {
-  Navigator.push(context,
-      MaterialPageRoute(builder: (BuildContext context) => ContributionPage()));
 }

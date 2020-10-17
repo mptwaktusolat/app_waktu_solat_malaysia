@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import '../../CONSTANTS.dart';
+import '../contributionPage.dart';
 
 class AboutAppPage extends StatelessWidget {
   AboutAppPage(this.appInfo);
@@ -72,18 +73,47 @@ class AboutAppPage extends StatelessWidget {
               child: Text(
                 '\nVersion ${appInfo.version}',
                 textAlign: TextAlign.center,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
             Text(
               '\n© Copyright 2020 Fareez Iqmal',
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 5,
+            Spacer(
+              flex: 4,
+            ),
+            Text(
+              'Prayer time data are provided by Jabatan Kemajuan Islam Malaysia (JAKIM)',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Spacer(
+              flex: 5,
             ),
             Card(
               child: ListTile(
-                title: Text('Privacy Policy'),
+                title: Text(
+                  'Contribution and Support',
+                  textAlign: TextAlign.center,
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              ContributionPage()));
+                },
+              ),
+            ),
+            Card(
+              child: ListTile(
+                title: Text(
+                  'Privacy Policy',
+                  textAlign: TextAlign.center,
+                ),
                 onTap: () {
                   LaunchUrl.normalLaunchUrl(
                       url: kPrivacyPolicyLink, usesWebView: true);
@@ -92,12 +122,29 @@ class AboutAppPage extends StatelessWidget {
             ),
             Card(
               child: ListTile(
-                title: Text('Release Notes'),
+                title: Text(
+                  'Release Notes',
+                  textAlign: TextAlign.center,
+                ),
                 onTap: () {
                   LaunchUrl.normalLaunchUrl(
                       url: kReleaseNotesLink, usesWebView: true);
                 },
               ),
+            ),
+            Card(
+              child: ListTile(
+                title: Text(
+                  'Open Source Licenses',
+                  textAlign: TextAlign.center,
+                ),
+                onTap: () {
+                  showLicensePage(context: context);
+                },
+              ),
+            ),
+            Spacer(
+              flex: 7,
             ),
           ],
         ),
