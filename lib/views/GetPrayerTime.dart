@@ -58,6 +58,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               return PrayTimeList(prayerTime: snapshot.data.data);
               break;
             case Status.ERROR:
+              location = locationDatabase
+                  .getJakimCode(GetStorage().read(kStoredGlobalIndex));
               return Error(
                 errorMessage: snapshot.data.message,
                 onRetryPressed: () => _timeBloc.fetchPrayerTime(location, null),

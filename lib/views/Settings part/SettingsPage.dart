@@ -45,6 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     );
                   }).toList(),
                   onChanged: (String newValue) {
+                    // print('NewValue $newValue');
                     GetStorage().write(
                         Constants.kStoredTimeIs12, newValue == '12 hour');
                     setState(() {

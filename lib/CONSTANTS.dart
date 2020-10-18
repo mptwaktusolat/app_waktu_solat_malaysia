@@ -48,3 +48,6 @@ const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
 const kBankAccountNum = '162348620850'; //maybank
 const kPaypalDonateShortLink = 'paypal.me/iqfareez';
 const kPaypalDonateFullLink = 'https://www.paypal.com/paypalme/iqfareez';
+
+//hero tag
+const kAppIconTag = 'appIconTag';

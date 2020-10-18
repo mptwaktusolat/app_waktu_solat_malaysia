@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,7 +6,6 @@ import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/SettingsPage.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
-import 'package:waktusolatmalaysia/views/contributionPage.dart';
 import 'package:waktusolatmalaysia/views/feedbackPage.dart';
 import '../utils/AppInformation.dart';
 
