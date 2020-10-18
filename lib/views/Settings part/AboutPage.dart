@@ -165,6 +165,26 @@ class AboutAppPage extends StatelessWidget {
                   },
                 ),
               ),
+              Divider(height: 8),
+              Card(
+                child: ListTile(
+                  title: Text('Twitter', textAlign: TextAlign.center),
+                  onTap: () {
+                    LaunchUrl.normalLaunchUrl(url: kDevTwitter);
+                  },
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  title: Text(
+                    'Dev logs',
+                    textAlign: TextAlign.center,
+                  ),
+                  onTap: () {
+                    LaunchUrl.normalLaunchUrl(url: kInstaStoryDevlog);
+                  },
+                ),
+              )
             ],
           ),
         ),

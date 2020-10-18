@@ -91,6 +91,10 @@ void menuModalBottomSheet(BuildContext context) {
                             )));
               },
             ),
+            Divider(
+              thickness: 1,
+              height: 0.0,
+            ),
             ListTile(
               title: Text('Rate and review'),
               leading: Icon(Icons.star),
@@ -104,10 +108,7 @@ void menuModalBottomSheet(BuildContext context) {
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),
-            Divider(
-              thickness: 1,
-              height: 0.0,
-            ),
+            
             ListTile(
               title: Text('Send feedback'),
               leading: Icon(Icons.feedback),
