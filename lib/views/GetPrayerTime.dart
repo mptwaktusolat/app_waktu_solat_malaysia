@@ -81,30 +81,32 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   }
 }
 
-class PrayTimeList extends StatelessWidget {
+class PrayTimeList extends StatefulWidget {
   // final AzanPro prayerTime;
   final WaktuSolatApp prayerTime;
 
   PrayTimeList({Key key, this.prayerTime}) : super(key: key);
 
-  final int day =
-      int.parse(DateFormat('d').format(DateTime.now())); //example: 21
+  @override
+  _PrayTimeListState createState() => _PrayTimeListState();
+}
 
-  //since array start at 0, the date should be minus 1
-
+class _PrayTimeListState extends State<PrayTimeList> {
+  final int day = int.parse(DateFormat('d').format(DateTime.now()));
   @override
   Widget build(BuildContext context) {
+    bool use12hour = GetStorage().read(kStoredTimeIs12);
     int arrayDay = day - 1;
-    String subuhTime =
-        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].subuh);
-    String zohorTime =
-        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].zohor);
-    String asarTime =
-        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].asar);
-    String maghribTime =
-        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].maghrib);
-    String isyaTime =
-        DateAndTime.toAmPmReadable(prayerTime.data.prayTimes[arrayDay].isyak);
+    String subuhTime = DateAndTime.toTimeReadable(
+        widget.prayerTime.data.prayTimes[arrayDay].subuh, use12hour);
+    String zohorTime = DateAndTime.toTimeReadable(
+        widget.prayerTime.data.prayTimes[arrayDay].zohor, use12hour);
+    String asarTime = DateAndTime.toTimeReadable(
+        widget.prayerTime.data.prayTimes[arrayDay].asar, use12hour);
+    String maghribTime = DateAndTime.toTimeReadable(
+        widget.prayerTime.data.prayTimes[arrayDay].maghrib, use12hour);
+    String isyaTime = DateAndTime.toTimeReadable(
+        widget.prayerTime.data.prayTimes[arrayDay].isyak, use12hour);
 
     CachedPrayerTimeData.subuhTime = subuhTime;
     CachedPrayerTimeData.zohorTime = zohorTime;

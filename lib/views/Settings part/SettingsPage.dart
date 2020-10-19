@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
+import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -52,6 +53,22 @@ class _SettingsPageState extends State<SettingsPage> {
                       timeFormat = newValue;
                       print(GetStorage().read(Constants.kStoredTimeIs12));
                     });
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Restart app to apply setting'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('OK'),
+                            )
+                          ],
+                        );
+                      },
+                    );
                   },
                   value: timeFormat,
                 ),
