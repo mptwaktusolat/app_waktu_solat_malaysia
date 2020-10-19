@@ -32,15 +32,6 @@ class MyBottomAppBar extends StatelessWidget {
                 menuModalBottomSheet(context);
               }),
           IconButton(
-              icon: Icon(
-                Icons.color_lens,
-                color: iconColour,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ThemesPage()));
-              }),
-          IconButton(
               icon: Icon(Icons.copy),
               tooltip: 'Copy timetable',
               color: iconColour,
@@ -108,7 +99,6 @@ void menuModalBottomSheet(BuildContext context) {
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),
-            
             ListTile(
               title: Text('Send feedback'),
               leading: Icon(Icons.feedback),
