@@ -32,7 +32,7 @@ class FeedbackToEmail {
     
     ------------------EO🐛---------------->
     
-    Thank you for submitting feedback. This means a lot to us. 
+    Thank you for submitting feedback. 
     ''';
     //add github issue link
 
@@ -104,7 +104,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         Hardware: $hardware
                         Screen size ${MediaQuery.of(context).size.toString().substring(4)} DiP
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
-                        Screen size (again) ${MediaQuery.of(context).size.toString().substring(4)} px
                     
                       ''');
                   }

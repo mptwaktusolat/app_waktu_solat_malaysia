@@ -57,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Restart app to apply setting'),
+                          title: Text('Restart app to apply settings'),
                           actions: [
                             TextButton(
                               onPressed: () {
