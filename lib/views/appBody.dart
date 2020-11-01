@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
@@ -10,7 +11,7 @@ import 'ZoneChooser.dart';
 class AppBody extends StatelessWidget {
   final _today = HijriCalendar.now();
   final dayFormat = DateFormat('EEEE').format(DateTime.now());
-  final dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
+  final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -54,15 +55,18 @@ class AppBody extends StatelessWidget {
                                     style: GoogleFonts.spartan(
                                         color: Colors.white),
                                   ),
-                                  Text(
+                                  AutoSizeText(
                                     _today.toFormat("dd MMMM yyyy"),
                                     style: GoogleFonts.acme(
-                                        color: Colors.white, fontSize: 20),
+                                        color: Colors.white, fontSize: 17),
+                                    stepGranularity: 1,
+                                    // maxLines: 1,
                                   ),
                                   Text(
                                     dateFormat,
-                                    style:
-                                        TextStyle(color: Colors.teal.shade100),
+                                    style: TextStyle(
+                                        color: Colors.teal.shade100,
+                                        fontSize: 12),
                                   ),
                                 ],
                               ),
