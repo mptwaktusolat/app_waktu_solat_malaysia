@@ -76,7 +76,7 @@ class _LocationChooserState extends State<LocationChooser> {
         side: BorderSide(color: Colors.white),
       ),
       onPressed: () async {
-        LocationPermission permission = await checkPermission();
+        LocationPermission permission = await Geolocator.checkPermission();
         if (permission == LocationPermission.deniedForever) {
           //if deniedForever, it will skip the GPS methof
           openshowModalBottomSheet(context, _updateUI);
