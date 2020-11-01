@@ -66,8 +66,6 @@ class ContributionPage extends StatelessWidget {
                     () => LaunchUrl.normalLaunchUrl(
                         url: Constants.kPaypalDonateFullLink),
                   ),
-
-                  //TODO: Add any illustrattion
                 ],
               ),
               MyCard(

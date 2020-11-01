@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
-import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 

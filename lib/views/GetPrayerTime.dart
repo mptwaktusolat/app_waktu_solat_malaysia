@@ -52,10 +52,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               return Loading(loadingMessage: snapshot.data.message);
               break;
             case Status.COMPLETED:
-              // Fluttertoast.showToast(
-              //     msg: 'Updated just now',
-              //     backgroundColor: Colors.black12,
-              //     textColor: Colors.white);
               return PrayTimeList(prayerTime: snapshot.data.data);
               break;
             case Status.ERROR:
@@ -69,7 +65,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
           }
         }
         return Container(
-          child: Text('empty here'),
+          child: Text('Uh it supposed not showing here'),
         );
       },
     );
