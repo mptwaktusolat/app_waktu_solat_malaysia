@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/waktusolatapp_bloc.dart';
 import 'package:waktusolatmalaysia/models/waktusolatappapi.dart';
@@ -11,7 +12,7 @@ import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
+import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
@@ -93,49 +94,44 @@ class PrayTimeList extends StatefulWidget {
 
 class _PrayTimeListState extends State<PrayTimeList> {
   final int day = int.parse(DateFormat('d').format(DateTime.now()));
+  bool use12hour = GetStorage().read(kStoredTimeIs12);
   @override
   Widget build(BuildContext context) {
-    bool use12hour = GetStorage().read(kStoredTimeIs12);
-    int arrayDay = day - 1;
-    String subuhTime = DateAndTime.toTimeReadable(
-        widget.prayerTime.data.prayTimes[arrayDay].subuh, use12hour);
-    String zohorTime = DateAndTime.toTimeReadable(
-        widget.prayerTime.data.prayTimes[arrayDay].zohor, use12hour);
-    String asarTime = DateAndTime.toTimeReadable(
-        widget.prayerTime.data.prayTimes[arrayDay].asar, use12hour);
-    String maghribTime = DateAndTime.toTimeReadable(
-        widget.prayerTime.data.prayTimes[arrayDay].maghrib, use12hour);
-    String isyaTime = DateAndTime.toTimeReadable(
-        widget.prayerTime.data.prayTimes[arrayDay].isyak, use12hour);
+    return Container(child: Consumer<SettingProvider>(
+      builder: (context, setting, child) {
+        use12hour = setting.use12hour;
+        int arrayDay = day - 1;
+        String subuhTime = DateAndTime.toTimeReadable(
+            widget.prayerTime.data.prayTimes[arrayDay].subuh, use12hour);
+        String zohorTime = DateAndTime.toTimeReadable(
+            widget.prayerTime.data.prayTimes[arrayDay].zohor, use12hour);
+        String asarTime = DateAndTime.toTimeReadable(
+            widget.prayerTime.data.prayTimes[arrayDay].asar, use12hour);
+        String maghribTime = DateAndTime.toTimeReadable(
+            widget.prayerTime.data.prayTimes[arrayDay].maghrib, use12hour);
+        String isyaTime = DateAndTime.toTimeReadable(
+            widget.prayerTime.data.prayTimes[arrayDay].isyak, use12hour);
 
-    CachedPrayerTimeData.subuhTime = subuhTime;
-    CachedPrayerTimeData.zohorTime = zohorTime;
-    CachedPrayerTimeData.asarTime = asarTime;
-    CachedPrayerTimeData.maghribTime = maghribTime;
-    CachedPrayerTimeData.isyaTime = isyaTime;
+        CachedPrayerTimeData.subuhTime = subuhTime;
+        CachedPrayerTimeData.zohorTime = zohorTime;
+        CachedPrayerTimeData.asarTime = asarTime;
+        CachedPrayerTimeData.maghribTime = maghribTime;
+        CachedPrayerTimeData.isyaTime = isyaTime;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        // solatCard('$subuhTime', 'Status'),
-
-        solatCard(subuhTime, 'Fajr'),
-        solatCard(zohorTime, 'Zuhr'),
-        solatCard(asarTime, 'Asr'),
-        solatCard(maghribTime, 'Maghrib'),
-        solatCard(isyaTime, 'Isya\''),
-
-        // RaisedButton(
-        //   child: Text('DEBUG BUTTON'),
-        //   color: Colors.red,
-        //   onPressed: () {
-        //     print('location is ' + location);
-        //   },
-        // )
-      ],
-    );
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            solatCard(subuhTime, 'Fajr'),
+            solatCard(zohorTime, 'Zuhr'),
+            solatCard(asarTime, 'Asr'),
+            solatCard(maghribTime, 'Maghrib'),
+            solatCard(isyaTime, 'Isya\''),
+          ],
+        );
+      },
+    ));
   }
 }
 

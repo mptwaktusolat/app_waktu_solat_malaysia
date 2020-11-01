@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({this.info});
@@ -30,68 +32,57 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text('Settings'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            Card(
-              child: ListTile(
-                title: Text('Time format'),
-                trailing: DropdownButton(
-                  items: <String>['12 hour', '24 hour']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String newValue) {
-                    // print('NewValue $newValue');
-                    GetStorage().write(
-                        Constants.kStoredTimeIs12, newValue == '12 hour');
-                    setState(() {
-                      timeFormat = newValue;
-                      print(GetStorage().read(Constants.kStoredTimeIs12));
-                    });
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Restart app to apply settings'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text('OK'),
-                            )
-                          ],
+      body: Consumer<SettingProvider>(
+        builder: (context, setting, child) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView(
+              children: [
+                Card(
+                  child: ListTile(
+                    title: Text('Time format'),
+                    trailing: DropdownButton(
+                      items: <String>['12 hour', '24 hour']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
                         );
+                      }).toList(),
+                      onChanged: (String newValue) {
+                        var is12 = newValue == '12 hour';
+                        // print('NewValue $newValue');
+                        setting.use12hour = is12;
+                        GetStorage().write(Constants.kStoredTimeIs12, is12);
+                        setState(() {
+                          timeFormat = newValue;
+                          print(GetStorage().read(Constants.kStoredTimeIs12));
+                        });
                       },
-                    );
-                  },
-                  value: timeFormat,
+                      value: timeFormat,
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 5,
+                ),
+                Card(
+                  child: ListTile(
+                    title: Text('About app (Ver. ${widget.info.version})'),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AboutAppPage(widget.info)));
+                    },
+                    subtitle: Text(
+                        'Privacy Policy, Release Notes, Contribution etc.'),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Card(
-              child: ListTile(
-                title: Text('About app (Ver. ${widget.info.version})'),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AboutAppPage(widget.info)));
-                },
-                subtitle:
-                    Text('Privacy Policy, Release Notes, Contribution etc.'),
-              ),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
