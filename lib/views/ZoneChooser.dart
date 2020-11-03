@@ -227,9 +227,7 @@ class _GetGPSState extends State<GetGPS> {
           stream: _mpti906bloc.mptDataStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              print('mpt snapshot hasData');
               switch (snapshot.data.status) {
-                // switch (Status.ERROR) {
                 case Status.LOADING:
                   return Loading(
                     loadingMessage: 'Getting location',
@@ -243,7 +241,6 @@ class _GetGPSState extends State<GetGPS> {
                   );
                   break;
                 case Status.ERROR:
-                  print('has error');
                   return Error(
                     errorMessage: snapshot.data.message,
                     onRetryPressed: () => _mpti906bloc.fetchLocationData(
