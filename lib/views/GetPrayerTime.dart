@@ -91,22 +91,32 @@ class PrayTimeList extends StatefulWidget {
 class _PrayTimeListState extends State<PrayTimeList> {
   final int day = int.parse(DateFormat('d').format(DateTime.now()));
   bool use12hour = GetStorage().read(kStoredTimeIs12);
+  bool showOtherPrayerTime = GetStorage().read(kStoredShowOtherPrayerTime);
+
   @override
   Widget build(BuildContext context) {
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         int arrayDay = day - 1;
+        var prayerTimeData = widget.prayerTime.data;
+
+        String imsakTime = DateAndTime.toTimeReadable(
+            prayerTimeData.prayTimes[arrayDay].imsak, use12hour);
         String subuhTime = DateAndTime.toTimeReadable(
-            widget.prayerTime.data.prayTimes[arrayDay].subuh, use12hour);
+            prayerTimeData.prayTimes[arrayDay].subuh, use12hour);
+        String syurukTime = DateAndTime.toTimeReadable(
+            prayerTimeData.prayTimes[arrayDay].syuruk, use12hour);
+        String dhuhaTime = DateAndTime.toTimeReadable(
+            prayerTimeData.prayTimes[arrayDay].dhuha, use12hour);
         String zohorTime = DateAndTime.toTimeReadable(
-            widget.prayerTime.data.prayTimes[arrayDay].zohor, use12hour);
+            prayerTimeData.prayTimes[arrayDay].zohor, use12hour);
         String asarTime = DateAndTime.toTimeReadable(
-            widget.prayerTime.data.prayTimes[arrayDay].asar, use12hour);
+            prayerTimeData.prayTimes[arrayDay].asar, use12hour);
         String maghribTime = DateAndTime.toTimeReadable(
-            widget.prayerTime.data.prayTimes[arrayDay].maghrib, use12hour);
+            prayerTimeData.prayTimes[arrayDay].maghrib, use12hour);
         String isyaTime = DateAndTime.toTimeReadable(
-            widget.prayerTime.data.prayTimes[arrayDay].isyak, use12hour);
+            prayerTimeData.prayTimes[arrayDay].isyak, use12hour);
 
         CachedPrayerTimeData.subuhTime = subuhTime;
         CachedPrayerTimeData.zohorTime = zohorTime;
@@ -119,7 +129,22 @@ class _PrayTimeListState extends State<PrayTimeList> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            showOtherPrayerTime
+                ? solatCard(imsakTime, 'Imsak')
+                : Container(
+                    height: 0,
+                  ),
             solatCard(subuhTime, 'Fajr'),
+            showOtherPrayerTime
+                ? solatCard(syurukTime, 'Syuruk')
+                : Container(
+                    height: 0,
+                  ),
+            showOtherPrayerTime
+                ? solatCard(dhuhaTime, 'Dhuha')
+                : Container(
+                    height: 0,
+                  ),
             solatCard(zohorTime, 'Zuhr'),
             solatCard(asarTime, 'Asr'),
             solatCard(maghribTime, 'Maghrib'),
@@ -147,7 +172,6 @@ Widget solatCard(String time, String name) {
 
           Clipboard.setData(new ClipboardData(text: '$name: $time'))
               .then((value) {
-            // Vibration.vibrate();
             Fluttertoast.showToast(
                 msg: 'Copied to clipboard',
                 toastLength: Toast.LENGTH_SHORT,

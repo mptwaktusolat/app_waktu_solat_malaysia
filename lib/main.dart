@@ -16,8 +16,7 @@ import 'CONSTANTS.dart';
 void main() async {
   await GetStorage.init();
   LocationData.getCurrentLocation();
-  GetStorage().writeIfNull(kStoredFirstRun, true);
-  GetStorage().writeIfNull(kStoredTimeIs12, true);
+  initGetStorage();
   Get.lazyPut<ThemeController>(() => ThemeController());
   runApp(MyApp());
 }
@@ -78,4 +77,10 @@ class MyHomePage extends StatelessWidget {
       body: SingleChildScrollView(child: AppBody()),
     );
   }
+}
+
+void initGetStorage() {
+  GetStorage().writeIfNull(kStoredFirstRun, true);
+  GetStorage().writeIfNull(kStoredTimeIs12, true);
+  GetStorage().writeIfNull(kStoredShowOtherPrayerTime, true);
 }

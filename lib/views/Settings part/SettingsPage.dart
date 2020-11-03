@@ -24,6 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
     print(timeFormat);
   }
 
+  //TODO: Setting to change view imsak, dhuha, etc.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
