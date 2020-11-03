@@ -171,7 +171,7 @@ class Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(errorMessage);
+    print('errorMessage is $errorMessage');
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

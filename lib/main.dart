@@ -24,7 +24,6 @@ void main() async {
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  // This widget is the root
   var _primaryColour = Colors.teal;
 
   @override

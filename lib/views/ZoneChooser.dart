@@ -245,7 +245,7 @@ class _GetGPSState extends State<GetGPS> {
                 case Status.ERROR:
                   print('has error');
                   return Error(
-                    errorMessage: 'snapshot.data.message',
+                    errorMessage: snapshot.data.message,
                     onRetryPressed: () => _mpti906bloc.fetchLocationData(
                         LocationData.latitude, LocationData.longitude),
                     onCallback: widget.callback,
