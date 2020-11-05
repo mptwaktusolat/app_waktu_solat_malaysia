@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +25,6 @@ class _SettingsPageState extends State<SettingsPage> {
     print(timeFormat);
   }
 
-  //TODO: Setting to change view imsak, dhuha, etc.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +64,25 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 SizedBox(
+                  height: 5,
+                ),
+                Card(
+                  child: ListTile(
+                    title: Text('Show other prayer times'),
+                    subtitle: Text('Imsak, Syuruk, Dhuha'),
+                    trailing: CupertinoSwitch(
+                      onChanged: (bool value) {
+                        setState(() {
+                          setting.showOtherPrayerTime = value;
+                          GetStorage().write(
+                              Constants.kStoredShowOtherPrayerTime, value);
+                        });
+                      },
+                      value: setting.showOtherPrayerTime,
+                    ),
+                  ),
+                ),
+                Divider(
                   height: 5,
                 ),
                 Card(

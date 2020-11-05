@@ -82,5 +82,5 @@ class MyHomePage extends StatelessWidget {
 void initGetStorage() {
   GetStorage().writeIfNull(kStoredFirstRun, true);
   GetStorage().writeIfNull(kStoredTimeIs12, true);
-  GetStorage().writeIfNull(kStoredShowOtherPrayerTime, true);
+  GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
 }

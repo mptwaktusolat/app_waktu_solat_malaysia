@@ -91,7 +91,7 @@ class PrayTimeList extends StatefulWidget {
 class _PrayTimeListState extends State<PrayTimeList> {
   final int day = int.parse(DateFormat('d').format(DateTime.now()));
   bool use12hour = GetStorage().read(kStoredTimeIs12);
-  bool showOtherPrayerTime = GetStorage().read(kStoredShowOtherPrayerTime);
+  bool showOtherPrayerTime;
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +99,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         int arrayDay = day - 1;
+        showOtherPrayerTime = setting.showOtherPrayerTime;
         var prayerTimeData = widget.prayerTime.data;
 
         String imsakTime = DateAndTime.toTimeReadable(
