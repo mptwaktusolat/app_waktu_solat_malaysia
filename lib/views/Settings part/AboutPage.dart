@@ -31,22 +31,26 @@ class AboutAppPage extends StatelessWidget {
                     isFirstTry = false;
                   } else {
                     Fluttertoast.showToast(msg: '(❁´◡`❁)');
-                    //   print('Show debug dialog');
-                    //   showDialog(
-                    //     //TODO: Enable when i made about dialog in full screen
-                    //     context: context,
-                    //     builder: (context) => Dialog(
-                    //       backgroundColor: Colors.white,
-                    //       child: ListView(
-                    //         children: [
-                    //           ListTile(
-                    //             title: Text('Prayer time API calls'),
-                    //             subtitle: Text('example link'),
-                    //           )
-                    //         ],
-                    //       ),
-                    //     ),
-                    //   );
+                    print('Show debug dialog');
+                    showDialog(
+                      //TODO: Impelement his functionality
+                      context: context,
+                      builder: (context) => Dialog(
+                        backgroundColor: Colors.white,
+                        child: ListView(
+                          children: [
+                            ListTile(
+                              title: Text('Prayer time API calls'),
+                              subtitle: Text('Waktu solat app'),
+                            ),
+                            ListTile(
+                              title: Text('Prayer location API calls'),
+                              subtitle: Text('mpti906'),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
                   }
                 },
                 child: FittedBox(
