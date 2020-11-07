@@ -30,13 +30,11 @@ class AboutAppPage extends StatelessWidget {
                     Fluttertoast.showToast(msg: '(⌐■_■)');
                     isFirstTry = false;
                   } else {
-                    Fluttertoast.showToast(msg: '(❁´◡`❁)');
                     print('Show debug dialog');
                     showDialog(
-                      //TODO: Impelement his functionality
+                      //TODO: Impelement this functionality
                       context: context,
                       builder: (context) => Dialog(
-                        backgroundColor: Colors.white,
                         child: ListView(
                           children: [
                             ListTile(
