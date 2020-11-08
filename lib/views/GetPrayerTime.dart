@@ -131,25 +131,25 @@ class _PrayTimeListState extends State<PrayTimeList> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             showOtherPrayerTime
-                ? solatCard(imsakTime, 'Imsak')
+                ? solatCard(imsakTime, 'Imsak', false)
                 : Container(
                     height: 0,
                   ),
-            solatCard(subuhTime, 'Fajr'),
+            solatCard(subuhTime, 'Fajr', true),
             showOtherPrayerTime
-                ? solatCard(syurukTime, 'Syuruk')
+                ? solatCard(syurukTime, 'Syuruk', false)
                 : Container(
                     height: 0,
                   ),
             showOtherPrayerTime
-                ? solatCard(dhuhaTime, 'Dhuha')
+                ? solatCard(dhuhaTime, 'Dhuha', false)
                 : Container(
                     height: 0,
                   ),
-            solatCard(zohorTime, 'Zuhr'),
-            solatCard(asarTime, 'Asr'),
-            solatCard(maghribTime, 'Maghrib'),
-            solatCard(isyaTime, 'Isya\''),
+            solatCard(zohorTime, 'Zuhr', true),
+            solatCard(asarTime, 'Asr', true),
+            solatCard(maghribTime, 'Maghrib', true),
+            solatCard(isyaTime, 'Isya\'', true),
           ],
         );
       },
@@ -157,11 +157,11 @@ class _PrayTimeListState extends State<PrayTimeList> {
   }
 }
 
-Widget solatCard(String time, String name) {
+Widget solatCard(String time, String name, bool useFullHeight) {
   return Container(
     margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
     width: 300,
-    height: 80,
+    height: useFullHeight ? 80 : 55,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 4.0,

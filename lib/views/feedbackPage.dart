@@ -2,6 +2,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 
 enum FeedbackCategory { suggestion, bug, compliment }
 
@@ -155,14 +156,26 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       feedbackToEmail.clearDebugLog();
                     });
                   }),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () {
+                  LaunchUrl.normalLaunchUrl(
+                      url: Constants.kGithubRepoLink + '/issues');
+                },
+                child: Text('Follow issues on GitHub',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-
-  //TODO: Added follow issue on GitHub / report directly to there
 
   void getDeviceInfo() async {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;

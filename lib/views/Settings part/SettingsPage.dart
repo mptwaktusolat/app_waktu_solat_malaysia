@@ -34,72 +34,70 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Consumer<SettingProvider>(
         builder: (context, setting, child) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ListView(
-              children: [
-                Card(
-                  child: ListTile(
-                    title: Text('Time format'),
-                    trailing: DropdownButton(
-                      items: <String>['12 hour', '24 hour']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String newValue) {
-                        var is12 = newValue == '12 hour';
-                        // print('NewValue $newValue');
-                        setting.use12hour = is12;
-                        GetStorage().write(Constants.kStoredTimeIs12, is12);
-                        setState(() {
-                          timeFormat = newValue;
-                          print(GetStorage().read(Constants.kStoredTimeIs12));
-                        });
-                      },
-                      value: timeFormat,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Card(
-                  child: ListTile(
-                    title: Text('Show other prayer times'),
-                    subtitle: Text('Imsak, Syuruk, Dhuha'),
-                    trailing: CupertinoSwitch(
-                      onChanged: (bool value) {
-                        setState(() {
-                          setting.showOtherPrayerTime = value;
-                          GetStorage().write(
-                              Constants.kStoredShowOtherPrayerTime, value);
-                        });
-                      },
-                      value: setting.showOtherPrayerTime,
-                    ),
-                  ),
-                ),
-                Divider(
-                  height: 5,
-                ),
-                Card(
-                  child: ListTile(
-                    title: Text('About app (Ver. ${widget.info.version})'),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AboutAppPage(widget.info)));
+          return ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Card(
+                child: ListTile(
+                  title: Text('Time format'),
+                  trailing: DropdownButton(
+                    items: <String>['12 hour', '24 hour']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String newValue) {
+                      var is12 = newValue == '12 hour';
+                      // print('NewValue $newValue');
+                      setting.use12hour = is12;
+                      GetStorage().write(Constants.kStoredTimeIs12, is12);
+                      setState(() {
+                        timeFormat = newValue;
+                        print(GetStorage().read(Constants.kStoredTimeIs12));
+                      });
                     },
-                    subtitle: Text(
-                        'Privacy Policy, Release Notes, Contribution etc.'),
+                    value: timeFormat,
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('Show other prayer times'),
+                  subtitle: Text('Imsak, Syuruk, Dhuha'),
+                  trailing: CupertinoSwitch(
+                    onChanged: (bool value) {
+                      setState(() {
+                        setting.showOtherPrayerTime = value;
+                        GetStorage()
+                            .write(Constants.kStoredShowOtherPrayerTime, value);
+                      });
+                    },
+                    value: setting.showOtherPrayerTime,
+                  ),
+                ),
+              ),
+              Divider(
+                height: 5,
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('About app (Ver. ${widget.info.version})'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AboutAppPage(widget.info)));
+                  },
+                  subtitle:
+                      Text('Privacy Policy, Release Notes, Contribution etc.'),
+                ),
+              ),
+            ],
           );
         },
       ),
