@@ -1,9 +1,9 @@
-class Mpti906 {
+class Mpti906Location {
   Data data;
 
-  Mpti906({this.data});
+  Mpti906Location({this.data});
 
-  Mpti906.fromJson(Map<String, dynamic> json) {
+  Mpti906Location.fromJson(Map<String, dynamic> json) {
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 

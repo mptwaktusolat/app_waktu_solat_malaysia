@@ -1,19 +1,21 @@
 import 'dart:async';
 
-import 'package:waktusolatmalaysia/models/mpti906api.dart';
+import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/repository/mptLocation_repository.dart';
 
-class Mpti906Bloc {
+class Mpti906LocationBloc {
   MptRepository _mptRepository;
   StreamController _mptDataController;
 
-  StreamSink<Response<Mpti906>> get mptDataSink => _mptDataController.sink;
+  StreamSink<Response<Mpti906Location>> get mptDataSink =>
+      _mptDataController.sink;
 
-  Stream<Response<Mpti906>> get mptDataStream => _mptDataController.stream;
+  Stream<Response<Mpti906Location>> get mptDataStream =>
+      _mptDataController.stream;
 
-  Mpti906Bloc(double latitude, double longitude) {
-    _mptDataController = StreamController<Response<Mpti906>>();
+  Mpti906LocationBloc(double latitude, double longitude) {
+    _mptDataController = StreamController<Response<Mpti906Location>>();
     _mptRepository = MptRepository();
     print('Bloc received $latitude and $longitude');
     fetchLocationData(latitude, longitude);
@@ -22,7 +24,7 @@ class Mpti906Bloc {
   fetchLocationData(double lat, double long) async {
     mptDataSink.add(Response.loading('Getting location data'));
     try {
-      Mpti906 locationJakim =
+      Mpti906Location locationJakim =
           await _mptRepository.fetchLocation(lat.toString(), long.toString());
       mptDataSink.add(Response.completed(locationJakim));
     } catch (e) {

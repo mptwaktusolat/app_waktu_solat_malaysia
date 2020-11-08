@@ -6,8 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/blocs/waktusolatapp_bloc.dart';
-import 'package:waktusolatmalaysia/models/waktusolatappapi.dart';
+import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
+import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
@@ -17,11 +17,11 @@ import '../networking/Response.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
 String location;
-WaktusolatappBloc _timeBloc;
+Mpti906PrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
   static void updateUI(String location) {
-    _timeBloc.fetchPrayerTime(location, null);
+    prayerBloc.fetchPrayerTime(location);
   }
 
   @override
@@ -36,14 +36,14 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
     super.initState();
     location =
         locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
-    _timeBloc = WaktusolatappBloc(location, null);
+    prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Response<WaktuSolatApp>>(
-      stream: _timeBloc.prayDataStream,
+    return StreamBuilder<Response<Mpti906PrayerModel>>(
+      stream: prayerBloc.prayDataStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           print('snapshot.hasData');
@@ -59,7 +59,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
                   .getJakimCode(GetStorage().read(kStoredGlobalIndex));
               return Error(
                 errorMessage: snapshot.data.message,
-                onRetryPressed: () => _timeBloc.fetchPrayerTime(location, null),
+                onRetryPressed: () => prayerBloc.fetchPrayerTime(location),
               );
               break;
           }
@@ -73,14 +73,14 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 
   @override
   void dispose() {
-    _timeBloc.dispose();
+    prayerBloc.dispose();
     super.dispose();
   }
 }
 
 class PrayTimeList extends StatefulWidget {
   // final AzanPro prayerTime;
-  final WaktuSolatApp prayerTime;
+  final Mpti906PrayerModel prayerTime;
 
   PrayTimeList({Key key, this.prayerTime}) : super(key: key);
 
@@ -103,21 +103,21 @@ class _PrayTimeListState extends State<PrayTimeList> {
         var prayerTimeData = widget.prayerTime.data;
 
         String imsakTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].imsak, use12hour);
+            prayerTimeData.times[arrayDay][0] - (10 * 60 * 1000), use12hour);
         String subuhTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].subuh, use12hour);
+            prayerTimeData.times[arrayDay][0], use12hour);
         String syurukTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].syuruk, use12hour);
+            prayerTimeData.times[arrayDay][1], use12hour);
         String dhuhaTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].dhuha, use12hour);
+            prayerTimeData.times[arrayDay][1] + (28 * 60 * 1000), use12hour);
         String zohorTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].zohor, use12hour);
+            prayerTimeData.times[arrayDay][2], use12hour);
         String asarTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].asar, use12hour);
+            prayerTimeData.times[arrayDay][3], use12hour);
         String maghribTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].maghrib, use12hour);
+            prayerTimeData.times[arrayDay][4], use12hour);
         String isyaTime = DateAndTime.toTimeReadable(
-            prayerTimeData.prayTimes[arrayDay].isyak, use12hour);
+            prayerTimeData.times[arrayDay][4], use12hour);
 
         CachedPrayerTimeData.subuhTime = subuhTime;
         CachedPrayerTimeData.zohorTime = zohorTime;

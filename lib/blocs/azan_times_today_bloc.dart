@@ -3,7 +3,7 @@
 import 'dart:async';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/models/azanproapi.dart';
-import 'package:waktusolatmalaysia/repository/azanpro_repository.dart';
+import 'package:waktusolatmalaysia/repository/prayerTime_repository.dart';
 
 class AzanproBloc {
   AzanTimesTodayRepository _prayerTimeRepository;

@@ -6,8 +6,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/blocs/mpti906_bloc.dart';
-import 'package:waktusolatmalaysia/models/mpti906api.dart';
+import 'package:waktusolatmalaysia/blocs/mpti906_location_bloc.dart';
+import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
@@ -205,13 +205,14 @@ class GetGPS extends StatefulWidget {
 }
 
 class _GetGPSState extends State<GetGPS> {
-  Mpti906Bloc _mpti906bloc;
+  Mpti906LocationBloc _mpti906bloc;
   // LocationData.getCurrentLocation();
 
   @override
   void initState() {
     super.initState();
-    _mpti906bloc = Mpti906Bloc(LocationData.latitude, LocationData.longitude);
+    _mpti906bloc =
+        Mpti906LocationBloc(LocationData.latitude, LocationData.longitude);
   }
 
   @override
@@ -223,7 +224,7 @@ class _GetGPSState extends State<GetGPS> {
       child: Container(
         padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
         height: 250,
-        child: StreamBuilder<Response<Mpti906>>(
+        child: StreamBuilder<Response<Mpti906Location>>(
           stream: _mpti906bloc.mptDataStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
