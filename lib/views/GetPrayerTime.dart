@@ -103,55 +103,56 @@ class _PrayTimeListState extends State<PrayTimeList> {
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
+        var todayPrayData = handler.getTodayPrayData();
 
-        // String imsakTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][0] - (10 * 60 * 1000), use12hour);
-        // String subuhTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][0], use12hour);
-        // String syurukTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][1], use12hour);
-        // String dhuhaTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][1] + (28 * 60 * 1000), use12hour);
-        // String zohorTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][2], use12hour);
-        // String asarTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][3], use12hour);
-        // String maghribTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][4], use12hour);
-        // String isyaTime = DateAndTime.toTimeReadable(
-        //     prayerTimeData.times[arrayDay][4], use12hour);
+        String imsakTime =
+            DateAndTime.toTimeReadable(todayPrayData[0] - (10 * 60), use12hour);
+        String subuhTime =
+            DateAndTime.toTimeReadable(todayPrayData[0], use12hour);
+        String syurukTime =
+            DateAndTime.toTimeReadable(todayPrayData[1], use12hour);
+        String dhuhaTime =
+            DateAndTime.toTimeReadable(todayPrayData[1] + (28 * 60), use12hour);
+        String zohorTime =
+            DateAndTime.toTimeReadable(todayPrayData[2], use12hour);
+        String asarTime =
+            DateAndTime.toTimeReadable(todayPrayData[3], use12hour);
+        String maghribTime =
+            DateAndTime.toTimeReadable(todayPrayData[4], use12hour);
+        String isyaTime =
+            DateAndTime.toTimeReadable(todayPrayData[5], use12hour);
 
-        // CachedPrayerTimeData.subuhTime = subuhTime;
-        // CachedPrayerTimeData.zohorTime = zohorTime;
-        // CachedPrayerTimeData.asarTime = asarTime;
-        // CachedPrayerTimeData.maghribTime = maghribTime;
-        // CachedPrayerTimeData.isyaTime = isyaTime;
+        CachedPrayerTimeData.subuhTime = subuhTime;
+        CachedPrayerTimeData.zohorTime = zohorTime;
+        CachedPrayerTimeData.asarTime = asarTime;
+        CachedPrayerTimeData.maghribTime = maghribTime;
+        CachedPrayerTimeData.isyaTime = isyaTime;
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            // showOtherPrayerTime
-            //     ? solatCard(imsakTime, 'Imsak', false)
-            //     : Container(
-            //         height: 0,
-            //       ),
-            // solatCard(subuhTime, 'Fajr', true),
-            // showOtherPrayerTime
-            //     ? solatCard(syurukTime, 'Syuruk', false)
-            //     : Container(
-            //         height: 0,
-            //       ),
-            // showOtherPrayerTime
-            //     ? solatCard(dhuhaTime, 'Dhuha', false)
-            //     : Container(
-            //         height: 0,
-            //       ),
-            // solatCard(zohorTime, 'Zuhr', true),
-            // solatCard(asarTime, 'Asr', true),
-            // solatCard(maghribTime, 'Maghrib', true),
-            // solatCard(isyaTime, 'Isya\'', true),
+            showOtherPrayerTime
+                ? solatCard(imsakTime, 'Imsak', false)
+                : Container(
+                    height: 0,
+                  ),
+            solatCard(subuhTime, 'Fajr', true),
+            showOtherPrayerTime
+                ? solatCard(syurukTime, 'Syuruk', false)
+                : Container(
+                    height: 0,
+                  ),
+            showOtherPrayerTime
+                ? solatCard(dhuhaTime, 'Dhuha', false)
+                : Container(
+                    height: 0,
+                  ),
+            solatCard(zohorTime, 'Zuhr', true),
+            solatCard(asarTime, 'Asr', true),
+            solatCard(maghribTime, 'Maghrib', true),
+            solatCard(isyaTime, 'Isya\'', true),
           ],
         );
       },
