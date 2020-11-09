@@ -29,7 +29,7 @@ class Mpti906PrayerBloc {
       prayDataSink.add(Response.completed(prayerTime));
     } catch (e) {
       prayDataSink.add(Response.error(e.toString()));
-      print('Error caught: ' + e.toString());
+      // print('Error caught: ' + e.toString());
     }
   }
 

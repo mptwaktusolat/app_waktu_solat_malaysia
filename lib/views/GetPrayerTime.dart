@@ -9,6 +9,7 @@ import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
+import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
@@ -89,67 +90,68 @@ class PrayTimeList extends StatefulWidget {
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
-  final int day = int.parse(DateFormat('d').format(DateTime.now()));
+  PrayDataHandler handler;
   bool use12hour = GetStorage().read(kStoredTimeIs12);
   bool showOtherPrayerTime;
 
   @override
   Widget build(BuildContext context) {
+    var prayerTimeData = widget.prayerTime.data;
+    handler = PrayDataHandler(prayerTimeData.times);
+
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
-        int arrayDay = day - 1;
         showOtherPrayerTime = setting.showOtherPrayerTime;
-        var prayerTimeData = widget.prayerTime.data;
 
-        String imsakTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][0] - (10 * 60 * 1000), use12hour);
-        String subuhTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][0], use12hour);
-        String syurukTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][1], use12hour);
-        String dhuhaTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][1] + (28 * 60 * 1000), use12hour);
-        String zohorTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][2], use12hour);
-        String asarTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][3], use12hour);
-        String maghribTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][4], use12hour);
-        String isyaTime = DateAndTime.toTimeReadable(
-            prayerTimeData.times[arrayDay][4], use12hour);
+        // String imsakTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][0] - (10 * 60 * 1000), use12hour);
+        // String subuhTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][0], use12hour);
+        // String syurukTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][1], use12hour);
+        // String dhuhaTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][1] + (28 * 60 * 1000), use12hour);
+        // String zohorTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][2], use12hour);
+        // String asarTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][3], use12hour);
+        // String maghribTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][4], use12hour);
+        // String isyaTime = DateAndTime.toTimeReadable(
+        //     prayerTimeData.times[arrayDay][4], use12hour);
 
-        CachedPrayerTimeData.subuhTime = subuhTime;
-        CachedPrayerTimeData.zohorTime = zohorTime;
-        CachedPrayerTimeData.asarTime = asarTime;
-        CachedPrayerTimeData.maghribTime = maghribTime;
-        CachedPrayerTimeData.isyaTime = isyaTime;
+        // CachedPrayerTimeData.subuhTime = subuhTime;
+        // CachedPrayerTimeData.zohorTime = zohorTime;
+        // CachedPrayerTimeData.asarTime = asarTime;
+        // CachedPrayerTimeData.maghribTime = maghribTime;
+        // CachedPrayerTimeData.isyaTime = isyaTime;
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            showOtherPrayerTime
-                ? solatCard(imsakTime, 'Imsak', false)
-                : Container(
-                    height: 0,
-                  ),
-            solatCard(subuhTime, 'Fajr', true),
-            showOtherPrayerTime
-                ? solatCard(syurukTime, 'Syuruk', false)
-                : Container(
-                    height: 0,
-                  ),
-            showOtherPrayerTime
-                ? solatCard(dhuhaTime, 'Dhuha', false)
-                : Container(
-                    height: 0,
-                  ),
-            solatCard(zohorTime, 'Zuhr', true),
-            solatCard(asarTime, 'Asr', true),
-            solatCard(maghribTime, 'Maghrib', true),
-            solatCard(isyaTime, 'Isya\'', true),
+            // showOtherPrayerTime
+            //     ? solatCard(imsakTime, 'Imsak', false)
+            //     : Container(
+            //         height: 0,
+            //       ),
+            // solatCard(subuhTime, 'Fajr', true),
+            // showOtherPrayerTime
+            //     ? solatCard(syurukTime, 'Syuruk', false)
+            //     : Container(
+            //         height: 0,
+            //       ),
+            // showOtherPrayerTime
+            //     ? solatCard(dhuhaTime, 'Dhuha', false)
+            //     : Container(
+            //         height: 0,
+            //       ),
+            // solatCard(zohorTime, 'Zuhr', true),
+            // solatCard(asarTime, 'Asr', true),
+            // solatCard(maghribTime, 'Maghrib', true),
+            // solatCard(isyaTime, 'Isya\'', true),
           ],
         );
       },
