@@ -21,8 +21,9 @@ String location;
 Mpti906PrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
-  static void updateUI(String location) {
-    prayerBloc.fetchPrayerTime(location);
+  static void updateUI(int index) {
+    var mptLocation = locationDatabase.getMptLocationCode(index);
+    prayerBloc.fetchPrayerTime(mptLocation);
   }
 
   @override
@@ -30,13 +31,11 @@ class GetPrayerTime extends StatefulWidget {
 }
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
-  // String timeFormat = "&format=12-hour";
-
   @override
   void initState() {
     super.initState();
-    location =
-        locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
+    location = locationDatabase
+        .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
   }
@@ -57,7 +56,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               break;
             case Status.ERROR:
               location = locationDatabase
-                  .getJakimCode(GetStorage().read(kStoredGlobalIndex));
+                  .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
               return Error(
                 errorMessage: snapshot.data.message,
                 onRetryPressed: () => prayerBloc.fetchPrayerTime(location),
@@ -80,7 +79,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 }
 
 class PrayTimeList extends StatefulWidget {
-  // final AzanPro prayerTime;
   final Mpti906PrayerModel prayerTime;
 
   PrayTimeList({Key key, this.prayerTime}) : super(key: key);
@@ -105,14 +103,14 @@ class _PrayTimeListState extends State<PrayTimeList> {
         showOtherPrayerTime = setting.showOtherPrayerTime;
         var todayPrayData = handler.getTodayPrayData();
 
-        String imsakTime =
-            DateAndTime.toTimeReadable(todayPrayData[0] - (10 * 60), use12hour);
+        String imsakTime = DateAndTime.toTimeReadable(
+            todayPrayData[0] - (10 * 60), use12hour); //minus 10 min from subuh
         String subuhTime =
             DateAndTime.toTimeReadable(todayPrayData[0], use12hour);
         String syurukTime =
             DateAndTime.toTimeReadable(todayPrayData[1], use12hour);
-        String dhuhaTime =
-            DateAndTime.toTimeReadable(todayPrayData[1] + (28 * 60), use12hour);
+        String dhuhaTime = DateAndTime.toTimeReadable(
+            todayPrayData[1] + (28 * 60), use12hour); //add 28 min from syuruk
         String zohorTime =
             DateAndTime.toTimeReadable(todayPrayData[2], use12hour);
         String asarTime =

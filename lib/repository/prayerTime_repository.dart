@@ -28,7 +28,7 @@ class AzanTimesTodayRepository {
 
   Future<Mpti906PrayerModel> fetchAzanMptMonth(String location) async {
     final response =
-        await _provider.get('https://mpt.i906.my/api/prayer/sgr-1');
+        await _provider.get('https://mpt.i906.my/api/prayer/$location');
     return Mpti906PrayerModel.fromJson(response);
   }
 }

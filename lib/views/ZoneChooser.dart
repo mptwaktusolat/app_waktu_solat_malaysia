@@ -175,7 +175,7 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
         Fluttertoast.showToast(msg: 'Location updated and saved');
         // RestartWidget.restartApp(context);
         callback();
-        GetPrayerTime.updateUI(locationDatabase.getJakimCode(selectedIndex));
+        GetPrayerTime.updateUI(selectedIndex);
       }
     }
   });
@@ -350,7 +350,7 @@ class Completed extends StatelessWidget {
                     Fluttertoast.showToast(msg: 'Location updated and saved');
                     onCallback();
                     Navigator.pop(context);
-                    GetPrayerTime.updateUI(jakimCode); //refresh prayer time
+                    GetPrayerTime.updateUI(index); //refresh prayer time
                   },
                 ),
               ],

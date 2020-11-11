@@ -1,7 +1,7 @@
-import 'dart:convert';
+//Convert a json array to List object
 
+import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 
 final int day = int.parse(DateFormat('d').format(DateTime.now()));
 var prayDataList;

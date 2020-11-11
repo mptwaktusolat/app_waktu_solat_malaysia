@@ -13,7 +13,7 @@ class ApiProvider {
     } on SocketException {
       throw FetchDataException('No Internet connection');
     }
-    print(url);
+    print('Url called: $url');
     return responseJson;
   }
 
