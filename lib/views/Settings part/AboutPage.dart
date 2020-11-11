@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import '../../CONSTANTS.dart';
 import '../contributionPage.dart';
@@ -31,19 +32,40 @@ class AboutAppPage extends StatelessWidget {
                     isFirstTry = false;
                   } else {
                     print('Show debug dialog');
+                    var prayApiCalled =
+                        GetStorage().read(kStoredApiPrayerCall) ?? 'no calls';
+                    var locApiCalled =
+                        GetStorage().read(kStoredApiLocationCall) ?? 'no calls';
                     showDialog(
-                      //TODO: Impelement this functionality
                       context: context,
                       builder: (context) => Dialog(
                         child: ListView(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.all(8.0),
                           children: [
+                            Text(
+                              'For dev (Api call history)',
+                              textAlign: TextAlign.center,
+                            ),
                             ListTile(
                               title: Text('Prayer time API calls'),
-                              subtitle: Text('Waktu solat app'),
+                              subtitle: Text(prayApiCalled),
+                              onLongPress: () {
+                                Clipboard.setData(
+                                        ClipboardData(text: prayApiCalled))
+                                    .then((value) => Fluttertoast.showToast(
+                                        msg: 'Copied url'));
+                              },
                             ),
                             ListTile(
                               title: Text('Prayer location API calls'),
-                              subtitle: Text('mpti906'),
+                              subtitle: Text(locApiCalled),
+                              onLongPress: () {
+                                Clipboard.setData(
+                                        ClipboardData(text: locApiCalled))
+                                    .then((value) => Fluttertoast.showToast(
+                                        msg: 'Copied url'));
+                              },
                             )
                           ],
                         ),
@@ -138,7 +160,7 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   onTap: () {
                     LaunchUrl.normalLaunchUrl(
-                        url: kReleaseNotesLink, usesWebView: true);
+                        url: kReleaseNotesLink, usesWebView: false);
                   },
                 ),
               ),

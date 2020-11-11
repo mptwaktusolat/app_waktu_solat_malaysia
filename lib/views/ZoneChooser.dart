@@ -1,4 +1,5 @@
-//This widget is rendered as Location button at header part
+///This widget is rendered as Location button at header part.
+///Also handle the location selection
 
 import 'dart:async';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,7 +14,6 @@ import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:waktusolatmalaysia/models/groupedzoneapi.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 
 int globalIndex;
@@ -21,8 +21,7 @@ int globalIndex;
 LocationDatabase locationDatabase = LocationDatabase();
 
 class LocationChooser extends StatefulWidget {
-  final GroupedZones zone;
-  LocationChooser({Key key, this.zone}) : super(key: key);
+  LocationChooser({Key key}) : super(key: key);
 
   @override
   _LocationChooserState createState() => _LocationChooserState();

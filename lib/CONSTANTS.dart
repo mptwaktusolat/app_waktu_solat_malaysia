@@ -3,6 +3,8 @@ const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
+const kStoredApiPrayerCall = "storedApiPrayCall";
+const kStoredApiLocationCall = "storedApiLocCall";
 
 //Network image
 const kAppIconUrl =
