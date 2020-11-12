@@ -17,9 +17,9 @@ Focusing on lightweight app, easy-to-use and modern UI :wink:
 ## API
 
 <!-- https://api.azanpro.com/ - Solat Jakim API (Unofficial) -->
+<!-- 1. http://waktusolatapp.com/ (For prayer time) -->
 
-1. http://waktusolatapp.com/ (For prayer time)
-2. https://mpt.i906.my/ (For getting JAKIM location)
+https://mpt.i906.my/ (For getting location and prayer time)
 
 ## Changelogs History
 
