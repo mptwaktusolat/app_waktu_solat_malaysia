@@ -4,9 +4,9 @@
 ![Maintenance](https://img.shields.io/maintenance/yes/2020?style=flat-square)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
-App waktu solat seluruh Malaysia. Prayer time app across Malaysia
+App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
 
-Focusing on lightweight app, easy-to-use and modern UI :wink:
+Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 ## App UI
 
@@ -29,11 +29,11 @@ Wondering what changed with every :new: releases? Or what bug :bug: has been fix
 
 Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues).
 
-Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues).
+Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues). Really appreciated if you do.
 
-## Web demo
+## Web app (Beta)
 
-https://malaysia-waktu-solat.web.app/ - _Not working yet_ :weary:
+https://malaysia-waktu-solat.web.app/
 
 ## App Releases
 
@@ -47,7 +47,12 @@ Get it on:
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
 <a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
-or sideload [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases)
+\*i having some trouble to update the app in App Gallery. It might out of date for a few versions.
+
+## Try the beta
+
+Download here -> [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases).
+And submit your review.
 
 ## Honourable mention
 
