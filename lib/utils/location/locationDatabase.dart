@@ -380,7 +380,7 @@ class LocationDatabase {
       jakimCode: 'WLY02',
       negeri: 'Wilayah Persekutuan',
       daerah: 'Labuan',
-      mptLocationCode: 'wlp-0',
+      mptLocationCode: 'wlp-1',
     )
   ];
 
