@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -56,7 +57,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '🇲🇾 Prayer Time',
+          kIsWeb ? '🇲🇾 Prayer Time (BETA)' : '🇲🇾 Prayer Time',
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,

@@ -15,6 +15,7 @@ import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 int globalIndex;
 
@@ -75,15 +76,20 @@ class _LocationChooserState extends State<LocationChooser> {
         side: BorderSide(color: Colors.white),
       ),
       onPressed: () async {
-        LocationPermission permission = await Geolocator.checkPermission();
-        if (permission == LocationPermission.deniedForever) {
-          //if deniedForever, it will skip the GPS methof
+        if (kIsWeb) {
+          print('Web is true');
           openshowModalBottomSheet(context, _updateUI);
         } else {
-          showDialog(
-            context: context,
-            builder: (context) => GetGPS(_updateUI),
-          );
+          LocationPermission permission = await Geolocator.checkPermission();
+          if (permission == LocationPermission.deniedForever) {
+            //if deniedForever, it will skip the GPS method
+            openshowModalBottomSheet(context, _updateUI);
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => GetGPS(_updateUI),
+            );
+          }
         }
       },
       onLongPress: () {
