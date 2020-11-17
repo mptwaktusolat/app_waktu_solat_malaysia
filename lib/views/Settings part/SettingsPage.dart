@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
+import 'package:waktusolatmalaysia/utils/cupertinoSwitchListTile.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 
@@ -66,19 +67,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 height: 5,
               ),
               Card(
-                child: ListTile(
+                child: CupertinoSwitchListTile(
                   title: Text('Show other prayer times'),
                   subtitle: Text('Imsak, Syuruk, Dhuha'),
-                  trailing: CupertinoSwitch(
-                    onChanged: (bool value) {
-                      setState(() {
-                        setting.showOtherPrayerTime = value;
-                        GetStorage()
-                            .write(Constants.kStoredShowOtherPrayerTime, value);
-                      });
-                    },
-                    value: setting.showOtherPrayerTime,
-                  ),
+                  onChanged: (bool value) {
+                    setState(() {
+                      setting.showOtherPrayerTime = value;
+                      GetStorage()
+                          .write(Constants.kStoredShowOtherPrayerTime, value);
+                    });
+                  },
+                  value: setting.showOtherPrayerTime,
                 ),
               ),
               Divider(

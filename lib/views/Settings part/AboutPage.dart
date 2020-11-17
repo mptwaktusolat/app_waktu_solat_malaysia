@@ -159,8 +159,7 @@ class AboutAppPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   onTap: () {
-                    LaunchUrl.normalLaunchUrl(
-                        url: kReleaseNotesLink, usesWebView: false);
+                    LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
                   },
                 ),
               ),

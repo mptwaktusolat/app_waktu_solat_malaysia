@@ -162,13 +162,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             Align(
               alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () {
-                  LaunchUrl.normalLaunchUrl(
-                      url: Constants.kGithubRepoLink + '/issues');
-                },
-                child: Text('Follow issues on GitHub',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  onPressed: () {
+                    LaunchUrl.normalLaunchUrl(
+                        url: Constants.kGithubRepoLink + '/issues');
+                  },
+                  child: Text('Report / Follow issues on GitHub',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
               ),
             ),
           ],
