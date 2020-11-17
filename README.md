@@ -33,11 +33,11 @@ Have an idea :bulb: that may benefit the app? Do not hesitate to submit your sug
 
 ## Web app (Beta)
 
-https://malaysia-waktu-solat.web.app/
+<a href='https://malaysia-waktu-solat.web.app/'><img alt='Open in Progressive Web App' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
+
+<!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 
 ## App Releases
-
-_Only available for Android_
 
 Get it on:
 
@@ -48,6 +48,8 @@ Get it on:
 <a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
 \*i having some trouble to update the app in App Gallery. It might out of date for a few versions.
+
+_Not available for iOS sorry_
 
 ## Try the beta
 
