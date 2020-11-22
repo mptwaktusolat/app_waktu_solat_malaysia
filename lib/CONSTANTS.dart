@@ -35,8 +35,7 @@ const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
 const kReleaseNotesLink =
     'https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20';
 const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
-const kGithubRepoLink =
-    'https://github.com/fareezMaple/App-Waktu-Solat-Malaysia';
+const kGithubRepoLink = 'https://github.com/iqfareez/App-Waktu-Solat-Malaysia';
 
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';
@@ -44,7 +43,7 @@ const kDevTwitter = 'https://twitter.com/iqfareez2';
 const kDevInstagram = 'https://www.instagram.com/iqfareez/';
 const kInstaStoryDevlog =
     'https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1?igshid=3jwa3e1iy3u7&story_media_id=2342912100646673991_32997533904';
-const kGithubLink = 'https://github.com/fareezMaple';
+const kGithubLink = 'https://github.com/iqfareez';
 const kPlayStoreDevLink =
     'https://play.google.com/store/apps/dev?id=9200064795631584674';
 
@@ -53,6 +52,7 @@ const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
 const kBankAccountNum = '162348620850'; //maybank
 const kPaypalDonateShortLink = 'paypal.me/iqfareez';
 const kPaypalDonateFullLink = 'https://www.paypal.com/paypalme/iqfareez';
+const kMaybankAccNo = '162348620850'
 
 //hero tag
 const kAppIconTag = 'appIconTag';
