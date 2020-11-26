@@ -128,16 +128,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
 
-        var newTime = DateTime.fromMillisecondsSinceEpoch(
-            DateTime.now().millisecondsSinceEpoch);
-
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: '0',
-            body: 'Scehdule azan',
-            title: 'Minutes noti after 5',
-            scheduledTime: tz.TZDateTime.from(
-                newTime.add(Duration(seconds: 5)), tz.local));
+        schedulePrayNotification(handler.getPrayDataCurrentDateOnwards());
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -261,4 +252,97 @@ class Loading extends StatelessWidget {
       ),
     );
   }
+}
+
+void schedulePrayNotification(List<dynamic> times) async {
+  await notifsPlugin.cancelAll();
+
+  String currentLocation =
+      locationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
+  print(currentLocation);
+
+  var currentTime = DateTime.now().millisecondsSinceEpoch;
+
+  for (int i = 0; i < times.length; i++) {
+    for (int j = 0; j < 6; j++) {
+      var subuhTimeEpoch = times[i][0];
+      var syurukTimeEpoch = times[i][1];
+      var zuhrTimeEpoch = times[i][2];
+      var asarTimeEpoch = times[i][3];
+      var maghribTimeEpoch = times[i][4];
+      var isyakTimeEpoch = times[i][5];
+
+      if (!(subuhTimeEpoch < currentTime)) {
+        scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: subuhTimeEpoch,
+          title: 'Fajr Time',
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
+          body: currentLocation,
+        );
+      }
+      if (!(syurukTimeEpoch < currentTime)) {
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: syurukTimeEpoch,
+            title: 'Syuruk Time',
+            body: currentLocation,
+            scheduledTime: tz.TZDateTime.from(
+                DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch),
+                tz.local));
+      }
+      if (!(zuhrTimeEpoch < currentTime)) {
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: zuhrTimeEpoch,
+            title: 'Zuhr Time',
+            body: currentLocation,
+            scheduledTime: tz.TZDateTime.from(
+                DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
+      }
+      if (!(asarTimeEpoch < currentTime)) {
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: asarTimeEpoch,
+            title: 'Asr Time',
+            body: currentLocation,
+            scheduledTime: tz.TZDateTime.from(
+                DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
+      }
+      if (!(maghribTimeEpoch < currentTime)) {
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: maghribTimeEpoch,
+            title: 'Maghrib Time',
+            body: currentLocation,
+            scheduledTime: tz.TZDateTime.from(
+                DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch),
+                tz.local));
+      }
+      if (!(isyakTimeEpoch < currentTime)) {
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: isyakTimeEpoch,
+            title: 'Isya\' Time',
+            body: currentLocation,
+            scheduledTime: tz.TZDateTime.from(
+                DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
+      }
+      print('Subuh @ $subuhTimeEpoch');
+      print('Syuruk @ $syurukTimeEpoch');
+      print('Zohor @ $zuhrTimeEpoch');
+      print('Asar @ $asarTimeEpoch');
+      print('Maghrib @ $maghribTimeEpoch');
+      print('Isyak @ $isyakTimeEpoch');
+    }
+  }
+  // print('times is $times');
+  // scheduleNotification(
+  //           notifsPlugin: notifsPlugin,
+  //           id: '1604714840',
+  //           body: 'Scehdule azan',
+  //           title: 'Minutes noti after 5',
+  //           scheduledTime: tz.TZDateTime.from(
+  //               newTime.add(Duration(seconds: 5)), tz.local));
 }
