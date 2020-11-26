@@ -1,5 +1,4 @@
 //GetStorage
-import 'package:flutter/services.dart';
 
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
@@ -58,7 +57,3 @@ const kMaybankAccNo = '162348620850';
 
 //hero tag
 const kAppIconTag = 'appIconTag';
-
-//notification
-const MethodChannel platform =
-    MethodChannel('dexterx.dev/flutter_local_notifications_example');

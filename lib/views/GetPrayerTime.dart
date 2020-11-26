@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/main.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
@@ -11,9 +12,11 @@ import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 LocationDatabase locationDatabase = LocationDatabase();
 String location;
@@ -124,6 +127,17 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.asarTime = asarTime;
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
+
+        var newTime = DateTime.fromMillisecondsSinceEpoch(
+            DateTime.now().millisecondsSinceEpoch);
+
+        scheduleNotification(
+            notifsPlugin: notifsPlugin,
+            id: '0',
+            body: 'Scehdule azan',
+            title: 'Minutes noti after 5',
+            scheduledTime: tz.TZDateTime.from(
+                newTime.add(Duration(seconds: 5)), tz.local));
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

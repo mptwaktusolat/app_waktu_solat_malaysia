@@ -21,6 +21,8 @@ import 'CONSTANTS.dart';
 NotificationAppLaunchDetails notifLaunch;
 final FlutterLocalNotificationsPlugin notifsPlugin =
     FlutterLocalNotificationsPlugin();
+// const MethodChannel platform =
+//     MethodChannel('dexterx.dev/flutter/local_notifications');
 
 void main() async {
   await GetStorage.init();
@@ -104,6 +106,6 @@ void initGetStorage() {
 
 Future<void> _configureLocalTimeZone() async {
   tz.initializeTimeZones();
-  final String timeZoneName = await platform.invokeMethod('getTimeZoneName');
+  final String timeZoneName = 'Asia/Kuala_Lumpur';
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
