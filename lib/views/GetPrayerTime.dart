@@ -264,7 +264,7 @@ void schedulePrayNotification(List<dynamic> times) async {
   var currentTime = DateTime.now().millisecondsSinceEpoch;
 
   for (int i = 0; i < times.length; i++) {
-    for (int j = 0; j < 6; j++) {
+    
       var subuhTimeEpoch = times[i][0];
       var syurukTimeEpoch = times[i][1];
       var zuhrTimeEpoch = times[i][2];
@@ -276,7 +276,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
           notifsPlugin: notifsPlugin,
           id: subuhTimeEpoch,
-          title: 'Fajr Time',
+          title: 'Fajr',
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
           body: currentLocation,
@@ -286,7 +286,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
             notifsPlugin: notifsPlugin,
             id: syurukTimeEpoch,
-            title: 'Syuruk Time',
+            title: 'Syuruk',
             body: currentLocation,
             scheduledTime: tz.TZDateTime.from(
                 DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch),
@@ -296,7 +296,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
             notifsPlugin: notifsPlugin,
             id: zuhrTimeEpoch,
-            title: 'Zuhr Time',
+            title: 'Zuhr',
             body: currentLocation,
             scheduledTime: tz.TZDateTime.from(
                 DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
@@ -305,7 +305,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
             notifsPlugin: notifsPlugin,
             id: asarTimeEpoch,
-            title: 'Asr Time',
+            title: 'Asr',
             body: currentLocation,
             scheduledTime: tz.TZDateTime.from(
                 DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
@@ -314,7 +314,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
             notifsPlugin: notifsPlugin,
             id: maghribTimeEpoch,
-            title: 'Maghrib Time',
+            title: 'Maghrib',
             body: currentLocation,
             scheduledTime: tz.TZDateTime.from(
                 DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch),
@@ -324,7 +324,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         scheduleNotification(
             notifsPlugin: notifsPlugin,
             id: isyakTimeEpoch,
-            title: 'Isya\' Time',
+            title: 'Isya\'',
             body: currentLocation,
             scheduledTime: tz.TZDateTime.from(
                 DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
@@ -335,7 +335,7 @@ void schedulePrayNotification(List<dynamic> times) async {
       print('Asar @ $asarTimeEpoch');
       print('Maghrib @ $maghribTimeEpoch');
       print('Isyak @ $isyakTimeEpoch');
-    }
+    
   }
   // print('times is $times');
   // scheduleNotification(
