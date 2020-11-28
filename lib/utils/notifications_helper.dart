@@ -63,15 +63,17 @@ void requestIOSPermissions(
 
 Future<void> scheduleNotification(
     {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
+    String name,
     int id,
     String title,
     String body,
     DateTime scheduledTime}) async {
   var androidSpecifics = notifs.AndroidNotificationDetails(
     id.toString(), // This specifies the ID of the Notification
-    '$title notification', // This specifies the name of the notification channel
+    '$name notification', // This specifies the name of the notification channel
     'A scheduled prayer notification', //This specifies the description of the channel
     // icon: 'icon',
+    importance: notifs.Importance.high,
     color: Color(0xFF19e3cb),
   );
   var iOSSpecifics = notifs.IOSNotificationDetails();
@@ -85,6 +87,8 @@ Future<void> scheduleNotification(
           .absoluteTime); // This literally schedules the notification
 }
 
+///
+
 void schedulePrayNotification(List<dynamic> times) async {
   await notifsPlugin.cancelAll(); //reset all
 
@@ -95,6 +99,7 @@ void schedulePrayNotification(List<dynamic> times) async {
   var currentTime = DateTime.now().millisecondsSinceEpoch;
 
   for (int i = 0; i < times.length; i++) {
+    //i denotes the day relative for today
     int subuhTimeEpoch = times[i][0] * 1000;
     int syurukTimeEpoch = times[i][1] * 1000;
     int zuhrTimeEpoch = times[i][2] * 1000;
@@ -105,6 +110,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     if (!(subuhTimeEpoch < currentTime)) {
       //to make sure the time is in future
       scheduleNotification(
+        name: 'Fajr',
         notifsPlugin: notifsPlugin,
         id: (subuhTimeEpoch / 1000).truncate(),
         title: 'It\'s Fajr',
@@ -115,6 +121,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(syurukTimeEpoch < currentTime)) {
       scheduleNotification(
+          name: 'Syuruk',
           notifsPlugin: notifsPlugin,
           id: (syurukTimeEpoch / 1000).truncate(),
           title: 'It\'s Syuruk',
@@ -124,6 +131,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(zuhrTimeEpoch < currentTime)) {
       scheduleNotification(
+          name: 'Zuhr',
           notifsPlugin: notifsPlugin,
           id: (zuhrTimeEpoch / 1000).truncate(),
           title: 'It\'s Zuhr',
@@ -133,6 +141,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(asarTimeEpoch < currentTime)) {
       scheduleNotification(
+          name: '\Asr',
           notifsPlugin: notifsPlugin,
           id: (asarTimeEpoch / 1000).truncate(),
           title: 'It\'s Asr',
@@ -142,6 +151,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(maghribTimeEpoch < currentTime)) {
       scheduleNotification(
+          name: 'Maghrib',
           notifsPlugin: notifsPlugin,
           id: (maghribTimeEpoch / 1000).truncate(),
           title: 'It\'s Maghrib',
@@ -151,6 +161,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(isyakTimeEpoch < currentTime)) {
       scheduleNotification(
+          name: 'Isya\'',
           notifsPlugin: notifsPlugin,
           id: (isyakTimeEpoch / 1000).truncate(),
           title: 'It\'s Isya\'',
