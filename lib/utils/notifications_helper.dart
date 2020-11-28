@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notifs;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
 import 'package:waktusolatmalaysia/main.dart';
@@ -62,6 +63,7 @@ void requestIOSPermissions(
 }
 
 Future<void> scheduleNotification(
+    //for main prayer functionality
     {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
     String name,
     int id,
@@ -72,7 +74,7 @@ Future<void> scheduleNotification(
     id.toString(), // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
     'A scheduled prayer notification', //This specifies the description of the channel
-    // icon: 'icon',
+    priority: notifs.Priority.max,
     importance: notifs.Importance.high,
     color: Color(0xFF19e3cb),
   );
@@ -85,6 +87,21 @@ Future<void> scheduleNotification(
       uiLocalNotificationDateInterpretation: notifs
           .UILocalNotificationDateInterpretation
           .absoluteTime); // This literally schedules the notification
+}
+
+Future<void> showDebugNotification() async {
+  //to test notifocation can show?
+  const notifs.AndroidNotificationDetails androidPlatformChannelSpecifics =
+      notifs.AndroidNotificationDetails('Debug id', 'Debug channel',
+          'Test notification can be shown in device',
+          importance: Importance.max,
+          priority: Priority.high,
+          ticker: 'ticker');
+  const NotificationDetails platformChannelSpecifics = NotificationDetails(
+    android: androidPlatformChannelSpecifics,
+  );
+  await notifsPlugin.show(
+      0, 'Debug notifs.', 'For developer purposes', platformChannelSpecifics);
 }
 
 ///
@@ -141,7 +158,7 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
     if (!(asarTimeEpoch < currentTime)) {
       scheduleNotification(
-          name: '\Asr',
+          name: 'Asr',
           notifsPlugin: notifsPlugin,
           id: (asarTimeEpoch / 1000).truncate(),
           title: 'It\'s Asr',

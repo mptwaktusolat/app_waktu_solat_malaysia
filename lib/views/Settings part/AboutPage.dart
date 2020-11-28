@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import '../../CONSTANTS.dart';
 import '../contributionPage.dart';
+import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 
 class AboutAppPage extends StatelessWidget {
   AboutAppPage(this.appInfo);
@@ -66,7 +67,17 @@ class AboutAppPage extends StatelessWidget {
                                     .then((value) => Fluttertoast.showToast(
                                         msg: 'Copied url'));
                               },
-                            )
+                            ),
+                            ListTile(
+                              title: Text('Send immediate test notification'),
+                              onTap: () async {
+                                await showDebugNotification();
+                              },
+                            ),
+                            ListTile(
+                                title: Text('Global location index'),
+                                subtitle: Text(
+                                    '${GetStorage().read(kStoredGlobalIndex)}'))
                           ],
                         ),
                       ),

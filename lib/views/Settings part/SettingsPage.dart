@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -78,6 +79,17 @@ class _SettingsPageState extends State<SettingsPage> {
                     });
                   },
                   value: setting.showOtherPrayerTime,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('Notification settings'),
+                  subtitle:
+                      Text('Change notification settings via system settings'),
+                  onTap: () async {
+                    await AppSettings.openNotificationSettings();
+                  },
+                  trailing: Icon(Icons.launch_rounded),
                 ),
               ),
               Divider(
