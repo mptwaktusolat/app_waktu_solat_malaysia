@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/main.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
@@ -16,7 +15,6 @@ import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
-import 'package:timezone/timezone.dart' as tz;
 
 LocationDatabase locationDatabase = LocationDatabase();
 String location;
@@ -128,7 +126,8 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
 
-        schedulePrayNotification(handler.getPrayDataCurrentDateOnwards());
+        schedulePrayNotification(
+            handler.getPrayDataCurrentDateOnwards()); //scheduled notification
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -252,97 +251,4 @@ class Loading extends StatelessWidget {
       ),
     );
   }
-}
-
-void schedulePrayNotification(List<dynamic> times) async {
-  await notifsPlugin.cancelAll();
-
-  String currentLocation =
-      locationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
-  print(currentLocation);
-
-  var currentTime = DateTime.now().millisecondsSinceEpoch;
-
-  for (int i = 0; i < times.length; i++) {
-    
-      var subuhTimeEpoch = times[i][0];
-      var syurukTimeEpoch = times[i][1];
-      var zuhrTimeEpoch = times[i][2];
-      var asarTimeEpoch = times[i][3];
-      var maghribTimeEpoch = times[i][4];
-      var isyakTimeEpoch = times[i][5];
-
-      if (!(subuhTimeEpoch < currentTime)) {
-        scheduleNotification(
-          notifsPlugin: notifsPlugin,
-          id: subuhTimeEpoch,
-          title: 'Fajr',
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
-          body: currentLocation,
-        );
-      }
-      if (!(syurukTimeEpoch < currentTime)) {
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: syurukTimeEpoch,
-            title: 'Syuruk',
-            body: currentLocation,
-            scheduledTime: tz.TZDateTime.from(
-                DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch),
-                tz.local));
-      }
-      if (!(zuhrTimeEpoch < currentTime)) {
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: zuhrTimeEpoch,
-            title: 'Zuhr',
-            body: currentLocation,
-            scheduledTime: tz.TZDateTime.from(
-                DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
-      }
-      if (!(asarTimeEpoch < currentTime)) {
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: asarTimeEpoch,
-            title: 'Asr',
-            body: currentLocation,
-            scheduledTime: tz.TZDateTime.from(
-                DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
-      }
-      if (!(maghribTimeEpoch < currentTime)) {
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: maghribTimeEpoch,
-            title: 'Maghrib',
-            body: currentLocation,
-            scheduledTime: tz.TZDateTime.from(
-                DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch),
-                tz.local));
-      }
-      if (!(isyakTimeEpoch < currentTime)) {
-        scheduleNotification(
-            notifsPlugin: notifsPlugin,
-            id: isyakTimeEpoch,
-            title: 'Isya\'',
-            body: currentLocation,
-            scheduledTime: tz.TZDateTime.from(
-                DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
-      }
-      print('Subuh @ $subuhTimeEpoch');
-      print('Syuruk @ $syurukTimeEpoch');
-      print('Zohor @ $zuhrTimeEpoch');
-      print('Asar @ $asarTimeEpoch');
-      print('Maghrib @ $maghribTimeEpoch');
-      print('Isyak @ $isyakTimeEpoch');
-    
-  }
-  // print('times is $times');
-  // scheduleNotification(
-  //           notifsPlugin: notifsPlugin,
-  //           id: '1604714840',
-  //           body: 'Scehdule azan',
-  //           title: 'Minutes noti after 5',
-  //           scheduledTime: tz.TZDateTime.from(
-  //               newTime.add(Duration(seconds: 5)), tz.local));
 }

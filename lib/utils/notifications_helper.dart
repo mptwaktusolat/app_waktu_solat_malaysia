@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notifs;
+import 'package:get_storage/get_storage.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
+import 'package:waktusolatmalaysia/main.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
+
+import '../CONSTANTS.dart';
 
 final rxSub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =
@@ -57,12 +63,12 @@ void requestIOSPermissions(
 
 Future<void> scheduleNotification(
     {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
-    String id,
+    int id,
     String title,
     String body,
     DateTime scheduledTime}) async {
   var androidSpecifics = notifs.AndroidNotificationDetails(
-    id, // This specifies the ID of the Notification
+    id.toString(), // This specifies the ID of the Notification
     '$title notification', // This specifies the name of the notification channel
     'A scheduled prayer notification', //This specifies the description of the channel
     // icon: 'icon',
@@ -72,110 +78,91 @@ Future<void> scheduleNotification(
   var platformChannelSpecifics =
       notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
   await notifsPlugin.zonedSchedule(
-      int.parse(id), title, body, scheduledTime, platformChannelSpecifics,
+      id, title, body, scheduledTime, platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation: notifs
           .UILocalNotificationDateInterpretation
           .absoluteTime); // This literally schedules the notification
 }
 
-//anywhere in code:
-// void scheduleNoti() {
-//   var newTime = DateTime.fromMillisecondsSinceEpoch(
-//       DateTime.now().millisecondsSinceEpoch);
-//   for (var i = 1; i < 6; i++) {
-//     scheduleNotification(
-//         notifsPlugin: notifsPlugin,
-//         id: '$i',
-//         body: 'Scehdule notif #$i',
-//         title: 'Minutes noti ',
-//         scheduledTime: tz.TZDateTime.from(
-//             newTime.add(Duration(minutes: 20 * i)), tz.local));
-//   }
-// }
+void schedulePrayNotification(List<dynamic> times) async {
+  await notifsPlugin.cancelAll(); //reset all
 
-// Future<void> _zonedScheduleNotification() async {
-//     await flutterLocalNotificationsPlugin.zonedSchedule(
-//         0,
-//         'scheduled title',
-//         'scheduled body',
-//         tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-//         const NotificationDetails(
-//             android: AndroidNotificationDetails('your channel id',
-//                 'your channel name', 'your channel description')),
-//         androidAllowWhileIdle: true,
-//         uiLocalNotificationDateInterpretation:
-//             UILocalNotificationDateInterpretation.absoluteTime);
-//   }
+  String currentLocation =
+      locationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
+  print(currentLocation);
 
-//   Future<void> _scheduleDailyTenAMNotification() async {
-//     await flutterLocalNotificationsPlugin.zonedSchedule(
-//         0,
-//         'daily scheduled notification title',
-//         'daily scheduled notification body',
-//         _nextInstanceOfTenAM(),
-//         const NotificationDetails(
-//           android: AndroidNotificationDetails(
-//               'daily notification channel id',
-//               'daily notification channel name',
-//               'daily notification description'),
-//         ),
-//         androidAllowWhileIdle: true,
-//         uiLocalNotificationDateInterpretation:
-//             UILocalNotificationDateInterpretation.absoluteTime,
-//         matchDateTimeComponents: DateTimeComponents.time);
-//   }
+  var currentTime = DateTime.now().millisecondsSinceEpoch;
 
-//   Future<void> _scheduleWeeklyTenAMNotification() async {
-//     await flutterLocalNotificationsPlugin.zonedSchedule(
-//         0,
-//         'weekly scheduled notification title',
-//         'weekly scheduled notification body',
-//         _nextInstanceOfTenAM(),
-//         const NotificationDetails(
-//           android: AndroidNotificationDetails(
-//               'weekly notification channel id',
-//               'weekly notification channel name',
-//               'weekly notificationdescription'),
-//         ),
-//         androidAllowWhileIdle: true,
-//         uiLocalNotificationDateInterpretation:
-//             UILocalNotificationDateInterpretation.absoluteTime,
-//         matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);
-//   }
+  for (int i = 0; i < times.length; i++) {
+    int subuhTimeEpoch = times[i][0] * 1000;
+    int syurukTimeEpoch = times[i][1] * 1000;
+    int zuhrTimeEpoch = times[i][2] * 1000;
+    int asarTimeEpoch = times[i][3] * 1000;
+    int maghribTimeEpoch = times[i][4] * 1000;
+    int isyakTimeEpoch = times[i][5] * 1000;
 
-//   Future<void> _scheduleWeeklyMondayTenAMNotification() async {
-//     await flutterLocalNotificationsPlugin.zonedSchedule(
-//         0,
-//         'weekly scheduled notification title',
-//         'weekly scheduled notification body',
-//         _nextInstanceOfMondayTenAM(),
-//         const NotificationDetails(
-//           android: AndroidNotificationDetails(
-//               'weekly notification channel id',
-//               'weekly notification channel name',
-//               'weekly notificationdescription'),
-//         ),
-//         androidAllowWhileIdle: true,
-//         uiLocalNotificationDateInterpretation:
-//             UILocalNotificationDateInterpretation.absoluteTime,
-//         matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime);
-//   }
-
-// tz.TZDateTime _nextInstanceOfTenAM() {
-//     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-//     tz.TZDateTime scheduledDate =
-//         tz.TZDateTime(tz.local, now.year, now.month, now.day, 10);
-//     if (scheduledDate.isBefore(now)) {
-//       scheduledDate = scheduledDate.add(const Duration(days: 1));
-//     }
-//     return scheduledDate;
-//   }
-
-//   tz.TZDateTime _nextInstanceOfMondayTenAM() {
-//     tz.TZDateTime scheduledDate = _nextInstanceOfTenAM();
-//     while (scheduledDate.weekday != DateTime.monday) {
-//       scheduledDate = scheduledDate.add(const Duration(days: 1));
-//     }
-//     return scheduledDate;
-//   }
+    if (!(subuhTimeEpoch < currentTime)) {
+      //to make sure the time is in future
+      scheduleNotification(
+        notifsPlugin: notifsPlugin,
+        id: (subuhTimeEpoch / 1000).truncate(),
+        title: 'It\'s Fajr',
+        scheduledTime: tz.TZDateTime.from(
+            DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
+        body: 'at ' + currentLocation,
+      );
+    }
+    if (!(syurukTimeEpoch < currentTime)) {
+      scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: (syurukTimeEpoch / 1000).truncate(),
+          title: 'It\'s Syuruk',
+          body: 'at ' + currentLocation,
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch), tz.local));
+    }
+    if (!(zuhrTimeEpoch < currentTime)) {
+      scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: (zuhrTimeEpoch / 1000).truncate(),
+          title: 'It\'s Zuhr',
+          body: 'at ' + currentLocation,
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
+    }
+    if (!(asarTimeEpoch < currentTime)) {
+      scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: (asarTimeEpoch / 1000).truncate(),
+          title: 'It\'s Asr',
+          body: 'at ' + currentLocation,
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
+    }
+    if (!(maghribTimeEpoch < currentTime)) {
+      scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: (maghribTimeEpoch / 1000).truncate(),
+          title: 'It\'s Maghrib',
+          body: 'at ' + currentLocation,
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch), tz.local));
+    }
+    if (!(isyakTimeEpoch < currentTime)) {
+      scheduleNotification(
+          notifsPlugin: notifsPlugin,
+          id: (isyakTimeEpoch / 1000).truncate(),
+          title: 'It\'s Isya\'',
+          body: 'at ' + currentLocation,
+          scheduledTime: tz.TZDateTime.from(
+              DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
+    }
+    print('Subuh @ $subuhTimeEpoch');
+    print('Syuruk @ $syurukTimeEpoch');
+    print('Zohor @ $zuhrTimeEpoch');
+    print('Asar @ $asarTimeEpoch');
+    print('Maghrib @ $maghribTimeEpoch');
+    print('Isyak @ $isyakTimeEpoch');
+  }
+}
