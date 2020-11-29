@@ -71,9 +71,9 @@ Future<void> scheduleNotification(
     String body,
     DateTime scheduledTime}) async {
   var androidSpecifics = notifs.AndroidNotificationDetails(
-    id.toString(), // This specifies the ID of the Notification
+    '$name-id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
-    'A scheduled prayer notification', //This specifies the description of the channel
+    'Scheduled daily prayer notification', //This specifies the description of the channel
     priority: notifs.Priority.max,
     importance: notifs.Importance.high,
     color: Color(0xFF19e3cb),
