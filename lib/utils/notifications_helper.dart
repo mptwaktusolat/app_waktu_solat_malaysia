@@ -133,7 +133,7 @@ void schedulePrayNotification(List<dynamic> times) async {
         title: 'It\'s Fajr',
         scheduledTime: tz.TZDateTime.from(
             DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
-        body: 'at ' + currentLocation,
+        body: 'in ' + currentLocation,
       );
     }
     if (!(syurukTimeEpoch < currentTime)) {
@@ -142,7 +142,7 @@ void schedulePrayNotification(List<dynamic> times) async {
           notifsPlugin: notifsPlugin,
           id: (syurukTimeEpoch / 1000).truncate(),
           title: 'It\'s Syuruk',
-          body: 'at ' + currentLocation,
+          body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch), tz.local));
     }
@@ -152,7 +152,7 @@ void schedulePrayNotification(List<dynamic> times) async {
           notifsPlugin: notifsPlugin,
           id: (zuhrTimeEpoch / 1000).truncate(),
           title: 'It\'s Zuhr',
-          body: 'at ' + currentLocation,
+          body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
     }
@@ -162,7 +162,7 @@ void schedulePrayNotification(List<dynamic> times) async {
           notifsPlugin: notifsPlugin,
           id: (asarTimeEpoch / 1000).truncate(),
           title: 'It\'s Asr',
-          body: 'at ' + currentLocation,
+          body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
     }
@@ -172,7 +172,7 @@ void schedulePrayNotification(List<dynamic> times) async {
           notifsPlugin: notifsPlugin,
           id: (maghribTimeEpoch / 1000).truncate(),
           title: 'It\'s Maghrib',
-          body: 'at ' + currentLocation,
+          body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch), tz.local));
     }
@@ -182,7 +182,7 @@ void schedulePrayNotification(List<dynamic> times) async {
           notifsPlugin: notifsPlugin,
           id: (isyakTimeEpoch / 1000).truncate(),
           title: 'It\'s Isya\'',
-          body: 'at ' + currentLocation,
+          body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
     }
