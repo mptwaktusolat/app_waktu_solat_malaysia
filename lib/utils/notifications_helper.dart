@@ -71,7 +71,7 @@ Future<void> scheduleNotification(
     String body,
     DateTime scheduledTime}) async {
   var androidSpecifics = notifs.AndroidNotificationDetails(
-    '$name-id', // This specifies the ID of the Notification
+    '$name id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
     'Scheduled daily prayer notification', //This specifies the description of the channel
     priority: notifs.Priority.max,
@@ -92,9 +92,9 @@ Future<void> scheduleNotification(
 Future<void> showDebugNotification() async {
   //to test notifocation can show?
   const notifs.AndroidNotificationDetails androidPlatformChannelSpecifics =
-      notifs.AndroidNotificationDetails('Debug id', 'Debug channel',
-          'Test notification can be shown in device',
-          importance: Importance.max,
+      notifs.AndroidNotificationDetails(
+          'Debug id', 'Debug channel', 'Notification debug test',
+          importance: Importance.defaultImportance,
           priority: Priority.high,
           ticker: 'ticker');
   const NotificationDetails platformChannelSpecifics = NotificationDetails(
