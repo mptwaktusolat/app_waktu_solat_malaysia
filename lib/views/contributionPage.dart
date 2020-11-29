@@ -54,17 +54,13 @@ class ContributionPage extends StatelessWidget {
                 ],
               ),
               MyCard(
-                title: 'Donate via PayPal',
-                description: '${Constants.kPaypalDonateShortLink}',
+                title: 'Support via Malaysian bank',
+                description:
+                    '${Constants.kMaybankAccNo} - Muhammad Fareez (Maybank)',
                 buttonContent: [
                   ButtonContent(
                     'Copy',
-                    () => copyClipboard(Constants.kPaypalDonateFullLink),
-                  ),
-                  ButtonContent(
-                    'Open',
-                    () => LaunchUrl.normalLaunchUrl(
-                        url: Constants.kPaypalDonateFullLink),
+                    () => copyClipboard(Constants.kMaybankAccNo),
                   ),
                 ],
               ),

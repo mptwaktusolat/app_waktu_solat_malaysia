@@ -11,6 +11,7 @@ import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
@@ -124,6 +125,9 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.asarTime = asarTime;
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
+
+        schedulePrayNotification(
+            handler.getPrayDataCurrentDateOnwards()); //scheduled notification
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

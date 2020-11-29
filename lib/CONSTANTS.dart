@@ -1,4 +1,5 @@
 //GetStorage
+
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
