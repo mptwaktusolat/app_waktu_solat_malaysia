@@ -1,5 +1,8 @@
-//GetStorage
+//constants
+const kPayloadMonthly = 'monthlyRefresh';
+const kPayloadDebug = 'payloadDebug';
 
+//GetStorage
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";

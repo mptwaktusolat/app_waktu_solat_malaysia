@@ -21,9 +21,6 @@ import 'CONSTANTS.dart';
 NotificationAppLaunchDetails notifLaunch;
 final FlutterLocalNotificationsPlugin notifsPlugin =
     FlutterLocalNotificationsPlugin();
-// const MethodChannel platform =
-//     MethodChannel('dexterx.dev/flutter/local_notifications');
-
 void main() async {
   await GetStorage.init();
 
@@ -46,6 +43,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    configureSelectNotificationSubject(context);
     ThemeController.to.getThemeModeFromPreferences();
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],

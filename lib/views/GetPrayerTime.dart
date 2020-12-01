@@ -10,8 +10,8 @@ import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
+import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
-import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
@@ -96,6 +96,8 @@ class _PrayTimeListState extends State<PrayTimeList> {
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
     handler = PrayDataHandler(prayerTimeData.times);
+    schedulePrayNotification(
+        handler.getPrayDataCurrentDateOnwards()); //scheduled notification
 
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
@@ -125,9 +127,6 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.asarTime = asarTime;
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
-
-        schedulePrayNotification(
-            handler.getPrayDataCurrentDateOnwards()); //scheduled notification
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

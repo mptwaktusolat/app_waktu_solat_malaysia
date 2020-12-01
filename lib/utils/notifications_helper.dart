@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notifs;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/main.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
-
-import '../CONSTANTS.dart';
 
 final rxSub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =
@@ -62,7 +61,19 @@ void requestIOSPermissions(
       );
 }
 
-Future<void> scheduleNotification(
+void configureSelectNotificationSubject(BuildContext context) {
+  selectNotificationSubject.stream.listen((String payload) async {
+    if (payload == kPayloadMonthly) {
+      Fluttertoast.showToast(
+          msg:
+              'Please wait for a few seconds for the notification to be resheduled.');
+    } else if (payload == kPayloadDebug) {
+      Fluttertoast.showToast(msg: 'Deug payload here!');
+    }
+  });
+}
+
+Future<void> schedulePrayerNotification(
     //for main prayer functionality
     {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
     String name,
@@ -89,6 +100,35 @@ Future<void> scheduleNotification(
           .absoluteTime); // This literally schedules the notification
 }
 
+Future<void> scheduleAlertNotification(
+    //for main prayer functionality
+    {@required notifs.FlutterLocalNotificationsPlugin notifsPlugin,
+    @required int id,
+    @required String title,
+    @required String body,
+    String payload,
+    @required DateTime scheduledTime}) async {
+  var androidSpecifics = notifs.AndroidNotificationDetails(
+    'Alert id', // This specifies the ID of the Notification
+    'Alert notification', // This specifies the name of the notification channel
+    'Alerts and reminders to user', //This specifies the description of the channel
+    priority: notifs.Priority.defaultPriority,
+    importance: notifs.Importance.high,
+    color: Color(0xFFeb1515),
+  );
+
+  var iOSSpecifics = notifs.IOSNotificationDetails();
+  var platformChannelSpecifics =
+      notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+  await notifsPlugin.zonedSchedule(
+      id, title, body, scheduledTime, platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      payload: payload,
+      uiLocalNotificationDateInterpretation: notifs
+          .UILocalNotificationDateInterpretation
+          .absoluteTime); // This literally schedules the notification
+}
+
 Future<void> showDebugNotification() async {
   //to test notifocation can show?
   const notifs.AndroidNotificationDetails androidPlatformChannelSpecifics =
@@ -102,95 +142,4 @@ Future<void> showDebugNotification() async {
   );
   await notifsPlugin.show(
       0, 'Debug notifs.', 'For developer purposes', platformChannelSpecifics);
-}
-
-///
-
-void schedulePrayNotification(List<dynamic> times) async {
-  await notifsPlugin.cancelAll(); //reset all
-
-  String currentLocation =
-      locationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
-  print(currentLocation);
-
-  var currentTime = DateTime.now().millisecondsSinceEpoch;
-
-  for (int i = 0; i < times.length; i++) {
-    //i denotes the day relative for today
-    int subuhTimeEpoch = times[i][0] * 1000;
-    int syurukTimeEpoch = times[i][1] * 1000;
-    int zuhrTimeEpoch = times[i][2] * 1000;
-    int asarTimeEpoch = times[i][3] * 1000;
-    int maghribTimeEpoch = times[i][4] * 1000;
-    int isyakTimeEpoch = times[i][5] * 1000;
-
-    if (!(subuhTimeEpoch < currentTime)) {
-      //to make sure the time is in future
-      scheduleNotification(
-        name: 'Fajr',
-        notifsPlugin: notifsPlugin,
-        id: (subuhTimeEpoch / 1000).truncate(),
-        title: 'It\'s Fajr',
-        scheduledTime: tz.TZDateTime.from(
-            DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
-        body: 'in ' + currentLocation,
-      );
-    }
-    if (!(syurukTimeEpoch < currentTime)) {
-      scheduleNotification(
-          name: 'Syuruk',
-          notifsPlugin: notifsPlugin,
-          id: (syurukTimeEpoch / 1000).truncate(),
-          title: 'It\'s Syuruk',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch), tz.local));
-    }
-    if (!(zuhrTimeEpoch < currentTime)) {
-      scheduleNotification(
-          name: 'Zuhr',
-          notifsPlugin: notifsPlugin,
-          id: (zuhrTimeEpoch / 1000).truncate(),
-          title: 'It\'s Zuhr',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
-    }
-    if (!(asarTimeEpoch < currentTime)) {
-      scheduleNotification(
-          name: 'Asr',
-          notifsPlugin: notifsPlugin,
-          id: (asarTimeEpoch / 1000).truncate(),
-          title: 'It\'s Asr',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
-    }
-    if (!(maghribTimeEpoch < currentTime)) {
-      scheduleNotification(
-          name: 'Maghrib',
-          notifsPlugin: notifsPlugin,
-          id: (maghribTimeEpoch / 1000).truncate(),
-          title: 'It\'s Maghrib',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch), tz.local));
-    }
-    if (!(isyakTimeEpoch < currentTime)) {
-      scheduleNotification(
-          name: 'Isya\'',
-          notifsPlugin: notifsPlugin,
-          id: (isyakTimeEpoch / 1000).truncate(),
-          title: 'It\'s Isya\'',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
-    }
-    print('Subuh @ $subuhTimeEpoch');
-    print('Syuruk @ $syurukTimeEpoch');
-    print('Zohor @ $zuhrTimeEpoch');
-    print('Asar @ $asarTimeEpoch');
-    print('Maghrib @ $maghribTimeEpoch');
-    print('Isyak @ $isyakTimeEpoch');
-  }
 }
