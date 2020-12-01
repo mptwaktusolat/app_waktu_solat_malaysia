@@ -84,12 +84,11 @@ class _SettingsPageState extends State<SettingsPage> {
               Card(
                 child: ListTile(
                   title: Text('Notification settings'),
-                  subtitle:
-                      Text('Change sound, vibration of prayer notification via System Setting'),
+                  subtitle: Text(
+                      'Change sound, vibration of prayer notification via System Setting'),
                   onTap: () async {
                     await AppSettings.openNotificationSettings();
                   },
-                  trailing: Icon(Icons.launch_rounded),
                 ),
               ),
               Divider(
