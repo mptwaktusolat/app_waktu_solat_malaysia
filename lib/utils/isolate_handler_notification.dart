@@ -106,10 +106,11 @@ void schedulePrayNotification(List<dynamic> times) async {
     notifsPlugin: notifsPlugin,
     id: 2190,
     title: 'Monthly refresh reminder',
-    body: 'To continue receive notification. Open app once',
+    body:
+        'To continue receive prayer notification, open app at least once every month.',
     payload: kPayloadMonthly,
-    scheduledTime:
-        tz.TZDateTime.local(currentDate.year, currentDate.month + 1, 1, 5),
+    scheduledTime: tz.TZDateTime.local(currentDate.year, currentDate.month + 1,
+        1, 0, 5), //2021-01-01 00:05:00.000+0800
   );
 
   killCurrentScheduleNotifications();

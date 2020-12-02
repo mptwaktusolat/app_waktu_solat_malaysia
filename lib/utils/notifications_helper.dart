@@ -66,21 +66,23 @@ void configureSelectNotificationSubject(BuildContext context) {
     if (payload == kPayloadMonthly) {
       Fluttertoast.showToast(
           msg:
-              'Please wait for a few seconds for the notification to be resheduled.');
+              'Please wait for a few seconds for the notification to be resheduled.',
+          toastLength: Toast.LENGTH_LONG);
     } else if (payload == kPayloadDebug) {
-      Fluttertoast.showToast(msg: 'Deug payload here!');
+      Fluttertoast.showToast(
+          msg: 'Debug payload here!', toastLength: Toast.LENGTH_SHORT);
     }
   });
 }
 
 Future<void> schedulePrayerNotification(
     //for main prayer functionality
-    {notifs.FlutterLocalNotificationsPlugin notifsPlugin,
-    String name,
-    int id,
-    String title,
-    String body,
-    DateTime scheduledTime}) async {
+    {@required notifs.FlutterLocalNotificationsPlugin notifsPlugin,
+    @required String name,
+    @required int id,
+    @required String title,
+    @required String body,
+    @required DateTime scheduledTime}) async {
   var androidSpecifics = notifs.AndroidNotificationDetails(
     '$name id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
@@ -114,7 +116,7 @@ Future<void> scheduleAlertNotification(
     'Alerts and reminders to user', //This specifies the description of the channel
     priority: notifs.Priority.defaultPriority,
     importance: notifs.Importance.high,
-    color: Color(0xFFeb1515),
+    color: Color(0xFFfcbd00),
   );
 
   var iOSSpecifics = notifs.IOSNotificationDetails();
