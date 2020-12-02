@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/main.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import '../../CONSTANTS.dart';
 import '../contributionPage.dart';
@@ -72,6 +74,22 @@ class AboutAppPage extends StatelessWidget {
                               title: Text('Send immediate test notification'),
                               onTap: () async {
                                 await showDebugNotification();
+                              },
+                            ),
+                            ListTile(
+                              title: Text('Send alert test in one miniute'),
+                              subtitle: Text('Payload: $kPayloadDebug'),
+                              onTap: () async {
+                                await scheduleAlertNotification(
+                                    notifsPlugin: notifsPlugin,
+                                    title: 'debug payload',
+                                    id: 219, //randrom int haha
+                                    body: 'With payload',
+                                    payload: kPayloadDebug,
+                                    scheduledTime:
+                                        tz.TZDateTime.now(tz.local).add(
+                                      Duration(minutes: 1),
+                                    ));
                               },
                             ),
                             ListTile(
