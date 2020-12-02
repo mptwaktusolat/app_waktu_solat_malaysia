@@ -49,5 +49,5 @@ app.*.map.json
 # key file
 key.properties
 
-#scrath file
+#scratch file
 test.dart
