@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/main.dart';
-import 'package:timezone/timezone.dart' as tz;
 
 final rxSub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =
