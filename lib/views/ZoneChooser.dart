@@ -43,7 +43,7 @@ class _LocationChooserState extends State<LocationChooser> {
       //if first run, then promote to change location
       if (GetStorage().read(kStoredFirstRun)) {
         GetStorage().write(kStoredFirstRun, false);
-        return Scaffold.of(context).showSnackBar(
+        return ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.floating,
             content: Text(
@@ -52,7 +52,7 @@ class _LocationChooserState extends State<LocationChooser> {
             action: SnackBarAction(
               label: 'Got it!',
               onPressed: () {
-                Scaffold.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
               },
             ),
           ),
@@ -93,7 +93,7 @@ class _LocationChooserState extends State<LocationChooser> {
         }
       },
       onLongPress: () {
-        Scaffold.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
               'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
           behavior: SnackBarBehavior.floating,
