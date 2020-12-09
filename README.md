@@ -18,8 +18,8 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 <!-- https://api.azanpro.com/ - Solat Jakim API (Unofficial) -->
 <!-- 1. http://waktusolatapp.com/ (For prayer time) -->
-
-https://mpt.i906.my/ (For getting location and prayer time)
+Malaysia Prayer Time JSON API
+ttps://mpt.i906.my/ 
 
 ## Changelogs History
 
@@ -30,6 +30,11 @@ Wondering what changed with every :new: releases? Or what bug :bug: has been fix
 Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues).
 
 Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues). Really appreciated if you do.
+
+## Discussion
+
+You can also use [**Discussions** ](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/discussions) ask any question or suggesting any idea using. Kita sembang2 santai je gituu :relaxed:
+
 
 ## Web app (Beta)
 
