@@ -81,6 +81,6 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24)
 - [Privacy Policy](https://telegra.ph/MPT-Privacy-Policy-07-24)
 - Google Play and the Google Play logo are trademarks of Google LLC.
-- Huawei logo and are trademarks of Huawei Technologies Co., Ltd.
+- Huawei logo are trademarks of Huawei Technologies Co., Ltd.
 
 <!-- **No redistruba -->
