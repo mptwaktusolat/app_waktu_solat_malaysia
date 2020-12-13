@@ -82,12 +82,14 @@ Future<void> schedulePrayerNotification(
     @required String title,
     @required String body,
     @required DateTime scheduledTime}) async {
+  BigTextStyleInformation styleInformation = BigTextStyleInformation(body);
   var androidSpecifics = notifs.AndroidNotificationDetails(
     '$name id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
     'Scheduled daily prayer notification', //This specifies the description of the channel
     priority: notifs.Priority.max,
     importance: notifs.Importance.high,
+    styleInformation: styleInformation,
     color: Color(0xFF19e3cb),
   );
   var iOSSpecifics = notifs.IOSNotificationDetails();
@@ -109,12 +111,14 @@ Future<void> scheduleAlertNotification(
     @required String body,
     String payload,
     @required DateTime scheduledTime}) async {
+  BigTextStyleInformation styleInformation = BigTextStyleInformation(body);
   var androidSpecifics = notifs.AndroidNotificationDetails(
     'Alert id', // This specifies the ID of the Notification
     'Alert notification', // This specifies the name of the notification channel
     'Alerts and reminders to user', //This specifies the description of the channel
     priority: notifs.Priority.defaultPriority,
     importance: notifs.Importance.high,
+    styleInformation: styleInformation,
     color: Color(0xFFfcbd00),
   );
 
