@@ -1,4 +1,3 @@
-import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,6 +6,7 @@ import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 import 'package:waktusolatmalaysia/utils/AppInformation.dart';
 import 'package:waktusolatmalaysia/utils/cupertinoSwitchListTile.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/NotificationSettingPage.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -84,10 +84,13 @@ class _SettingsPageState extends State<SettingsPage> {
               Card(
                 child: ListTile(
                   title: Text('Notification settings'),
-                  subtitle: Text(
-                      'Change sound, vibration of prayer notification via System Setting'),
+                  subtitle: Text('App notification behavior'),
                   onTap: () async {
-                    await AppSettings.openNotificationSettings();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                NotificationPageSetting()));
                   },
                 ),
               ),

@@ -12,6 +12,7 @@ import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
 import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/utils/prayerName.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
@@ -138,9 +139,9 @@ class _PrayTimeListState extends State<PrayTimeList> {
                 : Container(
                     height: 0,
                   ),
-            solatCard(subuhTime, 'Fajr', true),
+            solatCard(subuhTime, PrayerName.prayerName[0], true),
             showOtherPrayerTime
-                ? solatCard(syurukTime, 'Syuruk', false)
+                ? solatCard(syurukTime, PrayerName.prayerName[1], false)
                 : Container(
                     height: 0,
                   ),
@@ -149,10 +150,10 @@ class _PrayTimeListState extends State<PrayTimeList> {
                 : Container(
                     height: 0,
                   ),
-            solatCard(zohorTime, 'Zuhr', true),
-            solatCard(asarTime, 'Asr', true),
-            solatCard(maghribTime, 'Maghrib', true),
-            solatCard(isyaTime, 'Isya\'', true),
+            solatCard(zohorTime, PrayerName.prayerName[2], true),
+            solatCard(asarTime, PrayerName.prayerName[3], true),
+            solatCard(maghribTime, PrayerName.prayerName[4], true),
+            solatCard(isyaTime, PrayerName.prayerName[5], true),
           ],
         );
       },
