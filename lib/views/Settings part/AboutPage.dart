@@ -177,7 +177,7 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   onTap: () {
                     LaunchUrl.normalLaunchUrl(
-                        url: kPrivacyPolicyLink, usesWebView: true);
+                        url: kPrivacyPolicyLink, useCustomTabs: true);
                   },
                 ),
               ),
@@ -188,7 +188,8 @@ class AboutAppPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   onTap: () {
-                    LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
+                    LaunchUrl.normalLaunchUrl(
+                        url: kReleaseNotesLink, useCustomTabs: true);
                   },
                 ),
               ),

@@ -1,11 +1,21 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 
 class LaunchUrl {
-  static void normalLaunchUrl({String url, bool usesWebView = false}) {
-    print('Normal launching $url');
-    _launchURL(url, usesWebView);
+  static void normalLaunchUrl(
+      {String url, bool usesWebView = false, bool useCustomTabs = false}) {
+    print('Launching $url');
+
+    !useCustomTabs
+        ? _launchURL(url, usesWebView)
+        : FlutterWebBrowser.openWebPage(
+            url: url,
+            customTabsOptions: CustomTabsOptions(
+                toolbarColor: Colors.teal.shade700,
+                secondaryToolbarColor: Colors.teal));
   }
 
   static void sendViaEmail(String messageContent) {
@@ -13,11 +23,6 @@ class LaunchUrl {
         'mailto:$kDevEmail?subject=Feedback MPT&body=$messageContent');
     print(emailLink);
     _launchURL(emailLink, false);
-  }
-
-  static void customTabsUrl(String url) {
-    print('Called custom tabs: $url');
-    //TODO: Custom tabs
   }
 }
 
