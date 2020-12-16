@@ -33,25 +33,31 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   }),
               CupertinoSwitchListTile(
                   title: Text(PrayerName.prayerName[1]),
-                  value: prayerNotification[0],
+                  value: prayerNotification[1],
                   onChanged: (bool value) {
                     print('huhuuhu');
                   }),
               CupertinoSwitchListTile(
                   title: Text(PrayerName.prayerName[2]),
-                  value: prayerNotification[0],
+                  value: prayerNotification[2],
                   onChanged: (bool value) {
                     print('huhuuhu');
                   }),
               CupertinoSwitchListTile(
                   title: Text(PrayerName.prayerName[3]),
-                  value: prayerNotification[0],
+                  value: prayerNotification[3],
                   onChanged: (bool value) {
                     print('huhuuhu');
                   }),
               CupertinoSwitchListTile(
                   title: Text(PrayerName.prayerName[4]),
-                  value: prayerNotification[0],
+                  value: prayerNotification[4],
+                  onChanged: (bool value) {
+                    print('huhuuhu');
+                  }),
+                  CupertinoSwitchListTile(
+                  title: Text(PrayerName.prayerName[5]),
+                  value: prayerNotification[5],
                   onChanged: (bool value) {
                     print('huhuuhu');
                   }),

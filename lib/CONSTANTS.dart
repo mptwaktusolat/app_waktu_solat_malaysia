@@ -14,7 +14,7 @@ const kStoredApiLocationCall = "storedApiLocCall";
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
 const kThemeUiUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes%20(1).png?alt=media&token=c6274576-320f-4031-990e-b8e2b554a94e';
+    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fnew%20dark%20white.png?alt=media&token=66cbcc86-80e3-46c4-be19-82f9b793c853';
 const kDeveloperActivityImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_developer_activity_bv83.svg?alt=media&token=e787419a-fb75-4484-860d-512b4b634c97';
 
