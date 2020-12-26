@@ -21,6 +21,7 @@ import 'CONSTANTS.dart';
 NotificationAppLaunchDetails notifLaunch;
 final FlutterLocalNotificationsPlugin notifsPlugin =
     FlutterLocalNotificationsPlugin();
+
 void main() async {
   await GetStorage.init();
 

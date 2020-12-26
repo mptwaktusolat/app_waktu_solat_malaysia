@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1012545476549-nmbjd650586u2iquu0q0h3rrguekc8kp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "live.iqfareez.waktusolatmalaysia",
+            "certificate_hash": "348a1ce8405c179ee94e2ae48e5a56500be158ef"
+          }
+        },
+        {
           "client_id": "1012545476549-jcmsjvts9jfqimaa37di7lvhg91e7gh2.apps.googleusercontent.com",
           "client_type": 3
         }

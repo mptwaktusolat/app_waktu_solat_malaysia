@@ -98,7 +98,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
     var prayerTimeData = widget.prayerTime.data;
     handler = PrayDataHandler(prayerTimeData.times);
     schedulePrayNotification(
-        handler.getPrayDataCurrentDateOnwards()); //scheduled notification
+        handler.getPrayDataCurrentDateOnwards()); //schedule notification
 
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
