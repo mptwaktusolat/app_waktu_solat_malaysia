@@ -58,5 +58,19 @@ const kPaypalDonateShortLink = 'paypal.me/iqfareez';
 const kPaypalDonateFullLink = 'https://www.paypal.com/paypalme/iqfareez';
 const kMaybankAccNo = '162348620850';
 
+//azan audio link
+//https://www.onlineconverter.com/compress-mp3
+//(mishary) kurd-2208, lamy-2205, bayati-2014
+const azansAudioFajr = [
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FFajr%2FKurd2008-FAJR.mp3?alt=media&token=587c9b4d-3427-42cc-956a-1a3ea44296ce',
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FFajr%2FLamy2005-FAJR.mp3?alt=media&token=3868ed15-05d1-458e-80c4-5c31ee3030dd',
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FFajr%2Fbayati2014-FAJR.mp3?alt=media&token=2ca1dcdd-5e4d-4d46-b781-44bcc46b7b2e'
+];
+const azansAudioNormal = [
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FNormal%2FKurd2008.mp3?alt=media&token=7020643d-dcfd-4caa-9702-4c76d0d10c4b',
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FNormal%2FLamy2005.mp3?alt=media&token=0d718dfe-3c94-4938-b571-b4777714a85d',
+  'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Azan%2FNormal%2Fbayaty2014.mp3?alt=media&token=cf1fcb38-2a23-4902-95e9-9d2c34432c5c'
+];
+
 //hero tag
 const kAppIconTag = 'appIconTag';
