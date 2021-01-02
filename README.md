@@ -1,7 +1,8 @@
 # Waktu solat Malaysia
 
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
-![Maintenance](https://img.shields.io/maintenance/yes/2020?style=flat-square)
+![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
+![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
