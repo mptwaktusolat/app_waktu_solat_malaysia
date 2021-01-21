@@ -34,7 +34,7 @@ void main() async {
 
   initGetStorage();
 
-  Get.lazyPut<ThemeController>(() => ThemeController());
+  Get.lazyPut(() => ThemeController());
   runApp(MyApp());
 }
 
