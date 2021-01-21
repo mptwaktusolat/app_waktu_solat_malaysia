@@ -93,7 +93,7 @@ void schedulePrayNotification(List<dynamic> times) async {
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
     }
 
-    print('Notification scheduled');
+    print('Notification scheduled #$i');
     print('Subuh @ $subuhTimeEpoch');
     print('Syuruk @ $syurukTimeEpoch');
     print('Zohor @ $zuhrTimeEpoch');
@@ -112,6 +112,8 @@ void schedulePrayNotification(List<dynamic> times) async {
     scheduledTime: tz.TZDateTime.local(currentDate.year, currentDate.month + 1,
         1, 0, 5), //2021-01-01 00:05:00.000+0800
   );
+
+  print('DONE SCHEDULING NOTIFS');
 
   killCurrentScheduleNotifications();
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -34,13 +35,14 @@ void main() async {
 
   initGetStorage();
 
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
   Get.lazyPut(() => ThemeController());
   runApp(MyApp());
 }
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  var _primaryColour = Colors.teal;
+  final _primaryColour = Colors.teal;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,8 @@ class MyApp extends StatelessWidget {
           primaryColor: _primaryColour,
           bottomAppBarColor: Colors.teal.shade50,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: AppBarTheme(color: _primaryColour),
+          appBarTheme:
+              AppBarTheme(color: _primaryColour, brightness: Brightness.dark),
         ),
         darkTheme: ThemeData.dark().copyWith(
             primaryColor: _primaryColour,
