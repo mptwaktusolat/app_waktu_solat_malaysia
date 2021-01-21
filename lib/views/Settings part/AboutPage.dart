@@ -135,7 +135,7 @@ class AboutAppPage extends StatelessWidget {
                 ),
               ),
               Text(
-                '\n© Copyright 2020 Fareez Iqmal\n',
+                '\n© Copyright 2020-2021 Fareez Iqmal\n',
                 textAlign: TextAlign.center,
               ),
               Container(

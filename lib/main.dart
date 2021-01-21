@@ -104,6 +104,9 @@ void initGetStorage() {
   GetStorage().writeIfNull(kStoredFirstRun, true);
   GetStorage().writeIfNull(kStoredTimeIs12, true);
   GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
+  GetStorage().writeIfNull(kStoredShouldUpdateNotif, true);
+  GetStorage().writeIfNull(kStoredLastUpdateNotif, 0);
+  GetStorage().writeIfNull(kStoredNotificationLimit, false);
 }
 
 Future<void> _configureLocalTimeZone() async {

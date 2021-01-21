@@ -21,7 +21,19 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   var currentTime = DateTime.now().millisecondsSinceEpoch;
 
-  for (int i = 0; i < times.length; i++) {
+  var howMuchToSchedule;
+
+  if (GetStorage().read(kStoredNotificationLimit)) {
+    //should limit to 7
+    //TODO: Check this logic wether work on not
+    howMuchToSchedule = times.length < 7 ? times.length : 7;
+  } else {
+    howMuchToSchedule = times.length;
+  }
+
+  print('howMuchToSchedule is $howMuchToSchedule');
+
+  for (int i = 0; i < howMuchToSchedule; i++) {
     //i denotes the day relative for today
     int subuhTimeEpoch = times[i][0] * 1000;
     int syurukTimeEpoch = times[i][1] * 1000;
@@ -93,7 +105,7 @@ void schedulePrayNotification(List<dynamic> times) async {
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
     }
 
-    print('Notification scheduled #$i');
+    print('Notification scheduled #${i + 1}');
     print('Subuh @ $subuhTimeEpoch');
     print('Syuruk @ $syurukTimeEpoch');
     print('Zohor @ $zuhrTimeEpoch');
@@ -114,6 +126,9 @@ void schedulePrayNotification(List<dynamic> times) async {
   );
 
   print('DONE SCHEDULING NOTIFS');
+  //This timestamp is later used to determine wether notification should be updated or not
+  GetStorage()
+      .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
 
   killCurrentScheduleNotifications();
 }

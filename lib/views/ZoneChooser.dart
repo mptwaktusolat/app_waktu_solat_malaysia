@@ -63,6 +63,8 @@ class _LocationChooserState extends State<LocationChooser> {
     var shortCode = locationDatabase.getJakimCode(globalIndex);
 
     void _updateUI() {
+      GetStorage().write(kStoredShouldUpdateNotif,
+          true); //if zone changes, update the notification
       //this setState will be called when user select a new location, this will update the Text short code
       setState(() {
         shortCode = locationDatabase.getJakimCode(globalIndex);

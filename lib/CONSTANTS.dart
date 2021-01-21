@@ -9,6 +9,9 @@ const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
 const kStoredApiLocationCall = "storedApiLocCall";
+const kStoredShouldUpdateNotif = "storedShouldUpdateNotif";
+const kStoredLastUpdateNotif = "storedLastUpdateNotif";
+const kStoredNotificationLimit = "storedNotificationLimit";
 
 //Network image
 const kAppIconUrl =

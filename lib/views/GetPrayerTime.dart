@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -39,6 +40,19 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
         .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
+    //If less than 3 days, since the last notif is scheduled, do not rescehdule
+    if ((DateTime.now().millisecondsSinceEpoch -
+            GetStorage().read(kStoredLastUpdateNotif)) <
+        259200000) {
+      print('Notification should not update');
+      //TODO: Rremove when release, toast is for debug purposes
+      Fluttertoast.showToast(msg: 'Notification should not update');
+      GetStorage().write(kStoredShouldUpdateNotif, false);
+    } else {
+      GetStorage().write(kStoredLastUpdateNotif, true);
+      print('Notification should update');
+      Fluttertoast.showToast(msg: 'Notification should update');
+    }
   }
 
   @override
@@ -97,8 +111,10 @@ class _PrayTimeListState extends State<PrayTimeList> {
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
     handler = PrayDataHandler(prayerTimeData.times);
-    schedulePrayNotification(
-        handler.getPrayDataCurrentDateOnwards()); //schedule notification
+    if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
+      schedulePrayNotification(
+          handler.getPrayDataCurrentDateOnwards()); //schedule notification
+    }
 
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
