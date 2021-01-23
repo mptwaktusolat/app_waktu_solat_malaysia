@@ -37,9 +37,11 @@ class AboutAppPage extends StatelessWidget {
                   } else {
                     print('Show debug dialog');
                     var prayApiCalled =
-                        GetStorage().read(kStoredApiPrayerCall) ?? 'no calls';
+                        GetStorage().read(kStoredApiPrayerCall) ??
+                            'no calls yet';
                     var locApiCalled =
-                        GetStorage().read(kStoredApiLocationCall) ?? 'no calls';
+                        GetStorage().read(kStoredApiLocationCall) ??
+                            'no calls yet';
                     showDialog(
                       context: context,
                       builder: (context) => Dialog(
@@ -99,9 +101,11 @@ class AboutAppPage extends StatelessWidget {
                                     '${GetStorage().read(kStoredGlobalIndex)}')),
                             ListTile(
                               title: Text('Last update notification'),
-                              subtitle: Text(GetStorage()
-                                  .read(kStoredLastUpdateNotif)
-                                  .toString()),
+                              subtitle: Text(
+                                  DateTime.fromMillisecondsSinceEpoch(
+                                          GetStorage()
+                                              .read(kStoredLastUpdateNotif))
+                                      .toString()),
                               onLongPress: () {
                                 Clipboard.setData(ClipboardData(
                                         text: GetStorage()
