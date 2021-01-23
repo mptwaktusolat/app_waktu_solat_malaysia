@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/utils/prevent_update_notifs.dart';
 
 class ThemeController extends GetxController {
   static ThemeController get to => Get.find();
@@ -12,6 +13,7 @@ class ThemeController extends GetxController {
   ThemeMode get themeMode => _themeMode;
 
   Future<void> setThemeMode(ThemeMode themeMode) async {
+    PreventUpdatingNotifs.now();
     Get.changeThemeMode(themeMode);
     _themeMode = themeMode;
     update();
