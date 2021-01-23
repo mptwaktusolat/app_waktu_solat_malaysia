@@ -1,10 +1,11 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
-import 'package:waktusolatmalaysia/main.dart';
-import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
-import 'notifications_helper.dart';
 import 'package:timezone/timezone.dart' as tz;
+
 import '../CONSTANTS.dart';
+import '../main.dart';
+import '../views/GetPrayerTime.dart';
+import 'notifications_helper.dart';
 
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
 

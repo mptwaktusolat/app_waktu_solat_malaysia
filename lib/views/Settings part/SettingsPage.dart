@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
-import 'package:waktusolatmalaysia/utils/AppInformation.dart';
-import 'package:waktusolatmalaysia/utils/cupertinoSwitchListTile.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/AboutPage.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/NotificationSettingPage.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
+
+import '../../CONSTANTS.dart' as Constants;
+import '../../utils/AppInformation.dart';
+import '../../utils/cupertinoSwitchListTile.dart';
+import '../Settings%20part/AboutPage.dart';
+import '../Settings%20part/NotificationSettingPage.dart';
+import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({this.info});

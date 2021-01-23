@@ -4,11 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/main.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+
 import '../../CONSTANTS.dart';
+import '../../main.dart';
+import '../../utils/launchUrl.dart';
+import '../../utils/notifications_helper.dart';
 import '../contributionPage.dart';
-import 'package:waktusolatmalaysia/utils/notifications_helper.dart';
 
 class AboutAppPage extends StatelessWidget {
   AboutAppPage(this.appInfo);

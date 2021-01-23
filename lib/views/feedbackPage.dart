@@ -1,11 +1,11 @@
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/utils/AppInformation.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
 
+import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
+import '../utils/AppInformation.dart';
+import '../utils/launchUrl.dart';
 
 enum FeedbackCategory { suggestion, bug, compliment }
 

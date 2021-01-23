@@ -2,9 +2,9 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/utils/cupertinoSwitchListTile.dart';
-import 'package:waktusolatmalaysia/utils/prayerName.dart';
+import '../../CONSTANTS.dart';
+import '../../utils/cupertinoSwitchListTile.dart';
+import '../../utils/prayerName.dart';
 
 class NotificationPageSetting extends StatefulWidget {
   @override

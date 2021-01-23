@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 
+import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 

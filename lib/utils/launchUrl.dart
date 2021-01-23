@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import '../CONSTANTS.dart';
 
 class LaunchUrl {
   static void normalLaunchUrl(

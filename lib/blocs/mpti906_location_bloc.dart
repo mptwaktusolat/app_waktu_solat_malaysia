@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
-import 'package:waktusolatmalaysia/networking/Response.dart';
-import 'package:waktusolatmalaysia/repository/mptLocation_repository.dart';
+import '../models/mpti906api_location.dart';
+import '../networking/Response.dart';
+import '../repository/mptLocation_repository.dart';
 
 class Mpti906LocationBloc {
   MptRepository _mptRepository;

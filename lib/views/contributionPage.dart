@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+
+import '../CONSTANTS.dart' as Constants;
+import '../utils/launchUrl.dart';
 
 class ButtonContent {
   String label;
