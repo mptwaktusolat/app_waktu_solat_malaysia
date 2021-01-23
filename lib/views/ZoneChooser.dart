@@ -48,7 +48,7 @@ class _LocationChooserState extends State<LocationChooser> {
             behavior: SnackBarBehavior.floating,
             content: Text(
                 'Please update your location (if necessary) by tapping JHR 01 button above'),
-            duration: Duration(seconds: 6),
+            duration: Duration(seconds: 7),
             action: SnackBarAction(
               label: 'Got it!',
               onPressed: () {
@@ -179,7 +179,14 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
     if (selectedIndex != globalIndex) {
       if (selectedIndex != null) {
         globalIndex = selectedIndex;
-        Fluttertoast.showToast(msg: 'Location updated and saved');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Row(
+          children: [
+            Icon(Icons.done),
+            Text('Updated and saved'),
+          ],
+        )));
+        // Fluttertoast.showToast(msg: 'Location updated and saved');
         // RestartWidget.restartApp(context);
         callback();
         GetPrayerTime.updateUI(selectedIndex);
@@ -354,7 +361,14 @@ class Completed extends StatelessWidget {
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
                     globalIndex = index;
-                    Fluttertoast.showToast(msg: 'Location updated and saved');
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Row(
+                      children: [
+                        Icon(Icons.done),
+                        Text('Updated and saved'),
+                      ],
+                    )));
+                    // Fluttertoast.showToast(msg: 'Location updated and saved');
                     onCallback();
                     Navigator.pop(context);
                     GetPrayerTime.updateUI(index); //refresh prayer time

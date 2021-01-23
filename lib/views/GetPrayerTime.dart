@@ -14,6 +14,7 @@ import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
 import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/prayerName.dart';
+import 'package:waktusolatmalaysia/utils/prevent_update_notifs.dart';
 import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
@@ -40,19 +41,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
         .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
-    //If less than 3 days, since the last notif is scheduled, do not rescehdule
-    if ((DateTime.now().millisecondsSinceEpoch -
-            GetStorage().read(kStoredLastUpdateNotif)) <
-        259200000) {
-      print('Notification should not update');
-      //TODO: Rremove when release, toast is for debug purposes
-      Fluttertoast.showToast(msg: 'Notification should not update');
-      GetStorage().write(kStoredShouldUpdateNotif, false);
-    } else {
-      GetStorage().write(kStoredLastUpdateNotif, true);
-      print('Notification should update');
-      Fluttertoast.showToast(msg: 'Notification should update');
-    }
+    PreventUpdatingNotifs.now();
   }
 
   @override
