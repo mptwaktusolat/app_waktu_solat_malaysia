@@ -12,6 +12,8 @@ const kStoredApiLocationCall = "storedApiLocCall";
 const kStoredShouldUpdateNotif = "storedShouldUpdateNotif";
 const kStoredLastUpdateNotif = "storedLastUpdateNotif";
 const kStoredNotificationLimit = "storedNotificationLimit";
+const kNumberOfNotifsScheduled = "numnotifscheduled";
+const kIsDebugMode = "debugModeSet";
 
 //Network image
 const kAppIconUrl =

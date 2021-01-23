@@ -26,13 +26,13 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   if (GetStorage().read(kStoredNotificationLimit)) {
     //should limit to 7
-    //TODO: Check this logic wether work on not
     howMuchToSchedule = times.length < 7 ? times.length : 7;
   } else {
     howMuchToSchedule = times.length;
   }
 
   print('howMuchToSchedule is $howMuchToSchedule');
+  GetStorage().write(kNumberOfNotifsScheduled, howMuchToSchedule);
 
   for (int i = 0; i < howMuchToSchedule; i++) {
     //i denotes the day relative for today

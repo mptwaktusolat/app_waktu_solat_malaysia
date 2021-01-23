@@ -115,6 +115,12 @@ class AboutAppPage extends StatelessWidget {
                                         msg: 'Copied millis'));
                               },
                             ),
+                            ListTile(
+                              title: Text('Number of scheduled notification'),
+                              subtitle: Text(GetStorage()
+                                  .read(kNumberOfNotifsScheduled)
+                                  .toString()),
+                            )
                           ],
                         ),
                       ),
