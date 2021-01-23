@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
-import '../../utils/prayerName.dart';
 
 class NotificationPageSetting extends StatefulWidget {
   @override

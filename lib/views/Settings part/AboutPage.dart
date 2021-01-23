@@ -48,7 +48,7 @@ class AboutAppPage extends StatelessWidget {
                           padding: EdgeInsets.all(8.0),
                           children: [
                             Text(
-                              'For dev (Api call history)',
+                              'Debug dialog (for dev)',
                               textAlign: TextAlign.center,
                             ),
                             ListTile(
@@ -96,7 +96,21 @@ class AboutAppPage extends StatelessWidget {
                             ListTile(
                                 title: Text('Global location index'),
                                 subtitle: Text(
-                                    '${GetStorage().read(kStoredGlobalIndex)}'))
+                                    '${GetStorage().read(kStoredGlobalIndex)}')),
+                            ListTile(
+                              title: Text('Last update notification'),
+                              subtitle: Text(GetStorage()
+                                  .read(kStoredLastUpdateNotif)
+                                  .toString()),
+                              onLongPress: () {
+                                Clipboard.setData(ClipboardData(
+                                        text: GetStorage()
+                                            .read(kStoredLastUpdateNotif)
+                                            .toString()))
+                                    .then((value) => Fluttertoast.showToast(
+                                        msg: 'Copied millis'));
+                              },
+                            ),
                           ],
                         ),
                       ),
