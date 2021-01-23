@@ -1,7 +1,7 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
-
+import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -178,15 +178,9 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
     if (selectedIndex != globalIndex) {
       if (selectedIndex != null) {
         globalIndex = selectedIndex;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Row(
-          children: [
-            Icon(Icons.done),
-            Text('Updated and saved'),
-          ],
-        )));
+        showSnackbarLocationSaved(context);
+
         // Fluttertoast.showToast(msg: 'Location updated and saved');
-        // RestartWidget.restartApp(context);
         callback();
         GetPrayerTime.updateUI(selectedIndex);
       }
@@ -360,13 +354,7 @@ class Completed extends StatelessWidget {
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
                     globalIndex = index;
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Row(
-                      children: [
-                        Icon(Icons.done),
-                        Text('Updated and saved'),
-                      ],
-                    )));
+                    showSnackbarLocationSaved(context);
                     // Fluttertoast.showToast(msg: 'Location updated and saved');
                     onCallback();
                     Navigator.pop(context);
@@ -381,6 +369,26 @@ class Completed extends StatelessWidget {
     );
   }
 }
+
+void showSnackbarLocationSaved(BuildContext context) =>
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 2500),
+        content: Row(
+          children: [
+            Icon(
+              Icons.pin_drop_rounded,
+              color: Get.isDarkMode ? Colors.black87 : Colors.white70,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text('Updated and saved'),
+          ],
+        ),
+      ),
+    );
 
 class Error extends StatelessWidget {
   final String errorMessage;

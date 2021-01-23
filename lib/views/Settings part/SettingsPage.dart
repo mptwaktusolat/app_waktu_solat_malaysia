@@ -88,10 +88,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   subtitle: Text('App notification behavior'),
                   onTap: () async {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                NotificationPageSetting()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            NotificationPageSetting(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -103,9 +105,11 @@ class _SettingsPageState extends State<SettingsPage> {
                   title: Text('About app (Ver. ${widget.info.version})'),
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AboutAppPage(widget.info)));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AboutAppPage(widget.info),
+                      ),
+                    );
                   },
                   subtitle:
                       Text('Privacy Policy, Release Notes, Contribution etc.'),
