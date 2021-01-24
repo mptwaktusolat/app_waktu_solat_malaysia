@@ -13,7 +13,7 @@ class ThemeController extends GetxController {
   ThemeMode get themeMode => _themeMode;
 
   Future<void> setThemeMode(ThemeMode themeMode) async {
-    PreventUpdatingNotifs.now();
+    PreventUpdatingNotifs.setNow();
     Get.changeThemeMode(themeMode);
     _themeMode = themeMode;
     update();

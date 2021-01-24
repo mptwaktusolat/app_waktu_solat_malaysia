@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -29,6 +31,12 @@ void schedulePrayNotification(List<dynamic> times) async {
     howMuchToSchedule = times.length < 7 ? times.length : 7;
   } else {
     howMuchToSchedule = times.length;
+  }
+
+  if (GetStorage().read(kIsDebugMode)) {
+    Fluttertoast.showToast(
+        msg: 'SCHEDULING $howMuchToSchedule notiifcations',
+        backgroundColor: Color(0xFFD17777));
   }
 
   print('howMuchToSchedule is $howMuchToSchedule');
@@ -127,6 +135,7 @@ void schedulePrayNotification(List<dynamic> times) async {
   );
 
   print('DONE SCHEDULING NOTIFS');
+
   //This timestamp is later used to determine wether notification should be updated or not
   GetStorage()
       .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);

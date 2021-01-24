@@ -41,7 +41,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
         .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
-    PreventUpdatingNotifs.now();
+    PreventUpdatingNotifs.setNow();
   }
 
   @override

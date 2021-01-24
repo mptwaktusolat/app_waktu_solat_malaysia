@@ -9,4 +9,11 @@ class DateAndTime {
     var formattedTime = formatToReadable.format(date);
     return (formattedTime);
   }
+
+  static bool isTheSameMonth(int savedMillis) {
+    var savedMonth = DateTime.fromMillisecondsSinceEpoch(savedMillis).month;
+
+    var currentMonth = DateTime.now().month;
+    return savedMonth == currentMonth;
+  }
 }
