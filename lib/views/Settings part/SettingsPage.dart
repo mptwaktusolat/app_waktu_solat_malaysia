@@ -40,84 +40,143 @@ class _SettingsPageState extends State<SettingsPage> {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              Card(
-                child: ListTile(
-                  title: Text('Time format'),
-                  trailing: DropdownButton(
-                    items: <String>['12 hour', '24 hour']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+              Padding(
+                  padding: const EdgeInsets.all(8.0), child: Text('Display')),
+              buildTimeFormat(setting),
+              SizedBox(height: 5),
+              buildShowOtherPrayerTime(setting),
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Notification')),
+              buildNotificationSetting(context),
+              Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
+              // SizedBox(height: 5),
+              buildAboutApp(context),
+              Opacity(
+                opacity: .4,
+                child: Card(
+                  child: ListTile(
+                    title: Text('Verbose debug mode'),
+                    subtitle: Text('For developer purposes'),
+                    onTap: () {
+                      print('VERBOSE DEBUG MODE');
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                                GetStorage().read(Constants.kIsDebugMode)
+                                    ? 'Verbose debug mode is ON'
+                                    : 'Verbose debug mode is OFF'),
+                            content: Text(
+                                'Toast message or similar will show throughout usage of the app'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                  },
+                                  child: Text('Cancel')),
+                              TextButton(
+                                  onPressed: () {
+                                    print('PROCEED');
+                                  },
+                                  child: GetStorage()
+                                          .read(Constants.kIsDebugMode)
+                                      ? Text('Turn off')
+                                      : Text(
+                                          'Turn on',
+                                          style: TextStyle(color: Colors.red),
+                                        ))
+                            ],
+                          );
+                        },
                       );
-                    }).toList(),
-                    onChanged: (String newValue) {
-                      var is12 = newValue == '12 hour';
-                      // print('NewValue $newValue');
-                      setting.use12hour = is12;
-                      GetStorage().write(Constants.kStoredTimeIs12, is12);
-                      setState(() {
-                        timeFormat = newValue;
-                        print(GetStorage().read(Constants.kStoredTimeIs12));
-                      });
                     },
-                    value: timeFormat,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              Card(
-                child: CupertinoSwitchListTile(
-                  title: Text('Show other prayer times'),
-                  subtitle: Text('Imsak, Syuruk, Dhuha'),
-                  onChanged: (bool value) {
-                    setState(() {
-                      setting.showOtherPrayerTime = value;
-                      GetStorage()
-                          .write(Constants.kStoredShowOtherPrayerTime, value);
-                    });
-                  },
-                  value: setting.showOtherPrayerTime,
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('Notification settings'),
-                  subtitle: Text('App notification behavior'),
-                  onTap: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            NotificationPageSetting(),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Divider(
-                height: 5,
-              ),
-              Card(
-                child: ListTile(
-                  title: Text('About app (Ver. ${widget.info.version})'),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AboutAppPage(widget.info),
-                      ),
-                    );
-                  },
-                  subtitle:
-                      Text('Privacy Policy, Release Notes, Contribution etc.'),
-                ),
-              ),
+              )
             ],
           );
         },
+      ),
+    );
+  }
+
+  Card buildAboutApp(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text('About app (Ver. ${widget.info.version})'),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AboutAppPage(widget.info),
+            ),
+          );
+        },
+        subtitle: Text('Privacy Policy, Release Notes, Contribution etc.'),
+      ),
+    );
+  }
+
+  Card buildNotificationSetting(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text('Notification settings'),
+        subtitle: Text('App notification behavior'),
+        onTap: () async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => NotificationPageSetting(),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Card buildShowOtherPrayerTime(SettingProvider setting) {
+    return Card(
+      child: CupertinoSwitchListTile(
+        title: Text('Show other prayer times'),
+        subtitle: Text('Imsak, Syuruk, Dhuha'),
+        onChanged: (bool value) {
+          setState(() {
+            setting.showOtherPrayerTime = value;
+            GetStorage().write(Constants.kStoredShowOtherPrayerTime, value);
+          });
+        },
+        value: setting.showOtherPrayerTime,
+      ),
+    );
+  }
+
+  Card buildTimeFormat(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Text('Time format'),
+        trailing: DropdownButton(
+          items: <String>['12 hour', '24 hour']
+              .map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+          onChanged: (String newValue) {
+            var is12 = newValue == '12 hour';
+            // print('NewValue $newValue');
+            setting.use12hour = is12;
+            GetStorage().write(Constants.kStoredTimeIs12, is12);
+            setState(() {
+              timeFormat = newValue;
+              print(GetStorage().read(Constants.kStoredTimeIs12));
+            });
+          },
+          value: timeFormat,
+        ),
       ),
     );
   }
