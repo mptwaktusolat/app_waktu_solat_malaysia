@@ -80,6 +80,11 @@ class _SettingsPageState extends State<SettingsPage> {
                               TextButton(
                                   onPressed: () {
                                     print('PROCEED');
+                                    //inverse if false then become true & vice versa
+                                    GetStorage().write(
+                                        Constants.kIsDebugMode,
+                                        GetStorage()
+                                            .read(Constants.kIsDebugMode));
                                   },
                                   child: GetStorage()
                                           .read(Constants.kIsDebugMode)

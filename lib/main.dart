@@ -23,8 +23,6 @@ NotificationAppLaunchDetails notifLaunch;
 final FlutterLocalNotificationsPlugin notifsPlugin =
     FlutterLocalNotificationsPlugin();
 
-//TODO: Global debug mode in Setting
-
 void main() async {
   await GetStorage.init();
 
