@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
-import 'package:waktusolatmalaysia/networking/Response.dart';
-import 'package:waktusolatmalaysia/repository/prayerTime_repository.dart';
+import '../models/mpti906PrayerData.dart';
+import '../networking/Response.dart';
+import '../repository/prayerTime_repository.dart';
 
 class Mpti906PrayerBloc {
   AzanTimesTodayRepository _prayerTimeRepository;

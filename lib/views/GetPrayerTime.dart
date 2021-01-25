@@ -1,20 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
-import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
-import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
-import 'package:waktusolatmalaysia/utils/RawPrayDataHandler.dart';
-import 'package:waktusolatmalaysia/utils/cachedPrayerData.dart';
-import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
-import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
-import 'package:waktusolatmalaysia/utils/prayerName.dart';
-import 'package:waktusolatmalaysia/utils/sizeconfig.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
+import '../CONSTANTS.dart';
+import '../blocs/mpti906_prayer_bloc.dart';
+import '../models/mpti906PrayerData.dart';
+import '../utils/DateAndTime.dart';
+import '../utils/RawPrayDataHandler.dart';
+import '../utils/cachedPrayerData.dart';
+import '../utils/isolate_handler_notification.dart';
+import '../utils/location/locationDatabase.dart';
+import '../utils/prayerName.dart';
+import '../utils/prevent_update_notifs.dart';
+import '../utils/sizeconfig.dart';
+import 'Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
@@ -39,6 +41,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
         .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('$location');
+    PreventUpdatingNotifs.setNow();
   }
 
   @override
@@ -97,8 +100,10 @@ class _PrayTimeListState extends State<PrayTimeList> {
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
     handler = PrayDataHandler(prayerTimeData.times);
-    schedulePrayNotification(
-        handler.getPrayDataCurrentDateOnwards()); //schedule notification
+    if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
+      schedulePrayNotification(
+          handler.getPrayDataCurrentDateOnwards()); //schedule notification
+    }
 
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {

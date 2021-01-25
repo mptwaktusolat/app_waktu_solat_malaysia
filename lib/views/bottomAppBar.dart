@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/utils/copyAndShare.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/SettingsPage.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
-import 'package:waktusolatmalaysia/views/feedbackPage.dart';
+
+import '../CONSTANTS.dart';
 import '../utils/AppInformation.dart';
+import '../utils/copyAndShare.dart';
+import '../utils/launchUrl.dart';
+import 'Settings%20part/SettingsPage.dart';
+import 'Settings%20part/ThemePage.dart';
+import 'feedbackPage.dart';
 
 AppInfo info = AppInfo();
 

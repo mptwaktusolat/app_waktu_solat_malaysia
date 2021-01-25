@@ -1,7 +1,8 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
-import 'package:waktusolatmalaysia/networking/ApiProvider.dart';
+
+import '../CONSTANTS.dart';
+import '../models/mpti906api_location.dart';
+import '../networking/ApiProvider.dart';
 
 class MptRepository {
   ApiProvider apiProvider = ApiProvider();

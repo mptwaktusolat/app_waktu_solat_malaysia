@@ -1,21 +1,20 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
-
 import 'dart:async';
+import 'package:get/get.dart' show Get, GetNavigation;
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_location_bloc.dart';
 import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 int globalIndex;
 
@@ -32,8 +31,6 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
-    GetStorage().writeIfNull(kStoredGlobalIndex,
-        0); //null when first run, defaulted to JHR 01 (top of the list)
     globalIndex = GetStorage().read(kStoredGlobalIndex);
   }
 
@@ -48,7 +45,7 @@ class _LocationChooserState extends State<LocationChooser> {
             behavior: SnackBarBehavior.floating,
             content: Text(
                 'Please update your location (if necessary) by tapping JHR 01 button above'),
-            duration: Duration(seconds: 6),
+            duration: Duration(seconds: 7),
             action: SnackBarAction(
               label: 'Got it!',
               onPressed: () {
@@ -63,7 +60,11 @@ class _LocationChooserState extends State<LocationChooser> {
     var shortCode = locationDatabase.getJakimCode(globalIndex);
 
     void _updateUI() {
+      GetStorage().write(kStoredShouldUpdateNotif,
+          true); //if zone changes, update the notification
       //this setState will be called when user select a new location, this will update the Text short code
+      showSnackbarLocationSaved(context);
+
       setState(() {
         shortCode = locationDatabase.getJakimCode(globalIndex);
       });
@@ -177,10 +178,9 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
     if (selectedIndex != globalIndex) {
       if (selectedIndex != null) {
         globalIndex = selectedIndex;
-        Fluttertoast.showToast(msg: 'Location updated and saved');
-        // RestartWidget.restartApp(context);
         callback();
         GetPrayerTime.updateUI(selectedIndex);
+        // showSnackbarLocationSaved(context);
       }
     }
   });
@@ -352,7 +352,7 @@ class Completed extends StatelessWidget {
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
                     globalIndex = index;
-                    Fluttertoast.showToast(msg: 'Location updated and saved');
+                    // Fluttertoast.showToast(msg: 'Location updated and saved');
                     onCallback();
                     Navigator.pop(context);
                     GetPrayerTime.updateUI(index); //refresh prayer time
@@ -366,6 +366,26 @@ class Completed extends StatelessWidget {
     );
   }
 }
+
+void showSnackbarLocationSaved(BuildContext context) =>
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        duration: Duration(milliseconds: 2500),
+        content: Row(
+          children: [
+            Icon(
+              Icons.pin_drop_rounded,
+              color: Get.isDarkMode ? Colors.black87 : Colors.white70,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text('Updated and saved'),
+          ],
+        ),
+      ),
+    );
 
 class Error extends StatelessWidget {
   final String errorMessage;

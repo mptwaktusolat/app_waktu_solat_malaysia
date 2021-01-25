@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/utils/prevent_update_notifs.dart';
 
 class ThemeController extends GetxController {
   static ThemeController get to => Get.find();
@@ -12,6 +13,7 @@ class ThemeController extends GetxController {
   ThemeMode get themeMode => _themeMode;
 
   Future<void> setThemeMode(ThemeMode themeMode) async {
+    PreventUpdatingNotifs.setNow();
     Get.changeThemeMode(themeMode);
     _themeMode = themeMode;
     update();
@@ -22,7 +24,8 @@ class ThemeController extends GetxController {
     ThemeMode themeMode;
 
     String themeText = GetStorage().read('theme') ??
-        'light'; //at first run default it to light mode
+        'light'; //by default, light is selected
+        //TODO: Change to system in later release
     try {
       themeMode =
           ThemeMode.values.firstWhere((e) => describeEnum(e) == themeText);

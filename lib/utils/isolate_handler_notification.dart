@@ -1,10 +1,13 @@
+import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
-import 'package:waktusolatmalaysia/main.dart';
-import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
-import 'notifications_helper.dart';
 import 'package:timezone/timezone.dart' as tz;
+
 import '../CONSTANTS.dart';
+import '../main.dart';
+import '../views/GetPrayerTime.dart';
+import 'notifications_helper.dart';
 
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
 
@@ -21,7 +24,25 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   var currentTime = DateTime.now().millisecondsSinceEpoch;
 
-  for (int i = 0; i < times.length; i++) {
+  var howMuchToSchedule;
+
+  if (GetStorage().read(kStoredNotificationLimit)) {
+    //should limit to 7
+    howMuchToSchedule = times.length < 7 ? times.length : 7;
+  } else {
+    howMuchToSchedule = times.length;
+  }
+
+  if (GetStorage().read(kIsDebugMode)) {
+    Fluttertoast.showToast(
+        msg: 'SCHEDULING $howMuchToSchedule notiifcations',
+        backgroundColor: Color(0xFFD17777));
+  }
+
+  print('howMuchToSchedule is $howMuchToSchedule');
+  GetStorage().write(kNumberOfNotifsScheduled, howMuchToSchedule);
+
+  for (int i = 0; i < howMuchToSchedule; i++) {
     //i denotes the day relative for today
     int subuhTimeEpoch = times[i][0] * 1000;
     int syurukTimeEpoch = times[i][1] * 1000;
@@ -93,7 +114,7 @@ void schedulePrayNotification(List<dynamic> times) async {
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
     }
 
-    print('Notification scheduled');
+    print('Notification scheduled #${i + 1}');
     print('Subuh @ $subuhTimeEpoch');
     print('Syuruk @ $syurukTimeEpoch');
     print('Zohor @ $zuhrTimeEpoch');
@@ -112,6 +133,16 @@ void schedulePrayNotification(List<dynamic> times) async {
     scheduledTime: tz.TZDateTime.local(currentDate.year, currentDate.month + 1,
         1, 0, 5), //2021-01-01 00:05:00.000+0800
   );
+
+  print('DONE SCHEDULING NOTIFS');
+  if (GetStorage().read(kIsDebugMode)) {
+    Fluttertoast.showToast(
+        msg: 'FINISH SCHEDULE NOTIFS', toastLength: Toast.LENGTH_LONG);
+  }
+
+  //This timestamp is later used to determine wether notification should be updated or not
+  GetStorage()
+      .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
 
   killCurrentScheduleNotifications();
 }

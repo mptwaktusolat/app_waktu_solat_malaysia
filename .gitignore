@@ -50,4 +50,4 @@ app.*.map.json
 key.properties
 
 #scratch file
-test.dart
+scratch.dart

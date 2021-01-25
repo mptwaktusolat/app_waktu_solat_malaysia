@@ -1,10 +1,10 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart' as Constants;
-import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 
+import '../CONSTANTS.dart' as Constants;
 import 'cachedPrayerData.dart';
+import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage() {
