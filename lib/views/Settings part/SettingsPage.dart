@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Consumer<SettingProvider>(
         builder: (context, setting, child) {
           return ListView(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             children: [
               Padding(
                   padding: const EdgeInsets.all(8.0), child: Text('Display')),

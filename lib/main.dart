@@ -35,6 +35,8 @@ void main() async {
 
   initGetStorage();
 
+  readAllGetStorage();
+
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
   Get.lazyPut(() => ThemeController());
@@ -102,6 +104,7 @@ class MyHomePage extends StatelessWidget {
 
 void initGetStorage() {
   GetStorage().writeIfNull(kStoredFirstRun, true);
+  GetStorage().writeIfNull(kStoredGlobalIndex, 0);
   GetStorage().writeIfNull(kStoredTimeIs12, true);
   GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
   GetStorage().writeIfNull(kStoredShouldUpdateNotif, true);
@@ -115,4 +118,22 @@ Future<void> _configureLocalTimeZone() async {
   tz.initializeTimeZones();
   final String timeZoneName = 'Asia/Kuala_Lumpur';
   tz.setLocalLocation(tz.getLocation(timeZoneName));
+}
+
+void readAllGetStorage() {
+  print("-----All GET STORAGE-----");
+  print('kStoredFirstRun is ${GetStorage().read(kStoredFirstRun)}');
+  print('kStoredGlobalIndex is ${GetStorage().read(kStoredGlobalIndex)}');
+  print('kStoredTimeIs12 is ${GetStorage().read(kStoredTimeIs12)}');
+  print(
+      'kStoredShowOtherPrayerTime is ${GetStorage().read(kStoredShowOtherPrayerTime)}');
+  print(
+      'kStoredShouldUpdateNotif is ${GetStorage().read(kStoredShouldUpdateNotif)}');
+  print(
+      'kStoredLastUpdateNotif is ${GetStorage().read(kStoredLastUpdateNotif)}');
+  print(
+      'kStoredNotificationLimit is ${GetStorage().read(kStoredNotificationLimit)}');
+  print('kIsDebugMode is ${GetStorage().read(kIsDebugMode)}');
+  print('kForceUpdateNotif is ${GetStorage().read(kForceUpdateNotif)}');
+  print('-----------------------');
 }

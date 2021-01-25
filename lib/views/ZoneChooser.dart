@@ -31,8 +31,6 @@ class _LocationChooserState extends State<LocationChooser> {
   @override
   void initState() {
     super.initState();
-    GetStorage().writeIfNull(kStoredGlobalIndex,
-        0); //null when first run, defaulted to JHR 01 (top of the list)
     globalIndex = GetStorage().read(kStoredGlobalIndex);
   }
 
@@ -65,6 +63,8 @@ class _LocationChooserState extends State<LocationChooser> {
       GetStorage().write(kStoredShouldUpdateNotif,
           true); //if zone changes, update the notification
       //this setState will be called when user select a new location, this will update the Text short code
+      showSnackbarLocationSaved(context);
+
       setState(() {
         shortCode = locationDatabase.getJakimCode(globalIndex);
       });
@@ -178,11 +178,9 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
     if (selectedIndex != globalIndex) {
       if (selectedIndex != null) {
         globalIndex = selectedIndex;
-        showSnackbarLocationSaved(context);
-
-        // Fluttertoast.showToast(msg: 'Location updated and saved');
         callback();
         GetPrayerTime.updateUI(selectedIndex);
+        // showSnackbarLocationSaved(context);
       }
     }
   });
@@ -354,7 +352,6 @@ class Completed extends StatelessWidget {
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
                     globalIndex = index;
-                    showSnackbarLocationSaved(context);
                     // Fluttertoast.showToast(msg: 'Location updated and saved');
                     onCallback();
                     Navigator.pop(context);
