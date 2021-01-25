@@ -14,13 +14,16 @@ class PreventUpdatingNotifs {
   /// If user set to force update notif, then notification will force to update
   static void setNow() {
     if (GetStorage().read(kForceUpdateNotif)) {
+      //checks is force update,if true then notif should update,
       shouldUpdateNotification(GetStorage().read(kIsDebugMode));
     } else {
       if (DateAndTime.isTheSameMonth(
           GetStorage().read(kStoredLastUpdateNotif))) {
+        //check if same month or mot, notification will update if not in the month
         if ((DateTime.now().millisecondsSinceEpoch -
                 GetStorage().read(kStoredLastUpdateNotif)) <
             14400000) {
+          //check if certain period o time has reached
           dontUpdateNotification(GetStorage().read(kIsDebugMode));
         } else {
           shouldUpdateNotification(GetStorage().read(kIsDebugMode));
