@@ -135,6 +135,10 @@ void schedulePrayNotification(List<dynamic> times) async {
   );
 
   print('DONE SCHEDULING NOTIFS');
+  if (GetStorage().read(kIsDebugMode)) {
+    Fluttertoast.showToast(
+        msg: 'FINISH SCHEDULE NOTIFS', toastLength: Toast.LENGTH_LONG);
+  }
 
   //This timestamp is later used to determine wether notification should be updated or not
   GetStorage()

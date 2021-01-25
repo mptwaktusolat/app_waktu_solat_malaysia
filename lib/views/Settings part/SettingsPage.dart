@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 
 import '../../CONSTANTS.dart' as Constants;
 import '../../utils/AppInformation.dart';
@@ -56,7 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 opacity: .4,
                 child: Card(
                   child: ListTile(
-                    title: Text('Verbose debug mode'),
+                    title: Text('Verbose debug mode (IGNORE)'),
                     subtitle: Text('For developer purposes'),
                     onTap: () {
                       print('VERBOSE DEBUG MODE');
@@ -83,8 +84,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                     //inverse if false then become true & vice versa
                                     GetStorage().write(
                                         Constants.kIsDebugMode,
-                                        GetStorage()
+                                        !GetStorage()
                                             .read(Constants.kIsDebugMode));
+                                    CustomNavigatorPop.popTo(context, 2);
                                   },
                                   child: GetStorage()
                                           .read(Constants.kIsDebugMode)
@@ -129,7 +131,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return Card(
       child: ListTile(
         title: Text('Notification settings'),
-        subtitle: Text('App notification behavior'),
         onTap: () async {
           Navigator.push(
             context,

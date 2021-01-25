@@ -7,24 +7,31 @@ import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 
-bool isDebug = GetStorage().read(kIsDebugMode);
-
 class PreventUpdatingNotifs {
   /// setNow() function
   /// only check duration if in the same month
   /// if different month, schedule will take place no matter what
+  /// If user set to force update notif, then notification will force to update
   static void setNow() {
-    if (DateAndTime.isTheSameMonth(GetStorage().read(kStoredLastUpdateNotif))) {
-      if ((DateTime.now().millisecondsSinceEpoch -
-              GetStorage().read(kStoredLastUpdateNotif)) <
-          14400000) {
-        dontUpdateNotification(isDebug);
-      } else {
-        shouldUpdateNotification(isDebug);
-      }
+    if (GetStorage().read(kForceUpdateNotif)) {
+      shouldUpdateNotification(GetStorage().read(kIsDebugMode));
     } else {
-      shouldUpdateNotification(isDebug);
+      if (DateAndTime.isTheSameMonth(
+          GetStorage().read(kStoredLastUpdateNotif))) {
+        if ((DateTime.now().millisecondsSinceEpoch -
+                GetStorage().read(kStoredLastUpdateNotif)) <
+            14400000) {
+          dontUpdateNotification(GetStorage().read(kIsDebugMode));
+        } else {
+          shouldUpdateNotification(GetStorage().read(kIsDebugMode));
+        }
+      } else {
+        shouldUpdateNotification(GetStorage().read(kIsDebugMode));
+      }
     }
+
+    GetStorage().write(kForceUpdateNotif,
+        false); // turn back to false because it should run only once
   }
 }
 

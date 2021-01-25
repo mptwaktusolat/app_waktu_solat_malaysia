@@ -107,7 +107,8 @@ void initGetStorage() {
   GetStorage().writeIfNull(kStoredShouldUpdateNotif, true);
   GetStorage().writeIfNull(kStoredLastUpdateNotif, 0);
   GetStorage().writeIfNull(kStoredNotificationLimit, false);
-  GetStorage().writeInMemory(kIsDebugMode, false);
+  GetStorage().writeIfNull(kIsDebugMode, false);
+  GetStorage().writeIfNull(kForceUpdateNotif, false);
 }
 
 Future<void> _configureLocalTimeZone() async {

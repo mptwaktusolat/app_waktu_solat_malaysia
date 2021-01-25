@@ -1,7 +1,9 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 
@@ -19,7 +21,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification Settings'),
+        title: Text('Notification'),
         centerTitle: true,
         // actions: [
         //   FlatButton(
@@ -101,7 +103,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           //         }),
           //   ]),
           // ),
-          Text('Basic'),
+          Padding(padding: const EdgeInsets.all(8.0), child: Text('Basic')),
           Card(
             child: ListTile(
               title: Text('App notification System Setting'),
@@ -113,10 +115,42 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               },
             ),
           ),
-          SizedBox(
-            height: 10,
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text('Troubleshooting')),
+
+          Card(
+            child: ListTile(
+              title: Text('Force rescheduling notification...'),
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: Text(
+                            'By default, notification will get rescheduled on app reopening after 3 days since last scheduling.\n\nTap proceed to start an immediate notification scheduling. App will be restarted'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              GetStorage().write(kForceUpdateNotif, true);
+                              print(GetStorage().read(kForceUpdateNotif));
+                              Get.forceAppUpdate();
+                              CustomNavigatorPop.popTo(context, 3);
+                            },
+                            child: Text('Proceed'),
+                          )
+                        ],
+                      );
+                    });
+              },
+            ),
           ),
-          Text('Advanced'),
           Card(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
