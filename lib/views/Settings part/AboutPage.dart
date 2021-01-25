@@ -31,7 +31,7 @@ class AboutAppPage extends StatelessWidget {
             children: [
               GestureDetector(
                 onLongPress: () {
-                  if (isFirstTry) {
+                  if (isFirstTry && !GetStorage().read(kIsDebugMode)) {
                     Fluttertoast.showToast(msg: '(⌐■_■)');
                     isFirstTry = false;
                   } else {
