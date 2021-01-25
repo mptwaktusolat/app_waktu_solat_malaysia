@@ -23,6 +23,7 @@ class PreventUpdatingNotifs {
         if ((DateTime.now().millisecondsSinceEpoch -
                 GetStorage().read(kStoredLastUpdateNotif)) <
             14400000) {
+          //TODO: Change to 3 days
           //check if certain period o time has reached
           dontUpdateNotification(GetStorage().read(kIsDebugMode));
         } else {
