@@ -112,8 +112,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         Screen size ${MediaQuery.of(context).size.toString().substring(4)} DiP
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
 
-                        Last prayer api called: $prayApiCalled,
-                        last location api called: $locApiCalled,
+                        Last prayer api called: $prayApiCalled ,
+                        last location api called: $locApiCalled ,
                     
                       ''');
                   }
