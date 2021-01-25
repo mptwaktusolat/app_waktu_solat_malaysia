@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 
 import '../../CONSTANTS.dart' as Constants;
+import '../../CONSTANTS.dart';
 import '../../utils/AppInformation.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../Settings%20part/AboutPage.dart';
@@ -53,57 +54,56 @@ class _SettingsPageState extends State<SettingsPage> {
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
               // SizedBox(height: 5),
               buildAboutApp(context),
-              Opacity(
-                opacity: .4,
-                child: Card(
-                  child: ListTile(
-                    title: Text('Verbose debug mode (IGNORE)'),
-                    subtitle: Text('For developer purposes'),
-                    onTap: () {
-                      print('VERBOSE DEBUG MODE');
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(
-                                GetStorage().read(Constants.kIsDebugMode)
-                                    ? 'Verbose debug mode is ON'
-                                    : 'Verbose debug mode is OFF'),
-                            content: Text(
-                                'Toast message or similar will show throughout usage of the app'),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context, rootNavigator: true)
-                                        .pop();
-                                  },
-                                  child: Text('Cancel')),
-                              TextButton(
-                                  onPressed: () {
-                                    print('PROCEED');
-                                    //inverse if false then become true & vice versa
-                                    GetStorage().write(
-                                        Constants.kIsDebugMode,
-                                        !GetStorage()
-                                            .read(Constants.kIsDebugMode));
-                                    CustomNavigatorPop.popTo(context, 2);
-                                  },
-                                  child: GetStorage()
-                                          .read(Constants.kIsDebugMode)
-                                      ? Text('Turn off')
-                                      : Text(
-                                          'Turn on',
-                                          style: TextStyle(color: Colors.red),
-                                        ))
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              )
+
+              setting.isDeveloperOption
+                  ? buildVerboseDebugMode(context)
+                  : Container(),
             ],
+          );
+        },
+      ),
+    );
+  }
+
+  Card buildVerboseDebugMode(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text('Verbose debug mode'),
+        subtitle: Text('For developer purposes'),
+        onTap: () {
+          print('VERBOSE DEBUG MODE');
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(GetStorage().read(Constants.kIsDebugMode)
+                    ? 'Verbose debug mode is ON'
+                    : 'Verbose debug mode is OFF'),
+                content: Text(
+                    'Toast message or similar will show throughout usage of the app'),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+                      },
+                      child: Text('Cancel')),
+                  TextButton(
+                      onPressed: () {
+                        print('PROCEED');
+                        //inverse if false then become true & vice versa
+                        GetStorage().write(Constants.kIsDebugMode,
+                            !GetStorage().read(Constants.kIsDebugMode));
+                        CustomNavigatorPop.popTo(context, 2);
+                      },
+                      child: GetStorage().read(Constants.kIsDebugMode)
+                          ? Text('Turn off')
+                          : Text(
+                              'Turn on',
+                              style: TextStyle(color: Colors.red),
+                            ))
+                ],
+              );
+            },
           );
         },
       ),

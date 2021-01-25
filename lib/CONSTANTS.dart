@@ -15,6 +15,7 @@ const kStoredNotificationLimit = "storedNotificationLimit";
 const kNumberOfNotifsScheduled = "numnotifscheduled";
 const kIsDebugMode = "debugModeSet";
 const kForceUpdateNotif = "storedForceUpdateNotif";
+const kDiscoveredDeveloperOption = "storedDevDiscovered";
 
 //Network image
 const kAppIconUrl =

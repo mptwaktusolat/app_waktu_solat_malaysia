@@ -112,6 +112,7 @@ void initGetStorage() {
   GetStorage().writeIfNull(kStoredNotificationLimit, false);
   GetStorage().writeIfNull(kIsDebugMode, false);
   GetStorage().writeIfNull(kForceUpdateNotif, false);
+  GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -135,5 +136,7 @@ void readAllGetStorage() {
       'kStoredNotificationLimit is ${GetStorage().read(kStoredNotificationLimit)}');
   print('kIsDebugMode is ${GetStorage().read(kIsDebugMode)}');
   print('kForceUpdateNotif is ${GetStorage().read(kForceUpdateNotif)}');
+  print(
+      'kDiscoveredDeveloperOption is ${GetStorage().read(kDiscoveredDeveloperOption)}');
   print('-----------------------');
 }
