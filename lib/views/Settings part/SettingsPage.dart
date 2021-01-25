@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 
 import '../../CONSTANTS.dart' as Constants;
-import '../../CONSTANTS.dart';
 import '../../utils/AppInformation.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../Settings%20part/AboutPage.dart';

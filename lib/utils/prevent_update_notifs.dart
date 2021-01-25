@@ -22,8 +22,7 @@ class PreventUpdatingNotifs {
         //check if same month or mot, notification will update if not in the month
         if ((DateTime.now().millisecondsSinceEpoch -
                 GetStorage().read(kStoredLastUpdateNotif)) <
-            14400000) {
-          //TODO: Change to 3 days
+            259200000) {
           //check if certain period o time has reached
           dontUpdateNotification(GetStorage().read(kIsDebugMode));
         } else {
