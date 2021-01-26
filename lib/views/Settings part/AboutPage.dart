@@ -190,7 +190,7 @@ class AboutAppPage extends StatelessWidget {
                         LaunchUrl.normalLaunchUrl(url: kSolatJakimLink);
                       },
                       child: Text(
-                        'Prayer time data are provided by Jabatan Kemajuan Islam Malaysia (JAKIM)',
+                        'Jabatan Kemajuan Islam Malaysia (JAKIM) provides prayer time data. Visit www.e-solat.gov.my for more info.',
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                         ),

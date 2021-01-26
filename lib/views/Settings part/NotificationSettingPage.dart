@@ -107,8 +107,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           Card(
             child: ListTile(
               title: Text('App notification System Setting'),
-              subtitle:
-                  Text('Change sound, vibration of prayer notification etc.'),
+              subtitle: Text(
+                  'Customize sound, toggle channel of prayer notification etc.'),
               trailing: Icon(Icons.launch_rounded),
               onTap: () async {
                 await AppSettings.openNotificationSettings();
@@ -120,6 +120,22 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               child: Text('Troubleshooting')),
 
           Card(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CupertinoSwitchListTile(
+                  title: Text('Limit notification scheduling'),
+                  subtitle: Text(
+                      'Only you are experiencing extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
+                  value: GetStorage().read(kStoredNotificationLimit),
+                  onChanged: (value) {
+                    // print(value);
+                    setState(() {
+                      GetStorage().write(kStoredNotificationLimit, value);
+                    });
+                  }),
+            ),
+          ),
+          Card(
             child: ListTile(
               title: Text('Force rescheduling notification...'),
               onTap: () {
@@ -128,7 +144,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         content: Text(
-                            'By default, notification will get rescheduled on app reopening after 3 days since last scheduling.\n\nTap proceed to start an immediate notification scheduling. App will be restarted'),
+                            'By default, notifications will get rescheduled on app reopening after three days since last scheduling.\n\nTap proceed to start an immediate notification scheduling. The app will be restart.'),
                         actions: [
                           TextButton(
                             onPressed: () {
@@ -151,22 +167,6 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               },
             ),
           ),
-          Card(
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CupertinoSwitchListTile(
-                  title: Text('Limit notification scheduling'),
-                  subtitle: Text(
-                      'Only you are experiencing extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
-                  value: GetStorage().read(kStoredNotificationLimit),
-                  onChanged: (value) {
-                    // print(value);
-                    setState(() {
-                      GetStorage().write(kStoredNotificationLimit, value);
-                    });
-                  }),
-            ),
-          )
         ],
       ),
     );

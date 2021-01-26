@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           );
         },
-        subtitle: Text('Privacy Policy, Release Notes, Contribution etc.'),
+        subtitle: Text('Release Notes, Contribution, Twitter etc.'),
       ),
     );
   }
