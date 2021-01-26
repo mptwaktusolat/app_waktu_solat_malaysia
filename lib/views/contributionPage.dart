@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
+import 'package:share/share.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../utils/launchUrl.dart';
 
@@ -26,24 +26,25 @@ class ContributionPage extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                  'Alhamdulillah. Thank you for your interest in donating to Malaysia Prayer Time app. May Allah SWT reward your kindness.'),
+                  'Alhamdulillah. Thank you for your interest in donating to the Malaysia Prayer Time app. May Allah SWT rewards your kindness.'),
               SizedBox(
                 height: 8,
               ),
               MyCard(
                   title: 'Share the app',
                   description:
-                      'One of tiny acts of kindness. Share your experience on using this app to your family and friends.',
+                      'Share your experience on using this app with your family and friends.',
                   buttonContent: [
-                    ButtonContent('Share the app', () {
-                      print('pressed form class');
+                    ButtonContent('Share now', () {
+                      Share.share(
+                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free. Download now on Google Play: bit.ly/MPTdl");
                     })
                   ]),
               Divider(),
               MyCard(
                 title: 'Buy me a coffee?',
                 description:
-                    'One cup of nescafe usually enough for me to code all night.\n\n${Constants.kBuyMeACoffeeLink.substring(12)}', //substring will remove 'https://www' stuffs.
+                    'One cup of Nescafe is usually enough for me to code all night.\n\n${Constants.kBuyMeACoffeeLink.substring(12)}', //substring will remove 'https://www' stuffs.
                 buttonContent: [
                   ButtonContent(
                     'Copy',
@@ -55,9 +56,9 @@ class ContributionPage extends StatelessWidget {
                 ],
               ),
               MyCard(
-                title: 'Support via Malaysian bank',
+                title: 'Direct support',
                 description:
-                    '${Constants.kMaybankAccNo} - Muhammad Fareez (Maybank)',
+                    '${Constants.kMaybankAccNo} - Muhammad Fareez Iqmal (Maybank)',
                 buttonContent: [
                   ButtonContent(
                     'Copy',
@@ -68,7 +69,7 @@ class ContributionPage extends StatelessWidget {
               MyCard(
                 title: 'Contribute to source',
                 description:
-                    'MPT is now open source. Report any bugs or contribute directly to the source code. Licensed under GNU GPLv3',
+                    'MPT is now open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.',
                 buttonContent: [
                   ButtonContent(
                       'Copy', () => copyClipboard(Constants.kGithubRepoLink)),
