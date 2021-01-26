@@ -47,6 +47,7 @@ const kReleaseNotesLink =
     'https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20';
 const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
 const kGithubRepoLink = 'https://github.com/iqfareez/App-Waktu-Solat-Malaysia';
+const kSolatJakimLink = 'https://www.e-solat.gov.my/';
 
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';

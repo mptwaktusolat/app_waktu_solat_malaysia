@@ -50,8 +50,6 @@ class AboutAppPage extends StatelessWidget {
                         } else {
                           print('Dev mode already enabled');
                         }
-
-                        print('Show debug dialog');
                         var prayApiCalled =
                             GetStorage().read(kStoredApiPrayerCall) ??
                                 'no calls yet';
@@ -163,7 +161,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\nMPT 2020',
+                    '\nMPT 2021',
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
@@ -179,7 +177,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\n© Copyright 2020-2021 Fareez Iqmal\n',
+                    '\nCopyright © 2020-2021 Fareez Iqmal\n',
                     textAlign: TextAlign.center,
                   ),
                   Container(
@@ -187,12 +185,17 @@ class AboutAppPage extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Theme.of(context).bottomAppBarColor,
                         borderRadius: BorderRadius.circular(10)),
-                    child: Text(
-                      'Prayer time data are provided by Jabatan Kemajuan Islam Malaysia (JAKIM)',
-                      style: TextStyle(
-                        fontStyle: FontStyle.italic,
+                    child: GestureDetector(
+                      onTap: () {
+                        LaunchUrl.normalLaunchUrl(url: kSolatJakimLink);
+                      },
+                      child: Text(
+                        'Prayer time data are provided by Jabatan Kemajuan Islam Malaysia (JAKIM)',
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
                   ),
                   SizedBox(
