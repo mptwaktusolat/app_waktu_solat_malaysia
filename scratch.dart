@@ -1,7 +1,22 @@
-void main() {
-  var millis = 1640356232000; //bulan 12
+// import 'package:geolocator/geolocator.dart';
 
-  print(isTheSameMonth(millis));
+import 'package:intl/intl.dart';
+
+void main() {
+  convertToEpoch();
+}
+
+void convertToEpoch() {
+  // https://stackoverflow.com/a/63527239/13617136
+  var time = "16:42:00";
+  var date = "01-Jan-2021";
+  var dateTime = date + ' ' + time;
+  print(dateTime);
+
+  var f = DateFormat('dd-MMM-yyyy hh:mm');
+
+  var parsed = f.parse(dateTime);
+  print(parsed.millisecondsSinceEpoch);
 }
 
 bool isTheSameMonth(int savedMillis) {
