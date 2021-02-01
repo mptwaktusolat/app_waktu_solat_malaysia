@@ -11,8 +11,9 @@ class LocationData {
               LocationAccuracy.low); //on Android, low is in 500m radius
       latitude = position.latitude;
       longitude = position.longitude;
+      print('[LocationData] Sucess getting $position');
     } catch (e) {
-      print('Error is $e');
+      print('[LocationData] Error is $e');
     }
   }
 }
