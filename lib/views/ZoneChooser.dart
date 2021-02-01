@@ -10,6 +10,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_location_bloc.dart';
+import 'package:waktusolatmalaysia/models/location_coordinate.dart';
 import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
@@ -210,6 +211,7 @@ class GetGPS extends StatefulWidget {
 }
 
 class _GetGPSState extends State<GetGPS> {
+  LocationCoordinate locationCoordinate;
   Mpti906LocationBloc _mpti906bloc;
   // LocationData.getCurrentLocation();
 
@@ -218,6 +220,7 @@ class _GetGPSState extends State<GetGPS> {
     super.initState();
     _mpti906bloc =
         Mpti906LocationBloc(LocationData.latitude, LocationData.longitude);
+    locationCoordinate = LocationCoordinate();
   }
 
   @override
