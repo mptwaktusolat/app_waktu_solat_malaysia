@@ -1552,7 +1552,7 @@ class LocationCoordinate {
 
   /// Return nearest JAKIM code from the given coordinate and negeri.
   /// Pass administrative area as negeri.
-  String getJakimCodeNearby(Position position, String negeri) {
+  String getJakimCodeNearby(double latitude, double longitude, String negeri) {
     List<int> tempIndex = [];
     double nearestDistance = 50000; //init distance to be 50 km
     int nearestIndex;
@@ -1567,11 +1567,8 @@ class LocationCoordinate {
 
     for (var index in tempIndex) {
       // calculate distance each of indexes location with user location
-      double distance = Geolocator.distanceBetween(
-          position.latitude,
-          position.longitude,
-          _locationCoordinate[index].lat,
-          _locationCoordinate[index].lng);
+      double distance = Geolocator.distanceBetween(latitude, longitude,
+          _locationCoordinate[index].lat, _locationCoordinate[index].lng);
       // distance returned in meter
 
       if (distance.compareTo(nearestDistance) == -1) {

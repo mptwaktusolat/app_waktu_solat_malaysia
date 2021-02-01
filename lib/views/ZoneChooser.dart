@@ -10,12 +10,14 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_location_bloc.dart';
-import 'package:waktusolatmalaysia/models/location_coordinate.dart';
 import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
 import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/utils/location/location_coordinate.dart';
+import 'package:waktusolatmalaysia/utils/location/location_coordinate_model.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
+import 'package:geocoding/geocoding.dart';
 
 int globalIndex;
 
@@ -212,15 +214,42 @@ class GetGPS extends StatefulWidget {
 
 class _GetGPSState extends State<GetGPS> {
   LocationCoordinate locationCoordinate;
-  Mpti906LocationBloc _mpti906bloc;
+  // Mpti906LocationBloc _mpti906bloc;
   // LocationData.getCurrentLocation();
 
   @override
   void initState() {
     super.initState();
-    _mpti906bloc =
-        Mpti906LocationBloc(LocationData.latitude, LocationData.longitude);
     locationCoordinate = LocationCoordinate();
+  }
+
+  Future<LocationCoordinateData> _getAllLocationData() async {
+    var administrativeArea;
+    var locality;
+
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          LocationData.latitude, LocationData.longitude);
+      var first = placemarks.first;
+      print(first);
+
+      print(
+          '[_getAllLocationData] ${first.locality}, ${first.administrativeArea}');
+      administrativeArea = first.administrativeArea;
+      locality = first.locality;
+    } catch (e) {
+      print('[_getAllLocationData] Error: $e');
+    }
+
+    var zone = locationCoordinate.getJakimCodeNearby(
+        LocationData.latitude, LocationData.longitude, administrativeArea);
+
+    return LocationCoordinateData(
+        zone: zone,
+        negeri: administrativeArea,
+        lokasi: locality,
+        lat: null,
+        lng: null);
   }
 
   @override
@@ -232,36 +261,20 @@ class _GetGPSState extends State<GetGPS> {
       child: Container(
         padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
         height: 250,
-        child: StreamBuilder<Response<Mpti906Location>>(
-          stream: _mpti906bloc.mptDataStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data.status) {
-                case Status.LOADING:
-                  return Loading(
-                    loadingMessage: 'Getting location',
-                  );
-
-                case Status.COMPLETED:
-                  return Completed(
-                    jakimCode: snapshot.data.data.data.attributes.jakimCode,
-                    place: snapshot.data.data.data.place,
-                    onCallback: widget.callback,
-                  );
-                  break;
-                case Status.ERROR:
-                  return Error(
-                    errorMessage: snapshot.data.message,
-                    onRetryPressed: () => _mpti906bloc.fetchLocationData(
-                        LocationData.latitude, LocationData.longitude),
-                    onCallback: widget.callback,
-                  );
-                  break;
-              }
+        child: FutureBuilder(
+          future: _getAllLocationData(),
+          builder: (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
+            print('FutureBuilder in ZonChooser: ${snapshot.data}');
+            //TODO: Check for error
+            //TODOl Code optimization
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Completed(
+                jakimCode: snapshot.data.zone,
+                place: snapshot.data.lokasi,
+                onCallback: widget.callback,
+              );
             }
-            return Container(
-              child: Text('snapshot empty'),
-            );
+            return Text(snapshot.toString());
           },
         ),
       ),
@@ -272,7 +285,6 @@ class _GetGPSState extends State<GetGPS> {
   void dispose() {
     LocationData
         .getCurrentLocation(); //refresh new gps data (if available), if not available, previously set data is still there
-    _mpti906bloc.dispose();
     super.dispose();
   }
 }
