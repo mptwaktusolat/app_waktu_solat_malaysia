@@ -9,9 +9,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/blocs/mpti906_location_bloc.dart';
-import 'package:waktusolatmalaysia/models/mpti906api_location.dart';
-import 'package:waktusolatmalaysia/networking/Response.dart';
 import 'package:waktusolatmalaysia/utils/LocationData.dart';
 import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/location/location_coordinate.dart';
@@ -183,7 +180,6 @@ Future openshowModalBottomSheet(BuildContext context, Function callback) async {
         globalIndex = selectedIndex;
         callback();
         GetPrayerTime.updateUI(selectedIndex);
-        // showSnackbarLocationSaved(context);
       }
     }
   });
@@ -214,8 +210,6 @@ class GetGPS extends StatefulWidget {
 
 class _GetGPSState extends State<GetGPS> {
   LocationCoordinate locationCoordinate;
-  // Mpti906LocationBloc _mpti906bloc;
-  // LocationData.getCurrentLocation();
 
   @override
   void initState() {
@@ -265,16 +259,28 @@ class _GetGPSState extends State<GetGPS> {
           future: _getAllLocationData(),
           builder: (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
             print('FutureBuilder in ZonChooser: ${snapshot.data}');
-            //TODO: Check for error
-            //TODOl Code optimization
-            if (snapshot.connectionState == ConnectionState.done) {
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Loading(
+                loadingMessage: 'Getting location',
+              );
+            } else if (snapshot.connectionState == ConnectionState.done) {
               return Completed(
                 jakimCode: snapshot.data.zone,
                 place: snapshot.data.lokasi,
                 onCallback: widget.callback,
               );
+            } else if (snapshot.hasError) {
+              return Error(
+                errorMessage: snapshot.error.toString(),
+              );
+            } else {
+              return Error(
+                errorMessage:
+                    'Unknown error. Please file a bug report to developer',
+                onRetryPressed: _getAllLocationData,
+              );
             }
-            return Text(snapshot.toString());
           },
         ),
       ),
