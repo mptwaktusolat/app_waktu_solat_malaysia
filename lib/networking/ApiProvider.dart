@@ -5,7 +5,7 @@ import 'CustomException.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
-  Future<dynamic> get(String url) async {
+  Future<dynamic> get(dynamic url) async {
     var responseJson;
     try {
       final response = await http.get(url);
@@ -21,7 +21,7 @@ class ApiProvider {
     switch (response.statusCode) {
       case 200:
         var responseJson = json.decode(response.body.toString());
-        print(responseJson);
+        print('responseJson is $responseJson');
         return responseJson;
       case 400:
         throw BadRequestException(response.body.toString());

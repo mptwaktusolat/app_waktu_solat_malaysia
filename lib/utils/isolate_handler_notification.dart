@@ -15,7 +15,6 @@ final IsolateHandler isolateHandler = IsolateHandler();
 DateTime currentDate = DateTime.now();
 
 void schedulePrayNotification(List<dynamic> times) async {
-  await Future.delayed(Duration(milliseconds: 500));
   await notifsPlugin.cancelAll(); //reset all
 
   String currentLocation =
@@ -40,6 +39,7 @@ void schedulePrayNotification(List<dynamic> times) async {
   }
 
   print('howMuchToSchedule is $howMuchToSchedule');
+  // for debug dialog
   GetStorage().write(kNumberOfNotifsScheduled, howMuchToSchedule);
 
   for (int i = 0; i < howMuchToSchedule; i++) {
