@@ -25,7 +25,7 @@ JakimPrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
   static void updateUI(int index) {
-    var mptLocation = locationDatabase.getMptLocationCode(index);
+    var mptLocation = locationDatabase.getJakimCode(index);
     prayerBloc.fetchPrayerTime(mptLocation);
   }
 
@@ -59,7 +59,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               break;
             case Status.ERROR:
               location = locationDatabase
-                  .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
+                  .getJakimCode(GetStorage().read(kStoredGlobalIndex));
               return Error(
                 errorMessage: snapshot.data.message,
                 onRetryPressed: () => prayerBloc.fetchPrayerTime(location),
