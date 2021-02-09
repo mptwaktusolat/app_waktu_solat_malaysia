@@ -6,13 +6,14 @@ import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
 import 'package:waktusolatmalaysia/utils/prayer_time_model.dart';
 
 final int day = int.parse(DateFormat('d').format(DateTime.now()));
-var prayDataList;
 CustomPrayerTimeModel todayPrayData;
-var prayDataCurrentDateOnwards = [];
+List<CustomPrayerTimeModel> prayDataCurrentDateOnwards = [];
 List<CustomPrayerTimeModel> customPrayerTime = [];
 
 class PrayDataHandler {
   PrayDataHandler(List<PrayerTime> _prayerTime) {
+    customPrayerTime.clear();
+
     /// Map data from api to timestamp
     for (int i = 0; i < _prayerTime.length; i++) {
       var time = _prayerTime[i];
@@ -29,18 +30,17 @@ class PrayDataHandler {
         isyak: DateAndTime.convertToEpoch(date: time.date, time: time.isha),
       ));
     }
-    todayPrayData = customPrayerTime[day - 1];
+    todayPrayData = customPrayerTime[day - 1]; // match day with list index
   }
 
-  List<dynamic> getPrayDataList() => prayDataList;
+  List<dynamic> getPrayDataList() => customPrayerTime;
 
-  List<dynamic> getPrayDataCurrentDateOnwards() {
+  List<CustomPrayerTimeModel> getPrayDataCurrentDateOnwards() {
     prayDataCurrentDateOnwards.clear();
-    for (int i = 0; i < prayDataList.length; i++) {
-      //TODO: Check for notification functionality
+    print('total day is ${customPrayerTime.length}');
+    for (int i = 0; i < customPrayerTime.length; i++) {
       if (!(i < day - 1)) {
-        print('day is ${i + 1} : ${prayDataList[i]}');
-        prayDataCurrentDateOnwards.add(prayDataList[i]);
+        prayDataCurrentDateOnwards.add(customPrayerTime[i]);
       }
     }
 

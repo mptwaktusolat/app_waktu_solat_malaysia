@@ -258,8 +258,6 @@ class _GetGPSState extends State<GetGPS> {
         child: FutureBuilder(
           future: _getAllLocationData(),
           builder: (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
-            print('FutureBuilder in ZonChooser: ${snapshot.data}');
-
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Loading(
                 loadingMessage: 'Getting location',

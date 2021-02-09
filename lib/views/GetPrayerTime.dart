@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/blocs/jakim_prayer_bloc.dart';
 import 'package:waktusolatmalaysia/models/jakim_prayer_model.dart';
+import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
 import 'package:waktusolatmalaysia/utils/prayer_time_model.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
@@ -25,8 +26,8 @@ JakimPrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
   static void updateUI(int index) {
-    var mptLocation = locationDatabase.getJakimCode(index);
-    prayerBloc.fetchPrayerTime(mptLocation);
+    var location = locationDatabase.getJakimCode(index);
+    prayerBloc.fetchPrayerTime(location);
   }
 
   @override
@@ -100,11 +101,10 @@ class _PrayTimeListState extends State<PrayTimeList> {
     var prayerTimeData = widget.prayerTime;
     // print('prayerTimeData is $prayerTimeData');
     handler = PrayDataHandler(prayerTimeData.prayerTime);
-    //TODO: Enable balik notifs
-    // if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
-    //   schedulePrayNotification(
-    //       handler.getPrayDataCurrentDateOnwards()); //schedule notification
-    // }
+    if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
+      schedulePrayNotification(
+          handler.getPrayDataCurrentDateOnwards()); //schedule notification
+    }
 
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
