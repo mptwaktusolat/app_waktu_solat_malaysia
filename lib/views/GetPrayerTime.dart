@@ -9,11 +9,9 @@ import 'package:waktusolatmalaysia/blocs/jakim_prayer_bloc.dart';
 import 'package:waktusolatmalaysia/models/jakim_prayer_model.dart';
 import 'package:waktusolatmalaysia/utils/prayer_time_model.dart';
 import '../CONSTANTS.dart';
-import '../models/mpti906PrayerData.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
-import '../utils/isolate_handler_notification.dart';
 import '../utils/location/locationDatabase.dart';
 import '../utils/prayerName.dart';
 import '../utils/prevent_update_notifs.dart';
@@ -39,10 +37,10 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   void initState() {
     super.initState();
-    location = locationDatabase
-        .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
+    location =
+        locationDatabase.getJakimCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = JakimPrayerBloc(location);
-    print('$location');
+    print('location is $location');
     PreventUpdatingNotifs.setNow();
   }
 

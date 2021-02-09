@@ -3,13 +3,14 @@
 import 'package:intl/intl.dart';
 
 void main() {
-  print(convertToEpoch(
-      date: '01-Jan-2021', time: '07:00:00', offset: Duration(minutes: 20)));
+  print(uriHttps().queryParameters);
+  // print(convertToEpoch(
+  //     date: '01-Jan-2021', time: '07:00:00', offset: Duration(minutes: 20)));
 }
 
-void uriHttps() {
-  print(Uri.http("www.e-solat.gov.my", "/index.php",
-      {"r": "esolatApi/takwimsolat", "period": "month", "zone": "SGR01"}));
+Uri uriHttps() {
+  return Uri.https("www.e-solat.gov.my", "/index.php",
+      {"r": "esolatApi/takwimsolat", "period": "month", "zone": "SGR01"});
 }
 
 int convertToEpoch(

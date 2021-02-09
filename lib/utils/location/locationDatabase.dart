@@ -391,6 +391,7 @@ class LocationDatabase {
     return index;
   }
 
+  /// Length of all location data
   int getLocationDatabaseLength() => _locationDatabase.length;
 
   String getJakimCode(int index) => _locationDatabase[index].jakimCode;
@@ -399,6 +400,7 @@ class LocationDatabase {
 
   String getDaerah(int index) => _locationDatabase[index].daerah;
 
+  @Deprecated('Use JAKIM code instead')
   String getMptLocationCode(int index) =>
       _locationDatabase[index].mptLocationCode;
 }

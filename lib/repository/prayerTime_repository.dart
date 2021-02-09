@@ -9,9 +9,9 @@ class AzanTimesTodayRepository {
   ApiProvider _provider = ApiProvider();
 
   Future<JakimPrayerModel> fetchPrayerMonth(String location) async {
-    //TODO: Connect location data to here
-    var url = Uri.https("www.e-solat.gov.my", "/index.php",
-        {"r": "esolatApi/takwimsolat", "period": "month", "zone": "SGR01"});
+    Uri url = Uri.https("www.e-solat.gov.my", "/index.php",
+        {"r": "esolatApi/takwimsolat", "period": "month", "zone": location});
+
     GetStorage().write(kStoredApiPrayerCall, url.toString());
     final response = await _provider.get(url);
     return JakimPrayerModel.fromJson(response);
