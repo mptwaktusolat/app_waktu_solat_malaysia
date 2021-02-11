@@ -31,7 +31,7 @@ void main() async {
 
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);
-  requestIOSPermissions(notifsPlugin);
+  // requestIOSPermissions(notifsPlugin);
 
   initGetStorage();
 
