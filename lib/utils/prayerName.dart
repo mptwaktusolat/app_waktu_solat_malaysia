@@ -1,10 +1,10 @@
 class PrayerName {
   static List<String> prayerName = [
-    'Fajr',
+    'Subuh',
     'Syuruk',
-    'Zuhr',
-    '\'Asr',
+    'Zohor',
+    'Asar',
     'Maghrib',
-    'Isya\''
+    'Isyak'
   ];
 }
