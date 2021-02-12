@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../CONSTANTS.dart';
 import '../utils/AppInformation.dart';
@@ -27,22 +28,32 @@ class MyBottomAppBar extends StatelessWidget {
         children: [
           IconButton(
               tooltip: 'Open menu',
-              icon: Icon(Icons.menu),
+              icon: FaIcon(FontAwesomeIcons.bars),
               color: iconColour,
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
           IconButton(
-              icon: Icon(Icons.copy),
-              tooltip: 'Copy timetable',
-              color: iconColour,
-              onPressed: () {
-                Clipboard.setData(
-                        ClipboardData(text: CopyAndShare.getMessage()))
-                    .then((value) {
+            icon: FaIcon(FontAwesomeIcons.clone),
+            tooltip: 'Copy timetable',
+            color: iconColour,
+            onPressed: () {
+              Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage()))
+                  .then(
+                (value) {
                   Fluttertoast.showToast(msg: 'Timetable copied');
-                });
-              })
+                },
+              );
+            },
+          ),
+          IconButton(
+            icon: FaIcon(FontAwesomeIcons.kaaba),
+            color: iconColour,
+            tooltip: 'Kibla compass',
+            onPressed: () {
+              print('opening page kaaba');
+            },
+          )
         ],
       ),
     );
@@ -63,7 +74,7 @@ void menuModalBottomSheet(BuildContext context) {
           child: Wrap(children: <Widget>[
             ListTile(
               title: Text('Themes'),
-              leading: Icon(Icons.color_lens),
+              leading: FaIcon(FontAwesomeIcons.palette),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context,
@@ -72,7 +83,7 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text('Settings'),
-              leading: Icon(Icons.settings),
+              leading: FaIcon(FontAwesomeIcons.cog),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -89,7 +100,7 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text('Rate and review'),
-              leading: Icon(Icons.star),
+              leading: FaIcon(FontAwesomeIcons.solidStar),
               onTap: () {
                 Navigator.pop(context);
                 Fluttertoast.showToast(
@@ -102,7 +113,7 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text('Send feedback'),
-              leading: Icon(Icons.feedback),
+              leading: FaIcon(FontAwesomeIcons.solidCommentDots),
               onTap: () {
                 Navigator.pop(context);
                 print('Opening feedback dialog');

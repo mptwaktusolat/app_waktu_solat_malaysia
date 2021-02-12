@@ -1,6 +1,7 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -111,8 +112,8 @@ class _LocationChooserState extends State<LocationChooser> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            Icons.location_on_rounded,
+          FaIcon(
+            FontAwesomeIcons.mapMarkerAlt,
             color: Colors.teal.shade50,
             size: 17,
           ),

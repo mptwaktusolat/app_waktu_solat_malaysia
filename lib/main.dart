@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -90,7 +91,7 @@ class MyHomePage extends StatelessWidget {
       bottomNavigationBar: MyBottomAppBar(),
       floatingActionButton: FloatingActionButton(
           backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(Icons.share),
+          child: FaIcon(FontAwesomeIcons.shareAlt),
           mini: true,
           tooltip: 'Share solat time',
           onPressed: () {
