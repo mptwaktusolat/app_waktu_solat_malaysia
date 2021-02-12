@@ -92,7 +92,7 @@ class MyHomePage extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
           child: Icon(Icons.share),
           mini: true,
-          tooltip: 'Share',
+          tooltip: 'Share solat time',
           onPressed: () {
             print(CachedPrayerTimeData.allPrayerTime().toString());
             Share.share(CopyAndShare.getMessage());
