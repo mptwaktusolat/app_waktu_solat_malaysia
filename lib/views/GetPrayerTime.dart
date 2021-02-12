@@ -14,7 +14,6 @@ import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
 import '../utils/location/locationDatabase.dart';
-import '../utils/prayerName.dart';
 import '../utils/prevent_update_notifs.dart';
 import '../utils/sizeconfig.dart';
 import 'Settings%20part/settingsProvider.dart';
@@ -136,24 +135,18 @@ class _PrayTimeListState extends State<PrayTimeList> {
           children: <Widget>[
             showOtherPrayerTime
                 ? solatCard(imsakTime, 'Imsak', false)
-                : Container(
-                    height: 0,
-                  ),
-            solatCard(subuhTime, PrayerName.prayerName[0], true),
+                : Container(),
+            solatCard(subuhTime, 'Subuh', true),
             showOtherPrayerTime
-                ? solatCard(syurukTime, PrayerName.prayerName[1], false)
-                : Container(
-                    height: 0,
-                  ),
+                ? solatCard(syurukTime, 'Syuruk', false)
+                : Container(),
             showOtherPrayerTime
                 ? solatCard(dhuhaTime, 'Dhuha', false)
-                : Container(
-                    height: 0,
-                  ),
-            solatCard(zohorTime, PrayerName.prayerName[2], true),
-            solatCard(asarTime, PrayerName.prayerName[3], true),
-            solatCard(maghribTime, PrayerName.prayerName[4], true),
-            solatCard(isyaTime, PrayerName.prayerName[5], true),
+                : Container(),
+            solatCard(zohorTime, 'Zohor', true),
+            solatCard(asarTime, 'Asar', true),
+            solatCard(maghribTime, 'Maghrib', true),
+            solatCard(isyaTime, 'Isyak', true),
           ],
         );
       },
