@@ -36,7 +36,6 @@ dependencies:
   isolate_handler: ^0.3.1
   flutter_web_browser: ^0.13.0
   geocoding: ^1.0.5
-  flutter_speed_dial_material_design: ^2.0.0
 
 dev_dependencies:
   flutter_test:
