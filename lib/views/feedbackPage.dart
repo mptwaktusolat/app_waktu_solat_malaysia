@@ -76,7 +76,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   bool isPhysicalDevice;
 
   var prayApiCalled = GetStorage().read(kStoredApiPrayerCall) ?? 'no calls';
-  var locApiCalled = GetStorage().read(kStoredApiLocationCall) ?? 'no calls';
+  var locApiCalled = GetStorage().read(kStoredLocationLocality) ?? 'no calls';
 
   @override
   void initState() {
@@ -113,7 +113,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
 
                         Last prayer api called: $prayApiCalled ,
-                        last location api called: $locApiCalled ,
+                        Location get: $locApiCalled ,
                     
                       ''');
                   }

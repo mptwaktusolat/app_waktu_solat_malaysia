@@ -1,6 +1,7 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -232,8 +233,12 @@ class _GetGPSState extends State<GetGPS> {
           '[_getAllLocationData] ${first.locality}, ${first.administrativeArea}');
       administrativeArea = first.administrativeArea;
       locality = first.locality;
+      GetStorage().write(kStoredLocationLocality, locality);
     } catch (e) {
       print('[_getAllLocationData] Error: $e');
+      GetStorage().write(kStoredLocationLocality, e.toString());
+      Fluttertoast.showToast(
+          msg: 'Error $e occured. Sorry', backgroundColor: Colors.red);
     }
 
     var zone = locationCoordinate.getJakimCodeNearby(

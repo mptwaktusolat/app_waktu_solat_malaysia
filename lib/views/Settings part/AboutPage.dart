@@ -53,9 +53,7 @@ class AboutAppPage extends StatelessWidget {
                         var prayApiCalled =
                             GetStorage().read(kStoredApiPrayerCall) ??
                                 'no calls yet';
-                        var locApiCalled =
-                            GetStorage().read(kStoredApiLocationCall) ??
-                                'no calls yet';
+
                         showDialog(
                           context: context,
                           builder: (context) => Dialog(
@@ -77,15 +75,15 @@ class AboutAppPage extends StatelessWidget {
                                             msg: 'Copied url'));
                                   },
                                 ),
+                                //TODO: Remove this later ok
                                 ListTile(
-                                  title: Text('Prayer location API calls'),
-                                  subtitle: Text(locApiCalled),
-                                  onLongPress: () {
-                                    Clipboard.setData(
-                                            ClipboardData(text: locApiCalled))
-                                        .then((value) => Fluttertoast.showToast(
-                                            msg: 'Copied url'));
-                                  },
+                                  title: Text(
+                                    'Prayer location API calls',
+                                    style: TextStyle(
+                                        decoration: TextDecoration.lineThrough),
+                                  ),
+                                  subtitle:
+                                      Text('Will remove on future release'),
                                 ),
                                 ListTile(
                                   title:
