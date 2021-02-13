@@ -39,6 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Consumer<SettingProvider>(
         builder: (context, setting, child) {
           return ListView(
+            // physics: BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             children: [
               Padding(

@@ -51,7 +51,7 @@ class MyBottomAppBar extends StatelessWidget {
             color: iconColour,
             tooltip: 'Kibla compass',
             onPressed: () {
-              print('opening page kaaba');
+              Fluttertoast.showToast(msg: 'NOT YET IMPLEMENTED');
             },
           )
         ],
