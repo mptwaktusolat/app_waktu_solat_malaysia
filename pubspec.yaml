@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.12.83-beta+39
+version: 1.13.84-beta+40
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -49,8 +49,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - assets/svgIcons/
+  assets:
+    - assets/qibla/
   #   - assets/grouped.json
 
   # To add custom fonts to your application, add a fonts section here,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 
 import '../CONSTANTS.dart';
 import '../utils/AppInformation.dart';
@@ -51,7 +52,8 @@ class MyBottomAppBar extends StatelessWidget {
             color: iconColour,
             tooltip: 'Kibla compass',
             onPressed: () {
-              Fluttertoast.showToast(msg: 'NOT YET IMPLEMENTED');
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Qibla()));
             },
           )
         ],
