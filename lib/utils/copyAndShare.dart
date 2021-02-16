@@ -22,11 +22,11 @@ Solat timetable today
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 
-  ☁ Fajr: ${CachedPrayerTimeData.allPrayerTime()[0]}
-  🌞 Zuhr: ${CachedPrayerTimeData.allPrayerTime()[1]}
-  ☀ Asr: ${CachedPrayerTimeData.allPrayerTime()[2]}
+  ☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
+  🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
+  ☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}
   🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
-  ⭐ Isya': ${CachedPrayerTimeData.allPrayerTime()[4]}
+  ⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
 
 Get the app: ${Constants.kPlayStoreListingShortLink}''';
 
