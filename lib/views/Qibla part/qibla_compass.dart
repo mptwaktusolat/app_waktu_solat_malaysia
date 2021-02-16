@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:waktusolatmalaysia/views/Qibla%20part/location_error_widget.dart';
-import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 
 class QiblaCompass extends StatefulWidget {
   @override
@@ -49,7 +47,7 @@ class _QiblaCompassState extends State<QiblaCompass> {
                 );
               case LocationPermission.deniedForever:
                 return LocationErrorWidget(
-                  error: "Location service Denied Forever !",
+                  error: "Location service denied Forever !",
                   callback: _checkLocationStatus,
                 );
               // case GeolocationStatus.unknown:
@@ -122,20 +120,6 @@ class QiblahCompassWidget extends StatelessWidget {
                 color: _platformBrightness == Brightness.dark
                     ? Colors.teal
                     : Colors.teal.shade800),
-            Align(
-              alignment: Alignment.topCenter,
-              child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.info),
-                title: Text(
-                  "Align both arrow head\nDo not put device close to metal object.",
-                  // textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: compassActionButton(context),
-            )
           ],
         );
       },

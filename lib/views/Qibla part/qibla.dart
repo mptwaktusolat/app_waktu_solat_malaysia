@@ -22,27 +22,50 @@ class _QiblaState extends State<Qibla> {
         title: Text('Qibla Compass'),
         centerTitle: true,
       ),
-      body: FutureBuilder(
-        future: _deviceSupport,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: ListTile(
+              leading: FaIcon(FontAwesomeIcons.info),
+              title: Text(
+                "Align both arrow head\nDo not put device close to metal object.",
+                // textAlign: TextAlign.center,
               ),
-            );
+              trailing: FaIcon(FontAwesomeIcons.exclamation),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: FutureBuilder(
+              future: _deviceSupport,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting)
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                    ),
+                  );
 
-          if (snapshot.hasError)
-            return Center(
-              child: Text('Error: ${snapshot.error.toString()}'),
-            );
-          if (snapshot.hasData)
-            return QiblaCompass();
-          else
-            return Container(
-              child: Text('Error'),
-            );
-        },
+                if (snapshot.hasError)
+                  return Center(
+                    child: Text('Error: ${snapshot.error.toString()}'),
+                  );
+                if (snapshot.hasData)
+                  return QiblaCompass();
+                else
+                  return Container(
+                    child: Text('Error'),
+                  );
+              },
+            ),
+          ),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: compassActionButton(context))),
+        ],
       ),
     );
   }

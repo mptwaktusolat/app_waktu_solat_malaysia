@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 
 class LocationErrorWidget extends StatelessWidget {
   final String error;
@@ -7,7 +7,6 @@ class LocationErrorWidget extends StatelessWidget {
 
   const LocationErrorWidget({Key key, this.error, this.callback})
       : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,7 @@ class LocationErrorWidget extends StatelessWidget {
             box,
             Text(
               error,
-              style: TextStyle(
-                  color: errorColor, fontWeight: FontWeight.bold),
+              style: TextStyle(color: errorColor, fontWeight: FontWeight.bold),
             ),
             box,
             RaisedButton(
@@ -36,7 +34,7 @@ class LocationErrorWidget extends StatelessWidget {
               onPressed: () {
                 if (callback != null) callback();
               },
-            )
+            ),
           ],
         ),
       ),
