@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],
       child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
+        // debugShowCheckedModeBanner: false,
         title: 'My Prayer Time',
         theme: ThemeData.light().copyWith(
           primaryColor: _primaryColour,
