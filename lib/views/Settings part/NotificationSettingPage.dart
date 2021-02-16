@@ -106,6 +106,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           Padding(padding: const EdgeInsets.all(8.0), child: Text('Basic')),
           Card(
             child: ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               title: Text('App notification System Setting'),
               subtitle: Text(
                   'Customize sound, toggle channel of prayer notification etc.'),
@@ -125,7 +126,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               child: CupertinoSwitchListTile(
                   title: Text('Limit notification scheduling'),
                   subtitle: Text(
-                      'Only you are experiencing extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
+                      'Enable if you experiencing an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
                   value: GetStorage().read(kStoredNotificationLimit),
                   onChanged: (value) {
                     // print(value);
