@@ -145,7 +145,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         content: Text(
-                            'By default, notifications will get rescheduled on app reopening after three days since last scheduling.\n\nTap proceed to start an immediate notification scheduling. The app will be restart.'),
+                            'By default, notification will not rescheduled if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.'),
                         actions: [
                           TextButton(
                             onPressed: () {
