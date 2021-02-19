@@ -58,7 +58,7 @@ void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
         name: 'Fajr',
         notifsPlugin: notifsPlugin,
         id: (subuhTimeEpoch / 1000).truncate(),
-        title: 'It\'s Fajr',
+        title: 'It\'s Subuh',
         scheduledTime: tz.TZDateTime.from(
             DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
         body: 'in ' + currentLocation,
@@ -79,7 +79,7 @@ void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
           name: 'Zuhr',
           notifsPlugin: notifsPlugin,
           id: (zuhrTimeEpoch / 1000).truncate(),
-          title: 'It\'s Zuhr',
+          title: 'It\'s Zohor',
           body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
@@ -89,7 +89,7 @@ void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
           name: 'Asr',
           notifsPlugin: notifsPlugin,
           id: (asarTimeEpoch / 1000).truncate(),
-          title: 'It\'s Asr',
+          title: 'It\'s Asar',
           body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
@@ -109,7 +109,7 @@ void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
           name: 'Isya\'',
           notifsPlugin: notifsPlugin,
           id: (isyakTimeEpoch / 1000).truncate(),
-          title: 'It\'s Isya\'',
+          title: 'It\'s Isyak',
           body: 'in ' + currentLocation,
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
