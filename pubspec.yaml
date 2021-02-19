@@ -18,7 +18,8 @@ dependencies:
   google_fonts: ^1.1.0
   fluttertoast: ^7.0.2
   hijri:
-    git: https://github.com/iqfareez/hijri_date.git
+    git: git://github.com/iqfareez/hijri_date.git
+
   package_info: ^0.4.3
   get_storage: ^1.3.0
   cached_network_image: ^2.3.1

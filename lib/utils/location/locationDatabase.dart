@@ -400,7 +400,6 @@ class LocationDatabase {
 
   String getDaerah(int index) => _locationDatabase[index].daerah;
 
-  @Deprecated('Use JAKIM code instead')
   String getMptLocationCode(int index) =>
       _locationDatabase[index].mptLocationCode;
 }
