@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 
 class LocationErrorWidget extends StatelessWidget {
   final String error;
