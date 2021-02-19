@@ -25,7 +25,7 @@ class DateAndTime {
     // https://stackoverflow.com/a/63527239/13617136
     var dateTime = date + ' ' + time;
 
-    var f = DateFormat('dd-MMM-yyyy hh:mm');
+    var f = DateFormat('dd-MMM-yyyy HH:mm'); //HH for 24, hh for 12
 
     var parsed = f.parse(dateTime);
     return parsed.millisecondsSinceEpoch + offset.inMilliseconds;
