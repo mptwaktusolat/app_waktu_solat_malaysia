@@ -1,22 +1,21 @@
 import 'dart:async';
 
-import 'package:waktusolatmalaysia/models/jakim_prayer_model.dart';
-
+import '../models/mpti906PrayerData.dart';
 import '../networking/Response.dart';
 import '../repository/prayerTime_repository.dart';
 
-class JakimPrayerBloc {
+class Mpti906PrayerBloc {
   AzanTimesTodayRepository _prayerTimeRepository;
   StreamController _prayDataController;
 
-  StreamSink<Response<JakimPrayerModel>> get prayDataSink =>
+  StreamSink<Response<Mpti906PrayerModel>> get prayDataSink =>
       _prayDataController.sink;
 
-  Stream<Response<JakimPrayerModel>> get prayDataStream =>
+  Stream<Response<Mpti906PrayerModel>> get prayDataStream =>
       _prayDataController.stream;
 
-  JakimPrayerBloc(String location) {
-    _prayDataController = StreamController<Response<JakimPrayerModel>>();
+  Mpti906PrayerBloc(String location) {
+    _prayDataController = StreamController<Response<Mpti906PrayerModel>>();
     _prayerTimeRepository = AzanTimesTodayRepository();
 
     fetchPrayerTime(location);
@@ -25,11 +24,12 @@ class JakimPrayerBloc {
   fetchPrayerTime(String location) async {
     prayDataSink.add(Response.loading('Getting prayer times'));
     try {
-      JakimPrayerModel prayerTime =
-          await _prayerTimeRepository.fetchPrayerMonth(location);
+      Mpti906PrayerModel prayerTime =
+          await _prayerTimeRepository.fetchAzanMptMonth(location);
       prayDataSink.add(Response.completed(prayerTime));
     } catch (e) {
       prayDataSink.add(Response.error(e.toString()));
+      // print('Error caught: ' + e.toString());
     }
   }
 

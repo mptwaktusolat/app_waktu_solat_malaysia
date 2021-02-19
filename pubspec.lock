@@ -278,9 +278,11 @@ packages:
   hijri:
     dependency: "direct main"
     description:
-      name: hijri
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "4b5bbd411a4f6a2b816592c9f68f36678515fb2e"
+      url: "git://github.com/iqfareez/hijri_date.git"
+    source: git
     version: "2.0.3"
   http:
     dependency: "direct main"

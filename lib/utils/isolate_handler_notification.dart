@@ -3,8 +3,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/prayer_time_model.dart';
-
 import '../CONSTANTS.dart';
 import '../main.dart';
 import '../views/GetPrayerTime.dart';
@@ -15,7 +13,7 @@ import 'notifications_helper.dart';
 final IsolateHandler isolateHandler = IsolateHandler();
 DateTime currentDate = DateTime.now();
 
-void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
+void schedulePrayNotification(List<dynamic> times) async {
   await notifsPlugin.cancelAll(); //reset all
 
   String currentLocation =
@@ -45,12 +43,12 @@ void schedulePrayNotification(List<CustomPrayerTimeModel> times) async {
 
   for (int i = 0; i < howMuchToSchedule; i++) {
     //i denotes the day relative for today
-    int subuhTimeEpoch = times[i].subuh;
-    int syurukTimeEpoch = times[i].syuruk;
-    int zuhrTimeEpoch = times[i].zohor;
-    int asarTimeEpoch = times[i].asar;
-    int maghribTimeEpoch = times[i].maghrib;
-    int isyakTimeEpoch = times[i].isyak;
+    int subuhTimeEpoch = times[i][0] * 1000;
+    int syurukTimeEpoch = times[i][1] * 1000;
+    int zuhrTimeEpoch = times[i][2] * 1000;
+    int asarTimeEpoch = times[i][3] * 1000;
+    int maghribTimeEpoch = times[i][4] * 1000;
+    int isyakTimeEpoch = times[i][5] * 1000;
 
     if (!(subuhTimeEpoch < currentTime)) {
       //to make sure the time is in future

@@ -1,7 +1,5 @@
-//If less than 3 days, since the last notif is scheduled, do not rescehdule
-//3 days = 259200000 millis
-//15 seconds = 15000
-//4 hours = 14400000
+//If less than 2 days, since the last notif is scheduled, do not rescehdule
+
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
@@ -22,7 +20,7 @@ class PreventUpdatingNotifs {
         //check if same month or mot, notification will update if not in the month
         if ((DateTime.now().millisecondsSinceEpoch -
                 GetStorage().read(kStoredLastUpdateNotif)) <
-            259200000) {
+            Duration(days: 2).inMilliseconds) {
           //check if certain period o time has reached
           dontUpdateNotification(GetStorage().read(kIsDebugMode));
         } else {
