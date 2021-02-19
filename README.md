@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
 ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-8k-orange) 
+![Installs](https://img.shields.io/badge/installs-8k-orange)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
@@ -20,8 +20,8 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 [~~Solat Jakim API (Unofficial)~~](https://api.azanpro.com/)\
 [~~Waktu Solat~~](https://waktusolatapp.com/)\
-[~~Malaysia Prayer Time JSON API~~](https://mpt.i906.my/) \
-[Portal e-solat JAKIM Malaysia](https://www.e-solat.gov.my/)
+[~~Portal e-solat JAKIM Malaysia~~](https://www.e-solat.gov.my/)
+[Malaysia Prayer Time JSON API](https://mpt.i906.my/) \
 
 ## Changelog History
 
