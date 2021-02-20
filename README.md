@@ -18,10 +18,10 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 ## API
 
-[~~Solat Jakim API (Unofficial)~~](https://api.azanpro.com/)\
-[~~Waktu Solat~~](https://waktusolatapp.com/)\
-[~~Portal e-solat JAKIM Malaysia~~](https://www.e-solat.gov.my/)
-[Malaysia Prayer Time JSON API](https://mpt.i906.my/) \
+[~~Azanpro API (Unofficial)~~](https://api.azanpro.com/)\
+[~~WaktuSolatApp~~](https://waktusolatapp.com/)\
+[~~e-solat JAKIM Malaysia~~](https://www.e-solat.gov.my/)\
+[MPTi906 JSON API](https://mpt.i906.my/)
 
 ## Changelog History
 
