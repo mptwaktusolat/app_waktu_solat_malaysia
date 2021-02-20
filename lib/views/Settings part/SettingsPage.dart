@@ -51,10 +51,34 @@ class _SettingsPageState extends State<SettingsPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Notification')),
               buildNotificationSetting(context),
+              Padding(
+                  padding: const EdgeInsets.all(8.0), child: Text('Sharing')),
+              Card(
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
+                    child: Text(
+                      'Specify the text format generated for sharing',
+                    ),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: CupertinoSlidingSegmentedControl(
+                      groupValue: setting.sharingFormat,
+                      onValueChanged: (value) => setting.sharingFormat = value,
+                      children: {
+                        //defaulted to always ask
+                        0: Text('Always ask'),
+                        1: Text('Plain Text'),
+                        2: Text('WhatsApp'),
+                      },
+                    ),
+                  ),
+                ),
+              ),
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
               // SizedBox(height: 5),
               buildAboutApp(context),
-
               setting.isDeveloperOption
                   ? buildVerboseDebugMode(context)
                   : Container(),

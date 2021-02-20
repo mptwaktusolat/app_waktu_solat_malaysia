@@ -7,7 +7,7 @@ import 'cachedPrayerData.dart';
 import 'location/locationDatabase.dart';
 
 class CopyAndShare {
-  static String getMessage() {
+  static String getMessage({int type = 1}) {
     var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
     var dayFormat = DateFormat('EEEE').format(DateTime.now());
     var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
@@ -15,23 +15,43 @@ class CopyAndShare {
     LocationDatabase _locationDatabase = LocationDatabase();
     var daerah = _locationDatabase.getDaerah(_globalIndex);
     var negeri = _locationDatabase.getNegeri(_globalIndex);
-    String message = '''
+    switch (type) {
+      case 1:
+        return '''
 Solat timetable today
 
 📍 $daerah ($negeri)
 📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 
-  ☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
-  🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
-  ☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}
-  🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
-  ⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
+☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
+🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
+☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}
+🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
+⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
 
-Get the app: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kPlayStoreListingShortLink}
+                ''';
+        break;
+      case 2:
+        return '''
+*Solat timetable today*
 
-    // print('share and copy message is $message');
+📍 _$daerah ($negeri)_
+📆 $dayFormat, *$dateFormat*
+📆 ${hijriToday}H
 
-    return message;
+```☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}```
+```🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}```
+```☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}```
+```🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}```
+```⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}```
+
+Get the app: ${Constants.kPlayStoreListingShortLink}
+                ''';
+        break;
+      default:
+        return '';
+    }
   }
 }

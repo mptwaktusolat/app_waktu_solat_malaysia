@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
 import 'CONSTANTS.dart';
 import 'utils/LocationData.dart';
 import 'utils/cachedPrayerData.dart';
@@ -89,15 +90,7 @@ class MyHomePage extends StatelessWidget {
         toolbarHeight: 50,
       ),
       bottomNavigationBar: MyBottomAppBar(),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          child: FaIcon(FontAwesomeIcons.shareAlt),
-          mini: true,
-          tooltip: 'Share solat time',
-          onPressed: () {
-            print(CachedPrayerTimeData.allPrayerTime().toString());
-            Share.share(CopyAndShare.getMessage());
-          }),
+      floatingActionButton: ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),
     );
@@ -115,6 +108,7 @@ void initGetStorage() {
   GetStorage().writeIfNull(kIsDebugMode, false);
   GetStorage().writeIfNull(kForceUpdateNotif, false);
   GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
+  GetStorage().writeIfNull(kSharingFormat, 0);
 }
 
 Future<void> _configureLocalTimeZone() async {

@@ -16,6 +16,7 @@ const kNumberOfNotifsScheduled = "numnotifscheduled";
 const kIsDebugMode = "debugModeSet";
 const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
+const kSharingFormat = "storedSharingFormat";
 
 //Network image
 const kAppIconUrl =
