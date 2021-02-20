@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:share/share.dart';
 import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
-import 'cachedPrayerData.dart';
 import 'copyAndShare.dart';
 
 class ShareFAB extends StatelessWidget {
