@@ -57,7 +57,22 @@ class ShareFAB extends StatelessWidget {
                 Navigator.pop(context);
                 shareToWhatsApp();
               },
-            )
+            ),
+            Padding(
+                padding: const EdgeInsets.all(10),
+                child: RichText(
+                  text: TextSpan(
+                    text: 'You can set defaults in ',
+                    style: DefaultTextStyle.of(context)
+                        .style
+                        .copyWith(fontSize: 12),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'Setting -> Sharing',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                )),
           ],
         );
       },
