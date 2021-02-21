@@ -17,6 +17,7 @@ const kIsDebugMode = "debugModeSet";
 const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
+const kFontSize = "storedFontSize";
 
 //Network image
 const kAppIconUrl =

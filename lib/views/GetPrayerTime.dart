@@ -182,7 +182,14 @@ Widget solatCard(String time, String name, bool useFullHeight) {
                 textColor: Colors.white);
           });
         },
-        child: Center(child: Text(name + ' at $time')),
+        child: Center(child: Consumer<SettingProvider>(
+          builder: (context, setting, child) {
+            return Text(
+              name + ' at $time',
+              style: TextStyle(fontSize: setting.prayerFontSize),
+            );
+          },
+        )),
       ),
     ),
   );

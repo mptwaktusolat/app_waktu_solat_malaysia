@@ -105,6 +105,7 @@ void initGetStorage() {
   GetStorage().writeIfNull(kForceUpdateNotif, false);
   GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
   GetStorage().writeIfNull(kSharingFormat, 0);
+  GetStorage().writeIfNull(kFontSize, 14.0);
 }
 
 Future<void> _configureLocalTimeZone() async {

@@ -8,6 +8,15 @@ class SettingProvider with ChangeNotifier {
   bool _showOtherPrayerTime = GetStorage().read(kStoredShowOtherPrayerTime);
   bool _isDeveloperOption = GetStorage().read(kDiscoveredDeveloperOption);
   int _sharingFormat = GetStorage().read(kSharingFormat);
+  double _fontSize = GetStorage().read(kFontSize);
+
+  set prayerFontSize(double newValue) {
+    _fontSize = newValue;
+    GetStorage().write(kFontSize, newValue);
+    notifyListeners();
+  }
+
+  double get prayerFontSize => _fontSize;
 
   set sharingFormat(newValue) {
     _sharingFormat = newValue;
