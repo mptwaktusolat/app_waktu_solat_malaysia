@@ -9,7 +9,7 @@ import 'location/locationDatabase.dart';
 class CopyAndShare {
   static String getMessage({int type = 1}) {
     var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
-    var dayFormat = DateFormat('EEEE').format(DateTime.now());
+    var dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
     LocationDatabase _locationDatabase = LocationDatabase();
@@ -18,10 +18,9 @@ class CopyAndShare {
     switch (type) {
       case 1:
         return '''
-Solat timetable today
+Solat timetable: $dayFormat, $dateFormat
 
 📍 $daerah ($negeri)
-📆 $dayFormat, $dateFormat
 📆 ${hijriToday}H
 
 ☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
@@ -30,25 +29,22 @@ Solat timetable today
 🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
 ⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
 
-Get the app: ${Constants.kPlayStoreListingShortLink}
-                ''';
+Get the app: ${Constants.kPlayStoreListingShortLink}''';
         break;
       case 2:
         return '''
-*Solat timetable today*
+*Solat timetable: $dayFormat, $dateFormat*
 
-📍 _$daerah ($negeri)_
-📆 $dayFormat, *$dateFormat*
+📍 _$daerah *($negeri)*_
 📆 ${hijriToday}H
 
-```☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}```
-```🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}```
-```☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}```
-```🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}```
-```⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}```
+```☁ Subuh   : ${CachedPrayerTimeData.allPrayerTime()[0]}```
+```🌞 Zohor   : ${CachedPrayerTimeData.allPrayerTime()[1]}```
+```☀ Asar    : ${CachedPrayerTimeData.allPrayerTime()[2]}```
+```🌙 Maghrib : ${CachedPrayerTimeData.allPrayerTime()[3]}```
+```⭐ Isyak   : ${CachedPrayerTimeData.allPrayerTime()[4]}```
 
-Get the app: ${Constants.kPlayStoreListingShortLink}
-                ''';
+Get the app: ${Constants.kPlayStoreListingShortLink}''';
         break;
       default:
         return '';
