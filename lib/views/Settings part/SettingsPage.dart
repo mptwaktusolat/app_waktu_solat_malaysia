@@ -58,8 +58,8 @@ class _SettingsPageState extends State<SettingsPage> {
                     inactiveColor: Colors.teal.withAlpha(40),
                     label: setting.prayerFontSize.round().toString(),
                     min: 12.0,
-                    max: 20.0,
-                    divisions: 4,
+                    max: 22.0,
+                    divisions: 5,
                     value: setting.prayerFontSize,
                     onChanged: (double value) {
                       setting.prayerFontSize = value;
