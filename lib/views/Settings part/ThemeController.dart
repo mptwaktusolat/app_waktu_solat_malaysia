@@ -23,7 +23,6 @@ class ThemeController extends GetxController {
 
     String themeText =
         GetStorage().read('theme') ?? 'light'; //by default, light is selected
-    //TODO: Change to system in later release
     try {
       themeMode =
           ThemeMode.values.firstWhere((e) => describeEnum(e) == themeText);

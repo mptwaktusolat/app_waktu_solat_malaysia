@@ -9,9 +9,7 @@ const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredLocationLocality = "storedLocationLocality";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
-const kNumberOfNotifsScheduled = "numnotifscheduled";
 const kIsDebugMode = "debugModeSet";
-const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kFontSize = "storedFontSize";
 
 //Network image

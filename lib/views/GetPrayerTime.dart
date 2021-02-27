@@ -161,9 +161,8 @@ Widget solatCard(String time, String name, bool useFullHeight) {
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
-        onLongPress: () {
+        onTap: () {
           print('Copied');
-
           Clipboard.setData(new ClipboardData(text: '$name: $time'))
               .then((value) {
             Fluttertoast.showToast(
@@ -209,8 +208,10 @@ class Error extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.white,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).buttonColor,
+            ),
             child: Text('Retry', style: TextStyle(color: Colors.black)),
             onPressed: onRetryPressed,
           )

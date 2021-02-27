@@ -169,34 +169,3 @@ class _FeedbackPageState extends State<FeedbackPage> {
     );
   }
 }
-
-class FeedbackCategoryButton extends StatelessWidget {
-  const FeedbackCategoryButton(
-      {Key key, this.label, this.outlineWidth, this.onTap})
-      : super(key: key);
-
-  final label;
-  final outlineWidth;
-  final Function onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 65.0,
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: OutlineButton(
-          onPressed: onTap,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          borderSide: BorderSide(color: Colors.green, width: outlineWidth),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
-}

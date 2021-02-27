@@ -44,7 +44,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: FaIcon(FontAwesomeIcons.kaaba),
             color: iconColour,
-            tooltip: 'Kibla compass',
+            tooltip: 'Google QiblaFinder',
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: 'https://g.co/qiblafinder');
             },
@@ -90,15 +90,10 @@ void menuModalBottomSheet(BuildContext context) {
               height: 0.0,
             ),
             ListTile(
-              title: Text('Rate and review'),
-              leading: FaIcon(FontAwesomeIcons.solidStar),
+              title: Text('Get app from Google Play Store'),
+              leading: FaIcon(FontAwesomeIcons.googlePlay),
               onTap: () {
                 Navigator.pop(context);
-                Fluttertoast.showToast(
-                  msg: '⭐⭐⭐⭐⭐',
-                  toastLength: Toast.LENGTH_LONG,
-                  backgroundColor: Colors.grey.shade700,
-                );
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
             ),

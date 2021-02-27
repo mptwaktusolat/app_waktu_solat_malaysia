@@ -6,7 +6,6 @@ import '../../CONSTANTS.dart';
 class SettingProvider with ChangeNotifier {
   bool _use12hour = GetStorage().read(kStoredTimeIs12);
   bool _showOtherPrayerTime = GetStorage().read(kStoredShowOtherPrayerTime);
-  bool _isDeveloperOption = GetStorage().read(kDiscoveredDeveloperOption);
   double _fontSize = GetStorage().read(kFontSize);
 
   set prayerFontSize(double newValue) {
@@ -30,11 +29,4 @@ class SettingProvider with ChangeNotifier {
   }
 
   bool get showOtherPrayerTime => _showOtherPrayerTime;
-
-  set isDeveloperOption(newValue) {
-    _isDeveloperOption = newValue;
-    notifyListeners();
-  }
-
-  bool get isDeveloperOption => _isDeveloperOption;
 }

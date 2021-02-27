@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -16,10 +15,6 @@ void main() async {
   await GetStorage.init();
 
   initGetStorage();
-
-  // readAllGetStorage();
-
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
   Get.lazyPut(() => ThemeController());
   runApp(MyApp());
@@ -60,7 +55,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          kIsWeb ? '🇲🇾 Prayer Time (BETA)' : '🇲🇾 Prayer Time',
+          '🇲🇾 Prayer Time',
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,
@@ -70,7 +65,9 @@ class MyHomePage extends StatelessWidget {
       bottomNavigationBar: MyBottomAppBar(),
       floatingActionButton: ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: SingleChildScrollView(child: AppBody()),
+      body: SingleChildScrollView(
+        child: AppBody(),
+      ),
     );
   }
 }
@@ -81,7 +78,6 @@ void initGetStorage() {
   GetStorage().writeIfNull(kStoredTimeIs12, true);
   GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
   GetStorage().writeIfNull(kIsDebugMode, false);
-  GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
   GetStorage().writeIfNull(kFontSize, 14.0);
 }
 
@@ -93,7 +89,5 @@ void readAllGetStorage() {
   print(
       'kStoredShowOtherPrayerTime is ${GetStorage().read(kStoredShowOtherPrayerTime)}');
   print('kIsDebugMode is ${GetStorage().read(kIsDebugMode)}');
-  print(
-      'kDiscoveredDeveloperOption is ${GetStorage().read(kDiscoveredDeveloperOption)}');
   print('-----------------------');
 }

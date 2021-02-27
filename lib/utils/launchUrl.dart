@@ -21,6 +21,7 @@ _launchURL(String url) async {
     await launch(url);
   } else {
     Fluttertoast.showToast(
+        webBgColor: "linear-gradient(to right, #de6161, #2657eb)",
         msg: 'Could not launch url. Please send feedback to developer.');
     throw 'Could not launch $url';
   }

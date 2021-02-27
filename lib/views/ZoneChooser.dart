@@ -61,13 +61,15 @@ class _LocationChooserState extends State<LocationChooser> {
       });
     }
 
-    return FlatButton(
-      padding: EdgeInsets.all(-5.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-        side: BorderSide(color: Colors.white),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(color: Colors.white),
+        ),
+        padding: EdgeInsets.all(-5.0),
       ),
-      onPressed:  ()=>         openLocationBottomSheet(context, _updateUI),
+      onPressed: () => openLocationBottomSheet(context, _updateUI),
       onLongPress: () {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(
@@ -175,8 +177,6 @@ Widget locationBubble(BuildContext context, String shortCode) {
     ),
   );
 }
-
-
 
 void showSnackbarLocationSaved(BuildContext context) =>
     ScaffoldMessenger.of(context).showSnackBar(
