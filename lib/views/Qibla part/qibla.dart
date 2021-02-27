@@ -88,7 +88,7 @@ Widget compassActionButton(BuildContext context) {
           children: [
             Text('Google Qiblafinder'),
             SizedBox(width: 8),
-            FaIcon(FontAwesomeIcons.externalLinkAlt, size: 13)
+            FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
           ],
         ),
       ),

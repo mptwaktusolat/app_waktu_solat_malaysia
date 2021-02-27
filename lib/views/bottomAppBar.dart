@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
-
 import '../CONSTANTS.dart';
 import '../utils/AppInformation.dart';
 import '../utils/copyAndShare.dart';
@@ -89,11 +88,13 @@ void menuModalBottomSheet(BuildContext context) {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SettingsPage(
-                              info: info,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(
+                      info: info,
+                    ),
+                  ),
+                );
               },
             ),
             Divider(
@@ -103,6 +104,8 @@ void menuModalBottomSheet(BuildContext context) {
             ListTile(
               title: Text('Rate and review'),
               leading: FaIcon(FontAwesomeIcons.solidStar),
+              trailing:
+                  FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 21),
               onTap: () {
                 Navigator.pop(context);
                 Fluttertoast.showToast(
@@ -111,6 +114,16 @@ void menuModalBottomSheet(BuildContext context) {
                   backgroundColor: Colors.grey.shade700,
                 );
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+              },
+            ),
+            ListTile(
+              title: Text('MPT on web'),
+              leading: FaIcon(FontAwesomeIcons.chrome),
+              trailing:
+                  FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 21),
+              onTap: () {
+                Navigator.pop(context);
+                LaunchUrl.normalLaunchUrl(url: kWebappUrl);
               },
             ),
             ListTile(
