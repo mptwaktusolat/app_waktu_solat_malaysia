@@ -1,7 +1,6 @@
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
 import '../utils/AppInformation.dart';
@@ -216,36 +215,5 @@ class _FeedbackPageState extends State<FeedbackPage> {
     // print('Device pix ratio: ${MediaQuery.of(context).devicePixelRatio}');
     // print(
     //     '${MediaQuery.of(context).size * MediaQuery.of(context).devicePixelRatio}');
-  }
-}
-
-class FeedbackCategoryButton extends StatelessWidget {
-  const FeedbackCategoryButton(
-      {Key key, this.label, this.outlineWidth, this.onTap})
-      : super(key: key);
-
-  final label;
-  final outlineWidth;
-  final Function onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        height: 65.0,
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: OutlineButton(
-          onPressed: onTap,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          borderSide: BorderSide(color: Colors.green, width: outlineWidth),
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
   }
 }

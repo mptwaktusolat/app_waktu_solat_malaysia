@@ -37,7 +37,8 @@ class ContributionPage extends StatelessWidget {
                   buttonContent: [
                     ButtonContent('Share now', () {
                       Share.share(
-                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free. Download now on Google Play: bit.ly/MPTdl");
+                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free. Download now on Google Play: bit.ly/MPTdl",
+                          subject: 'Sharing MPT App');
                     })
                   ]),
               Divider(),
@@ -82,7 +83,7 @@ class ContributionPage extends StatelessWidget {
               FittedBox(
                   fit: BoxFit.contain,
                   child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(32.0),
                     child:
                         SvgPicture.network(Constants.kDeveloperActivityImage),
                   ))

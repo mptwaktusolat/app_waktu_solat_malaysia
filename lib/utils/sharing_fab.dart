@@ -83,5 +83,6 @@ class ShareFAB extends StatelessWidget {
         url: 'http://wa.me/?text=${CopyAndShare.getMessage(type: 2)}',
       );
 
-  void shareUniversal() => Share.share(CopyAndShare.getMessage());
+  void shareUniversal() => Share.share(CopyAndShare.getMessage(),
+      subject: 'Malaysia prayer time for today');
 }

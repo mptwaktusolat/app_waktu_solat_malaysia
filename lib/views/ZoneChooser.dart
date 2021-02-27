@@ -72,11 +72,13 @@ class _LocationChooserState extends State<LocationChooser> {
       });
     }
 
-    return FlatButton(
-      padding: EdgeInsets.all(-5.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-        side: BorderSide(color: Colors.white),
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(-5.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(color: Colors.white),
+        ),
       ),
       onPressed: () async {
         if (kIsWeb) {
@@ -372,7 +374,7 @@ class Completed extends StatelessWidget {
                 ),
                 TextButton(
                   child: Text(
-                    'Accept this location',
+                    'Set this location',
                   ),
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
