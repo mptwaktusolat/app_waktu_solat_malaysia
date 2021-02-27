@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -26,13 +27,13 @@ class AboutAppPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
           child: Consumer<SettingProvider>(
             builder: (context, setting, child) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   GestureDetector(
                     onLongPress: () {
@@ -75,16 +76,6 @@ class AboutAppPage extends StatelessWidget {
                                         .then((value) => Fluttertoast.showToast(
                                             msg: 'Copied url'));
                                   },
-                                ),
-                                //TODO: Remove this later ok
-                                ListTile(
-                                  title: Text(
-                                    'Prayer location API calls',
-                                    style: TextStyle(
-                                        decoration: TextDecoration.lineThrough),
-                                  ),
-                                  subtitle:
-                                      Text('Will remove on future release'),
                                 ),
                                 ListTile(
                                   title:
@@ -142,20 +133,22 @@ class AboutAppPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Hero(
-                        tag: kAppIconTag,
-                        child: CachedNetworkImage(
+                    child: Hero(
+                      tag: kAppIconTag,
+                      child: CachedNetworkImage(
+                        width: 70,
+                        height: 70,
+                        fit: BoxFit.scaleDown,
+                        imageUrl: kAppIconUrl,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => SizedBox(
+                          height: 70,
                           width: 70,
-                          imageUrl: kAppIconUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(
-                                      value: downloadProgress.progress),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
                         ),
+                        errorWidget: (context, url, error) =>
+                            FaIcon(FontAwesomeIcons.exclamation),
                       ),
                     ),
                   ),
