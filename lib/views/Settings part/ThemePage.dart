@@ -38,7 +38,7 @@ class _ThemesOptionState extends State<ThemesOption> {
     return ListView(children: [
       RadioListTile(
           title: Text('System Theme'),
-          subtitle: Text('On supported device only'),
+          subtitle: Text('On supported browser only'),
           value: ThemeMode.system,
           groupValue: _themeMode,
           onChanged: (value) {

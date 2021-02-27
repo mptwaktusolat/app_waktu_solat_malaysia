@@ -51,3 +51,6 @@ key.properties
 
 #scratch file
 scratch.dart
+
+# firebase hosting
+.firebase/**.**.cache
