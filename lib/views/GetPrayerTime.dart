@@ -7,13 +7,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
-import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
 import '../utils/location/locationDatabase.dart';
-import '../utils/prevent_update_notifs.dart';
 import '../utils/sizeconfig.dart';
 import 'Settings%20part/settingsProvider.dart';
 import '../networking/Response.dart';
@@ -40,7 +38,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
         .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('location is $location');
-    PreventUpdatingNotifs.setNow();
   }
 
   @override
@@ -97,13 +94,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
   @override
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
-    // print('prayerTimeData is $prayerTimeData');
     handler = PrayDataHandler(prayerTimeData.times);
-    if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
-      schedulePrayNotification(
-          handler.getPrayDataCurrentDateOnwards()); //schedule notification
-    }
-
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;

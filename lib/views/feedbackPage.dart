@@ -1,10 +1,8 @@
-import 'package:device_info/device_info.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
-import '../utils/AppInformation.dart';
 import '../utils/launchUrl.dart';
 
 enum FeedbackCategory { suggestion, bug, compliment }
@@ -52,28 +50,12 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
-  AppInfo appInfo = AppInfo();
   FeedbackCategory feedbackCategory;
   double selectedOutlineWidth = 4.0;
   double unselectedOutlineWidth = 1.0;
   String hintTextForFeedback = 'Please leave your feedback here';
   FeedbackToEmail feedbackToEmail = FeedbackToEmail();
   TextEditingController messageController = TextEditingController();
-  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-  String board,
-      brand,
-      device,
-      hardware,
-      host,
-      id,
-      manufacture,
-      model,
-      product,
-      type,
-      androidid,
-      sdkInt,
-      release;
-  bool isPhysicalDevice;
 
   var prayApiCalled = GetStorage().read(kStoredApiPrayerCall) ?? 'no calls';
   var locApiCalled = GetStorage().read(kStoredLocationLocality) ?? 'no calls';
@@ -81,7 +63,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   void initState() {
     super.initState();
-    getDeviceInfo();
   }
 
   bool _logIsChecked = true;
@@ -105,10 +86,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   if (_logIsChecked) {
                     feedbackToEmail.debugLogSetter('''
                         ----------------------APP--------------------------
-                        Version: ${appInfo.version}, VersionCode: ${appInfo.buildNumber}
+                         -- 
                         ---------------------DEVICE---------------------
-                        Android $release (SDK $sdkInt), $manufacture $model
-                        Hardware: $hardware
+                        isWeb? $kIsWeb 
                         Screen size ${MediaQuery.of(context).size.toString().substring(4)} DiP
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
 
@@ -187,35 +167,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
         ),
       ),
     );
-  }
-
-  void getDeviceInfo() async {
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-
-    setState(() {
-      board = androidInfo.board;
-      brand = androidInfo.brand;
-      device = androidInfo.device;
-      hardware = androidInfo.hardware;
-      host = androidInfo.host;
-      id = androidInfo.id;
-      manufacture = androidInfo.manufacturer;
-      model = androidInfo.model;
-      product = androidInfo.product;
-      type = androidInfo.type;
-      isPhysicalDevice = androidInfo.isPhysicalDevice;
-      androidid = androidInfo.androidId;
-      sdkInt = androidInfo.version.sdkInt.toString();
-      release = androidInfo.version.release;
-    });
-
-    // print(
-    //     '$board, $brand, $device, $hardware,\n $host, $id, $manufacture, $model,\n $product, $type, $isPhysicalDevice, $androidid \n $sdkInt, $release');
-    // print(
-    //     'Screen size ${MediaQuery.of(context).size} \n Screen h/w ${MediaQuery.of(context).size.height}, ${MediaQuery.of(context).size.width}');
-    // print('Device pix ratio: ${MediaQuery.of(context).devicePixelRatio}');
-    // print(
-    //     '${MediaQuery.of(context).size * MediaQuery.of(context).devicePixelRatio}');
   }
 }
 

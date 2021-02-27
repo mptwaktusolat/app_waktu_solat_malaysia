@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../CONSTANTS.dart';
 import '../Settings%20part/ThemeController.dart';
 
@@ -17,11 +15,8 @@ class ThemesPage extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: CachedNetworkImage(
-                imageUrl: kThemeUiUrl,
-              ),
-            ),
+                padding: const EdgeInsets.all(18.0),
+                child: Image.network(kThemeUiUrl)),
           ),
           Expanded(child: ThemesOption()),
         ],

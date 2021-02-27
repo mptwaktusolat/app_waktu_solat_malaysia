@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../utils/launchUrl.dart';
 
@@ -31,15 +30,10 @@ class ContributionPage extends StatelessWidget {
                 height: 8,
               ),
               MyCard(
-                  title: 'Share the app',
-                  description:
-                      'Share your experience on using this app with your family and friends.',
-                  buttonContent: [
-                    ButtonContent('Share now', () {
-                      Share.share(
-                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free. Download now on Google Play: bit.ly/MPTdl");
-                    })
-                  ]),
+                title: 'Share the app',
+                description:
+                    'Share your experience on using this app with your family and friends. Get the app on bit.ly/MPTdl',
+              ),
               Divider(),
               MyCard(
                 title: 'Buy me a coffee?',

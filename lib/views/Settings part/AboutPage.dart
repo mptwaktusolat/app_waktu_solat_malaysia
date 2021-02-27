@@ -1,21 +1,14 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
-
 import '../../CONSTANTS.dart';
-import '../../main.dart';
 import '../../utils/launchUrl.dart';
-import '../../utils/notifications_helper.dart';
 import '../contributionPage.dart';
 
 class AboutAppPage extends StatelessWidget {
-  AboutAppPage(this.appInfo);
-  final appInfo;
   @override
   Widget build(BuildContext context) {
     bool isFirstTry = true;
@@ -86,49 +79,12 @@ class AboutAppPage extends StatelessWidget {
                                   subtitle:
                                       Text('Will remove on future release'),
                                 ),
-                                ListTile(
-                                  title:
-                                      Text('Send immediate test notification'),
-                                  onTap: () async {
-                                    await showDebugNotification();
-                                  },
-                                ),
-                                ListTile(
-                                  title: Text('Send alert test in one miniute'),
-                                  subtitle: Text('Payload: $kPayloadDebug'),
-                                  onTap: () async {
-                                    await scheduleAlertNotification(
-                                        notifsPlugin: notifsPlugin,
-                                        title: 'debug payload',
-                                        id: 219, //randrom int haha
-                                        body: 'With payload',
-                                        payload: kPayloadDebug,
-                                        scheduledTime:
-                                            tz.TZDateTime.now(tz.local).add(
-                                          Duration(minutes: 1),
-                                        ));
-                                  },
-                                ),
+
                                 ListTile(
                                     title: Text('Global location index'),
                                     subtitle: Text(
                                         '${GetStorage().read(kStoredGlobalIndex)}')),
-                                ListTile(
-                                  title: Text('Last update notification'),
-                                  subtitle: Text(
-                                      DateTime.fromMillisecondsSinceEpoch(
-                                              GetStorage()
-                                                  .read(kStoredLastUpdateNotif))
-                                          .toString()),
-                                  onLongPress: () {
-                                    Clipboard.setData(ClipboardData(
-                                            text: GetStorage()
-                                                .read(kStoredLastUpdateNotif)
-                                                .toString()))
-                                        .then((value) => Fluttertoast.showToast(
-                                            msg: 'Copied millis'));
-                                  },
-                                ),
+
                                 ListTile(
                                   title:
                                       Text('Number of scheduled notification'),
@@ -142,38 +98,14 @@ class AboutAppPage extends StatelessWidget {
                         );
                       }
                     },
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Hero(
-                        tag: kAppIconTag,
-                        child: CachedNetworkImage(
-                          width: 70,
-                          imageUrl: kAppIconUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(
-                                      value: downloadProgress.progress),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        ),
-                      ),
+                    child: Hero(
+                      tag: kAppIconTag,
+                      child: Image.network(kAppIconUrl),
                     ),
                   ),
                   Text(
                     '\nMPT 2021',
                     textAlign: TextAlign.center,
-                  ),
-                  GestureDetector(
-                    onLongPress: () {
-                      Clipboard.setData(ClipboardData(text: appInfo.version))
-                          .then((value) => Fluttertoast.showToast(
-                              msg: 'Copied version info'));
-                    },
-                    child: Text(
-                      '\nVersion ${appInfo.version}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
                   ),
                   Text(
                     '\nCopyright © 2020-2021 Fareez Iqmal\n',
@@ -222,8 +154,7 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: kPrivacyPolicyLink, useCustomTabs: true);
+                        LaunchUrl.normalLaunchUrl(url: kPrivacyPolicyLink);
                       },
                     ),
                   ),
@@ -234,8 +165,7 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: kReleaseNotesLink, useCustomTabs: true);
+                        LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
                       },
                     ),
                   ),
@@ -250,15 +180,9 @@ class AboutAppPage extends StatelessWidget {
                             context: context,
                             applicationIcon: Hero(
                               tag: kAppIconTag,
-                              child: CachedNetworkImage(
-                                width: 70,
-                                imageUrl: kAppIconUrl,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                        CircularProgressIndicator(
-                                            value: downloadProgress.progress),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                              child: Image.network(
+                                kAppIconUrl,
+                                width: 50,
                               ),
                             ));
                       },

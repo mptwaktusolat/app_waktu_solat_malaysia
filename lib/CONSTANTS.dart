@@ -9,14 +9,9 @@ const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredLocationLocality = "storedLocationLocality";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
-const kStoredShouldUpdateNotif = "storedShouldUpdateNotif";
-const kStoredLastUpdateNotif = "storedLastUpdateNotif";
-const kStoredNotificationLimit = "storedNotificationLimit";
 const kNumberOfNotifsScheduled = "numnotifscheduled";
 const kIsDebugMode = "debugModeSet";
-const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
-const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
 
 //Network image

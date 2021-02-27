@@ -3,17 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
-
 import '../../CONSTANTS.dart' as Constants;
-import '../../utils/AppInformation.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../Settings%20part/AboutPage.dart';
-import '../Settings%20part/NotificationSettingPage.dart';
 import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({this.info});
-  final AppInfo info;
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -67,13 +62,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Notification')),
-              buildNotificationSetting(context),
-              Padding(
-                  padding: const EdgeInsets.all(8.0), child: Text('Sharing')),
-              buildSharingSetting(setting),
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
               buildAboutApp(context),
               setting.isDeveloperOption
@@ -82,32 +70,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Card buildSharingSetting(SettingProvider setting) {
-    return Card(
-      child: ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
-          child: Text(
-            'Specify the text formatting',
-          ),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: CupertinoSlidingSegmentedControl(
-            groupValue: setting.sharingFormat,
-            onValueChanged: (value) => setting.sharingFormat = value,
-            children: {
-              //defaulted to always ask
-              0: Text('Always ask'),
-              1: Text('Plain Text'),
-              2: Text('WhatsApp'),
-            },
-          ),
-        ),
       ),
     );
   }
@@ -160,32 +122,16 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildAboutApp(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('About app (Ver. ${widget.info.version})'),
+        title: Text('About app'),
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AboutAppPage(widget.info),
+              builder: (context) => AboutAppPage(),
             ),
           );
         },
         subtitle: Text('Release Notes, Contribution, Twitter etc.'),
-      ),
-    );
-  }
-
-  Card buildNotificationSetting(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text('Notification settings'),
-        onTap: () async {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => NotificationPageSetting(),
-            ),
-          );
-        },
       ),
     );
   }
