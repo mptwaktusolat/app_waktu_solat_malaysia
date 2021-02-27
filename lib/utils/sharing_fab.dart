@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
+import '../views/Settings%20part/settingsProvider.dart';
 import 'copyAndShare.dart';
+import 'launchUrl.dart';
 
 class ShareFAB extends StatelessWidget {
   @override

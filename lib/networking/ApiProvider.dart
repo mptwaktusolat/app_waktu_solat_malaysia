@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
-import 'CustomException.dart';
 import 'package:http/http.dart' as http;
+import 'CustomException.dart';
 
 class ApiProvider {
   Future<dynamic> get(dynamic url) async {

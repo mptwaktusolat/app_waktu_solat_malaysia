@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/launchUrl.dart';
+import '../Settings%20part/settingsProvider.dart';
 
 class AboutAppPage extends StatelessWidget {
   @override
