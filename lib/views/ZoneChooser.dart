@@ -2,7 +2,6 @@
 ///Also handle the location selection
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,7 +86,7 @@ class _LocationChooserState extends State<LocationChooser> {
         );
       },
       child: Text(
-        locationDatabase.getDaerah(globalIndex),
+        locationText,
         overflow: TextOverflow.ellipsis,
         style: GoogleFonts.montserrat(
           textStyle: TextStyle(

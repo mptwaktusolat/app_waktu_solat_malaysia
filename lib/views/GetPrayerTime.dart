@@ -13,7 +13,6 @@ import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
 import '../utils/location/locationDatabase.dart';
-import '../utils/sizeconfig.dart';
 import 'Settings%20part/settingsProvider.dart';
 
 LocationDatabase locationDatabase = LocationDatabase();
