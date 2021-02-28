@@ -2,18 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:share/share.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
 import 'CONSTANTS.dart';
 import 'utils/LocationData.dart';
-import 'utils/cachedPrayerData.dart';
-import 'utils/copyAndShare.dart';
 import 'utils/notifications_helper.dart';
 import 'views/Settings%20part/ThemeController.dart';
 import 'views/Settings%20part/settingsProvider.dart';
@@ -89,15 +86,7 @@ class MyHomePage extends StatelessWidget {
         toolbarHeight: 50,
       ),
       bottomNavigationBar: MyBottomAppBar(),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).primaryColor,
-          child: FaIcon(FontAwesomeIcons.shareAlt),
-          mini: true,
-          tooltip: 'Share solat time',
-          onPressed: () {
-            print(CachedPrayerTimeData.allPrayerTime().toString());
-            Share.share(CopyAndShare.getMessage());
-          }),
+      floatingActionButton: ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: SingleChildScrollView(child: AppBody()),
     );
@@ -115,6 +104,8 @@ void initGetStorage() {
   GetStorage().writeIfNull(kIsDebugMode, false);
   GetStorage().writeIfNull(kForceUpdateNotif, false);
   GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
+  GetStorage().writeIfNull(kSharingFormat, 0);
+  GetStorage().writeIfNull(kFontSize, 14.0);
 }
 
 Future<void> _configureLocalTimeZone() async {

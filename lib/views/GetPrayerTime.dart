@@ -182,7 +182,14 @@ Widget solatCard(String time, String name, bool useFullHeight) {
                 textColor: Colors.white);
           });
         },
-        child: Center(child: Text(name + ' at $time')),
+        child: Center(child: Consumer<SettingProvider>(
+          builder: (context, setting, child) {
+            return Text(
+              name + ' at $time',
+              style: TextStyle(fontSize: setting.prayerFontSize),
+            );
+          },
+        )),
       ),
     ),
   );
@@ -211,8 +218,10 @@ class Error extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          RaisedButton(
-            color: Colors.white,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).buttonColor,
+            ),
             child: Text('Retry', style: TextStyle(color: Colors.black)),
             onPressed: onRetryPressed,
           )

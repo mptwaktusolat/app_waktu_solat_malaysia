@@ -72,21 +72,23 @@ class _LocationChooserState extends State<LocationChooser> {
       });
     }
 
-    return FlatButton(
-      padding: EdgeInsets.all(-5.0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-        side: BorderSide(color: Colors.white),
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(-5.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          side: BorderSide(color: Colors.white),
+        ),
       ),
       onPressed: () async {
         if (kIsWeb) {
           print('Web is true');
-          openshowModalBottomSheet(context, _updateUI);
+          openLocationBottomSheet(context, _updateUI);
         } else {
           LocationPermission permission = await Geolocator.checkPermission();
           if (permission == LocationPermission.deniedForever) {
             //if deniedForever, it will skip the GPS method
-            openshowModalBottomSheet(context, _updateUI);
+            openLocationBottomSheet(context, _updateUI);
           } else {
             showDialog(
               context: context,
@@ -104,7 +106,7 @@ class _LocationChooserState extends State<LocationChooser> {
             label: 'Change',
             onPressed: () {
               print('Pressed change loc');
-              openshowModalBottomSheet(context, _updateUI);
+              openLocationBottomSheet(context, _updateUI);
             },
           ),
         ));
@@ -135,7 +137,7 @@ class _LocationChooserState extends State<LocationChooser> {
   }
 }
 
-Future openshowModalBottomSheet(BuildContext context, Function callback) async {
+Future openLocationBottomSheet(BuildContext context, Function callback) async {
   print(globalIndex);
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -367,12 +369,12 @@ class Completed extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.pop(context);
-                    openshowModalBottomSheet(context, onCallback);
+                    openLocationBottomSheet(context, onCallback);
                   },
                 ),
                 TextButton(
                   child: Text(
-                    'Accept this location',
+                    'Set this location',
                   ),
                   onPressed: () {
                     GetStorage().write(kStoredGlobalIndex, index);
@@ -525,7 +527,7 @@ class Error extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      openshowModalBottomSheet(context, onCallback);
+                      openLocationBottomSheet(context, onCallback);
                     },
                     child: Text(
                       'Set manually',

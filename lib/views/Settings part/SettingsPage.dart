@@ -39,7 +39,6 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Consumer<SettingProvider>(
         builder: (context, setting, child) {
           return ListView(
-            // physics: BouncingScrollPhysics(),
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             children: [
               Padding(
@@ -47,20 +46,68 @@ class _SettingsPageState extends State<SettingsPage> {
               buildTimeFormat(setting),
               SizedBox(height: 5),
               buildShowOtherPrayerTime(setting),
+              SizedBox(height: 5),
+              Card(
+                child: ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text('Font size'),
+                  ),
+                  subtitle: Slider(
+                    activeColor: Colors.teal,
+                    inactiveColor: Colors.teal.withAlpha(40),
+                    label: setting.prayerFontSize.round().toString(),
+                    min: 12.0,
+                    max: 22.0,
+                    divisions: 5,
+                    value: setting.prayerFontSize,
+                    onChanged: (double value) {
+                      setting.prayerFontSize = value;
+                    },
+                  ),
+                ),
+              ),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Notification')),
               buildNotificationSetting(context),
+              Padding(
+                  padding: const EdgeInsets.all(8.0), child: Text('Sharing')),
+              buildSharingSetting(setting),
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
-              // SizedBox(height: 5),
               buildAboutApp(context),
-
               setting.isDeveloperOption
                   ? buildVerboseDebugMode(context)
                   : Container(),
             ],
           );
         },
+      ),
+    );
+  }
+
+  Card buildSharingSetting(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
+          child: Text(
+            'Specify the text formatting',
+          ),
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: CupertinoSlidingSegmentedControl(
+            groupValue: setting.sharingFormat,
+            onValueChanged: (value) => setting.sharingFormat = value,
+            children: {
+              //defaulted to always ask
+              0: Text('Always ask'),
+              1: Text('Plain Text'),
+              2: Text('WhatsApp'),
+            },
+          ),
+        ),
       ),
     );
   }

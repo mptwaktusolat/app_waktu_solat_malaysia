@@ -29,9 +29,9 @@ Wondering what changed with every :new: releases? Or what bug :bug: has been fix
 
 ## Report an issue / Feature request
 
-Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues).
+Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/issues).
 
-Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/issues). Really appreciated if you do.
+Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/issues). Really appreciated if you do.
 
 ## Discussion
 
@@ -59,7 +59,7 @@ _Not available for iOS sorry_
 
 ## Try the beta
 
-Download here -> [APK](https://github.com/fareezMaple/App-Waktu-Solat-Malaysia/releases).
+Download here -> [APK](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/releases).
 And submit your review. Some of the version are also available in Google Play beta program.
 
 ## Honourable mention

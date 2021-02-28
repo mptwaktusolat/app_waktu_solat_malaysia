@@ -75,7 +75,7 @@ Widget compassActionButton(BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      OutlineButton(
+      OutlinedButton(
         onPressed: () {
           LaunchUrl.normalLaunchUrl(
               url: 'https://g.co/qiblafinder', useCustomTabs: true);
@@ -84,21 +84,18 @@ Widget compassActionButton(BuildContext context) {
           Clipboard.setData(ClipboardData(text: 'g.co/qiblafinder'))
               .then((value) => Fluttertoast.showToast(msg: 'URL copied :)'));
         },
-        highlightedBorderColor: Colors.teal,
         child: Row(
           children: [
             Text('Google Qiblafinder'),
             SizedBox(width: 8),
-            FaIcon(FontAwesomeIcons.externalLinkAlt, size: 13)
+            FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
           ],
         ),
       ),
       SizedBox(width: 10),
-      OutlineButton(
+      OutlinedButton(
         onPressed: () => _showCalibrateCompassDialog(context),
-        // onPressed: null,
-        highlightedBorderColor: Colors.teal,
-        child: Text('Calibrating tip'),
+        child: Text('Calibration tip'),
       )
     ],
   );
