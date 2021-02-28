@@ -54,3 +54,4 @@ scratch.dart
 
 # firebase hosting
 .firebase/**.**.cache
+.firebase/hosting.YnVpbGRcd2Vi.cache
