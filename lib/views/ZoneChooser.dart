@@ -51,13 +51,13 @@ class _LocationChooserState extends State<LocationChooser> {
       }
     });
 
-    var shortCode = locationDatabase.getJakimCode(globalIndex);
+    var locationText = locationDatabase.getDaerah(globalIndex);
 
     void _updateUI() {
       showSnackbarLocationSaved(context);
 
       setState(() {
-        shortCode = locationDatabase.getJakimCode(globalIndex);
+        locationText = locationDatabase.getDaerah(globalIndex);
       });
     }
 
@@ -67,44 +67,34 @@ class _LocationChooserState extends State<LocationChooser> {
           borderRadius: BorderRadius.circular(8.0),
           side: BorderSide(color: Colors.white),
         ),
-        padding: EdgeInsets.all(-5.0),
+        // padding: EdgeInsets.all(-5.0),
       ),
       onPressed: () => openLocationBottomSheet(context, _updateUI),
       onLongPress: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-              'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
-          behavior: SnackBarBehavior.floating,
-          action: SnackBarAction(
-            label: 'Change',
-            onPressed: () {
-              print('Pressed change loc');
-              openLocationBottomSheet(context, _updateUI);
-            },
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+                'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: 'Change',
+              onPressed: () {
+                print('Pressed change loc');
+                openLocationBottomSheet(context, _updateUI);
+              },
+            ),
           ),
-        ));
+        );
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FaIcon(
-            FontAwesomeIcons.mapMarkerAlt,
-            color: Colors.teal.shade50,
-            size: 17,
+      child: Text(
+        locationDatabase.getDaerah(globalIndex),
+        overflow: TextOverflow.ellipsis,
+        style: GoogleFonts.montserrat(
+          textStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 13,
           ),
-          Text(
-            '  ' +
-                shortCode.substring(0, 3).toUpperCase() +
-                ' ' +
-                shortCode.substring(3, 5),
-            style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-            )),
-          ),
-        ],
+        ),
       ),
     );
   }

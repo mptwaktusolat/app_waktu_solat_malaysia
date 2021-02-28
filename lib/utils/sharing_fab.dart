@@ -19,7 +19,10 @@ class ShareFAB extends StatelessWidget {
     });
   }
 
-  void shareToWhatsApp() => LaunchUrl.normalLaunchUrl(
-        url: 'http://wa.me/?text=${CopyAndShare.getMessage(type: 2)}',
-      );
+  void shareToWhatsApp() {
+    String encodedText = Uri.encodeComponent(CopyAndShare.getMessage(type: 2));
+    LaunchUrl.normalLaunchUrl(
+      url: 'http://wa.me/?text=$encodedText',
+    );
+  }
 }

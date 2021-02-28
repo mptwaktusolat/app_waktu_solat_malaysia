@@ -124,54 +124,96 @@ class _PrayTimeListState extends State<PrayTimeList> {
         CachedPrayerTimeData.maghribTime = maghribTime;
         CachedPrayerTimeData.isyaTime = isyaTime;
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            showOtherPrayerTime
-                ? solatCard(imsakTime, 'Imsak', false)
-                : Container(),
-            solatCard(subuhTime, 'Subuh', true),
-            showOtherPrayerTime
-                ? solatCard(syurukTime, 'Syuruk', false)
-                : Container(),
-            showOtherPrayerTime
-                ? solatCard(dhuhaTime, 'Dhuha', false)
-                : Container(),
-            solatCard(zohorTime, 'Zohor', true),
-            solatCard(asarTime, 'Asar', true),
-            solatCard(maghribTime, 'Maghrib', true),
-            solatCard(isyaTime, 'Isyak', true),
-          ],
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth < 700) {
+              return buildSmallLayout(imsakTime, subuhTime, syurukTime,
+                  dhuhaTime, zohorTime, asarTime, maghribTime, isyaTime);
+            } else {
+              return buildWideLayout(imsakTime, subuhTime, syurukTime,
+                  dhuhaTime, zohorTime, asarTime, maghribTime, isyaTime);
+            }
+          },
         );
       },
     ));
   }
+
+  Wrap buildWideLayout(
+      String imsakTime,
+      String subuhTime,
+      String syurukTime,
+      String dhuhaTime,
+      String zohorTime,
+      String asarTime,
+      String maghribTime,
+      String isyaTime) {
+    return Wrap(
+      children: [
+        showOtherPrayerTime
+            ? rowSolatCard(imsakTime, 'Imsak', false)
+            : SizedBox.shrink(),
+        rowSolatCard(subuhTime, 'Subuh', true),
+        showOtherPrayerTime
+            ? rowSolatCard(syurukTime, 'Syuruk', false)
+            : SizedBox.shrink(),
+        showOtherPrayerTime
+            ? rowSolatCard(dhuhaTime, 'Dhuha', false)
+            : SizedBox.shrink(),
+        rowSolatCard(zohorTime, 'Zohor', true),
+        rowSolatCard(asarTime, 'Asar', true),
+        rowSolatCard(maghribTime, 'Maghrib', true),
+        rowSolatCard(isyaTime, 'Isyak', true),
+      ],
+    );
+  }
+
+  Column buildSmallLayout(
+      String imsakTime,
+      String subuhTime,
+      String syurukTime,
+      String dhuhaTime,
+      String zohorTime,
+      String asarTime,
+      String maghribTime,
+      String isyaTime) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        showOtherPrayerTime
+            ? columnSolatCard(imsakTime, 'Imsak', false)
+            : Container(),
+        columnSolatCard(subuhTime, 'Subuh', true),
+        showOtherPrayerTime
+            ? columnSolatCard(syurukTime, 'Syuruk', false)
+            : Container(),
+        showOtherPrayerTime
+            ? columnSolatCard(dhuhaTime, 'Dhuha', false)
+            : Container(),
+        columnSolatCard(zohorTime, 'Zohor', true),
+        columnSolatCard(asarTime, 'Asar', true),
+        columnSolatCard(maghribTime, 'Maghrib', true),
+        columnSolatCard(isyaTime, 'Isyak', true),
+      ],
+    );
+  }
 }
 
-Widget solatCard(String time, String name, bool useFullHeight) {
+Widget columnSolatCard(String time, String name, bool useFullHeight) {
   return Container(
-    margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
-    width: 300,
+    // margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
     height: useFullHeight ? 80 : 55,
     child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       elevation: 4.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
-        onTap: () {
-          print('Copied');
-          Clipboard.setData(new ClipboardData(text: '$name: $time'))
-              .then((value) {
-            Fluttertoast.showToast(
-                msg: 'Copied to clipboard',
-                toastLength: Toast.LENGTH_SHORT,
-                backgroundColor: Colors.grey.shade700,
-                textColor: Colors.white);
-          });
-        },
+        onTap: () => copySolatTime(name, time),
         child: Center(child: Consumer<SettingProvider>(
           builder: (context, setting, child) {
             return Text(
@@ -183,6 +225,43 @@ Widget solatCard(String time, String name, bool useFullHeight) {
       ),
     ),
   );
+}
+
+Widget rowSolatCard(String time, String name, bool useFullHeight) {
+  return Container(
+    // margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
+    height: 120,
+    width: 300,
+    child: Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      elevation: 4.0,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10.0),
+        splashColor: Colors.teal.withAlpha(30),
+        onTap: () => copySolatTime(name, time),
+        child: Center(child: Consumer<SettingProvider>(
+          builder: (context, setting, child) {
+            return Text(
+              '$name at\n$time',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: setting.prayerFontSize),
+            );
+          },
+        )),
+      ),
+    ),
+  );
+}
+
+void copySolatTime(String name, String time) {
+  print('Copied');
+  Clipboard.setData(new ClipboardData(text: '$name: $time')).then((value) {
+    Fluttertoast.showToast(
+        msg: 'Copied to clipboard',
+        toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: Colors.grey.shade700,
+        textColor: Colors.white);
+  });
 }
 
 class Error extends StatelessWidget {

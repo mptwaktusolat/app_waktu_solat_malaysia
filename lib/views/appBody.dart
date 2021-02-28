@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-
 import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
@@ -38,6 +37,7 @@ class AppBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
+                      flex: 2,
                       child: Container(
                         child: Column(
                           children: [
@@ -76,7 +76,7 @@ class AppBody extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      // flex: 3,
+                      flex: 3,
                       child: Container(
                         margin: EdgeInsets.all(5.0),
                         padding: EdgeInsets.all(18.0),
