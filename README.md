@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
 ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-8k-orange)
+![Installs](https://img.shields.io/badge/installs-9k+-orange)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
@@ -37,9 +37,11 @@ Have an idea :bulb: that may benefit the app? Do not hesitate to submit your sug
 
 You can also use [**Discussions** ](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/discussions) ask any question or suggesting any idea using. Kita sembang2 santai je gituu :relaxed:
 
-## Web app (Beta)
+## Web app
 
-<a href='https://malaysia-waktu-solat.web.app/'><img alt='Open in Progressive Web App' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
+<a href='https://waktusolat.web.app/'><img alt='Open in Web' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
+
+_Web app working directory has been seperated to `web` branches._
 
 <!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 
@@ -53,9 +55,9 @@ Get it on:
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
 <a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
-\*i having some trouble to update the app in App Gallery. So it will be very outdated.
+_i'm having difficulties to update the app in App Gallery. So it will be very outdated._
 
-_Not available for iOS sorry_
+_Not available for iOS sorry :disappointed:_
 
 ## Try the beta
 
