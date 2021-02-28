@@ -92,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Padding(
           padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
           child: Text(
-            'Specify the text formatting',
+            'Specify the default text format',
           ),
         ),
         subtitle: Padding(
