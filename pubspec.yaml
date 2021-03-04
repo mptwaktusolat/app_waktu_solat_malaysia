@@ -26,6 +26,7 @@ dependencies:
   auto_size_text: ^2.1.0
   provider: ^4.3.2+2
   font_awesome_flutter: ^8.11.0
+  cloud_firestore: ^1.0.0
 
 dev_dependencies:
   flutter_test:
