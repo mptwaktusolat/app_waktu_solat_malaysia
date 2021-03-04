@@ -1,4 +1,4 @@
-# Waktu solat Malaysia
+# App Waktu Solat Malaysia
 
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
