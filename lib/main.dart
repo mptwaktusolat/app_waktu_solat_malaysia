@@ -78,7 +78,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          kIsWeb ? '🇲🇾 Prayer Time (BETA)' : '🇲🇾 Prayer Time',
+          '🇲🇾 Prayer Time',
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,
