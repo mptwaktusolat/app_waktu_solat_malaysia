@@ -148,6 +148,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
       String maghribTime,
       String isyaTime) {
     return Wrap(
+      alignment: WrapAlignment.center,
       children: [
         showOtherPrayerTime
             ? rowSolatCard(imsakTime, 'Imsak', false)

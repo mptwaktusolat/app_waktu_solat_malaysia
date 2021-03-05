@@ -41,31 +41,35 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 5),
               buildShowOtherPrayerTime(setting),
               SizedBox(height: 5),
-              Card(
-                child: ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text('Font size'),
-                  ),
-                  subtitle: Slider(
-                    activeColor: Colors.teal,
-                    inactiveColor: Colors.teal.withAlpha(40),
-                    label: setting.prayerFontSize.round().toString(),
-                    min: 12.0,
-                    max: 22.0,
-                    divisions: 5,
-                    value: setting.prayerFontSize,
-                    onChanged: (double value) {
-                      setting.prayerFontSize = value;
-                    },
-                  ),
-                ),
-              ),
+              buildFontSize(setting),
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
               buildAboutApp(context),
             ],
           );
         },
+      ),
+    );
+  }
+
+  Card buildFontSize(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text('Font size'),
+        ),
+        subtitle: Slider(
+          activeColor: Colors.teal,
+          inactiveColor: Colors.teal.withAlpha(40),
+          label: setting.prayerFontSize.round().toString(),
+          min: 12.0,
+          max: 22.0,
+          divisions: 5,
+          value: setting.prayerFontSize,
+          onChanged: (double value) {
+            setting.prayerFontSize = value;
+          },
+        ),
       ),
     );
   }
