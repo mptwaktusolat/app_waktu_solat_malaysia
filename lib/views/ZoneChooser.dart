@@ -114,22 +114,24 @@ Future openLocationBottomSheet(BuildContext context, Function callback) async {
                 topRight: Radius.circular(26.0)),
             child: Container(
               color: Theme.of(context).canvasColor,
-              child: ListView.builder(
-                itemCount: locationDatabase.getLocationDatabaseLength(),
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    onTap: () {
-                      GetStorage().write(kStoredGlobalIndex, index);
-                      Navigator.pop(context,
-                          index); //index param here will pass as selectedindex below
-                    },
-                    title: Text(locationDatabase.getDaerah(index)),
-                    subtitle: Text(locationDatabase.getNegeri(index)),
-                    trailing: locationBubble(
-                        context, locationDatabase.getJakimCode(index)),
-                    selected: globalIndex == index ? true : false,
-                  );
-                },
+              child: Scrollbar(
+                child: ListView.builder(
+                  itemCount: locationDatabase.getLocationDatabaseLength(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      onTap: () {
+                        GetStorage().write(kStoredGlobalIndex, index);
+                        Navigator.pop(context,
+                            index); //index param here will pass as selectedindex below
+                      },
+                      title: Text(locationDatabase.getDaerah(index)),
+                      subtitle: Text(locationDatabase.getNegeri(index)),
+                      trailing: locationBubble(
+                          context, locationDatabase.getJakimCode(index)),
+                      selected: globalIndex == index ? true : false,
+                    );
+                  },
+                ),
               ),
             ),
           ),
