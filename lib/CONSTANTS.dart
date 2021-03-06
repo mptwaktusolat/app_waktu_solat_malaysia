@@ -18,6 +18,7 @@ const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
+const kIsGooglePlayApi = "storedGoogleApi";
 
 //Network image
 const kAppIconUrl =

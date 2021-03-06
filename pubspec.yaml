@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.15.94+47
+version: 1.16.95+48
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -39,6 +39,7 @@ dependencies:
   geocoding: ^1.0.5
   font_awesome_flutter: ^8.11.0
   flutter_qiblah: ^1.0.3+2
+  google_api_availability: ^3.0.0
 
 dev_dependencies:
   flutter_test:

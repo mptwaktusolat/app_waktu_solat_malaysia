@@ -38,26 +38,28 @@ class _LocationChooserState extends State<LocationChooser> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      //if first run, then promote to change location
-      if (GetStorage().read(kStoredFirstRun)) {
-        GetStorage().write(kStoredFirstRun, false);
-        return ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            behavior: SnackBarBehavior.floating,
-            content: Text(
-                'Please update your location (if necessary) by tapping JHR 01 button above'),
-            duration: Duration(seconds: 7),
-            action: SnackBarAction(
-              label: 'Got it!',
-              onPressed: () {
-                ScaffoldMessenger.of(context).hideCurrentSnackBar();
-              },
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        //if first run, then promote to change location
+        if (GetStorage().read(kStoredFirstRun)) {
+          GetStorage().write(kStoredFirstRun, false);
+          return ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              behavior: SnackBarBehavior.floating,
+              content: Text(
+                  'Please update your location (if necessary) by tapping JHR 01 button above'),
+              duration: Duration(seconds: 7),
+              action: SnackBarAction(
+                label: 'Got it!',
+                onPressed: () {
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                },
+              ),
             ),
-          ),
-        );
-      }
-    });
+          );
+        }
+      },
+    );
 
     var shortCode = locationDatabase.getJakimCode(globalIndex);
 
@@ -81,8 +83,7 @@ class _LocationChooserState extends State<LocationChooser> {
         ),
       ),
       onPressed: () async {
-        if (kIsWeb) {
-          print('Web is true');
+        if (kIsWeb || GetStorage().read(kIsGooglePlayApi) == 0) {
           openLocationBottomSheet(context, _updateUI);
         } else {
           LocationPermission permission = await Geolocator.checkPermission();
@@ -152,22 +153,24 @@ Future openLocationBottomSheet(BuildContext context, Function callback) async {
                 topRight: Radius.circular(26.0)),
             child: Container(
               color: Theme.of(context).canvasColor,
-              child: ListView.builder(
-                itemCount: locationDatabase.getLocationDatabaseLength(),
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    onTap: () {
-                      GetStorage().write(kStoredGlobalIndex, index);
-                      Navigator.pop(context,
-                          index); //index param here will pass as selectedindex below
-                    },
-                    title: Text(locationDatabase.getDaerah(index)),
-                    subtitle: Text(locationDatabase.getNegeri(index)),
-                    trailing: locationBubble(
-                        context, locationDatabase.getJakimCode(index)),
-                    selected: globalIndex == index ? true : false,
-                  );
-                },
+              child: Scrollbar(
+                child: ListView.builder(
+                  itemCount: locationDatabase.getLocationDatabaseLength(),
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      onTap: () {
+                        GetStorage().write(kStoredGlobalIndex, index);
+                        Navigator.pop(context,
+                            index); //index param here will pass as selectedindex below
+                      },
+                      title: Text(locationDatabase.getDaerah(index)),
+                      subtitle: Text(locationDatabase.getNegeri(index)),
+                      trailing: locationBubble(
+                          context, locationDatabase.getJakimCode(index)),
+                      selected: globalIndex == index ? true : false,
+                    );
+                  },
+                ),
               ),
             ),
           ),
