@@ -83,13 +83,6 @@ class AboutAppPage extends StatelessWidget {
                                   ),
                                   ListTile(
                                     title: Text(
-                                        'Google Play available on device?'),
-                                    subtitle: Text(GetStorage()
-                                        .read(kIsGooglePlayApi)
-                                        .toString()),
-                                  ),
-                                  ListTile(
-                                    title: Text(
                                         'Send immediate test notification'),
                                     onTap: () async {
                                       await showDebugNotification();

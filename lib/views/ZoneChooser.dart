@@ -83,11 +83,12 @@ class _LocationChooserState extends State<LocationChooser> {
         ),
       ),
       onPressed: () async {
-        if (kIsWeb || GetStorage().read(kIsGooglePlayApi) == 0) {
+        if (kIsWeb) {
           openLocationBottomSheet(context, _updateUI);
         } else {
           LocationPermission permission = await Geolocator.checkPermission();
-          if (permission == LocationPermission.deniedForever) {
+          if (permission == LocationPermission.deniedForever ||
+              !await Geolocator.isLocationServiceEnabled()) {
             //if deniedForever, it will skip the GPS method
             openLocationBottomSheet(context, _updateUI);
           } else {
@@ -99,38 +100,32 @@ class _LocationChooserState extends State<LocationChooser> {
         }
       },
       onLongPress: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-              'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
-          behavior: SnackBarBehavior.floating,
-          action: SnackBarAction(
-            label: 'Change',
-            onPressed: () {
-              print('Pressed change loc');
-              openLocationBottomSheet(context, _updateUI);
-            },
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+                'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: 'Change',
+              onPressed: () {
+                print('Pressed change loc');
+                openLocationBottomSheet(context, _updateUI);
+              },
+            ),
           ),
-        ));
+        );
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         mainAxisSize: MainAxisSize.min,
         children: [
-          FaIcon(
-            FontAwesomeIcons.mapMarkerAlt,
-            color: Colors.teal.shade50,
-            size: 17,
-          ),
+          FaIcon(FontAwesomeIcons.mapMarkerAlt,
+              color: Colors.teal.shade50, size: 15),
           Text(
-            '  ' +
-                shortCode.substring(0, 3).toUpperCase() +
-                ' ' +
-                shortCode.substring(3, 5),
+            '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
             style: GoogleFonts.montserrat(
-                textStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 13,
-            )),
+              textStyle: TextStyle(color: Colors.white, fontSize: 13),
+            ),
           ),
         ],
       ),
@@ -273,7 +268,8 @@ class _GetGPSState extends State<GetGPS> {
               return Loading(
                 loadingMessage: 'Getting location',
               );
-            } else if (snapshot.connectionState == ConnectionState.done) {
+            } else if (snapshot.hasData &&
+                snapshot.connectionState == ConnectionState.done) {
               return Completed(
                 jakimCode: snapshot.data.zone,
                 place: snapshot.data.lokasi,
@@ -281,6 +277,7 @@ class _GetGPSState extends State<GetGPS> {
               );
             } else if (snapshot.hasError) {
               return Error(
+                onRetryPressed: _getAllLocationData,
                 errorMessage: snapshot.error.toString(),
               );
             } else {

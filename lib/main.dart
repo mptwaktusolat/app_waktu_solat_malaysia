@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_api_availability/google_api_availability.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -26,12 +25,6 @@ void main() async {
 
   LocationData.getCurrentLocation();
   await _configureLocalTimeZone();
-
-  GooglePlayServicesAvailability availability = await GoogleApiAvailability
-      .instance
-      .checkGooglePlayServicesAvailability();
-  print(availability.value);
-  GetStorage().write(kIsGooglePlayApi, availability.value);
 
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);
