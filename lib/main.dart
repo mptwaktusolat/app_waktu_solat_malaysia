@@ -13,7 +13,6 @@ import 'views/bottomAppBar.dart';
 
 void main() async {
   await GetStorage.init();
-
   initGetStorage();
 
   Get.lazyPut(() => ThemeController());
@@ -54,20 +53,17 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '🇲🇾 Prayer Time',
-          style: GoogleFonts.balooTamma(),
-        ),
-        elevation: 0.0,
-        centerTitle: true,
-        toolbarHeight: 50,
-      ),
+          title: Text(
+            '🇲🇾 Prayer Time',
+            style: GoogleFonts.balooTamma(),
+          ),
+          elevation: 0.0,
+          centerTitle: true,
+          toolbarHeight: 50),
       bottomNavigationBar: MyBottomAppBar(),
       floatingActionButton: ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: SingleChildScrollView(
-        child: AppBody(),
-      ),
+      body: SingleChildScrollView(child: AppBody()),
     );
   }
 }
@@ -77,7 +73,6 @@ void initGetStorage() {
   GetStorage().writeIfNull(kStoredGlobalIndex, 0);
   GetStorage().writeIfNull(kStoredTimeIs12, true);
   GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
-  GetStorage().writeIfNull(kIsDebugMode, false);
   GetStorage().writeIfNull(kFontSize, 14.0);
 }
 
@@ -88,6 +83,5 @@ void readAllGetStorage() {
   print('kStoredTimeIs12 is ${GetStorage().read(kStoredTimeIs12)}');
   print(
       'kStoredShowOtherPrayerTime is ${GetStorage().read(kStoredShowOtherPrayerTime)}');
-  print('kIsDebugMode is ${GetStorage().read(kIsDebugMode)}');
   print('-----------------------');
 }
