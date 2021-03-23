@@ -63,16 +63,17 @@ class MyBottomAppBar extends StatelessWidget {
 
 void menuModalBottomSheet(BuildContext context) {
   showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(25.0),
-        ),
+    context: context,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(25.0),
       ),
-      builder: (BuildContext context) {
-        return Container(
-          padding: EdgeInsets.all(4.0),
-          child: Wrap(children: <Widget>[
+    ),
+    builder: (BuildContext context) {
+      return Container(
+        padding: EdgeInsets.all(4.0),
+        child: Wrap(
+          children: <Widget>[
             ListTile(
               title: Text('Themes'),
               leading: FaIcon(FontAwesomeIcons.palette),
@@ -131,13 +132,14 @@ void menuModalBottomSheet(BuildContext context) {
               leading: FaIcon(FontAwesomeIcons.solidCommentDots),
               onTap: () {
                 Navigator.pop(context);
-                print('Opening feedback dialog');
                 openFeedbackDialog(context);
               },
             ),
-          ]),
-        );
-      });
+          ],
+        ),
+      );
+    },
+  );
 }
 
 void openFeedbackDialog(BuildContext context) {
