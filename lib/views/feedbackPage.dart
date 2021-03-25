@@ -22,12 +22,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
   TextEditingController messageController = TextEditingController();
   CollectionReference reportsCollection;
   Map<String, dynamic> _deviceInfo;
+  PackageInfo packageInfo;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
     reportsCollection = FirebaseFirestore.instance.collection('reports');
+    getPackageInfo();
+  }
+
+  void getPackageInfo() async {
+    packageInfo = await PackageInfo.fromPlatform();
   }
 
   String prayApiCalled =
@@ -85,12 +91,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       'Brand': snapshot.data.brand,
                       'Model': snapshot.data.model,
                       'Supported ABIs': snapshot.data.supportedAbis,
-                      'Screen Sizes': MediaQuery.of(context).size
+                      'Screen Sizes': MediaQuery.of(context).size.toString()
                     };
 
                     return CheckboxListTile(
                         secondary: OutlinedButton(
-                          child: Text('View data collected...'),
+                          child: Text('View...'),
                           onPressed: () {
                             showDialog(
                               context: context,
@@ -155,14 +161,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
                     print('Sending report');
-                    reportsCollection.add({
-                      'Date creation': FieldValue.serverTimestamp(),
-                      'App version': PackageInfo().version,
-                      'App build number': PackageInfo().buildNumber,
-                      'Prayer API called': prayApiCalled,
-                      'Locality': localityCalled,
-                      'Device info': _logIsChecked ? _deviceInfo : null,
-                    });
+                    try {
+                      reportsCollection.add({
+                        'Date creation': FieldValue.serverTimestamp(),
+                        'App version': packageInfo.version,
+                        'App build number': packageInfo.buildNumber,
+                        'Prayer API called': prayApiCalled,
+                        'Locality': localityCalled,
+                        'Device info': _logIsChecked ? _deviceInfo : null,
+                      });
+                    } catch (e) {
+                      print('Err: $e');
+                    }
                   }
                 },
                 child: Text('Send report now')),
