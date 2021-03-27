@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:package_info/package_info.dart';
 import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 import '../CONSTANTS.dart';
 import '../utils/copyAndShare.dart';
