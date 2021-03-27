@@ -113,41 +113,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
-  device_info_plus:
+  device_info:
     dependency: "direct main"
     description:
-      name: device_info_plus
+      name: device_info
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.2"
-  device_info_plus_linux:
+    version: "2.0.0"
+  device_info_platform_interface:
     dependency: transitive
     description:
-      name: device_info_plus_linux
+      name: device_info_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.1"
-  device_info_plus_macos:
-    dependency: transitive
-    description:
-      name: device_info_plus_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.1"
-  device_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: device_info_plus_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0"
-  device_info_plus_web:
-    dependency: transitive
-    description:
-      name: device_info_plus_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.1"
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -724,5 +703,5 @@ packages:
     source: hosted
     version: "4.5.1"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-259.9.beta <3.0.0"
   flutter: ">=1.24.0-10.1.pre"

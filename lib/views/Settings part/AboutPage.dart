@@ -4,10 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
-
 import '../../CONSTANTS.dart';
 import '../../main.dart';
 import '../../utils/launchUrl.dart';
@@ -15,14 +16,16 @@ import '../../utils/notifications_helper.dart';
 import '../contributionPage.dart';
 
 class AboutAppPage extends StatelessWidget {
-  AboutAppPage(this.appInfo);
-  final appInfo;
+  AboutAppPage(this.packageInfo);
+  final PackageInfo packageInfo;
+  final appLegalese = 'Copyright © 2020-2021 Fareez Iqmal';
   @override
   Widget build(BuildContext context) {
     bool isFirstTry = true;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('About App'),
           centerTitle: true,
@@ -164,19 +167,16 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onLongPress: () {
-                        Clipboard.setData(ClipboardData(text: appInfo.version))
+                        Clipboard.setData(
+                                ClipboardData(text: packageInfo.version))
                             .then((value) => Fluttertoast.showToast(
                                 msg: 'Copied version info'));
                       },
                       child: Text(
-                        '\nVersion ${appInfo.version}',
+                        'Version ${packageInfo.version}\n',
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    Text(
-                      '\nCopyright © 2020-2021 Fareez Iqmal\n',
-                      textAlign: TextAlign.center,
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
@@ -244,6 +244,8 @@ class AboutAppPage extends StatelessWidget {
                         onTap: () {
                           showLicensePage(
                               context: context,
+                              applicationName: packageInfo.appName,
+                              applicationVersion: packageInfo.version,
                               applicationIcon: Hero(
                                 tag: kAppIconTag,
                                 child: CachedNetworkImage(
@@ -279,7 +281,10 @@ class AboutAppPage extends StatelessWidget {
                           LaunchUrl.normalLaunchUrl(url: kInstaStoryDevlog);
                         },
                       ),
-                    )
+                    ),
+                    Text('\n\n\n',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.black54)),
                   ],
                 );
               },

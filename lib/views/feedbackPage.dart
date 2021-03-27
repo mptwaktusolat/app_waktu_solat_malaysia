@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
-import '../utils/AppInformation.dart';
 import '../utils/launchUrl.dart';
 
 class FeedbackPage extends StatefulWidget {
@@ -15,20 +16,18 @@ class FeedbackPage extends StatefulWidget {
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
-  AppInfo appInfo = AppInfo();
-  double selectedOutlineWidth = 4.0;
-  double unselectedOutlineWidth = 1.0;
-  String hintTextForFeedback = 'Please leave your feedback here';
-  TextEditingController messageController = TextEditingController();
-  CollectionReference reportsCollection;
+  TextEditingController _messageController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  CollectionReference _reportsCollection;
   Map<String, dynamic> _deviceInfo;
   PackageInfo packageInfo;
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _isSendLoading = false;
 
   @override
   void initState() {
     super.initState();
-    reportsCollection = FirebaseFirestore.instance.collection('reports');
+    _reportsCollection = FirebaseFirestore.instance.collection('reports');
     getPackageInfo();
   }
 
@@ -49,34 +48,43 @@ class _FeedbackPageState extends State<FeedbackPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        appBar: AppBar(
-          title: Text('Feedback'),
-          centerTitle: true,
-        ),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(title: Text('Feedback'), centerTitle: true),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(height: 10),
-            Text(
-              'Any suggestion or bug report',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: Form(
                 key: _formKey,
-                child: TextFormField(
-                    validator: (value) =>
-                        value.isNotEmpty ? null : 'Field can\'t be empty',
-                    controller: messageController,
-                    decoration: InputDecoration(
-                        hintText: hintTextForFeedback,
-                        border: OutlineInputBorder()),
-                    // textInputAction: TextInputAction.done,
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    maxLines: 4),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                        validator: (value) =>
+                            value.isNotEmpty ? null : 'Field can\'t be empty',
+                        controller: _messageController,
+                        decoration: InputDecoration(
+                            hintText: 'Please leave your feedback/report here',
+                            border: OutlineInputBorder()),
+                        // textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.text,
+                        textInputAction: TextInputAction.next,
+                        maxLines: 4),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                          isDense: true,
+                          hintText: 'Your email address (optional)',
+                          helperText: 'We may contact you if needed',
+                          border: OutlineInputBorder()),
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -123,7 +131,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                       return TextButton.icon(
                                           icon: FaIcon(FontAwesomeIcons.copy,
                                               size: 12),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Clipboard.setData(ClipboardData(
+                                                    text:
+                                                        _deviceInfo.toString()))
+                                                .then((value) =>
+                                                    Fluttertoast.showToast(
+                                                        msg: 'Copied'));
+                                          },
                                           label: Text('Copy all'));
                                     }
                                   },
@@ -157,25 +172,47 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 },
               ),
             ),
-            ElevatedButton(
-                onPressed: () {
+            ElevatedButton.icon(
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    setState(() => _isSendLoading = true);
+
                     print('Sending report');
                     try {
-                      reportsCollection.add({
+                      await _reportsCollection.add({
                         'Date creation': FieldValue.serverTimestamp(),
+                        'User email': _emailController.text,
                         'App version': packageInfo.version,
                         'App build number': packageInfo.buildNumber,
                         'Prayer API called': prayApiCalled,
                         'Locality': localityCalled,
                         'Device info': _logIsChecked ? _deviceInfo : null,
                       });
+                      setState(() => _isSendLoading = false);
+                      Fluttertoast.showToast(
+                              msg: 'Sent. Thank you for supporting MPT',
+                              toastLength: Toast.LENGTH_LONG)
+                          .then((value) => Navigator.pop(context));
+                    } on FirebaseException catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Error: ${e.message}'),
+                        backgroundColor: Colors.red,
+                      ));
+                      setState(() => _isSendLoading = false);
                     } catch (e) {
                       print('Err: $e');
                     }
                   }
                 },
-                child: Text('Send report now')),
+                icon: FaIcon(FontAwesomeIcons.paperPlane, size: 13),
+                label: _isSendLoading
+                    ? SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        ))
+                    : Text('Send')),
             Spacer(flex: 3),
             Row(
               children: [

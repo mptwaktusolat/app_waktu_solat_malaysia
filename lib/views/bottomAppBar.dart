@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:package_info/package_info.dart';
 import 'package:waktusolatmalaysia/views/Qibla%20part/qibla.dart';
 import '../CONSTANTS.dart';
-import '../utils/AppInformation.dart';
 import '../utils/copyAndShare.dart';
 import '../utils/launchUrl.dart';
 import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
 
-AppInfo info = AppInfo();
-
 class MyBottomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    String init = info.appName; //just to init the class
     var iconColour = Theme.of(context).brightness == Brightness.light
         ? Colors.grey.shade600
         : Colors.white60;
@@ -91,9 +88,7 @@ void menuModalBottomSheet(BuildContext context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SettingsPage(
-                      info: info,
-                    ),
+                    builder: (context) => SettingsPage(),
                   ),
                 );
               },
