@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 
 import '../../CONSTANTS.dart' as Constants;
-import '../../utils/AppInformation.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../Settings%20part/AboutPage.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
 import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({this.info});
-  final AppInfo info;
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -159,17 +157,29 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Card buildAboutApp(BuildContext context) {
     return Card(
-      child: ListTile(
-        title: Text('About app (Ver. ${widget.info.version})'),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AboutAppPage(widget.info),
-            ),
-          );
+      child: FutureBuilder(
+        future: PackageInfo.fromPlatform(),
+        builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+          if (snapshot.hasData)
+            return ListTile(
+              title: Text('About app (Ver. ${snapshot.data.version})'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutAppPage(snapshot.data),
+                  ),
+                );
+              },
+              subtitle: Text('Release Notes, Contribution, Twitter etc.'),
+            );
+          else
+            return ListTile(
+              leading: SizedBox(
+                child: CircularProgressIndicator(),
+              ),
+            );
         },
-        subtitle: Text('Release Notes, Contribution, Twitter etc.'),
       ),
     );
   }
