@@ -95,18 +95,20 @@ class MyHomePage extends StatelessWidget {
 }
 
 void initGetStorage() {
-  GetStorage().writeIfNull(kStoredFirstRun, true);
-  GetStorage().writeIfNull(kStoredGlobalIndex, 0);
-  GetStorage().writeIfNull(kStoredTimeIs12, true);
-  GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
-  GetStorage().writeIfNull(kStoredShouldUpdateNotif, true);
-  GetStorage().writeIfNull(kStoredLastUpdateNotif, 0);
-  GetStorage().writeIfNull(kStoredNotificationLimit, false);
-  GetStorage().writeIfNull(kIsDebugMode, false);
-  GetStorage().writeIfNull(kForceUpdateNotif, false);
-  GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
-  GetStorage().writeIfNull(kSharingFormat, 0);
-  GetStorage().writeIfNull(kFontSize, 14.0);
+  GetStorage _getStorage = GetStorage();
+  _getStorage.writeIfNull(kStoredFirstRun, true);
+  _getStorage.writeIfNull(kStoredGlobalIndex, 0);
+  _getStorage.writeIfNull(kStoredTimeIs12, true);
+  _getStorage.writeIfNull(kStoredShowOtherPrayerTime, false);
+  _getStorage.writeIfNull(kStoredShouldUpdateNotif, true);
+  _getStorage.writeIfNull(kStoredLastUpdateNotif, 0);
+  _getStorage.writeIfNull(kStoredNotificationLimit, false);
+  _getStorage.writeIfNull(kIsDebugMode, false);
+  _getStorage.writeIfNull(kForceUpdateNotif, false);
+  _getStorage.writeIfNull(kDiscoveredDeveloperOption, false);
+  _getStorage.writeIfNull(kSharingFormat, 0);
+  _getStorage.writeIfNull(kFontSize, 14.0);
+  _getStorage.writeIfNull(kHijriOffset, -1);
 }
 
 Future<void> _configureLocalTimeZone() async {

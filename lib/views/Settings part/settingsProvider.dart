@@ -9,6 +9,15 @@ class SettingProvider with ChangeNotifier {
   bool _isDeveloperOption = GetStorage().read(kDiscoveredDeveloperOption);
   int _sharingFormat = GetStorage().read(kSharingFormat);
   double _fontSize = GetStorage().read(kFontSize);
+  int _hijriOffset = GetStorage().read(kHijriOffset);
+
+  set hijriOffset(int value) {
+    _hijriOffset = value;
+    GetStorage().write(kHijriOffset, value);
+    notifyListeners();
+  }
+
+  int get hijriOffset => _hijriOffset;
 
   set prayerFontSize(double newValue) {
     _fontSize = newValue;

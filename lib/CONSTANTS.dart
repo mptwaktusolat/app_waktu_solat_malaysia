@@ -18,6 +18,7 @@ const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
+const kHijriOffset = "storedHijriOffset";
 
 //Network image
 const kAppIconUrl =
