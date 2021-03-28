@@ -48,38 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
               SizedBox(height: 3),
               buildFontSizeSetting(setting),
               SizedBox(height: 3),
-              Card(
-                child: ListTile(
-                  title: Text('Hijri date offset'),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextButton(
-                          style: TextButton.styleFrom(
-                              minimumSize: Size(5, 5),
-                              backgroundColor:
-                                  CupertinoColors.tertiarySystemFill),
-                          onPressed: () {
-                            setting.hijriOffset--;
-                          },
-                          child: FaIcon(FontAwesomeIcons.minus, size: 11)),
-                      Container(
-                        child: Text(
-                            '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
-                      ),
-                      TextButton(
-                          style: TextButton.styleFrom(
-                              minimumSize: Size(5, 5),
-                              backgroundColor:
-                                  CupertinoColors.tertiarySystemFill),
-                          onPressed: () {
-                            setting.hijriOffset++;
-                          },
-                          child: FaIcon(FontAwesomeIcons.plus, size: 11)),
-                    ],
-                  ),
-                ),
-              ),
+              buildHijriOffset(setting),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Notification')),
@@ -95,6 +64,43 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Card buildHijriOffset(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Text('Hijri date offset'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextButton(
+                style: TextButton.styleFrom(
+                    minimumSize: Size(5, 5),
+                    backgroundColor: CupertinoColors.tertiarySystemFill),
+                onPressed: setting.hijriOffset <= -2
+                    ? null
+                    : () {
+                        setting.hijriOffset--;
+                      },
+                child: FaIcon(FontAwesomeIcons.minus, size: 11)),
+            Container(
+              child: Text(
+                  '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
+            ),
+            TextButton(
+                style: TextButton.styleFrom(
+                    minimumSize: Size(5, 5),
+                    backgroundColor: CupertinoColors.tertiarySystemFill),
+                onPressed: setting.hijriOffset >= 2
+                    ? null
+                    : () {
+                        setting.hijriOffset++;
+                      },
+                child: FaIcon(FontAwesomeIcons.plus, size: 11)),
+          ],
+        ),
       ),
     );
   }
