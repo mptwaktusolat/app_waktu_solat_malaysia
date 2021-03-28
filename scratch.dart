@@ -3,9 +3,12 @@
 import 'package:intl/intl.dart';
 
 void main() {
-  print(uriHttps().queryParameters);
-  // print(convertToEpoch(
-  //     date: '01-Jan-2021', time: '07:00:00', offset: Duration(minutes: 20)));
+  for (var i = -10; i < 10; i++) {
+    print('current value is $i');
+    if (i <= 2 && i >= -2) {
+      print(' is valid');
+    }
+  }
 }
 
 Uri uriHttps() {

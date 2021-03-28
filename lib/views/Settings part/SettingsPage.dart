@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
@@ -42,29 +43,12 @@ class _SettingsPageState extends State<SettingsPage> {
               Padding(
                   padding: const EdgeInsets.all(8.0), child: Text('Display')),
               buildTimeFormat(setting),
-              SizedBox(height: 5),
+              SizedBox(height: 3),
               buildShowOtherPrayerTime(setting),
-              SizedBox(height: 5),
-              Card(
-                child: ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text('Font size'),
-                  ),
-                  subtitle: Slider(
-                    activeColor: Colors.teal,
-                    inactiveColor: Colors.teal.withAlpha(40),
-                    label: setting.prayerFontSize.round().toString(),
-                    min: 12.0,
-                    max: 22.0,
-                    divisions: 5,
-                    value: setting.prayerFontSize,
-                    onChanged: (double value) {
-                      setting.prayerFontSize = value;
-                    },
-                  ),
-                ),
-              ),
+              SizedBox(height: 3),
+              buildFontSizeSetting(setting),
+              SizedBox(height: 3),
+              buildHijriOffset(setting),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('Notification')),
@@ -84,13 +68,73 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
+  Card buildHijriOffset(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Text('Hijri date offset'),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextButton(
+                style: TextButton.styleFrom(
+                    minimumSize: Size(5, 5),
+                    backgroundColor: CupertinoColors.tertiarySystemFill),
+                onPressed: setting.hijriOffset <= -2
+                    ? null
+                    : () {
+                        setting.hijriOffset--;
+                      },
+                child: FaIcon(FontAwesomeIcons.minus, size: 11)),
+            Container(
+              child: Text(
+                  '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
+            ),
+            TextButton(
+                style: TextButton.styleFrom(
+                    minimumSize: Size(5, 5),
+                    backgroundColor: CupertinoColors.tertiarySystemFill),
+                onPressed: setting.hijriOffset >= 2
+                    ? null
+                    : () {
+                        setting.hijriOffset++;
+                      },
+                child: FaIcon(FontAwesomeIcons.plus, size: 11)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Card buildFontSizeSetting(SettingProvider setting) {
+    return Card(
+      child: ListTile(
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text('Font size'),
+        ),
+        subtitle: Slider(
+          // activeColor: Colors.teal,
+          // inactiveColor: Colors.teal.withAlpha(40),
+          label: setting.prayerFontSize.round().toString(),
+          min: 12.0,
+          max: 22.0,
+          divisions: 5,
+          value: setting.prayerFontSize,
+          onChanged: (double value) {
+            setting.prayerFontSize = value;
+          },
+        ),
+      ),
+    );
+  }
+
   Card buildSharingSetting(SettingProvider setting) {
     return Card(
       child: ListTile(
         title: Padding(
           padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
           child: Text(
-            'Specify the default text format',
+            'Specify the default behavior',
           ),
         ),
         subtitle: Padding(

@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-
+import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  final _today = HijriCalendar.now();
-  final dayFormat = DateFormat('EEEE').format(DateTime.now());
-  final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
+  final _dayFormat = DateFormat('EEEE').format(DateTime.now());
+  final _dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -48,27 +48,33 @@ class AppBody extends StatelessWidget {
                                 color: Colors.white.withAlpha(70),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    dayFormat,
-                                    style: GoogleFonts.spartan(
-                                        color: Colors.white),
-                                  ),
-                                  AutoSizeText(
-                                    _today.toFormat("dd MMMM yyyy"),
-                                    style: GoogleFonts.acme(
-                                        color: Colors.white, fontSize: 17),
-                                    stepGranularity: 1,
-                                    // maxLines: 1,
-                                  ),
-                                  Text(
-                                    dateFormat,
-                                    style: TextStyle(
-                                        color: Colors.teal.shade100,
-                                        fontSize: 12),
-                                  ),
-                                ],
+                              child: Consumer<SettingProvider>(
+                                builder: (context, setting, child) {
+                                  var _hijriToday = HijriCalendar.fromDate(
+                                      DateTime.now().add(
+                                          Duration(days: setting.hijriOffset)));
+                                  return Column(
+                                    children: [
+                                      Text(
+                                        _dayFormat,
+                                        style: GoogleFonts.spartan(
+                                            color: Colors.white),
+                                      ),
+                                      AutoSizeText(
+                                        _hijriToday.toFormat("dd MMMM yyyy"),
+                                        style: GoogleFonts.acme(
+                                            color: Colors.white, fontSize: 17),
+                                        stepGranularity: 1,
+                                      ),
+                                      Text(
+                                        _dateFormat,
+                                        style: TextStyle(
+                                            color: Colors.teal.shade100,
+                                            fontSize: 12),
+                                      ),
+                                    ],
+                                  );
+                                },
                               ),
                             ),
                           ],

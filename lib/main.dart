@@ -33,7 +33,6 @@ void main() async {
 
   await Firebase.initializeApp();
   initGetStorage();
-
   // readAllGetStorage();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -95,18 +94,20 @@ class MyHomePage extends StatelessWidget {
 }
 
 void initGetStorage() {
-  GetStorage().writeIfNull(kStoredFirstRun, true);
-  GetStorage().writeIfNull(kStoredGlobalIndex, 0);
-  GetStorage().writeIfNull(kStoredTimeIs12, true);
-  GetStorage().writeIfNull(kStoredShowOtherPrayerTime, false);
-  GetStorage().writeIfNull(kStoredShouldUpdateNotif, true);
-  GetStorage().writeIfNull(kStoredLastUpdateNotif, 0);
-  GetStorage().writeIfNull(kStoredNotificationLimit, false);
-  GetStorage().writeIfNull(kIsDebugMode, false);
-  GetStorage().writeIfNull(kForceUpdateNotif, false);
-  GetStorage().writeIfNull(kDiscoveredDeveloperOption, false);
-  GetStorage().writeIfNull(kSharingFormat, 0);
-  GetStorage().writeIfNull(kFontSize, 14.0);
+  GetStorage _get = GetStorage();
+  _get.writeIfNull(kStoredFirstRun, true);
+  _get.writeIfNull(kStoredGlobalIndex, 0);
+  _get.writeIfNull(kStoredTimeIs12, true);
+  _get.writeIfNull(kStoredShowOtherPrayerTime, false);
+  _get.writeIfNull(kStoredShouldUpdateNotif, true);
+  _get.writeIfNull(kStoredLastUpdateNotif, 0);
+  _get.writeIfNull(kStoredNotificationLimit, false);
+  _get.writeIfNull(kIsDebugMode, false);
+  _get.writeIfNull(kForceUpdateNotif, false);
+  _get.writeIfNull(kDiscoveredDeveloperOption, false);
+  _get.writeIfNull(kSharingFormat, 0);
+  _get.writeIfNull(kFontSize, 14.0);
+  _get.writeIfNull(kHijriOffset, -1);
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -117,20 +118,18 @@ Future<void> _configureLocalTimeZone() async {
 
 void readAllGetStorage() {
   print("-----All GET STORAGE-----");
-  print('kStoredFirstRun is ${GetStorage().read(kStoredFirstRun)}');
-  print('kStoredGlobalIndex is ${GetStorage().read(kStoredGlobalIndex)}');
-  print('kStoredTimeIs12 is ${GetStorage().read(kStoredTimeIs12)}');
+  GetStorage _get = GetStorage();
+  print('kStoredFirstRun is ${_get.read(kStoredFirstRun)}');
+  print('kStoredGlobalIndex is ${_get.read(kStoredGlobalIndex)}');
+  print('kStoredTimeIs12 is ${_get.read(kStoredTimeIs12)}');
   print(
-      'kStoredShowOtherPrayerTime is ${GetStorage().read(kStoredShowOtherPrayerTime)}');
+      'kStoredShowOtherPrayerTime is ${_get.read(kStoredShowOtherPrayerTime)}');
+  print('kStoredShouldUpdateNotif is ${_get.read(kStoredShouldUpdateNotif)}');
+  print('kStoredLastUpdateNotif is ${_get.read(kStoredLastUpdateNotif)}');
+  print('kStoredNotificationLimit is ${_get.read(kStoredNotificationLimit)}');
+  print('kIsDebugMode is ${_get.read(kIsDebugMode)}');
+  print('kForceUpdateNotif is ${_get.read(kForceUpdateNotif)}');
   print(
-      'kStoredShouldUpdateNotif is ${GetStorage().read(kStoredShouldUpdateNotif)}');
-  print(
-      'kStoredLastUpdateNotif is ${GetStorage().read(kStoredLastUpdateNotif)}');
-  print(
-      'kStoredNotificationLimit is ${GetStorage().read(kStoredNotificationLimit)}');
-  print('kIsDebugMode is ${GetStorage().read(kIsDebugMode)}');
-  print('kForceUpdateNotif is ${GetStorage().read(kForceUpdateNotif)}');
-  print(
-      'kDiscoveredDeveloperOption is ${GetStorage().read(kDiscoveredDeveloperOption)}');
+      'kDiscoveredDeveloperOption is ${_get.read(kDiscoveredDeveloperOption)}');
   print('-----------------------');
 }
