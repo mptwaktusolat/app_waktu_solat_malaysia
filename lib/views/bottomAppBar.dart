@@ -90,7 +90,7 @@ void menuModalBottomSheet(BuildContext context) {
               height: 0.0,
             ),
             ListTile(
-              title: Text('Get app from Google Play Store'),
+              title: Text('Get app for Android'),
               leading: FaIcon(FontAwesomeIcons.googlePlay),
               onTap: () {
                 Navigator.pop(context);

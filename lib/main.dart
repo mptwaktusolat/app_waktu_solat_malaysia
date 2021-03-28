@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],
       child: GetMaterialApp(
-        title: 'My Prayer Time',
+        title: 'Malaysia Prayer Time',
         theme: ThemeData.light().copyWith(
           primaryColor: _primaryColour,
           bottomAppBarColor: Colors.teal.shade50,
@@ -54,7 +54,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-            '🇲🇾 Prayer Time',
+            'Malaysia Prayer Time',
             style: GoogleFonts.balooTamma(),
           ),
           elevation: 0.0,

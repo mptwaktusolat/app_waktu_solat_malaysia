@@ -8,14 +8,14 @@ import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  final _today = HijriCalendar.now();
-  final dayFormat = DateFormat('EEEE').format(DateTime.now());
+  final _hijriToday =
+      HijriCalendar.fromDate(DateTime.now().add(Duration(days: -1)));
+  final _dayFormat = DateFormat('EEEE').format(DateTime.now());
   final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -51,12 +51,12 @@ class AppBody extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    dayFormat,
+                                    _dayFormat,
                                     style: GoogleFonts.spartan(
                                         color: Colors.white),
                                   ),
                                   AutoSizeText(
-                                    _today.toFormat("dd MMMM yyyy"),
+                                    _hijriToday.toFormat("dd MMMM yyyy"),
                                     style: GoogleFonts.acme(
                                         color: Colors.white, fontSize: 17),
                                     stepGranularity: 1,

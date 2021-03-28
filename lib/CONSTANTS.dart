@@ -32,8 +32,7 @@ const kWaktuIsyakImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay4%20(Custom).jpg?alt=media&token=429b449c-6573-40df-acef-aaf0a67a8695';
 
 //App info
-const kPlayStoreListingLink =
-    'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
+const kPlayStoreListingLink = 'https://solat.page.link/getapp';
 const kPlayStoreListingShortLink = 'bit.ly/MPTdl';
 const kPrivacyPolicyLink = 'https://telegra.ph/MPT-Privacy-Policy-07-24';
 const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
