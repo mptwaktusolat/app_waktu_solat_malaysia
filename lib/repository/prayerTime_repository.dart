@@ -9,9 +9,9 @@ class AzanTimesTodayRepository {
   ApiProvider _provider = ApiProvider();
 
   Future<Mpti906PrayerModel> fetchAzanMptMonth(String location) async {
-    String url = 'https://mpt.i906.my/api/prayer/$location';
-    GetStorage().write(kStoredApiPrayerCall, url);
-    final response = await _provider.get(url);
+    Uri uri = Uri.https('mpt.i906.my', 'api/prayer/$location');
+    GetStorage().write(kStoredApiPrayerCall, uri.toString());
+    final response = await _provider.get(uri);
     return Mpti906PrayerModel.fromJson(response);
   }
 }

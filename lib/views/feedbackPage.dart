@@ -207,7 +207,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 },
                 icon: FaIcon(FontAwesomeIcons.paperPlane, size: 13),
                 label: _isSendLoading
-                    ? SpinKitRotatingCircle(size: 10, color: Colors.white)
+                    ? SpinKitRotatingCircle(size: 12, color: Colors.white)
                     : Text('Send')),
             Spacer(flex: 3),
             Row(
