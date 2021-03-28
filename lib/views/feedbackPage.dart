@@ -68,7 +68,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         decoration: InputDecoration(
                             hintText: 'Please leave your feedback/report here',
                             border: OutlineInputBorder()),
-                        // textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         maxLines: 4),
@@ -181,7 +180,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     try {
                       await _reportsCollection.add({
                         'Date creation': FieldValue.serverTimestamp(),
-                        'User email': _emailController.text,
+                        'User email': _emailController.text.trim(),
+                        'User message': _messageController.text.trim(),
                         'App version': packageInfo.version,
                         'App build number': packageInfo.buildNumber,
                         'Prayer API called': prayApiCalled,
@@ -225,7 +225,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(primary: Colors.black),
-                icon: FaIcon(FontAwesomeIcons.github),
+                icon: FaIcon(FontAwesomeIcons.github, size: 13),
                 onPressed: () {
                   LaunchUrl.normalLaunchUrl(
                       url: Constants.kGithubRepoLink + '/issues');
