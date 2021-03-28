@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -159,14 +160,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         });
                   } else if (snapshot.hasError) {
                     return Text('Trouble getting device info');
-                  } else if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
+                  } else {
                     return ListTile(
-                      leading: CircularProgressIndicator(),
+                      leading: SizedBox(
+                          height: 15,
+                          width: 15,
+                          child: CircularProgressIndicator()),
                       title: Text('Getting device info...'),
                     );
-                  } else {
-                    return Text('Device info');
                   }
                 },
               ),
@@ -206,12 +207,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 },
                 icon: FaIcon(FontAwesomeIcons.paperPlane, size: 13),
                 label: _isSendLoading
-                    ? SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.white,
-                        ))
+                    ? SpinKitRotatingCircle(size: 10, color: Colors.white)
                     : Text('Send')),
             Spacer(flex: 3),
             Row(
