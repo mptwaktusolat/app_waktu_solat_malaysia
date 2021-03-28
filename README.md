@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
 ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-10k+-orange)
+![Installs](https://img.shields.io/badge/installs-12k+-orange)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
@@ -20,7 +20,7 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 [~~Azanpro API (Unofficial)~~](https://api.azanpro.com/)\
 [~~WaktuSolatApp~~](https://waktusolatapp.com/)\
-[~~e-solat JAKIM Malaysia~~](https://www.e-solat.gov.my/)\
+[~~e-solat JAKIM Malaysia API~~](https://www.e-solat.gov.my/index.php?r=esolatApi/takwimsolat&period=month&zone=SGR01)\
 [MPTi906 JSON API](https://mpt.i906.my/)
 
 ## Changelog History
@@ -29,13 +29,13 @@ Wondering what changed with every :new: releases? Or what bug :bug: has been fix
 
 ## Report an issue / Feature request
 
-Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/issues).
+Found a bug (or bugs)? Report issue related to the app using in app problem reporter, or file them directly on [issue tracker](https://github.com/iqfareez/app_waktu_solat_malaysia/issues).
 
-Have an idea :bulb: that may benefit the app? Do not hesitate to submit your suggestion [here](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/issues). Really appreciated if you do.
+Have an idea :bulb: that may benefit the app? Do not hesitate to [submit](https://github.com/iqfareez/app_waktu_solat_malaysia/issues) your suggestion. Really appreciated if you do.
 
 ## Discussion
 
-You can also use [**Discussions** ](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/discussions) ask any question or suggesting any idea using. Kita sembang2 santai je gituu :relaxed:
+You can also use [**Discussions** ](https://github.com/iqfareez/app_waktu_solat_malaysia/discussions) ask any question or suggesting any idea using. Kita sembang2 santai je gituu :relaxed:
 
 ## Web app
 
