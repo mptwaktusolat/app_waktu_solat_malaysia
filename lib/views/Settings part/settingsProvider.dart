@@ -12,9 +12,11 @@ class SettingProvider with ChangeNotifier {
   int _hijriOffset = GetStorage().read(kHijriOffset);
 
   set hijriOffset(int value) {
-    _hijriOffset = value;
-    GetStorage().write(kHijriOffset, value);
-    notifyListeners();
+    if (value <= 2 && value >= -2) {
+      _hijriOffset = value;
+      GetStorage().write(kHijriOffset, value);
+      notifyListeners();
+    }
   }
 
   int get hijriOffset => _hijriOffset;

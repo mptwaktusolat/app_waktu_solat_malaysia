@@ -10,8 +10,8 @@ import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  final dayFormat = DateFormat('EEEE').format(DateTime.now());
-  final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
+  final _dayFormat = DateFormat('EEEE').format(DateTime.now());
+  final _dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class AppBody extends StatelessWidget {
                                   return Column(
                                     children: [
                                       Text(
-                                        dayFormat,
+                                        _dayFormat,
                                         style: GoogleFonts.spartan(
                                             color: Colors.white),
                                       ),
@@ -67,7 +67,7 @@ class AppBody extends StatelessWidget {
                                         stepGranularity: 1,
                                       ),
                                       Text(
-                                        dateFormat,
+                                        _dateFormat,
                                         style: TextStyle(
                                             color: Colors.teal.shade100,
                                             fontSize: 12),
