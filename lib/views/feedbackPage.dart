@@ -175,9 +175,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ElevatedButton.icon(
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    FocusScope.of(context).unfocus();
+                    //TODO: Validate if unfocus work
                     setState(() => _isSendLoading = true);
-
-                    print('Sending report');
+                    print('Sending report...');
                     try {
                       await _reportsCollection.add({
                         'Date creation': FieldValue.serverTimestamp(),
