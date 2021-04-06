@@ -176,7 +176,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).unfocus();
-                    //TODO: Validate if unfocus work
                     setState(() => _isSendLoading = true);
                     print('Sending report...');
                     try {
@@ -192,7 +191,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
-                              msg: 'Sent. Thank you for supporting MPT',
+                              msg:
+                                  'Sent. Thank you for your valuable feedback.',
+                              backgroundColor: Colors.green,
                               toastLength: Toast.LENGTH_LONG)
                           .then((value) => Navigator.pop(context));
                     } on FirebaseException catch (e) {

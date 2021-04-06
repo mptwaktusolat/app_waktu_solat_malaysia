@@ -315,10 +315,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "4b5bbd411a4f6a2b816592c9f68f36678515fb2e"
-      url: "git://github.com/iqfareez/hijri_date.git"
+      resolved-ref: fd01c7dc88cf1f29edbd4cf9d992d1eb17d969c3
+      url: "https://github.com/iqfareez/hijri_date.git"
     source: git
-    version: "2.0.3"
+    version: "3.0.0"
   http:
     dependency: "direct main"
     description:
@@ -526,7 +526,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   sqflite:
     dependency: transitive
     description:

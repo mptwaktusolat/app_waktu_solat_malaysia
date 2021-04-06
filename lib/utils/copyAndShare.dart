@@ -1,16 +1,17 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-
 import '../CONSTANTS.dart' as Constants;
 import 'cachedPrayerData.dart';
 import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
-    var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
-    var dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
-    var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
+    var hijriToday = HijriCalendar.fromDate(DateTime.now()
+            .add(Duration(days: GetStorage().read(Constants.kHijriOffset))))
+        .toFormat('dd MMMM yyyy');
+    var _dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
+    var _dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
     LocationDatabase _locationDatabase = LocationDatabase();
     var daerah = _locationDatabase.getDaerah(_globalIndex);
@@ -18,7 +19,7 @@ class CopyAndShare {
     switch (type) {
       case 1:
         return '''
-Solat timetable: $dayFormat, $dateFormat
+Solat timetable: $_dayFormat, $_dateFormat
 
 📍 $daerah ($negeri)
 📆 ${hijriToday}H
@@ -33,7 +34,7 @@ Get the app: ${Constants.kPlayStoreListingShortLink}''';
         break;
       case 2:
         return '''
-*Solat timetable: $dayFormat, $dateFormat*
+*Solat timetable: $_dayFormat, $_dateFormat*
 
 📍 _$daerah *($negeri)*_
 📆 ${hijriToday}H
