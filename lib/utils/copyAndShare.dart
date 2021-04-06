@@ -8,7 +8,9 @@ import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
-    var hijriToday = HijriCalendar.now().toFormat('dd MMMM yyyy');
+    var hijriToday =
+        HijriCalendar.fromDate(DateTime.now().subtract(Duration(days: 1)))
+            .toFormat('dd MMMM yyyy');
     var dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
