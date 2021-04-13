@@ -113,7 +113,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Text('Font size'),
         ),
         subtitle: Slider(
-          // activeColor: Colors.teal,
+          activeColor: CupertinoColors.activeBlue,
           // inactiveColor: Colors.teal.withAlpha(40),
           label: setting.prayerFontSize.round().toString(),
           min: 12.0,
@@ -247,6 +247,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildShowOtherPrayerTime(SettingProvider setting) {
     return Card(
       child: CupertinoSwitchListTile(
+        activeColor: CupertinoColors.activeBlue,
         title: Text('Show other prayer times'),
         subtitle: Text('Imsak, Syuruk, Dhuha'),
         onChanged: (bool value) {
