@@ -107,7 +107,7 @@ void initGetStorage() {
   _get.writeIfNull(kDiscoveredDeveloperOption, false);
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);
-  _get.writeIfNull(kHijriOffset, -1);
+  _get.writeIfNull(kHijriOffset, 0);
 }
 
 Future<void> _configureLocalTimeZone() async {
