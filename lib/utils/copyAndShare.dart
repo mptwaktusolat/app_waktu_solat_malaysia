@@ -9,7 +9,7 @@ import 'location/locationDatabase.dart';
 class CopyAndShare {
   static String getMessage({int type = 1}) {
     var hijriToday =
-        HijriCalendar.fromDate(DateTime.now().subtract(Duration(days: 1)))
+        HijriCalendar.fromDate(DateTime.now().subtract(Duration.zero))
             .toFormat('dd MMMM yyyy');
     var dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());

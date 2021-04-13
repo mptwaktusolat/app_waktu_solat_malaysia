@@ -6,7 +6,6 @@ const kPayloadDebug = 'payloadDebug';
 const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
-const kStoredLocationLocality = "storedLocationLocality";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
 const kFontSize = "storedFontSize";

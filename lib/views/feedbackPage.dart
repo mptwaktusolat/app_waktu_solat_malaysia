@@ -58,7 +58,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   TextEditingController messageController = TextEditingController();
 
   var prayApiCalled = GetStorage().read(kStoredApiPrayerCall) ?? 'no calls';
-  var locApiCalled = GetStorage().read(kStoredLocationLocality) ?? 'no calls';
 
   @override
   void initState() {
@@ -85,15 +84,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   print('Pressed send');
                   if (_logIsChecked) {
                     feedbackToEmail.debugLogSetter('''
-                        ----------------------APP--------------------------
-                         -- 
                         ---------------------DEVICE---------------------
                         isWeb? $kIsWeb 
                         Screen size ${MediaQuery.of(context).size.toString().substring(4)} DiP
                         PixRatio ${MediaQuery.of(context).devicePixelRatio}
 
                         Last prayer api called: $prayApiCalled ,
-                        Location get: $locApiCalled ,
                     
                       ''');
                   }

@@ -36,8 +36,8 @@ class _LocationChooserState extends State<LocationChooser> {
         return ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: Text(
-                'Please update your location (if necessary) by tapping JHR 01 button above'),
+            content:
+                Text('Use the blue button on the top to update your location'),
             duration: Duration(seconds: 7),
             action: SnackBarAction(
               label: 'Got it!',
