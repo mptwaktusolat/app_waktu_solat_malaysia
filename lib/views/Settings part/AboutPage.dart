@@ -9,6 +9,7 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
+import 'package:waktusolatmalaysia/views/faq.dart';
 import '../../CONSTANTS.dart';
 import '../../main.dart';
 import '../../utils/launchUrl.dart';
@@ -193,9 +194,7 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
+                    SizedBox(height: 8),
                     Card(
                       child: ListTile(
                         title: Text(
@@ -232,6 +231,22 @@ class AboutAppPage extends StatelessWidget {
                         onTap: () {
                           LaunchUrl.normalLaunchUrl(
                               url: kReleaseNotesLink, useCustomTabs: true);
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: Text(
+                          'Frequently Asked Questions (FAQ)',
+                          textAlign: TextAlign.center,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => FaqPage(),
+                            ),
+                          );
                         },
                       ),
                     ),
@@ -282,7 +297,8 @@ class AboutAppPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    Text('\n\n\n',
+                    SizedBox(height: 15),
+                    Text(appLegalese,
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black54)),
                   ],

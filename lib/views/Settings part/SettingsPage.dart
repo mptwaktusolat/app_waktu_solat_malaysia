@@ -61,6 +61,7 @@ class _SettingsPageState extends State<SettingsPage> {
               setting.isDeveloperOption
                   ? buildVerboseDebugMode(context)
                   : Container(),
+              SizedBox(height: 40)
             ],
           );
         },
@@ -266,6 +267,10 @@ class _SettingsPageState extends State<SettingsPage> {
       child: ListTile(
         title: Text('Time format'),
         trailing: DropdownButton(
+          icon: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: FaIcon(FontAwesomeIcons.caretDown, size: 13),
+          ),
           items: <String>['12 hour', '24 hour']
               .map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

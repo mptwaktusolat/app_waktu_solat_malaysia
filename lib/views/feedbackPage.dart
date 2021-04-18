@@ -10,6 +10,7 @@ import 'package:package_info/package_info.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
+import 'package:email_validator/email_validator.dart';
 
 class FeedbackPage extends StatefulWidget {
   @override
@@ -50,7 +51,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: Text('Feedback'), centerTitle: true),
+        appBar: AppBar(
+          title: Text('Feedback'),
+          centerTitle: true,
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -74,11 +78,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         maxLines: 4),
                     SizedBox(height: 10),
                     TextFormField(
+                      validator: (value) => value.isNotEmpty
+                          ? EmailValidator.validate(value)
+                              ? null
+                              : 'Incorrect email format'
+                          : null,
                       controller: _emailController,
                       decoration: InputDecoration(
                           isDense: true,
                           hintText: 'Your email address (optional)',
-                          helperText: 'We may contact you if needed',
+                          helperText: 'We may reach you if needed',
                           border: OutlineInputBorder()),
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,
@@ -191,8 +200,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
-                              msg:
-                                  'Sent. Thank you for your valuable feedback.',
+                              msg: _emailController.text.isEmpty
+                                  ? 'Thank you for your valuable feedback.'
+                                  : 'Thank you for your valuable feedback. A copy of your response will be sent to your email',
                               backgroundColor: Colors.green,
                               toastLength: Toast.LENGTH_LONG)
                           .then((value) => Navigator.pop(context));

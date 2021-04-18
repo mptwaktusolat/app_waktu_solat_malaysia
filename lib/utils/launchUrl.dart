@@ -6,7 +6,9 @@ import '../CONSTANTS.dart';
 
 class LaunchUrl {
   static void normalLaunchUrl(
-      {String url, bool usesWebView = false, bool useCustomTabs = false}) {
+      {@required String url,
+      bool usesWebView = false,
+      bool useCustomTabs = false}) {
     print('Launching $url');
 
     !useCustomTabs
@@ -14,6 +16,8 @@ class LaunchUrl {
         : FlutterWebBrowser.openWebPage(
             url: url,
             customTabsOptions: CustomTabsOptions(
+                addDefaultShareMenuItem: true,
+                navigationBarColor: Colors.tealAccent,
                 toolbarColor: Colors.teal.shade700,
                 secondaryToolbarColor: Colors.teal));
   }
