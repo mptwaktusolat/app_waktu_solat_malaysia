@@ -87,3 +87,5 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - Huawei logo are trademarks of Huawei Technologies Co., Ltd.
 
 <!-- **No redistruba -->
+
+### May Allah ease everything in developing MPT. InshaAllah!
