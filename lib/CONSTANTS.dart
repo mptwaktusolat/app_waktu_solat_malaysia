@@ -52,6 +52,7 @@ const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
 const kGithubRepoLink = 'https://github.com/iqfareez/app_waktu_solat_malaysia';
 const kSolatJakimLink = 'https://www.e-solat.gov.my/';
 const kWebappUrl = 'https://waktusolat.web.app';
+const kMptWebsiteLink = 'https://mpt.i906.my/api.html';
 
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';

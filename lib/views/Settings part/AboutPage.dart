@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -180,20 +181,58 @@ class AboutAppPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).bottomAppBarColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: SelectableText(
-                        'Prayer data fetched from Jabatan Kemajuan Islam Malaysia (JAKIM). Visit www.e-solat.gov.my for more info.',
-                        onTap: () =>
-                            LaunchUrl.normalLaunchUrl(url: kSolatJakimLink),
-                        style: TextStyle(
-                          fontStyle: FontStyle.italic,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).bottomAppBarColor,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    .color),
+                            children: [
+                              TextSpan(
+                                text: 'Prayer data fetched from',
+                              ),
+                              TextSpan(
+                                text:
+                                    ' Jabatan Kemajuan Islam Malaysia (e-solat JAKIM)',
+                                style: TextStyle(color: Colors.blueAccent),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    LaunchUrl.normalLaunchUrl(
+                                        url: kSolatJakimLink);
+                                  },
+                              ),
+                              TextSpan(
+                                text: ' tunnelled through ',
+                              ),
+                              TextSpan(
+                                text: 'mpti906 API',
+                                style: TextStyle(color: Colors.blue),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    LaunchUrl.normalLaunchUrl(
+                                        url: kMptWebsiteLink);
+                                  },
+                              ),
+                              TextSpan(text: '.')
+                            ],
+                          ),
+                        )
+                        //   child: SelectableText(
+                        //     '  mpti906 API. Visit www.e-solat.gov.my for more info.',
+                        //     onTap: () =>
+                        //         LaunchUrl.normalLaunchUrl(url: kSolatJakimLink),
+                        //     style: TextStyle(
+                        //       fontStyle: FontStyle.italic,
+                        //     ),
+                        //     textAlign: TextAlign.center,
+                        //   ),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
                     SizedBox(height: 8),
                     Card(
                       child: ListTile(
@@ -277,7 +316,15 @@ class AboutAppPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    Divider(height: 8),
+                    Divider(height: 8, thickness: 2),
+                    Card(
+                      child: ListTile(
+                          title: Text('More apps from me',
+                              textAlign: TextAlign.center),
+                          onTap: () {
+                            LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink);
+                          }),
+                    ),
                     Card(
                       child: ListTile(
                         title: Text('Twitter', textAlign: TextAlign.center),
@@ -298,9 +345,13 @@ class AboutAppPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 15),
-                    Text(appLegalese,
+                    Opacity(
+                      opacity: 0.58,
+                      child: Text(
+                        appLegalese,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.black54)),
+                      ),
+                    ),
                   ],
                 );
               },
