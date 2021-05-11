@@ -3,8 +3,8 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
 ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-12k+-orange)
-![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez2?label=Follow&style=social)
+![Installs](https://img.shields.io/badge/installs-20k+-orange)
+![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
 
