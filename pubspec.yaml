@@ -28,7 +28,7 @@ dependencies:
   geolocator: ^7.0.1
   flutter_spinkit: ^5.0.0
   get: ^4.1.1
-  flutter_svg: ^0.21.0-nullsafety.0
+  flutter_svg: ^0.22.0
   auto_size_text: ^3.0.0-nullsafety.0
   provider: ^5.0.0
   flutter_local_notifications: ^5.0.0
@@ -39,9 +39,8 @@ dependencies:
   geocoding: ^2.0.0
   font_awesome_flutter: ^9.0.0
   flutter_qiblah: ^2.0.0
-  cloud_firestore: ^1.0.3
+  cloud_firestore: ^2.1.0
   firebase_core: ^1.0.2
-  # firebase_remote_config: ^0.9.0-dev.2
   email_validator: ^2.0.1
 
 dev_dependencies:
