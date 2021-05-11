@@ -56,7 +56,7 @@ const kMptWebsiteLink = 'https://mpt.i906.my/api.html';
 
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';
-const kDevTwitter = 'https://twitter.com/iqfareez2';
+const kDevTwitter = 'https://twitter.com/iqfareez';
 const kDevInstagram = 'https://www.instagram.com/iqfareez/';
 const kInstaStoryDevlog =
     'https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1?igshid=3jwa3e1iy3u7&story_media_id=2342912100646673991_32997533904';
