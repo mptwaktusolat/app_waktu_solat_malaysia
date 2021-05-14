@@ -14,8 +14,8 @@ class CopyAndShare {
     var _dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
     LocationDatabase _locationDatabase = LocationDatabase();
-    var daerah = _locationDatabase.getDaerah(_globalIndex);
-    var negeri = _locationDatabase.getNegeri(_globalIndex);
+    var daerah = LocationDatabase.getDaerah(_globalIndex);
+    var negeri = LocationDatabase.getNegeri(_globalIndex);
     switch (type) {
       case 1:
         return '''

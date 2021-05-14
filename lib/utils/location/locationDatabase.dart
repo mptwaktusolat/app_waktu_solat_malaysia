@@ -4,7 +4,7 @@
 import 'package:waktusolatmalaysia/utils/location/location.dart';
 
 class LocationDatabase {
-  List<Location> _locationDatabase = [
+  static List<Location> _locationDatabase = [
     //JOHOR
     Location(
       jakimCode: 'JHR01',
@@ -383,7 +383,7 @@ class LocationDatabase {
     )
   ];
 
-  int indexOfLocation(String jakimCode) {
+  static int indexOfLocation(String jakimCode) {
     var jakimCaps = jakimCode.toUpperCase();
     var index = _locationDatabase
         .indexWhere((element) => element.jakimCode == jakimCaps);
@@ -392,14 +392,14 @@ class LocationDatabase {
   }
 
   /// Length of all location data
-  int getLocationDatabaseLength() => _locationDatabase.length;
+  static int getLength() => _locationDatabase.length;
 
-  String getJakimCode(int index) => _locationDatabase[index].jakimCode;
+  static String getJakimCode(int index) => _locationDatabase[index].jakimCode;
 
-  String getNegeri(int index) => _locationDatabase[index].negeri;
+  static String getNegeri(int index) => _locationDatabase[index].negeri;
 
-  String getDaerah(int index) => _locationDatabase[index].daerah;
+  static String getDaerah(int index) => _locationDatabase[index].daerah;
 
-  String getMptLocationCode(int index) =>
+  static String getMptLocationCode(int index) =>
       _locationDatabase[index].mptLocationCode;
 }

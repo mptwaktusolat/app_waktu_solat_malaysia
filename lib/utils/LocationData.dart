@@ -4,7 +4,7 @@ class LocationData {
   static double latitude;
   static double longitude;
 
-  static Future<void> getCurrentLocation() async {
+  static Future<Position> getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy:
@@ -12,8 +12,10 @@ class LocationData {
       latitude = position.latitude;
       longitude = position.longitude;
       print('[LocationData] Sucess getting $position');
+      return position;
     } catch (e) {
       print('[LocationData] Error is $e');
+      throw 'Error occured: $e';
     }
   }
 }

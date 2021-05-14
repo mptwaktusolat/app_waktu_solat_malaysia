@@ -56,6 +56,7 @@ const kMptWebsiteLink = 'https://mpt.i906.my/api.html';
 
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';
+const kAppEmail = 'mptwaktusolat@gmail.com';
 const kDevTwitter = 'https://twitter.com/iqfareez';
 const kDevInstagram = 'https://www.instagram.com/iqfareez/';
 const kInstaStoryDevlog =

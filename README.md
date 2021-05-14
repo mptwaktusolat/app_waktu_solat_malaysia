@@ -74,6 +74,7 @@ Article that help me througout the development(Read: Website yg function teruk. 
 4. https://medium.com/swlh/flutter-dynamic-themes-in-3-lines-c3b375f292e3
 5. https://medium.com/@fuzzymemory/adding-scheduled-notifications-in-your-flutter-application-19be1f82ade8
 6. https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
+7. 3D assets you see on the onboarding screen is from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/).
 
 <!-- ## Attribution
 

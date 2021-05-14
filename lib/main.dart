@@ -8,7 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/utils/location/location_provider.dart';
 import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
+import 'package:waktusolatmalaysia/views/onboarding_page.dart';
 import 'CONSTANTS.dart';
 import 'utils/LocationData.dart';
 import 'utils/notifications_helper.dart';
@@ -24,9 +26,7 @@ final FlutterLocalNotificationsPlugin notifsPlugin =
 void main() async {
   await GetStorage.init();
 
-  LocationData.getCurrentLocation();
   await _configureLocalTimeZone();
-
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);
   // requestIOSPermissions(notifsPlugin);
@@ -49,7 +49,10 @@ class MyApp extends StatelessWidget {
     configureSelectNotificationSubject(context);
     ThemeController.to.getThemeModeFromPreferences();
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => SettingProvider()),
+        ChangeNotifierProvider(create: (_) => LocationProvider())
+      ],
       child: GetMaterialApp(
         // debugShowCheckedModeBanner: false,
         title: 'My Prayer Time',
@@ -67,6 +70,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
         themeMode: ThemeController.to.themeMode,
         home: MyHomePage(),
+        // home: OnboardingPage(),
       ),
     );
   }

@@ -6,7 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'location_coordinate_model.dart';
 
 class LocationCoordinate {
-  List<LocationCoordinateData> _locationCoordinate = [
+  static List<LocationCoordinateData> _locationCoordinate = [
     LocationCoordinateData(
       zone: "JHR01",
       negeri: "Johor",
@@ -1552,7 +1552,8 @@ class LocationCoordinate {
 
   /// Return nearest JAKIM code from the given coordinate and negeri.
   /// Pass administrative area as negeri.
-  String getJakimCodeNearby(double latitude, double longitude, String negeri) {
+  static String getJakimCodeNearby(
+      double latitude, double longitude, String negeri) {
     List<int> tempIndex = [];
     double nearestDistance = 50000; //init distance to be 50 km
     int nearestIndex;
