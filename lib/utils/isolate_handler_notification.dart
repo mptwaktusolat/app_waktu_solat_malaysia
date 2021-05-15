@@ -3,10 +3,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart';
 import '../main.dart';
-import 'notifications_helper.dart';
+import '../notificationUtil/notifications_helper.dart';
 
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
 

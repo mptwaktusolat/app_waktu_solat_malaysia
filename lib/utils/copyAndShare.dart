@@ -1,9 +1,9 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart' as Constants;
 import 'cachedPrayerData.dart';
-import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
@@ -13,7 +13,6 @@ class CopyAndShare {
     var _dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var _dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
-    LocationDatabase _locationDatabase = LocationDatabase();
     var daerah = LocationDatabase.getDaerah(_globalIndex);
     var negeri = LocationDatabase.getNegeri(_globalIndex);
     switch (type) {

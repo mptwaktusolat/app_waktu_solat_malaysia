@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:waktusolatmalaysia/utils/LocationData.dart';
+import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override

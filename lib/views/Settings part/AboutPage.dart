@@ -14,7 +14,7 @@ import 'package:waktusolatmalaysia/views/faq.dart';
 import '../../CONSTANTS.dart';
 import '../../main.dart';
 import '../../utils/launchUrl.dart';
-import '../../utils/notifications_helper.dart';
+import '../../notificationUtil/notifications_helper.dart';
 import '../contributionPage.dart';
 
 class AboutAppPage extends StatelessWidget {
