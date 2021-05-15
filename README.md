@@ -19,9 +19,9 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 ## API
 
 [~~Azanpro API (Unofficial)~~](https://api.azanpro.com/)\
-[~~WaktuSolatApp~~](https://waktusolatapp.com/)\
+[~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
 [~~e-solat JAKIM Malaysia API~~](https://www.e-solat.gov.my/index.php?r=esolatApi/takwimsolat&period=month&zone=SGR01)\
-[MPTi906 JSON API](https://mpt.i906.my/)
+[MPTi906 API](https://mpt.i906.my/)
 
 ## Changelog History
 
@@ -68,8 +68,8 @@ And submit your review. Some of the version are also available in Google Play be
 
 Article that help me througout the development(Read: Website yg function teruk. The real MVP!. Banyak lagi website/blog2 lain tpi yang kt bwawh ni is da real lifesaver!)
 
-1. https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97
-2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
+1. ~~https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97~~
+2. ~~https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode~~
 3. https://javiercbk.github.io/json_to_dart/
 4. https://medium.com/swlh/flutter-dynamic-themes-in-3-lines-c3b375f292e3
 5. https://medium.com/@fuzzymemory/adding-scheduled-notifications-in-your-flutter-application-19be1f82ade8

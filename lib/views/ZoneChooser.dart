@@ -9,12 +9,12 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/location/location_provider.dart';
 import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'package:waktusolatmalaysia/locationUtil/location_coordinate.dart';
 import 'package:waktusolatmalaysia/locationUtil/location_coordinate_model.dart';
+import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {

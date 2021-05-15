@@ -11,7 +11,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
 import 'package:waktusolatmalaysia/views/onboarding_page.dart';
 import 'CONSTANTS.dart';
-import 'location/location_provider.dart';
+import 'locationUtil/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'views/Settings%20part/ThemeController.dart';
 import 'views/Settings%20part/settingsProvider.dart';

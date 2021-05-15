@@ -5,7 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/location/location_provider.dart';
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
+import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/mpt_fetch_api.dart';
 import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
@@ -13,7 +14,6 @@ import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
-import '../utils/location/LocationDatabase.dart';
 import '../utils/sizeconfig.dart';
 import 'Settings%20part/settingsProvider.dart';
 
