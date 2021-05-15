@@ -5,23 +5,19 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/blocs/mpti906_prayer_bloc.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
+import 'package:waktusolatmalaysia/networking/mpt_fetch_api.dart';
 import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
-import 'package:waktusolatmalaysia/utils/location/LocationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/location/location_provider.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
 import '../utils/location/LocationDatabase.dart';
-import '../utils/prevent_update_notifs.dart';
 import '../utils/sizeconfig.dart';
 import 'Settings%20part/settingsProvider.dart';
-import '../networking/Response.dart';
 
 String location;
-Mpti906PrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
   @override
@@ -30,54 +26,28 @@ class GetPrayerTime extends StatefulWidget {
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
-  void initState() {
-    super.initState();
-    location = LocationDatabase.getMptLocationCode(
-        GetStorage().read(kStoredGlobalIndex));
-    prayerBloc = Mpti906PrayerBloc(location);
-    PreventUpdatingNotifs.setNow();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
-        return StreamBuilder<Response<Mpti906PrayerModel>>(
-          stream: prayerBloc.prayDataStream,
+        return FutureBuilder<Mpti906PrayerModel>(
+          future: MptApiFetch.fetchMpt(
+              LocationDatabase.getMptLocationCode(value.currentLocationIndex)),
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data.status) {
-                case Status.LOADING:
-                  return Loading(loadingMessage: snapshot.data.message);
-                  break;
-                case Status.COMPLETED:
-                  return PrayTimeList(prayerTime: snapshot.data.data);
-                  break;
-                case Status.ERROR:
-                  location = LocationDatabase.getMptLocationCode(
-                      value.currentLocationIndex);
-                  return Error(
-                    errorMessage: snapshot.data.message,
-                    onRetryPressed: () => prayerBloc.fetchPrayerTime(
-                        LocationDatabase.getJakimCode(
-                            value.currentLocationIndex)),
-                  );
-                  break;
-              }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Loading(
+                  loadingMessage: 'Fetching prayer time. Please wait.');
+            } else if (snapshot.hasData) {
+              return PrayTimeList(prayerTime: snapshot.data);
+            } else {
+              return Error(
+                errorMessage: snapshot.error.toString(),
+                onRetryPressed: () => setState(() {}),
+              );
             }
-            return Container(
-              child: Text('Uh it supposed not showing here'),
-            );
           },
         );
       },
     );
-  }
-
-  @override
-  void dispose() {
-    prayerBloc.dispose();
-    super.dispose();
   }
 }
 

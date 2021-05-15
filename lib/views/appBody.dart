@@ -101,7 +101,9 @@ class AppBody extends StatelessWidget {
                                   side: BorderSide(color: Colors.white),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                LocationChooser.showLocationChooser(context);
+                              },
                               onLongPress: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(

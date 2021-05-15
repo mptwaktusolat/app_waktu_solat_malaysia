@@ -7,6 +7,7 @@ class LocationProvider with ChangeNotifier {
 
   set currentLocationIndex(int value) {
     print('inside provider: $value');
+    _currentLocationIndex = value;
     GetStorage().write(kStoredGlobalIndex, value);
     notifyListeners();
   }

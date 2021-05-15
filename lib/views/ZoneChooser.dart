@@ -14,7 +14,6 @@ import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
 import 'package:waktusolatmalaysia/utils/location/location_coordinate.dart';
 import 'package:waktusolatmalaysia/utils/location/location_coordinate_model.dart';
 import 'package:waktusolatmalaysia/utils/location/location_provider.dart';
-import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 import 'package:geocoding/geocoding.dart';
 
 class LocationChooser {
@@ -78,31 +77,37 @@ class LocationChooser {
         lng: null);
   }
 
-  static Widget showLocationChooser(BuildContext context) {
-    return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Container(
-          padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
-          height: 250,
-          child: FutureBuilder(
-              future: _getAllLocationData(),
-              builder:
-                  (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return onLoadingWidget();
-                } else if (snapshot.hasData) {
-                  return onCompletedWidget(context, location: snapshot.data);
-                } else if (snapshot.hasError) {
-                  return onErrorWidget(context,
-                      errorMessage: snapshot.error.toString());
-                } else {
-                  return onErrorWidget(context,
-                      errorMessage: 'Unexpected error occured');
-                }
-              }),
-        ));
+  static showLocationChooser(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
+            height: 250,
+            child: FutureBuilder(
+                future: _getAllLocationData(),
+                builder:
+                    (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return onLoadingWidget();
+                  } else if (snapshot.hasData) {
+                    return onCompletedWidget(context, location: snapshot.data);
+                  } else if (snapshot.hasError) {
+                    return onErrorWidget(context,
+                        errorMessage: snapshot.error.toString());
+                  } else {
+                    return onErrorWidget(context,
+                        errorMessage: 'Unexpected error occured');
+                  }
+                }),
+          ),
+        );
+      },
+    );
   }
 
   static Future openLocationBottomSheet(BuildContext context) async {
@@ -111,41 +116,47 @@ class LocationChooser {
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {
-          return FractionallySizedBox(
-            heightFactor: 0.68,
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(26.0),
-                  topRight: Radius.circular(26.0)),
-              child: Container(
-                color: Theme.of(context).canvasColor,
-                child: Scrollbar(
-                  child: ListView.builder(
-                    itemCount: LocationDatabase.getLength(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        onTap: () {
-                          if (index != GetStorage().read(kStoredGlobalIndex)) {
-                            if (index != null) {
-                              Navigator.pop(context, index);
-                            }
-                          } else {
-                            Navigator.pop(context);
-                          }
+          return Consumer<LocationProvider>(
+            builder: (context, value, child) {
+              return FractionallySizedBox(
+                heightFactor: 0.68,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(26.0),
+                      topRight: Radius.circular(26.0)),
+                  child: Container(
+                    color: Theme.of(context).canvasColor,
+                    child: Scrollbar(
+                      child: ListView.builder(
+                        itemCount: LocationDatabase.getLength(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            onTap: () {
+                              if (index !=
+                                  GetStorage().read(kStoredGlobalIndex)) {
+                                if (index != null) {
+                                  value.currentLocationIndex = index;
+                                  onNewLocationSaved(context);
+                                }
+                              }
+                              Navigator.pop(context);
+                            },
+                            title: Text(LocationDatabase.getDaerah(index)),
+                            subtitle: Text(LocationDatabase.getNegeri(index)),
+                            trailing: locationBubble(
+                                context, LocationDatabase.getJakimCode(index)),
+                            selected:
+                                GetStorage().read(kStoredGlobalIndex) == index
+                                    ? true
+                                    : false,
+                          );
                         },
-                        title: Text(LocationDatabase.getDaerah(index)),
-                        subtitle: Text(LocationDatabase.getNegeri(index)),
-                        trailing: locationBubble(
-                            context, LocationDatabase.getJakimCode(index)),
-                        selected: GetStorage().read(kStoredGlobalIndex) == index
-                            ? true
-                            : false,
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
           );
         });
   }
@@ -171,81 +182,86 @@ class LocationChooser {
     var index = LocationDatabase.indexOfLocation(location.zone);
 
     print('detected index is $index');
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Expanded(
-          flex: 1,
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text('Your location'),
-          ),
-        ),
-        Expanded(
-            flex: 3,
-            child: Center(
-              child: Text(
-                location.lokasi,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return Consumer<LocationProvider>(
+      builder: (context, value, child) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              flex: 1,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text('Your location'),
               ),
-            )),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).bottomAppBarColor,
-          ),
-          child: ListTile(
-            trailing: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                locationBubble(context, location.zone.toUpperCase()),
-              ],
             ),
-            title: Text(
-              LocationDatabase.getDaerah(index),
-              style: TextStyle(fontSize: 13),
-            ),
-            subtitle: Text(
-              LocationDatabase.getNegeri(index),
-              style: TextStyle(fontSize: 11),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        Expanded(
-          flex: 1,
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextButton(
+            Expanded(
+                flex: 3,
+                child: Center(
                   child: Text(
-                    'Set manually',
+                    location.lokasi,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    openLocationBottomSheet(context);
-                  },
+                )),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Theme.of(context).bottomAppBarColor,
+              ),
+              child: ListTile(
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    locationBubble(context, location.zone.toUpperCase()),
+                  ],
                 ),
-                TextButton(
-                  child: Text(
-                    'Set this location',
-                  ),
-                  onPressed: () {
-                    GetStorage().write(kStoredGlobalIndex, index);
-                    // globalIndex = index;
-                    Navigator.pop(context);
-                  },
+                title: Text(
+                  LocationDatabase.getDaerah(index),
+                  style: TextStyle(fontSize: 13),
                 ),
-              ],
+                subtitle: Text(
+                  LocationDatabase.getNegeri(index),
+                  style: TextStyle(fontSize: 11),
+                ),
+              ),
             ),
-          ),
-        ),
-      ],
+            SizedBox(
+              height: 5,
+            ),
+            Expanded(
+              flex: 1,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      child: Text(
+                        'Set manually',
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        openLocationBottomSheet(context);
+                      },
+                    ),
+                    TextButton(
+                      child: Text(
+                        'Set this location',
+                      ),
+                      onPressed: () {
+                        value.currentLocationIndex = index;
+                        onNewLocationSaved(context);
+
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
