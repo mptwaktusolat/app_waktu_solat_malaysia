@@ -4,7 +4,7 @@ const kPayloadDebug = 'payloadDebug';
 
 //GetStorage
 const kStoredGlobalIndex = "storedGlobalIndex";
-const kStoredFirstRun = "storedFirstRunApp";
+const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredLocationLocality = "storedLocationLocality";
 const kStoredShowOtherPrayerTime = "storedshowothertime";

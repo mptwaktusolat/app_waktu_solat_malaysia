@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import 'package:waktusolatmalaysia/main.dart';
+import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
 import 'package:waktusolatmalaysia/views/ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -38,8 +41,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
               : ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.teal),
                   onPressed: () async {
-                    // LocationData.getCurrentLocation();
-
                     var res =
                         await LocationChooser.showLocationChooser(context);
                     if (res) {
@@ -53,13 +54,12 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                 )),
       PageViewModel(
-        title: "Set your favourite theme",
-        body:
-            "Download the MPT app and master the market with our mini-lesson.",
         image: Image.asset(
           'assets/bam/Message.png',
           width: 200,
         ),
+        bodyWidget: ThemesOption(),
+        title: "Set your favourite theme",
         decoration: pageDecoration,
       ),
       PageViewModel(
@@ -88,18 +88,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (builder) => Scaffold(
-                body: Center(
-                  child: Text(
-                    'HOME',
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ),
-              ),
-            ),
-          );
+          GetStorage().write(kIsFirstRun, false);
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (builder) => MyHomePage()));
         });
   }
 }

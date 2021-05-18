@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../CONSTANTS.dart';
 import '../Settings%20part/ThemeController.dart';
 
@@ -35,42 +36,31 @@ class ThemesOption extends StatefulWidget {
 }
 
 class _ThemesOptionState extends State<ThemesOption> {
-  ThemeMode _themeMode;
+  Map<String, ThemeMode> _themeOptions = {
+    'System Theme': ThemeMode.system,
+    'Light Theme': ThemeMode.light,
+    'Dark Theme': ThemeMode.dark
+  };
   @override
   Widget build(BuildContext context) {
-    _themeMode = ThemeController.to.themeMode;
-    return ListView(children: [
-      RadioListTile(
-          title: Text('System Theme'),
-          subtitle: Text('On supported device only'),
-          value: ThemeMode.system,
-          groupValue: _themeMode,
-          onChanged: (value) {
-            setState(() {
-              _themeMode = value;
-              ThemeController.to.setThemeMode(_themeMode);
-            });
-          }),
-      RadioListTile(
-          title: Text('Light Theme'),
-          value: ThemeMode.light,
-          groupValue: _themeMode,
-          onChanged: (value) {
-            setState(() {
-              _themeMode = value;
-              ThemeController.to.setThemeMode(_themeMode);
-            });
-          }),
-      RadioListTile(
-          title: Text('Dark Theme'),
-          value: ThemeMode.dark,
-          groupValue: _themeMode,
-          onChanged: (value) {
-            setState(() {
-              _themeMode = value;
-              ThemeController.to.setThemeMode(_themeMode);
-            });
-          }),
-    ]);
+    return Consumer<ThemeController>(
+      builder: (context, setting, child) {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: _themeOptions.length,
+          itemBuilder: (context, index) {
+            return RadioListTile(
+                title: Text(_themeOptions.keys.elementAt(index)),
+                subtitle: index == 0 ? Text('On supported device only') : null,
+                value: _themeOptions.values.elementAt(index),
+                groupValue: setting.themeMode,
+                onChanged: (value) {
+                  setting.themeMode = value;
+                });
+          },
+        );
+      },
+    );
   }
 }

@@ -2,36 +2,29 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/notificationUtil/prevent_update_notifs.dart';
 
-class ThemeController extends GetxController {
-  static ThemeController get to => Get.find();
-
+class ThemeController with ChangeNotifier {
   ThemeMode _themeMode;
   ThemeMode get themeMode => _themeMode;
 
-  Future<void> setThemeMode(ThemeMode themeMode) async {
+  set themeMode(ThemeMode themeMode) {
     PreventUpdatingNotifs.setNow();
-    Get.changeThemeMode(themeMode);
     _themeMode = themeMode;
-    update();
     GetStorage().write('theme', themeMode.toString().split('.')[1]);
+    notifyListeners();
   }
 
-  getThemeModeFromPreferences() async {
-    ThemeMode themeMode;
-
+  ThemeController() {
     String themeText =
         GetStorage().read('theme') ?? 'light'; //by default, light is selected
     try {
-      themeMode =
+      _themeMode =
           ThemeMode.values.firstWhere((e) => describeEnum(e) == themeText);
     } catch (e) {
       print('err: $e');
-      themeMode = ThemeMode.system;
+      _themeMode = ThemeMode.system;
     }
-    setThemeMode(themeMode);
   }
 }

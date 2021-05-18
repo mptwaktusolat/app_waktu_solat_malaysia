@@ -2,7 +2,6 @@
 ///Also handle the location selection
 import 'dart:async';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geolocator/geolocator.dart';
@@ -29,7 +28,9 @@ class LocationChooser {
           children: [
             Icon(
               Icons.pin_drop_rounded,
-              color: Get.isDarkMode ? Colors.black87 : Colors.white70,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black87
+                  : Colors.white70,
             ),
             SizedBox(
               width: 10,
