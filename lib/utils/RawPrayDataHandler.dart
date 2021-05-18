@@ -1,7 +1,7 @@
-//Convert a json array to List object
+/// Convert a json array to List object
+/// Handle 6 prayer times that come from API only
 
 import 'dart:convert';
-
 import 'package:intl/intl.dart';
 
 final int day = int.parse(DateFormat('d').format(DateTime.now()));

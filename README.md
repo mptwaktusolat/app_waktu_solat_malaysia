@@ -59,10 +59,12 @@ _i'm having difficulties to update the app in App Gallery. So it will be very ou
 
 _Not available for iOS sorry :disappointed:_
 
-## Try the beta
+## Try the pre-releases
 
-Download here -> [APK](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/releases).
+Download here -> [APK](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
 And submit your review. Some of the version are also available in Google Play beta program.
+
+## Instagram highlight
 
 ## Honourable mention
 
@@ -88,5 +90,9 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - Huawei logo are trademarks of Huawei Technologies Co., Ltd.
 
 <!-- **No redistruba -->
+
+## Contact Us
+
+Email: mptwaktusolat@gmail.com
 
 ### May Allah ease everything in developing MPT. InshaAllah!

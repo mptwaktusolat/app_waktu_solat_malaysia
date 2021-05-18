@@ -52,9 +52,9 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 }
 
 class PrayTimeList extends StatefulWidget {
-  final Mpti906PrayerModel prayerTime;
-
   PrayTimeList({Key key, this.prayerTime}) : super(key: key);
+
+  final Mpti906PrayerModel prayerTime;
 
   @override
   _PrayTimeListState createState() => _PrayTimeListState();
@@ -68,7 +68,6 @@ class _PrayTimeListState extends State<PrayTimeList> {
   @override
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
-    // print('prayerTimeData is $prayerTimeData');
     handler = PrayDataHandler(prayerTimeData.times);
     if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
       schedulePrayNotification(
@@ -141,18 +140,15 @@ Widget solatCard(String time, String name, bool useFullHeight) {
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
-        onLongPress: () {
-          print('Copied');
-
-          Clipboard.setData(new ClipboardData(text: '$name: $time'))
-              .then((value) {
-            Fluttertoast.showToast(
-                msg: 'Copied to clipboard',
-                toastLength: Toast.LENGTH_SHORT,
-                backgroundColor: Colors.grey.shade700,
-                textColor: Colors.white);
-          });
-        },
+        onLongPress: () =>
+            Clipboard.setData(new ClipboardData(text: '$name: $time'))
+                .then((value) {
+          Fluttertoast.showToast(
+              msg: 'Copied to clipboard',
+              toastLength: Toast.LENGTH_SHORT,
+              backgroundColor: Colors.grey.shade700,
+              textColor: Colors.white);
+        }),
         child: Center(child: Consumer<SettingProvider>(
           builder: (context, setting, child) {
             return Text(
@@ -167,12 +163,11 @@ Widget solatCard(String time, String name, bool useFullHeight) {
 }
 
 class Error extends StatelessWidget {
-  final String errorMessage;
-
-  final Function onRetryPressed;
-
   const Error({Key key, this.errorMessage, this.onRetryPressed})
       : super(key: key);
+
+  final String errorMessage;
+  final Function onRetryPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -203,9 +198,9 @@ class Error extends StatelessWidget {
 }
 
 class Loading extends StatelessWidget {
-  final String loadingMessage;
-
   const Loading({Key key, this.loadingMessage}) : super(key: key);
+
+  final String loadingMessage;
 
   @override
   Widget build(BuildContext context) {
