@@ -68,8 +68,8 @@ class MyApp extends StatelessWidget {
             visualDensity: VisualDensity.adaptivePlatformDensity,
             appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
         themeMode: ThemeController.to.themeMode,
-        home: MyHomePage(),
-        // home: OnboardingPage(),
+        // home: MyHomePage(),
+        home: OnboardingPage(),
       ),
     );
   }

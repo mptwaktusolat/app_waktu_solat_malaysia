@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
+import 'package:waktusolatmalaysia/views/ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override
@@ -15,6 +16,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
     imagePadding: EdgeInsets.all(8.0),
   );
 
+  bool _isDoneSetLocation = false;
+
   @override
   Widget build(BuildContext context) {
     List<PageViewModel> _pages = [
@@ -27,15 +30,28 @@ class _OnboardingPageState extends State<OnboardingPage> {
             width: 200,
           ),
           decoration: pageDecoration,
-          footer: ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Colors.teal),
-            onPressed: () {
-              LocationData.getCurrentLocation();
-            },
-            child: Text(
-              'Set location',
-            ),
-          )),
+          footer: _isDoneSetLocation
+              ? Text(
+                  'Location set. You can change location anytime by tapping the location code at upper right corner.',
+                  textAlign: TextAlign.center,
+                )
+              : ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.teal),
+                  onPressed: () async {
+                    // LocationData.getCurrentLocation();
+
+                    var res =
+                        await LocationChooser.showLocationChooser(context);
+                    if (res) {
+                      setState(() {
+                        _isDoneSetLocation = true;
+                      });
+                    }
+                  },
+                  child: Text(
+                    'Set location',
+                  ),
+                )),
       PageViewModel(
         title: "Set your favourite theme",
         body:

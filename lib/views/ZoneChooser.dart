@@ -77,8 +77,8 @@ class LocationChooser {
         lng: null);
   }
 
-  static showLocationChooser(BuildContext context) {
-    showDialog(
+  static Future<bool> showLocationChooser(BuildContext context) async {
+    bool res = await showDialog(
       context: context,
       builder: (context) {
         return Dialog(
@@ -108,10 +108,11 @@ class LocationChooser {
         );
       },
     );
+    return res ?? false;
   }
 
-  static Future openLocationBottomSheet(BuildContext context) async {
-    await showModalBottomSheet(
+  static Future<bool> openLocationBottomSheet(BuildContext context) async {
+    return await showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         isScrollControlled: true,
@@ -132,14 +133,16 @@ class LocationChooser {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             onTap: () {
+                              bool _success = false;
                               if (index !=
                                   GetStorage().read(kStoredGlobalIndex)) {
                                 if (index != null) {
                                   value.currentLocationIndex = index;
+                                  _success = true;
                                   onNewLocationSaved(context);
                                 }
                               }
-                              Navigator.pop(context);
+                              Navigator.pop(context, _success);
                             },
                             title: Text(LocationDatabase.getDaerah(index)),
                             subtitle: Text(LocationDatabase.getNegeri(index)),
@@ -239,9 +242,10 @@ class LocationChooser {
                       child: Text(
                         'Set manually',
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        openLocationBottomSheet(context);
+                      onPressed: () async {
+                        bool res =
+                            await openLocationBottomSheet(context) ?? false;
+                        Navigator.pop(context, res);
                       },
                     ),
                     TextButton(
@@ -252,7 +256,7 @@ class LocationChooser {
                         value.currentLocationIndex = index;
                         onNewLocationSaved(context);
 
-                        Navigator.pop(context);
+                        Navigator.pop(context, true);
                       },
                     ),
                   ],

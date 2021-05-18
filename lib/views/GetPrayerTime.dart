@@ -34,8 +34,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               LocationDatabase.getMptLocationCode(value.currentLocationIndex)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Loading(
-                  loadingMessage: 'Fetching prayer time. Please wait.');
+              return Loading();
             } else if (snapshot.hasData) {
               return PrayTimeList(prayerTime: snapshot.data);
             } else {
@@ -171,57 +170,47 @@ class Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('errorMessage is $errorMessage');
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            errorMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-            ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          errorMessage,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
           ),
-          SizedBox(height: 8),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Theme.of(context).buttonColor,
-            ),
-            child: Text('Retry', style: TextStyle(color: Colors.black)),
-            onPressed: onRetryPressed,
-          )
-        ],
-      ),
+        ),
+        SizedBox(height: 8),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).buttonColor,
+          ),
+          child: Text('Retry', style: TextStyle(color: Colors.black)),
+          onPressed: onRetryPressed,
+        )
+      ],
     );
   }
 }
 
 class Loading extends StatelessWidget {
-  const Loading({Key key, this.loadingMessage}) : super(key: key);
-
-  final String loadingMessage;
-
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            loadingMessage,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 24,
-            ),
+    return Column(
+      children: [
+        Text(
+          'Fetching prayer time. Please wait.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 18,
           ),
-          SizedBox(height: 24),
-          SpinKitChasingDots(
-            size: 35,
-            color: Colors.teal,
-          ),
-        ],
-      ),
+        ),
+        SizedBox(height: 24),
+        SpinKitChasingDots(
+          size: 35,
+          color: Colors.teal,
+        ),
+      ],
     );
   }
 }

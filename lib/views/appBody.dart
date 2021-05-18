@@ -112,11 +112,9 @@ class AppBody extends StatelessWidget {
                                     behavior: SnackBarBehavior.floating,
                                     action: SnackBarAction(
                                       label: 'Change',
-                                      onPressed: () async {
-                                        var response = await LocationChooser
-                                            .openLocationBottomSheet(context);
-                                        if (response == null) return;
-                                        value.currentLocationIndex = response;
+                                      onPressed: () {
+                                        LocationChooser.openLocationBottomSheet(
+                                            context);
                                       },
                                     ),
                                   ),
