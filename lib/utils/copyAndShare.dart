@@ -29,7 +29,7 @@ Solat timetable: $_dayFormat, $_dateFormat
 🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
 ⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
 
-Get the app: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kMptFdlGetLink}''';
         break;
       case 2:
         return '''
@@ -44,7 +44,7 @@ Get the app: ${Constants.kPlayStoreListingShortLink}''';
 ```🌙 Maghrib : ${CachedPrayerTimeData.allPrayerTime()[3]}```
 ```⭐ Isyak   : ${CachedPrayerTimeData.allPrayerTime()[4]}```
 
-Get the app: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kMptFdlGetLink}''';
         break;
       default:
         return '';
