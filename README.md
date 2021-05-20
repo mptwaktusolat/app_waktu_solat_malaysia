@@ -64,7 +64,11 @@ _Not available for iOS sorry :disappointed:_
 Download here -> [APK](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
 And submit your review. Some of the version are also available in Google Play beta program.
 
-## Instagram highlight
+## Devlogs
+
+- [Part 1](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1)
+- [Part 2](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ2MjI5MzM4MjczODAw)
+- [Part 3](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTM5MTYyNTU1MTQ0MjYx)
 
 ## Honourable mention
 
