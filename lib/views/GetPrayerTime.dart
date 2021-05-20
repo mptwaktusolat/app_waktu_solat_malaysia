@@ -9,7 +9,7 @@ import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/mpt_fetch_api.dart';
-import 'package:waktusolatmalaysia/utils/isolate_handler_notification.dart';
+import 'package:waktusolatmalaysia/notificationUtil/isolate_handler_notification.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';

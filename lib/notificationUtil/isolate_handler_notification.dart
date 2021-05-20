@@ -6,7 +6,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart';
 import '../main.dart';
-import '../notificationUtil/notifications_helper.dart';
+import 'notifications_helper.dart';
 
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
 
