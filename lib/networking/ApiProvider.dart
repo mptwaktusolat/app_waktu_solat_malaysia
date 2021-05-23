@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'CustomException.dart';
 
 class ApiProvider {
-  Future<dynamic> get(dynamic url) async {
+  Future<dynamic> get(Uri url) async {
     var responseJson;
     try {
       final response = await http.get(url);

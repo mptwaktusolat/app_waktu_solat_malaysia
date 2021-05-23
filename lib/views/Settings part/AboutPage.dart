@@ -68,11 +68,11 @@ class AboutAppPage extends StatelessWidget {
                   Card(
                     child: ListTile(
                       title: Text(
-                        'Release Notes',
+                        'GitHub',
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
-                        LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
+                        LaunchUrl.normalLaunchUrl(url: kGithubRepoLink);
                       },
                     ),
                   ),

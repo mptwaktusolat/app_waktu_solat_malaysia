@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeController.to.getThemeModeFromPreferences();
-    return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],
+    return ChangeNotifierProvider(
+      create: (context) => SettingProvider(),
       child: GetMaterialApp(
         title: 'Malaysia Prayer Time',
         theme: ThemeData.light().copyWith(
