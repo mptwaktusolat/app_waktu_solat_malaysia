@@ -212,7 +212,7 @@ class AboutAppPage extends StatelessWidget {
                               ),
                               TextSpan(
                                 text: 'mpti906 API',
-                                style: TextStyle(color: Colors.blue),
+                                style: TextStyle(color: Colors.blueAccent),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     LaunchUrl.normalLaunchUrl(

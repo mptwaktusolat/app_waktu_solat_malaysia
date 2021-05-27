@@ -25,52 +25,39 @@ class _FaqPageState extends State<FaqPage> {
         title: Text('FAQs'),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: FutureBuilder(
-              future: _faqCollection.get(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasData) {
-                  return ListView.builder(
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(snapshot.data.docs[index]['title']),
-                        subtitle: Text(snapshot.data.docs[index]['url']),
-                        trailing: FaIcon(
-                          FontAwesomeIcons.externalLinkAlt,
-                          size: 18,
-                        ),
-                        onTap: () {
-                          LaunchUrl.normalLaunchUrl(
-                              url: snapshot.data.docs[index]['url'],
-                              useCustomTabs: true);
-                        },
-                      );
-                    },
-                  );
-                } else if (snapshot.connectionState ==
-                    ConnectionState.waiting) {
-                  return Center(
-                      child: SpinKitCubeGrid(
-                    color: Colors.teal,
-                  ));
-                } else {
-                  return Center(
-                    child: Text(':")'),
-                  );
-                }
+      body: FutureBuilder(
+        future: _faqCollection.get(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(snapshot.data.docs[index]['title']),
+                  subtitle: Text(snapshot.data.docs[index]['url']),
+                  trailing: FaIcon(
+                    FontAwesomeIcons.externalLinkAlt,
+                    size: 18,
+                  ),
+                  onTap: () {
+                    LaunchUrl.normalLaunchUrl(
+                        url: snapshot.data.docs[index]['url'],
+                        useCustomTabs: true);
+                  },
+                );
               },
-            ),
-          ),
-          Expanded(
-              child: CachedNetworkImage(
-            imageUrl:
-                'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_Questions_re_1fy7.png?alt=media&token=2e1ca79e-3e63-4677-8e07-7b3e7b33cae2',
-          ))
-        ],
+            );
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+                child: SpinKitCubeGrid(
+              color: Colors.teal,
+            ));
+          } else {
+            return Center(
+              child: Text(':")'),
+            );
+          }
+        },
       ),
     );
   }
@@ -78,7 +65,6 @@ class _FaqPageState extends State<FaqPage> {
 
 class FaqItem {
   String title;
-
   String url;
 
   /// Url must have https:// at front
