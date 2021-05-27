@@ -90,7 +90,7 @@ class LocationChooser {
             padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
             height: 250,
             child: FutureBuilder(
-                future: _getAllLocationData(),
+                future: _getAllLocationData().timeout(Duration(seconds: 10)),
                 builder:
                     (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -98,8 +98,10 @@ class LocationChooser {
                   } else if (snapshot.hasData) {
                     return onCompletedWidget(context, location: snapshot.data);
                   } else if (snapshot.hasError) {
-                    return onErrorWidget(context,
-                        errorMessage: snapshot.error.toString());
+                    return onErrorWidget(
+                      context,
+                      errorMessage: snapshot.error.toString(),
+                    );
                   } else {
                     return onErrorWidget(context,
                         errorMessage: 'Unexpected error occured');
@@ -135,13 +137,11 @@ class LocationChooser {
                           return ListTile(
                             onTap: () {
                               bool _success = false;
-                              if (index !=
-                                  GetStorage().read(kStoredGlobalIndex)) {
-                                if (index != null) {
-                                  value.currentLocationIndex = index;
-                                  _success = true;
-                                  onNewLocationSaved(context);
-                                }
+
+                              if (index != null) {
+                                value.currentLocationIndex = index;
+                                _success = true;
+                                onNewLocationSaved(context);
                               }
                               Navigator.pop(context, _success);
                             },
@@ -193,10 +193,7 @@ class LocationChooser {
           children: [
             Expanded(
               flex: 1,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text('Your location'),
-              ),
+              child: Center(child: Text('Your location')),
             ),
             Expanded(
                 flex: 3,
@@ -280,73 +277,60 @@ class LocationChooser {
         children: <Widget>[
           Expanded(
               flex: 1,
-              child: Text(
-                'Error',
+              child: Center(
+                child: Text('Error'),
               )),
           Expanded(
             flex: 3,
-            child: Column(
-              children: [
-                RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.black
-                          : Colors.white,
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(text: 'Tap '),
-                      TextSpan(
-                        text: 'retry',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                          text:
-                              ', or try closing this dialog and open it back.'),
-                    ],
-                  ),
-                ),
-                Spacer(),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Colors.black
-                            : Colors.white),
-                    children: <TextSpan>[
-                      TextSpan(text: 'If it didn\'t work, please '),
-                      TextSpan(
-                        text: 'set your location manually.',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ),
-                Spacer(),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Colors.black
-                            : Colors.white),
-                    children: <TextSpan>[
-                      TextSpan(text: 'Make sure your '),
-                      TextSpan(
-                        text: 'GPS turned on, ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+            child: DefaultTextStyle(
+              style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'Please make sure your '),
+                        TextSpan(
+                          text: 'GPS is turned on.',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      TextSpan(text: 'then restart this app.'),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                Spacer(),
-              ],
+                  Text('\nYou can try the following:'),
+                  Text.rich(
+                    TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'Try closing'),
+                        TextSpan(
+                          text: ' this ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(text: 'dialog and open it back, or'),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    TextSpan(
+                      children: <TextSpan>[
+                        TextSpan(text: 'Set your location '),
+                        TextSpan(
+                          text: ' manually.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -357,7 +341,7 @@ class LocationChooser {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.red,
-                    fontSize: 9,
+                    fontSize: 10,
                     fontStyle: FontStyle.italic),
               ),
             ),
@@ -368,21 +352,15 @@ class LocationChooser {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      openLocationBottomSheet(context);
+                    onPressed: () async {
+                      bool res =
+                          await openLocationBottomSheet(context) ?? false;
+                      Navigator.pop(context, res);
                     },
                     child: Text(
                       'Set manually',
                       // style: TextStyle(color: Colors.teal.shade800),
                     )),
-                TextButton(
-                  onPressed: onRetryPressed,
-                  child: Text(
-                    'Retry',
-                    // style: TextStyle(color: Colors.teal.shade800),
-                  ),
-                )
               ],
             ),
           )
