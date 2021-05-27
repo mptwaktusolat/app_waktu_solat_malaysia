@@ -63,8 +63,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         decoration: pageDecoration,
       ),
       PageViewModel(
-        title: "You're good to go",
-        body: "Alhamdulillah. All set.",
+        title: "Alhamdulillah. All set",
+        body:
+            "Welcome abroad. Do explore and tweak the other features and settings as well.",
         image: Image.asset(
           'assets/bam/Tick.png',
           width: 200,
