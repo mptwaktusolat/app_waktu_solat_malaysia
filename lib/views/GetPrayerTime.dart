@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
+import 'package:waktusolatmalaysia/notificationUtil/prevent_update_notifs.dart';
 import 'package:waktusolatmalaysia/utils/mpt_fetch_api.dart';
 import 'package:waktusolatmalaysia/notificationUtil/isolate_handler_notification.dart';
 import '../CONSTANTS.dart';
@@ -25,6 +26,12 @@ class GetPrayerTime extends StatefulWidget {
 }
 
 class _GetPrayerTimeState extends State<GetPrayerTime> {
+  @override
+  void initState() {
+    super.initState();
+    PreventUpdatingNotifs.setNow();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
