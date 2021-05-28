@@ -321,7 +321,7 @@ class LocationChooser {
                   Text.rich(
                     TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: 'Set your location '),
+                        TextSpan(text: 'Set your location'),
                         TextSpan(
                           text: ' manually.',
                           style: TextStyle(fontWeight: FontWeight.bold),
