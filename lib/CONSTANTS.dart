@@ -24,7 +24,7 @@ const kHijriOffset = "storedHijriOffset";
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
 const kThemeUiUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes.png?alt=media&token=978ba572-9f14-459a-a8e7-3e316774c2d2';
+    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes.png?alt=media&token=ef49b39e-cc2e-43fb-b8be-09cb69d1a680';
 const kDeveloperActivityImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_developer_activity_bv83.svg?alt=media&token=e787419a-fb75-4484-860d-512b4b634c97';
 
