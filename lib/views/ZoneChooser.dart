@@ -23,7 +23,7 @@ class LocationChooser {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 2500),
+        duration: Duration(milliseconds: 1500),
         content: Row(
           children: [
             Icon(
@@ -52,8 +52,6 @@ class LocationChooser {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(_pos.latitude, _pos.longitude);
       var first = placemarks.first;
-      print(first);
-
       print(
           '[_getAllLocationData] ${first.locality}, ${first.administrativeArea}');
       administrativeArea = first.administrativeArea;
@@ -68,7 +66,7 @@ class LocationChooser {
     }
 
     var zone = LocationCoordinate.getJakimCodeNearby(
-        LocationData.latitude, LocationData.longitude, administrativeArea);
+        _pos.latitude, _pos.longitude, administrativeArea);
 
     return LocationCoordinateData(
         zone: zone,

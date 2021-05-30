@@ -1,16 +1,14 @@
 import 'package:geolocator/geolocator.dart';
 
 class LocationData {
-  static double latitude;
-  static double longitude;
+  static Position _position;
 
   static Future<Position> getCurrentLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy:
               LocationAccuracy.low); //on Android, low is in 500m radius
-      latitude = position.latitude;
-      longitude = position.longitude;
+      _position = position;
       print('[LocationData] Sucess getting $position');
       return position;
     } catch (e) {
@@ -18,4 +16,6 @@ class LocationData {
       throw 'Error occured: $e';
     }
   }
+
+  static get position => _position;
 }
