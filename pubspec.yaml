@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.19.108-pre+53
+version: 1.20.120+56
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -27,12 +27,11 @@ dependencies:
   share: ^2.0.1
   geolocator: ^7.0.1
   flutter_spinkit: ^5.0.0
-  get: ^4.1.1
   flutter_svg: ^0.22.0
   auto_size_text: ^3.0.0-nullsafety.0
   provider: ^5.0.0
   flutter_local_notifications: ^5.0.0
-  rxdart: ^0.26.0
+  # rxdart: ^0.26.0
   app_settings: ^4.1.0
   isolate_handler: ^1.0.0
   flutter_web_browser: ^0.14.0
@@ -42,6 +41,7 @@ dependencies:
   cloud_firestore: ^2.1.0
   firebase_core: ^1.0.2
   email_validator: ^2.0.1
+  introduction_screen: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +55,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/qibla/
+    - assets/bam/
   #   - assets/grouped.json
 
   # To add custom fonts to your application, add a fonts section here,

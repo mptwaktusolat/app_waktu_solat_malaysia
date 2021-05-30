@@ -1,9 +1,9 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart' as Constants;
 import 'cachedPrayerData.dart';
-import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
@@ -13,9 +13,8 @@ class CopyAndShare {
     var _dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var _dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
-    LocationDatabase _locationDatabase = LocationDatabase();
-    var daerah = _locationDatabase.getDaerah(_globalIndex);
-    var negeri = _locationDatabase.getNegeri(_globalIndex);
+    var daerah = LocationDatabase.getDaerah(_globalIndex);
+    var negeri = LocationDatabase.getNegeri(_globalIndex);
     switch (type) {
       case 1:
         return '''
@@ -30,7 +29,7 @@ Solat timetable: $_dayFormat, $_dateFormat
 🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
 ⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
 
-Get the app: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kMptFdlGetLink}''';
         break;
       case 2:
         return '''
@@ -45,7 +44,7 @@ Get the app: ${Constants.kPlayStoreListingShortLink}''';
 ```🌙 Maghrib : ${CachedPrayerTimeData.allPrayerTime()[3]}```
 ```⭐ Isyak   : ${CachedPrayerTimeData.allPrayerTime()[4]}```
 
-Get the app: ${Constants.kPlayStoreListingShortLink}''';
+Get the app: ${Constants.kMptFdlGetLink}''';
         break;
       default:
         return '';

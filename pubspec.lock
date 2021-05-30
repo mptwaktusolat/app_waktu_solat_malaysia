@@ -21,7 +21,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -113,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  dots_indicator:
+    dependency: transitive
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   email_validator:
     dependency: "direct main"
     description:
@@ -297,7 +304,7 @@ packages:
     source: hosted
     version: "2.0.3"
   get:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get
       url: "https://pub.dartlang.org"
@@ -322,10 +329,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: fd01c7dc88cf1f29edbd4cf9d992d1eb17d969c3
+      resolved-ref: "86cc31daab46e6e9b15a0580521ea53942568333"
       url: "https://github.com/iqfareez/hijri_date.git"
     source: git
-    version: "3.0.0"
+    version: "3.0.1"
   http:
     dependency: "direct main"
     description:
@@ -354,6 +361,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  introduction_screen:
+    dependency: "direct main"
+    description:
+      name: introduction_screen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   isolate_handler:
     dependency: "direct main"
     description:
@@ -509,7 +523,7 @@ packages:
     source: hosted
     version: "5.0.0"
   rxdart:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rxdart
       url: "https://pub.dartlang.org"

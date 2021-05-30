@@ -3,9 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart';
 import '../main.dart';
-import '../views/GetPrayerTime.dart';
 import 'notifications_helper.dart';
 
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
@@ -17,7 +17,7 @@ void schedulePrayNotification(List<dynamic> times) async {
   await notifsPlugin.cancelAll(); //reset all
 
   String currentLocation =
-      locationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
+      LocationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
   print(currentLocation);
 
   var currentTime = DateTime.now().millisecondsSinceEpoch;

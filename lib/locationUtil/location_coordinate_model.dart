@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class LocationCoordinateData {
+  /// Jakim zone
   String zone;
   String negeri;
   String lokasi;

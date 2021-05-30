@@ -7,6 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
+import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
+import 'package:waktusolatmalaysia/views/faq.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
@@ -36,11 +38,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   void getPackageInfo() async {
     packageInfo = await PackageInfo.fromPlatform();
   }
-
-  String prayApiCalled =
-      GetStorage().read(kStoredApiPrayerCall) ?? 'no pray api called';
-  String localityCalled =
-      GetStorage().read(kStoredLocationLocality) ?? 'no locality called';
 
   bool _logIsChecked = true;
   @override
@@ -194,9 +191,17 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         'User message': _messageController.text.trim(),
                         'App version': packageInfo.version,
                         'App build number': packageInfo.buildNumber,
-                        'Prayer API called': prayApiCalled,
-                        'Locality': localityCalled,
+                        'Prayer API called':
+                            GetStorage().read(kStoredApiPrayerCall) ??
+                                'no pray api called',
+                        'Position':
+                            LocationData.position.toString() ?? 'no detect',
+                        'Locality':
+                            GetStorage().read(kStoredLocationLocality) ??
+                                'no locality called',
                         'Device info': _logIsChecked ? _deviceInfo : null,
+                        'Hijri Offset':
+                            GetStorage().read(Constants.kHijriOffset),
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
@@ -229,17 +234,23 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 Expanded(child: Divider())
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(primary: Colors.black),
-                icon: FaIcon(FontAwesomeIcons.github, size: 13),
-                onPressed: () {
-                  LaunchUrl.normalLaunchUrl(
-                      url: Constants.kGithubRepoLink + '/issues');
-                },
-                label: Text('Report / Follow issues on GitHub'),
-              ),
+            SizedBox(height: 10),
+            ElevatedButton.icon(
+              icon: FaIcon(FontAwesomeIcons.questionCircle, size: 13),
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => FaqPage()));
+              },
+              label: Text('Read Frequently Asked Questions (FAQ)'),
+            ),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(primary: Colors.black),
+              icon: FaIcon(FontAwesomeIcons.github, size: 13),
+              onPressed: () {
+                LaunchUrl.normalLaunchUrl(
+                    url: Constants.kGithubRepoLink + '/issues');
+              },
+              label: Text('Report / Follow issues on GitHub'),
             ),
             Spacer(),
           ],

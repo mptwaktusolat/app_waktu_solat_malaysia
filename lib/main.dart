@@ -2,16 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
+import 'package:waktusolatmalaysia/views/onboarding_page.dart';
 import 'CONSTANTS.dart';
-import 'utils/LocationData.dart';
-import 'utils/notifications_helper.dart';
+import 'locationUtil/location_provider.dart';
+import 'notificationUtil/notifications_helper.dart';
 import 'views/Settings%20part/ThemeController.dart';
 import 'views/Settings%20part/settingsProvider.dart';
 import 'views/appBody.dart';
@@ -24,9 +24,7 @@ final FlutterLocalNotificationsPlugin notifsPlugin =
 void main() async {
   await GetStorage.init();
 
-  LocationData.getCurrentLocation();
   await _configureLocalTimeZone();
-
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);
   // requestIOSPermissions(notifsPlugin);
@@ -37,7 +35,6 @@ void main() async {
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-  Get.lazyPut(() => ThemeController());
   runApp(MyApp());
 }
 
@@ -47,26 +44,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     configureSelectNotificationSubject(context);
-    ThemeController.to.getThemeModeFromPreferences();
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => SettingProvider())],
-      child: GetMaterialApp(
-        // debugShowCheckedModeBanner: false,
-        title: 'My Prayer Time',
-        theme: ThemeData.light().copyWith(
-          primaryColor: _primaryColour,
-          bottomAppBarColor: Colors.teal.shade50,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme:
-              AppBarTheme(color: _primaryColour, brightness: Brightness.dark),
-        ),
-        darkTheme: ThemeData.dark().copyWith(
-            primaryColor: _primaryColour,
-            bottomAppBarColor: Colors.teal.withOpacity(0.4),
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
-        themeMode: ThemeController.to.themeMode,
-        home: MyHomePage(),
+      providers: [
+        ChangeNotifierProvider(create: (_) => SettingProvider()),
+        ChangeNotifierProvider(create: (_) => LocationProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeController())
+      ],
+      child: Consumer<ThemeController>(
+        builder: (context, value, child) {
+          return MaterialApp(
+            // debugShowCheckedModeBanner: false,
+            title: 'My Prayer Time',
+            theme: ThemeData.light().copyWith(
+              primaryColor: _primaryColour,
+              bottomAppBarColor: Colors.teal.shade50,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              appBarTheme: AppBarTheme(
+                  color: _primaryColour, brightness: Brightness.dark),
+            ),
+            darkTheme: ThemeData.dark().copyWith(
+                primaryColor: _primaryColour,
+                bottomAppBarColor: Colors.teal.withOpacity(0.4),
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+                appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
+            themeMode: value.themeMode,
+            // home: OnboardingPage(),
+            home: GetStorage().read(kIsFirstRun)
+                ? OnboardingPage()
+                : MyHomePage(),
+          );
+        },
       ),
     );
   }
@@ -95,7 +102,7 @@ class MyHomePage extends StatelessWidget {
 
 void initGetStorage() {
   GetStorage _get = GetStorage();
-  _get.writeIfNull(kStoredFirstRun, true);
+  _get.writeIfNull(kIsFirstRun, true);
   _get.writeIfNull(kStoredGlobalIndex, 0);
   _get.writeIfNull(kStoredTimeIs12, true);
   _get.writeIfNull(kStoredShowOtherPrayerTime, false);
@@ -119,7 +126,7 @@ Future<void> _configureLocalTimeZone() async {
 void readAllGetStorage() {
   print("-----All GET STORAGE-----");
   GetStorage _get = GetStorage();
-  print('kStoredFirstRun is ${_get.read(kStoredFirstRun)}');
+  print('kStoredFirstRun is ${_get.read(kIsFirstRun)}');
   print('kStoredGlobalIndex is ${_get.read(kStoredGlobalIndex)}');
   print('kStoredTimeIs12 is ${_get.read(kStoredTimeIs12)}');
   print(

@@ -49,6 +49,7 @@ class SettingProvider with ChangeNotifier {
   bool get showOtherPrayerTime => _showOtherPrayerTime;
 
   set isDeveloperOption(newValue) {
+    GetStorage().write(kDiscoveredDeveloperOption, newValue);
     _isDeveloperOption = newValue;
     notifyListeners();
   }

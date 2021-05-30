@@ -19,9 +19,9 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 ## API
 
 [~~Azanpro API (Unofficial)~~](https://api.azanpro.com/)\
-[~~WaktuSolatApp~~](https://waktusolatapp.com/)\
+[~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
 [~~e-solat JAKIM Malaysia API~~](https://www.e-solat.gov.my/index.php?r=esolatApi/takwimsolat&period=month&zone=SGR01)\
-[MPTi906 JSON API](https://mpt.i906.my/)
+[MPTi906 API](https://mpt.i906.my/)
 
 ## Changelog History
 
@@ -59,21 +59,28 @@ _i'm having difficulties to update the app in App Gallery. So it will be very ou
 
 _Not available for iOS sorry :disappointed:_
 
-## Try the beta
+## Try the pre-releases
 
-Download here -> [APK](https://github.com/iqfareez/App-Waktu-Solat-Malaysia/releases).
+Download here -> [APK](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
 And submit your review. Some of the version are also available in Google Play beta program.
+
+## Devlogs
+
+- [Part 1](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1)
+- [Part 2](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ2MjI5MzM4MjczODAw)
+- [Part 3](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTM5MTYyNTU1MTQ0MjYx)
 
 ## Honourable mention
 
 Article that help me througout the development(Read: Website yg function teruk. The real MVP!. Banyak lagi website/blog2 lain tpi yang kt bwawh ni is da real lifesaver!)
 
-1. https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97
-2. https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode
+1. ~~https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97~~
+2. ~~https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode~~
 3. https://javiercbk.github.io/json_to_dart/
 4. https://medium.com/swlh/flutter-dynamic-themes-in-3-lines-c3b375f292e3
 5. https://medium.com/@fuzzymemory/adding-scheduled-notifications-in-your-flutter-application-19be1f82ade8
 6. https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
+7. 3D assets you see on the onboarding screen is from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/).
 
 <!-- ## Attribution
 
@@ -87,5 +94,9 @@ Article that help me througout the development(Read: Website yg function teruk. 
 - Huawei logo are trademarks of Huawei Technologies Co., Ltd.
 
 <!-- **No redistruba -->
+
+## Contact Us
+
+Email: mptwaktusolat@gmail.com
 
 ### May Allah ease everything in developing MPT. InshaAllah!

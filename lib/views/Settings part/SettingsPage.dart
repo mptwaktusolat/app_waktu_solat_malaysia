@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
-
 import '../../CONSTANTS.dart' as Constants;
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../Settings%20part/AboutPage.dart';
@@ -58,9 +59,14 @@ class _SettingsPageState extends State<SettingsPage> {
               buildSharingSetting(setting),
               Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
               buildAboutApp(context),
+              SizedBox(height: 3),
               setting.isDeveloperOption
                   ? buildVerboseDebugMode(context)
-                  : Container(),
+                  : SizedBox.shrink(),
+              SizedBox(height: 3),
+              setting.isDeveloperOption
+                  ? buildResetAllSetting(context)
+                  : SizedBox.shrink(),
               SizedBox(height: 40)
             ],
           );
@@ -82,9 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     backgroundColor: CupertinoColors.tertiarySystemFill),
                 onPressed: setting.hijriOffset <= -2
                     ? null
-                    : () {
-                        setting.hijriOffset--;
-                      },
+                    : () => setting.hijriOffset--,
                 child: FaIcon(FontAwesomeIcons.minus, size: 11)),
             Container(
               child: Text(
@@ -96,9 +100,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     backgroundColor: CupertinoColors.tertiarySystemFill),
                 onPressed: setting.hijriOffset >= 2
                     ? null
-                    : () {
-                        setting.hijriOffset++;
-                      },
+                    : () => setting.hijriOffset++,
                 child: FaIcon(FontAwesomeIcons.plus, size: 11)),
           ],
         ),
@@ -161,7 +163,6 @@ class _SettingsPageState extends State<SettingsPage> {
         title: Text('Verbose debug mode'),
         subtitle: Text('For developer purposes'),
         onTap: () {
-          print('VERBOSE DEBUG MODE');
           showDialog(
             context: context,
             builder: (context) {
@@ -169,6 +170,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 title: Text(GetStorage().read(Constants.kIsDebugMode)
                     ? 'Verbose debug mode is ON'
                     : 'Verbose debug mode is OFF'),
+                contentPadding:
+                    const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 1.0),
                 content: Text(
                     'Toast message or similar will show throughout usage of the app'),
                 actions: [
@@ -191,6 +194,42 @@ class _SettingsPageState extends State<SettingsPage> {
                               'Turn on',
                               style: TextStyle(color: Colors.red),
                             ))
+                ],
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  Card buildResetAllSetting(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: Text('Reset all setting'),
+        subtitle: Text('Deletes all GetStorage() items'),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                contentPadding:
+                    const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 1.0),
+                content: Text('Proceed? The app will exit automatically.'),
+                actions: [
+                  TextButton(
+                      onPressed: () =>
+                          Navigator.of(context, rootNavigator: true).pop(),
+                      child: Text('Cancel')),
+                  TextButton(
+                      onPressed: () => GetStorage().erase().then((value) => {
+                            Fluttertoast.showToast(msg: 'Reset done'),
+                            SystemNavigator.pop()
+                          }),
+                      child: Text(
+                        'Yes. Reset all',
+                        style: TextStyle(color: Colors.red),
+                      ))
                 ],
               );
             },
