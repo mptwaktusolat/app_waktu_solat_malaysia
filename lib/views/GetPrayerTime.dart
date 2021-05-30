@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -74,10 +73,12 @@ class _PrayTimeListState extends State<PrayTimeList> {
   @override
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
+    //process the string data from JSON
     handler = PrayDataHandler(prayerTimeData.times);
-    if (!kIsWeb && GetStorage().read(kStoredShouldUpdateNotif)) {
-      schedulePrayNotification(
-          handler.getPrayDataCurrentDateOnwards()); //schedule notification
+
+    if (GetStorage().read(kStoredShouldUpdateNotif)) {
+      //schedule notification if needed
+      schedulePrayNotification(handler.getPrayDataCurrentDateOnwards());
     }
 
     return Container(child: Consumer<SettingProvider>(
