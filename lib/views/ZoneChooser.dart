@@ -47,6 +47,9 @@ class LocationChooser {
     var locality;
 
     Position _pos = await LocationData.getCurrentLocation();
+    if (GetStorage().read(kIsDebugMode)) {
+      Fluttertoast.showToast(msg: _pos.toString());
+    }
 
     try {
       List<Placemark> placemarks =

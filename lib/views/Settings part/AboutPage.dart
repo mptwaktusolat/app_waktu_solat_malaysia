@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
 import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
 import 'package:waktusolatmalaysia/views/faq.dart';
 import '../../CONSTANTS.dart';
@@ -21,6 +22,89 @@ class AboutAppPage extends StatelessWidget {
   AboutAppPage(this.packageInfo);
   final PackageInfo packageInfo;
   final appLegalese = 'Copyright © 2020-2021 Fareez Iqmal';
+
+  void showDebugDialog(BuildContext ctx) {
+    showDialog(
+      context: ctx,
+      builder: (context) => Dialog(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.all(8.0),
+          children: [
+            Text(
+              'Debug dialog (for dev)',
+              textAlign: TextAlign.center,
+            ),
+            ListTile(
+              title: Text('Prayer time API calls'),
+              subtitle: Text(
+                  GetStorage().read(kStoredApiPrayerCall) ?? 'no calls yet'),
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(
+                        text: GetStorage().read(kStoredApiPrayerCall) ??
+                            'no calls yet'))
+                    .then((value) => Fluttertoast.showToast(msg: 'Copied url'));
+              },
+            ),
+            ListTile(
+              title: Text('Position detected'),
+              subtitle: Text(LocationData.position.toString() ?? 'no detect'),
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(
+                        text: LocationData.position.toString() ?? 'no detect'))
+                    .then((value) =>
+                        Fluttertoast.showToast(msg: 'Copied position'));
+              },
+            ),
+            ListTile(
+              title: Text('Send immediate test notification'),
+              onTap: () async {
+                await showDebugNotification();
+              },
+            ),
+            ListTile(
+              title: Text('Send alert test in one minute'),
+              subtitle: Text('Payload: $kPayloadDebug'),
+              onTap: () async {
+                await scheduleAlertNotification(
+                    notifsPlugin: notifsPlugin,
+                    title: 'debug payload',
+                    id: 219, //randrom int haha
+                    body: 'With payload',
+                    payload: kPayloadDebug,
+                    scheduledTime: tz.TZDateTime.now(tz.local).add(
+                      Duration(minutes: 1),
+                    ));
+              },
+            ),
+            ListTile(
+                title: Text('Global location index'),
+                subtitle: Text('${GetStorage().read(kStoredGlobalIndex)}')),
+            ListTile(
+              title: Text('Last update notification'),
+              subtitle: Text(DateTime.fromMillisecondsSinceEpoch(
+                      GetStorage().read(kStoredLastUpdateNotif))
+                  .toString()),
+              onLongPress: () {
+                Clipboard.setData(ClipboardData(
+                        text: GetStorage()
+                            .read(kStoredLastUpdateNotif)
+                            .toString()))
+                    .then((value) =>
+                        Fluttertoast.showToast(msg: 'Copied millis'));
+              },
+            ),
+            ListTile(
+              title: Text('Number of scheduled notification'),
+              subtitle:
+                  Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isFirstTry = true;
@@ -49,99 +133,17 @@ class AboutAppPage extends StatelessWidget {
                           Fluttertoast.showToast(msg: '(⌐■_■)');
                           isFirstTry = false;
                         } else {
+                          //TODO: Check this, try to minimize GetStorage calling
+                          // method already defined in provider
                           if (!GetStorage().read(kDiscoveredDeveloperOption)) {
                             Fluttertoast.showToast(
                                 msg: 'Developer mode discovered',
                                 toastLength: Toast.LENGTH_LONG,
                                 backgroundColor: Colors.teal);
-                            GetStorage()
-                                .write(kDiscoveredDeveloperOption, true);
-                            setting.isDeveloperOption = true;
-                          } else {
-                            print('Dev mode already enabled');
-                          }
-                          var prayApiCalled =
-                              GetStorage().read(kStoredApiPrayerCall) ??
-                                  'no calls yet';
 
-                          showDialog(
-                            context: context,
-                            builder: (context) => Dialog(
-                              child: ListView(
-                                shrinkWrap: true,
-                                padding: EdgeInsets.all(8.0),
-                                children: [
-                                  Text(
-                                    'Debug dialog (for dev)',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  ListTile(
-                                    title: Text('Prayer time API calls'),
-                                    subtitle: Text(prayApiCalled),
-                                    onLongPress: () {
-                                      Clipboard.setData(ClipboardData(
-                                              text: prayApiCalled))
-                                          .then((value) =>
-                                              Fluttertoast.showToast(
-                                                  msg: 'Copied url'));
-                                    },
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                        'Send immediate test notification'),
-                                    onTap: () async {
-                                      await showDebugNotification();
-                                    },
-                                  ),
-                                  ListTile(
-                                    title:
-                                        Text('Send alert test in one miniute'),
-                                    subtitle: Text('Payload: $kPayloadDebug'),
-                                    onTap: () async {
-                                      await scheduleAlertNotification(
-                                          notifsPlugin: notifsPlugin,
-                                          title: 'debug payload',
-                                          id: 219, //randrom int haha
-                                          body: 'With payload',
-                                          payload: kPayloadDebug,
-                                          scheduledTime:
-                                              tz.TZDateTime.now(tz.local).add(
-                                            Duration(minutes: 1),
-                                          ));
-                                    },
-                                  ),
-                                  ListTile(
-                                      title: Text('Global location index'),
-                                      subtitle: Text(
-                                          '${GetStorage().read(kStoredGlobalIndex)}')),
-                                  ListTile(
-                                    title: Text('Last update notification'),
-                                    subtitle: Text(
-                                        DateTime.fromMillisecondsSinceEpoch(
-                                                GetStorage().read(
-                                                    kStoredLastUpdateNotif))
-                                            .toString()),
-                                    onLongPress: () {
-                                      Clipboard.setData(ClipboardData(
-                                              text: GetStorage()
-                                                  .read(kStoredLastUpdateNotif)
-                                                  .toString()))
-                                          .then((value) =>
-                                              Fluttertoast.showToast(
-                                                  msg: 'Copied millis'));
-                                    },
-                                  ),
-                                  ListTile(
-                                    title: Text(
-                                        'Number of scheduled notification'),
-                                    subtitle: Text(GetStorage()
-                                        .read(kNumberOfNotifsScheduled)
-                                        .toString()),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
+                            setting.isDeveloperOption = true;
+                          }
+                          showDebugDialog(context);
                         }
                       },
                       child: Hero(
@@ -195,11 +197,11 @@ class AboutAppPage extends StatelessWidget {
                                     .color),
                             children: [
                               TextSpan(
-                                text: 'Prayer data fetched from',
+                                text: 'Prayer data are fetched from',
                               ),
                               TextSpan(
                                 text:
-                                    ' Jabatan Kemajuan Islam Malaysia (e-solat JAKIM)',
+                                    ' Jabatan Kemajuan Islam Malaysia (e-solat)',
                                 style: TextStyle(color: Colors.blueAccent),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
@@ -222,17 +224,7 @@ class AboutAppPage extends StatelessWidget {
                               TextSpan(text: '.')
                             ],
                           ),
-                        )
-                        //   child: SelectableText(
-                        //     '  mpti906 API. Visit www.e-solat.gov.my for more info.',
-                        //     onTap: () =>
-                        //         LaunchUrl.normalLaunchUrl(url: kSolatJakimLink),
-                        //     style: TextStyle(
-                        //       fontStyle: FontStyle.italic,
-                        //     ),
-                        //     textAlign: TextAlign.center,
-                        //   ),
-                        ),
+                        )),
                     SizedBox(height: 8),
                     Card(
                       child: ListTile(
@@ -246,18 +238,6 @@ class AboutAppPage extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       ContributionPage()));
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: Text(
-                          'Privacy Policy',
-                          textAlign: TextAlign.center,
-                        ),
-                        onTap: () {
-                          LaunchUrl.normalLaunchUrl(
-                              url: kPrivacyPolicyLink, useCustomTabs: true);
                         },
                       ),
                     ),
@@ -316,6 +296,18 @@ class AboutAppPage extends StatelessWidget {
                         },
                       ),
                     ),
+                    Card(
+                      child: ListTile(
+                        title: Text(
+                          'Privacy Policy',
+                          textAlign: TextAlign.center,
+                        ),
+                        onTap: () {
+                          LaunchUrl.normalLaunchUrl(
+                              url: kPrivacyPolicyLink, useCustomTabs: true);
+                        },
+                      ),
+                    ),
                     Divider(height: 8, thickness: 2),
                     Card(
                       child: ListTile(
@@ -344,12 +336,14 @@ class AboutAppPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(height: 15),
-                    Opacity(
-                      opacity: 0.58,
-                      child: Text(
-                        appLegalese,
-                        textAlign: TextAlign.center,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30.0),
+                      child: Opacity(
+                        opacity: 0.58,
+                        child: Text(
+                          appLegalese,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ],
