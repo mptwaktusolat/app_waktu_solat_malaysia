@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:waktusolatmalaysia/views/Qibla%20part/location_error_widget.dart';
+import '../Qibla%20part/location_error_widget.dart';
 
 class QiblaCompass extends StatefulWidget {
   @override

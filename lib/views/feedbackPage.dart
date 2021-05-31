@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info/device_info.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -7,12 +8,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
-import 'package:waktusolatmalaysia/views/faq.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../CONSTANTS.dart';
+import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
-import 'package:email_validator/email_validator.dart';
+import 'faq.dart';
 
 class FeedbackPage extends StatefulWidget {
   @override

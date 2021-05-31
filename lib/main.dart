@@ -7,15 +7,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/sharing_fab.dart';
-import 'package:waktusolatmalaysia/views/onboarding_page.dart';
 import 'CONSTANTS.dart';
 import 'locationUtil/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
+import 'utils/sharing_fab.dart';
 import 'views/Settings%20part/ThemeController.dart';
 import 'views/Settings%20part/settingsProvider.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
+import 'views/onboarding_page.dart';
 
 NotificationAppLaunchDetails notifLaunch;
 final FlutterLocalNotificationsPlugin notifsPlugin =

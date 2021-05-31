@@ -2,7 +2,6 @@ import 'package:geolocator/geolocator.dart';
 
 ///Taken and modified from https://api.azanpro.com/zone/zones.json#
 ///As suggested by Aizal Manan
-
 import 'location_coordinate_model.dart';
 
 class LocationCoordinate {

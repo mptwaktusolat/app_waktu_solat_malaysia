@@ -3,8 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import '../CONSTANTS.dart';
+import '../locationUtil/locationDatabase.dart';
 import '../main.dart';
 import 'notifications_helper.dart';
 

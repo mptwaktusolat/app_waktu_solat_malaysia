@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/main.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/ThemePage.dart';
-import 'package:waktusolatmalaysia/views/ZoneChooser.dart';
+import '../CONSTANTS.dart';
+import '../main.dart';
+import 'Settings%20part/ThemePage.dart';
+import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
   @override

@@ -5,8 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/subjects.dart' as rxSub;
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/main.dart';
+import '../CONSTANTS.dart';
+import '../main.dart';
 
 final rxSub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =

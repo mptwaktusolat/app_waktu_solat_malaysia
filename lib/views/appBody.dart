@@ -5,11 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
-import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
+import '../locationUtil/locationDatabase.dart';
+import '../locationUtil/location_provider.dart';
 import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
+import 'Settings%20part/settingsProvider.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {

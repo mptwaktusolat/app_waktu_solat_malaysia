@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:http/http.dart' as http;
 import '../CONSTANTS.dart';
+import '../models/mpti906PrayerData.dart';
 
 class MptApiFetch {
   static Future<Mpti906PrayerModel> fetchMpt(String location) async {

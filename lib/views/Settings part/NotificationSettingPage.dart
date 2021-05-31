@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/utils/navigator_pop.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
+import '../../utils/navigator_pop.dart';
 
 class NotificationPageSetting extends StatefulWidget {
   @override

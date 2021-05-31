@@ -9,14 +9,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/settingsProvider.dart';
-import 'package:waktusolatmalaysia/views/faq.dart';
 import '../../CONSTANTS.dart';
+import '../../locationUtil/LocationData.dart';
 import '../../main.dart';
-import '../../utils/launchUrl.dart';
 import '../../notificationUtil/notifications_helper.dart';
+import '../../utils/launchUrl.dart';
+import '../Settings%20part/settingsProvider.dart';
 import '../contributionPage.dart';
+import '../faq.dart';
 
 class AboutAppPage extends StatelessWidget {
   AboutAppPage(this.packageInfo);
@@ -47,7 +47,7 @@ class AboutAppPage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Position detected'),
+              title: Text('Last position'),
               subtitle: Text(LocationData.position.toString() ?? 'no detect'),
               onLongPress: () {
                 Clipboard.setData(ClipboardData(

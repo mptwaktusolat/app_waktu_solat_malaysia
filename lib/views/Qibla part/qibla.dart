@@ -4,8 +4,8 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'package:waktusolatmalaysia/views/Qibla%20part/qibla_compass.dart';
+import '../../utils/launchUrl.dart';
+import '../Qibla%20part/qibla_compass.dart';
 
 class Qibla extends StatefulWidget {
   @override

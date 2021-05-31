@@ -3,7 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/notificationUtil/prevent_update_notifs.dart';
+import '../../notificationUtil/prevent_update_notifs.dart';
 
 class ThemeController with ChangeNotifier {
   ThemeMode _themeMode;

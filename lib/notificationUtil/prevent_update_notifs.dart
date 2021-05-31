@@ -2,8 +2,8 @@
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
+import '../CONSTANTS.dart';
+import '../utils/DateAndTime.dart';
 
 class PreventUpdatingNotifs {
   /// setNow() function

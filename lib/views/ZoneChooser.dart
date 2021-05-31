@@ -1,19 +1,19 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
-import 'package:waktusolatmalaysia/locationUtil/location_coordinate.dart';
-import 'package:waktusolatmalaysia/locationUtil/location_coordinate_model.dart';
-import 'package:waktusolatmalaysia/locationUtil/location_provider.dart';
+import '../CONSTANTS.dart';
+import '../locationUtil/LocationData.dart';
+import '../locationUtil/locationDatabase.dart';
+import '../locationUtil/location_coordinate.dart';
+import '../locationUtil/location_coordinate_model.dart';
+import '../locationUtil/location_provider.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
