@@ -22,6 +22,7 @@ class MyBottomAppBar extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
+              iconSize: 18,
               tooltip: 'Open menu',
               icon: FaIcon(FontAwesomeIcons.bars),
               color: iconColour,
@@ -29,6 +30,7 @@ class MyBottomAppBar extends StatelessWidget {
                 menuModalBottomSheet(context);
               }),
           IconButton(
+            iconSize: 18,
             icon: FaIcon(FontAwesomeIcons.clone),
             tooltip: 'Copy timetable',
             color: iconColour,
@@ -42,13 +44,23 @@ class MyBottomAppBar extends StatelessWidget {
             },
           ),
           IconButton(
+            iconSize: 18,
             icon: FaIcon(FontAwesomeIcons.kaaba),
             color: iconColour,
             tooltip: 'Google QiblaFinder',
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: 'https://g.co/qiblafinder');
             },
-          )
+          ),
+          IconButton(
+              iconSize: 18,
+              color: iconColour,
+              tooltip: 'Themes',
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ThemesPage()));
+              },
+              icon: FaIcon(FontAwesomeIcons.palette))
         ],
       ),
     );
@@ -67,15 +79,6 @@ void menuModalBottomSheet(BuildContext context) {
         return Container(
           padding: EdgeInsets.all(4.0),
           child: Wrap(children: <Widget>[
-            ListTile(
-              title: Text('Themes'),
-              leading: FaIcon(FontAwesomeIcons.palette),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ThemesPage()));
-              },
-            ),
             ListTile(
               title: Text('Settings'),
               leading: FaIcon(FontAwesomeIcons.cog),

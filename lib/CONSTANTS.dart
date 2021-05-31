@@ -10,14 +10,6 @@ const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
 const kFontSize = "storedFontSize";
 
-//Network image
-const kAppIconUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
-const kThemeUiUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes.png?alt=media&token=978ba572-9f14-459a-a8e7-3e316774c2d2';
-const kDeveloperActivityImage =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_developer_activity_bv83.svg?alt=media&token=e787419a-fb75-4484-860d-512b4b634c97';
-
 //Network Image (Scenery time images)
 const kWaktuSubuhImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay1%20(Custom).jpg?alt=media&token=293ecf62-033a-4925-802b-9c8e3167c2c0';
@@ -44,7 +36,7 @@ const kSolatJakimLink = 'https://www.e-solat.gov.my/';
 //Developer info
 const kDevEmail = 'foxtrotiqmal3@gmail.com';
 const kSupportEmail = 'mptwaktusolat@gmail.com';
-const kDevTwitter = 'https://twitter.com/iqfareez2';
+const kDevTwitter = 'https://twitter.com/iqfareez';
 const kDevInstagram = 'https://www.instagram.com/iqfareez/';
 const kInstaStoryDevlog =
     'https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1?igshid=3jwa3e1iy3u7&story_media_id=2342912100646673991_32997533904';

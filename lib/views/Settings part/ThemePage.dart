@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../CONSTANTS.dart';
 import '../Settings%20part/ThemeController.dart';
 
 class ThemesPage extends StatelessWidget {
@@ -16,7 +15,7 @@ class ThemesPage extends StatelessWidget {
             flex: 2,
             child: Padding(
                 padding: const EdgeInsets.all(18.0),
-                child: Image.network(kThemeUiUrl)),
+                child: Image.asset('assets/mpt-theme.png')),
           ),
           Expanded(child: ThemesOption()),
         ],

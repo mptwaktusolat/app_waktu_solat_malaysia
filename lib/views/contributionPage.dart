@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../CONSTANTS.dart' as Constants;
 import '../utils/launchUrl.dart';
@@ -63,7 +62,7 @@ class ContributionPage extends StatelessWidget {
               MyCard(
                 title: 'Contribute to source',
                 description:
-                    'MPT is now open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.',
+                    'MPT is open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.',
                 buttonContent: [
                   ButtonContent(
                       'Copy', () => copyClipboard(Constants.kGithubRepoLink)),
@@ -73,13 +72,6 @@ class ContributionPage extends StatelessWidget {
                           url: Constants.kGithubRepoLink)),
                 ],
               ),
-              FittedBox(
-                  fit: BoxFit.contain,
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child:
-                        SvgPicture.network(Constants.kDeveloperActivityImage),
-                  ))
             ],
           ),
         ),
@@ -93,7 +85,6 @@ class ContributionPage extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class MyCard extends StatelessWidget {
   MyCard({Key key, this.title, this.description, this.buttonContent})
       : super(key: key);
@@ -101,18 +92,9 @@ class MyCard extends StatelessWidget {
   final String title;
   final String description;
   final List<ButtonContent> buttonContent;
-  List<TextButton> textButton = [];
-
-  void generateButtons() {
-    for (var item in buttonContent) {
-      textButton
-          .add(TextButton(onPressed: item.onClick, child: Text(item.label)));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
-    generateButtons();
     return Card(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
@@ -126,10 +108,17 @@ class MyCard extends StatelessWidget {
               ),
               subtitle: Text('\n$description'),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: textButton,
-            )
+            buttonContent != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: buttonContent.map((item) {
+                      return TextButton(
+                        child: Text(item.label),
+                        onPressed: item.onClick,
+                      );
+                    }).toList(),
+                  )
+                : SizedBox(height: 15),
           ],
         ),
       ),
