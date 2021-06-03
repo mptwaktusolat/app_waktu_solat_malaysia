@@ -219,10 +219,12 @@ packages:
   flutter_qiblah:
     dependency: "direct main"
     description:
-      name: flutter_qiblah
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
+      path: "."
+      ref: HEAD
+      resolved-ref: dc388c2d115638df5e66e14c0d33a86896e1df03
+      url: "https://github.com/iqfareez/flutter_qiblah.git"
+    source: git
+    version: "1.1.1+4"
   flutter_spinkit:
     dependency: "direct main"
     description:
