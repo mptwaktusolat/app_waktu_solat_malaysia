@@ -37,7 +37,7 @@ class ContributionPage extends StatelessWidget {
                   buttonContent: [
                     ButtonContent('Share now', () {
                       Share.share(
-                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free. Download now on Google Play: ${Constants.kPlayStoreListingShortLink}",
+                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\nTry it now:\n${Constants.kPlayStoreListingShortLink} (Google Play)\n ${Constants.kWebappUrl} (Web app)",
                           subject: 'Sharing MPT App');
                     })
                   ]),

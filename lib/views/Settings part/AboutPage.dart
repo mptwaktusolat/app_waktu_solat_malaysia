@@ -148,20 +148,24 @@ class AboutAppPage extends StatelessWidget {
                       },
                       child: Hero(
                         tag: kAppIconTag,
-                        child: CachedNetworkImage(
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.scaleDown,
-                          imageUrl: kAppIconUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => SizedBox(
-                            height: 70,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(18),
+                          //TODO: Check this behaviour
+                          child: CachedNetworkImage(
                             width: 70,
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                            height: 70,
+                            fit: BoxFit.scaleDown,
+                            imageUrl: kAppIconUrl,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => SizedBox(
+                              height: 70,
+                              width: 70,
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                FaIcon(FontAwesomeIcons.exclamation),
                           ),
-                          errorWidget: (context, url, error) =>
-                              FaIcon(FontAwesomeIcons.exclamation),
                         ),
                       ),
                     ),
