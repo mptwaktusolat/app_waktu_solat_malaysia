@@ -11,7 +11,8 @@ class OnboardingPage extends StatefulWidget {
   _OnboardingPageState createState() => _OnboardingPageState();
 }
 
-class _OnboardingPageState extends State<OnboardingPage> {
+class _OnboardingPageState extends State<OnboardingPage>
+    with SingleTickerProviderStateMixin {
   var pageDecoration = const PageDecoration(
     titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
     bodyTextStyle: const TextStyle(fontSize: 19.0),
@@ -20,6 +21,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
   );
 
   bool _isDoneSetLocation = false;
+  AnimationController _animController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animController =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       PageViewModel(
           title: "Keep the location service on",
           body:
-              "Turn on your GPS on so that the app can detect your location precisely",
+              "Turn on your GPS on so that the app can detect your current location.",
           image: Image.asset(
             'assets/bam/Pin.png',
             width: 200,
@@ -54,9 +63,28 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   ),
                 )),
       PageViewModel(
-        image: Image.asset(
-          'assets/bam/Message.png',
-          width: 200,
+        // image: Image.asset(
+        //   'assets/bam/Message.png',
+        //   width: 200,
+        // ),
+        image: Padding(
+          padding: const EdgeInsets.all(50.0),
+          child: Builder(
+            builder: (context) {
+              bool _isDarkMode =
+                  Theme.of(context).brightness == Brightness.dark;
+              if (_isDarkMode) {
+                _animController.forward();
+              } else {
+                _animController.reverse();
+              }
+              return AnimatedMoon(
+                animationController: _animController,
+                isDarkMode: _isDarkMode,
+                width: 305,
+              );
+            },
+          ),
         ),
         bodyWidget: ThemesOption(),
         title: "Set your favourite theme",

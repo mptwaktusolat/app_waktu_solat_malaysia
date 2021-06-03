@@ -150,7 +150,6 @@ class AboutAppPage extends StatelessWidget {
                         tag: kAppIconTag,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(18),
-                          //TODO: Check this behaviour
                           child: CachedNetworkImage(
                             width: 70,
                             height: 70,
