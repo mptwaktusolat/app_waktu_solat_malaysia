@@ -6,13 +6,11 @@ import '../CONSTANTS.dart';
 
 class LaunchUrl {
   static void normalLaunchUrl(
-      {@required String url,
-      bool usesWebView = false,
-      bool useCustomTabs = false}) {
+      {@required String url, bool useCustomTabs = false}) {
     print('Launching $url');
 
     !useCustomTabs
-        ? _launchURL(url, usesWebView)
+        ? _launchURL(url)
         : FlutterWebBrowser.openWebPage(
             url: url,
             customTabsOptions: CustomTabsOptions(
@@ -26,16 +24,17 @@ class LaunchUrl {
     final emailLink = Uri.encodeFull(
         'mailto:$kDevEmail?subject=Feedback MPT&body=$messageContent');
     print(emailLink);
-    _launchURL(emailLink, false);
+    _launchURL(emailLink);
   }
 }
 
-_launchURL(String url, bool isWebView) async {
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: isWebView);
-  } else {
+_launchURL(String url) async {
+  try {
+    await launch(url);
+  } catch (e) {
     Fluttertoast.showToast(
-        msg: 'Could not launch url. Please send feedback to developer.');
-    throw 'Could not launch $url';
+        msg:
+            'Could not launch URL. Error $e.\nPlease send feedback to developer.',
+        backgroundColor: Colors.red);
   }
 }
