@@ -8,7 +8,8 @@ import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  final _hijriToday = HijriCalendar.fromDate(DateTime.now().add(Duration.zero));
+  final _hijriToday =
+      HijriCalendar.fromDate(DateTime.now().add(Duration(days: -1)));
   final _dayFormat = DateFormat('EEEE').format(DateTime.now());
   final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
