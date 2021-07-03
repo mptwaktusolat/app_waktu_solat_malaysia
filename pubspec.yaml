@@ -36,8 +36,7 @@ dependencies:
   flutter_web_browser: ^0.14.0
   geocoding: ^2.0.0
   font_awesome_flutter: ^9.0.0
-  flutter_qiblah:
-    git: https://github.com/iqfareez/flutter_qiblah.git
+  flutter_qiblah: ^2.0.1
   cloud_firestore: ^2.1.0
   firebase_core: ^1.0.2
   email_validator: ^2.0.1

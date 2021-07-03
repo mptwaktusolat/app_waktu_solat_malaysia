@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         builder: (context, value, child) {
           return MaterialApp(
             // debugShowCheckedModeBanner: false,
-            title: 'My Prayer Time',
+            title: 'MY Prayer Time', // will show in Android "RECENT" page.
             theme: ThemeData.light().copyWith(
               primaryColor: _primaryColour,
               bottomAppBarColor: Colors.teal.shade50,
@@ -101,6 +101,7 @@ class MyHomePage extends StatelessWidget {
 }
 
 void initGetStorage() {
+  // init default settings
   GetStorage _get = GetStorage();
   _get.writeIfNull(kIsFirstRun, true);
   _get.writeIfNull(kStoredGlobalIndex, 0);
@@ -118,12 +119,14 @@ void initGetStorage() {
 }
 
 Future<void> _configureLocalTimeZone() async {
+  // use for notification
   tz.initializeTimeZones();
   final String timeZoneName = 'Asia/Kuala_Lumpur';
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
 void readAllGetStorage() {
+  // print (almost) all GetStorage item to the console
   print("-----All GET STORAGE-----");
   GetStorage _get = GetStorage();
   print('kStoredFirstRun is ${_get.read(kIsFirstRun)}');
