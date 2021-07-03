@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../utils/launchUrl.dart';
 import '../Qibla%20part/qibla_compass.dart';
+import 'no_compass_sensor.dart';
 
 class Qibla extends StatefulWidget {
   @override
@@ -51,12 +52,11 @@ class _QiblaState extends State<Qibla> {
                   return Center(
                     child: Text('Error: ${snapshot.error.toString()}'),
                   );
-                if (snapshot.hasData)
+
+                if (snapshot.data)
                   return QiblaCompass();
                 else
-                  return Container(
-                    child: Text('Error'),
-                  );
+                  return NoCompassSensor();
               },
             ),
           ),
