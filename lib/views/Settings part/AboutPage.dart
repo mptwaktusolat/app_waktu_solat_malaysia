@@ -154,8 +154,8 @@ class AboutAppPage extends StatelessWidget {
                             imageUrl: kAppIconUrl,
                             progressIndicatorBuilder:
                                 (context, url, downloadProgress) => SizedBox(
-                              height: 70,
-                              width: 70,
+                              height: 60,
+                              width: 60,
                               child: CircularProgressIndicator(
                                   value: downloadProgress.progress),
                             ),
