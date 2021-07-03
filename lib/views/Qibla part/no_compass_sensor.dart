@@ -5,6 +5,8 @@ class NoCompassSensor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final box = SizedBox(height: 32);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -12,18 +14,28 @@ class NoCompassSensor extends StatelessWidget {
         children: [
           Icon(
             Icons.explore_off_outlined,
-            size: 120,
+            size: 130,
             color: Colors.redAccent,
           ),
+          box,
           Text(
             'Sorry. No compass sensor is available in this device.',
             textAlign: TextAlign.center,
           ),
-          OutlinedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Go back'))
+          box,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Theme.of(context).buttonColor,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Go back',
+              style: TextStyle(
+                  color: Colors.redAccent, fontWeight: FontWeight.bold),
+            ),
+          )
         ],
       ),
     );

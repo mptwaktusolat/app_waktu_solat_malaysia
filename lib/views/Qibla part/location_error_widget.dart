@@ -10,7 +10,6 @@ class LocationErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final box = SizedBox(height: 32);
-    final errorColor = Color(0xffb00020);
 
     return Container(
       child: Center(
@@ -19,13 +18,14 @@ class LocationErrorWidget extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.location_off,
-              size: 150,
-              color: errorColor,
+              size: 130,
+              color: Colors.redAccent,
             ),
             box,
             Text(
               error,
-              style: TextStyle(color: errorColor, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.redAccent, fontWeight: FontWeight.bold),
             ),
             box,
             ElevatedButton(
