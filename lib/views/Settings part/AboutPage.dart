@@ -128,14 +128,11 @@ class AboutAppPage extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onLongPress: () {
-                        if (isFirstTry &&
-                            !GetStorage().read(kDiscoveredDeveloperOption)) {
+                        if (isFirstTry && !setting.isDeveloperOption) {
                           Fluttertoast.showToast(msg: '(⌐■_■)');
                           isFirstTry = false;
                         } else {
-                          //TODO: Check this, try to minimize GetStorage calling
-                          // method already defined in provider
-                          if (!GetStorage().read(kDiscoveredDeveloperOption)) {
+                          if (!setting.isDeveloperOption) {
                             Fluttertoast.showToast(
                                 msg: 'Developer mode discovered',
                                 toastLength: Toast.LENGTH_LONG,
