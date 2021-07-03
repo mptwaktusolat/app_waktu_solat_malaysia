@@ -91,7 +91,7 @@ class LocationChooser {
             padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
             height: 250,
             child: FutureBuilder(
-                future: _getAllLocationData().timeout(Duration(seconds: 2)),
+                future: _getAllLocationData().timeout(Duration(seconds: 12)),
                 builder:
                     (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
