@@ -4,4 +4,4 @@
 
 ### http://waktusolat.web.app
 
-### http://malaysia-waktu-solat.web.app [old]
+### http://malaysia-waktu-solat.web.app [no longer maintained]
