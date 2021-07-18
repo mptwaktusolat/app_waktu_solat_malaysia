@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:waktusolatmalaysia/views/prayer_full_table.dart';
 import '../CONSTANTS.dart';
 import '../utils/copyAndShare.dart';
 import '../utils/launchUrl.dart';
@@ -41,6 +42,15 @@ class MyBottomAppBar extends StatelessWidget {
                   Fluttertoast.showToast(msg: 'Timetable copied');
                 },
               );
+            },
+          ),
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.calendarAlt),
+            tooltip: 'Full timetable',
+            color: iconColour,
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => PrayerFullTable()));
             },
           ),
           IconButton(

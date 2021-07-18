@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 
 void main() {
   var now = DateTime.now();
-  var month = DateFormat.M().format(now);
   // print(month);
   print(now.year);
 }

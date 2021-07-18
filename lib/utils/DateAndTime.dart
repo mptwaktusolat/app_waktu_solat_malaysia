@@ -26,4 +26,22 @@ class DateAndTime {
   static bool isTheSameYear(int year) {
     return year == DateTime.now().year;
   }
+
+  ///Convert int month to month name
+  static String monthName(int month) {
+    return [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ][month - 1];
+  }
 }
