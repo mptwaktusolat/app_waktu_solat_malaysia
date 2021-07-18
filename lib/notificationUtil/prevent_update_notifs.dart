@@ -15,7 +15,7 @@ class PreventUpdatingNotifs {
       //checks is force update,if true then notif should update,
       shouldUpdateNotification(GetStorage().read(kIsDebugMode));
     } else {
-      if (DateAndTime.isTheSameMonth(
+      if (DateAndTime.isSameMonthFromMillis(
           GetStorage().read(kStoredLastUpdateNotif))) {
         //check if same month or mot, notification will update if not in the month
         if ((DateTime.now().millisecondsSinceEpoch -

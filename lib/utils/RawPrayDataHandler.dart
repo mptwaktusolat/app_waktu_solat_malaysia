@@ -1,7 +1,4 @@
-/// Handle filtration
-import 'package:intl/intl.dart';
-
-final int day = int.parse(DateFormat('d').format(DateTime.now()));
+final int day = DateTime.now().day;
 
 class PrayDataHandler {
   static List<dynamic> removePastDate(List<List<dynamic>> times) {

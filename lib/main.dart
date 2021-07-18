@@ -69,7 +69,6 @@ class MyApp extends StatelessWidget {
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
             themeMode: value.themeMode,
-            // home: OnboardingPage(),
             home: GetStorage().read(kIsFirstRun)
                 ? const OnboardingPage()
                 : const MyHomePage(),

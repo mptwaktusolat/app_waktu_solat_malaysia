@@ -3,12 +3,10 @@
 import 'package:intl/intl.dart';
 
 void main() {
-  for (var i = -10; i < 10; i++) {
-    print('current value is $i');
-    if (i <= 2 && i >= -2) {
-      print(' is valid');
-    }
-  }
+  var now = DateTime.now();
+  var month = DateFormat.M().format(now);
+  // print(month);
+  print(now.year);
 }
 
 Uri uriHttps() {

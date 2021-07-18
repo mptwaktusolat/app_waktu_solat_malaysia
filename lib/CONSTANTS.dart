@@ -19,6 +19,7 @@ const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
 const kHijriOffset = "storedHijriOffset";
+const kJsonCache = "jsonCache";
 
 //Network image
 const kAppIconUrl =
