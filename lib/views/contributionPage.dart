@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share/share.dart';
-import '../CONSTANTS.dart' as Constants;
+import '../CONSTANTS.dart' as constants;
 import '../utils/launchUrl.dart';
 
 class ButtonContent {
@@ -13,11 +13,12 @@ class ButtonContent {
 }
 
 class ContributionPage extends StatelessWidget {
+  const ContributionPage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contribution and Support'),
+        title: const Text('Contribution and Support'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -25,9 +26,9 @@ class ContributionPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text(
+              const Text(
                   'Alhamdulillah. Thank you for your interest in donating to the Malaysia Prayer Time app. May Allah SWT rewards your kindness.'),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               MyCard(
@@ -37,33 +38,33 @@ class ContributionPage extends StatelessWidget {
                   buttonContent: [
                     ButtonContent('Share now', () {
                       Share.share(
-                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\nTry it now:\n${Constants.kPlayStoreListingShortLink} (Google Play)\n ${Constants.kWebappUrl} (Web app)",
+                          "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\nTry it now:\n${constants.kPlayStoreListingShortLink} (Google Play)\n ${constants.kWebappUrl} (Web app)",
                           subject: 'Sharing MPT App');
                     })
                   ]),
-              Divider(),
+              const Divider(),
               MyCard(
                 title: 'Buy me a coffee?',
                 description:
-                    'One cup of Nescafe is usually enough for me to code all night.\n\n${Constants.kBuyMeACoffeeLink.substring(12)}', //substring will remove 'https://www' stuffs.
+                    'One cup of Nescafe is usually enough for me to code all night.\n\n${constants.kBuyMeACoffeeLink.substring(12)}', //substring will remove 'https://www' stuffs.
                 buttonContent: [
                   ButtonContent(
                     'Copy',
-                    () => copyClipboard(Constants.kBuyMeACoffeeLink),
+                    () => copyClipboard(constants.kBuyMeACoffeeLink),
                   ),
                   ButtonContent('Open', () {
-                    LaunchUrl.normalLaunchUrl(url: Constants.kBuyMeACoffeeLink);
+                    LaunchUrl.normalLaunchUrl(url: constants.kBuyMeACoffeeLink);
                   })
                 ],
               ),
               MyCard(
                 title: 'Direct support',
                 description:
-                    '${Constants.kMaybankAccNo} - Muhammad Fareez Iqmal (Maybank)',
+                    '${constants.kMaybankAccNo} - Muhammad Fareez Iqmal (Maybank)',
                 buttonContent: [
                   ButtonContent(
                     'Copy',
-                    () => copyClipboard(Constants.kMaybankAccNo),
+                    () => copyClipboard(constants.kMaybankAccNo),
                   ),
                 ],
               ),
@@ -73,11 +74,11 @@ class ContributionPage extends StatelessWidget {
                     'MPT is now open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.',
                 buttonContent: [
                   ButtonContent(
-                      'Copy', () => copyClipboard(Constants.kGithubRepoLink)),
+                      'Copy', () => copyClipboard(constants.kGithubRepoLink)),
                   ButtonContent(
                       'Open GitHub',
                       () => LaunchUrl.normalLaunchUrl(
-                          url: Constants.kGithubRepoLink)),
+                          url: constants.kGithubRepoLink)),
                 ],
               ),
               FittedBox(
@@ -85,7 +86,7 @@ class ContributionPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(32.0),
                     child:
-                        SvgPicture.network(Constants.kDeveloperActivityImage),
+                        SvgPicture.network(constants.kDeveloperActivityImage),
                   ))
             ],
           ),
@@ -126,10 +127,10 @@ class MyCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              contentPadding: EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(0),
               title: Text(
                 title,
-                style: TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 18),
               ),
               subtitle: Text('\n$description'),
             ),

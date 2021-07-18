@@ -4,7 +4,7 @@
 import 'location.dart';
 
 class LocationDatabase {
-  static List<Location> _locationDatabase = [
+  static final List<Location> _locationDatabase = [
     //JOHOR
     Location(
       jakimCode: 'JHR01',
@@ -387,7 +387,6 @@ class LocationDatabase {
     var jakimCaps = jakimCode.toUpperCase();
     var index = _locationDatabase
         .indexWhere((element) => element.jakimCode == jakimCaps);
-    print('index of $jakimCaps is at $index');
     return index;
   }
 

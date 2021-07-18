@@ -11,6 +11,7 @@ import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
 
 class MyBottomAppBar extends StatelessWidget {
+  const MyBottomAppBar({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
@@ -19,18 +20,18 @@ class MyBottomAppBar extends StatelessWidget {
         : Colors.white60;
     return BottomAppBar(
       elevation: 18.0,
-      shape: CircularNotchedRectangle(),
+      shape: const CircularNotchedRectangle(),
       child: Row(
         children: [
           IconButton(
               tooltip: 'Open menu',
-              icon: FaIcon(FontAwesomeIcons.bars),
+              icon: const FaIcon(FontAwesomeIcons.bars),
               color: iconColour,
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.clone),
+            icon: const FaIcon(FontAwesomeIcons.clone),
             tooltip: 'Copy timetable',
             color: iconColour,
             onPressed: () {
@@ -43,12 +44,12 @@ class MyBottomAppBar extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: FaIcon(FontAwesomeIcons.kaaba),
+            icon: const FaIcon(FontAwesomeIcons.kaaba),
             color: iconColour,
             tooltip: 'Kibla compass',
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Qibla()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Qibla()));
             },
           )
         ],
@@ -60,47 +61,49 @@ class MyBottomAppBar extends StatelessWidget {
 void menuModalBottomSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(
         top: Radius.circular(25.0),
       ),
     ),
     builder: (BuildContext context) {
       return Container(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         child: Wrap(
           children: <Widget>[
             ListTile(
-              title: Text('Themes'),
-              leading: FaIcon(FontAwesomeIcons.palette),
+              title: const Text('Themes'),
+              leading: const FaIcon(FontAwesomeIcons.palette),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ThemesPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ThemesPage()));
               },
             ),
             ListTile(
-              title: Text('Settings'),
-              leading: FaIcon(FontAwesomeIcons.cog),
+              title: const Text('Settings'),
+              leading: const FaIcon(FontAwesomeIcons.cog),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SettingsPage(),
+                    builder: (context) => const SettingsPage(),
                   ),
                 );
               },
             ),
-            Divider(
+            const Divider(
               thickness: 1,
               height: 0.0,
             ),
             ListTile(
-              title: Text('Rate and review'),
-              leading: FaIcon(FontAwesomeIcons.solidStar),
-              trailing:
-                  FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 21),
+              title: const Text('Rate and review'),
+              leading: const FaIcon(FontAwesomeIcons.solidStar),
+              trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
+                  size: 21),
               onTap: () {
                 Navigator.pop(context);
                 Fluttertoast.showToast(
@@ -112,18 +115,18 @@ void menuModalBottomSheet(BuildContext context) {
               },
             ),
             ListTile(
-              title: Text('MPT on web'),
-              leading: FaIcon(FontAwesomeIcons.chrome),
-              trailing:
-                  FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 21),
+              title: const Text('MPT on web'),
+              leading: const FaIcon(FontAwesomeIcons.chrome),
+              trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
+                  size: 21),
               onTap: () {
                 Navigator.pop(context);
                 LaunchUrl.normalLaunchUrl(url: kWebappUrl);
               },
             ),
             ListTile(
-              title: Text('Send feedback'),
-              leading: FaIcon(FontAwesomeIcons.solidCommentDots),
+              title: const Text('Send feedback'),
+              leading: const FaIcon(FontAwesomeIcons.solidCommentDots),
               onTap: () {
                 Navigator.pop(context);
                 openFeedbackDialog(context);
@@ -141,7 +144,7 @@ void openFeedbackDialog(BuildContext context) {
     context,
     MaterialPageRoute(
         builder: (BuildContext context) {
-          return FeedbackPage();
+          return const FeedbackPage();
         },
         fullscreenDialog: true),
   );

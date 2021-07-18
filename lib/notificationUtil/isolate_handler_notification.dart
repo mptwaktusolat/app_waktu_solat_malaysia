@@ -18,11 +18,8 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   String currentLocation =
       LocationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
-  print(currentLocation);
-
   var currentTime = DateTime.now().millisecondsSinceEpoch;
-
-  var howMuchToSchedule;
+  int howMuchToSchedule;
 
   if (GetStorage().read(kStoredNotificationLimit)) {
     //should limit to 7
@@ -33,8 +30,8 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   if (GetStorage().read(kIsDebugMode)) {
     Fluttertoast.showToast(
-        msg: 'SCHEDULING $howMuchToSchedule notiifcations',
-        backgroundColor: Color(0xFFD17777));
+        msg: 'SCHEDULING $howMuchToSchedule notifications',
+        backgroundColor: const Color(0xFFD17777));
   }
 
   print('howMuchToSchedule is $howMuchToSchedule');
@@ -114,12 +111,6 @@ void schedulePrayNotification(List<dynamic> times) async {
     }
 
     print('Notification scheduled #${i + 1}');
-    print('Subuh @ $subuhTimeEpoch');
-    print('Syuruk @ $syurukTimeEpoch');
-    print('Zohor @ $zuhrTimeEpoch');
-    print('Asar @ $asarTimeEpoch');
-    print('Maghrib @ $maghribTimeEpoch');
-    print('Isyak @ $isyakTimeEpoch');
   }
 
   scheduleAlertNotification(
@@ -160,8 +151,9 @@ startScheduleNotifications(String _remindersAsString) {
 }
 
 void killCurrentScheduleNotifications() {
-  if (isolateHandler.isolates.containsKey('scheduleNotifications'))
+  if (isolateHandler.isolates.containsKey('scheduleNotifications')) {
     isolateHandler.kill('scheduleNotifications');
+  }
 }
 
 void entryPoint(Map<String, dynamic> context) {

@@ -8,6 +8,7 @@ import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/navigator_pop.dart';
 
 class NotificationPageSetting extends StatefulWidget {
+  const NotificationPageSetting({Key key}) : super(key: key);
   @override
   _NotificationPageSettingState createState() =>
       _NotificationPageSettingState();
@@ -21,7 +22,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification'),
+        title: const Text('Notification'),
         centerTitle: true,
         // actions: [
         //   FlatButton(
@@ -41,7 +42,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
         // ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         children: [
           //Turned of for a while
           // Text('Basic'),
@@ -103,29 +104,29 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           //         }),
           //   ]),
           // ),
-          Padding(padding: const EdgeInsets.all(8.0), child: Text('Basic')),
+          const Padding(padding: EdgeInsets.all(8.0), child: Text('Basic')),
           Card(
             child: ListTile(
-              contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              title: Text('App notification System Setting'),
-              subtitle: Text(
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              title: const Text('App notification System Setting'),
+              subtitle: const Text(
                   'Customize sound, toggle channel of prayer notification etc.'),
-              trailing: Icon(Icons.launch_rounded),
+              trailing: const Icon(Icons.launch_rounded),
               onTap: () async {
                 await AppSettings.openNotificationSettings();
               },
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text('Troubleshooting')),
+          const Padding(
+              padding: EdgeInsets.all(8.0), child: Text('Troubleshooting')),
 
           Card(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CupertinoSwitchListTile(
-                  title: Text('Limit notification scheduling'),
-                  subtitle: Text(
+                  title: const Text('Limit notification scheduling'),
+                  subtitle: const Text(
                       'Enable if you experiencing an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
                   value: GetStorage().read(kStoredNotificationLimit),
                   onChanged: (value) {
@@ -138,20 +139,20 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           ),
           Card(
             child: ListTile(
-              title: Text('Force rescheduling notification...'),
+              title: const Text('Force rescheduling notification...'),
               onTap: () {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        content: Text(
+                        content: const Text(
                             'By default, notification will not rescheduled if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.'),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                           TextButton(
                             onPressed: () {
@@ -160,7 +161,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                               Get.forceAppUpdate();
                               CustomNavigatorPop.popTo(context, 3);
                             },
-                            child: Text('Proceed'),
+                            child: const Text('Proceed'),
                           )
                         ],
                       );

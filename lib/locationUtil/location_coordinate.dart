@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'location_coordinate_model.dart';
 
 class LocationCoordinate {
-  static List<LocationCoordinateData> _locationCoordinate = [
+  static final List<LocationCoordinateData> _locationCoordinate = [
     LocationCoordinateData(
       zone: "JHR01",
       negeri: "Johor",
@@ -1563,7 +1563,6 @@ class LocationCoordinate {
         tempIndex.add(i);
       }
     }
-    print('tempIndex is $tempIndex');
 
     for (var index in tempIndex) {
       // calculate distance each of indexes location with user location

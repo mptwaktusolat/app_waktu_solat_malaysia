@@ -20,7 +20,7 @@ class PreventUpdatingNotifs {
         //check if same month or mot, notification will update if not in the month
         if ((DateTime.now().millisecondsSinceEpoch -
                 GetStorage().read(kStoredLastUpdateNotif)) <
-            Duration(days: 2).inMilliseconds) {
+            const Duration(days: 2).inMilliseconds) {
           //check if certain period o time has reached
           dontUpdateNotification(GetStorage().read(kIsDebugMode));
         } else {

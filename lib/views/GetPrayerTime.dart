@@ -59,7 +59,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 
 class PrayTimeList extends StatefulWidget {
   const PrayTimeList({Key key, this.prayerTime}) : super(key: key);
-
   final Mpti906PrayerModel prayerTime;
 
   @override

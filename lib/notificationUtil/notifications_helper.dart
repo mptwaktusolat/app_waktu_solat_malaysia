@@ -4,15 +4,15 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
     as notifs;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rxdart/subjects.dart' as rxSub;
+import 'package:rxdart/subjects.dart' as rxsub;
 import '../CONSTANTS.dart';
 import '../main.dart';
 
-final rxSub.BehaviorSubject<NotificationClass>
+final rxsub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =
-    rxSub.BehaviorSubject<NotificationClass>();
-final rxSub.BehaviorSubject<String> selectNotificationSubject =
-    rxSub.BehaviorSubject<String>();
+    rxsub.BehaviorSubject<NotificationClass>();
+final rxsub.BehaviorSubject<String> selectNotificationSubject =
+    rxsub.BehaviorSubject<String>();
 
 class NotificationClass {
   final int id;
@@ -26,7 +26,7 @@ class NotificationClass {
 Future<void> initNotifications(
     notifs.FlutterLocalNotificationsPlugin notifsPlugin) async {
   var initializationSettingsAndroid =
-      notifs.AndroidInitializationSettings('icon');
+      const notifs.AndroidInitializationSettings('icon');
   var initializationSettingsIOS = notifs.IOSInitializationSettings(
       requestAlertPermission: false,
       requestBadgePermission: false,
@@ -45,7 +45,6 @@ Future<void> initNotifications(
     }
     selectNotificationSubject.add(payload);
   });
-  print("Notifications initialised successfully");
 }
 
 void requestIOSPermissions(
@@ -90,9 +89,9 @@ Future<void> schedulePrayerNotification(
     priority: notifs.Priority.max,
     importance: notifs.Importance.high,
     styleInformation: styleInformation,
-    color: Color(0xFF19e3cb),
+    color: const Color(0xFF19e3cb),
   );
-  var iOSSpecifics = notifs.IOSNotificationDetails();
+  var iOSSpecifics = const notifs.IOSNotificationDetails();
   var platformChannelSpecifics =
       notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
   await notifsPlugin.zonedSchedule(
@@ -119,10 +118,10 @@ Future<void> scheduleAlertNotification(
     priority: notifs.Priority.defaultPriority,
     importance: notifs.Importance.high,
     styleInformation: styleInformation,
-    color: Color(0xFFfcbd00),
+    color: const Color(0xFFfcbd00),
   );
 
-  var iOSSpecifics = notifs.IOSNotificationDetails();
+  var iOSSpecifics = const notifs.IOSNotificationDetails();
   var platformChannelSpecifics =
       notifs.NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
   await notifsPlugin.zonedSchedule(

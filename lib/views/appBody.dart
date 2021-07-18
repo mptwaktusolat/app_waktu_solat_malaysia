@@ -13,6 +13,8 @@ import 'Settings%20part/settingsProvider.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
+  AppBody({Key key}) : super(key: key);
+
   final _dayFormat = DateFormat('EEEE').format(DateTime.now());
   final _dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
@@ -29,11 +31,11 @@ class AppBody extends StatelessWidget {
             height: SizeConfig.screenHeight / 6,
             decoration: BoxDecoration(
               color: Theme.of(context).appBarTheme.color,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
             ),
-            padding: EdgeInsets.all(5.0),
+            padding: const EdgeInsets.all(5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -41,47 +43,45 @@ class AppBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Expanded(
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10.0, vertical: 8.0),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withAlpha(70),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Consumer<SettingProvider>(
-                                builder: (context, setting, child) {
-                                  var _hijriToday = HijriCalendar.fromDate(
-                                      DateTime.now().add(
-                                          Duration(days: setting.hijriOffset)));
-                                  return Column(
-                                    children: [
-                                      Text(
-                                        _dayFormat,
-                                        style: GoogleFonts.spartan(
-                                            color: Colors.white),
-                                      ),
-                                      AutoSizeText(
-                                        _hijriToday.toFormat("dd MMMM yyyy"),
-                                        style: GoogleFonts.acme(
-                                            color: Colors.white, fontSize: 17),
-                                        stepGranularity: 1,
-                                      ),
-                                      Text(
-                                        _dateFormat,
-                                        style: TextStyle(
-                                            color: Colors.teal.shade100,
-                                            fontSize: 12),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0, vertical: 8.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withAlpha(70),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                          ],
-                        ),
+                            child: Consumer<SettingProvider>(
+                              builder: (context, setting, child) {
+                                var _hijriToday = HijriCalendar.fromDate(
+                                    DateTime.now().add(
+                                        Duration(days: setting.hijriOffset)));
+                                return Column(
+                                  children: [
+                                    Text(
+                                      _dayFormat,
+                                      style: GoogleFonts.spartan(
+                                          color: Colors.white),
+                                    ),
+                                    AutoSizeText(
+                                      _hijriToday.toFormat("dd MMMM yyyy"),
+                                      style: GoogleFonts.acme(
+                                          color: Colors.white, fontSize: 17),
+                                      stepGranularity: 1,
+                                    ),
+                                    Text(
+                                      _dateFormat,
+                                      style: TextStyle(
+                                          color: Colors.teal.shade100,
+                                          fontSize: 12),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Expanded(
@@ -91,14 +91,14 @@ class AppBody extends StatelessWidget {
                           String shortCode = LocationDatabase.getJakimCode(
                               value.currentLocationIndex);
                           return Container(
-                            margin: EdgeInsets.all(5.0),
-                            padding: EdgeInsets.all(18.0),
+                            margin: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.all(18.0),
                             child: TextButton(
                               style: TextButton.styleFrom(
-                                padding: EdgeInsets.all(-5.0),
+                                padding: const EdgeInsets.all(-5.0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
-                                  side: BorderSide(color: Colors.white),
+                                  side: const BorderSide(color: Colors.white),
                                 ),
                               ),
                               onPressed: () {
@@ -130,7 +130,7 @@ class AppBody extends StatelessWidget {
                                   Text(
                                     '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
                                     style: GoogleFonts.montserrat(
-                                      textStyle: TextStyle(
+                                      textStyle: const TextStyle(
                                           color: Colors.white, fontSize: 13),
                                     ),
                                   ),
@@ -152,7 +152,7 @@ class AppBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
                 SizeConfig.screenWidth / 10, 8.0),
-            child: GetPrayerTime(),
+            child: const GetPrayerTime(),
           ),
           SizedBox(
             height: SizeConfig.screenHeight / 45,

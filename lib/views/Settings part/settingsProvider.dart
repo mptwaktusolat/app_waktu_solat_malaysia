@@ -36,6 +36,7 @@ class SettingProvider with ChangeNotifier {
 
   set use12hour(newValue) {
     _use12hour = newValue;
+    GetStorage().write(kStoredTimeIs12, newValue);
     notifyListeners();
   }
 
@@ -43,6 +44,7 @@ class SettingProvider with ChangeNotifier {
 
   set showOtherPrayerTime(newValue) {
     _showOtherPrayerTime = newValue;
+    GetStorage().write(kStoredShowOtherPrayerTime, newValue);
     notifyListeners();
   }
 

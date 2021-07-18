@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
-import '../../CONSTANTS.dart' as Constants;
+import '../../CONSTANTS.dart' as constants;
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/navigator_pop.dart';
 import '../Settings%20part/AboutPage.dart';
@@ -14,26 +14,17 @@ import '../Settings%20part/NotificationSettingPage.dart';
 import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key key}) : super(key: key);
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  String timeFormat;
-
-  @override
-  void initState() {
-    super.initState();
-    timeFormat =
-        GetStorage().read(Constants.kStoredTimeIs12) ? '12 hour' : '24 hour';
-    print(timeFormat);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
         centerTitle: true,
       ),
       body: Consumer<SettingProvider>(
@@ -41,33 +32,32 @@ class _SettingsPageState extends State<SettingsPage> {
           return ListView(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0), child: Text('Display')),
+              const Padding(
+                  padding: EdgeInsets.all(8.0), child: Text('Display')),
               buildTimeFormat(setting),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               buildShowOtherPrayerTime(setting),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               buildFontSizeSetting(setting),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               buildHijriOffset(setting),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Notification')),
+              const Padding(
+                  padding: EdgeInsets.all(8.0), child: Text('Notification')),
               buildNotificationSetting(context),
-              Padding(
-                  padding: const EdgeInsets.all(8.0), child: Text('Sharing')),
+              const Padding(
+                  padding: EdgeInsets.all(8.0), child: Text('Sharing')),
               buildSharingSetting(setting),
-              Padding(padding: const EdgeInsets.all(8.0), child: Text('More')),
+              const Padding(padding: EdgeInsets.all(8.0), child: Text('More')),
               buildAboutApp(context),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               setting.isDeveloperOption
                   ? buildVerboseDebugMode(context)
-                  : SizedBox.shrink(),
-              SizedBox(height: 3),
+                  : const SizedBox.shrink(),
+              const SizedBox(height: 3),
               setting.isDeveloperOption
                   ? buildResetAllSetting(context)
-                  : SizedBox.shrink(),
-              SizedBox(height: 40)
+                  : const SizedBox.shrink(),
+              const SizedBox(height: 40)
             ],
           );
         },
@@ -78,30 +68,28 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildHijriOffset(SettingProvider setting) {
     return Card(
       child: ListTile(
-        title: Text('Hijri date offset'),
+        title: const Text('Hijri date offset'),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextButton(
                 style: TextButton.styleFrom(
-                    minimumSize: Size(5, 5),
+                    minimumSize: const Size(5, 5),
                     backgroundColor: CupertinoColors.tertiarySystemFill),
                 onPressed: setting.hijriOffset <= -2
                     ? null
                     : () => setting.hijriOffset--,
-                child: FaIcon(FontAwesomeIcons.minus, size: 11)),
-            Container(
-              child: Text(
-                  '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
-            ),
+                child: const FaIcon(FontAwesomeIcons.minus, size: 11)),
+            Text(
+                '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
             TextButton(
                 style: TextButton.styleFrom(
-                    minimumSize: Size(5, 5),
+                    minimumSize: const Size(5, 5),
                     backgroundColor: CupertinoColors.tertiarySystemFill),
                 onPressed: setting.hijriOffset >= 2
                     ? null
                     : () => setting.hijriOffset++,
-                child: FaIcon(FontAwesomeIcons.plus, size: 11)),
+                child: const FaIcon(FontAwesomeIcons.plus, size: 11)),
           ],
         ),
       ),
@@ -111,8 +99,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildFontSizeSetting(SettingProvider setting) {
     return Card(
       child: ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 8),
           child: Text('Font size'),
         ),
         subtitle: Slider(
@@ -134,8 +122,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildSharingSetting(SettingProvider setting) {
     return Card(
       child: ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
+        title: const Padding(
+          padding: EdgeInsets.only(top: 8.0, bottom: 2.0),
           child: Text(
             'Specify the default behavior',
           ),
@@ -145,7 +133,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: CupertinoSlidingSegmentedControl(
             groupValue: setting.sharingFormat,
             onValueChanged: (value) => setting.sharingFormat = value,
-            children: {
+            children: const {
               //defaulted to always ask
               0: Text('Always ask'),
               1: Text('Plain Text'),
@@ -160,40 +148,40 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildVerboseDebugMode(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('Verbose debug mode'),
-        subtitle: Text('For developer purposes'),
+        title: const Text('Verbose debug mode'),
+        subtitle: const Text('For developer purposes'),
         onTap: () {
           showDialog(
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text(GetStorage().read(Constants.kIsDebugMode)
+                title: Text(GetStorage().read(constants.kIsDebugMode)
                     ? 'Verbose debug mode is ON'
                     : 'Verbose debug mode is OFF'),
                 contentPadding:
                     const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 1.0),
-                content: Text(
+                content: const Text(
                     'Toast message or similar will show throughout usage of the app'),
                 actions: [
                   TextButton(
                       onPressed: () {
                         Navigator.of(context, rootNavigator: true).pop();
                       },
-                      child: Text('Cancel')),
+                      child: const Text('Cancel')),
                   TextButton(
-                      onPressed: () {
-                        print('PROCEED');
-                        //inverse if false then become true & vice versa
-                        GetStorage().write(Constants.kIsDebugMode,
-                            !GetStorage().read(Constants.kIsDebugMode));
-                        CustomNavigatorPop.popTo(context, 2);
-                      },
-                      child: GetStorage().read(Constants.kIsDebugMode)
-                          ? Text('Turn off')
-                          : Text(
-                              'Turn on',
-                              style: TextStyle(color: Colors.red),
-                            ))
+                    onPressed: () {
+                      //inverse if false then become true & vice versa
+                      GetStorage().write(constants.kIsDebugMode,
+                          !GetStorage().read(constants.kIsDebugMode));
+                      CustomNavigatorPop.popTo(context, 2);
+                    },
+                    child: GetStorage().read(constants.kIsDebugMode)
+                        ? const Text('Turn off')
+                        : const Text(
+                            'Turn on',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                  )
                 ],
               );
             },
@@ -206,8 +194,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildResetAllSetting(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('Reset all setting'),
-        subtitle: Text('Deletes all GetStorage() items'),
+        title: const Text('Reset all setting'),
+        subtitle: const Text('Deletes all GetStorage() items'),
         onTap: () {
           showDialog(
             context: context,
@@ -215,18 +203,19 @@ class _SettingsPageState extends State<SettingsPage> {
               return AlertDialog(
                 contentPadding:
                     const EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 1.0),
-                content: Text('Proceed? The app will exit automatically.'),
+                content:
+                    const Text('Proceed? The app will exit automatically.'),
                 actions: [
                   TextButton(
                       onPressed: () =>
                           Navigator.of(context, rootNavigator: true).pop(),
-                      child: Text('Cancel')),
+                      child: const Text('Cancel')),
                   TextButton(
                       onPressed: () => GetStorage().erase().then((value) => {
                             Fluttertoast.showToast(msg: 'Reset done'),
                             SystemNavigator.pop()
                           }),
-                      child: Text(
+                      child: const Text(
                         'Yes. Reset all',
                         style: TextStyle(color: Colors.red),
                       ))
@@ -244,25 +233,27 @@ class _SettingsPageState extends State<SettingsPage> {
       child: FutureBuilder(
         future: PackageInfo.fromPlatform(),
         builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
-          if (snapshot.hasData)
+          if (snapshot.hasData) {
             return ListTile(
               title: Text('About app (Ver. ${snapshot.data.version})'),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AboutAppPage(snapshot.data),
+                    builder: (context) =>
+                        AboutAppPage(packageInfo: snapshot.data),
                   ),
                 );
               },
-              subtitle: Text('Release Notes, Contribution, Twitter etc.'),
+              subtitle: const Text('Release Notes, Contribution, Twitter etc.'),
             );
-          else
-            return ListTile(
+          } else {
+            return const ListTile(
               leading: SizedBox(
                 child: CircularProgressIndicator(),
               ),
             );
+          }
         },
       ),
     );
@@ -271,12 +262,13 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildNotificationSetting(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text('Notification settings'),
+        title: const Text('Notification settings'),
         onTap: () async {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => NotificationPageSetting(),
+              builder: (BuildContext context) =>
+                  const NotificationPageSetting(),
             ),
           );
         },
@@ -288,13 +280,10 @@ class _SettingsPageState extends State<SettingsPage> {
     return Card(
       child: CupertinoSwitchListTile(
         activeColor: CupertinoColors.activeBlue,
-        title: Text('Show other prayer times'),
-        subtitle: Text('Imsak, Syuruk, Dhuha'),
+        title: const Text('Show other prayer times'),
+        subtitle: const Text('Imsak, Syuruk, Dhuha'),
         onChanged: (bool value) {
-          setState(() {
-            setting.showOtherPrayerTime = value;
-            GetStorage().write(Constants.kStoredShowOtherPrayerTime, value);
-          });
+          setting.showOtherPrayerTime = value;
         },
         value: setting.showOtherPrayerTime,
       ),
@@ -304,10 +293,10 @@ class _SettingsPageState extends State<SettingsPage> {
   Card buildTimeFormat(SettingProvider setting) {
     return Card(
       child: ListTile(
-        title: Text('Time format'),
+        title: const Text('Time format'),
         trailing: DropdownButton(
-          icon: Padding(
-            padding: const EdgeInsets.all(4.0),
+          icon: const Padding(
+            padding: EdgeInsets.all(4.0),
             child: FaIcon(FontAwesomeIcons.caretDown, size: 13),
           ),
           items: <String>['12 hour', '24 hour']
@@ -317,17 +306,9 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Text(value),
             );
           }).toList(),
-          onChanged: (String newValue) {
-            var is12 = newValue == '12 hour';
-            // print('NewValue $newValue');
-            setting.use12hour = is12;
-            GetStorage().write(Constants.kStoredTimeIs12, is12);
-            setState(() {
-              timeFormat = newValue;
-              print(GetStorage().read(Constants.kStoredTimeIs12));
-            });
-          },
-          value: timeFormat,
+          onChanged: (String newValue) =>
+              setting.use12hour = (newValue == '12 hour'),
+          value: setting.use12hour ? '12 hour' : '24 hour',
         ),
       ),
     );

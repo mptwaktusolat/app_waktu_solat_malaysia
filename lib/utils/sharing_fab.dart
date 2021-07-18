@@ -7,6 +7,8 @@ import 'copyAndShare.dart';
 import 'launchUrl.dart';
 
 class ShareFAB extends StatelessWidget {
+  const ShareFAB({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<SettingProvider>(builder: (context, setting, child) {
@@ -42,17 +44,17 @@ class ShareFAB extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: Text('Share as plain text'),
-              subtitle: Text('Compatible to all apps'),
+              title: const Text('Share as plain text'),
+              subtitle: const Text('Compatible to all apps'),
               onTap: () {
                 Navigator.pop(context);
                 shareUniversal();
               },
             ),
             ListTile(
-              title: Text('Share to WhatsApp'),
-              subtitle: Text('Using WhatsApp compatible format'),
-              trailing: FaIcon(FontAwesomeIcons.whatsapp),
+              title: const Text('Share to WhatsApp'),
+              subtitle: const Text('Using WhatsApp compatible format'),
+              trailing: const FaIcon(FontAwesomeIcons.whatsapp),
               onTap: () {
                 Navigator.pop(context);
                 shareToWhatsApp();
@@ -66,7 +68,7 @@ class ShareFAB extends StatelessWidget {
                     style: DefaultTextStyle.of(context)
                         .style
                         .copyWith(fontSize: 12),
-                    children: <TextSpan>[
+                    children: const <TextSpan>[
                       TextSpan(
                           text: 'Setting -> Sharing',
                           style: TextStyle(fontWeight: FontWeight.bold)),

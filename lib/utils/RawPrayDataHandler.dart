@@ -1,33 +1,22 @@
-/// Convert a json array to List object
-/// Handle 6 prayer times that come from API only
-import 'dart:convert';
+/// Handle filtration
 import 'package:intl/intl.dart';
 
 final int day = int.parse(DateFormat('d').format(DateTime.now()));
-var prayDataList;
-var todayPrayData;
-var prayDataCurrentDateOnwards = [];
 
 class PrayDataHandler {
-  PrayDataHandler(String dataStream) {
-    prayDataList = jsonDecode(dataStream);
-    todayPrayData = prayDataList[day - 1];
-  }
-
-  List<dynamic> getPrayDataList() => prayDataList;
-
-  List<dynamic> getPrayDataCurrentDateOnwards() {
-    prayDataCurrentDateOnwards.clear();
-    for (int i = 0; i < prayDataList.length; i++) {
+  static List<dynamic> removePastDate(List<List<dynamic>> times) {
+    List<dynamic> _temp = [];
+    for (int i = 0; i < times.length; i++) {
       //ignore the previous date
       if (!(i < day - 1)) {
-        print('day is ${i + 1} : ${prayDataList[i]}');
-        prayDataCurrentDateOnwards.add(prayDataList[i]);
+        print('day is ${i + 1} : ${times[i]}');
+        _temp.add(times[i]);
       }
     }
 
-    return prayDataCurrentDateOnwards;
+    return _temp;
   }
 
-  List<dynamic> getTodayPrayData() => todayPrayData;
+  static List<dynamic> todayPrayData(List<List<dynamic>> times) =>
+      times[day - 1];
 }

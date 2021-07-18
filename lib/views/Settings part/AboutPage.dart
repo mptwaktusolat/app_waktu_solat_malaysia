@@ -19,7 +19,7 @@ import '../contributionPage.dart';
 import '../faq.dart';
 
 class AboutAppPage extends StatelessWidget {
-  AboutAppPage(this.packageInfo);
+  const AboutAppPage({Key key, this.packageInfo}) : super(key: key);
   final PackageInfo packageInfo;
   final appLegalese = 'Copyright © 2020-2021 Fareez Iqmal';
 
@@ -29,14 +29,14 @@ class AboutAppPage extends StatelessWidget {
       builder: (context) => Dialog(
         child: ListView(
           shrinkWrap: true,
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           children: [
-            Text(
+            const Text(
               'Debug dialog (for dev)',
               textAlign: TextAlign.center,
             ),
             ListTile(
-              title: Text('Prayer time API calls'),
+              title: const Text('Prayer time API calls'),
               subtitle: Text(
                   GetStorage().read(kStoredApiPrayerCall) ?? 'no calls yet'),
               onLongPress: () {
@@ -47,7 +47,7 @@ class AboutAppPage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Last position'),
+              title: const Text('Last position'),
               subtitle: Text(LocationData.position.toString() ?? 'no detect'),
               onLongPress: () {
                 Clipboard.setData(ClipboardData(
@@ -57,14 +57,14 @@ class AboutAppPage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Send immediate test notification'),
+              title: const Text('Send immediate test notification'),
               onTap: () async {
                 await showDebugNotification();
               },
             ),
             ListTile(
-              title: Text('Send alert test in one minute'),
-              subtitle: Text('Payload: $kPayloadDebug'),
+              title: const Text('Send alert test in one minute'),
+              subtitle: const Text('Payload: $kPayloadDebug'),
               onTap: () async {
                 await scheduleAlertNotification(
                     notifsPlugin: notifsPlugin,
@@ -73,15 +73,15 @@ class AboutAppPage extends StatelessWidget {
                     body: 'With payload',
                     payload: kPayloadDebug,
                     scheduledTime: tz.TZDateTime.now(tz.local).add(
-                      Duration(minutes: 1),
+                      const Duration(minutes: 1),
                     ));
               },
             ),
             ListTile(
-                title: Text('Global location index'),
+                title: const Text('Global location index'),
                 subtitle: Text('${GetStorage().read(kStoredGlobalIndex)}')),
             ListTile(
-              title: Text('Last update notification'),
+              title: const Text('Last update notification'),
               subtitle: Text(DateTime.fromMillisecondsSinceEpoch(
                       GetStorage().read(kStoredLastUpdateNotif))
                   .toString()),
@@ -95,7 +95,7 @@ class AboutAppPage extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Number of scheduled notification'),
+              title: const Text('Number of scheduled notification'),
               subtitle:
                   Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
             )
@@ -113,11 +113,11 @@ class AboutAppPage extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('About App'),
+          title: const Text('About App'),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
@@ -160,12 +160,12 @@ class AboutAppPage extends StatelessWidget {
                                   value: downloadProgress.progress),
                             ),
                             errorWidget: (context, url, error) =>
-                                FaIcon(FontAwesomeIcons.exclamation),
+                                const FaIcon(FontAwesomeIcons.exclamation),
                           ),
                         ),
                       ),
                     ),
-                    Text(
+                    const Text(
                       '\nMPT 2021',
                       textAlign: TextAlign.center,
                     ),
@@ -183,7 +183,7 @@ class AboutAppPage extends StatelessWidget {
                       ),
                     ),
                     Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             color: Theme.of(context).bottomAppBarColor,
                             borderRadius: BorderRadius.circular(10)),
@@ -196,39 +196,41 @@ class AboutAppPage extends StatelessWidget {
                                     .bodyText2
                                     .color),
                             children: [
-                              TextSpan(
+                              const TextSpan(
                                 text: 'Prayer data are fetched from',
                               ),
                               TextSpan(
                                 text:
                                     ' Jabatan Kemajuan Islam Malaysia (e-solat)',
-                                style: TextStyle(color: Colors.blueAccent),
+                                style:
+                                    const TextStyle(color: Colors.blueAccent),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     LaunchUrl.normalLaunchUrl(
                                         url: kSolatJakimLink);
                                   },
                               ),
-                              TextSpan(
+                              const TextSpan(
                                 text: ' tunnelled through ',
                               ),
                               TextSpan(
                                 text: 'mpti906 API',
-                                style: TextStyle(color: Colors.blueAccent),
+                                style:
+                                    const TextStyle(color: Colors.blueAccent),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     LaunchUrl.normalLaunchUrl(
                                         url: kMptWebsiteLink);
                                   },
                               ),
-                              TextSpan(text: '.')
+                              const TextSpan(text: '.')
                             ],
                           ),
                         )),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Contribution and Support',
                           textAlign: TextAlign.center,
                         ),
@@ -237,13 +239,13 @@ class AboutAppPage extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      ContributionPage()));
+                                      const ContributionPage()));
                         },
                       ),
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Release Notes',
                           textAlign: TextAlign.center,
                         ),
@@ -255,7 +257,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Frequently Asked Questions (FAQ)',
                           textAlign: TextAlign.center,
                         ),
@@ -263,7 +265,7 @@ class AboutAppPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FaqPage(),
+                              builder: (context) => const FaqPage(),
                             ),
                           );
                         },
@@ -271,7 +273,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Open Source Licenses',
                           textAlign: TextAlign.center,
                         ),
@@ -290,7 +292,7 @@ class AboutAppPage extends StatelessWidget {
                                           CircularProgressIndicator(
                                               value: downloadProgress.progress),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      const Icon(Icons.error),
                                 ),
                               ));
                         },
@@ -298,7 +300,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Privacy Policy',
                           textAlign: TextAlign.center,
                         ),
@@ -308,10 +310,10 @@ class AboutAppPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    Divider(height: 8, thickness: 2),
+                    const Divider(height: 8, thickness: 2),
                     Card(
                       child: ListTile(
-                          title: Text('More apps from me',
+                          title: const Text('More apps from me',
                               textAlign: TextAlign.center),
                           onTap: () {
                             LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink);
@@ -319,7 +321,8 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text('Twitter', textAlign: TextAlign.center),
+                        title:
+                            const Text('Twitter', textAlign: TextAlign.center),
                         onTap: () {
                           LaunchUrl.normalLaunchUrl(url: kDevTwitter);
                         },
@@ -327,7 +330,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                     Card(
                       child: ListTile(
-                        title: Text(
+                        title: const Text(
                           'Dev logs',
                           textAlign: TextAlign.center,
                         ),

@@ -8,24 +8,25 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
-import '../CONSTANTS.dart' as Constants;
+import '../CONSTANTS.dart' as constants;
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
 import 'faq.dart';
 
 class FeedbackPage extends StatefulWidget {
+  const FeedbackPage({Key key}) : super(key: key);
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
-  TextEditingController _messageController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  final TextEditingController _messageController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   CollectionReference _reportsCollection;
   Map<String, dynamic> _deviceInfo;
   PackageInfo packageInfo;
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isSendLoading = false;
 
   @override
@@ -49,15 +50,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('Feedback'),
+          title: const Text('Feedback'),
           centerTitle: true,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -67,13 +68,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         validator: (value) =>
                             value.isNotEmpty ? null : 'Field can\'t be empty',
                         controller: _messageController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             hintText: 'Please leave your feedback/report here',
                             border: OutlineInputBorder()),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         maxLines: 4),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     TextFormField(
                       validator: (value) => value.isNotEmpty
                           ? EmailValidator.validate(value)
@@ -81,7 +82,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               : 'Incorrect email format'
                           : null,
                       controller: _emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           isDense: true,
                           hintText: 'Your email address (optional)',
                           helperText: 'We may reach you if needed',
@@ -93,90 +94,86 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
             ),
-            Container(
-              child: FutureBuilder(
-                future: DeviceInfoPlugin().androidInfo,
-                builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
-                  if (snapshot.hasData) {
-                    _deviceInfo = {
-                      'Android version': snapshot.data.version.release,
-                      'Android Sdk': snapshot.data.version.sdkInt,
-                      'Device': snapshot.data.device,
-                      'Brand': snapshot.data.brand,
-                      'Model': snapshot.data.model,
-                      'Supported ABIs': snapshot.data.supportedAbis,
-                      'Screen Sizes': MediaQuery.of(context).size.toString()
-                    };
+            FutureBuilder(
+              future: DeviceInfoPlugin().androidInfo,
+              builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
+                if (snapshot.hasData) {
+                  _deviceInfo = {
+                    'Android version': snapshot.data.version.release,
+                    'Android Sdk': snapshot.data.version.sdkInt,
+                    'Device': snapshot.data.device,
+                    'Brand': snapshot.data.brand,
+                    'Model': snapshot.data.model,
+                    'Supported ABIs': snapshot.data.supportedAbis,
+                    'Screen Sizes': MediaQuery.of(context).size.toString()
+                  };
 
-                    return CheckboxListTile(
-                        secondary: OutlinedButton(
-                          child: Text('View...'),
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                return Dialog(
-                                    child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: _deviceInfo.length + 1,
-                                  itemBuilder: (context, index) {
-                                    print(_deviceInfo.length);
-                                    if (index < _deviceInfo.length) {
-                                      var key =
-                                          _deviceInfo.keys.elementAt(index);
-                                      return ListTile(
-                                        leading: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [Text(key)],
-                                        ),
-                                        title:
-                                            Text(_deviceInfo[key].toString()),
-                                      );
-                                    } else {
-                                      return TextButton.icon(
-                                          icon: FaIcon(FontAwesomeIcons.copy,
-                                              size: 12),
-                                          onPressed: () {
-                                            Clipboard.setData(ClipboardData(
-                                                    text:
-                                                        _deviceInfo.toString()))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg: 'Copied'));
-                                          },
-                                          label: Text('Copy all'));
-                                    }
-                                  },
-                                ));
-                              },
-                            );
-                          },
-                        ),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        subtitle: Text('(Recommended)'),
-                        title: Text(
-                          'Include device info',
-                        ),
-                        value: _logIsChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            _logIsChecked = value;
-                          });
+                  return CheckboxListTile(
+                      secondary: OutlinedButton(
+                        child: const Text('View...'),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                  child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: _deviceInfo.length + 1,
+                                itemBuilder: (context, index) {
+                                  print(_deviceInfo.length);
+                                  if (index < _deviceInfo.length) {
+                                    var key = _deviceInfo.keys.elementAt(index);
+                                    return ListTile(
+                                      leading: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [Text(key)],
+                                      ),
+                                      title: Text(_deviceInfo[key].toString()),
+                                    );
+                                  } else {
+                                    return TextButton.icon(
+                                        icon: const FaIcon(
+                                            FontAwesomeIcons.copy,
+                                            size: 12),
+                                        onPressed: () {
+                                          Clipboard.setData(ClipboardData(
+                                                  text: _deviceInfo.toString()))
+                                              .then((value) =>
+                                                  Fluttertoast.showToast(
+                                                      msg: 'Copied'));
+                                        },
+                                        label: const Text('Copy all'));
+                                  }
+                                },
+                              ));
+                            },
+                          );
+                        },
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      subtitle: const Text('(Recommended)'),
+                      title: const Text(
+                        'Include device info',
+                      ),
+                      value: _logIsChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          _logIsChecked = value;
                         });
-                  } else if (snapshot.hasError) {
-                    return Text('Trouble getting device info');
-                  } else {
-                    return ListTile(
-                      leading: SizedBox(
-                          height: 15,
-                          width: 15,
-                          child: CircularProgressIndicator()),
-                      title: Text('Getting device info...'),
-                    );
-                  }
-                },
-              ),
+                      });
+                } else if (snapshot.hasError) {
+                  return const Text('Trouble getting device info');
+                } else {
+                  return const ListTile(
+                    leading: SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator()),
+                    title: Text('Getting device info...'),
+                  );
+                }
+              },
             ),
             ElevatedButton.icon(
                 onPressed: () async {
@@ -201,7 +198,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 'no locality called',
                         'Device info': _logIsChecked ? _deviceInfo : null,
                         'Hijri Offset':
-                            GetStorage().read(Constants.kHijriOffset),
+                            GetStorage().read(constants.kHijriOffset),
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
@@ -222,37 +219,37 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     }
                   }
                 },
-                icon: FaIcon(FontAwesomeIcons.paperPlane, size: 13),
+                icon: const FaIcon(FontAwesomeIcons.paperPlane, size: 13),
                 label: _isSendLoading
-                    ? SpinKitRotatingCircle(size: 12, color: Colors.white)
-                    : Text('Send')),
-            Spacer(flex: 3),
+                    ? const SpinKitRotatingCircle(size: 12, color: Colors.white)
+                    : const Text('Send')),
+            const Spacer(flex: 3),
             Row(
-              children: [
+              children: const [
                 Expanded(child: Divider()),
                 Text('OR'),
                 Expanded(child: Divider())
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton.icon(
-              icon: FaIcon(FontAwesomeIcons.questionCircle, size: 13),
+              icon: const FaIcon(FontAwesomeIcons.questionCircle, size: 13),
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => FaqPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const FaqPage()));
               },
-              label: Text('Read Frequently Asked Questions (FAQ)'),
+              label: const Text('Read Frequently Asked Questions (FAQ)'),
             ),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(primary: Colors.black),
-              icon: FaIcon(FontAwesomeIcons.github, size: 13),
+              icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(
-                    url: Constants.kGithubRepoLink + '/issues');
+                    url: constants.kGithubRepoLink + '/issues');
               },
-              label: Text('Report / Follow issues on GitHub'),
+              label: const Text('Report / Follow issues on GitHub'),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

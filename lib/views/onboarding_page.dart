@@ -7,6 +7,7 @@ import 'Settings%20part/ThemePage.dart';
 import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
+  const OnboardingPage({Key key}) : super(key: key);
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
 }
@@ -15,7 +16,7 @@ class _OnboardingPageState extends State<OnboardingPage>
     with SingleTickerProviderStateMixin {
   var pageDecoration = const PageDecoration(
     titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-    bodyTextStyle: const TextStyle(fontSize: 19.0),
+    bodyTextStyle: TextStyle(fontSize: 19.0),
     descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
     imagePadding: EdgeInsets.all(8.0),
   );
@@ -27,7 +28,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   void initState() {
     super.initState();
     _animController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
   }
 
   @override
@@ -43,7 +44,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           ),
           decoration: pageDecoration,
           footer: _isDoneSetLocation
-              ? Text(
+              ? const Text(
                   'Location set. You can change location anytime by tapping the location code at upper right corner.',
                   textAlign: TextAlign.center,
                 )
@@ -58,7 +59,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                       });
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     'Set location',
                   ),
                 )),
@@ -86,7 +87,7 @@ class _OnboardingPageState extends State<OnboardingPage>
             },
           ),
         ),
-        bodyWidget: ThemesOption(),
+        bodyWidget: const ThemesOption(),
         title: "Set your favourite theme",
         decoration: pageDecoration,
       ),
@@ -118,8 +119,8 @@ class _OnboardingPageState extends State<OnboardingPage>
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           GetStorage().write(kIsFirstRun, false);
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (builder) => MyHomePage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (builder) => const MyHomePage()));
         });
   }
 }
