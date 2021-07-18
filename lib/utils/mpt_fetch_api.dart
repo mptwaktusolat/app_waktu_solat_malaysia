@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../models/mpti906PrayerData.dart';
 
@@ -18,9 +19,8 @@ class MptApiFetch {
           DateAndTime.isSameMonthFromM(parsedModel.data.month) &&
           DateAndTime.isTheSameYear(parsedModel.data.year)) {
         //print to tell that I read from cache
-        // if (GetStorage().read(kIsDebugMode)) {
-        Fluttertoast.showToast(msg: 'Reading from cache');
-        // }
+        DebugToast.show('Reading from cache', force: true);
+        //TODO: Remove force in prod
         return parsedModel;
       }
     }
@@ -30,10 +30,7 @@ class MptApiFetch {
       final response = await http.get(api);
       GetStorage()
           .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-      // if (GetStorage().read(kIsDebugMode)) {
-      Fluttertoast.showToast(msg: api.toString());
-      // }
-
+      DebugToast.show('Calling $api', force: true);
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.

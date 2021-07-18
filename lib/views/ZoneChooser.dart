@@ -9,6 +9,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -46,10 +47,7 @@ class LocationChooser {
     String locality;
 
     Position _pos = await LocationData.getCurrentLocation();
-    if (GetStorage().read(kIsDebugMode)) {
-      Fluttertoast.showToast(msg: _pos.toString());
-    }
-
+    DebugToast.show(_pos.toString());
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(_pos.latitude, _pos.longitude);

@@ -2,6 +2,7 @@
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 
@@ -13,7 +14,7 @@ class PreventUpdatingNotifs {
   static void setNow() {
     if (GetStorage().read(kForceUpdateNotif)) {
       //checks is force update,if true then notif should update,
-      shouldUpdateNotification(GetStorage().read(kIsDebugMode));
+      shouldUpdateNotification();
     } else {
       if (DateAndTime.isSameMonthFromMillis(
           GetStorage().read(kStoredLastUpdateNotif))) {
@@ -22,12 +23,12 @@ class PreventUpdatingNotifs {
                 GetStorage().read(kStoredLastUpdateNotif)) <
             const Duration(days: 2).inMilliseconds) {
           //check if certain period o time has reached
-          dontUpdateNotification(GetStorage().read(kIsDebugMode));
+          dontUpdateNotification();
         } else {
-          shouldUpdateNotification(GetStorage().read(kIsDebugMode));
+          shouldUpdateNotification();
         }
       } else {
-        shouldUpdateNotification(GetStorage().read(kIsDebugMode));
+        shouldUpdateNotification();
       }
     }
 
@@ -36,18 +37,12 @@ class PreventUpdatingNotifs {
   }
 }
 
-void shouldUpdateNotification(bool isDebug) {
+void shouldUpdateNotification() {
   GetStorage().write(kStoredShouldUpdateNotif, true);
-  print('Notification should update');
-  if (isDebug) {
-    Fluttertoast.showToast(msg: 'Notification should update');
-  }
+  DebugToast.show('Notification should update');
 }
 
-void dontUpdateNotification(bool isDebug) {
-  print('Notification should not update');
-  if (isDebug) {
-    Fluttertoast.showToast(msg: 'Notification should not update');
-  }
+void dontUpdateNotification() {
+  DebugToast.show('Notification should not update');
   GetStorage().write(kStoredShouldUpdateNotif, false);
 }
