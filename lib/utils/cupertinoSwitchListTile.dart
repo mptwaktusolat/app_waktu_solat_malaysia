@@ -94,8 +94,6 @@ class CupertinoSwitchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = activeColor ?? Theme.of(context).accentColor;
-    print("Active color: ${color.red} ${color.green} ${color.blue}");
     final Widget control = new CupertinoSwitch(
       value: value,
       onChanged: onChanged,

@@ -56,7 +56,7 @@ class PrayerDataTable extends StatelessWidget {
     @required this.model,
   }) : super(key: key);
 
-  final int today = DateTime.now().day;
+  final int todayIndex = DateTime.now().day - 1;
   final Mpti906PrayerModel model;
 
   @override
@@ -79,13 +79,28 @@ class PrayerDataTable extends StatelessWidget {
           // columnSpacing: MediaQuery.of(context).size.width / 10,
           // columnSpacing: 30,
           rows: List.generate(model.data.times.length, (index) {
-            return DataRow(selected: index == today - 1, cells: [
-              DataCell(Text('${index + 1} / ${model.data.month}')),
+            return DataRow(selected: index == todayIndex, cells: [
+              DataCell(Container(
+                padding: EdgeInsets.all(3),
+                decoration: BoxDecoration(
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? Colors.teal.shade50
+                        : Colors.teal.shade900,
+                    borderRadius: BorderRadius.circular(3.0)),
+                child: Text(
+                  '${index + 1} / ${model.data.month}',
+                ),
+              )),
               ...model.data.times[index].map((day) {
                 return DataCell(Center(
                   child: Opacity(
-                      opacity: (index < today - 1) ? 0.60 : 1.0,
-                      child: Text(DateAndTime.toTimeReadable(day, true))),
+                      opacity: (index < todayIndex) ? 0.60 : 1.0,
+                      child: Text(
+                        DateAndTime.toTimeReadable(day, true),
+                        style: index == todayIndex
+                            ? TextStyle(fontWeight: FontWeight.bold)
+                            : null,
+                      )),
                 ));
               }).toList(),
             ]);
