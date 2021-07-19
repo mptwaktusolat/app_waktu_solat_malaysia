@@ -10,18 +10,16 @@ import '../blocs/mpti906_prayer_bloc.dart';
 import '../models/mpti906PrayerData.dart';
 import '../networking/Response.dart';
 import '../utils/DateAndTime.dart';
-import '../utils/RawPrayDataHandler.dart';
 import '../utils/cachedPrayerData.dart';
-import '../utils/location/locationDatabase.dart';
+import '../utils/location/LocationDatabase.dart';
 import 'Settings%20part/settingsProvider.dart';
 
-LocationDatabase locationDatabase = LocationDatabase();
 String location;
 Mpti906PrayerBloc prayerBloc;
 
 class GetPrayerTime extends StatefulWidget {
   static void updateUI(int index) {
-    var location = locationDatabase.getMptLocationCode(index);
+    var location = LocationDatabase.getMptLocationCode(index);
     prayerBloc.fetchPrayerTime(location);
   }
 
@@ -33,8 +31,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   void initState() {
     super.initState();
-    location = locationDatabase
-        .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
+    location = LocationDatabase.getMptLocationCode(
+        GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
     print('location is $location');
   }
@@ -53,8 +51,8 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               return PrayTimeList(prayerTime: snapshot.data.data);
               break;
             case Status.ERROR:
-              location = locationDatabase
-                  .getMptLocationCode(GetStorage().read(kStoredGlobalIndex));
+              location = LocationDatabase.getMptLocationCode(
+                  GetStorage().read(kStoredGlobalIndex));
               return Error(
                 errorMessage: snapshot.data.message,
                 onRetryPressed: () => prayerBloc.fetchPrayerTime(location),
@@ -86,36 +84,27 @@ class PrayTimeList extends StatefulWidget {
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
-  PrayDataHandler handler;
   bool use12hour = GetStorage().read(kStoredTimeIs12);
   bool showOtherPrayerTime;
 
   @override
   Widget build(BuildContext context) {
-    var prayerTimeData = widget.prayerTime.data;
-    handler = PrayDataHandler(prayerTimeData.times);
     return Container(child: Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
-        var todayPrayData = handler.getTodayPrayData();
+        var _today = widget.prayerTime.data.times[DateTime.now().day - 1];
 
         String imsakTime = DateAndTime.toTimeReadable(
-            todayPrayData[0] - (10 * 60), use12hour); //minus 10 min from subuh
-        String subuhTime =
-            DateAndTime.toTimeReadable(todayPrayData[0], use12hour);
-        String syurukTime =
-            DateAndTime.toTimeReadable(todayPrayData[1], use12hour);
+            _today[0] - (10 * 60), use12hour); //minus 10 min from subuh
+        String subuhTime = DateAndTime.toTimeReadable(_today[0], use12hour);
+        String syurukTime = DateAndTime.toTimeReadable(_today[1], use12hour);
         String dhuhaTime = DateAndTime.toTimeReadable(
-            todayPrayData[1] + (28 * 60), use12hour); //add 28 min from syuruk
-        String zohorTime =
-            DateAndTime.toTimeReadable(todayPrayData[2], use12hour);
-        String asarTime =
-            DateAndTime.toTimeReadable(todayPrayData[3], use12hour);
-        String maghribTime =
-            DateAndTime.toTimeReadable(todayPrayData[4], use12hour);
-        String isyaTime =
-            DateAndTime.toTimeReadable(todayPrayData[5], use12hour);
+            _today[1] + (28 * 60), use12hour); //add 28 min from syuruk
+        String zohorTime = DateAndTime.toTimeReadable(_today[2], use12hour);
+        String asarTime = DateAndTime.toTimeReadable(_today[3], use12hour);
+        String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour);
+        String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour);
 
         CachedPrayerTimeData.subuhTime = subuhTime;
         CachedPrayerTimeData.zohorTime = zohorTime;

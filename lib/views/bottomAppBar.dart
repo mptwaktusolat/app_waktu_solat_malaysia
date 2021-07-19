@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:waktusolatmalaysia/views/full_prayer_table.dart';
 import '../CONSTANTS.dart';
 import '../utils/copyAndShare.dart';
 import '../utils/launchUrl.dart';
@@ -50,6 +51,16 @@ class MyBottomAppBar extends StatelessWidget {
             tooltip: 'Google QiblaFinder',
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: 'https://g.co/qiblafinder');
+            },
+          ),
+          IconButton(
+            iconSize: 18,
+            icon: FaIcon(FontAwesomeIcons.calendarAlt),
+            color: iconColour,
+            tooltip: 'Full Prayer Timetable',
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => FullPrayerTable()));
             },
           ),
           IconButton(

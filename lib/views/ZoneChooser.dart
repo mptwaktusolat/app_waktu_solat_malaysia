@@ -6,12 +6,10 @@ import 'package:get/get.dart' show Get, GetNavigation;
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/utils/location/locationDatabase.dart';
+import 'package:waktusolatmalaysia/utils/location/LocationDatabase.dart';
 import 'package:waktusolatmalaysia/views/GetPrayerTime.dart';
 
 int globalIndex;
-
-LocationDatabase locationDatabase = LocationDatabase();
 
 class LocationChooser extends StatefulWidget {
   LocationChooser({Key key}) : super(key: key);
@@ -50,13 +48,13 @@ class _LocationChooserState extends State<LocationChooser> {
       }
     });
 
-    var locationText = locationDatabase.getDaerah(globalIndex);
+    var locationText = LocationDatabase.getDaerah(globalIndex);
 
     void _updateUI() {
       showSnackbarLocationSaved(context);
 
       setState(() {
-        locationText = locationDatabase.getDaerah(globalIndex);
+        locationText = LocationDatabase.getDaerah(globalIndex);
       });
     }
 
@@ -73,7 +71,7 @@ class _LocationChooserState extends State<LocationChooser> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-                'Currently set to ${locationDatabase.getDaerah(globalIndex)} in ${locationDatabase.getNegeri(globalIndex)}'),
+                'Currently set to ${LocationDatabase.getDaerah(globalIndex)} in ${LocationDatabase.getNegeri(globalIndex)}'),
             behavior: SnackBarBehavior.floating,
             action: SnackBarAction(
               label: 'Change',
@@ -116,7 +114,7 @@ Future openLocationBottomSheet(BuildContext context, Function callback) async {
               color: Theme.of(context).canvasColor,
               child: Scrollbar(
                 child: ListView.builder(
-                  itemCount: locationDatabase.getLocationDatabaseLength(),
+                  itemCount: LocationDatabase.getLocationDatabaseLength(),
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       onTap: () {
@@ -124,10 +122,10 @@ Future openLocationBottomSheet(BuildContext context, Function callback) async {
                         Navigator.pop(context,
                             index); //index param here will pass as selectedindex below
                       },
-                      title: Text(locationDatabase.getDaerah(index)),
-                      subtitle: Text(locationDatabase.getNegeri(index)),
+                      title: Text(LocationDatabase.getDaerah(index)),
+                      subtitle: Text(LocationDatabase.getNegeri(index)),
                       trailing: locationBubble(
-                          context, locationDatabase.getJakimCode(index)),
+                          context, LocationDatabase.getJakimCode(index)),
                       selected: globalIndex == index ? true : false,
                     );
                   },
