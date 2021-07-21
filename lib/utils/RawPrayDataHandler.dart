@@ -6,11 +6,10 @@ class PrayDataHandler {
     for (int i = 0; i < times.length; i++) {
       //ignore the previous date
       if (!(i < day - 1)) {
-        print('day is ${i + 1} : ${times[i]}');
         _temp.add(times[i]);
       }
     }
-
+    // return today and future dates only
     return _temp;
   }
 
