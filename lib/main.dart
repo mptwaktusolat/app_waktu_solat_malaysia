@@ -18,12 +18,12 @@ import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
 
 NotificationAppLaunchDetails notifLaunch;
-final FlutterLocalNotificationsPlugin notifsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 void main() async {
   await GetStorage.init();
 
+  final FlutterLocalNotificationsPlugin notifsPlugin =
+      FlutterLocalNotificationsPlugin();
   await _configureLocalTimeZone();
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);

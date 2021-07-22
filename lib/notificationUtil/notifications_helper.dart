@@ -6,7 +6,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rxdart/subjects.dart' as rxsub;
 import '../CONSTANTS.dart';
-import '../main.dart';
 
 final rxsub.BehaviorSubject<NotificationClass>
     didReceiveLocalNotificationSubject =
@@ -47,17 +46,17 @@ Future<void> initNotifications(
   });
 }
 
-void requestIOSPermissions(
-    notifs.FlutterLocalNotificationsPlugin notifsPlugin) {
-  notifsPlugin
-      .resolvePlatformSpecificImplementation<
-          notifs.IOSFlutterLocalNotificationsPlugin>()
-      ?.requestPermissions(
-        alert: true,
-        badge: true,
-        sound: true,
-      );
-}
+// void requestIOSPermissions(
+//     notifs.FlutterLocalNotificationsPlugin notifsPlugin) {
+//   notifsPlugin
+//       .resolvePlatformSpecificImplementation<
+//           notifs.IOSFlutterLocalNotificationsPlugin>()
+//       ?.requestPermissions(
+//         alert: true,
+//         badge: true,
+//         sound: true,
+//       );
+// }
 
 void configureSelectNotificationSubject(BuildContext context) {
   selectNotificationSubject.stream.listen((String payload) async {
@@ -144,6 +143,6 @@ Future<void> showDebugNotification() async {
   const NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
   );
-  await notifsPlugin.show(
+  await FlutterLocalNotificationsPlugin().show(
       0, 'Debug notifs.', 'For developer purposes', platformChannelSpecifics);
 }

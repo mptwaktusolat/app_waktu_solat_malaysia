@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,7 +12,6 @@ import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../../CONSTANTS.dart';
 import '../../locationUtil/LocationData.dart';
-import '../../main.dart';
 import '../../notificationUtil/notifications_helper.dart';
 import '../../utils/launchUrl.dart';
 import '../Settings%20part/settingsProvider.dart';
@@ -67,7 +67,7 @@ class AboutAppPage extends StatelessWidget {
               subtitle: const Text('Payload: $kPayloadDebug'),
               onTap: () async {
                 await scheduleAlertNotification(
-                    notifsPlugin: notifsPlugin,
+                    notifsPlugin: FlutterLocalNotificationsPlugin(),
                     title: 'debug payload',
                     id: 219, //randrom int haha
                     body: 'With payload',
