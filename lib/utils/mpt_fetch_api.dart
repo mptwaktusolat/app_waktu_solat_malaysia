@@ -17,9 +17,7 @@ class MptApiFetch {
       if ((parsedModel.data.code == location) &&
           DateAndTime.isSameMonthFromM(parsedModel.data.month) &&
           DateAndTime.isTheSameYear(parsedModel.data.year)) {
-        //print to tell that I read from cache
-        DebugToast.show('Reading from cache', force: true);
-        //TODO: Remove force in prod
+        DebugToast.show('Reading from cache');
         return parsedModel;
       }
     }
@@ -29,7 +27,7 @@ class MptApiFetch {
       final response = await http.get(api);
       GetStorage()
           .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-      DebugToast.show('Calling $api', force: true);
+      DebugToast.show('Calling $api');
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
