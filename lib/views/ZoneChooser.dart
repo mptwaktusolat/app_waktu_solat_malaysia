@@ -1,6 +1,7 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -353,15 +354,21 @@ class LocationChooser {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () async {
-                      bool res =
-                          await openLocationBottomSheet(context) ?? false;
-                      Navigator.pop(context, res);
-                    },
-                    child: const Text(
-                      'Set manually',
-                      // style: TextStyle(color: Colors.teal.shade800),
-                    )),
+                  onPressed: () async =>
+                      await AppSettings.openLocationSettings(),
+                  child: const Text(
+                    'Open Location Settings',
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    bool res = await openLocationBottomSheet(context) ?? false;
+                    Navigator.pop(context, res);
+                  },
+                  child: const Text(
+                    'Set manually',
+                  ),
+                ),
               ],
             ),
           )

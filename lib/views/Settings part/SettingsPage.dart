@@ -8,7 +8,7 @@ import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import '../../CONSTANTS.dart' as constants;
 import '../../utils/cupertinoSwitchListTile.dart';
-import '../../utils/navigator_pop.dart';
+import '../../utils/custom_navigator_pop.dart';
 import '../Settings%20part/AboutPage.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
 import '../Settings%20part/settingsProvider.dart';
