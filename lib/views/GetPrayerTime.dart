@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'Settings%20part/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
@@ -12,10 +13,9 @@ import '../notificationUtil/isolate_handler_notification.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
-import '../utils/cachedPrayerData.dart';
+import '../utils/temp_prayer_data.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../utils/sizeconfig.dart';
-import 'Settings%20part/settingsProvider.dart';
 
 String location;
 
@@ -96,11 +96,11 @@ class _PrayTimeListState extends State<PrayTimeList> {
         String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour);
         String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour);
 
-        CachedPrayerTimeData.subuhTime = subuhTime;
-        CachedPrayerTimeData.zohorTime = zohorTime;
-        CachedPrayerTimeData.asarTime = asarTime;
-        CachedPrayerTimeData.maghribTime = maghribTime;
-        CachedPrayerTimeData.isyaTime = isyaTime;
+        TempPrayerTimeData.subuhTime = subuhTime;
+        TempPrayerTimeData.zohorTime = zohorTime;
+        TempPrayerTimeData.asarTime = asarTime;
+        TempPrayerTimeData.maghribTime = maghribTime;
+        TempPrayerTimeData.isyaTime = isyaTime;
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

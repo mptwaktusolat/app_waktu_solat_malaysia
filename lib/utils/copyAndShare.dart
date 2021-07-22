@@ -3,7 +3,7 @@ import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import '../CONSTANTS.dart' as constants;
 import '../locationUtil/locationDatabase.dart';
-import 'cachedPrayerData.dart';
+import 'temp_prayer_data.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
@@ -23,11 +23,11 @@ Solat timetable: $_dayFormat, $_dateFormat
 📍 $daerah ($negeri)
 📆 ${hijriToday}H
 
-☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
-🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
-☀ Asar: ${CachedPrayerTimeData.allPrayerTime()[2]}
-🌙 Maghrib: ${CachedPrayerTimeData.allPrayerTime()[3]}
-⭐ Isyak: ${CachedPrayerTimeData.allPrayerTime()[4]}
+☁ Subuh: ${TempPrayerTimeData.allPrayerTime()[0]}
+🌞 Zohor: ${TempPrayerTimeData.allPrayerTime()[1]}
+☀ Asar: ${TempPrayerTimeData.allPrayerTime()[2]}
+🌙 Maghrib: ${TempPrayerTimeData.allPrayerTime()[3]}
+⭐ Isyak: ${TempPrayerTimeData.allPrayerTime()[4]}
 
 Get the app: ${constants.kMptFdlGetLink}''';
         break;
@@ -38,11 +38,11 @@ Get the app: ${constants.kMptFdlGetLink}''';
 📍 _$daerah *($negeri)*_
 📆 ${hijriToday}H
 
-```☁ Subuh   : ${CachedPrayerTimeData.allPrayerTime()[0]}```
-```🌞 Zohor   : ${CachedPrayerTimeData.allPrayerTime()[1]}```
-```☀ Asar    : ${CachedPrayerTimeData.allPrayerTime()[2]}```
-```🌙 Maghrib : ${CachedPrayerTimeData.allPrayerTime()[3]}```
-```⭐ Isyak   : ${CachedPrayerTimeData.allPrayerTime()[4]}```
+```☁ Subuh   : ${TempPrayerTimeData.allPrayerTime()[0]}```
+```🌞 Zohor   : ${TempPrayerTimeData.allPrayerTime()[1]}```
+```☀ Asar    : ${TempPrayerTimeData.allPrayerTime()[2]}```
+```🌙 Maghrib : ${TempPrayerTimeData.allPrayerTime()[3]}```
+```⭐ Isyak   : ${TempPrayerTimeData.allPrayerTime()[4]}```
 
 Get the app: ${constants.kMptFdlGetLink}''';
         break;
