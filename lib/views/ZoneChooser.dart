@@ -45,6 +45,7 @@ class LocationChooser {
   static Future<LocationCoordinateData> _getAllLocationData() async {
     String administrativeArea;
     String locality;
+    String country;
 
     Position _pos = await LocationData.getCurrentLocation();
     DebugToast.show(_pos.toString());
@@ -54,6 +55,7 @@ class LocationChooser {
       var first = placemarks.first;
       administrativeArea = first.administrativeArea;
       locality = first.locality;
+      country = first.country;
       GetStorage().write(kStoredLocationLocality, locality);
     } on PlatformException catch (e) {
       GetStorage().write(kStoredLocationLocality, e.message.toString());
@@ -62,6 +64,10 @@ class LocationChooser {
       } else {
         rethrow;
       }
+    }
+    DebugToast.show(country);
+    if (country.toLowerCase() != "malaysia") {
+      throw 'Outside Malaysia';
     }
 
     var zone = LocationCoordinate.getJakimCodeNearby(
@@ -282,12 +288,28 @@ class LocationChooser {
                       : Colors.white),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.fmd_bad_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                      Icon(
+                        Icons
+                            .signal_cellular_connected_no_internet_0_bar_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                    ],
+                  ),
                   Text.rich(
-                    TextSpan(
+                    const TextSpan(
                       children: <TextSpan>[
                         TextSpan(
-                          text: 'Please check your ',
+                          text: 'Check your ',
                         ),
                         TextSpan(
                           text: 'internet connection ',
@@ -295,35 +317,29 @@ class LocationChooser {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: 'and make sure your '),
+                        TextSpan(text: 'or '),
                         TextSpan(
-                          text: 'GPS is turned on.',
+                          text: 'location services.',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.red.shade300),
                   ),
-                  Text('\nYou can try the following:'),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: 'Try closing'),
+                        TextSpan(text: '\nPlease'),
                         TextSpan(
-                          text: ' this ',
+                          text: ' retry ',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: 'dialog and open it back, or'),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(text: 'Set your location'),
+                        TextSpan(text: 'or set your location'),
                         TextSpan(
                           text: ' manually.',
                           style: TextStyle(fontWeight: FontWeight.bold),
