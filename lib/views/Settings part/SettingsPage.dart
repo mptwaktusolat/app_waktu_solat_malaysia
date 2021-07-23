@@ -66,32 +66,12 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Card buildHijriOffset(SettingProvider setting) {
-    return Card(
+    return const Card(
       child: ListTile(
-        title: const Text('Hijri date offset'),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextButton(
-                style: TextButton.styleFrom(
-                    minimumSize: const Size(5, 5),
-                    backgroundColor: CupertinoColors.tertiarySystemFill),
-                onPressed: setting.hijriOffset <= -2
-                    ? null
-                    : () => setting.hijriOffset--,
-                child: const FaIcon(FontAwesomeIcons.minus, size: 11)),
-            Text(
-                '${setting.hijriOffset} ${setting.hijriOffset == 1 ? 'day' : 'days'}'),
-            TextButton(
-                style: TextButton.styleFrom(
-                    minimumSize: const Size(5, 5),
-                    backgroundColor: CupertinoColors.tertiarySystemFill),
-                onPressed: setting.hijriOffset >= 2
-                    ? null
-                    : () => setting.hijriOffset++,
-                child: const FaIcon(FontAwesomeIcons.plus, size: 11)),
-          ],
-        ),
+        title: Text('Hijri date offset'),
+        isThreeLine: true,
+        subtitle: Text(
+            'Data will be fetched automatically from the server. Will remove this setting in future updates.'),
       ),
     );
   }

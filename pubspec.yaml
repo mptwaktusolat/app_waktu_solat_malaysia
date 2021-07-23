@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^1.0.2
   email_validator: ^2.0.1
   introduction_screen: ^2.1.0
+  firebase_remote_config: ^0.10.0+3
 
 dev_dependencies:
   flutter_test:

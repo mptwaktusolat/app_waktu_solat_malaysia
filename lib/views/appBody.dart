@@ -1,22 +1,32 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
-import 'Settings%20part/settingsProvider.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  AppBody({Key key}) : super(key: key);
+  const AppBody({Key key}) : super(key: key);
 
-  final _dayFormat = DateFormat('EEEE').format(DateTime.now());
-  final _dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
+  Future<RemoteConfig> fetchRemoteConfig() async {
+    final RemoteConfig remoteConfig = RemoteConfig.instance;
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(seconds: 8),
+      minimumFetchInterval: const Duration(hours: 12),
+    ));
+    // RemoteConfigValue(null, ValueSource.valueStatic);
+    await remoteConfig.fetchAndActivate();
+    return remoteConfig;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,32 +62,25 @@ class AppBody extends StatelessWidget {
                               color: Colors.white.withAlpha(70),
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            child: Consumer<SettingProvider>(
-                              builder: (context, setting, child) {
-                                var _hijriToday = HijriCalendar.fromDate(
-                                    DateTime.now().add(
-                                        Duration(days: setting.hijriOffset)));
-                                return Column(
-                                  children: [
-                                    Text(
-                                      _dayFormat,
-                                      style: GoogleFonts.spartan(
-                                          color: Colors.white),
+                            child: FutureBuilder<RemoteConfig>(
+                              future: fetchRemoteConfig(),
+                              builder: (context,
+                                  AsyncSnapshot<RemoteConfig> snapshot) {
+                                /// Fetch data from server whenever possible
+                                if (snapshot.hasData) {
+                                  int _offset =
+                                      snapshot.data.getInt('hijri_offset');
+                                  GetStorage().write(kHijriOffset, _offset);
+                                  return DateWidget(
+                                    hijriOffset: Duration(days: _offset),
+                                  );
+                                } else {
+                                  return DateWidget(
+                                    hijriOffset: Duration(
+                                      days: GetStorage().read(kHijriOffset),
                                     ),
-                                    AutoSizeText(
-                                      _hijriToday.toFormat("dd MMMM yyyy"),
-                                      style: GoogleFonts.acme(
-                                          color: Colors.white, fontSize: 17),
-                                      stepGranularity: 1,
-                                    ),
-                                    Text(
-                                      _dateFormat,
-                                      style: TextStyle(
-                                          color: Colors.teal.shade100,
-                                          fontSize: 12),
-                                    ),
-                                  ],
-                                );
+                                  );
+                                }
                               },
                             ),
                           ),
@@ -159,6 +162,38 @@ class AppBody extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class DateWidget extends StatelessWidget {
+  const DateWidget({
+    Key key,
+    @required Duration hijriOffset,
+  })  : _hijriOffset = hijriOffset,
+        super(key: key);
+
+  final Duration _hijriOffset;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          DateFormat('EEEE').format(DateTime.now()),
+          style: GoogleFonts.spartan(color: Colors.white),
+        ),
+        AutoSizeText(
+          HijriCalendar.fromDate(DateTime.now().add(_hijriOffset))
+              .toFormat("dd MMMM yyyy"),
+          style: GoogleFonts.acme(color: Colors.white, fontSize: 17),
+          stepGranularity: 1,
+        ),
+        Text(
+          DateFormat('dd MMM yyyy').format(DateTime.now()),
+          style: TextStyle(color: Colors.teal.shade100, fontSize: 12),
+        ),
+      ],
     );
   }
 }
