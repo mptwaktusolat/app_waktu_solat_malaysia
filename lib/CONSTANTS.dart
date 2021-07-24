@@ -20,6 +20,7 @@ const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
 const kHijriOffset = "storedHijriOffset";
 const kJsonCache = "jsonCache";
+const kAppLaunchCount = "appLaunchCount";
 
 //Network image
 const kAppIconUrl =

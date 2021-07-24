@@ -8,6 +8,7 @@ import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../utils/sizeconfig.dart';
@@ -70,6 +71,8 @@ class AppBody extends StatelessWidget {
                                 if (snapshot.hasData) {
                                   int _offset =
                                       snapshot.data.getInt('hijri_offset');
+                                  DebugToast.show('Hijri offset: $_offset',
+                                      force: true);
                                   GetStorage().write(kHijriOffset, _offset);
                                   return DateWidget(
                                     hijriOffset: Duration(days: _offset),

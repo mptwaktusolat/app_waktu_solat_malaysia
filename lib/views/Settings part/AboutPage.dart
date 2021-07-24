@@ -7,9 +7,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../../CONSTANTS.dart';
 import '../../locationUtil/LocationData.dart';
 import '../../notificationUtil/notifications_helper.dart';
@@ -98,7 +100,19 @@ class AboutAppPage extends StatelessWidget {
               title: const Text('Number of scheduled notification'),
               subtitle:
                   Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
-            )
+            ),
+            ListTile(
+              title: const Text('Open in app review'),
+              subtitle: const Text(
+                  'This should not be used frequently as the underlying API\'s enforce strict quotas.'),
+              onTap: () async {
+                final InAppReview inAppReview = InAppReview.instance;
+
+                if (await inAppReview.isAvailable()) {
+                  inAppReview.requestReview();
+                }
+              },
+            ),
           ],
         ),
       ),

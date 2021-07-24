@@ -361,6 +361,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  in_app_review:
+    dependency: "direct main"
+    description:
+      name: in_app_review
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  in_app_review_platform_interface:
+    dependency: transitive
+    description:
+      name: in_app_review_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   intl:
     dependency: "direct main"
     description:
