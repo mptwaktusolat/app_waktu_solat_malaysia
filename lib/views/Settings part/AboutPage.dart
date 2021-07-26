@@ -11,7 +11,6 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../../CONSTANTS.dart';
 import '../../locationUtil/LocationData.dart';
 import '../../notificationUtil/notifications_helper.dart';

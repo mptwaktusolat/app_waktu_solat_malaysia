@@ -39,16 +39,13 @@ class AppBody extends StatelessWidget {
         children: <Widget>[
           Container(
             width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight / 6,
             decoration: BoxDecoration(
               color: Theme.of(context).appBarTheme.color,
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40)),
+              borderRadius:
+                  const BorderRadius.vertical(bottom: Radius.circular(40)),
             ),
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
