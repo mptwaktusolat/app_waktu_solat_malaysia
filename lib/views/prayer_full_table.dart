@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
 import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
@@ -28,14 +30,15 @@ class PrayerFullTable extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(
                   // ay ay yu em for life
-                  'https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?resize=820%2C480&ssl=1',
+                  'https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?ssl=1',
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.4),
                   colorBlendMode: BlendMode.overlay,
                 ),
                 centerTitle: true,
                 title: Text(
-                    '${DateAndTime.monthName(month)} timetable (${LocationDatabase.getJakimCode(locationIndex)})'),
+                  '${DateAndTime.monthName(month)} timetable (${LocationDatabase.getJakimCode(locationIndex)})',
+                ),
               ),
             )
           ];
@@ -60,6 +63,7 @@ class PrayerFullTable extends StatelessWidget {
                   return DataTable(
                     columns: [
                       'Date',
+                      // 'Day',
                       'Subuh',
                       'Imsak',
                       'Zohor',
@@ -78,14 +82,24 @@ class PrayerFullTable extends StatelessWidget {
                     rows:
                         List.generate(snapshot.data.data.times.length, (index) {
                       return DataRow(selected: index == todayIndex, cells: [
-                        DataCell(
-                            Text('${index + 1} / ${snapshot.data.data.month}')),
+                        DataCell(Text(
+                          '${index + 1} / ${snapshot.data.data.month} (${DateFormat('E').format(DateTime(2021, month, index + 1))})',
+                          style: TextStyle(
+                              fontWeight:
+                                  index == todayIndex ? FontWeight.bold : null),
+                        )),
+                        // DataCell(Text(DateFormat('EEEE')
+                        //     .format(DateTime(2021, month, index + 1)))),
                         ...snapshot.data.data.times[index].map((day) {
                           return DataCell(Center(
                             child: Opacity(
-                                opacity: (index < todayIndex) ? 0.60 : 1.0,
-                                child: Text(
-                                    DateAndTime.toTimeReadable(day, true))),
+                              opacity: (index < todayIndex) ? 0.55 : 1.0,
+                              child: Text(DateAndTime.toTimeReadable(day, true),
+                                  style: TextStyle(
+                                      fontWeight: index == todayIndex
+                                          ? FontWeight.bold
+                                          : null)),
+                            ),
                           ));
                         }).toList(),
                       ]);
