@@ -4,7 +4,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:waktusolatmalaysia/views/prayer_full_table.dart';
 import '../CONSTANTS.dart';
-import '../utils/copyAndShare.dart';
 import '../utils/launchUrl.dart';
 import 'Qibla%20part/qibla.dart';
 import 'Settings%20part/SettingsPage.dart';
@@ -31,19 +30,6 @@ class MyBottomAppBar extends StatelessWidget {
               onPressed: () {
                 menuModalBottomSheet(context);
               }),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.clone),
-            tooltip: 'Copy timetable',
-            color: iconColour,
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage()))
-                  .then(
-                (value) {
-                  Fluttertoast.showToast(msg: 'Timetable copied');
-                },
-              );
-            },
-          ),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarAlt),
             tooltip: 'Full timetable',

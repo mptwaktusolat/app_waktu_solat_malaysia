@@ -118,6 +118,7 @@ class _SettingsPageState extends State<SettingsPage> {
               0: Text('Always ask'),
               1: Text('Plain Text'),
               2: Text('WhatsApp'),
+              3: Text('Copy')
             },
           ),
         ),

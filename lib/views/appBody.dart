@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import 'package:waktusolatmalaysia/utils/debug_toast.dart';
+import 'package:waktusolatmalaysia/views/debug_widgets.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../utils/sizeconfig.dart';
@@ -38,7 +39,7 @@ class AppBody extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: SizeConfig.screenWidth,
+            width: double.infinity,
             decoration: BoxDecoration(
               color: Theme.of(context).appBarTheme.color,
               borderRadius:
@@ -53,35 +54,48 @@ class AppBody extends StatelessWidget {
                     Expanded(
                       child: Column(
                         children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10.0, vertical: 8.0),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withAlpha(70),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: FutureBuilder<RemoteConfig>(
-                              future: fetchRemoteConfig(),
-                              builder: (context,
-                                  AsyncSnapshot<RemoteConfig> snapshot) {
-                                /// Fetch data from server whenever possible
-                                if (snapshot.hasData) {
-                                  int _offset =
-                                      snapshot.data.getInt('hijri_offset');
-                                  DebugToast.show('Hijri offset: $_offset',
-                                      force: true);
-                                  GetStorage().write(kHijriOffset, _offset);
-                                  return DateWidget(
-                                    hijriOffset: Duration(days: _offset),
-                                  );
-                                } else {
-                                  return DateWidget(
-                                    hijriOffset: Duration(
-                                      days: GetStorage().read(kHijriOffset),
-                                    ),
-                                  );
-                                }
-                              },
+                          GestureDetector(
+                            onLongPress: () {
+                              // open to read current hijri offset
+                              if (GetStorage()
+                                  .read(kDiscoveredDeveloperOption)) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return DebugWidgets.hijriDialog();
+                                    });
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10.0, vertical: 8.0),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withAlpha(70),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: FutureBuilder<RemoteConfig>(
+                                future: fetchRemoteConfig(),
+                                builder: (context,
+                                    AsyncSnapshot<RemoteConfig> snapshot) {
+                                  /// Fetch data from server whenever possible
+                                  if (snapshot.hasData) {
+                                    int _offset =
+                                        snapshot.data.getInt('hijri_offset');
+                                    DebugToast.show('Hijri offset: $_offset',
+                                        force: true);
+                                    GetStorage().write(kHijriOffset, _offset);
+                                    return DateWidget(
+                                      hijriOffset: Duration(days: _offset),
+                                    );
+                                  } else {
+                                    return DateWidget(
+                                      hijriOffset: Duration(
+                                        days: GetStorage().read(kHijriOffset),
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
                             ),
                           ),
                         ],

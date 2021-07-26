@@ -21,6 +21,7 @@ const kFontSize = "storedFontSize";
 const kHijriOffset = "storedHijriOffset";
 const kJsonCache = "jsonCache";
 const kAppLaunchCount = "appLaunchCount";
+const kHasOpenSharingDialog = "openedSharedDialog";
 
 //Network image
 const kAppIconUrl =

@@ -7,6 +7,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
 import 'package:waktusolatmalaysia/notificationUtil/notifications_helper.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/utils/launchUrl.dart';
 import '../CONSTANTS.dart';
 
 class DebugWidgets {
@@ -98,5 +99,27 @@ class DebugWidgets {
         ],
       ),
     );
+  }
+
+  static Dialog hijriDialog() {
+    return Dialog(
+        child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Hijri offset: ${GetStorage().read(kHijriOffset)}',
+            style: const TextStyle(fontSize: 26),
+          ),
+          ElevatedButton(
+              onPressed: () {
+                LaunchUrl.normalLaunchUrl(
+                    url: 'https://mpt-hijri-converter.web.app/');
+              },
+              child: const Text('Open MPT Hijri'))
+        ],
+      ),
+    ));
   }
 }

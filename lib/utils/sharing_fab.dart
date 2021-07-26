@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
+import 'package:waktusolatmalaysia/CONSTANTS.dart';
 import '../views/Settings%20part/settingsProvider.dart';
 import 'copyAndShare.dart';
 import 'launchUrl.dart';
@@ -14,9 +18,21 @@ class ShareFAB extends StatelessWidget {
     return Consumer<SettingProvider>(builder: (context, setting, child) {
       return FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        child: FaIcon(setting.sharingFormat == 2
-            ? FontAwesomeIcons.whatsapp
-            : FontAwesomeIcons.shareAlt),
+        child: Builder(
+          builder: (context) {
+            switch (setting.sharingFormat) {
+              case 2:
+                return const FaIcon(FontAwesomeIcons.whatsapp);
+                break;
+              case 3:
+                return const FaIcon(FontAwesomeIcons.clone);
+                break;
+              default:
+                return const FaIcon(FontAwesomeIcons.shareAlt);
+                break;
+            }
+          },
+        ),
         mini: true,
         tooltip: 'Share solat time',
         onPressed: () {
@@ -27,6 +43,9 @@ class ShareFAB extends StatelessWidget {
             case 2:
               shareToWhatsApp();
               break;
+            case 3:
+              copy();
+              break;
             default:
               showShareDialog(context);
               break;
@@ -36,8 +55,8 @@ class ShareFAB extends StatelessWidget {
     });
   }
 
-  void showShareDialog(BuildContext context) {
-    showModalBottomSheet(
+  void showShareDialog(BuildContext context) async {
+    await showModalBottomSheet(
       context: context,
       builder: (context) {
         return Column(
@@ -60,25 +79,38 @@ class ShareFAB extends StatelessWidget {
                 shareToWhatsApp();
               },
             ),
-            Padding(
-                padding: const EdgeInsets.all(10),
-                child: RichText(
-                  text: TextSpan(
-                    text: 'You can set defaults in ',
-                    style: DefaultTextStyle.of(context)
-                        .style
-                        .copyWith(fontSize: 12),
-                    children: const <TextSpan>[
-                      TextSpan(
-                          text: 'Setting -> Sharing',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                    ],
+            ListTile(
+              title: const Text('Copy to clipboard'),
+              trailing: const FaIcon(FontAwesomeIcons.clone),
+              onTap: () {
+                copy();
+                Navigator.pop(context);
+              },
+            ),
+            // Message should only show once
+            GetStorage().read(kHasOpenSharingDialog) ?? false
+                ? const SizedBox.shrink()
+                : Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'You can set defaults in ',
+                        style: DefaultTextStyle.of(context)
+                            .style
+                            .copyWith(fontSize: 12),
+                        children: const <TextSpan>[
+                          TextSpan(
+                              text: 'Setting -> Sharing',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+                    ),
                   ),
-                )),
           ],
         );
       },
     );
+    GetStorage().write(kHasOpenSharingDialog, true);
   }
 
   void shareToWhatsApp() => LaunchUrl.normalLaunchUrl(
@@ -87,4 +119,11 @@ class ShareFAB extends StatelessWidget {
 
   void shareUniversal() => Share.share(CopyAndShare.getMessage(),
       subject: 'Malaysia prayer time for today');
+
+  void copy() =>
+      Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage())).then(
+        (value) {
+          Fluttertoast.showToast(msg: 'Timetable copied');
+        },
+      );
 }
