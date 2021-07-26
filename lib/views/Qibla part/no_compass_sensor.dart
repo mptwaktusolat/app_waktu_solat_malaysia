@@ -21,14 +21,14 @@ class NoCompassSensor extends StatelessWidget {
           const Text(
             'Sorry. No compass sensor is available in this device.',
             textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
           ),
           box,
           ElevatedButton(
             onPressed: () => Navigator.pop(context),
             child: const Text(
               'Go back',
-              style: TextStyle(
-                  color: Colors.redAccent, fontWeight: FontWeight.bold),
             ),
           )
         ],
