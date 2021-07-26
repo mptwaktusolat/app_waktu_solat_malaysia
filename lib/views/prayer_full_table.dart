@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -28,9 +29,9 @@ class PrayerFullTable extends StatelessWidget {
               floating: true,
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  // ay ay yu em for life
-                  'https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?ssl=1',
+                background: CachedNetworkImage(
+                  imageUrl:
+                      'https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?ssl=1',
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.4),
                   colorBlendMode: BlendMode.overlay,
@@ -63,7 +64,6 @@ class PrayerFullTable extends StatelessWidget {
                   return DataTable(
                     columns: [
                       'Date',
-                      // 'Day',
                       'Subuh',
                       'Imsak',
                       'Zohor',
