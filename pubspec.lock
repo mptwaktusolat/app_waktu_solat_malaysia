@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.1"
+  args:
+    dependency: transitive
+    description:
+      name: args
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   async:
     dependency: transitive
     description:
@@ -35,7 +42,21 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.1.0"
+  cached_network_image_platform_interface:
+    dependency: transitive
+    description:
+      name: cached_network_image_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
+  cached_network_image_web:
+    dependency: transitive
+    description:
+      name: cached_network_image_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   characters:
     dependency: transitive
     description:
@@ -63,21 +84,21 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "2.4.0"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.2"
+    version: "5.3.0"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "2.3.0"
   collection:
     dependency: transitive
     description:
@@ -92,6 +113,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  dbus:
+    dependency: transitive
+    description:
+      name: dbus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.4"
   device_info:
     dependency: "direct main"
     description:
@@ -222,14 +250,21 @@ packages:
       name: flutter_local_notifications
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.0"
+    version: "6.1.0"
+  flutter_local_notifications_linux:
+    dependency: transitive
+    description:
+      name: flutter_local_notifications_linux
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+1"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.1"
   flutter_qiblah:
     dependency: "direct main"
     description:
@@ -262,7 +297,7 @@ packages:
       name: flutter_web_browser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.14.0"
+    version: "0.15.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -302,35 +337,35 @@ packages:
       name: geolocator
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.0+1"
+    version: "7.3.1"
   geolocator_platform_interface:
     dependency: transitive
     description:
       name: geolocator_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.2"
   geolocator_web:
     dependency: transitive
     description:
       name: geolocator_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.6"
   get:
     dependency: transitive
     description:
       name: get
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.4"
+    version: "4.3.0"
   get_storage:
     dependency: "direct main"
     description:
       name: get_storage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   google_fonts:
     dependency: "direct main"
     description:
@@ -343,10 +378,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "86cc31daab46e6e9b15a0580521ea53942568333"
+      resolved-ref: "7616970a477cb006e3d51fc2ed62ea43fc3f0146"
       url: "https://github.com/iqfareez/hijri_date.git"
     source: git
-    version: "3.0.1"
+    version: "3.0.2"
   http:
     dependency: "direct main"
     description:
@@ -521,7 +556,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0"
   platform:
     dependency: transitive
     description:
@@ -535,14 +570,21 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
+  posix:
+    dependency: transitive
+    description:
+      name: posix
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
   process:
     dependency: transitive
     description:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.3"
   provider:
     dependency: "direct main"
     description:
@@ -659,7 +701,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.7"
+    version: "6.0.9"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -680,7 +722,7 @@ packages:
       name: url_launcher_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   url_launcher_web:
     dependency: transitive
     description:
@@ -715,7 +757,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.4"
+    version: "2.2.5"
   xdg_directories:
     dependency: transitive
     description:
