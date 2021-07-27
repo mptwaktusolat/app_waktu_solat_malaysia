@@ -106,6 +106,7 @@ Widget compassActionButton(BuildContext context) {
 }
 
 void _showCalibrateCompassDialog(BuildContext context) {
+  //TODO: Kasi lawa
   showDialog(
     context: context,
     builder: (context) {

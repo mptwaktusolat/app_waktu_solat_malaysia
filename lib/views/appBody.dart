@@ -81,8 +81,6 @@ class AppBody extends StatelessWidget {
                                   if (snapshot.hasData) {
                                     int _offset =
                                         snapshot.data.getInt('hijri_offset');
-                                    DebugToast.show('Hijri offset: $_offset',
-                                        force: true);
                                     GetStorage().write(kHijriOffset, _offset);
                                     return DateWidget(
                                       hijriOffset: Duration(days: _offset),

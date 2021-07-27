@@ -158,7 +158,6 @@ void showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
   int _appLaunchCount = GetStorage().read(kAppLaunchCount);
-  DebugToast.show(_appLaunchCount.toString(), force: true);
 
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
