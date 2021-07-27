@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 import '../blocs/mpti906_prayer_bloc.dart';
 import '../models/mpti906PrayerData.dart';
 import '../networking/Response.dart';
@@ -88,7 +89,10 @@ class PrayerDataTable extends StatelessWidget {
                         : Colors.teal.shade900,
                     borderRadius: BorderRadius.circular(3.0)),
                 child: Text(
-                  '${index + 1} / ${model.data.month}',
+                  '${index + 1} / ${model.data.month} (${DateFormat('E').format(DateTime(model.data.year, model.data.month, index + 1))})',
+                  style: index == todayIndex
+                      ? TextStyle(fontWeight: FontWeight.bold)
+                      : null,
                 ),
               )),
               ...model.data.times[index].map((day) {

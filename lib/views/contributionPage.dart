@@ -32,6 +32,14 @@ class ContributionPage extends StatelessWidget {
                 title: 'Share the app',
                 description:
                     'Share your experience on using this app with your family and friends. Get the app on bit.ly/MPTdl',
+                buttonContent: [
+                  ButtonContent(
+                      'Copy link',
+                      () => Clipboard.setData(
+                              ClipboardData(text: 'http://bit.ly/MPTdl'))
+                          .then(
+                              (value) => Fluttertoast.showToast(msg: 'Copied')))
+                ],
               ),
               Divider(),
               MyCard(
