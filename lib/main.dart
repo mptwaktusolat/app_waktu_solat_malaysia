@@ -8,7 +8,6 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import 'CONSTANTS.dart';
 import 'locationUtil/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
