@@ -189,7 +189,6 @@ class LocationChooser {
       {@required LocationCoordinateData location}) {
     var index = LocationDatabase.indexOfLocation(location.zone);
 
-    print('detected index is $index');
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
         return Column(

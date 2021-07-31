@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
@@ -21,7 +22,11 @@ import 'views/onboarding_page.dart';
 NotificationAppLaunchDetails notifLaunch;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await GetStorage.init();
+  await Firebase.initializeApp();
+  MobileAds.instance.initialize();
 
   final FlutterLocalNotificationsPlugin notifsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -30,7 +35,6 @@ void main() async {
   await initNotifications(notifsPlugin);
   // requestIOSPermissions(notifsPlugin);
 
-  await Firebase.initializeApp();
   initGetStorage();
   // readAllGetStorage();
   /// Increment app launch counter

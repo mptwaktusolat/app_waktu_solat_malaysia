@@ -129,6 +129,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
 }
 
 Widget solatCard(String time, String name, bool useFullHeight) {
+  //TODO: Cuba bermain dgn shadow
   return Container(
     margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
     width: 300,

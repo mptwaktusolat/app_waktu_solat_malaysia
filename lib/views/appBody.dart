@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/SECRETS.dart';
 import '../CONSTANTS.dart';
 import 'package:waktusolatmalaysia/views/debug_widgets.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -15,8 +17,44 @@ import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
-class AppBody extends StatelessWidget {
+class AppBody extends StatefulWidget {
   const AppBody({Key key}) : super(key: key);
+
+  @override
+  State<AppBody> createState() => _AppBodyState();
+}
+
+class _AppBodyState extends State<AppBody> {
+  BannerAd _ad;
+  bool _isAdLoaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
+        testDeviceIds: ['DF693493239FEF390746FE861B201FC3']));
+
+    _ad = BannerAd(
+        size: AdSize.banner,
+        adUnitId: kHomeBannerAdId,
+        listener: BannerAdListener(
+          onAdLoaded: (_) {
+            setState(() {
+              _isAdLoaded = true;
+            });
+          },
+          onAdFailedToLoad: (ad, error) {
+            // Releases an ad resource when it fails to load
+            ad.dispose();
+
+            print(
+                'Ad load failed (code=${error.code} message=${error.message})');
+          },
+        ),
+        request: const AdRequest());
+    _ad.load();
+  }
 
   Future<RemoteConfig> fetchRemoteConfig() async {
     final RemoteConfig remoteConfig = RemoteConfig.instance;
@@ -99,7 +137,6 @@ class AppBody extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      // flex: 3,
                       child: Consumer<LocationProvider>(
                         builder: (context, value, child) {
                           String shortCode = LocationDatabase.getJakimCode(
@@ -160,17 +197,21 @@ class AppBody extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: SizeConfig.screenHeight / 69,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 26, vertical: 10),
+            child: GetPrayerTime(),
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
-                SizeConfig.screenWidth / 10, 8.0),
-            child: const GetPrayerTime(),
-          ),
-          SizedBox(
-            height: SizeConfig.screenHeight / 45,
-          )
+          Builder(builder: (context) {
+            if (_isAdLoaded) {
+              return Container(
+                  child: AdWidget(ad: _ad),
+                  width: _ad.size.width.toDouble(),
+                  height: 72.0,
+                  alignment: Alignment.center);
+            } else {
+              return const SizedBox.shrink();
+            }
+          })
         ],
       ),
     );
