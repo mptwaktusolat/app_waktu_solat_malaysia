@@ -30,7 +30,6 @@ void schedulePrayNotification(List<dynamic> times) async {
 
   DebugToast.show('SCHEDULING $howMuchToSchedule notifications');
 
-  print('howMuchToSchedule is $howMuchToSchedule');
   // for debug dialog
   GetStorage().write(kNumberOfNotifsScheduled, howMuchToSchedule);
 
@@ -105,8 +104,6 @@ void schedulePrayNotification(List<dynamic> times) async {
           scheduledTime: tz.TZDateTime.from(
               DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
     }
-
-    print('Notification scheduled #${i + 1}');
   }
 
   scheduleAlertNotification(
@@ -120,7 +117,6 @@ void schedulePrayNotification(List<dynamic> times) async {
         1, 0, 5), //2021-01-01 00:05:00.000+0800
   );
 
-  print('DONE SCHEDULING NOTIFS');
   DebugToast.show('FINISH SCHEDULE NOTIFS');
 
   //This timestamp is later used to determine wether notification should be updated or not

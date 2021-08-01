@@ -267,7 +267,6 @@ class LocationChooser {
 
   static Widget onErrorWidget(BuildContext context,
       {@required String errorMessage, Function onRetryPressed}) {
-    print(errorMessage);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

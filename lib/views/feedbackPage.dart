@@ -120,7 +120,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 shrinkWrap: true,
                                 itemCount: _deviceInfo.length + 1,
                                 itemBuilder: (context, index) {
-                                  print(_deviceInfo.length);
                                   if (index < _deviceInfo.length) {
                                     var key = _deviceInfo.keys.elementAt(index);
                                     return ListTile(
@@ -180,7 +179,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).unfocus();
                     setState(() => _isSendLoading = true);
-                    print('Sending report...');
                     try {
                       await _reportsCollection.add({
                         'Date creation': FieldValue.serverTimestamp(),
@@ -214,8 +212,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         backgroundColor: Colors.red,
                       ));
                       setState(() => _isSendLoading = false);
-                    } catch (e) {
-                      print('Err: $e');
                     }
                   }
                 },

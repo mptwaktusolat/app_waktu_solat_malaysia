@@ -137,6 +137,7 @@ Future<void> _configureLocalTimeZone() async {
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
+// ignore_for_file: avoid_print
 void readAllGetStorage() {
   // print (almost) all GetStorage item to the console
   print("-----All GET STORAGE-----");

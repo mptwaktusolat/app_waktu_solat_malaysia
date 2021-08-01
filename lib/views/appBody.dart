@@ -48,8 +48,7 @@ class _AppBodyState extends State<AppBody> {
             // Releases an ad resource when it fails to load
             ad.dispose();
 
-            print(
-                'Ad load failed (code=${error.code} message=${error.message})');
+            throw error;
           },
         ),
         request: const AdRequest());
