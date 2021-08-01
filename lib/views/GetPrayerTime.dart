@@ -129,13 +129,13 @@ class _PrayTimeListState extends State<PrayTimeList> {
 }
 
 Widget solatCard(String time, String name, bool useFullHeight) {
-  //TODO: Cuba bermain dgn shadow
   return Container(
     margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
     width: 300,
     height: useFullHeight ? 80 : 55,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shadowColor: Colors.black54,
       elevation: 4.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
