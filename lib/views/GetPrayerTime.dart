@@ -105,7 +105,6 @@ class _PrayTimeListState extends State<PrayTimeList> {
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             showOtherPrayerTime
                 ? solatCard(imsakTime, 'Imsak', false)
@@ -128,13 +127,14 @@ class _PrayTimeListState extends State<PrayTimeList> {
   }
 }
 
-Widget solatCard(String time, String name, bool useFullHeight) {
+Widget solatCard(String time, String name, bool isOtherPrayerTime) {
   return Container(
+    constraints: const BoxConstraints(maxWidth: 320),
     margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
-    width: 300,
-    height: useFullHeight ? 80 : 55,
+    height: isOtherPrayerTime ? 80 : 55,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
       shadowColor: Colors.black54,
       elevation: 4.0,
       child: InkWell(
@@ -144,10 +144,11 @@ Widget solatCard(String time, String name, bool useFullHeight) {
             Clipboard.setData(ClipboardData(text: '$name: $time'))
                 .then((value) {
           Fluttertoast.showToast(
-              msg: 'Copied to clipboard',
-              toastLength: Toast.LENGTH_SHORT,
-              backgroundColor: Colors.grey.shade700,
-              textColor: Colors.white);
+            msg: 'Copied to clipboard',
+            toastLength: Toast.LENGTH_SHORT,
+            backgroundColor: Colors.grey.shade700,
+            textColor: Colors.white,
+          );
         }),
         child: Center(child: Consumer<SettingProvider>(
           builder: (context, setting, child) {

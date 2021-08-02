@@ -196,6 +196,7 @@ class _AppBodyState extends State<AppBody> {
               ],
             ),
           ),
+          //TODO: Add notification not showing?
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 26, vertical: 10),
             child: GetPrayerTime(),
@@ -205,7 +206,7 @@ class _AppBodyState extends State<AppBody> {
               return Container(
                   child: AdWidget(ad: _ad),
                   width: _ad.size.width.toDouble(),
-                  height: 72.0,
+                  height: _ad.size.height.toDouble(),
                   alignment: Alignment.center);
             } else {
               return const SizedBox.shrink();

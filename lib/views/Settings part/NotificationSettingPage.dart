@@ -48,8 +48,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               padding: EdgeInsets.all(8.0), child: Text('Troubleshooting')),
           Card(
             child: ListTile(
-              title:
-                  const Text('Fix notification didn\'t show on some device.'),
+              title: const Text('Fix notification not showing on some devices'),
               subtitle: const Text('Example: Xiaomi / Redmi, Realme etc.'),
               onTap: () => Navigator.push(
                   context,

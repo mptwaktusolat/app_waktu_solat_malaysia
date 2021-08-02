@@ -32,7 +32,7 @@ class TroubleshootNotif extends StatelessWidget {
                   ],
                 ),
               ),
-              const Text('\n'),
+              const SizedBox(height: 5),
               const Text.rich(
                 TextSpan(
                   style: TextStyle(height: 1.3),
@@ -47,6 +47,7 @@ class TroubleshootNotif extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(height: 5),
               Card(
                 child: ListTile(
                   title: const Text('Open App Setting'),
