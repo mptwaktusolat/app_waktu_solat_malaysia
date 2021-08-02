@@ -22,6 +22,7 @@ const kHijriOffset = "storedHijriOffset";
 const kJsonCache = "jsonCache";
 const kAppLaunchCount = "appLaunchCount";
 const kHasOpenSharingDialog = "openedSharedDialog";
+const kShowNotifPrompt = "notifPrompt";
 
 //Network image
 const kAppIconUrl =
