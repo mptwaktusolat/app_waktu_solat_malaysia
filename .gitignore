@@ -49,5 +49,8 @@ app.*.map.json
 # key file
 key.properties
 
-#scratch file
+# secret file
+SECRETS.dart
+
+# scratch file
 scratch.dart

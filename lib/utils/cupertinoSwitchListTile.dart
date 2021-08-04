@@ -12,10 +12,10 @@ class CupertinoSwitchListTile extends StatelessWidget {
     this.activeColor,
     this.title,
     this.subtitle,
-    this.isThreeLine: false,
+    this.isThreeLine = false,
     this.dense,
     this.secondary,
-    this.selected: false,
+    this.selected = false,
   })  : assert(value != null),
         assert(isThreeLine != null),
         assert(!isThreeLine || subtitle != null),
@@ -94,17 +94,15 @@ class CupertinoSwitchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var color = activeColor ?? Theme.of(context).colorScheme.secondary;
-    print("Active color: ${color.red} ${color.green} ${color.blue}");
-    final Widget control = new CupertinoSwitch(
+    final Widget control = CupertinoSwitch(
       value: value,
       onChanged: onChanged,
       activeColor: activeColor ?? CupertinoColors.activeGreen,
     );
-    return new MergeSemantics(
+    return MergeSemantics(
       child: ListTileTheme.merge(
         selectedColor: activeColor ?? CupertinoColors.activeGreen,
-        child: new ListTile(
+        child: ListTile(
           leading: secondary,
           title: title,
           subtitle: subtitle,

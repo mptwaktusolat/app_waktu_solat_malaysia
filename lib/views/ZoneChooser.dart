@@ -1,13 +1,15 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -23,7 +25,7 @@ class LocationChooser {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
-        duration: Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1500),
         content: Row(
           children: [
             Icon(
@@ -32,10 +34,8 @@ class LocationChooser {
                   ? Colors.black87
                   : Colors.white70,
             ),
-            SizedBox(
-              width: 10,
-            ),
-            Text('Updated and saved'),
+            const SizedBox(width: 10),
+            const Text('Updated and saved'),
           ],
         ),
       ),
@@ -43,29 +43,31 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    var administrativeArea;
-    var locality;
+    String administrativeArea;
+    String locality;
+    String country;
 
     Position _pos = await LocationData.getCurrentLocation();
-    if (GetStorage().read(kIsDebugMode)) {
-      Fluttertoast.showToast(msg: _pos.toString());
-    }
-
+    DebugToast.show(_pos.toString());
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(_pos.latitude, _pos.longitude);
       var first = placemarks.first;
-      print(
-          '[_getAllLocationData] ${first.locality}, ${first.administrativeArea}');
       administrativeArea = first.administrativeArea;
       locality = first.locality;
+      country = first.country;
       GetStorage().write(kStoredLocationLocality, locality);
-    } catch (e) {
-      print('[_getAllLocationData] Error: $e');
-      GetStorage().write(kStoredLocationLocality, e.toString());
-      Fluttertoast.showToast(
-          msg: 'Error $e occured. Sorry', backgroundColor: Colors.red);
-      throw e;
+    } on PlatformException catch (e) {
+      GetStorage().write(kStoredLocationLocality, e.message.toString());
+      if (e.message.contains('A network error occurred')) {
+        throw 'A network error occurred trying to lookup the supplied coordinates.';
+      } else {
+        rethrow;
+      }
+    }
+    DebugToast.show(country);
+    if (country.toLowerCase() != "malaysia") {
+      throw 'Outside Malaysia';
     }
 
     var zone = LocationCoordinate.getJakimCodeNearby(
@@ -88,10 +90,11 @@ class LocationChooser {
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Container(
-            padding: EdgeInsets.fromLTRB(8, 16, 8, 4),
+            padding: const EdgeInsets.fromLTRB(8, 16, 8, 4),
             height: 250,
             child: FutureBuilder(
-                future: _getAllLocationData().timeout(Duration(seconds: 12)),
+                future:
+                    _getAllLocationData().timeout(const Duration(seconds: 12)),
                 builder:
                     (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -126,7 +129,7 @@ class LocationChooser {
               return FractionallySizedBox(
                 heightFactor: 0.68,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(26.0),
                       topRight: Radius.circular(26.0)),
                   child: Container(
@@ -168,7 +171,7 @@ class LocationChooser {
 
   static Widget locationBubble(BuildContext context, String shortCode) {
     return Container(
-      padding: EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
         border: Border.all(
             color: Theme.of(context).brightness == Brightness.light
@@ -186,13 +189,12 @@ class LocationChooser {
       {@required LocationCoordinateData location}) {
     var index = LocationDatabase.indexOfLocation(location.zone);
 
-    print('detected index is $index');
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
+            const Expanded(
               flex: 1,
               child: Center(child: Text('Your location')),
             ),
@@ -202,7 +204,8 @@ class LocationChooser {
                   child: Text(
                     location.lokasi,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 )),
             Container(
@@ -219,17 +222,15 @@ class LocationChooser {
                 ),
                 title: Text(
                   LocationDatabase.getDaerah(index),
-                  style: TextStyle(fontSize: 13),
+                  style: const TextStyle(fontSize: 13),
                 ),
                 subtitle: Text(
                   LocationDatabase.getNegeri(index),
-                  style: TextStyle(fontSize: 11),
+                  style: const TextStyle(fontSize: 11),
                 ),
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
             Expanded(
               flex: 1,
               child: Align(
@@ -238,9 +239,7 @@ class LocationChooser {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextButton(
-                      child: Text(
-                        'Set manually',
-                      ),
+                      child: const Text('Set manually'),
                       onPressed: () async {
                         bool res =
                             await openLocationBottomSheet(context) ?? false;
@@ -248,9 +247,7 @@ class LocationChooser {
                       },
                     ),
                     TextButton(
-                      child: Text(
-                        'Set this location',
-                      ),
+                      child: const Text('Set this location'),
                       onPressed: () {
                         value.currentLocationIndex = index;
                         onNewLocationSaved(context);
@@ -270,13 +267,12 @@ class LocationChooser {
 
   static Widget onErrorWidget(BuildContext context,
       {@required String errorMessage, Function onRetryPressed}) {
-    print(errorMessage);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Expanded(
+          const Expanded(
               flex: 1,
               child: Center(
                 child: Text('Error'),
@@ -291,38 +287,57 @@ class LocationChooser {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.fmd_bad_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                      Icon(
+                        Icons
+                            .signal_cellular_connected_no_internet_0_bar_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                    ],
+                  ),
                   Text.rich(
-                    TextSpan(
+                    const TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: 'Please make sure your '),
                         TextSpan(
-                          text: 'GPS is turned on.',
+                          text: 'Check your ',
+                        ),
+                        TextSpan(
+                          text: 'internet connection ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(text: 'or '),
+                        TextSpan(
+                          text: 'location services.',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.red.shade300),
                   ),
-                  Text('\nYou can try the following:'),
-                  Text.rich(
+                  const Text.rich(
                     TextSpan(
                       children: <TextSpan>[
-                        TextSpan(text: 'Try closing'),
+                        TextSpan(text: '\nPlease'),
                         TextSpan(
-                          text: ' this ',
+                          text: ' retry ',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: 'dialog and open it back, or'),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(text: 'Set your location'),
+                        TextSpan(text: 'or set your location'),
                         TextSpan(
                           text: ' manually.',
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -340,7 +355,7 @@ class LocationChooser {
               child: Text(
                 errorMessage,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.red,
                     fontSize: 10,
                     fontStyle: FontStyle.italic),
@@ -353,15 +368,21 @@ class LocationChooser {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () async {
-                      bool res =
-                          await openLocationBottomSheet(context) ?? false;
-                      Navigator.pop(context, res);
-                    },
-                    child: Text(
-                      'Set manually',
-                      // style: TextStyle(color: Colors.teal.shade800),
-                    )),
+                  onPressed: () async =>
+                      await AppSettings.openLocationSettings(),
+                  child: const Text(
+                    'Open Location Settings',
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    bool res = await openLocationBottomSheet(context) ?? false;
+                    Navigator.pop(context, res);
+                  },
+                  child: const Text(
+                    'Set manually',
+                  ),
+                ),
               ],
             ),
           )
@@ -378,12 +399,12 @@ class LocationChooser {
           Text(
             loadingMessage,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
             ),
           ),
-          SizedBox(height: 24),
-          SpinKitPulse(
+          const SizedBox(height: 24),
+          const SpinKitPulse(
             color: Colors.teal,
           )
         ],

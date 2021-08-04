@@ -1,14 +1,12 @@
 // import 'package:geolocator/geolocator.dart';
+//ignore_for_file: avoid_print
 
 import 'package:intl/intl.dart';
 
 void main() {
-  for (var i = -10; i < 10; i++) {
-    print('current value is $i');
-    if (i <= 2 && i >= -2) {
-      print(' is valid');
-    }
-  }
+  var now = DateTime.now();
+  // print(month);
+  print(now.year);
 }
 
 Uri uriHttps() {

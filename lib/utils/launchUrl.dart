@@ -23,7 +23,6 @@ class LaunchUrl {
   static void sendViaEmail(String messageContent) {
     final emailLink = Uri.encodeFull(
         'mailto:$kDevEmail?subject=Feedback MPT&body=$messageContent');
-    print(emailLink);
     _launchURL(emailLink);
   }
 }

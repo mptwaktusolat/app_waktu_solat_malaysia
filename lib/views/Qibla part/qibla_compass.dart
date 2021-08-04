@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import '../Qibla%20part/location_error_widget.dart';
 
 class QiblaCompass extends StatefulWidget {
+  const QiblaCompass({Key key}) : super(key: key);
   @override
   _QiblaCompassState createState() => _QiblaCompassState();
 }
@@ -32,8 +33,9 @@ class _QiblaCompassState extends State<QiblaCompass> {
       child: StreamBuilder(
         stream: stream,
         builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return CupertinoActivityIndicator();
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CupertinoActivityIndicator();
+          }
           if (snapshot.data.enabled == true) {
             switch (snapshot.data.status) {
               case LocationPermission.always:
@@ -76,8 +78,9 @@ class _QiblaCompassState extends State<QiblaCompass> {
       await FlutterQiblah.requestPermissions();
       final s = await FlutterQiblah.checkLocationStatus();
       _locationStreamController.sink.add(s);
-    } else
+    } else {
       _locationStreamController.sink.add(locationStatus);
+    }
   }
 
   @override
@@ -89,6 +92,7 @@ class _QiblaCompassState extends State<QiblaCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
+  QiblahCompassWidget({Key key}) : super(key: key);
   final _kaabaSvg = SvgPicture.asset('assets/qibla/kaaba.svg');
 
   @override
@@ -97,8 +101,9 @@ class QiblahCompassWidget extends StatelessWidget {
     return StreamBuilder(
       stream: FlutterQiblah.qiblahStream,
       builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting)
-          return CupertinoActivityIndicator();
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CupertinoActivityIndicator();
+        }
 
         final qiblahDirection = snapshot.data;
         var _angle = ((qiblahDirection.qiblah ?? 0) * (pi / 180) * -1);

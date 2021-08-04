@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'Settings%20part/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
@@ -12,14 +13,14 @@ import '../notificationUtil/isolate_handler_notification.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
-import '../utils/cachedPrayerData.dart';
+import '../utils/temp_prayer_data.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../utils/sizeconfig.dart';
-import 'Settings%20part/settingsProvider.dart';
 
 String location;
 
 class GetPrayerTime extends StatefulWidget {
+  const GetPrayerTime({Key key}) : super(key: key);
   @override
   _GetPrayerTimeState createState() => _GetPrayerTimeState();
 }
@@ -40,7 +41,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
               LocationDatabase.getMptLocationCode(value.currentLocationIndex)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Loading();
+              return const Loading();
             } else if (snapshot.hasData) {
               return PrayTimeList(prayerTime: snapshot.data);
             } else {
@@ -57,8 +58,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 }
 
 class PrayTimeList extends StatefulWidget {
-  PrayTimeList({Key key, this.prayerTime}) : super(key: key);
-
+  const PrayTimeList({Key key, this.prayerTime}) : super(key: key);
   final Mpti906PrayerModel prayerTime;
 
   @override
@@ -66,54 +66,45 @@ class PrayTimeList extends StatefulWidget {
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
-  PrayDataHandler handler;
   bool use12hour = GetStorage().read(kStoredTimeIs12);
   bool showOtherPrayerTime;
 
   @override
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime.data;
-    //process the string data from JSON
-    handler = PrayDataHandler(prayerTimeData.times);
 
     if (GetStorage().read(kStoredShouldUpdateNotif)) {
       //schedule notification if needed
-      schedulePrayNotification(handler.getPrayDataCurrentDateOnwards());
+      schedulePrayNotification(
+          PrayDataHandler.removePastDate(prayerTimeData.times));
     }
 
-    return Container(child: Consumer<SettingProvider>(
+    return Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
-        var todayPrayData = handler.getTodayPrayData();
+        var _today = PrayDataHandler.todayPrayData(prayerTimeData.times);
 
         String imsakTime = DateAndTime.toTimeReadable(
-            todayPrayData[0] - (10 * 60), use12hour); //minus 10 min from subuh
-        String subuhTime =
-            DateAndTime.toTimeReadable(todayPrayData[0], use12hour);
-        String syurukTime =
-            DateAndTime.toTimeReadable(todayPrayData[1], use12hour);
+            _today[0] - (10 * 60), use12hour); //minus 10 min from subuh
+        String subuhTime = DateAndTime.toTimeReadable(_today[0], use12hour);
+        String syurukTime = DateAndTime.toTimeReadable(_today[1], use12hour);
         String dhuhaTime = DateAndTime.toTimeReadable(
-            todayPrayData[1] + (28 * 60), use12hour); //add 28 min from syuruk
-        String zohorTime =
-            DateAndTime.toTimeReadable(todayPrayData[2], use12hour);
-        String asarTime =
-            DateAndTime.toTimeReadable(todayPrayData[3], use12hour);
-        String maghribTime =
-            DateAndTime.toTimeReadable(todayPrayData[4], use12hour);
-        String isyaTime =
-            DateAndTime.toTimeReadable(todayPrayData[5], use12hour);
+            _today[1] + (28 * 60), use12hour); //add 28 min from syuruk
+        String zohorTime = DateAndTime.toTimeReadable(_today[2], use12hour);
+        String asarTime = DateAndTime.toTimeReadable(_today[3], use12hour);
+        String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour);
+        String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour);
 
-        CachedPrayerTimeData.subuhTime = subuhTime;
-        CachedPrayerTimeData.zohorTime = zohorTime;
-        CachedPrayerTimeData.asarTime = asarTime;
-        CachedPrayerTimeData.maghribTime = maghribTime;
-        CachedPrayerTimeData.isyaTime = isyaTime;
+        TempPrayerTimeData.subuhTime = subuhTime;
+        TempPrayerTimeData.zohorTime = zohorTime;
+        TempPrayerTimeData.asarTime = asarTime;
+        TempPrayerTimeData.maghribTime = maghribTime;
+        TempPrayerTimeData.isyaTime = isyaTime;
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             showOtherPrayerTime
                 ? solatCard(imsakTime, 'Imsak', false)
@@ -132,29 +123,32 @@ class _PrayTimeListState extends State<PrayTimeList> {
           ],
         );
       },
-    ));
+    );
   }
 }
 
-Widget solatCard(String time, String name, bool useFullHeight) {
+Widget solatCard(String time, String name, bool isOtherPrayerTime) {
   return Container(
+    constraints: const BoxConstraints(maxWidth: 320),
     margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
-    width: 300,
-    height: useFullHeight ? 80 : 55,
+    height: isOtherPrayerTime ? 80 : 55,
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
+      shadowColor: Colors.black54,
       elevation: 4.0,
       child: InkWell(
         borderRadius: BorderRadius.circular(10.0),
         splashColor: Colors.teal.withAlpha(30),
         onLongPress: () =>
-            Clipboard.setData(new ClipboardData(text: '$name: $time'))
+            Clipboard.setData(ClipboardData(text: '$name: $time'))
                 .then((value) {
           Fluttertoast.showToast(
-              msg: 'Copied to clipboard',
-              toastLength: Toast.LENGTH_SHORT,
-              backgroundColor: Colors.grey.shade700,
-              textColor: Colors.white);
+            msg: 'Copied to clipboard',
+            toastLength: Toast.LENGTH_SHORT,
+            backgroundColor: Colors.grey.shade700,
+            textColor: Colors.white,
+          );
         }),
         child: Center(child: Consumer<SettingProvider>(
           builder: (context, setting, child) {
@@ -184,16 +178,13 @@ class Error extends StatelessWidget {
         Text(
           errorMessage,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            primary: Theme.of(context).buttonColor,
-          ),
-          child: Text('Retry', style: TextStyle(color: Colors.black)),
+          child: const Text('Retry', style: TextStyle(color: Colors.black)),
           onPressed: onRetryPressed,
         )
       ],
@@ -202,10 +193,11 @@ class Error extends StatelessWidget {
 }
 
 class Loading extends StatelessWidget {
+  const Loading({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: const [
         Text(
           'Fetching prayer time. Please wait.',
           textAlign: TextAlign.center,

@@ -9,6 +9,7 @@ import '../Qibla%20part/qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
 class Qibla extends StatefulWidget {
+  const Qibla({Key key}) : super(key: key);
   @override
   _QiblaState createState() => _QiblaState();
 }
@@ -20,12 +21,12 @@ class _QiblaState extends State<Qibla> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Qibla Compass'),
+        title: const Text('Qibla Compass'),
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.topCenter,
             child: ListTile(
               leading: FaIcon(FontAwesomeIcons.info),
@@ -41,22 +42,25 @@ class _QiblaState extends State<Qibla> {
             child: FutureBuilder(
               future: _deviceSupport,
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting)
-                  return Center(
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
                     ),
                   );
+                }
 
-                if (snapshot.hasError)
+                if (snapshot.hasError) {
                   return Center(
                     child: Text('Error: ${snapshot.error.toString()}'),
                   );
+                }
 
-                if (snapshot.data)
-                  return QiblaCompass();
-                else
-                  return NoCompassSensor();
+                if (snapshot.data) {
+                  return const QiblaCompass();
+                } else {
+                  return const NoCompassSensor();
+                }
               },
             ),
           ),
@@ -81,27 +85,28 @@ Widget compassActionButton(BuildContext context) {
               url: 'https://g.co/qiblafinder', useCustomTabs: true);
         },
         onLongPress: () {
-          Clipboard.setData(ClipboardData(text: 'g.co/qiblafinder'))
+          Clipboard.setData(const ClipboardData(text: 'g.co/qiblafinder'))
               .then((value) => Fluttertoast.showToast(msg: 'URL copied :)'));
         },
         child: Row(
-          children: [
+          children: const [
             Text('Google Qiblafinder'),
             SizedBox(width: 8),
             FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
           ],
         ),
       ),
-      SizedBox(width: 10),
+      const SizedBox(width: 10),
       OutlinedButton(
         onPressed: () => _showCalibrateCompassDialog(context),
-        child: Text('Calibration tip'),
+        child: const Text('Calibration tip'),
       )
     ],
   );
 }
 
 void _showCalibrateCompassDialog(BuildContext context) {
+  //TODO: Kasi lawa
   showDialog(
     context: context,
     builder: (context) {
@@ -113,7 +118,7 @@ void _showCalibrateCompassDialog(BuildContext context) {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Move your phone in "figure 8 pattern".',
                 style: TextStyle(fontSize: 16),
               ),

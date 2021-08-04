@@ -8,15 +8,6 @@ class SettingProvider with ChangeNotifier {
   bool _isDeveloperOption = GetStorage().read(kDiscoveredDeveloperOption);
   int _sharingFormat = GetStorage().read(kSharingFormat);
   double _fontSize = GetStorage().read(kFontSize);
-  int _hijriOffset = GetStorage().read(kHijriOffset);
-
-  set hijriOffset(int value) {
-    _hijriOffset = value;
-    GetStorage().write(kHijriOffset, value);
-    notifyListeners();
-  }
-
-  int get hijriOffset => _hijriOffset;
 
   set prayerFontSize(double newValue) {
     _fontSize = newValue;
@@ -36,6 +27,7 @@ class SettingProvider with ChangeNotifier {
 
   set use12hour(newValue) {
     _use12hour = newValue;
+    GetStorage().write(kStoredTimeIs12, newValue);
     notifyListeners();
   }
 
@@ -43,6 +35,7 @@ class SettingProvider with ChangeNotifier {
 
   set showOtherPrayerTime(newValue) {
     _showOtherPrayerTime = newValue;
+    GetStorage().write(kStoredShowOtherPrayerTime, newValue);
     notifyListeners();
   }
 

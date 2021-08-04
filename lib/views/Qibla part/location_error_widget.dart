@@ -9,36 +9,31 @@ class LocationErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final box = SizedBox(height: 32);
+    const box = SizedBox(height: 32);
 
-    return Container(
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Icon(
-              Icons.location_off,
-              size: 130,
-              color: Colors.redAccent,
-            ),
-            box,
-            Text(
-              error,
-              style: TextStyle(
-                  color: Colors.redAccent, fontWeight: FontWeight.bold),
-            ),
-            box,
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).buttonColor,
-              ),
-              child: Text("Retry"),
-              onPressed: () {
-                if (callback != null) callback();
-              },
-            ),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          const Icon(
+            Icons.location_off,
+            size: 130,
+            color: Colors.redAccent,
+          ),
+          box,
+          Text(
+            error,
+            style: const TextStyle(
+                color: Colors.redAccent, fontWeight: FontWeight.bold),
+          ),
+          box,
+          ElevatedButton(
+            child: const Text("Retry"),
+            onPressed: () {
+              if (callback != null) callback();
+            },
+          ),
+        ],
       ),
     );
   }

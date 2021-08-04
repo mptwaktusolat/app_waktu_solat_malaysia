@@ -23,7 +23,6 @@ class ThemeController with ChangeNotifier {
       _themeMode =
           ThemeMode.values.firstWhere((e) => describeEnum(e) == themeText);
     } catch (e) {
-      print('err: $e');
       _themeMode = ThemeMode.system;
     }
   }

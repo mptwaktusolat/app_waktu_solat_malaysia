@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/launchUrl.dart';
 
 class FaqPage extends StatefulWidget {
+  const FaqPage({Key key}) : super(key: key);
   @override
   _FaqPageState createState() => _FaqPageState();
 }
@@ -21,7 +22,7 @@ class _FaqPageState extends State<FaqPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FAQs'),
+        title: const Text('FAQs'),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -33,8 +34,12 @@ class _FaqPageState extends State<FaqPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['url']),
-                  trailing: FaIcon(
+                  subtitle: Text(
+                    snapshot.data.docs[index]['url'],
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: const FaIcon(
                     FontAwesomeIcons.externalLinkAlt,
                     size: 18,
                   ),
@@ -47,12 +52,12 @@ class _FaqPageState extends State<FaqPage> {
               },
             );
           } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
                 child: SpinKitCubeGrid(
               color: Colors.teal,
             ));
           } else {
-            return Center(
+            return const Center(
               child: Text(':")'),
             );
           }

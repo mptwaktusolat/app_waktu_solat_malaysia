@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -18,27 +20,35 @@ import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
 
 NotificationAppLaunchDetails notifLaunch;
-final FlutterLocalNotificationsPlugin notifsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 void main() async {
-  await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
 
+  await GetStorage.init();
+  await Firebase.initializeApp();
+  MobileAds.instance.initialize();
+
+  final FlutterLocalNotificationsPlugin notifsPlugin =
+      FlutterLocalNotificationsPlugin();
   await _configureLocalTimeZone();
   notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
   await initNotifications(notifsPlugin);
   // requestIOSPermissions(notifsPlugin);
 
-  await Firebase.initializeApp();
   initGetStorage();
   // readAllGetStorage();
+  /// Increment app launch counter
+  GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
-  runApp(MyApp());
+  runApp(const MyApp());
+
+  showReviewPrompt();
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
   final _primaryColour = Colors.teal;
 
   @override
@@ -68,10 +78,9 @@ class MyApp extends StatelessWidget {
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
             themeMode: value.themeMode,
-            // home: OnboardingPage(),
             home: GetStorage().read(kIsFirstRun)
-                ? OnboardingPage()
-                : MyHomePage(),
+                ? const OnboardingPage()
+                : const MyHomePage(),
           );
         },
       ),
@@ -80,6 +89,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  const MyHomePage({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,10 +103,10 @@ class MyHomePage extends StatelessWidget {
         centerTitle: true,
         toolbarHeight: 50,
       ),
-      bottomNavigationBar: MyBottomAppBar(),
-      floatingActionButton: ShareFAB(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: SingleChildScrollView(child: AppBody()),
+      bottomNavigationBar: const MyBottomAppBar(),
+      floatingActionButton: const ShareFAB(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+      body: const SingleChildScrollView(child: AppBody()),
     );
   }
 }
@@ -103,6 +114,8 @@ class MyHomePage extends StatelessWidget {
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
+  _get.writeIfNull(kShowNotifPrompt, true);
+  _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
   _get.writeIfNull(kStoredGlobalIndex, 0);
   _get.writeIfNull(kStoredTimeIs12, true);
@@ -121,10 +134,11 @@ void initGetStorage() {
 Future<void> _configureLocalTimeZone() async {
   // use for notification
   tz.initializeTimeZones();
-  final String timeZoneName = 'Asia/Kuala_Lumpur';
+  const String timeZoneName = 'Asia/Kuala_Lumpur';
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
+// ignore_for_file: avoid_print
 void readAllGetStorage() {
   // print (almost) all GetStorage item to the console
   print("-----All GET STORAGE-----");
@@ -142,4 +156,16 @@ void readAllGetStorage() {
   print(
       'kDiscoveredDeveloperOption is ${_get.read(kDiscoveredDeveloperOption)}');
   print('-----------------------');
+}
+
+/// Show InAppReview if all conditions are met
+void showReviewPrompt() async {
+  final InAppReview inAppReview = InAppReview.instance;
+
+  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
+
+  if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
+    await Future.delayed(const Duration(seconds: 2));
+    inAppReview.requestReview();
+  }
 }

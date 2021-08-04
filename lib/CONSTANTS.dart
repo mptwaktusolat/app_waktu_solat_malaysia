@@ -19,6 +19,10 @@ const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
 const kHijriOffset = "storedHijriOffset";
+const kJsonCache = "jsonCache";
+const kAppLaunchCount = "appLaunchCount";
+const kHasOpenSharingDialog = "openedSharedDialog";
+const kShowNotifPrompt = "notifPrompt";
 
 //Network image
 const kAppIconUrl =

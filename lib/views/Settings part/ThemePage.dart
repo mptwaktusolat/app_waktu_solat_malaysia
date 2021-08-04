@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../Settings%20part/ThemeController.dart';
 
 class ThemesPage extends StatefulWidget {
+  const ThemesPage({Key key}) : super(key: key);
   @override
   _ThemesPageState createState() => _ThemesPageState();
 }
@@ -14,14 +15,14 @@ class _ThemesPageState extends State<ThemesPage>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1090));
+        vsync: this, duration: const Duration(milliseconds: 1090));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Theme'),
+        title: const Text('Theme'),
         centerTitle: true,
       ),
       body: Column(
@@ -50,7 +51,7 @@ class _ThemesPageState extends State<ThemesPage>
               ),
             ),
           ),
-          Expanded(child: ThemesOption()),
+          const Expanded(child: ThemesOption()),
         ],
       ),
     );
@@ -99,7 +100,7 @@ class AnimatedMoon extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(40, 0),
+            offset: const Offset(40, 0),
             child: ScaleTransition(
               scale: _animationController.drive(
                 Tween<double>(begin: 0.0, end: 1.0).chain(
@@ -123,12 +124,13 @@ class AnimatedMoon extends StatelessWidget {
 }
 
 class ThemesOption extends StatefulWidget {
+  const ThemesOption({Key key}) : super(key: key);
   @override
   _ThemesOptionState createState() => _ThemesOptionState();
 }
 
 class _ThemesOptionState extends State<ThemesOption> {
-  Map<String, ThemeMode> _themeOptions = {
+  final Map<String, ThemeMode> _themeOptions = {
     'System Theme': ThemeMode.system,
     'Light Theme': ThemeMode.light,
     'Dark Theme': ThemeMode.dark
@@ -139,12 +141,13 @@ class _ThemesOptionState extends State<ThemesOption> {
       builder: (context, setting, child) {
         return ListView.builder(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemCount: _themeOptions.length,
           itemBuilder: (context, index) {
             return RadioListTile(
                 title: Text(_themeOptions.keys.elementAt(index)),
-                subtitle: index == 0 ? Text('On supported device only') : null,
+                subtitle:
+                    index == 0 ? const Text('On supported device only') : null,
                 value: _themeOptions.values.elementAt(index),
                 groupValue: setting.themeMode,
                 onChanged: (value) {
