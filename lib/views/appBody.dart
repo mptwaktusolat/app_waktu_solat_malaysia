@@ -9,15 +9,14 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/SECRETS.dart';
-import 'package:waktusolatmalaysia/views/Settings%20part/NotificationSettingPage.dart';
 import '../CONSTANTS.dart';
-import 'package:waktusolatmalaysia/views/debug_widgets.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../utils/sizeconfig.dart';
+import 'Settings%20part/NotificationSettingPage.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
+import 'debug_widgets.dart';
 
 class AppBody extends StatefulWidget {
   const AppBody({Key key}) : super(key: key);
@@ -46,7 +45,7 @@ class _AppBodyState extends State<AppBody> {
 
     _ad = BannerAd(
         size: AdSize.banner,
-        adUnitId: kHomeBannerAdId,
+        adUnitId: 'ca-app-pub-1896379146653594/2885992250',
         listener: BannerAdListener(
           onAdLoaded: (_) {
             setState(() {
