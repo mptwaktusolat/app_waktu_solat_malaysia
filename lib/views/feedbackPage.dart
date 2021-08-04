@@ -189,8 +189,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         'Prayer API called':
                             GetStorage().read(kStoredApiPrayerCall) ??
                                 'no pray api called',
-                        'Position':
-                            LocationData.position.toString() ?? 'no detect',
+                        'Position': (LocationData.position != null)
+                            ? GeoPoint(LocationData.position.latitude,
+                                LocationData.position.longitude)
+                            : 'no detect',
                         'Locality':
                             GetStorage().read(kStoredLocationLocality) ??
                                 'no locality called',

@@ -11,5 +11,5 @@ class LocationData {
     return position;
   }
 
-  static get position => _position;
+  static Position get position => _position;
 }
