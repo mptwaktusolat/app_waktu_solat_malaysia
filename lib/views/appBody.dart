@@ -67,8 +67,8 @@ class _AppBodyState extends State<AppBody> {
   Future<RemoteConfig> fetchRemoteConfig() async {
     final RemoteConfig remoteConfig = RemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
-      fetchTimeout: const Duration(seconds: 8),
-      minimumFetchInterval: const Duration(hours: 12),
+      fetchTimeout: const Duration(seconds: 15),
+      minimumFetchInterval: const Duration(hours: 8),
     ));
     // RemoteConfigValue(null, ValueSource.valueStatic);
     await remoteConfig.fetchAndActivate();

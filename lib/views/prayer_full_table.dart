@@ -82,14 +82,15 @@ class PrayerFullTable extends StatelessWidget {
                     rows:
                         List.generate(snapshot.data.data.times.length, (index) {
                       return DataRow(selected: index == todayIndex, cells: [
-                        DataCell(Text(
-                          '${index + 1} / ${snapshot.data.data.month} (${DateFormat('E').format(DateTime(year, month, index + 1))})',
-                          style: TextStyle(
-                              fontWeight:
-                                  index == todayIndex ? FontWeight.bold : null),
-                        )),
-                        // DataCell(Text(DateFormat('EEEE')
-                        //     .format(DateTime(2021, month, index + 1)))),
+                        DataCell(
+                          Text(
+                            '${index + 1} / ${snapshot.data.data.month} (${DateFormat('E').format(DateTime(year, month, index + 1))})',
+                            style: TextStyle(
+                                fontWeight: index == todayIndex
+                                    ? FontWeight.bold
+                                    : null),
+                          ),
+                        ),
                         ...snapshot.data.data.times[index].map((day) {
                           return DataCell(Center(
                             child: Opacity(
