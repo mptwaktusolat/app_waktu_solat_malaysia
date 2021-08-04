@@ -114,6 +114,7 @@ class MyHomePage extends StatelessWidget {
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
+  _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
   _get.writeIfNull(kStoredGlobalIndex, 0);

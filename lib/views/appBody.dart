@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,15 +29,20 @@ class AppBody extends StatefulWidget {
 class _AppBodyState extends State<AppBody> {
   BannerAd _ad;
   bool _isAdLoaded = false;
+  bool showFirstChild = true;
   bool _showNotifPrompt;
 
   @override
   void initState() {
     super.initState();
-    _showNotifPrompt = GetStorage().read(kShowNotifPrompt);
+    _showNotifPrompt = GetStorage().read(kShowNotifPrompt) &&
+        GetStorage().read(kAppLaunchCount) > 5;
 
     MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
-        testDeviceIds: ['DF693493239FEF390746FE861B201FC3']));
+        testDeviceIds: [
+          'DF693493239FEF390746FE861B201FC3',
+          'EB458550DFD9A5B6EF3D8FD1A0705EFA'
+        ]));
 
     _ad = BannerAd(
         size: AdSize.banner,
@@ -202,78 +205,7 @@ class _AppBodyState extends State<AppBody> {
               ],
             ),
           ),
-          Builder(builder: (builder) {
-            if (_showNotifPrompt) {
-              bool showFirstChild = true;
-              return StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setWidgetState) {
-                return AnimatedCrossFade(
-                  duration: const Duration(milliseconds: 200),
-                  crossFadeState: showFirstChild
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                  firstChild: Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.0),
-                        child: Opacity(
-                          opacity: 0.8,
-                          child: Text(
-                            'Did notification(s) from this app shows at prayer time?',
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                              style: TextButton.styleFrom(
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              onPressed: () {
-                                setWidgetState(() {
-                                  showFirstChild = false;
-                                  GetStorage().write(kShowNotifPrompt, false);
-                                });
-                                Future.delayed(const Duration(seconds: 2))
-                                    .then((value) => setState(() {
-                                          _showNotifPrompt = false;
-                                        }));
-                              },
-                              child: const Text('Yes')),
-                          TextButton(
-                              style: TextButton.styleFrom(
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) =>
-                                            const NotificationPageSetting()));
-                              },
-                              child: const Text('No'))
-                        ],
-                      )
-                    ],
-                  ),
-                  secondChild: const Padding(
-                    padding: EdgeInsets.all(4.0),
-                    child: Opacity(
-                      opacity: 0.8,
-                      child: Text(
-                        'Cool. Glad to hear that!',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ),
-                );
-              });
-            } else {
-              return const SizedBox(height: 10);
-            }
-          }),
+          showNotifPrompt(context),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 26),
             child: GetPrayerTime(),
@@ -292,6 +224,95 @@ class _AppBodyState extends State<AppBody> {
         ],
       ),
     );
+  }
+
+  Builder showNotifPrompt(BuildContext context) {
+    return Builder(builder: (builder) {
+      if (_showNotifPrompt) {
+        return AnimatedCrossFade(
+          layoutBuilder: (topChild, topChildKey, bottomChild, bottomChildKey) {
+            return Stack(
+              clipBehavior: Clip.antiAlias,
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  child: bottomChild,
+                  top: 0,
+                  key: bottomChildKey,
+                ),
+                Positioned(
+                  child: topChild,
+                  key: topChildKey,
+                )
+              ],
+            );
+          },
+          duration: const Duration(milliseconds: 200),
+          crossFadeState: showFirstChild
+              ? CrossFadeState.showFirst
+              : CrossFadeState.showSecond,
+          firstChild: Column(
+            children: [
+              const SizedBox(height: 10),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.0),
+                child: Opacity(
+                  opacity: 0.8,
+                  child: Text(
+                    'Did notification(s) from this app shows at prayer time?',
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                      style: TextButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          showFirstChild = false;
+                        });
+                        Future.delayed(const Duration(seconds: 3))
+                            .then((value) => setState(() {
+                                  _showNotifPrompt = false;
+                                  GetStorage().write(kShowNotifPrompt, false);
+                                }));
+                      },
+                      child: const Text('Yes')),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) =>
+                                    const NotificationPageSetting()));
+                      },
+                      child: const Text('No'))
+                ],
+              )
+            ],
+          ),
+          secondChild: const Padding(
+            padding: EdgeInsets.all(4.0),
+            child: Opacity(
+              opacity: 0.8,
+              child: Text(
+                'Cool. Glad to hear that!',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        );
+      } else {
+        return const SizedBox(height: 10);
+      }
+    });
   }
 }
 
