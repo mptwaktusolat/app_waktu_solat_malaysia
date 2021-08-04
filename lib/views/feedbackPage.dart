@@ -85,7 +85,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       decoration: const InputDecoration(
                           isDense: true,
                           hintText: 'Your email address (optional)',
-                          helperText: 'We may reach you if needed',
                           border: OutlineInputBorder()),
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,
@@ -176,6 +175,35 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             ElevatedButton.icon(
                 onPressed: () async {
+                  if (_emailController.text.isEmpty &&
+                      _messageController.text.contains('?')) {
+                    var res = await showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return AlertDialog(
+                            content: const Text(
+                                'Looks like your message contain question(s). Provide your email so we can get back to you.\n\nWould you like to add your email?'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: const Text('Send without email')),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: const Text('Add email'))
+                            ],
+                          );
+                        });
+
+                    // Cancel next operation for user to enter their email
+                    if (!res) {
+                      return;
+                    }
+                  }
+
                   if (_formKey.currentState.validate()) {
                     FocusScope.of(context).unfocus();
                     setState(() => _isSendLoading = true);
@@ -202,9 +230,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
-                              msg: _emailController.text.isEmpty
-                                  ? 'Thank you for your valuable feedback.'
-                                  : 'Thank you for your valuable feedback. A copy of your response will be sent to your email',
+                              msg: 'Thank you for your valuable feedback.',
                               backgroundColor: Colors.green,
                               toastLength: Toast.LENGTH_LONG)
                           .then((value) => Navigator.pop(context));
@@ -217,9 +243,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     }
                   }
                 },
-                icon: const FaIcon(FontAwesomeIcons.paperPlane, size: 13),
+                icon: !_isSendLoading
+                    ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
+                    : const SizedBox.shrink(),
                 label: _isSendLoading
-                    ? const SpinKitRotatingCircle(size: 12, color: Colors.white)
+                    ? const SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ))
                     : const Text('Send')),
             const Spacer(flex: 3),
             Row(
