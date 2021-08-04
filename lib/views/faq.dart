@@ -34,7 +34,11 @@ class _FaqPageState extends State<FaqPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(snapshot.data.docs[index]['title']),
-                  subtitle: Text(snapshot.data.docs[index]['url']),
+                  subtitle: Text(
+                    snapshot.data.docs[index]['url'],
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   trailing: const FaIcon(
                     FontAwesomeIcons.externalLinkAlt,
                     size: 18,
