@@ -63,7 +63,7 @@ void configureSelectNotificationSubject(BuildContext context) {
     if (payload == kPayloadMonthly) {
       Fluttertoast.showToast(
           msg:
-              'Please wait for a few seconds for the notification to be resheduled.',
+              'Please wait for a few seconds for the notification to be resheduled',
           toastLength: Toast.LENGTH_LONG);
     } else if (payload == kPayloadDebug) {
       Fluttertoast.showToast(
