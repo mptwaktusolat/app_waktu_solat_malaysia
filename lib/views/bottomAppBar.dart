@@ -116,7 +116,6 @@ void menuModalBottomSheet(BuildContext context) {
               leading: FaIcon(FontAwesomeIcons.solidCommentDots),
               onTap: () {
                 Navigator.pop(context);
-                print('Opening feedback dialog');
                 openFeedbackDialog(context);
               },
             ),

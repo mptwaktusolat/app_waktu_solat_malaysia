@@ -34,7 +34,6 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
     location = LocationDatabase.getMptLocationCode(
         GetStorage().read(kStoredGlobalIndex));
     prayerBloc = Mpti906PrayerBloc(location);
-    print('location is $location');
   }
 
   @override
@@ -243,7 +242,6 @@ Widget rowSolatCard(String time, String name, bool useFullHeight) {
 }
 
 void copySolatTime(String name, String time) {
-  print('Copied');
   Clipboard.setData(new ClipboardData(text: '$name: $time')).then((value) {
     Fluttertoast.showToast(
         msg: 'Copied to clipboard',
@@ -263,7 +261,6 @@ class Error extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('errorMessage is $errorMessage');
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

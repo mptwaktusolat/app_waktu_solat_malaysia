@@ -76,7 +76,6 @@ class _LocationChooserState extends State<LocationChooser> {
             action: SnackBarAction(
               label: 'Change',
               onPressed: () {
-                print('Pressed change loc');
                 openLocationBottomSheet(context, _updateUI);
               },
             ),
@@ -98,7 +97,6 @@ class _LocationChooserState extends State<LocationChooser> {
 }
 
 Future openLocationBottomSheet(BuildContext context, Function callback) async {
-  print(globalIndex);
   await showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
@@ -140,7 +138,6 @@ Future openLocationBottomSheet(BuildContext context, Function callback) async {
       app should restart when index changed
       when user close bottom sheet without selecting location, selectedIndex simply return null 
       */
-    print('selectedIndex is $selectedIndex and globalIndex is $globalIndex');
     if (selectedIndex != globalIndex) {
       if (selectedIndex != null) {
         globalIndex = selectedIndex;

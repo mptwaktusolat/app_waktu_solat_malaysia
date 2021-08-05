@@ -16,13 +16,10 @@ dependencies:
   intl: ^0.17.0
   google_fonts: ^2.1.0
   fluttertoast: ^8.0.7
-  hijri:
-    git: https://github.com/iqfareez/hijri_date.git
   get_storage: ^2.0.2
   url_launcher: ^6.0.4
   flutter_spinkit: ^5.0.0
   get: ^4.1.4
-  auto_size_text: ^2.1.0
   provider: ^5.0.0
   font_awesome_flutter: ^9.0.0
 

@@ -4,14 +4,12 @@ import '../CONSTANTS.dart';
 
 class LaunchUrl {
   static void normalLaunchUrl({String url}) {
-    print('Launching $url');
     _launchURL(url);
   }
 
   static void sendViaEmail(String messageContent) {
     final emailLink = Uri.encodeFull(
         'mailto:$kSupportEmail?subject=Feedback MPT&body=$messageContent');
-    print(emailLink);
     _launchURL(emailLink);
   }
 }

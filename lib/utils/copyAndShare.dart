@@ -1,5 +1,4 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 
 import '../CONSTANTS.dart' as Constants;
@@ -8,9 +7,6 @@ import 'location/locationDatabase.dart';
 
 class CopyAndShare {
   static String getMessage({int type = 1}) {
-    var hijriToday =
-        HijriCalendar.fromDate(DateTime.now().subtract(Duration.zero))
-            .toFormat('dd MMMM yyyy');
     var dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
     var dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
     var _globalIndex = GetStorage().read(Constants.kStoredGlobalIndex);
@@ -22,7 +18,6 @@ class CopyAndShare {
 Solat timetable: $dayFormat, $dateFormat
 
 📍 $daerah ($negeri)
-📆 ${hijriToday}H
 
 ☁ Subuh: ${CachedPrayerTimeData.allPrayerTime()[0]}
 🌞 Zohor: ${CachedPrayerTimeData.allPrayerTime()[1]}
@@ -37,7 +32,6 @@ Visit: waktusolat.web.app''';
 *Solat timetable: $dayFormat, $dateFormat*
 
 📍 _$daerah *($negeri)*_
-📆 ${hijriToday}H
 
 ```☁ Subuh   : ${CachedPrayerTimeData.allPrayerTime()[0]}```
 ```🌞 Zohor   : ${CachedPrayerTimeData.allPrayerTime()[1]}```

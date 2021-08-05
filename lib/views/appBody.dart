@@ -1,34 +1,28 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
-import '../utils/sizeconfig.dart';
 import 'GetPrayerTime.dart';
 import 'ZoneChooser.dart';
 
 class AppBody extends StatelessWidget {
-  final _hijriToday = HijriCalendar.fromDate(DateTime.now().add(Duration.zero));
   final _dayFormat = DateFormat('EEEE').format(DateTime.now());
   final dateFormat = DateFormat('dd MMM yyyy').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            width: SizeConfig.screenWidth,
-            height: SizeConfig.screenHeight / 6,
+            width: double.infinity,
             decoration: BoxDecoration(
               color: Theme.of(context).appBarTheme.color,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40)),
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(40),
+              ),
             ),
-            padding: EdgeInsets.all(5.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -53,13 +47,6 @@ class AppBody extends StatelessWidget {
                                     _dayFormat,
                                     style: GoogleFonts.spartan(
                                         color: Colors.white),
-                                  ),
-                                  AutoSizeText(
-                                    _hijriToday.toFormat("dd MMMM yyyy"),
-                                    style: GoogleFonts.acme(
-                                        color: Colors.white, fontSize: 17),
-                                    stepGranularity: 1,
-                                    // maxLines: 1,
                                   ),
                                   Text(
                                     dateFormat,
@@ -87,17 +74,10 @@ class AppBody extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
-            height: SizeConfig.screenHeight / 69,
-          ),
           Padding(
-            padding: EdgeInsets.fromLTRB(SizeConfig.screenWidth / 10, 8.0,
-                SizeConfig.screenWidth / 10, 8.0),
+            padding: EdgeInsets.all(24),
             child: GetPrayerTime(),
           ),
-          SizedBox(
-            height: SizeConfig.screenHeight / 45,
-          )
         ],
       ),
     );

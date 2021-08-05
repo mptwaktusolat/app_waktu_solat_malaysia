@@ -20,7 +20,6 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
     timeFormat =
         GetStorage().read(Constants.kStoredTimeIs12) ? '12 hour' : '24 hour';
-    print(timeFormat);
   }
 
   @override
@@ -121,12 +120,10 @@ class _SettingsPageState extends State<SettingsPage> {
           }).toList(),
           onChanged: (String newValue) {
             var is12 = newValue == '12 hour';
-            // print('NewValue $newValue');
             setting.use12hour = is12;
             GetStorage().write(Constants.kStoredTimeIs12, is12);
             setState(() {
               timeFormat = newValue;
-              print(GetStorage().read(Constants.kStoredTimeIs12));
             });
           },
           value: timeFormat,

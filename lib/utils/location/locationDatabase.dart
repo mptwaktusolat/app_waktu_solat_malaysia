@@ -9,7 +9,7 @@ class LocationDatabase {
     Location(
       jakimCode: 'JHR01',
       negeri: 'Johor',
-      daerah: 'Pulau Air dan Pulau Pemanggil',
+      daerah: 'Pulau Aur dan Pulau Pemanggil',
       mptLocationCode: 'jhr-7',
     ),
     Location(
@@ -387,7 +387,6 @@ class LocationDatabase {
     var jakimCaps = jakimCode.toUpperCase();
     var index = _locationDatabase
         .indexWhere((element) => element.jakimCode == jakimCaps);
-    print('index of $jakimCaps is at $index');
     return index;
   }
 

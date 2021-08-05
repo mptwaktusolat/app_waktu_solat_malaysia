@@ -39,7 +39,6 @@ class FeedbackToEmail {
     //add github issue link
 
     //EOF is end of feedback
-    print(data);
     return data;
   }
 }
@@ -81,7 +80,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 tooltip: 'Send via email',
                 icon: Icon(Icons.send),
                 onPressed: () {
-                  print('Pressed send');
                   if (_logIsChecked) {
                     feedbackToEmail.debugLogSetter('''
                         ---------------------DEVICE---------------------
