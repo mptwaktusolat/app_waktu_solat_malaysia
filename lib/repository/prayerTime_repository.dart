@@ -2,8 +2,8 @@
 
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/models/mpti906PrayerData.dart';
-import 'package:waktusolatmalaysia/networking/ApiProvider.dart';
+import '../models/mpti906PrayerData.dart';
+import '../networking/ApiProvider.dart';
 
 class AzanTimesTodayRepository {
   ApiProvider _provider = ApiProvider();

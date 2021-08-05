@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none"
 
-version: 1.4.4-web+14
+version: 1.4.6-web+15
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
