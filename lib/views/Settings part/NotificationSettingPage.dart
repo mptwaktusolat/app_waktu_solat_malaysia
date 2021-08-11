@@ -9,7 +9,7 @@ import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
 
 class NotificationPageSetting extends StatefulWidget {
-  const NotificationPageSetting({Key key}) : super(key: key);
+  const NotificationPageSetting({Key? key}) : super(key: key);
   @override
   _NotificationPageSettingState createState() =>
       _NotificationPageSettingState();

@@ -5,13 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import '../CONSTANTS.dart';
 import '../views/Settings%20part/settingsProvider.dart';
 import 'copyAndShare.dart';
 import 'launchUrl.dart';
 
 class ShareFAB extends StatelessWidget {
-  const ShareFAB({Key key}) : super(key: key);
+  const ShareFAB({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +23,10 @@ class ShareFAB extends StatelessWidget {
             switch (setting.sharingFormat) {
               case 2:
                 return const FaIcon(FontAwesomeIcons.whatsapp);
-                break;
               case 3:
                 return const FaIcon(FontAwesomeIcons.clone);
-                break;
               default:
                 return const FaIcon(FontAwesomeIcons.shareAlt);
-                break;
             }
           },
         ),

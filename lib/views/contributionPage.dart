@@ -13,7 +13,7 @@ class ButtonContent {
 }
 
 class ContributionPage extends StatelessWidget {
-  const ContributionPage({Key key}) : super(key: key);
+  const ContributionPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,18 +103,18 @@ class ContributionPage extends StatelessWidget {
 
 // ignore: must_be_immutable
 class MyCard extends StatelessWidget {
-  MyCard({Key key, this.title, this.description, this.buttonContent})
+  MyCard({Key? key, this.title, this.description, this.buttonContent})
       : super(key: key);
 
-  final String title;
-  final String description;
-  final List<ButtonContent> buttonContent;
+  final String? title;
+  final String? description;
+  final List<ButtonContent>? buttonContent;
   List<TextButton> textButton = [];
 
   void generateButtons() {
-    for (var item in buttonContent) {
+    for (var item in buttonContent!) {
       textButton
-          .add(TextButton(onPressed: item.onClick, child: Text(item.label)));
+          .add(TextButton(onPressed: item.onClick as void Function()?, child: Text(item.label)));
     }
   }
 
@@ -129,7 +129,7 @@ class MyCard extends StatelessWidget {
             ListTile(
               contentPadding: const EdgeInsets.all(0),
               title: Text(
-                title,
+                title!,
                 style: const TextStyle(fontSize: 18),
               ),
               subtitle: Text('\n$description'),

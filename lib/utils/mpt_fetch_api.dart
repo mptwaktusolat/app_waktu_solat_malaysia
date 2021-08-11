@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:waktusolatmalaysia/utils/DateAndTime.dart';
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
+import 'DateAndTime.dart';
+import 'debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../models/mpti906PrayerData.dart';
 
@@ -14,9 +14,9 @@ class MptApiFetch {
       var json = GetStorage().read(kJsonCache);
       var parsedModel = Mpti906PrayerModel.fromJson(json);
       // Check is same location code, month and year
-      if ((parsedModel.data.code == location) &&
-          DateAndTime.isSameMonthFromM(parsedModel.data.month) &&
-          DateAndTime.isTheSameYear(parsedModel.data.year)) {
+      if ((parsedModel.data!.code == location) &&
+          DateAndTime.isSameMonthFromM(parsedModel.data!.month) &&
+          DateAndTime.isTheSameYear(parsedModel.data!.year)) {
         DebugToast.show('Reading from cache');
         return parsedModel;
       }

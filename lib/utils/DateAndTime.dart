@@ -18,12 +18,12 @@ class DateAndTime {
   }
 
   /// Accept month in integer, for eg: 7 (for July) etc.
-  static bool isSameMonthFromM(int month) {
+  static bool isSameMonthFromM(int? month) {
     return month == DateTime.now().month;
   }
 
   /// Accept year in int, for eg: 2021
-  static bool isTheSameYear(int year) {
+  static bool isTheSameYear(int? year) {
     return year == DateTime.now().year;
   }
 

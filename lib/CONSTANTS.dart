@@ -48,8 +48,8 @@ const kDeveloperActivityImage =
 const kPlayStoreListingLink =
     'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
 const kPlayStoreListingShortLink = 'http://bit.ly/MPTdl';
-const kPrivacyPolicyLink = 'https://telegra.ph/MPT-Privacy-Policy-07-24';
-const kPrivacyPolicyShortLink = 'http://bit.ly/mpt-pp';
+const kPrivacyPolicyLink =
+    'https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Privacy-Policy';
 const kReleaseNotesLink =
     'https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20';
 const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';

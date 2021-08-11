@@ -30,7 +30,6 @@ Solat timetable: $_dayFormat, $_dateFormat
 ⭐ Isyak: ${TempPrayerTimeData.allPrayerTime()[4]}
 
 Get the app: ${constants.kMptFdlGetLink}''';
-        break;
       case 2:
         return '''
 *Solat timetable: $_dayFormat, $_dateFormat*
@@ -45,7 +44,6 @@ Get the app: ${constants.kMptFdlGetLink}''';
 ```⭐ Isyak   : ${TempPrayerTimeData.allPrayerTime()[4]}```
 
 Get the app: ${constants.kMptFdlGetLink}''';
-        break;
       default:
         return '';
     }

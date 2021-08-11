@@ -19,17 +19,17 @@ import 'ZoneChooser.dart';
 import 'debug_widgets.dart';
 
 class AppBody extends StatefulWidget {
-  const AppBody({Key key}) : super(key: key);
+  const AppBody({Key? key}) : super(key: key);
 
   @override
   State<AppBody> createState() => _AppBodyState();
 }
 
 class _AppBodyState extends State<AppBody> {
-  BannerAd _ad;
+  late BannerAd _ad;
   bool _isAdLoaded = false;
   bool showFirstChild = true;
-  bool _showNotifPrompt;
+  late bool _showNotifPrompt;
 
   @override
   void initState() {
@@ -124,7 +124,7 @@ class _AppBodyState extends State<AppBody> {
                                   /// Fetch data from server whenever possible
                                   if (snapshot.hasData) {
                                     int _offset =
-                                        snapshot.data.getInt('hijri_offset');
+                                        snapshot.data!.getInt('hijri_offset');
                                     GetStorage().write(kHijriOffset, _offset);
                                     return DateWidget(
                                       hijriOffset: Duration(days: _offset),
@@ -147,7 +147,7 @@ class _AppBodyState extends State<AppBody> {
                       child: Consumer<LocationProvider>(
                         builder: (context, value, child) {
                           String shortCode = LocationDatabase.getJakimCode(
-                              value.currentLocationIndex);
+                              value.currentLocationIndex!);
                           return Container(
                             margin: const EdgeInsets.all(5.0),
                             padding: const EdgeInsets.all(18.0),
@@ -166,7 +166,7 @@ class _AppBodyState extends State<AppBody> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Currently set to ${LocationDatabase.getDaerah(value.currentLocationIndex)} in ${LocationDatabase.getNegeri(value.currentLocationIndex)}'),
+                                        'Currently set to ${LocationDatabase.getDaerah(value.currentLocationIndex!)} in ${LocationDatabase.getNegeri(value.currentLocationIndex!)}'),
                                     behavior: SnackBarBehavior.floating,
                                     action: SnackBarAction(
                                       label: 'Change',
@@ -317,8 +317,8 @@ class _AppBodyState extends State<AppBody> {
 
 class DateWidget extends StatelessWidget {
   const DateWidget({
-    Key key,
-    @required Duration hijriOffset,
+    Key? key,
+    required Duration hijriOffset,
   })  : _hijriOffset = hijriOffset,
         super(key: key);
 

@@ -19,7 +19,7 @@ import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
 
-NotificationAppLaunchDetails notifLaunch;
+NotificationAppLaunchDetails? notifLaunch;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +48,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   final _primaryColour = Colors.teal;
 
   @override
@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,7 @@ void initGetStorage() {
   _get.writeIfNull(kDiscoveredDeveloperOption, false);
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);
-  _get.writeIfNull(kHijriOffset, 0);
+  _get.writeIfNull(kHijriOffset, -1);
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -162,7 +162,7 @@ void readAllGetStorage() {
 void showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
+  int? _appLaunchCount = GetStorage().read(kAppLaunchCount);
 
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));

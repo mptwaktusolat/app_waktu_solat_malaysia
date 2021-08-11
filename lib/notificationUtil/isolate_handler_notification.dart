@@ -1,8 +1,8 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:isolate_handler/isolate_handler.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
+import 'package:timezone/timezone.dart' hide LocationDatabase;
+import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import 'notifications_helper.dart';
@@ -49,8 +49,8 @@ void schedulePrayNotification(List<dynamic> times) async {
         notifsPlugin: _notifsPlugin,
         id: (subuhTimeEpoch / 1000).truncate(),
         title: 'It\'s Subuh',
-        scheduledTime: tz.TZDateTime.from(
-            DateTime.fromMillisecondsSinceEpoch(subuhTimeEpoch), tz.local),
+        scheduledTime:
+            TZDateTime.fromMillisecondsSinceEpoch(local, subuhTimeEpoch),
         body: 'in ' + currentLocation,
       );
     }
@@ -61,8 +61,8 @@ void schedulePrayNotification(List<dynamic> times) async {
           id: (syurukTimeEpoch / 1000).truncate(),
           title: 'It\'s Syuruk',
           body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(syurukTimeEpoch), tz.local));
+          scheduledTime:
+              TZDateTime.fromMillisecondsSinceEpoch(local, syurukTimeEpoch));
     }
     if (!(zuhrTimeEpoch < currentTime)) {
       await schedulePrayerNotification(
@@ -71,8 +71,8 @@ void schedulePrayNotification(List<dynamic> times) async {
           id: (zuhrTimeEpoch / 1000).truncate(),
           title: 'It\'s Zohor',
           body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(zuhrTimeEpoch), tz.local));
+          scheduledTime:
+              TZDateTime.fromMillisecondsSinceEpoch(local, zuhrTimeEpoch));
     }
     if (!(asarTimeEpoch < currentTime)) {
       await schedulePrayerNotification(
@@ -81,8 +81,8 @@ void schedulePrayNotification(List<dynamic> times) async {
           id: (asarTimeEpoch / 1000).truncate(),
           title: 'It\'s Asar',
           body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(asarTimeEpoch), tz.local));
+          scheduledTime:
+              TZDateTime.fromMillisecondsSinceEpoch(local, asarTimeEpoch));
     }
     if (!(maghribTimeEpoch < currentTime)) {
       await schedulePrayerNotification(
@@ -91,18 +91,19 @@ void schedulePrayNotification(List<dynamic> times) async {
           id: (maghribTimeEpoch / 1000).truncate(),
           title: 'It\'s Maghrib',
           body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(maghribTimeEpoch), tz.local));
+          scheduledTime:
+              TZDateTime.fromMillisecondsSinceEpoch(local, maghribTimeEpoch));
     }
     if (!(isyakTimeEpoch < currentTime)) {
       await schedulePrayerNotification(
-          name: 'Isya\'',
-          notifsPlugin: _notifsPlugin,
-          id: (isyakTimeEpoch / 1000).truncate(),
-          title: 'It\'s Isyak',
-          body: 'in ' + currentLocation,
-          scheduledTime: tz.TZDateTime.from(
-              DateTime.fromMillisecondsSinceEpoch(isyakTimeEpoch), tz.local));
+        name: 'Isya\'',
+        notifsPlugin: _notifsPlugin,
+        id: (isyakTimeEpoch / 1000).truncate(),
+        title: 'It\'s Isyak',
+        body: 'in ' + currentLocation,
+        scheduledTime:
+            TZDateTime.fromMillisecondsSinceEpoch(local, isyakTimeEpoch),
+      );
     }
   }
 
@@ -113,8 +114,10 @@ void schedulePrayNotification(List<dynamic> times) async {
     body:
         'To continue receive prayer notification, open app at least once every month.',
     payload: kPayloadMonthly,
-    scheduledTime: tz.TZDateTime.local(currentDate.year, currentDate.month + 1,
-        1, 0, 5), //2021-01-01 00:05:00.000+0800
+    // if month (12 + 1) = 13, it will auto-increment to next year
+    //2021-01-01 00:05:00.000+0800
+    scheduledTime:
+        TZDateTime.local(currentDate.year, currentDate.month + 1, 1, 0, 5),
   );
 
   DebugToast.show('FINISH SCHEDULE NOTIFS');

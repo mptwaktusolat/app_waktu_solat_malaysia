@@ -5,13 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../utils/launchUrl.dart';
 
 class FaqPage extends StatefulWidget {
-  const FaqPage({Key key}) : super(key: key);
+  const FaqPage({Key? key}) : super(key: key);
   @override
   _FaqPageState createState() => _FaqPageState();
 }
 
 class _FaqPageState extends State<FaqPage> {
-  CollectionReference _faqCollection;
+  late CollectionReference _faqCollection;
   @override
   void initState() {
     super.initState();
@@ -30,12 +30,12 @@ class _FaqPageState extends State<FaqPage> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-              itemCount: snapshot.data.docs.length,
+              itemCount: snapshot.data!.docs.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(snapshot.data.docs[index]['title']),
+                  title: Text(snapshot.data!.docs[index]['title']),
                   subtitle: Text(
-                    snapshot.data.docs[index]['url'],
+                    snapshot.data!.docs[index]['url'],
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -45,7 +45,7 @@ class _FaqPageState extends State<FaqPage> {
                   ),
                   onTap: () {
                     LaunchUrl.normalLaunchUrl(
-                        url: snapshot.data.docs[index]['url'],
+                        url: snapshot.data!.docs[index]['url'],
                         useCustomTabs: true);
                   },
                 );
@@ -72,5 +72,5 @@ class FaqItem {
   String url;
 
   /// Url must have https:// at front
-  FaqItem({@required this.title, @required this.url});
+  FaqItem({required this.title, required this.url});
 }

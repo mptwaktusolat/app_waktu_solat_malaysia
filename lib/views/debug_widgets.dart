@@ -4,10 +4,10 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
-import 'package:waktusolatmalaysia/notificationUtil/notifications_helper.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import '../notificationUtil/notifications_helper.dart';
+import '../locationUtil/LocationData.dart';
+import '../utils/launchUrl.dart';
 import '../CONSTANTS.dart';
 
 class DebugWidgets {
@@ -34,10 +34,10 @@ class DebugWidgets {
           ),
           ListTile(
             title: const Text('Last position'),
-            subtitle: Text(LocationData.position.toString() ?? 'no detect'),
+            subtitle: Text(LocationData.position?.toString() ?? 'no detect'),
             onLongPress: () {
               Clipboard.setData(ClipboardData(
-                      text: LocationData.position.toString() ?? 'no detect'))
+                      text: LocationData.position?.toString() ?? 'no detect'))
                   .then((value) =>
                       Fluttertoast.showToast(msg: 'Copied position'));
             },

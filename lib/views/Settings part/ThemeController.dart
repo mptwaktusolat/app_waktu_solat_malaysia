@@ -6,10 +6,10 @@ import 'package:get_storage/get_storage.dart';
 import '../../notificationUtil/prevent_update_notifs.dart';
 
 class ThemeController with ChangeNotifier {
-  ThemeMode _themeMode;
-  ThemeMode get themeMode => _themeMode;
+  ThemeMode? _themeMode;
+  ThemeMode? get themeMode => _themeMode;
 
-  set themeMode(ThemeMode themeMode) {
+  set themeMode(ThemeMode? themeMode) {
     PreventUpdatingNotifs.setNow();
     _themeMode = themeMode;
     GetStorage().write('theme', themeMode.toString().split('.')[1]);

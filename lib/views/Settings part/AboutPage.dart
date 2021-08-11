@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/views/debug_widgets.dart';
+import '../debug_widgets.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/launchUrl.dart';
 import '../Settings%20part/settingsProvider.dart';
@@ -15,8 +15,8 @@ import '../contributionPage.dart';
 import '../faq.dart';
 
 class AboutAppPage extends StatelessWidget {
-  const AboutAppPage({Key key, this.packageInfo}) : super(key: key);
-  final PackageInfo packageInfo;
+  const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
+  final PackageInfo? packageInfo;
   final appLegalese = 'Copyright © 2020-2021 Fareez Iqmal';
 
   @override
@@ -40,11 +40,11 @@ class AboutAppPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onLongPress: () {
-                      if (isFirstTry && !setting.isDeveloperOption) {
+                      if (isFirstTry && !setting.isDeveloperOption!) {
                         Fluttertoast.showToast(msg: '(⌐■_■)');
                         isFirstTry = false;
                       } else {
-                        if (!setting.isDeveloperOption) {
+                        if (!setting.isDeveloperOption!) {
                           Fluttertoast.showToast(
                               msg: 'Developer mode discovered',
                               toastLength: Toast.LENGTH_LONG,
@@ -86,12 +86,12 @@ class AboutAppPage extends StatelessWidget {
                   GestureDetector(
                     onLongPress: () {
                       Clipboard.setData(
-                              ClipboardData(text: packageInfo.version))
+                              ClipboardData(text: packageInfo!.version))
                           .then((value) => Fluttertoast.showToast(
                               msg: 'Copied version info'));
                     },
                     child: Text(
-                      'Version ${packageInfo.version}\n',
+                      'Version ${packageInfo!.version}\n',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
                     ),
@@ -106,7 +106,7 @@ class AboutAppPage extends StatelessWidget {
                         text: TextSpan(
                           style: TextStyle(
                               color:
-                                  Theme.of(context).textTheme.bodyText2.color),
+                                  Theme.of(context).textTheme.bodyText2!.color),
                           children: [
                             const TextSpan(
                               text: 'Prayer data are fetched from',
@@ -190,8 +190,8 @@ class AboutAppPage extends StatelessWidget {
                       onTap: () {
                         showLicensePage(
                             context: context,
-                            applicationName: packageInfo.appName,
-                            applicationVersion: packageInfo.version,
+                            applicationName: packageInfo!.appName,
+                            applicationVersion: packageInfo!.version,
                             applicationIcon: Hero(
                               tag: kAppIconTag,
                               child: CachedNetworkImage(

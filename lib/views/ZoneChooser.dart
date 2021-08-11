@@ -9,7 +9,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
+import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -43,9 +43,9 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    String administrativeArea;
-    String locality;
-    String country;
+    String? administrativeArea;
+    String? locality;
+    String? country;
 
     Position _pos = await LocationData.getCurrentLocation();
     DebugToast.show(_pos.toString());
@@ -59,14 +59,14 @@ class LocationChooser {
       GetStorage().write(kStoredLocationLocality, locality);
     } on PlatformException catch (e) {
       GetStorage().write(kStoredLocationLocality, e.message.toString());
-      if (e.message.contains('A network error occurred')) {
+      if (e.message!.contains('A network error occurred')) {
         throw 'A network error occurred trying to lookup the supplied coordinates.';
       } else {
         rethrow;
       }
     }
     DebugToast.show(country);
-    if (country.toLowerCase() != "malaysia") {
+    if (country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
     }
 
@@ -82,7 +82,7 @@ class LocationChooser {
   }
 
   static Future<bool> showLocationChooser(BuildContext context) async {
-    bool res = await showDialog(
+    bool? res = await showDialog(
       context: context,
       builder: (context) {
         return Dialog(
@@ -100,7 +100,7 @@ class LocationChooser {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return onLoadingWidget();
                   } else if (snapshot.hasData) {
-                    return onCompletedWidget(context, location: snapshot.data);
+                    return onCompletedWidget(context, location: snapshot.data!);
                   } else if (snapshot.hasError) {
                     return onErrorWidget(
                       context,
@@ -118,7 +118,7 @@ class LocationChooser {
     return res ?? false;
   }
 
-  static Future<bool> openLocationBottomSheet(BuildContext context) async {
+  static Future<bool?> openLocationBottomSheet(BuildContext context) async {
     return await showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
@@ -140,23 +140,15 @@ class LocationChooser {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             onTap: () {
-                              bool _success = false;
-
-                              if (index != null) {
-                                value.currentLocationIndex = index;
-                                _success = true;
-                                onNewLocationSaved(context);
-                              }
-                              Navigator.pop(context, _success);
+                              value.currentLocationIndex = index;
+                              onNewLocationSaved(context);
+                              Navigator.pop(context, true);
                             },
                             title: Text(LocationDatabase.getDaerah(index)),
                             subtitle: Text(LocationDatabase.getNegeri(index)),
                             trailing: locationBubble(
                                 context, LocationDatabase.getJakimCode(index)),
-                            selected:
-                                GetStorage().read(kStoredGlobalIndex) == index
-                                    ? true
-                                    : false,
+                            selected: value.currentLocationIndex == index,
                           );
                         },
                       ),
@@ -186,7 +178,7 @@ class LocationChooser {
   }
 
   static Widget onCompletedWidget(BuildContext context,
-      {@required LocationCoordinateData location}) {
+      {required LocationCoordinateData location}) {
     var index = LocationDatabase.indexOfLocation(location.zone);
 
     return Consumer<LocationProvider>(
@@ -202,7 +194,7 @@ class LocationChooser {
                 flex: 3,
                 child: Center(
                   child: Text(
-                    location.lokasi,
+                    location.lokasi!,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 24, fontWeight: FontWeight.bold),
@@ -266,7 +258,7 @@ class LocationChooser {
   }
 
   static Widget onErrorWidget(BuildContext context,
-      {@required String errorMessage, Function onRetryPressed}) {
+      {required String errorMessage, Function? onRetryPressed}) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

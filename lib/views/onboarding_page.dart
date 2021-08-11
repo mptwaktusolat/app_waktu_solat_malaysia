@@ -7,7 +7,7 @@ import 'Settings%20part/ThemePage.dart';
 import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key key}) : super(key: key);
+  const OnboardingPage({Key? key}) : super(key: key);
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
 }
@@ -22,7 +22,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   );
 
   bool _isDoneSetLocation = false;
-  AnimationController _animController;
+  AnimationController? _animController;
 
   @override
   void initState() {
@@ -75,9 +75,9 @@ class _OnboardingPageState extends State<OnboardingPage>
               bool _isDarkMode =
                   Theme.of(context).brightness == Brightness.dark;
               if (_isDarkMode) {
-                _animController.forward();
+                _animController!.forward();
               } else {
-                _animController.reverse();
+                _animController!.reverse();
               }
               return AnimatedMoon(
                 animationController: _animController,
