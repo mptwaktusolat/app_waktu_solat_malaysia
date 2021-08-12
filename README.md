@@ -66,7 +66,7 @@ And submit your review. Some of the version are also available in Google Play be
 - [Part 1](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1)
 - [Part 2](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ2MjI5MzM4MjczODAw)
 - [Part 3](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTM5MTYyNTU1MTQ0MjYx)
-- [Part 4] - Coming soon.
+- [Part 4](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODg2ODQ3MDQwMjc2ODM3)
 
 ## Honourable mention
 
