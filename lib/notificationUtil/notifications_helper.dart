@@ -73,14 +73,14 @@ void configureSelectNotificationSubject(BuildContext context) {
 
 Future<void> schedulePrayerNotification(
     //for main prayer functionality
-    {required FlutterLocalNotificationsPlugin notifsPlugin,
-    required String name,
+    {required String name,
     required int id,
     required String title,
     required String body,
-    required TZDateTime scheduledTime}) async {
+    required TZDateTime scheduledTime,
+    String? summary}) async {
   BigTextStyleInformation styleInformation =
-      BigTextStyleInformation(body, summaryText: 'Summary text');
+      BigTextStyleInformation(body, summaryText: summary);
   var androidSpecifics = AndroidNotificationDetails(
     '$name id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
@@ -93,7 +93,8 @@ Future<void> schedulePrayerNotification(
   var iOSSpecifics = const IOSNotificationDetails();
   var platformChannelSpecifics =
       NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
-  await notifsPlugin.zonedSchedule(
+
+  await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation:
@@ -103,8 +104,7 @@ Future<void> schedulePrayerNotification(
 
 Future<void> scheduleAlertNotification(
     //for main prayer functionality
-    {required FlutterLocalNotificationsPlugin notifsPlugin,
-    required int id,
+    {required int id,
     required String title,
     required String body,
     String? payload,
@@ -123,7 +123,7 @@ Future<void> scheduleAlertNotification(
   var iOSSpecifics = const IOSNotificationDetails();
   var platformChannelSpecifics =
       NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
-  await notifsPlugin.zonedSchedule(
+  await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidAllowWhileIdle: true,
       payload: payload,

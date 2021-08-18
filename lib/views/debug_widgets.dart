@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -53,7 +52,6 @@ class DebugWidgets {
             subtitle: const Text('Payload: $kPayloadDebug'),
             onTap: () async {
               await scheduleAlertNotification(
-                  notifsPlugin: FlutterLocalNotificationsPlugin(),
                   title: 'debug payload',
                   id: 219, //randrom int haha
                   body: 'With payload',

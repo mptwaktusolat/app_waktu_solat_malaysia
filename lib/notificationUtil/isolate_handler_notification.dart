@@ -10,105 +10,98 @@ import 'notifications_helper.dart';
 // https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6
 
 final IsolateHandler isolateHandler = IsolateHandler();
-final _notifsPlugin = FlutterLocalNotificationsPlugin();
-DateTime currentDate = DateTime.now();
 
 void schedulePrayNotification(List<dynamic> times) async {
-  await _notifsPlugin.cancelAll(); //reset all
+  await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
+  var _currentDateTime = DateTime.now();
 
   String currentLocation =
       LocationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
-  var currentTime = DateTime.now().millisecondsSinceEpoch;
-  int howMuchToSchedule;
 
+  //if true, notification is scheduled by at most 7 days
   if (GetStorage().read(kStoredNotificationLimit)) {
-    //should limit to 7
-    howMuchToSchedule = times.length < 7 ? times.length : 7;
-  } else {
-    howMuchToSchedule = times.length;
+    times = times.take(7).toList();
   }
 
-  DebugToast.show('SCHEDULING $howMuchToSchedule notifications');
+  DebugToast.show('SCHEDULING ${times.length} notifications');
 
   // for debug dialog
-  GetStorage().write(kNumberOfNotifsScheduled, howMuchToSchedule);
+  GetStorage().write(kNumberOfNotifsScheduled, times.length);
 
-  for (int i = 0; i < howMuchToSchedule; i++) {
-    //i denotes the day relative for today
-    int subuhTimeEpoch = times[i][0] * 1000;
-    int syurukTimeEpoch = times[i][1] * 1000;
-    int zuhrTimeEpoch = times[i][2] * 1000;
-    int asarTimeEpoch = times[i][3] * 1000;
-    int maghribTimeEpoch = times[i][4] * 1000;
-    int isyakTimeEpoch = times[i][5] * 1000;
+  for (var dayTime in times) {
+    DateTime subuhDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
+    DateTime syurukDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
+    DateTime zuhrDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
+    DateTime asarDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
+    DateTime maghribDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
+    DateTime isyakDateTime =
+        DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
 
-    if (!(subuhTimeEpoch < currentTime)) {
+    if (subuhDateTime.isAfter(_currentDateTime)) {
       //to make sure the time is in future
       await schedulePrayerNotification(
         name: 'Fajr',
-        notifsPlugin: _notifsPlugin,
-        id: (subuhTimeEpoch / 1000).truncate(),
+        id: subuhDateTime.microsecondsSinceEpoch ~/ 10000,
         title: 'It\'s Subuh',
-        scheduledTime:
-            TZDateTime.fromMillisecondsSinceEpoch(local, subuhTimeEpoch),
+        scheduledTime: TZDateTime.from(subuhDateTime, local),
         body: 'in ' + currentLocation,
       );
     }
-    if (!(syurukTimeEpoch < currentTime)) {
+    if (syurukDateTime.isAfter(_currentDateTime)) {
       await schedulePrayerNotification(
-          name: 'Syuruk',
-          notifsPlugin: _notifsPlugin,
-          id: (syurukTimeEpoch / 1000).truncate(),
-          title: 'It\'s Syuruk',
-          body: 'in ' + currentLocation,
-          scheduledTime:
-              TZDateTime.fromMillisecondsSinceEpoch(local, syurukTimeEpoch));
+        name: 'Syuruk',
+        id: syurukDateTime.microsecondsSinceEpoch ~/ 10000,
+        title: 'It\'s Syuruk',
+        body: 'in ' + currentLocation,
+        summary: 'Ends of Subuh',
+        scheduledTime: TZDateTime.from(syurukDateTime, local),
+      );
     }
-    if (!(zuhrTimeEpoch < currentTime)) {
+    if (zuhrDateTime.isAfter(_currentDateTime)) {
       await schedulePrayerNotification(
-          name: 'Zuhr',
-          notifsPlugin: _notifsPlugin,
-          id: (zuhrTimeEpoch / 1000).truncate(),
-          title: 'It\'s Zohor',
-          body: 'in ' + currentLocation,
-          scheduledTime:
-              TZDateTime.fromMillisecondsSinceEpoch(local, zuhrTimeEpoch));
+        name: 'Zuhr',
+        id: zuhrDateTime.microsecondsSinceEpoch ~/ 10000,
+        title: 'It\'s Zohor',
+        body: 'in ' + currentLocation,
+        summary: zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+        scheduledTime: TZDateTime.from(zuhrDateTime, local),
+      );
     }
-    if (!(asarTimeEpoch < currentTime)) {
+    if (asarDateTime.isAfter(_currentDateTime)) {
       await schedulePrayerNotification(
-          name: 'Asr',
-          notifsPlugin: _notifsPlugin,
-          id: (asarTimeEpoch / 1000).truncate(),
-          title: 'It\'s Asar',
-          body: 'in ' + currentLocation,
-          scheduledTime:
-              TZDateTime.fromMillisecondsSinceEpoch(local, asarTimeEpoch));
+        name: 'Asr',
+        id: asarDateTime.microsecondsSinceEpoch ~/ 10000,
+        title: 'It\'s Asar',
+        body: 'in ' + currentLocation,
+        scheduledTime: TZDateTime.from(asarDateTime, local),
+      );
     }
-    if (!(maghribTimeEpoch < currentTime)) {
+    if (maghribDateTime.isAfter(_currentDateTime)) {
       await schedulePrayerNotification(
-          name: 'Maghrib',
-          notifsPlugin: _notifsPlugin,
-          id: (maghribTimeEpoch / 1000).truncate(),
-          title: 'It\'s Maghrib',
-          body: 'in ' + currentLocation,
-          scheduledTime:
-              TZDateTime.fromMillisecondsSinceEpoch(local, maghribTimeEpoch));
+        name: 'Maghrib',
+        id: maghribDateTime.microsecondsSinceEpoch ~/ 10000,
+        title: 'It\'s Maghrib',
+        body: 'in ' + currentLocation,
+        scheduledTime: TZDateTime.from(maghribDateTime, local),
+      );
     }
-    if (!(isyakTimeEpoch < currentTime)) {
+    if (isyakDateTime.isAfter(_currentDateTime)) {
       await schedulePrayerNotification(
         name: 'Isya\'',
-        notifsPlugin: _notifsPlugin,
-        id: (isyakTimeEpoch / 1000).truncate(),
+        id: isyakDateTime.microsecondsSinceEpoch ~/ 10000,
         title: 'It\'s Isyak',
         body: 'in ' + currentLocation,
-        scheduledTime:
-            TZDateTime.fromMillisecondsSinceEpoch(local, isyakTimeEpoch),
+        scheduledTime: TZDateTime.from(isyakDateTime, local),
       );
     }
   }
 
   scheduleAlertNotification(
-    notifsPlugin: _notifsPlugin,
     id: 2190,
     title: 'Monthly refresh reminder',
     body:
@@ -116,15 +109,17 @@ void schedulePrayNotification(List<dynamic> times) async {
     payload: kPayloadMonthly,
     // if month (12 + 1) = 13, it will auto-increment to next year
     //2021-01-01 00:05:00.000+0800
-    scheduledTime:
-        TZDateTime.local(currentDate.year, currentDate.month + 1, 1, 0, 5),
+    scheduledTime: TZDateTime.local(
+        _currentDateTime.year, _currentDateTime.month + 1, 1, 0, 5),
   );
-
-  DebugToast.show('FINISH SCHEDULE NOTIFS');
 
   //This timestamp is later used to determine wether notification should be updated or not
   GetStorage()
       .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
+
+  var _endOperation = DateTime.now();
+  var _timeTaken = _endOperation.difference(_currentDateTime);
+  DebugToast.show('Finish schedule notif. after $_timeTaken');
 
   killCurrentScheduleNotifications();
 }
