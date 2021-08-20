@@ -230,13 +230,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1"
-  flutter_isolate:
-    dependency: transitive
-    description:
-      name: flutter_isolate
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -431,13 +424,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  isolate_handler:
-    dependency: "direct main"
-    description:
-      name: isolate_handler
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   js:
     dependency: transitive
     description:
