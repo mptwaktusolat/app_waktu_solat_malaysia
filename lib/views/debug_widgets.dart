@@ -48,17 +48,17 @@ class DebugWidgets {
             },
           ),
           ListTile(
-            title: const Text('Send alert test in one minute'),
+            title: const Text('Send azan test in 30 secs'),
             subtitle: const Text('Payload: $kPayloadDebug'),
             onTap: () async {
-              await scheduleAlertNotification(
-                  title: 'debug payload',
-                  id: 219, //randrom int haha
-                  body: 'With payload',
-                  payload: kPayloadDebug,
-                  scheduledTime: tz.TZDateTime.now(tz.local).add(
-                    const Duration(minutes: 1),
-                  ));
+              await scheduleSinglePrayerNotification(
+                  name: 'name',
+                  id: 2321,
+                  title: 'title',
+                  body: 'body',
+                  customSound: 'hejaz_fajr',
+                  scheduledTime: tz.TZDateTime.now(tz.local)
+                      .add(const Duration(seconds: 30)));
             },
           ),
           ListTile(

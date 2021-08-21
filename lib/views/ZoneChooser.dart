@@ -69,9 +69,8 @@ class LocationChooser {
     if (country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
     }
-
     var zone = LocationCoordinate.getJakimCodeNearby(
-        _pos.latitude, _pos.longitude, administrativeArea);
+        _pos.latitude, _pos.longitude, administrativeArea!);
 
     return LocationCoordinateData(
         zone: zone,

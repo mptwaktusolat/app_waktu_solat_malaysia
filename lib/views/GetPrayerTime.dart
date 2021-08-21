@@ -9,7 +9,7 @@ import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../models/mpti906PrayerData.dart';
-import '../notificationUtil/isolate_handler_notification.dart';
+import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
@@ -75,7 +75,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
 
     if (GetStorage().read(kStoredShouldUpdateNotif)) {
       //schedule notification if needed
-      schedulePrayNotification(
+      MyNotifScheduler.schedulePrayNotification(
           PrayDataHandler.removePastDate(prayerTimeData!.times!));
     }
 

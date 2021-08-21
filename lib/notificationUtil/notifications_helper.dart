@@ -21,8 +21,7 @@ class NotificationClass {
   NotificationClass({this.id, this.body, this.payload, this.title});
 }
 
-Future<void> initNotifications(
-    FlutterLocalNotificationsPlugin notifsPlugin) async {
+Future<void> initNotifications() async {
   var initializationSettingsAndroid =
       const AndroidInitializationSettings('icon');
   var initializationSettingsIOS = IOSInitializationSettings(
@@ -36,12 +35,12 @@ Future<void> initNotifications(
       });
   var initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  await notifsPlugin.initialize(initializationSettings,
+  await FlutterLocalNotificationsPlugin().initialize(initializationSettings,
       onSelectNotification: (String? payload) async {
     if (payload != null) {
       print('notification payload: ' + payload);
+      selectNotificationSubject.add(payload);
     }
-    selectNotificationSubject.add(payload);
   });
 }
 
@@ -57,7 +56,7 @@ Future<void> initNotifications(
 //       );
 // }
 
-void configureSelectNotificationSubject(BuildContext context) {
+void configureSelectNotificationSubject() {
   selectNotificationSubject.stream.listen((String? payload) async {
     if (payload == kPayloadMonthly) {
       Fluttertoast.showToast(
@@ -71,14 +70,15 @@ void configureSelectNotificationSubject(BuildContext context) {
   });
 }
 
-Future<void> schedulePrayerNotification(
+Future<void> scheduleSinglePrayerNotification(
     //for main prayer functionality
     {required String name,
     required int id,
     required String title,
     required String body,
     required TZDateTime scheduledTime,
-    String? summary}) async {
+    String? summary,
+    String? customSound}) async {
   BigTextStyleInformation styleInformation =
       BigTextStyleInformation(body, summaryText: summary);
   var androidSpecifics = AndroidNotificationDetails(
@@ -88,6 +88,11 @@ Future<void> schedulePrayerNotification(
     priority: Priority.max,
     importance: Importance.high,
     styleInformation: styleInformation,
+    when: scheduledTime.millisecondsSinceEpoch,
+    playSound: true,
+    sound: customSound != null
+        ? RawResourceAndroidNotificationSound(customSound)
+        : null,
     color: const Color(0xFF19e3cb),
   );
   var iOSSpecifics = const IOSNotificationDetails();
@@ -139,7 +144,8 @@ Future<void> showDebugNotification() async {
           'Debug id', 'Debug channel', 'Notification debug test',
           importance: Importance.defaultImportance,
           priority: Priority.high,
-          ticker: 'ticker');
+          sound: RawResourceAndroidNotificationSound('azan_kurd_low'),
+          playSound: true);
   const NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
   );

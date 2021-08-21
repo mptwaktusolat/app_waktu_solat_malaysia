@@ -40,18 +40,20 @@ class MyNotifScheduler {
 
       if (subuhDateTime.isAfter(_currentDateTime)) {
         //to make sure the time is in future
-        await schedulePrayerNotification(
-          name: 'Fajr',
-          id: subuhDateTime.microsecondsSinceEpoch ~/ 10000,
-          title: 'It\'s Subuh',
-          scheduledTime: TZDateTime.from(subuhDateTime, local),
-          body: 'in ' + currentLocation,
-        );
+        await scheduleSinglePrayerNotification(
+            name: 'Fajr',
+            id: int.parse(
+                subuhDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Subuh',
+            scheduledTime: TZDateTime.from(subuhDateTime, local),
+            body: 'in ' + currentLocation,
+            customSound: 'hejaz_fajr');
       }
       if (syurukDateTime.isAfter(_currentDateTime)) {
-        await schedulePrayerNotification(
+        await scheduleSinglePrayerNotification(
           name: 'Syuruk',
-          id: syurukDateTime.microsecondsSinceEpoch ~/ 10000,
+          id: int.parse(
+              syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
           title: 'It\'s Syuruk',
           body: 'in ' + currentLocation,
           summary: 'Ends of Subuh',
@@ -59,41 +61,46 @@ class MyNotifScheduler {
         );
       }
       if (zuhrDateTime.isAfter(_currentDateTime)) {
-        await schedulePrayerNotification(
-          name: 'Zuhr',
-          id: zuhrDateTime.microsecondsSinceEpoch ~/ 10000,
-          title: 'It\'s Zohor',
-          body: 'in ' + currentLocation,
-          summary: zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
-          scheduledTime: TZDateTime.from(zuhrDateTime, local),
-        );
+        await scheduleSinglePrayerNotification(
+            name: 'Zuhr',
+            id: int.parse(
+                zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Zohor',
+            body: 'in ' + currentLocation,
+            summary:
+                zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+            scheduledTime: TZDateTime.from(zuhrDateTime, local),
+            customSound: 'azan_kurd_low');
       }
       if (asarDateTime.isAfter(_currentDateTime)) {
-        await schedulePrayerNotification(
-          name: 'Asr',
-          id: asarDateTime.microsecondsSinceEpoch ~/ 10000,
-          title: 'It\'s Asar',
-          body: 'in ' + currentLocation,
-          scheduledTime: TZDateTime.from(asarDateTime, local),
-        );
+        await scheduleSinglePrayerNotification(
+            name: 'Asr',
+            id: int.parse(
+                asarDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Asar',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(asarDateTime, local),
+            customSound: 'azan_kurd_low');
       }
       if (maghribDateTime.isAfter(_currentDateTime)) {
-        await schedulePrayerNotification(
-          name: 'Maghrib',
-          id: maghribDateTime.microsecondsSinceEpoch ~/ 10000,
-          title: 'It\'s Maghrib',
-          body: 'in ' + currentLocation,
-          scheduledTime: TZDateTime.from(maghribDateTime, local),
-        );
+        await scheduleSinglePrayerNotification(
+            name: 'Maghrib',
+            id: int.parse(
+                maghribDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Maghrib',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(maghribDateTime, local),
+            customSound: 'azan_kurd_low');
       }
       if (isyakDateTime.isAfter(_currentDateTime)) {
-        await schedulePrayerNotification(
-          name: 'Isya\'',
-          id: isyakDateTime.microsecondsSinceEpoch ~/ 10000,
-          title: 'It\'s Isyak',
-          body: 'in ' + currentLocation,
-          scheduledTime: TZDateTime.from(isyakDateTime, local),
-        );
+        await scheduleSinglePrayerNotification(
+            name: 'Isya\'',
+            id: int.parse(
+                isyakDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Isyak',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(isyakDateTime, local),
+            customSound: 'azan_kurd_low');
       }
     }
 
@@ -115,6 +122,8 @@ class MyNotifScheduler {
 
     var _endOperation = DateTime.now();
     var _timeTaken = _endOperation.difference(_currentDateTime);
-    DebugToast.show('Finish schedule notif. after $_timeTaken');
+    var _message = 'Finish schedule notif. after $_timeTaken';
+    print(_message);
+    DebugToast.show(_message);
   }
 }

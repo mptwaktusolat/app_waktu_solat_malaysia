@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -19,8 +18,6 @@ import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
 
-NotificationAppLaunchDetails? notifLaunch;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -28,11 +25,8 @@ void main() async {
   await Firebase.initializeApp();
   MobileAds.instance.initialize();
 
-  final FlutterLocalNotificationsPlugin notifsPlugin =
-      FlutterLocalNotificationsPlugin();
   await _configureLocalTimeZone();
-  notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
-  await initNotifications(notifsPlugin);
+  await initNotifications();
   // requestIOSPermissions(notifsPlugin);
 
   initGetStorage();
@@ -53,7 +47,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    configureSelectNotificationSubject(context);
+    configureSelectNotificationSubject();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),
