@@ -47,7 +47,7 @@ class MyNotifScheduler {
             title: 'It\'s Subuh',
             scheduledTime: TZDateTime.from(subuhDateTime, local),
             body: 'in ' + currentLocation,
-            customSound: 'hejaz_fajr');
+            customSound: 'azan_hejaz2013_fajr');
       }
       if (syurukDateTime.isAfter(_currentDateTime)) {
         await scheduleSinglePrayerNotification(
@@ -70,7 +70,7 @@ class MyNotifScheduler {
             summary:
                 zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
             scheduledTime: TZDateTime.from(zuhrDateTime, local),
-            customSound: 'azan_kurd_low');
+            customSound: 'azan_kurdhi2010');
       }
       if (asarDateTime.isAfter(_currentDateTime)) {
         await scheduleSinglePrayerNotification(
@@ -80,7 +80,7 @@ class MyNotifScheduler {
             title: 'It\'s Asar',
             body: 'in ' + currentLocation,
             scheduledTime: TZDateTime.from(asarDateTime, local),
-            customSound: 'azan_kurd_low');
+            customSound: 'azan_kurdhi2010');
       }
       if (maghribDateTime.isAfter(_currentDateTime)) {
         await scheduleSinglePrayerNotification(
@@ -90,7 +90,7 @@ class MyNotifScheduler {
             title: 'It\'s Maghrib',
             body: 'in ' + currentLocation,
             scheduledTime: TZDateTime.from(maghribDateTime, local),
-            customSound: 'azan_kurd_low');
+            customSound: 'azan_kurdhi2010');
       }
       if (isyakDateTime.isAfter(_currentDateTime)) {
         await scheduleSinglePrayerNotification(
@@ -100,7 +100,7 @@ class MyNotifScheduler {
             title: 'It\'s Isyak',
             body: 'in ' + currentLocation,
             scheduledTime: TZDateTime.from(isyakDateTime, local),
-            customSound: 'azan_kurd_low');
+            customSound: 'azan_kurdhi2010');
       }
     }
 

@@ -141,11 +141,12 @@ Future<void> showDebugNotification() async {
   //to test notifocation can show?
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
-          'Debug id', 'Debug channel', 'Notification debug test',
-          importance: Importance.defaultImportance,
-          priority: Priority.high,
-          sound: RawResourceAndroidNotificationSound('azan_kurd_low'),
-          playSound: true);
+    'Debug id',
+    'Debug channel',
+    'Notification debug test',
+    importance: Importance.defaultImportance,
+    priority: Priority.high,
+  );
   const NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
   );

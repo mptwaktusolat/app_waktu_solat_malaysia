@@ -43,20 +43,20 @@ class DebugWidgets {
           ),
           ListTile(
             title: const Text('Send immediate test notification'),
+            subtitle: const Text('Without azan'),
             onTap: () async {
               await showDebugNotification();
             },
           ),
           ListTile(
             title: const Text('Send azan test in 30 secs'),
-            subtitle: const Text('Payload: $kPayloadDebug'),
             onTap: () async {
               await scheduleSinglePrayerNotification(
                   name: 'name',
                   id: 2321,
                   title: 'title',
                   body: 'body',
-                  customSound: 'hejaz_fajr',
+                  customSound: 'azan_hejaz2013_fajr',
                   scheduledTime: tz.TZDateTime.now(tz.local)
                       .add(const Duration(seconds: 30)));
             },
