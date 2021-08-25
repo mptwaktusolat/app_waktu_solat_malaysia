@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
-import '../CONSTANTS.dart' as constants;
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
@@ -119,7 +118,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                 itemCount: _deviceInfo!.length + 1,
                                 itemBuilder: (context, index) {
                                   if (index < _deviceInfo!.length) {
-                                    var key = _deviceInfo!.keys.elementAt(index);
+                                    var key =
+                                        _deviceInfo!.keys.elementAt(index);
                                     return ListTile(
                                       leading: Column(
                                         mainAxisAlignment:
@@ -224,8 +224,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             GetStorage().read(kStoredLocationLocality) ??
                                 'no locality called',
                         'Device info': _logIsChecked! ? _deviceInfo : null,
-                        'Hijri Offset':
-                            GetStorage().read(constants.kHijriOffset),
+                        'Hijri Offset': GetStorage().read(kHijriOffset),
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
@@ -274,8 +273,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               style: ElevatedButton.styleFrom(primary: Colors.black),
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(
-                    url: constants.kGithubRepoLink + '/issues');
+                LaunchUrl.normalLaunchUrl(url: kGithubRepoLink + '/issues');
               },
               label: const Text('Report / Follow issues on GitHub'),
             ),
