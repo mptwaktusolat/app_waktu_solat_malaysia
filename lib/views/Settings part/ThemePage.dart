@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../Settings%20part/ThemeController.dart';
+import '../../providers/ThemeController.dart';
 
 class ThemesPage extends StatefulWidget {
   const ThemesPage({Key? key}) : super(key: key);

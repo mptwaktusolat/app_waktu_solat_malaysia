@@ -6,12 +6,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
+import '../../providers/settingsProvider.dart';
 import '../../CONSTANTS.dart' as constants;
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
 import '../Settings%20part/AboutPage.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
-import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);

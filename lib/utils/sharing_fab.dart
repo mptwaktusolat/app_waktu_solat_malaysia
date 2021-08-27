@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
+import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
-import '../views/Settings%20part/settingsProvider.dart';
 import 'copyAndShare.dart';
 import 'launchUrl.dart';
 

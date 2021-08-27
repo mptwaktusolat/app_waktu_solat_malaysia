@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'Settings%20part/settingsProvider.dart';
+import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
@@ -175,6 +175,7 @@ class Error extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        const SizedBox(height: 15),
         Text(
           errorMessage!,
           textAlign: TextAlign.center,
@@ -186,7 +187,8 @@ class Error extends StatelessWidget {
         ElevatedButton(
           child: const Text('Retry', style: TextStyle(color: Colors.black)),
           onPressed: onRetryPressed as void Function()?,
-        )
+        ),
+        // add some spacer (to distance the ads)
       ],
     );
   }
@@ -198,6 +200,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: const [
+        SizedBox(height: 15),
         Text(
           'Fetching prayer time. Please wait.',
           textAlign: TextAlign.center,

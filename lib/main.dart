@@ -8,12 +8,13 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
 import 'locationUtil/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
+import 'providers/ThemeController.dart';
+import 'providers/settingsProvider.dart';
 import 'utils/sharing_fab.dart';
-import 'views/Settings%20part/ThemeController.dart';
-import 'views/Settings%20part/settingsProvider.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
@@ -64,7 +65,9 @@ class MyApp extends StatelessWidget {
               bottomAppBarColor: Colors.teal.shade50,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
-                  color: _primaryColour, brightness: Brightness.dark),
+                color: _primaryColour,
+                // ssytem overlay style
+              ),
             ),
             darkTheme: ThemeData.dark().copyWith(
                 primaryColor: _primaryColour,
@@ -108,6 +111,7 @@ class MyHomePage extends StatelessWidget {
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
+  _get.writeIfNull(kNotificationType, MyNotificationType.noazan.index);
   _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);

@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -76,8 +77,37 @@ class _AppBodyState extends State<AppBody> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
+        GetStorage().write(kHaventIntroducedToNotifType, false);
+        showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(26)),
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Image.asset('assets/bam/Clock.png', width: 150),
+                    Text('Azan notification is now available. Try it out now!',
+                        style: Theme.of(context).textTheme.headline6),
+                    const SizedBox(height: 15),
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const NotificationPageSetting()));
+                        },
+                        child: const Text('Open settings'))
+                  ]),
+                ),
+              );
+            });
+      }
+    });
     SizeConfig().init(context);
-
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +115,7 @@ class _AppBodyState extends State<AppBody> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.color,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(40)),
             ),

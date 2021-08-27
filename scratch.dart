@@ -2,13 +2,9 @@
 
 import 'dart:math';
 
-void main() {
-  var _num = DateTime.fromMillisecondsSinceEpoch(1629117480 * 1000)
-      .millisecondsSinceEpoch;
-  int _newNum = int.parse(_num.toString().substring(5));
-  print(_newNum);
-  if (_newNum < pow(2, 31)) print('In range');
-}
+enum Test { first, second }
+
+void main() {}
 
 void listTest() {
   List _myList =

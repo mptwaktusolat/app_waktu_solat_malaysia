@@ -128,9 +128,8 @@ class LocationChooser {
               return FractionallySizedBox(
                 heightFactor: 0.68,
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(26.0),
-                      topRight: Radius.circular(26.0)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(26)),
                   child: Container(
                     color: Theme.of(context).canvasColor,
                     child: Scrollbar(

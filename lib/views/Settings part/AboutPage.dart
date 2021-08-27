@@ -7,10 +7,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
-import '../debug_widgets.dart';
+import '../../providers/settingsProvider.dart';
 import '../../CONSTANTS.dart';
 import '../../utils/launchUrl.dart';
-import '../Settings%20part/settingsProvider.dart';
+import '../debug_widgets.dart';
 import '../contributionPage.dart';
 import '../faq.dart';
 

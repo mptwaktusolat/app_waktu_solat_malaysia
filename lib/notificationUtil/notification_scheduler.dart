@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
+import '../views/Settings%20part/NotificationSettingPage.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -18,90 +19,21 @@ class MyNotifScheduler {
     if (GetStorage().read(kStoredNotificationLimit)) {
       times = times.take(7).toList();
     }
-
-    DebugToast.show('SCHEDULING ${times.length} notifications');
-
     // for debug dialog
     GetStorage().write(kNumberOfNotifsScheduled, times.length);
 
-    for (var dayTime in times) {
-      DateTime subuhDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
-      DateTime syurukDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
-      DateTime zuhrDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
-      DateTime asarDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
-      DateTime maghribDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
-      DateTime isyakDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
+    MyNotificationType _notifType =
+        MyNotificationType.values[GetStorage().read(kNotificationType)];
 
-      if (subuhDateTime.isAfter(_currentDateTime)) {
-        //to make sure the time is in future
-        await scheduleSinglePrayerNotification(
-            name: 'Fajr',
-            id: int.parse(
-                subuhDateTime.millisecondsSinceEpoch.toString().substring(5)),
-            title: 'It\'s Subuh',
-            scheduledTime: TZDateTime.from(subuhDateTime, local),
-            body: 'in ' + currentLocation,
-            customSound: 'azan_hejaz2013_fajr');
-      }
-      if (syurukDateTime.isAfter(_currentDateTime)) {
-        await scheduleSinglePrayerNotification(
-          name: 'Syuruk',
-          id: int.parse(
-              syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
-          title: 'It\'s Syuruk',
-          body: 'in ' + currentLocation,
-          summary: 'Ends of Subuh',
-          scheduledTime: TZDateTime.from(syurukDateTime, local),
-        );
-      }
-      if (zuhrDateTime.isAfter(_currentDateTime)) {
-        await scheduleSinglePrayerNotification(
-            name: 'Zuhr',
-            id: int.parse(
-                zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
-            title: 'It\'s Zohor',
-            body: 'in ' + currentLocation,
-            summary:
-                zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
-            scheduledTime: TZDateTime.from(zuhrDateTime, local),
-            customSound: 'azan_kurdhi2010');
-      }
-      if (asarDateTime.isAfter(_currentDateTime)) {
-        await scheduleSinglePrayerNotification(
-            name: 'Asr',
-            id: int.parse(
-                asarDateTime.millisecondsSinceEpoch.toString().substring(5)),
-            title: 'It\'s Asar',
-            body: 'in ' + currentLocation,
-            scheduledTime: TZDateTime.from(asarDateTime, local),
-            customSound: 'azan_kurdhi2010');
-      }
-      if (maghribDateTime.isAfter(_currentDateTime)) {
-        await scheduleSinglePrayerNotification(
-            name: 'Maghrib',
-            id: int.parse(
-                maghribDateTime.millisecondsSinceEpoch.toString().substring(5)),
-            title: 'It\'s Maghrib',
-            body: 'in ' + currentLocation,
-            scheduledTime: TZDateTime.from(maghribDateTime, local),
-            customSound: 'azan_kurdhi2010');
-      }
-      if (isyakDateTime.isAfter(_currentDateTime)) {
-        await scheduleSinglePrayerNotification(
-            name: 'Isya\'',
-            id: int.parse(
-                isyakDateTime.millisecondsSinceEpoch.toString().substring(5)),
-            title: 'It\'s Isyak',
-            body: 'in ' + currentLocation,
-            scheduledTime: TZDateTime.from(isyakDateTime, local),
-            customSound: 'azan_kurdhi2010');
-      }
+    switch (_notifType) {
+      case MyNotificationType.noazan:
+        DebugToast.show('Notification: Default sound');
+        _defaultScheduler(times, _currentDateTime, currentLocation);
+        break;
+      case MyNotificationType.azan:
+        DebugToast.show('Notification: Azan');
+        _azanScheduler(times, _currentDateTime, currentLocation);
+        break;
     }
 
     scheduleAlertNotification(
@@ -125,5 +57,170 @@ class MyNotifScheduler {
     var _message = 'Finish schedule notif. after $_timeTaken';
     print(_message);
     DebugToast.show(_message);
+  }
+
+  static void _defaultScheduler(List<dynamic> times, DateTime currentDateTime,
+      String currentLocation) async {
+    for (var dayTime in times) {
+      DateTime subuhDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
+      DateTime syurukDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
+      DateTime zuhrDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
+      DateTime asarDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
+      DateTime maghribDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
+      DateTime isyakDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
+
+      if (subuhDateTime.isAfter(currentDateTime)) {
+        //to make sure the time is in future
+        await scheduleSinglePrayerNotification(
+          name: 'Fajr',
+          id: int.parse(
+              subuhDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Subuh',
+          scheduledTime: TZDateTime.from(subuhDateTime, local),
+          body: 'in ' + currentLocation,
+        );
+      }
+      if (syurukDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Syuruk',
+          id: int.parse(
+              syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Syuruk',
+          body: 'in ' + currentLocation,
+          summary: 'Ends of Subuh',
+          scheduledTime: TZDateTime.from(syurukDateTime, local),
+        );
+      }
+      if (zuhrDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Zuhr',
+          id: int.parse(
+              zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Zohor',
+          body: 'in ' + currentLocation,
+          summary: zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+          scheduledTime: TZDateTime.from(zuhrDateTime, local),
+        );
+      }
+      if (asarDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Asr',
+          id: int.parse(
+              asarDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Asar',
+          body: 'in ' + currentLocation,
+          scheduledTime: TZDateTime.from(asarDateTime, local),
+        );
+      }
+      if (maghribDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Maghrib',
+          id: int.parse(
+              maghribDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Maghrib',
+          body: 'in ' + currentLocation,
+          scheduledTime: TZDateTime.from(maghribDateTime, local),
+        );
+      }
+      if (isyakDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Isya\'',
+          id: int.parse(
+              isyakDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Isyak',
+          body: 'in ' + currentLocation,
+          scheduledTime: TZDateTime.from(isyakDateTime, local),
+        );
+      }
+    }
+  }
+
+  static void _azanScheduler(List<dynamic> times, DateTime currentDateTime,
+      String currentLocation) async {
+    for (var dayTime in times) {
+      DateTime subuhDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
+      DateTime syurukDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
+      DateTime zuhrDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
+      DateTime asarDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
+      DateTime maghribDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
+      DateTime isyakDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
+
+      if (subuhDateTime.isAfter(currentDateTime)) {
+        //to make sure the time is in future
+        await scheduleSinglePrayerNotification(
+            name: 'Fajr',
+            id: int.parse(
+                subuhDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Subuh',
+            scheduledTime: TZDateTime.from(subuhDateTime, local),
+            body: 'in ' + currentLocation,
+            customSound: 'azan_hejaz2013_fajr');
+      }
+      if (syurukDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+          name: 'Syuruk',
+          id: int.parse(
+              syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
+          title: 'It\'s Syuruk',
+          body: 'in ' + currentLocation,
+          summary: 'Ends of Subuh',
+          scheduledTime: TZDateTime.from(syurukDateTime, local),
+        );
+      }
+      if (zuhrDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+            name: 'Zuhr',
+            id: int.parse(
+                zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Zohor',
+            body: 'in ' + currentLocation,
+            summary:
+                zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+            scheduledTime: TZDateTime.from(zuhrDateTime, local),
+            customSound: 'azan_kurdhi2010');
+      }
+      if (asarDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+            name: 'Asr',
+            id: int.parse(
+                asarDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Asar',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(asarDateTime, local),
+            customSound: 'azan_kurdhi2010');
+      }
+      if (maghribDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+            name: 'Maghrib',
+            id: int.parse(
+                maghribDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Maghrib',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(maghribDateTime, local),
+            customSound: 'azan_kurdhi2010');
+      }
+      if (isyakDateTime.isAfter(currentDateTime)) {
+        await scheduleSinglePrayerNotification(
+            name: 'Isya\'',
+            id: int.parse(
+                isyakDateTime.millisecondsSinceEpoch.toString().substring(5)),
+            title: 'It\'s Isyak',
+            body: 'in ' + currentLocation,
+            scheduledTime: TZDateTime.from(isyakDateTime, local),
+            customSound: 'azan_kurdhi2010');
+      }
+    }
   }
 }
