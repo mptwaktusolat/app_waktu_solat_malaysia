@@ -70,7 +70,41 @@ void configureSelectNotificationSubject() {
   });
 }
 
-Future<void> scheduleSinglePrayerNotification(
+/// Single prayer notification without azan
+Future<void> scheduleSinglePrayerNotification({
+  required String name,
+  required int id,
+  required String title,
+  required String body,
+  required TZDateTime scheduledTime,
+  String? summary,
+}) async {
+  BigTextStyleInformation styleInformation =
+      BigTextStyleInformation(body, summaryText: summary);
+  var androidSpecifics = AndroidNotificationDetails(
+    '$name id', // This specifies the ID of the Notification
+    '$name notification', // This specifies the name of the notification channel
+    'Scheduled daily prayer notification', //This specifies the description of the channel
+    priority: Priority.max,
+    importance: Importance.high,
+    styleInformation: styleInformation,
+    when: scheduledTime.millisecondsSinceEpoch,
+    color: const Color(0xFF19e3cb),
+  );
+  var iOSSpecifics = const IOSNotificationDetails();
+  var platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+
+  await FlutterLocalNotificationsPlugin().zonedSchedule(
+      id, title, body, scheduledTime, platformChannelSpecifics,
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation
+              .absoluteTime); // This literally schedules the notification
+}
+
+/// Single prayer notification without azan
+Future<void> scheduleSingleAzanNotification(
     //for main prayer functionality
     {required String name,
     required int id,
@@ -82,9 +116,9 @@ Future<void> scheduleSinglePrayerNotification(
   BigTextStyleInformation styleInformation =
       BigTextStyleInformation(body, summaryText: summary);
   var androidSpecifics = AndroidNotificationDetails(
-    '$name id', // This specifies the ID of the Notification
-    '$name notification', // This specifies the name of the notification channel
-    'Scheduled daily prayer notification', //This specifies the description of the channel
+    '$name azan id', // This specifies the ID of the Notification
+    '$name azan notification', // This specifies the name of the notification channel
+    'Scheduled daily prayer azan', //This specifies the description of the channel
     priority: Priority.max,
     importance: Importance.high,
     styleInformation: styleInformation,

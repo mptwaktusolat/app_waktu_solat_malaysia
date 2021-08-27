@@ -51,7 +51,7 @@ class DebugWidgets {
           ListTile(
             title: const Text('Send azan test in 30 secs'),
             onTap: () async {
-              await scheduleSinglePrayerNotification(
+              await scheduleSingleAzanNotification(
                   name: 'name',
                   id: 2321,
                   title: 'title',

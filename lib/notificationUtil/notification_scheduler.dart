@@ -59,6 +59,7 @@ class MyNotifScheduler {
     DebugToast.show(_message);
   }
 
+  /// Classic Notification Scheduler, default notification sound
   static void _defaultScheduler(List<dynamic> times, DateTime currentDateTime,
       String currentLocation) async {
     for (var dayTime in times) {
@@ -141,6 +142,7 @@ class MyNotifScheduler {
     }
   }
 
+  /// Notification but with azan
   static void _azanScheduler(List<dynamic> times, DateTime currentDateTime,
       String currentLocation) async {
     for (var dayTime in times) {
@@ -159,7 +161,7 @@ class MyNotifScheduler {
 
       if (subuhDateTime.isAfter(currentDateTime)) {
         //to make sure the time is in future
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
             name: 'Fajr',
             id: int.parse(
                 subuhDateTime.millisecondsSinceEpoch.toString().substring(5)),
@@ -169,7 +171,7 @@ class MyNotifScheduler {
             customSound: 'azan_hejaz2013_fajr');
       }
       if (syurukDateTime.isAfter(currentDateTime)) {
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
           name: 'Syuruk',
           id: int.parse(
               syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
@@ -180,7 +182,7 @@ class MyNotifScheduler {
         );
       }
       if (zuhrDateTime.isAfter(currentDateTime)) {
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
             name: 'Zuhr',
             id: int.parse(
                 zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
@@ -192,7 +194,7 @@ class MyNotifScheduler {
             customSound: 'azan_kurdhi2010');
       }
       if (asarDateTime.isAfter(currentDateTime)) {
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
             name: 'Asr',
             id: int.parse(
                 asarDateTime.millisecondsSinceEpoch.toString().substring(5)),
@@ -202,7 +204,7 @@ class MyNotifScheduler {
             customSound: 'azan_kurdhi2010');
       }
       if (maghribDateTime.isAfter(currentDateTime)) {
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
             name: 'Maghrib',
             id: int.parse(
                 maghribDateTime.millisecondsSinceEpoch.toString().substring(5)),
@@ -212,7 +214,7 @@ class MyNotifScheduler {
             customSound: 'azan_kurdhi2010');
       }
       if (isyakDateTime.isAfter(currentDateTime)) {
-        await scheduleSinglePrayerNotification(
+        await scheduleSingleAzanNotification(
             name: 'Isya\'',
             id: int.parse(
                 isyakDateTime.millisecondsSinceEpoch.toString().substring(5)),
