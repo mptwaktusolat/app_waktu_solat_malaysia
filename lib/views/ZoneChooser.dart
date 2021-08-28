@@ -25,7 +25,7 @@ class LocationChooser {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1300),
         content: Row(
           children: [
             Icon(
@@ -35,7 +35,7 @@ class LocationChooser {
                   : Colors.white70,
             ),
             const SizedBox(width: 10),
-            const Text('Updated and saved'),
+            const Text('Location updated'),
           ],
         ),
       ),
