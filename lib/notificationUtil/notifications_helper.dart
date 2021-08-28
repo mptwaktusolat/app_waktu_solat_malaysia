@@ -111,8 +111,8 @@ Future<void> scheduleSingleAzanNotification(
     required String title,
     required String body,
     required TZDateTime scheduledTime,
-    String? summary,
-    String? customSound}) async {
+    required String customSound,
+    String? summary}) async {
   BigTextStyleInformation styleInformation =
       BigTextStyleInformation(body, summaryText: summary);
   var androidSpecifics = AndroidNotificationDetails(
@@ -124,9 +124,7 @@ Future<void> scheduleSingleAzanNotification(
     styleInformation: styleInformation,
     when: scheduledTime.millisecondsSinceEpoch,
     playSound: true,
-    sound: customSound != null
-        ? RawResourceAndroidNotificationSound(customSound)
-        : null,
+    sound: RawResourceAndroidNotificationSound(customSound),
     color: const Color(0xFF19e3cb),
   );
   var iOSSpecifics = const IOSNotificationDetails();

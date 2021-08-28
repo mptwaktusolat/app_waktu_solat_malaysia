@@ -171,7 +171,7 @@ class MyNotifScheduler {
             customSound: 'azan_hejaz2013_fajr');
       }
       if (syurukDateTime.isAfter(currentDateTime)) {
-        await scheduleSingleAzanNotification(
+        await scheduleSinglePrayerNotification(
           name: 'Syuruk',
           id: int.parse(
               syurukDateTime.millisecondsSinceEpoch.toString().substring(5)),
