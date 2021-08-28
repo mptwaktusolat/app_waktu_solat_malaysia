@@ -78,31 +78,27 @@ class _AppBodyState extends State<AppBody> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
+      if (true) {
         GetStorage().write(kHaventIntroducedToNotifType, false);
         showModalBottomSheet(
             context: context,
             builder: (context) {
-              return ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(26)),
-                child: Padding(
-                  padding: const EdgeInsets.all(18),
-                  child: Column(mainAxisSize: MainAxisSize.min, children: [
-                    Image.asset('assets/bam/Clock.png', width: 150),
-                    Text('Azan notification is now available. Try it out now!',
-                        style: Theme.of(context).textTheme.headline6),
-                    const SizedBox(height: 15),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const NotificationPageSetting()));
-                        },
-                        child: const Text('Open settings'))
-                  ]),
-                ),
+              return Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Image.asset('assets/bam/Clock.png', width: 150),
+                  Text('Azan notification is now available.\nTry it out today!',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline6),
+                  const SizedBox(height: 15),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) =>
+                                const NotificationPageSetting()));
+                      },
+                      child: const Text('Open settings'))
+                ]),
               );
             });
       }
