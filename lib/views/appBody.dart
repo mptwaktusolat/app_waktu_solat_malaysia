@@ -78,7 +78,7 @@ class _AppBodyState extends State<AppBody> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      if (true) {
+      if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
         GetStorage().write(kHaventIntroducedToNotifType, false);
         showModalBottomSheet(
             context: context,
