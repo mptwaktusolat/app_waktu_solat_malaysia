@@ -139,8 +139,6 @@ class _OnboardingPageState extends State<OnboardingPage>
         ),
         done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
         next: const Text('Next', style: TextStyle(fontWeight: FontWeight.w600)),
-        showSkipButton: true,
-        skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           GetStorage().write(kIsFirstRun, false);
