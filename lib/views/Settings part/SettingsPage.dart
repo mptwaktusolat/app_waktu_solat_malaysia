@@ -39,8 +39,6 @@ class _SettingsPageState extends State<SettingsPage> {
               buildShowOtherPrayerTime(setting),
               const SizedBox(height: 3),
               buildFontSizeSetting(setting),
-              const SizedBox(height: 3),
-              buildHijriOffset(setting),
               const Padding(
                   padding: EdgeInsets.all(8.0), child: Text('Notification')),
               buildNotificationSetting(context),
@@ -61,17 +59,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  Card buildHijriOffset(SettingProvider setting) {
-    return const Card(
-      child: ListTile(
-        title: Text('Hijri date offset'),
-        isThreeLine: true,
-        subtitle: Text(
-            'Data will be fetched automatically from the server. Will remove this setting in future updates.'),
       ),
     );
   }
@@ -244,7 +231,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Card(
       child: ListTile(
         title: const Text('Notification settings'),
-        onTap: () async {
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(

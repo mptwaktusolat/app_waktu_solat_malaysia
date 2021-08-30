@@ -31,23 +31,6 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
         children: [
           const Padding(padding: EdgeInsets.all(8.0), child: Text('Basic')),
           Card(
-            child: ListTile(
-              title: const Text('App notification System Setting'),
-              isThreeLine: true,
-              subtitle: const Text(
-                  'Customize sound, toggle channel of prayer notification etc.'),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.launch_rounded),
-                ],
-              ),
-              onTap: () async {
-                await AppSettings.openNotificationSettings();
-              },
-            ),
-          ),
-          Card(
               child: ListView(
             shrinkWrap: true,
             children: [
@@ -95,6 +78,23 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               }),
             ],
           )),
+          Card(
+            child: ListTile(
+              title: const Text('App notification System Setting'),
+              isThreeLine: true,
+              subtitle: const Text(
+                  'Customize sound, toggle channel of prayer notification etc.'),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(Icons.launch_rounded),
+                ],
+              ),
+              onTap: () async {
+                await AppSettings.openNotificationSettings();
+              },
+            ),
+          ),
           const Padding(
               padding: EdgeInsets.all(8.0), child: Text('Troubleshooting')),
           Card(
