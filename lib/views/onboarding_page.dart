@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import '../CONSTANTS.dart';
-import '../main.dart';
 import 'Settings part/NotificationSettingPage.dart';
 import 'Settings%20part/ThemePage.dart';
+import '../CONSTANTS.dart';
+import '../main.dart';
 import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -97,7 +97,7 @@ class _OnboardingPageState extends State<OnboardingPage>
         image: Image.asset('assets/bam/Clock.png', width: 200),
         title: 'Select notification preferences',
         decoration: _pageDecoration,
-        bodyWidget: ListView(shrinkWrap: true, children: [
+        bodyWidget: Column(mainAxisSize: MainAxisSize.min, children: [
           RadioListTile(
               value: MyNotificationType.noazan,
               groupValue: _type,
