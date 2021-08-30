@@ -1,34 +1,24 @@
-// import 'package:geolocator/geolocator.dart';
 //ignore_for_file: avoid_print
 
-import 'package:intl/intl.dart';
+import 'dart:math';
 
-void main() {
-  var now = DateTime.now();
-  // print(month);
-  print(now.year);
-}
+enum Test { first, second }
 
-Uri uriHttps() {
-  return Uri.https("www.e-solat.gov.my", "/index.php",
-      {"r": "esolatApi/takwimsolat", "period": "month", "zone": "SGR01"});
-}
+void main() {}
 
-int convertToEpoch(
-    {String date, String time, Duration offset = Duration.zero}) {
-  // https://stackoverflow.com/a/63527239/13617136
-  var dateTime = date + ' ' + time;
-  print('dateTime is $dateTime'); //01-Jan-2021 16:42:00
+void listTest() {
+  List _myList =
+      List.generate(2, (index) => 'Item ${index + Random().nextInt(300)}');
 
-  var f = DateFormat('dd-MMM-yyyy hh:mm');
+  List _takeEnd = _myList.sublist(1);
+  List _takeStart = _myList.take(5).toList(); // take first 5
 
-  var parsed = f.parse(dateTime);
-  return parsed.millisecondsSinceEpoch + offset.inMilliseconds;
-}
+  print(_myList);
+  print('\n');
+  print(_takeStart);
+  print('\n');
+  print(_takeEnd);
+  print('\n');
 
-bool isTheSameMonth(int savedMillis) {
-  var savedMonth = DateTime.fromMillisecondsSinceEpoch(savedMillis).month;
-
-  var currentMonth = DateTime.now().month;
-  return savedMonth == currentMonth;
+  // print(_myList.getRange(0, 7));
 }

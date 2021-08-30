@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 
 class LocationData {
-  static Position _position;
+  static Position? _position;
 
   static Future<Position> getCurrentLocation() async {
     Position position = await Geolocator.getCurrentPosition(
@@ -11,5 +11,5 @@ class LocationData {
     return position;
   }
 
-  static Position get position => _position;
+  static Position? get position => _position;
 }

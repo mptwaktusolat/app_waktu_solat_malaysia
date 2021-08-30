@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,17 +20,17 @@ import 'ZoneChooser.dart';
 import 'debug_widgets.dart';
 
 class AppBody extends StatefulWidget {
-  const AppBody({Key key}) : super(key: key);
+  const AppBody({Key? key}) : super(key: key);
 
   @override
   State<AppBody> createState() => _AppBodyState();
 }
 
 class _AppBodyState extends State<AppBody> {
-  BannerAd _ad;
+  late BannerAd _ad;
   bool _isAdLoaded = false;
   bool showFirstChild = true;
-  bool _showNotifPrompt;
+  late bool _showNotifPrompt;
 
   @override
   void initState() {
@@ -76,8 +77,35 @@ class _AppBodyState extends State<AppBody> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // show prompt azan notif
+      if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
+        // to prevent dialog showing multiple times
+        GetStorage().write(kHaventIntroducedToNotifType, false);
+        showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Padding(
+                padding: const EdgeInsets.all(18),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Image.asset('assets/bam/Clock.png', width: 150),
+                  Text('Azan notification is now available.\nTry it out today!',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.headline6),
+                  const SizedBox(height: 15),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) =>
+                                const NotificationPageSetting()));
+                      },
+                      child: const Text('Open settings'))
+                ]),
+              );
+            });
+      }
+    });
     SizeConfig().init(context);
-
     return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +113,7 @@ class _AppBodyState extends State<AppBody> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.color,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(40)),
             ),
@@ -124,7 +152,7 @@ class _AppBodyState extends State<AppBody> {
                                   /// Fetch data from server whenever possible
                                   if (snapshot.hasData) {
                                     int _offset =
-                                        snapshot.data.getInt('hijri_offset');
+                                        snapshot.data!.getInt('hijri_offset');
                                     GetStorage().write(kHijriOffset, _offset);
                                     return DateWidget(
                                       hijriOffset: Duration(days: _offset),
@@ -147,7 +175,7 @@ class _AppBodyState extends State<AppBody> {
                       child: Consumer<LocationProvider>(
                         builder: (context, value, child) {
                           String shortCode = LocationDatabase.getJakimCode(
-                              value.currentLocationIndex);
+                              value.currentLocationIndex!);
                           return Container(
                             margin: const EdgeInsets.all(5.0),
                             padding: const EdgeInsets.all(18.0),
@@ -166,7 +194,7 @@ class _AppBodyState extends State<AppBody> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Currently set to ${LocationDatabase.getDaerah(value.currentLocationIndex)} in ${LocationDatabase.getNegeri(value.currentLocationIndex)}'),
+                                        'Currently set to ${LocationDatabase.getDaerah(value.currentLocationIndex!)} in ${LocationDatabase.getNegeri(value.currentLocationIndex!)}'),
                                     behavior: SnackBarBehavior.floating,
                                     action: SnackBarAction(
                                       label: 'Change',
@@ -317,8 +345,8 @@ class _AppBodyState extends State<AppBody> {
 
 class DateWidget extends StatelessWidget {
   const DateWidget({
-    Key key,
-    @required Duration hijriOffset,
+    Key? key,
+    required Duration hijriOffset,
   })  : _hijriOffset = hijriOffset,
         super(key: key);
 

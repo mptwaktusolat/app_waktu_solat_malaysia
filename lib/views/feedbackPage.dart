@@ -7,14 +7,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
-import '../CONSTANTS.dart' as constants;
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
 import 'faq.dart';
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({Key key}) : super(key: key);
+  const FeedbackPage({Key? key}) : super(key: key);
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
 }
@@ -23,9 +22,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
   final TextEditingController _messageController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  CollectionReference _reportsCollection;
-  Map<String, dynamic> _deviceInfo;
-  PackageInfo packageInfo;
+  late CollectionReference _reportsCollection;
+  Map<String, dynamic>? _deviceInfo;
+  late PackageInfo packageInfo;
   bool _isSendLoading = false;
 
   @override
@@ -39,7 +38,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
     packageInfo = await PackageInfo.fromPlatform();
   }
 
-  bool _logIsChecked = true;
+  bool? _logIsChecked = true;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -65,7 +64,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   children: [
                     TextFormField(
                         validator: (value) =>
-                            value.isNotEmpty ? null : 'Field can\'t be empty',
+                            value!.isNotEmpty ? null : 'Field can\'t be empty',
                         controller: _messageController,
                         decoration: const InputDecoration(
                             hintText: 'Please leave your feedback/report here',
@@ -75,7 +74,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         maxLines: 4),
                     const SizedBox(height: 10),
                     TextFormField(
-                      validator: (value) => value.isNotEmpty
+                      validator: (value) => value!.isNotEmpty
                           ? EmailValidator.validate(value)
                               ? null
                               : 'Incorrect email format'
@@ -97,12 +96,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
               builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
                 if (snapshot.hasData) {
                   _deviceInfo = {
-                    'Android version': snapshot.data.version.release,
-                    'Android Sdk': snapshot.data.version.sdkInt,
-                    'Device': snapshot.data.device,
-                    'Brand': snapshot.data.brand,
-                    'Model': snapshot.data.model,
-                    'Supported ABIs': snapshot.data.supportedAbis,
+                    'Android version': snapshot.data!.version.release,
+                    'Android Sdk': snapshot.data!.version.sdkInt,
+                    'Device': snapshot.data!.device,
+                    'Brand': snapshot.data!.brand,
+                    'Model': snapshot.data!.model,
+                    'Supported ABIs': snapshot.data!.supportedAbis,
                     'Screen Sizes': MediaQuery.of(context).size.toString()
                   };
 
@@ -116,17 +115,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               return Dialog(
                                   child: ListView.builder(
                                 shrinkWrap: true,
-                                itemCount: _deviceInfo.length + 1,
+                                itemCount: _deviceInfo!.length + 1,
                                 itemBuilder: (context, index) {
-                                  if (index < _deviceInfo.length) {
-                                    var key = _deviceInfo.keys.elementAt(index);
+                                  if (index < _deviceInfo!.length) {
+                                    var key =
+                                        _deviceInfo!.keys.elementAt(index);
                                     return ListTile(
                                       leading: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [Text(key)],
                                       ),
-                                      title: Text(_deviceInfo[key].toString()),
+                                      title: Text(_deviceInfo![key].toString()),
                                     );
                                   } else {
                                     return TextButton.icon(
@@ -203,7 +203,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     }
                   }
 
-                  if (_formKey.currentState.validate()) {
+                  if (_formKey.currentState!.validate()) {
                     FocusScope.of(context).unfocus();
                     setState(() => _isSendLoading = true);
                     try {
@@ -217,15 +217,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             GetStorage().read(kStoredApiPrayerCall) ??
                                 'no pray api called',
                         'Position': (LocationData.position != null)
-                            ? GeoPoint(LocationData.position.latitude,
-                                LocationData.position.longitude)
+                            ? GeoPoint(LocationData.position!.latitude,
+                                LocationData.position!.longitude)
                             : 'no detect',
                         'Locality':
                             GetStorage().read(kStoredLocationLocality) ??
                                 'no locality called',
-                        'Device info': _logIsChecked ? _deviceInfo : null,
-                        'Hijri Offset':
-                            GetStorage().read(constants.kHijriOffset),
+                        'Device info': _logIsChecked! ? _deviceInfo : null,
+                        'Hijri Offset': GetStorage().read(kHijriOffset),
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
@@ -274,8 +273,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               style: ElevatedButton.styleFrom(primary: Colors.black),
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(
-                    url: constants.kGithubRepoLink + '/issues');
+                LaunchUrl.normalLaunchUrl(url: kGithubRepoLink + '/issues');
               },
               label: const Text('Report / Follow issues on GitHub'),
             ),

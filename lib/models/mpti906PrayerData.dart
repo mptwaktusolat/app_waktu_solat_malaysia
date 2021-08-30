@@ -1,5 +1,5 @@
 class Mpti906PrayerModel {
-  Data data;
+  Data? data;
 
   Mpti906PrayerModel({this.data});
 
@@ -10,20 +10,20 @@ class Mpti906PrayerModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (this.data != null) {
-      data["data"] = this.data.toJson();
+      data["data"] = this.data!.toJson();
     }
     return data;
   }
 }
 
 class Data {
-  String provider;
-  String code;
-  int year;
-  int month;
-  String place;
-  Attributes attributes;
-  List<List<dynamic>> times;
+  String? provider;
+  String? code;
+  int? year;
+  int? month;
+  String? place;
+  Attributes? attributes;
+  List<List<dynamic>>? times;
 
   Data(
       {this.provider,
@@ -55,7 +55,7 @@ class Data {
     data["month"] = month;
     data["place"] = place;
     if (attributes != null) {
-      data["attributes"] = attributes.toJson();
+      data["attributes"] = attributes!.toJson();
     }
     if (times != null) {
       data["times"] = times;
@@ -65,8 +65,8 @@ class Data {
 }
 
 class Attributes {
-  String jakimCode;
-  String jakimSource;
+  String? jakimCode;
+  String? jakimSource;
 
   Attributes({this.jakimCode, this.jakimSource});
 

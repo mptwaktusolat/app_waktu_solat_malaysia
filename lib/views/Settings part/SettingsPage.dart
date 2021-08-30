@@ -6,15 +6,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info/package_info.dart';
 import 'package:provider/provider.dart';
+import '../../providers/settingsProvider.dart';
 import '../../CONSTANTS.dart' as constants;
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
 import '../Settings%20part/AboutPage.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
-import '../Settings%20part/settingsProvider.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -39,8 +39,6 @@ class _SettingsPageState extends State<SettingsPage> {
               buildShowOtherPrayerTime(setting),
               const SizedBox(height: 3),
               buildFontSizeSetting(setting),
-              const SizedBox(height: 3),
-              buildHijriOffset(setting),
               const Padding(
                   padding: EdgeInsets.all(8.0), child: Text('Notification')),
               buildNotificationSetting(context),
@@ -50,28 +48,17 @@ class _SettingsPageState extends State<SettingsPage> {
               const Padding(padding: EdgeInsets.all(8.0), child: Text('More')),
               buildAboutApp(context),
               const SizedBox(height: 3),
-              setting.isDeveloperOption
+              setting.isDeveloperOption!
                   ? buildVerboseDebugMode(context)
                   : const SizedBox.shrink(),
               const SizedBox(height: 3),
-              setting.isDeveloperOption
+              setting.isDeveloperOption!
                   ? buildResetAllSetting(context)
                   : const SizedBox.shrink(),
               const SizedBox(height: 40)
             ],
           );
         },
-      ),
-    );
-  }
-
-  Card buildHijriOffset(SettingProvider setting) {
-    return const Card(
-      child: ListTile(
-        title: Text('Hijri date offset'),
-        isThreeLine: true,
-        subtitle: Text(
-            'Data will be fetched automatically from the server. Will remove this setting in future updates.'),
       ),
     );
   }
@@ -86,11 +73,11 @@ class _SettingsPageState extends State<SettingsPage> {
         subtitle: Slider(
           activeColor: CupertinoColors.activeBlue,
           // inactiveColor: Colors.teal.withAlpha(40),
-          label: setting.prayerFontSize.round().toString(),
+          label: setting.prayerFontSize!.round().toString(),
           min: 12.0,
           max: 22.0,
           divisions: 5,
-          value: setting.prayerFontSize,
+          value: setting.prayerFontSize!,
           onChanged: (double value) {
             setting.prayerFontSize = value;
           },
@@ -112,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: CupertinoSlidingSegmentedControl(
             groupValue: setting.sharingFormat,
-            onValueChanged: (value) => setting.sharingFormat = value,
+            onValueChanged: (dynamic value) => setting.sharingFormat = value,
             children: const {
               //defaulted to always ask
               0: Text('Always ask'),
@@ -216,7 +203,7 @@ class _SettingsPageState extends State<SettingsPage> {
         builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
           if (snapshot.hasData) {
             return ListTile(
-              title: Text('About app (Ver. ${snapshot.data.version})'),
+              title: Text('About app (Ver. ${snapshot.data!.version})'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -244,7 +231,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Card(
       child: ListTile(
         title: const Text('Notification settings'),
-        onTap: () async {
+        onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -266,7 +253,7 @@ class _SettingsPageState extends State<SettingsPage> {
         onChanged: (bool value) {
           setting.showOtherPrayerTime = value;
         },
-        value: setting.showOtherPrayerTime,
+        value: setting.showOtherPrayerTime!,
       ),
     );
   }
@@ -287,9 +274,9 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Text(value),
             );
           }).toList(),
-          onChanged: (String newValue) =>
+          onChanged: (String? newValue) =>
               setting.use12hour = (newValue == '12 hour'),
-          value: setting.use12hour ? '12 hour' : '24 hour',
+          value: setting.use12hour! ? '12 hour' : '24 hour',
         ),
       ),
     );

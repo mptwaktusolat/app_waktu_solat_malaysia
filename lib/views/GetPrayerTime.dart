@@ -4,12 +4,12 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'Settings%20part/settingsProvider.dart';
+import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
 import '../models/mpti906PrayerData.dart';
-import '../notificationUtil/isolate_handler_notification.dart';
+import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
@@ -17,10 +17,10 @@ import '../utils/temp_prayer_data.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../utils/sizeconfig.dart';
 
-String location;
+String? location;
 
 class GetPrayerTime extends StatefulWidget {
-  const GetPrayerTime({Key key}) : super(key: key);
+  const GetPrayerTime({Key? key}) : super(key: key);
   @override
   _GetPrayerTimeState createState() => _GetPrayerTimeState();
 }
@@ -38,7 +38,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
       builder: (context, value, child) {
         return FutureBuilder<Mpti906PrayerModel>(
           future: MptApiFetch.fetchMpt(
-              LocationDatabase.getMptLocationCode(value.currentLocationIndex)),
+              LocationDatabase.getMptLocationCode(value.currentLocationIndex!)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Loading();
@@ -58,43 +58,43 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 }
 
 class PrayTimeList extends StatefulWidget {
-  const PrayTimeList({Key key, this.prayerTime}) : super(key: key);
-  final Mpti906PrayerModel prayerTime;
+  const PrayTimeList({Key? key, this.prayerTime}) : super(key: key);
+  final Mpti906PrayerModel? prayerTime;
 
   @override
   _PrayTimeListState createState() => _PrayTimeListState();
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
-  bool use12hour = GetStorage().read(kStoredTimeIs12);
-  bool showOtherPrayerTime;
+  bool? use12hour = GetStorage().read(kStoredTimeIs12);
+  bool? showOtherPrayerTime;
 
   @override
   Widget build(BuildContext context) {
-    var prayerTimeData = widget.prayerTime.data;
+    var prayerTimeData = widget.prayerTime!.data;
 
     if (GetStorage().read(kStoredShouldUpdateNotif)) {
       //schedule notification if needed
-      schedulePrayNotification(
-          PrayDataHandler.removePastDate(prayerTimeData.times));
+      MyNotifScheduler.schedulePrayNotification(
+          PrayDataHandler.removePastDate(prayerTimeData!.times!));
     }
 
     return Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
-        var _today = PrayDataHandler.todayPrayData(prayerTimeData.times);
+        var _today = PrayDataHandler.todayPrayData(prayerTimeData!.times!);
 
         String imsakTime = DateAndTime.toTimeReadable(
-            _today[0] - (10 * 60), use12hour); //minus 10 min from subuh
-        String subuhTime = DateAndTime.toTimeReadable(_today[0], use12hour);
-        String syurukTime = DateAndTime.toTimeReadable(_today[1], use12hour);
+            _today[0] - (10 * 60), use12hour!); //minus 10 min from subuh
+        String subuhTime = DateAndTime.toTimeReadable(_today[0], use12hour!);
+        String syurukTime = DateAndTime.toTimeReadable(_today[1], use12hour!);
         String dhuhaTime = DateAndTime.toTimeReadable(
-            _today[1] + (28 * 60), use12hour); //add 28 min from syuruk
-        String zohorTime = DateAndTime.toTimeReadable(_today[2], use12hour);
-        String asarTime = DateAndTime.toTimeReadable(_today[3], use12hour);
-        String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour);
-        String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour);
+            _today[1] + (28 * 60), use12hour!); //add 28 min from syuruk
+        String zohorTime = DateAndTime.toTimeReadable(_today[2], use12hour!);
+        String asarTime = DateAndTime.toTimeReadable(_today[3], use12hour!);
+        String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour!);
+        String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour!);
 
         TempPrayerTimeData.subuhTime = subuhTime;
         TempPrayerTimeData.zohorTime = zohorTime;
@@ -106,14 +106,14 @@ class _PrayTimeListState extends State<PrayTimeList> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            showOtherPrayerTime
+            showOtherPrayerTime!
                 ? solatCard(imsakTime, 'Imsak', false)
                 : Container(),
             solatCard(subuhTime, 'Subuh', true),
-            showOtherPrayerTime
+            showOtherPrayerTime!
                 ? solatCard(syurukTime, 'Syuruk', false)
                 : Container(),
-            showOtherPrayerTime
+            showOtherPrayerTime!
                 ? solatCard(dhuhaTime, 'Dhuha', false)
                 : Container(),
             solatCard(zohorTime, 'Zohor', true),
@@ -164,19 +164,20 @@ Widget solatCard(String time, String name, bool isOtherPrayerTime) {
 }
 
 class Error extends StatelessWidget {
-  const Error({Key key, this.errorMessage, this.onRetryPressed})
+  const Error({Key? key, this.errorMessage, this.onRetryPressed})
       : super(key: key);
 
-  final String errorMessage;
-  final Function onRetryPressed;
+  final String? errorMessage;
+  final Function? onRetryPressed;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        const SizedBox(height: 15),
         Text(
-          errorMessage,
+          errorMessage!,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 18,
@@ -185,19 +186,21 @@ class Error extends StatelessWidget {
         const SizedBox(height: 8),
         ElevatedButton(
           child: const Text('Retry', style: TextStyle(color: Colors.black)),
-          onPressed: onRetryPressed,
-        )
+          onPressed: onRetryPressed as void Function()?,
+        ),
+        // add some spacer (to distance the ads)
       ],
     );
   }
 }
 
 class Loading extends StatelessWidget {
-  const Loading({Key key}) : super(key: key);
+  const Loading({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: const [
+        SizedBox(height: 15),
         Text(
           'Fetching prayer time. Please wait.',
           textAlign: TextAlign.center,
@@ -205,10 +208,12 @@ class Loading extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        SizedBox(height: 24),
-        SpinKitChasingDots(
-          size: 35,
-          color: Colors.teal,
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 200),
+          child: SpinKitChasingDots(
+            size: 35,
+            color: Colors.teal,
+          ),
         ),
       ],
     );

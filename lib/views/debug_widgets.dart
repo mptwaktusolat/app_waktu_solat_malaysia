@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:waktusolatmalaysia/locationUtil/LocationData.dart';
-import 'package:waktusolatmalaysia/notificationUtil/notifications_helper.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
+import '../notificationUtil/notifications_helper.dart';
+import '../locationUtil/LocationData.dart';
+import '../utils/launchUrl.dart';
 import '../CONSTANTS.dart';
 
 class DebugWidgets {
@@ -34,33 +33,32 @@ class DebugWidgets {
           ),
           ListTile(
             title: const Text('Last position'),
-            subtitle: Text(LocationData.position.toString() ?? 'no detect'),
+            subtitle: Text(LocationData.position?.toString() ?? 'no detect'),
             onLongPress: () {
               Clipboard.setData(ClipboardData(
-                      text: LocationData.position.toString() ?? 'no detect'))
+                      text: LocationData.position?.toString() ?? 'no detect'))
                   .then((value) =>
                       Fluttertoast.showToast(msg: 'Copied position'));
             },
           ),
           ListTile(
             title: const Text('Send immediate test notification'),
+            subtitle: const Text('Without azan'),
             onTap: () async {
               await showDebugNotification();
             },
           ),
           ListTile(
-            title: const Text('Send alert test in one minute'),
-            subtitle: const Text('Payload: $kPayloadDebug'),
+            title: const Text('Send azan test in 30 secs'),
             onTap: () async {
-              await scheduleAlertNotification(
-                  notifsPlugin: FlutterLocalNotificationsPlugin(),
-                  title: 'debug payload',
-                  id: 219, //randrom int haha
-                  body: 'With payload',
-                  payload: kPayloadDebug,
-                  scheduledTime: tz.TZDateTime.now(tz.local).add(
-                    const Duration(minutes: 1),
-                  ));
+              await scheduleSingleAzanNotification(
+                  name: 'name',
+                  id: 2321,
+                  title: 'title',
+                  body: 'body',
+                  customSound: 'azan_hejaz2013_fajr',
+                  scheduledTime: tz.TZDateTime.now(tz.local)
+                      .add(const Duration(seconds: 30)));
             },
           ),
           ListTile(

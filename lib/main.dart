@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -9,17 +8,16 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
 import 'locationUtil/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
+import 'providers/ThemeController.dart';
+import 'providers/settingsProvider.dart';
 import 'utils/sharing_fab.dart';
-import 'views/Settings%20part/ThemeController.dart';
-import 'views/Settings%20part/settingsProvider.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
-
-NotificationAppLaunchDetails notifLaunch;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,11 +26,8 @@ void main() async {
   await Firebase.initializeApp();
   MobileAds.instance.initialize();
 
-  final FlutterLocalNotificationsPlugin notifsPlugin =
-      FlutterLocalNotificationsPlugin();
   await _configureLocalTimeZone();
-  notifLaunch = await notifsPlugin.getNotificationAppLaunchDetails();
-  await initNotifications(notifsPlugin);
+  await initNotifications();
   // requestIOSPermissions(notifsPlugin);
 
   initGetStorage();
@@ -48,12 +43,12 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   final _primaryColour = Colors.teal;
 
   @override
   Widget build(BuildContext context) {
-    configureSelectNotificationSubject(context);
+    configureSelectNotificationSubject();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),
@@ -70,7 +65,9 @@ class MyApp extends StatelessWidget {
               bottomAppBarColor: Colors.teal.shade50,
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
-                  color: _primaryColour, brightness: Brightness.dark),
+                color: _primaryColour,
+                // ssytem overlay style
+              ),
             ),
             darkTheme: ThemeData.dark().copyWith(
                 primaryColor: _primaryColour,
@@ -89,7 +86,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -114,6 +111,7 @@ class MyHomePage extends StatelessWidget {
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
+  _get.writeIfNull(kNotificationType, MyNotificationType.noazan.index);
   _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
@@ -128,7 +126,7 @@ void initGetStorage() {
   _get.writeIfNull(kDiscoveredDeveloperOption, false);
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);
-  _get.writeIfNull(kHijriOffset, 0);
+  _get.writeIfNull(kHijriOffset, -1);
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -162,7 +160,7 @@ void readAllGetStorage() {
 void showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
+  int? _appLaunchCount = GetStorage().read(kAppLaunchCount);
 
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));

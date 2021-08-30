@@ -1555,7 +1555,7 @@ class LocationCoordinate {
       double latitude, double longitude, String negeri) {
     List<int> tempIndex = [];
     double nearestDistance = 50000; //init distance to be 50 km
-    int nearestIndex;
+    late int nearestIndex;
 
     for (var i = 0; i < _locationCoordinate.length; i++) {
       if (_locationCoordinate[i].negeri == negeri) {
@@ -1567,7 +1567,7 @@ class LocationCoordinate {
     for (var index in tempIndex) {
       // calculate distance each of indexes location with user location
       double distance = Geolocator.distanceBetween(latitude, longitude,
-          _locationCoordinate[index].lat, _locationCoordinate[index].lng);
+          _locationCoordinate[index].lat!, _locationCoordinate[index].lng!);
       // distance returned in meter
 
       if (distance.compareTo(nearestDistance) == -1) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:waktusolatmalaysia/views/prayer_full_table.dart';
+import 'prayer_full_table.dart';
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
 import 'Qibla%20part/qibla.dart';
@@ -11,7 +11,7 @@ import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
 
 class MyBottomAppBar extends StatelessWidget {
-  const MyBottomAppBar({Key key}) : super(key: key);
+  const MyBottomAppBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable

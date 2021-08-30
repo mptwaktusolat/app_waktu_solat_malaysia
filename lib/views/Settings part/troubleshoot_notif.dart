@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/launchUrl.dart';
 
 class TroubleshootNotif extends StatelessWidget {
-  const TroubleshootNotif({Key key}) : super(key: key);
+  const TroubleshootNotif({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'Settings part/NotificationSettingPage.dart';
+import 'Settings%20part/ThemePage.dart';
 import '../CONSTANTS.dart';
 import '../main.dart';
-import 'Settings%20part/ThemePage.dart';
 import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key key}) : super(key: key);
+  const OnboardingPage({Key? key}) : super(key: key);
   @override
   _OnboardingPageState createState() => _OnboardingPageState();
 }
 
 class _OnboardingPageState extends State<OnboardingPage>
     with SingleTickerProviderStateMixin {
-  var pageDecoration = const PageDecoration(
+  final _pageDecoration = const PageDecoration(
     titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
     bodyTextStyle: TextStyle(fontSize: 19.0),
     descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
@@ -22,7 +23,8 @@ class _OnboardingPageState extends State<OnboardingPage>
   );
 
   bool _isDoneSetLocation = false;
-  AnimationController _animController;
+  AnimationController? _animController;
+  MyNotificationType _type = MyNotificationType.noazan;
 
   @override
   void initState() {
@@ -35,14 +37,14 @@ class _OnboardingPageState extends State<OnboardingPage>
   Widget build(BuildContext context) {
     List<PageViewModel> _pages = [
       PageViewModel(
-          title: "Keep the location service on",
+          title: "Set your location",
           body:
-              "Turn on your GPS on so that the app can detect your current location.",
+              "Keep your GPS on so that the app can detect your current location.",
           image: Image.asset(
             'assets/bam/Pin.png',
             width: 200,
           ),
-          decoration: pageDecoration,
+          decoration: _pageDecoration,
           footer: _isDoneSetLocation
               ? const Text(
                   'Location set. You can change location anytime by tapping the location code at upper right corner.',
@@ -75,9 +77,9 @@ class _OnboardingPageState extends State<OnboardingPage>
               bool _isDarkMode =
                   Theme.of(context).brightness == Brightness.dark;
               if (_isDarkMode) {
-                _animController.forward();
+                _animController!.forward();
               } else {
-                _animController.reverse();
+                _animController!.reverse();
               }
               return AnimatedMoon(
                 animationController: _animController,
@@ -89,17 +91,40 @@ class _OnboardingPageState extends State<OnboardingPage>
         ),
         bodyWidget: const ThemesOption(),
         title: "Set your favourite theme",
-        decoration: pageDecoration,
+        decoration: _pageDecoration,
+      ),
+      PageViewModel(
+        image: Image.asset('assets/bam/Clock.png', width: 200),
+        title: 'Select notification preferences',
+        decoration: _pageDecoration,
+        bodyWidget: Column(mainAxisSize: MainAxisSize.min, children: [
+          RadioListTile(
+              value: MyNotificationType.noazan,
+              groupValue: _type,
+              title: const Text('Default notification sound'),
+              onChanged: (MyNotificationType? type) {
+                GetStorage().write(kNotificationType, type?.index);
+                setState(() => _type = type!);
+              }),
+          RadioListTile(
+              value: MyNotificationType.azan,
+              groupValue: _type,
+              title: const Text('Azan notification [NEW]'),
+              onChanged: (MyNotificationType? type) {
+                GetStorage().write(kNotificationType, type?.index);
+                setState(() => _type = type!);
+              }),
+        ]),
       ),
       PageViewModel(
         title: "Alhamdulillah. All set",
         body:
-            "Welcome abroad. Do explore and tweak the other features and settings as well.",
+            "Welcome abroad. Do explore other features and tweak other settings as well.",
         image: Image.asset(
           'assets/bam/Tick.png',
           width: 200,
         ),
-        decoration: pageDecoration,
+        decoration: _pageDecoration,
       ),
     ];
     return IntroductionScreen(
@@ -114,11 +139,10 @@ class _OnboardingPageState extends State<OnboardingPage>
         ),
         done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
         next: const Text('Next', style: TextStyle(fontWeight: FontWeight.w600)),
-        showSkipButton: true,
-        skip: const Text('Skip', style: TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           GetStorage().write(kIsFirstRun, false);
+          GetStorage().write(kHaventIntroducedToNotifType, false);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (builder) => const MyHomePage()));
         });

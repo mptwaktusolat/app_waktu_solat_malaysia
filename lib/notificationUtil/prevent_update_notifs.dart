@@ -1,7 +1,7 @@
 //If less than 2 days, since the last notif is scheduled, do not rescehdule
 
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/utils/debug_toast.dart';
+import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../utils/DateAndTime.dart';
 

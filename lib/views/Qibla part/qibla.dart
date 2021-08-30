@@ -9,7 +9,7 @@ import '../Qibla%20part/qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
 class Qibla extends StatefulWidget {
-  const Qibla({Key key}) : super(key: key);
+  const Qibla({Key? key}) : super(key: key);
   @override
   _QiblaState createState() => _QiblaState();
 }
@@ -41,7 +41,7 @@ class _QiblaState extends State<Qibla> {
             alignment: Alignment.center,
             child: FutureBuilder(
               future: _deviceSupport,
-              builder: (context, snapshot) {
+              builder: (context, AsyncSnapshot<bool?> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(
@@ -56,7 +56,7 @@ class _QiblaState extends State<Qibla> {
                   );
                 }
 
-                if (snapshot.data) {
+                if (snapshot.hasData && snapshot.data!) {
                   return const QiblaCompass();
                 } else {
                   return const NoCompassSensor();
