@@ -78,7 +78,9 @@ class _AppBodyState extends State<AppBody> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
+      // show prompt azan notif
       if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
+        // to prevent dialog showing multiple times
         GetStorage().write(kHaventIntroducedToNotifType, false);
         showModalBottomSheet(
             context: context,
