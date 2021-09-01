@@ -41,7 +41,11 @@ dependencies:
   introduction_screen: ^2.1.0
   firebase_remote_config: ^0.10.0+3
   in_app_review: ^2.0.2
-  google_mobile_ads: ^0.13.2
+  google_mobile_ads:
+    git:
+      url: https://github.com/SuaMusica/googleads-mobile-flutter.git
+      path: packages/google_mobile_ads
+      ref: feature/suamusica
   restart_app: ^1.0.3
 
 dev_dependencies:
