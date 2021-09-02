@@ -278,13 +278,13 @@ class LocationDatabase {
       jakimCode: 'SWK02',
       negeri: 'Sarawak',
       daerah: 'Niah, Belaga, Sibuti, Miri, Bekenu, Marudi',
-      mptLocationCode: 'swk-2',
+      mptLocationCode: 'swk-39',
     ),
     Location(
       jakimCode: 'SWK03',
       negeri: 'Sarawak',
       daerah: 'Song, Balingian, Sebauh, Bintulu, Tatau, Kapit',
-      mptLocationCode: 'swk-16',
+      mptLocationCode: 'swk-45',
     ),
     Location(
       jakimCode: 'SWK04',
@@ -302,7 +302,7 @@ class LocationDatabase {
       jakimCode: 'SWK06',
       negeri: 'Sarawak',
       daerah:
-          'Kabong, Lingga, Sri Aman, Engkelili, Betong, Spaoh, Pusa, Saratok, Roban,Debak',
+          'Kabong, Lingga, Sri Aman, Engkelili, Betong, Spaoh, Pusa, Saratok, Roban, Debak',
       mptLocationCode: 'swk-10',
     ),
     Location(
