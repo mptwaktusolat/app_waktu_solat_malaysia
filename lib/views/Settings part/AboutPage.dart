@@ -22,6 +22,9 @@ class AboutAppPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isFirstTry = true;
+    TextStyle _linkTextStyle = Theme.of(context).brightness == Brightness.light
+        ? const TextStyle(color: Colors.blueAccent)
+        : TextStyle(color: Colors.blueAccent.shade100);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -114,7 +117,7 @@ class AboutAppPage extends StatelessWidget {
                             TextSpan(
                               text:
                                   ' Jabatan Kemajuan Islam Malaysia (e-solat)',
-                              style: const TextStyle(color: Colors.blueAccent),
+                              style: _linkTextStyle,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   LaunchUrl.normalLaunchUrl(
@@ -126,7 +129,7 @@ class AboutAppPage extends StatelessWidget {
                             ),
                             TextSpan(
                               text: 'mpti906 API',
-                              style: const TextStyle(color: Colors.blueAccent),
+                              style: _linkTextStyle,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   LaunchUrl.normalLaunchUrl(

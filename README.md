@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 ![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
 ![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-24k+-orange)
+![Installs](https://img.shields.io/badge/installs-27k+-orange)
 ![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
@@ -79,6 +79,7 @@ Article that help me througout the development(Read: Website yg function teruk. 
 5. https://medium.com/@fuzzymemory/adding-scheduled-notifications-in-your-flutter-application-19be1f82ade8
 6. ~~https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6~~
 7. 3D assets you see on the onboarding screen is from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/).
+8. https://github.com/SuaMusica/googleads-mobile-flutter #79
 
 <!-- ## Attribution
 
