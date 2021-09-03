@@ -65,7 +65,7 @@ class PrayerFullTable extends StatelessWidget {
                     columns: [
                       'Date',
                       'Subuh',
-                      'Imsak',
+                      'Syuruk',
                       'Zohor',
                       'Asar',
                       'Maghrib',
