@@ -68,7 +68,7 @@ class PrayerDataTable extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: DataTable(
           columns:
-              ['Date', 'Subuh', 'Imsak', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
+              ['Date', 'Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
                   .map(
                     (text) => DataColumn(
                         label: Text(
