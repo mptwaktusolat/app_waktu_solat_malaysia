@@ -8,7 +8,6 @@ import '../locationUtil/locationDatabase.dart';
 import '../models/mpti906PrayerData.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/mpt_fetch_api.dart';
-
 import '../CONSTANTS.dart';
 
 class PrayerFullTable extends StatelessWidget {
@@ -17,6 +16,25 @@ class PrayerFullTable extends StatelessWidget {
   final int month = DateTime.now().month;
   final int year = DateTime.now().year;
   final int? locationIndex = GetStorage().read(kStoredGlobalIndex);
+
+  List<List<int>> addOtherPrayerTimes(List<List<dynamic>> timesFromSnapshot) {
+    List<List<int>> result = [];
+    // Iterate prayer times for each day
+    for (var times in timesFromSnapshot) {
+      int imsak = times[0] - const Duration(minutes: 10).inSeconds;
+      int subuh = times[0];
+      int syuruk = times[1];
+      int dhuha = times[1] + const Duration(minutes: 28).inSeconds;
+      int zuhr = times[2];
+      int asr = times[3];
+      int maghrib = times[4];
+      int isya = times[5];
+
+      result.add([imsak, subuh, syuruk, dhuha, zuhr, asr, maghrib, isya]);
+    }
+
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +57,7 @@ class PrayerFullTable extends StatelessWidget {
                 centerTitle: true,
                 title: Text(
                   '${DateAndTime.monthName(month)} timetable (${LocationDatabase.getJakimCode(locationIndex!)})',
+                  textAlign: TextAlign.center,
                 ),
               ),
             )
@@ -61,23 +80,30 @@ class PrayerFullTable extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error as String);
                 } else if (snapshot.hasData) {
+                  var addedOthersPrayerTime =
+                      addOtherPrayerTimes(snapshot.data!.data!.times!);
                   return DataTable(
-                    columns: [
-                      'Date',
-                      'Subuh',
-                      'Syuruk',
-                      'Zohor',
-                      'Asar',
-                      'Maghrib',
-                      'Isyak'
-                    ]
-                        .map(
-                          (text) => DataColumn(
-                              label: Text(
-                            text,
-                            style: const TextStyle(fontStyle: FontStyle.italic),
-                          )),
-                        )
+                    columnSpacing: 30,
+                    // Map of title and tooltip
+                    columns: {
+                      'Date': null,
+                      'Imsak': '10 minutes before Subuh',
+                      'Subuh': null,
+                      'Syuruk': 'Sunrise',
+                      'Dhuha': '28 Minutes After Syuruk Time (Sunrise)',
+                      'Zohor': null,
+                      'Asar': null,
+                      'Maghrib': null,
+                      'Isyak': null,
+                    }
+                        .entries
+                        .map((e) => DataColumn(
+                            tooltip: e.value,
+                            label: Text(
+                              e.key,
+                              style:
+                                  const TextStyle(fontStyle: FontStyle.italic),
+                            )))
                         .toList(),
                     rows: List.generate(snapshot.data!.data!.times!.length,
                         (index) {
@@ -91,17 +117,21 @@ class PrayerFullTable extends StatelessWidget {
                                     : null),
                           ),
                         ),
-                        ...snapshot.data!.data!.times![index].map((day) {
-                          return DataCell(Center(
-                            child: Opacity(
-                              opacity: (index < todayIndex) ? 0.55 : 1.0,
-                              child: Text(DateAndTime.toTimeReadable(day, true),
+                        ...addedOthersPrayerTime[index].map((day) {
+                          return DataCell(
+                            Center(
+                              child: Opacity(
+                                opacity: (index < todayIndex) ? 0.55 : 1.0,
+                                child: Text(
+                                  DateAndTime.toTimeReadable(day, true),
                                   style: TextStyle(
                                       fontWeight: index == todayIndex
                                           ? FontWeight.bold
-                                          : null)),
+                                          : null),
+                                ),
+                              ),
                             ),
-                          ));
+                          );
                         }).toList(),
                       ]);
                     }),
