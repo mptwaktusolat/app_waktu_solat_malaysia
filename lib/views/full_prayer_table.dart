@@ -60,6 +60,25 @@ class PrayerDataTable extends StatelessWidget {
   final int todayIndex = DateTime.now().day - 1;
   final Mpti906PrayerModel model;
 
+  List<List<int>> addOtherPrayerTimes(List<List<dynamic>> timesFromSnapshot) {
+    List<List<int>> result = [];
+    // Iterate prayer times for each day
+    for (var times in timesFromSnapshot) {
+      int imsak = times[0] - const Duration(minutes: 10).inSeconds;
+      int subuh = times[0];
+      int syuruk = times[1];
+      int dhuha = times[1] + const Duration(minutes: 28).inSeconds;
+      int zuhr = times[2];
+      int asr = times[3];
+      int maghrib = times[4];
+      int isya = times[5];
+
+      result.add([imsak, subuh, syuruk, dhuha, zuhr, asr, maghrib, isya]);
+    }
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -67,16 +86,25 @@ class PrayerDataTable extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: DataTable(
-          columns:
-              ['Date', 'Subuh', 'Syuruk', 'Zohor', 'Asar', 'Maghrib', 'Isyak']
-                  .map(
-                    (text) => DataColumn(
-                        label: Text(
-                      text,
-                      style: const TextStyle(fontStyle: FontStyle.italic),
-                    )),
-                  )
-                  .toList(),
+          columns: [
+            'Date',
+            'Imsak',
+            'Subuh',
+            'Syuruk',
+            'Dhuha',
+            'Zohor',
+            'Asar',
+            'Maghrib',
+            'Isyak'
+          ]
+              .map(
+                (text) => DataColumn(
+                    label: Text(
+                  text,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                )),
+              )
+              .toList(),
           // columnSpacing: MediaQuery.of(context).size.width / 10,
           // columnSpacing: 30,
           rows: List.generate(model.data.times.length, (index) {
@@ -95,7 +123,7 @@ class PrayerDataTable extends StatelessWidget {
                       : null,
                 ),
               )),
-              ...model.data.times[index].map((day) {
+              ...addOtherPrayerTimes(model.data.times)[index].map((day) {
                 return DataCell(Center(
                   child: Opacity(
                       opacity: (index < todayIndex) ? 0.60 : 1.0,
