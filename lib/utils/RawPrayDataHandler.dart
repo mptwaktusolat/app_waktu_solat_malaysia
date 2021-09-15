@@ -1,3 +1,5 @@
+import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
+
 final int day = DateTime.now().day;
 
 class PrayDataHandler {
@@ -5,6 +7,6 @@ class PrayDataHandler {
   static List<List<dynamic>> removePastDate(List<List<dynamic>> times) =>
       times.sublist(day - 1);
 
-  static List<dynamic> todayPrayData(List<List<dynamic>> times) =>
-      times[day - 1];
+  static List<int>? todayPrayData(List<PrayerTime> times) =>
+      times[day - 1].times;
 }

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
 import '../locationUtil/locationDatabase.dart';
-import '../models/mpti906PrayerData.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../CONSTANTS.dart';
@@ -16,25 +16,6 @@ class PrayerFullTable extends StatelessWidget {
   final int month = DateTime.now().month;
   final int year = DateTime.now().year;
   final int? locationIndex = GetStorage().read(kStoredGlobalIndex);
-
-  List<List<int>> addOtherPrayerTimes(List<List<dynamic>> timesFromSnapshot) {
-    List<List<int>> result = [];
-    // Iterate prayer times for each day
-    for (var times in timesFromSnapshot) {
-      int imsak = times[0] - const Duration(minutes: 10).inSeconds;
-      int subuh = times[0];
-      int syuruk = times[1];
-      int dhuha = times[1] + const Duration(minutes: 28).inSeconds;
-      int zuhr = times[2];
-      int asr = times[3];
-      int maghrib = times[4];
-      int isya = times[5];
-
-      result.add([imsak, subuh, syuruk, dhuha, zuhr, asr, maghrib, isya]);
-    }
-
-    return result;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,19 +50,17 @@ class PrayerFullTable extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(
-                LocationDatabase.getMptLocationCode(
+                LocationDatabase.getJakimCode(
                   locationIndex!,
                 ),
               ),
-              builder: (context, AsyncSnapshot<Mpti906PrayerModel> snapshot) {
+              builder: (context, AsyncSnapshot<JakimEsolatModel> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                       child: SpinKitFadingCube(size: 35, color: Colors.teal));
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error as String);
                 } else if (snapshot.hasData) {
-                  var addedOthersPrayerTime =
-                      addOtherPrayerTimes(snapshot.data!.data!.times!);
                   return DataTable(
                     columnSpacing: 30,
                     // Map of title and tooltip
@@ -105,34 +84,36 @@ class PrayerFullTable extends StatelessWidget {
                                   const TextStyle(fontStyle: FontStyle.italic),
                             )))
                         .toList(),
-                    rows: List.generate(snapshot.data!.data!.times!.length,
+                    rows: List.generate(snapshot.data!.prayerTime!.length,
                         (index) {
                       return DataRow(selected: index == todayIndex, cells: [
                         DataCell(
                           Text(
-                            '${index + 1} / ${snapshot.data!.data!.month} (${DateFormat('E').format(DateTime(year, month, index + 1))})',
+                            DateFormat('d / M (E)')
+                                .format(DateTime(year, month, index + 1)),
                             style: TextStyle(
                                 fontWeight: index == todayIndex
                                     ? FontWeight.bold
                                     : null),
                           ),
                         ),
-                        ...addedOthersPrayerTime[index].map((day) {
-                          return DataCell(
-                            Center(
-                              child: Opacity(
-                                opacity: (index < todayIndex) ? 0.55 : 1.0,
-                                child: Text(
-                                  DateAndTime.toTimeReadable(day, true),
-                                  style: TextStyle(
-                                      fontWeight: index == todayIndex
-                                          ? FontWeight.bold
-                                          : null),
-                                ),
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                        ...snapshot.data!.prayerTime![index].times!
+                            .map((day) => DataCell(
+                                  Center(
+                                    child: Opacity(
+                                      opacity:
+                                          (index < todayIndex) ? 0.55 : 1.0,
+                                      child: Text(
+                                        DateAndTime.toTimeReadable(day, true),
+                                        style: TextStyle(
+                                            fontWeight: index == todayIndex
+                                                ? FontWeight.bold
+                                                : null),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                            .toList()
                       ]);
                     }),
                   );

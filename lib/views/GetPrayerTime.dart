@@ -4,11 +4,11 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
 import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_provider.dart';
-import '../models/mpti906PrayerData.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
@@ -36,15 +36,16 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
-        return FutureBuilder<Mpti906PrayerModel>(
+        return FutureBuilder<JakimEsolatModel>(
           future: MptApiFetch.fetchMpt(
-              LocationDatabase.getMptLocationCode(value.currentLocationIndex!)),
+              LocationDatabase.getJakimCode(value.currentLocationIndex!)),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Loading();
             } else if (snapshot.hasData) {
               return PrayTimeList(prayerTime: snapshot.data);
             } else {
+              print(snapshot.error);
               return Error(
                 errorMessage: snapshot.error.toString(),
                 onRetryPressed: () => setState(() {}),
@@ -59,7 +60,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
 
 class PrayTimeList extends StatefulWidget {
   const PrayTimeList({Key? key, this.prayerTime}) : super(key: key);
-  final Mpti906PrayerModel? prayerTime;
+  final JakimEsolatModel? prayerTime;
 
   @override
   _PrayTimeListState createState() => _PrayTimeListState();
@@ -71,30 +72,28 @@ class _PrayTimeListState extends State<PrayTimeList> {
 
   @override
   Widget build(BuildContext context) {
-    var prayerTimeData = widget.prayerTime!.data;
+    var prayerTimeData = widget.prayerTime?.prayerTime;
 
-    if (GetStorage().read(kStoredShouldUpdateNotif)) {
-      //schedule notification if needed
-      MyNotifScheduler.schedulePrayNotification(
-          PrayDataHandler.removePastDate(prayerTimeData!.times!));
-    }
+    // if (GetStorage().read(kStoredShouldUpdateNotif)) {
+    //   //schedule notification if needed
+    //   MyNotifScheduler.schedulePrayNotification(
+    //       PrayDataHandler.removePastDate(prayerTimeData!));
+    // }
 
     return Consumer<SettingProvider>(
       builder: (context, setting, child) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
-        var _today = PrayDataHandler.todayPrayData(prayerTimeData!.times!);
+        var _today = PrayDataHandler.todayPrayData(prayerTimeData!)!;
 
-        String imsakTime = DateAndTime.toTimeReadable(
-            _today[0] - (10 * 60), use12hour!); //minus 10 min from subuh
-        String subuhTime = DateAndTime.toTimeReadable(_today[0], use12hour!);
-        String syurukTime = DateAndTime.toTimeReadable(_today[1], use12hour!);
-        String dhuhaTime = DateAndTime.toTimeReadable(
-            _today[1] + (28 * 60), use12hour!); //add 28 min from syuruk
-        String zohorTime = DateAndTime.toTimeReadable(_today[2], use12hour!);
-        String asarTime = DateAndTime.toTimeReadable(_today[3], use12hour!);
-        String maghribTime = DateAndTime.toTimeReadable(_today[4], use12hour!);
-        String isyaTime = DateAndTime.toTimeReadable(_today[5], use12hour!);
+        String imsakTime = DateAndTime.toTimeReadable(_today[0], use12hour!);
+        String subuhTime = DateAndTime.toTimeReadable(_today[1], use12hour!);
+        String syurukTime = DateAndTime.toTimeReadable(_today[2], use12hour!);
+        String dhuhaTime = DateAndTime.toTimeReadable(_today[3], use12hour!);
+        String zohorTime = DateAndTime.toTimeReadable(_today[4], use12hour!);
+        String asarTime = DateAndTime.toTimeReadable(_today[5], use12hour!);
+        String maghribTime = DateAndTime.toTimeReadable(_today[6], use12hour!);
+        String isyaTime = DateAndTime.toTimeReadable(_today[7], use12hour!);
 
         TempPrayerTimeData.subuhTime = subuhTime;
         TempPrayerTimeData.zohorTime = zohorTime;
@@ -177,7 +176,9 @@ class Error extends StatelessWidget {
       children: <Widget>[
         const SizedBox(height: 15),
         Text(
-          errorMessage!,
+          errorMessage!.isEmpty
+              ? 'Unexpected error. Please retry'
+              : errorMessage!,
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontSize: 18,
@@ -188,7 +189,7 @@ class Error extends StatelessWidget {
           child: const Text('Retry', style: TextStyle(color: Colors.black)),
           onPressed: onRetryPressed as void Function()?,
         ),
-        // add some spacer (to distance the ads)
+        const SizedBox(height: 100),
       ],
     );
   }

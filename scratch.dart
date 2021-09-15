@@ -2,9 +2,16 @@
 
 import 'dart:math';
 
+import 'package:intl/intl.dart';
+
 enum Test { first, second }
 
-void main() {}
+void main() {
+  String date = '15-Sep-2021 18:27:43';
+  String pattern = 'd-MMM-y hh:mm:ss';
+  var datetime = DateFormat(pattern).parse(date);
+  print(datetime);
+}
 
 void listTest() {
   List _myList =
