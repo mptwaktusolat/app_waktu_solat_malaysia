@@ -10,7 +10,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
-import 'locationUtil/location_provider.dart';
+import 'providers/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
 import 'providers/settingsProvider.dart';

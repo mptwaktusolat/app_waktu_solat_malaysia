@@ -15,7 +15,7 @@ import '../locationUtil/LocationData.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_coordinate.dart';
 import '../locationUtil/location_coordinate_model.dart';
-import '../locationUtil/location_provider.dart';
+import '../providers/location_provider.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {

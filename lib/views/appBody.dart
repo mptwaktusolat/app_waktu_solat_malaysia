@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
-import '../locationUtil/location_provider.dart';
+import '../providers/location_provider.dart';
 import '../utils/sizeconfig.dart';
 import 'Settings%20part/NotificationSettingPage.dart';
 import 'GetPrayerTime.dart';
