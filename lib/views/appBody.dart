@@ -174,8 +174,7 @@ class _AppBodyState extends State<AppBody> {
                     Expanded(
                       child: Consumer<LocationProvider>(
                         builder: (context, value, child) {
-                          String shortCode = LocationDatabase.getJakimCode(
-                              value.currentLocationIndex!);
+                          String shortCode = value.currentLocationCode;
                           return Container(
                             margin: const EdgeInsets.all(5.0),
                             padding: const EdgeInsets.all(18.0),
@@ -194,7 +193,7 @@ class _AppBodyState extends State<AppBody> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                        'Currently set to ${LocationDatabase.getDaerah(value.currentLocationIndex!)} in ${LocationDatabase.getNegeri(value.currentLocationIndex!)}'),
+                                        'Currently set to ${LocationDatabase.daerah(value.currentLocationCode)} in ${LocationDatabase.negeri(value.currentLocationCode)}'),
                                     behavior: SnackBarBehavior.floating,
                                     action: SnackBarAction(
                                       label: 'Change',

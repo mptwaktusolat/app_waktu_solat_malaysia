@@ -3,13 +3,13 @@ import 'package:get_storage/get_storage.dart';
 import '../../CONSTANTS.dart';
 
 class LocationProvider with ChangeNotifier {
-  int? _currentLocationIndex = GetStorage().read(kStoredGlobalIndex);
+  String _currentLocationCode = GetStorage().read(kStoredLocationJakimCode);
 
-  set currentLocationIndex(int? value) {
-    _currentLocationIndex = value;
-    GetStorage().write(kStoredGlobalIndex, value);
+  set currentLocationCode(String value) {
+    _currentLocationCode = value;
+    GetStorage().write(kStoredLocationJakimCode, value);
     notifyListeners();
   }
 
-  int? get currentLocationIndex => _currentLocationIndex;
+  String get currentLocationCode => _currentLocationCode;
 }

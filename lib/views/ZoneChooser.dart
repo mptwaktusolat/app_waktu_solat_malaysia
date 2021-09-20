@@ -99,16 +99,17 @@ class LocationChooser {
                 builder:
                     (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return onLoadingWidget();
+                    return _onLoadingWidget();
                   } else if (snapshot.hasData) {
-                    return onCompletedWidget(context, location: snapshot.data!);
+                    return _onCompletedWidget(context,
+                        location: snapshot.data!);
                   } else if (snapshot.hasError) {
-                    return onErrorWidget(
+                    return _onErrorWidget(
                       context,
                       errorMessage: snapshot.error.toString(),
                     );
                   } else {
-                    return onErrorWidget(context,
+                    return _onErrorWidget(context,
                         errorMessage: 'Unexpected error occured');
                   }
                 }),
@@ -141,27 +142,31 @@ class LocationChooser {
                       groupSeparatorBuilder: (String groupByValue) => Padding(
                         padding: const EdgeInsets.only(left: 16, top: 8),
                         child: Opacity(
-                          opacity: 0.8,
+                          opacity: 0.6,
                           child: Text(
                             groupByValue,
                             style: const TextStyle(
-                                fontSize: 18,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                              decorationStyle: TextDecorationStyle.dotted,
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ),
-                      indexedItemBuilder: (context, element, index) {
-                        bool _selected = value.currentLocationIndex == index;
+                      itemBuilder: (context, element) {
+                        bool _selected =
+                            value.currentLocationCode == element.jakimCode;
                         return ListTile(
                           onTap: () {
-                            value.currentLocationIndex = index;
+                            value.currentLocationCode = element.jakimCode;
                             onNewLocationSaved(context);
                             Navigator.pop(context, true);
                           },
-                          title: Text(LocationDatabase.getDaerah(index)),
-                          trailing: locationBubble(
-                              context, LocationDatabase.getJakimCode(index),
+                          title:
+                              Text(LocationDatabase.daerah(element.jakimCode)),
+                          trailing: _locationBubble(context, element.jakimCode,
                               selected: _selected),
                           selected: _selected,
                         );
@@ -177,7 +182,7 @@ class LocationChooser {
     );
   }
 
-  static Widget locationBubble(BuildContext context, String shortCode,
+  static Widget _locationBubble(BuildContext context, String shortCode,
       {bool selected = false}) {
     return Container(
       padding: const EdgeInsets.all(4.0),
@@ -198,10 +203,8 @@ class LocationChooser {
     );
   }
 
-  static Widget onCompletedWidget(BuildContext context,
+  static Widget _onCompletedWidget(BuildContext context,
       {required LocationCoordinateData location}) {
-    var index = LocationDatabase.indexOfLocation(location.zone);
-
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
         return Column(
@@ -230,15 +233,15 @@ class LocationChooser {
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    locationBubble(context, location.zone.toUpperCase()),
+                    _locationBubble(context, location.zone.toUpperCase()),
                   ],
                 ),
                 title: Text(
-                  LocationDatabase.getDaerah(index),
+                  LocationDatabase.daerah(location.zone),
                   style: const TextStyle(fontSize: 13),
                 ),
                 subtitle: Text(
-                  LocationDatabase.getNegeri(index),
+                  LocationDatabase.negeri(location.zone),
                   style: const TextStyle(fontSize: 11),
                 ),
               ),
@@ -262,7 +265,7 @@ class LocationChooser {
                     TextButton(
                       child: const Text('Set this location'),
                       onPressed: () {
-                        value.currentLocationIndex = index;
+                        value.currentLocationCode = location.zone;
                         onNewLocationSaved(context);
 
                         Navigator.pop(context, true);
@@ -278,8 +281,8 @@ class LocationChooser {
     );
   }
 
-  static Widget onErrorWidget(BuildContext context,
-      {required String errorMessage, Function? onRetryPressed}) {
+  static Widget _onErrorWidget(BuildContext context,
+      {required String errorMessage}) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -404,7 +407,7 @@ class LocationChooser {
     );
   }
 
-  static Widget onLoadingWidget({String loadingMessage = 'Loading'}) {
+  static Widget _onLoadingWidget({String loadingMessage = 'Loading'}) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

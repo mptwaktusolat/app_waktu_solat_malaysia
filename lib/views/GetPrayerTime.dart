@@ -37,8 +37,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
     return Consumer<LocationProvider>(
       builder: (context, value, child) {
         return FutureBuilder<JakimEsolatModel>(
-          future: MptApiFetch.fetchMpt(
-              LocationDatabase.getJakimCode(value.currentLocationIndex!)),
+          future: MptApiFetch.fetchMpt(value.currentLocationCode),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Loading();

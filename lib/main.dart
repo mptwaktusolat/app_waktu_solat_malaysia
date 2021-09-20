@@ -8,6 +8,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
 import 'providers/location_provider.dart';
@@ -34,6 +35,8 @@ void main() async {
   // readAllGetStorage();
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
+
+  migrateLocationIndexToLocationCode();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
@@ -108,6 +111,14 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+void migrateLocationIndexToLocationCode() {
+  var storedIndex = GetStorage().read(kStoredGlobalIndex);
+  if (storedIndex != null) {
+    GetStorage()
+        .write(kStoredLocationJakimCode, LocationDatabase.getJakimCode(storedIndex));
+  }
+}
+
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
@@ -115,7 +126,7 @@ void initGetStorage() {
   _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
-  _get.writeIfNull(kStoredGlobalIndex, 0);
+  _get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
   _get.writeIfNull(kStoredTimeIs12, true);
   _get.writeIfNull(kStoredShowOtherPrayerTime, false);
   _get.writeIfNull(kStoredShouldUpdateNotif, true);

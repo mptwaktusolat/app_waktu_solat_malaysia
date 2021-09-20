@@ -3,7 +3,9 @@ const kPayloadMonthly = 'monthlyRefresh';
 const kPayloadDebug = 'payloadDebug';
 
 //GetStorage
+@Deprecated('No longer store location based on index')
 const kStoredGlobalIndex = "storedGlobalIndex";
+const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredLocationLocality = "storedLocationLocality";
