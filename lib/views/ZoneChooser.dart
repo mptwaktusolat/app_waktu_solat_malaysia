@@ -5,10 +5,12 @@ import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/locationUtil/location.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
@@ -119,58 +121,79 @@ class LocationChooser {
 
   static Future<bool?> openLocationBottomSheet(BuildContext context) async {
     return await showModalBottomSheet(
-        backgroundColor: Colors.transparent,
-        context: context,
-        isScrollControlled: true,
-        builder: (BuildContext context) {
-          return Consumer<LocationProvider>(
-            builder: (context, value, child) {
-              return FractionallySizedBox(
-                heightFactor: 0.68,
-                child: ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(26)),
-                  child: Container(
-                    color: Theme.of(context).canvasColor,
-                    child: Scrollbar(
-                      child: ListView.builder(
-                        itemCount: LocationDatabase.getLength(),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            onTap: () {
-                              value.currentLocationIndex = index;
-                              onNewLocationSaved(context);
-                              Navigator.pop(context, true);
-                            },
-                            title: Text(LocationDatabase.getDaerah(index)),
-                            subtitle: Text(LocationDatabase.getNegeri(index)),
-                            trailing: locationBubble(
-                                context, LocationDatabase.getJakimCode(index)),
-                            selected: value.currentLocationIndex == index,
-                          );
-                        },
+      backgroundColor: Colors.transparent,
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Consumer<LocationProvider>(
+          builder: (context, value, child) {
+            return FractionallySizedBox(
+              heightFactor: 0.68,
+              child: ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(26)),
+                child: Container(
+                  color: Theme.of(context).canvasColor,
+                  child: Scrollbar(
+                    child: GroupedListView<Location, String>(
+                      elements: LocationDatabase.allLocationData,
+                      groupBy: (element) => element.negeri,
+                      groupSeparatorBuilder: (String groupByValue) => Padding(
+                        padding: const EdgeInsets.only(left: 16, top: 8),
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Text(
+                            groupByValue,
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
+                      indexedItemBuilder: (context, element, index) {
+                        bool _selected = value.currentLocationIndex == index;
+                        return ListTile(
+                          onTap: () {
+                            value.currentLocationIndex = index;
+                            onNewLocationSaved(context);
+                            Navigator.pop(context, true);
+                          },
+                          title: Text(LocationDatabase.getDaerah(index)),
+                          trailing: locationBubble(
+                              context, LocationDatabase.getJakimCode(index),
+                              selected: _selected),
+                          selected: _selected,
+                        );
+                      },
                     ),
                   ),
                 ),
-              );
-            },
-          );
-        });
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 
-  static Widget locationBubble(BuildContext context, String shortCode) {
+  static Widget locationBubble(BuildContext context, String shortCode,
+      {bool selected = false}) {
     return Container(
       padding: const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
+        color: selected ? Colors.blue : null,
         border: Border.all(
-            color: Theme.of(context).brightness == Brightness.light
-                ? Colors.black
-                : Colors.white),
+            color: selected
+                ? Colors.blue
+                : Theme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : Colors.white),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: Text(
         shortCode,
+        style: selected ? const TextStyle(color: Colors.white) : null,
       ),
     );
   }

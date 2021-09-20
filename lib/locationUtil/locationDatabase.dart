@@ -9,7 +9,7 @@ class LocationDatabase {
     Location(
       jakimCode: 'JHR01',
       negeri: 'Johor',
-      daerah: 'Pulau Air dan Pulau Pemanggil',
+      daerah: 'Pulau Aur, Pulau Pemanggil',
       mptLocationCode: 'jhr-7',
     ),
     Location(
@@ -383,22 +383,49 @@ class LocationDatabase {
     )
   ];
 
-  static int indexOfLocation(String jakimCode) {
-    var jakimCaps = jakimCode.toUpperCase();
-    var index = _locationDatabase
-        .indexWhere((element) => element.jakimCode == jakimCaps);
-    return index;
-  }
+  static get allLocationData => _locationDatabase;
+
+  static int indexOfLocation(String jakimCode) => _locationDatabase
+      .indexWhere((element) => element.jakimCode == jakimCode.toUpperCase());
 
   /// Length of all location data
   static int getLength() => _locationDatabase.length;
 
+  static String negeri(String jakimCode) {
+    jakimCode = jakimCode.toUpperCase();
+    var res =
+        _locationDatabase.where((element) => element.jakimCode == jakimCode);
+
+    if (res.isEmpty) {
+      throw 'Not found. Check location code if entered correctly.';
+    }
+
+    return res.first.negeri;
+  }
+
+  static daerah(String jakimCode) {
+    jakimCode = jakimCode.toUpperCase();
+    var res =
+        _locationDatabase.where((element) => element.jakimCode == jakimCode);
+
+    if (res.isEmpty) {
+      throw 'Not found. Check location code if entered correctly.';
+    }
+
+    return res.first.daerah;
+  }
+
+  @Deprecated(
+      'Migration: Using JAKIM CODE directly instead. No longer using index.')
   static String getJakimCode(int index) => _locationDatabase[index].jakimCode;
 
+  @Deprecated('Use negeri instead')
   static String getNegeri(int index) => _locationDatabase[index].negeri;
 
+  @Deprecated('Use daerah instead')
   static String getDaerah(int index) => _locationDatabase[index].daerah;
 
+  @Deprecated('No longer use mpti906 API')
   static String getMptLocationCode(int index) =>
       _locationDatabase[index].mptLocationCode;
 }
