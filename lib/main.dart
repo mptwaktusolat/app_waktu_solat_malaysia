@@ -112,6 +112,7 @@ class MyHomePage extends StatelessWidget {
 }
 
 void migrateLocationIndexToLocationCode() {
+  //TODO: Remove migration is no longer needed
   var storedIndex = GetStorage().read(kStoredGlobalIndex);
   if (storedIndex != null) {
     GetStorage()
@@ -153,7 +154,6 @@ void readAllGetStorage() {
   print("-----All GET STORAGE-----");
   GetStorage _get = GetStorage();
   print('kStoredFirstRun is ${_get.read(kIsFirstRun)}');
-  print('kStoredGlobalIndex is ${_get.read(kStoredGlobalIndex)}');
   print('kStoredTimeIs12 is ${_get.read(kStoredTimeIs12)}');
   print(
       'kStoredShowOtherPrayerTime is ${_get.read(kStoredShowOtherPrayerTime)}');

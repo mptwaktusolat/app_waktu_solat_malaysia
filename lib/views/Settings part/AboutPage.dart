@@ -226,7 +226,7 @@ class AboutAppPage extends StatelessWidget {
                   const Divider(height: 8, thickness: 2),
                   Card(
                     child: ListTile(
-                        title: const Text('More apps from me',
+                        title: const Text('More apps',
                             textAlign: TextAlign.center),
                         onTap: () {
                           LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink);

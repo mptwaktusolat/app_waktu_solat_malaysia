@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
 import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
-import '../locationUtil/locationDatabase.dart';
 import '../providers/location_provider.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';

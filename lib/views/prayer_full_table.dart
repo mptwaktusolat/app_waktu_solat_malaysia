@@ -5,7 +5,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
-import '../locationUtil/locationDatabase.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../CONSTANTS.dart';
@@ -15,7 +14,7 @@ class PrayerFullTable extends StatelessWidget {
   final int todayIndex = DateTime.now().day - 1;
   final int month = DateTime.now().month;
   final int year = DateTime.now().year;
-  final int? locationIndex = GetStorage().read(kStoredGlobalIndex);
+  final String locationCode = GetStorage().read(kStoredLocationJakimCode);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class PrayerFullTable extends StatelessWidget {
                 ),
                 centerTitle: true,
                 title: Text(
-                  '${DateAndTime.monthName(month)} timetable (${LocationDatabase.getJakimCode(locationIndex!)})',
+                  '${DateAndTime.monthName(month)} timetable ($locationCode)',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -49,11 +48,7 @@ class PrayerFullTable extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
-              future: MptApiFetch.fetchMpt(
-                LocationDatabase.getJakimCode(
-                  locationIndex!,
-                ),
-              ),
+              future: MptApiFetch.fetchMpt(locationCode),
               builder: (context, AsyncSnapshot<JakimEsolatModel> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
