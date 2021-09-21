@@ -73,11 +73,11 @@ class _PrayTimeListState extends State<PrayTimeList> {
   Widget build(BuildContext context) {
     var prayerTimeData = widget.prayerTime?.prayerTime;
 
-    // if (GetStorage().read(kStoredShouldUpdateNotif)) {
-    //   //schedule notification if needed
-    //   MyNotifScheduler.schedulePrayNotification(
-    //       PrayDataHandler.removePastDate(prayerTimeData!));
-    // }
+    if (GetStorage().read(kStoredShouldUpdateNotif)) {
+      //schedule notification if needed
+      MyNotifScheduler.schedulePrayNotification(
+          PrayDataHandler.removePastDate(prayerTimeData!));
+    }
 
     return Consumer<SettingProvider>(
       builder: (context, setting, child) {

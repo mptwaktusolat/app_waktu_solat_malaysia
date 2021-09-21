@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
+import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
 import '../views/Settings%20part/NotificationSettingPage.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
@@ -8,12 +9,12 @@ import '../locationUtil/locationDatabase.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
-  static void schedulePrayNotification(List<dynamic> times) async {
+  static void schedulePrayNotification(List<PrayerTime> times) async {
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
     var _currentDateTime = DateTime.now();
 
-    String currentLocation =
-        LocationDatabase.getDaerah(GetStorage().read(kStoredGlobalIndex));
+    String currentDaerah =
+        LocationDatabase.daerah(GetStorage().read(kStoredLocationJakimCode));
 
     //if true, notification is scheduled by at most 7 days
     if (GetStorage().read(kStoredNotificationLimit)) {
@@ -28,11 +29,11 @@ class MyNotifScheduler {
     switch (_notifType) {
       case MyNotificationType.noazan:
         DebugToast.show('Notification: Default sound');
-        _defaultScheduler(times, _currentDateTime, currentLocation);
+        _defaultScheduler(times, _currentDateTime, currentDaerah);
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
-        _azanScheduler(times, _currentDateTime, currentLocation);
+        _azanScheduler(times, _currentDateTime, currentDaerah);
         break;
     }
 
@@ -60,21 +61,21 @@ class MyNotifScheduler {
   }
 
   /// Classic Notification Scheduler, default notification sound
-  static void _defaultScheduler(List<dynamic> times, DateTime currentDateTime,
-      String currentLocation) async {
+  static void _defaultScheduler(List<PrayerTime> times,
+      DateTime currentDateTime, String currentLocation) async {
     for (var dayTime in times) {
       DateTime subuhDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![0]);
       DateTime syurukDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![1]);
       DateTime zuhrDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![2]);
       DateTime asarDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![3]);
       DateTime maghribDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![4]);
       DateTime isyakDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![5]);
 
       if (subuhDateTime.isAfter(currentDateTime)) {
         //to make sure the time is in future
@@ -143,21 +144,21 @@ class MyNotifScheduler {
   }
 
   /// Notification but with azan
-  static void _azanScheduler(List<dynamic> times, DateTime currentDateTime,
+  static void _azanScheduler(List<PrayerTime> times, DateTime currentDateTime,
       String currentLocation) async {
     for (var dayTime in times) {
       DateTime subuhDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[0] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![0]);
       DateTime syurukDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[1] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![1]);
       DateTime zuhrDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[2] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![2]);
       DateTime asarDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[3] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![3]);
       DateTime maghribDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[4] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![4]);
       DateTime isyakDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime[5] * 1000);
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![5]);
 
       if (subuhDateTime.isAfter(currentDateTime)) {
         //to make sure the time is in future
