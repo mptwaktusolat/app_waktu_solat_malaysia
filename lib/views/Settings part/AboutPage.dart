@@ -112,28 +112,15 @@ class AboutAppPage extends StatelessWidget {
                                   Theme.of(context).textTheme.bodyText2!.color),
                           children: [
                             const TextSpan(
-                              text: 'Prayer data are fetched from',
+                              text: 'Prayer times data are from',
                             ),
                             TextSpan(
-                              text:
-                                  ' Jabatan Kemajuan Islam Malaysia (e-solat)',
+                              text: ' Jabatan Kemajuan Islam Malaysia',
                               style: _linkTextStyle,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   LaunchUrl.normalLaunchUrl(
                                       url: kSolatJakimLink);
-                                },
-                            ),
-                            const TextSpan(
-                              text: ' tunnelled through ',
-                            ),
-                            TextSpan(
-                              text: 'mpti906 API',
-                              style: _linkTextStyle,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  LaunchUrl.normalLaunchUrl(
-                                      url: kMptWebsiteLink);
                                 },
                             ),
                             const TextSpan(text: '.')
