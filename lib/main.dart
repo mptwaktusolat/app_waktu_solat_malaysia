@@ -33,6 +33,7 @@ void main() async {
 
   initGetStorage();
   // readAllGetStorage();
+
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
 
@@ -115,8 +116,10 @@ void migrateLocationIndexToLocationCode() {
   //TODO: Remove migration is no longer needed
   var storedIndex = GetStorage().read(kStoredGlobalIndex);
   if (storedIndex != null) {
-    GetStorage()
-        .write(kStoredLocationJakimCode, LocationDatabase.getJakimCode(storedIndex));
+    GetStorage().write(
+        kStoredLocationJakimCode, LocationDatabase.getJakimCode(storedIndex));
+    GetStorage().remove(
+        kStoredGlobalIndex); // delete this key so it will never be used again
   }
 }
 
@@ -151,20 +154,14 @@ Future<void> _configureLocalTimeZone() async {
 // ignore_for_file: avoid_print
 void readAllGetStorage() {
   // print (almost) all GetStorage item to the console
-  print("-----All GET STORAGE-----");
-  GetStorage _get = GetStorage();
-  print('kStoredFirstRun is ${_get.read(kIsFirstRun)}');
-  print('kStoredTimeIs12 is ${_get.read(kStoredTimeIs12)}');
-  print(
-      'kStoredShowOtherPrayerTime is ${_get.read(kStoredShowOtherPrayerTime)}');
-  print('kStoredShouldUpdateNotif is ${_get.read(kStoredShouldUpdateNotif)}');
-  print('kStoredLastUpdateNotif is ${_get.read(kStoredLastUpdateNotif)}');
-  print('kStoredNotificationLimit is ${_get.read(kStoredNotificationLimit)}');
-  print('kIsDebugMode is ${_get.read(kIsDebugMode)}');
-  print('kForceUpdateNotif is ${_get.read(kForceUpdateNotif)}');
-  print(
-      'kDiscoveredDeveloperOption is ${_get.read(kDiscoveredDeveloperOption)}');
-  print('-----------------------');
+  print("-----All GET STORAGE-----\n");
+
+  var keys = GetStorage().getKeys();
+
+  for (var key in keys) {
+    print('$key ${GetStorage().read(key)}');
+  }
+  print('-----------------------\n');
 }
 
 /// Show InAppReview if all conditions are met
