@@ -8,14 +8,15 @@ import '../models/jakim_esolat_model.dart';
 import '../CONSTANTS.dart';
 
 class MptApiFetch {
-  /// Attempt to read from cache first, if failed, fetch the api
+  /// Attempt to read from cache first, if cache not available,
+  /// proceed using JAKIM's API, if unreachable, use the backup API.
   static Future<JakimEsolatModel> fetchMpt(String location) async {
     if (GetStorage().read(kJsonCache) != null) {
       var json = GetStorage().read(kJsonCache);
 
       var parsedModel = JakimEsolatModel.fromJson(json);
       // Check is same location code, month and year
-      if (_cacheValidationChecker(parsedModel, location)) {
+      if (_validateResponse(parsedModel, location)) {
         DebugToast.show('Reading from cache');
         return parsedModel;
       }
@@ -29,7 +30,7 @@ class MptApiFetch {
       final response = await http.get(api);
       GetStorage()
           .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-      DebugToast.show('Calling $api');
+      DebugToast.show('Calling jakim api');
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
@@ -37,6 +38,25 @@ class MptApiFetch {
         GetStorage().write(kJsonCache, json);
         return JakimEsolatModel.fromJson(json);
       } else {
+        // If jakim failed, call the backup API
+        final api =
+            Uri.parse('https://mpt-backup-api.herokuapp.com/solat/$location');
+        final response = await http.get(api);
+        GetStorage()
+            .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
+        DebugToast.show('Calling backup API');
+        if (response.statusCode == 200) {
+          var json = jsonDecode(response.body);
+          var parsedModel = JakimEsolatModel.fromJson(json);
+
+          if (_validateResponse(parsedModel, location)) {
+            GetStorage().write(kJsonCache, json);
+            return parsedModel;
+          }
+        } else {
+          throw 'Failed to load prayer time (backup API). Status code ${response.statusCode}';
+        }
+
         // If the server did not return a 200 OK response,
         // then throw an exception.
         throw 'Failed to load prayer time. Status code ${response.statusCode}';
@@ -46,7 +66,7 @@ class MptApiFetch {
     }
   }
 
-  static bool _cacheValidationChecker(
+  static bool _validateResponse(
       JakimEsolatModel model, String requestedLocationCode) {
     var lastApiFetched = DateTime.parse(model.serverTime!);
 
