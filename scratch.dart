@@ -2,9 +2,21 @@
 
 import 'dart:math';
 
+import 'package:intl/intl.dart';
+import 'lib/locationUtil/locationDatabase.dart';
+
 enum Test { first, second }
 
-void main() {}
+void main() {
+  print(LocationDatabase.daerah('prk03'));
+}
+
+void datePattern() {
+  String date = '15-Sep-2021 18:27:43';
+  String pattern = 'd-MMM-y hh:mm:ss';
+  var datetime = DateFormat(pattern).parse(date);
+  print(datetime);
+}
 
 void listTest() {
   List _myList =

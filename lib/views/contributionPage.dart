@@ -60,11 +60,11 @@ class ContributionPage extends StatelessWidget {
               MyCard(
                 title: 'Direct support',
                 description:
-                    '${constants.kMaybankAccNo} - Muhammad Fareez Iqmal (Maybank)',
+                    '${constants.kBankAccountNum} - Muhammad Fareez Iqmal (Maybank)',
                 buttonContent: [
                   ButtonContent(
                     'Copy',
-                    () => copyClipboard(constants.kMaybankAccNo),
+                    () => copyClipboard(constants.kBankAccountNum),
                   ),
                 ],
               ),
@@ -113,8 +113,9 @@ class MyCard extends StatelessWidget {
 
   void generateButtons() {
     for (var item in buttonContent!) {
-      textButton
-          .add(TextButton(onPressed: item.onClick as void Function()?, child: Text(item.label)));
+      textButton.add(TextButton(
+          onPressed: item.onClick as void Function()?,
+          child: Text(item.label)));
     }
   }
 

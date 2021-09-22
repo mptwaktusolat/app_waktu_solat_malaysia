@@ -10,11 +10,12 @@ class CopyAndShare {
     var hijriToday = HijriCalendar.fromDate(DateTime.now()
             .add(Duration(days: GetStorage().read(constants.kHijriOffset))))
         .toFormat('dd MMMM yyyy');
-    var _dayFormat = DateFormat('EEEE').format(DateTime.now()).toUpperCase();
+    var _dayFormat = DateFormat('E').format(DateTime.now()).toUpperCase();
     var _dateFormat = DateFormat('dd MMMM yyyy').format(DateTime.now());
-    var _globalIndex = GetStorage().read(constants.kStoredGlobalIndex);
-    var daerah = LocationDatabase.getDaerah(_globalIndex);
-    var negeri = LocationDatabase.getNegeri(_globalIndex);
+    var _currentLocation =
+        GetStorage().read(constants.kStoredLocationJakimCode);
+    var daerah = LocationDatabase.daerah(_currentLocation);
+    var negeri = LocationDatabase.negeri(_currentLocation);
     switch (type) {
       case 1:
         return '''

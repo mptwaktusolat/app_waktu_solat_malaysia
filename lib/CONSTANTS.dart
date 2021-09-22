@@ -3,7 +3,9 @@ const kPayloadMonthly = 'monthlyRefresh';
 const kPayloadDebug = 'payloadDebug';
 
 //GetStorage
+@Deprecated('No longer store location based on index')
 const kStoredGlobalIndex = "storedGlobalIndex";
+const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredLocationLocality = "storedLocationLocality";
@@ -19,7 +21,7 @@ const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
 const kHijriOffset = "storedHijriOffset";
-const kJsonCache = "jsonCache";
+const kJsonCache = "jsonCache2";
 const kAppLaunchCount = "appLaunchCount";
 const kHasOpenSharingDialog = "openedSharedDialog";
 const kShowNotifPrompt = "notifPrompt";
@@ -30,8 +32,6 @@ const kHaventIntroducedToNotifType =
 //Network image
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
-const kThemeUiUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fmpt%20themes.png?alt=media&token=ef49b39e-cc2e-43fb-b8be-09cb69d1a680';
 const kDeveloperActivityImage =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_developer_activity_bv83.svg?alt=media&token=e787419a-fb75-4484-860d-512b4b634c97';
 
@@ -59,11 +59,9 @@ const kReleaseNotesShortLink = 'http://bit.ly/mpt-clog';
 const kGithubRepoLink = 'https://github.com/iqfareez/app_waktu_solat_malaysia';
 const kSolatJakimLink = 'https://www.e-solat.gov.my/';
 const kWebappUrl = 'https://waktusolat.web.app';
-const kMptWebsiteLink = 'https://mpt.i906.my/api.html';
 const kMptFdlGetLink = 'https://solat.page.link/get';
 
 //Developer info
-const kDevEmail = 'foxtrotiqmal3@gmail.com';
 const kAppEmail = 'mptwaktusolat@gmail.com';
 const kDevTwitter = 'https://twitter.com/iqfareez';
 const kDevInstagram = 'https://www.instagram.com/iqfareez/';
@@ -78,7 +76,6 @@ const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
 const kBankAccountNum = '162348620850'; //maybank
 const kPaypalDonateShortLink = 'paypal.me/iqfareez';
 const kPaypalDonateFullLink = 'https://www.paypal.com/paypalme/iqfareez';
-const kMaybankAccNo = '162348620850';
 
 //hero tag
 const kAppIconTag = 'appIconTag';

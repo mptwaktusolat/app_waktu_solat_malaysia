@@ -42,9 +42,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -181,13 +179,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         builder: (ctx) {
                           return AlertDialog(
                             content: const Text(
-                                'Looks like your message contain question(s). Provide your email so we can get back to you.\n\nWould you like to add your email?'),
+                                'Looks like your message contain question(s). Please provide your email so we can get back to you.\n\nWould you like to add your email?'),
                             actions: [
                               TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(true);
                                   },
-                                  child: const Text('Send without email')),
+                                  child: const Text('Send anyway')),
                               TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(false);
@@ -198,9 +196,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         });
 
                     // Cancel next operation for user to enter their email
-                    if (!res) {
-                      return;
-                    }
+                    if (!res) return;
                   }
 
                   if (_formKey.currentState!.validate()) {

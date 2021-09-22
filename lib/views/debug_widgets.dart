@@ -62,8 +62,8 @@ class DebugWidgets {
             },
           ),
           ListTile(
-              title: const Text('Global location index'),
-              subtitle: Text('${GetStorage().read(kStoredGlobalIndex)}')),
+              title: const Text('Current zone'),
+              subtitle: Text('${GetStorage().read(kStoredLocationJakimCode)}')),
           ListTile(
             title: const Text('Last update notification'),
             subtitle: Text(DateTime.fromMillisecondsSinceEpoch(

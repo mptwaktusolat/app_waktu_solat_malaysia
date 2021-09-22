@@ -24,7 +24,8 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   bool _isDoneSetLocation = false;
   AnimationController? _animController;
-  MyNotificationType _type = MyNotificationType.noazan;
+  MyNotificationType _type =
+      MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
 
   @override
   void initState() {
