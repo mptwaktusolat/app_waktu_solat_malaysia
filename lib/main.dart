@@ -126,7 +126,7 @@ void migrateLocationIndexToLocationCode() {
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
-  _get.writeIfNull(kNotificationType, MyNotificationType.noazan.index);
+  _get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
   _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
@@ -168,7 +168,7 @@ void readAllGetStorage() {
 void showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int? _appLaunchCount = GetStorage().read(kAppLaunchCount);
+  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
 
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
