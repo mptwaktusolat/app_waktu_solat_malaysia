@@ -148,17 +148,17 @@ class MyNotifScheduler {
       String currentLocation) async {
     for (var dayTime in times) {
       DateTime subuhDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime.times![0]);
-      DateTime syurukDateTime =
           DateTime.fromMillisecondsSinceEpoch(dayTime.times![1]);
-      DateTime zuhrDateTime =
+      DateTime syurukDateTime =
           DateTime.fromMillisecondsSinceEpoch(dayTime.times![2]);
-      DateTime asarDateTime =
-          DateTime.fromMillisecondsSinceEpoch(dayTime.times![3]);
-      DateTime maghribDateTime =
+      DateTime zuhrDateTime =
           DateTime.fromMillisecondsSinceEpoch(dayTime.times![4]);
-      DateTime isyakDateTime =
+      DateTime asarDateTime =
           DateTime.fromMillisecondsSinceEpoch(dayTime.times![5]);
+      DateTime maghribDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![6]);
+      DateTime isyakDateTime =
+          DateTime.fromMillisecondsSinceEpoch(dayTime.times![7]);
 
       if (subuhDateTime.isAfter(currentDateTime)) {
         //to make sure the time is in future
