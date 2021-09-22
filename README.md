@@ -21,7 +21,7 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 [~~Azanpro API~~](https://api.azanpro.com/)\
 [~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
 [~~MPTi906 API~~](https://mpt.i906.my/)\
-[e-solat JAKIM Malaysia API](https://www.e-solat.gov.my/index.php?r=esolatApi/takwimsolat&period=month&zone=SGR01)
+[e-solat JAKIM Malaysia API](https://www.e-solat.gov.my/)
 
 ## Changelog History
 
