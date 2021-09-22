@@ -142,22 +142,28 @@ class AboutAppPage extends StatelessWidget {
                       )),
                   const SizedBox(height: 8),
                   Card(
-                    child: ListTile(
-                      title: const Text(
-                        'Contribution and Support',
-                        textAlign: TextAlign.center,
+                    child: InkWell(
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        title: const Text(
+                          'Contribution and Support',
+                          textAlign: TextAlign.center,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const ContributionPage()));
+                        },
                       ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ContributionPage()));
-                      },
                     ),
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text(
                         'Release Notes',
                         textAlign: TextAlign.center,
@@ -170,6 +176,8 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text(
                         'Frequently Asked Questions (FAQ)',
                         textAlign: TextAlign.center,
@@ -186,6 +194,8 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text(
                         'Open Source Licenses',
                         textAlign: TextAlign.center,
@@ -213,6 +223,8 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text(
                         'Privacy Policy',
                         textAlign: TextAlign.center,
@@ -226,6 +238,8 @@ class AboutAppPage extends StatelessWidget {
                   const Divider(height: 8, thickness: 2),
                   Card(
                     child: ListTile(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
                         title: const Text('More apps',
                             textAlign: TextAlign.center),
                         onTap: () {
@@ -234,6 +248,8 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text('Twitter', textAlign: TextAlign.center),
                       onTap: () {
                         LaunchUrl.normalLaunchUrl(url: kDevTwitter);
@@ -242,6 +258,8 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   Card(
                     child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
                       title: const Text(
                         'Dev logs',
                         textAlign: TextAlign.center,
