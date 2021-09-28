@@ -8,9 +8,10 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
-import 'locationUtil/location_provider.dart';
+import 'providers/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
 import 'providers/settingsProvider.dart';
@@ -32,8 +33,11 @@ void main() async {
 
   initGetStorage();
   // readAllGetStorage();
+
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
+
+  migrateLocationIndexToLocationCode();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
@@ -108,14 +112,25 @@ class MyHomePage extends StatelessWidget {
   }
 }
 
+void migrateLocationIndexToLocationCode() {
+  //TODO: Remove migration is no longer needed
+  var storedIndex = GetStorage().read(kStoredGlobalIndex);
+  if (storedIndex != null) {
+    GetStorage().write(
+        kStoredLocationJakimCode, LocationDatabase.getJakimCode(storedIndex));
+    GetStorage().remove(
+        kStoredGlobalIndex); // delete this key so it will never be used again
+  }
+}
+
 void initGetStorage() {
   // init default settings
   GetStorage _get = GetStorage();
-  _get.writeIfNull(kNotificationType, MyNotificationType.noazan.index);
+  _get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
   _get.writeIfNull(kShowNotifPrompt, true);
   _get.writeIfNull(kAppLaunchCount, 0);
   _get.writeIfNull(kIsFirstRun, true);
-  _get.writeIfNull(kStoredGlobalIndex, 0);
+  _get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
   _get.writeIfNull(kStoredTimeIs12, true);
   _get.writeIfNull(kStoredShowOtherPrayerTime, false);
   _get.writeIfNull(kStoredShouldUpdateNotif, true);
@@ -139,28 +154,21 @@ Future<void> _configureLocalTimeZone() async {
 // ignore_for_file: avoid_print
 void readAllGetStorage() {
   // print (almost) all GetStorage item to the console
-  print("-----All GET STORAGE-----");
-  GetStorage _get = GetStorage();
-  print('kStoredFirstRun is ${_get.read(kIsFirstRun)}');
-  print('kStoredGlobalIndex is ${_get.read(kStoredGlobalIndex)}');
-  print('kStoredTimeIs12 is ${_get.read(kStoredTimeIs12)}');
-  print(
-      'kStoredShowOtherPrayerTime is ${_get.read(kStoredShowOtherPrayerTime)}');
-  print('kStoredShouldUpdateNotif is ${_get.read(kStoredShouldUpdateNotif)}');
-  print('kStoredLastUpdateNotif is ${_get.read(kStoredLastUpdateNotif)}');
-  print('kStoredNotificationLimit is ${_get.read(kStoredNotificationLimit)}');
-  print('kIsDebugMode is ${_get.read(kIsDebugMode)}');
-  print('kForceUpdateNotif is ${_get.read(kForceUpdateNotif)}');
-  print(
-      'kDiscoveredDeveloperOption is ${_get.read(kDiscoveredDeveloperOption)}');
-  print('-----------------------');
+  print("-----All GET STORAGE-----\n");
+
+  var keys = GetStorage().getKeys();
+
+  for (var key in keys) {
+    print('$key ${GetStorage().read(key)}');
+  }
+  print('-----------------------\n');
 }
 
 /// Show InAppReview if all conditions are met
 void showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int? _appLaunchCount = GetStorage().read(kAppLaunchCount);
+  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
 
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
