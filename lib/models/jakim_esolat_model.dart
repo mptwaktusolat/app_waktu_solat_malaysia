@@ -42,7 +42,7 @@ class PrayerTime {
   PrayerTime({this.times});
 
   PrayerTime.fromJson(Map<String, dynamic> json) {
-    String pattern = 'd-MMM-y hh:mm:ss';
+    String pattern = 'd-MMM-y HH:mm:ss';
     // hijri = json["hijri"];
     var date = json["date"];
     var imsak = json["imsak"];
