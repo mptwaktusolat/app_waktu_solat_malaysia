@@ -21,7 +21,7 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 [~~Azanpro API~~](https://api.azanpro.com/)\
 [~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
 [~~MPTi906 API~~](https://mpt.i906.my/)\
-[e-solat JAKIM Malaysia API](https://www.e-solat.gov.my/)
+[e-solat JAKIM API](https://www.e-solat.gov.my/) & [mpt-backup-api](https://mpt-backup-api.herokuapp.com/)
 
 ## Changelog History
 
@@ -52,14 +52,16 @@ Get it on:
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
 <a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
+Require **Android 4.4+**
+
 _i'm having difficulties to update the app in App Gallery. So it will be very outdated._
 
 _Not available for iOS sorry :disappointed:_
 
 ## Try the pre-releases
 
-Download here -> [APK](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
-And submit your review. Some of the version are also available in Google Play beta program.
+Get it [here](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
+Do submit your review and comments. Some of the version are also available in Google Play beta program.
 
 ## Devlogs
 
