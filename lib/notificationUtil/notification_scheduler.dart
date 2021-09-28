@@ -52,12 +52,6 @@ class MyNotifScheduler {
     //This timestamp is later used to determine wether notification should be updated or not
     GetStorage()
         .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
-
-    var _endOperation = DateTime.now();
-    var _timeTaken = _endOperation.difference(_currentDateTime);
-    var _message = 'Finish schedule notif. after $_timeTaken';
-    print(_message);
-    DebugToast.show(_message);
   }
 
   /// Classic Notification Scheduler, default notification sound
