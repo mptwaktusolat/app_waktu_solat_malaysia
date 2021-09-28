@@ -141,17 +141,11 @@ class LocationChooser {
                       groupBy: (element) => element.negeri,
                       groupSeparatorBuilder: (String groupByValue) => Padding(
                         padding: const EdgeInsets.only(left: 16, top: 8),
-                        child: Opacity(
-                          opacity: 0.6,
-                          child: Text(
-                            groupByValue,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold,
-                              decorationStyle: TextDecorationStyle.dotted,
-                              decoration: TextDecoration.underline,
-                            ),
+                        child: Text(
+                          groupByValue,
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
