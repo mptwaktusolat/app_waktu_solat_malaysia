@@ -42,7 +42,6 @@ class PrayerTime {
   PrayerTime({this.times});
 
   PrayerTime.fromJson(Map<String, dynamic> json) {
-    String pattern = 'd-MMM-y HH:mm:ss';
     // hijri = json["hijri"];
     var date = json["date"];
     var imsak = json["imsak"];
@@ -52,6 +51,31 @@ class PrayerTime {
     var asr = json["asr"];
     var maghrib = json["maghrib"];
     var isha = json["isha"];
+
+    var _monthMap = [
+      'Jan',
+      'Feb',
+      'Mac',
+      'Apr',
+      'Mei',
+      'Jun',
+      'Jul',
+      'Ogos',
+      'Sep',
+      'Okt',
+      'Nov',
+      'Dis'
+    ];
+
+    String pattern = 'd-M-y HH:mm:ss';
+
+    var _monthNumeric =
+        _monthMap.indexWhere((element) => date.contains(element)) + 1;
+
+    int end = _monthNumeric == 8 ? 7 : 6;
+
+    date = date.replaceRange(3, end, _monthNumeric.toString());
+
     times = [
       DateFormat(pattern).parse('$date $imsak').millisecondsSinceEpoch,
       DateFormat(pattern).parse('$date $fajr').millisecondsSinceEpoch,
