@@ -18,11 +18,11 @@ dependencies:
   fluttertoast: ^8.0.3
   hijri:
     git: https://github.com/iqfareez/hijri_date.git
-  package_info: ^2.0.0
+  package_info_plus: ^1.2.1
   get_storage: ^2.0.1
   cached_network_image: ^3.0.0
   url_launcher: ^6.0.3
-  device_info: ^2.0.0
+  device_info_plus: ^2.2.0
   share: ^2.0.1
   geolocator: ^7.0.1
   flutter_spinkit: ^5.0.0
