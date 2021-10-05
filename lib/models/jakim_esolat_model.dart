@@ -69,6 +69,9 @@ class PrayerTime {
 
     String pattern = 'd-M-y HH:mm:ss';
 
+    // Changing Text month to its numeric equivalent
+    // eg: 2-Okt-2021 will be 2-10-2021
+
     var _monthNumeric =
         _monthMap.indexWhere((element) => date.contains(element)) + 1;
 

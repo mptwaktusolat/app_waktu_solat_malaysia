@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'prayer_full_table.dart';
+import '../providers/updater_provider.dart';
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
 import 'Qibla%20part/qibla.dart';
@@ -23,13 +25,30 @@ class MyBottomAppBar extends StatelessWidget {
       shape: const CircularNotchedRectangle(),
       child: Row(
         children: [
-          IconButton(
-              tooltip: 'Open menu',
-              icon: const FaIcon(FontAwesomeIcons.bars),
-              color: iconColour,
-              onPressed: () {
-                menuModalBottomSheet(context);
-              }),
+          Consumer<UpdaterProvider>(builder: (_, setting, __) {
+            return IconButton(
+                tooltip: 'Open menu',
+                icon: Stack(children: [
+                  const Align(
+                      alignment: Alignment.center,
+                      child: FaIcon(FontAwesomeIcons.bars)),
+                  setting.needForUpdate
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.red),
+                            width: 8,
+                            height: 8,
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ]),
+                color: iconColour,
+                onPressed: () {
+                  menuModalBottomSheet(context);
+                });
+          }),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarAlt),
             tooltip: 'Full timetable',
@@ -95,21 +114,48 @@ void menuModalBottomSheet(BuildContext context) {
               thickness: 1,
               height: 0.0,
             ),
-            ListTile(
-              title: const Text('Rate and review'),
-              leading: const FaIcon(FontAwesomeIcons.solidStar),
-              trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
-                  size: 21),
-              onTap: () {
-                Navigator.pop(context);
-                Fluttertoast.showToast(
-                  msg: '⭐⭐⭐⭐⭐',
-                  toastLength: Toast.LENGTH_LONG,
-                  backgroundColor: Colors.grey.shade700,
+            Consumer<UpdaterProvider>(builder: (_, setting, __) {
+              if (setting.needForUpdate) {
+                return ListTile(
+                  title: Stack(children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.red),
+                        width: 8,
+                        height: 8,
+                      ),
+                    ),
+                    const Text('Updates available')
+                  ]),
+                  leading: const FaIcon(FontAwesomeIcons.googlePlay),
+                  trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
+                      size: 21),
+                  onTap: () {
+                    Navigator.pop(context);
+                    setting.needForUpdate = false;
+                    LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+                  },
                 );
-                LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
-              },
-            ),
+              } else {
+                return ListTile(
+                  title: const Text('Rate and review'),
+                  leading: const FaIcon(FontAwesomeIcons.solidStar),
+                  trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
+                      size: 21),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Fluttertoast.showToast(
+                      msg: '⭐⭐⭐⭐⭐',
+                      toastLength: Toast.LENGTH_LONG,
+                      backgroundColor: Colors.grey.shade700,
+                    );
+                    LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+                  },
+                );
+              }
+            }),
             ListTile(
               title: const Text('MPT on web'),
               leading: const FaIcon(FontAwesomeIcons.chrome),

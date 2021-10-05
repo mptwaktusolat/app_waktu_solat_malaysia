@@ -25,7 +25,7 @@ Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
 ## Changelog History
 
-Wondering what changed with every :new: releases? Or what bug :bug: has been fixed? View more [here](https://telegra.ph/MPT-Changelogs---Malaysia-Prayer-Time-Flutter-07-20)!
+Wondering what changed with every :new: releases? Or what bug :bug: has been fixed? Visit [here](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog)!
 
 ## Report an issue / Feature request
 
@@ -81,7 +81,8 @@ Article that help me througout the development(Read: Website yg function teruk. 
 5. https://medium.com/@fuzzymemory/adding-scheduled-notifications-in-your-flutter-application-19be1f82ade8
 6. ~~https://gist.github.com/taciomedeiros/50472cf94c742befba720853e9d598b6~~
 7. 3D assets you see on the onboarding screen is from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/).
-8. https://github.com/SuaMusica/googleads-mobile-flutter #79
+8. https://github.com/SuaMusica/googleads-mobile-flutter - Ads without jank
+9. https://github.com/shubhamhackz/light_dark_toggle - Sun/moon toggle animation.
 
 <!-- ## Attribution
 

@@ -1,4 +1,4 @@
-//ignore_for_file: avoid_print
+//ignore_for_file: avoid_print, unused_import
 
 import 'dart:math';
 
@@ -8,7 +8,15 @@ import 'lib/locationUtil/locationDatabase.dart';
 enum Test { first, second }
 
 void main() {
-  print(LocationDatabase.daerah('prk03'));
+  updateCheck();
+}
+
+void updateCheck() {
+  String version = '2.2.4-hotfix+80';
+
+  var appBuildNum = version.split('+');
+
+  print(int.parse(appBuildNum.last));
 }
 
 void datePattern() {

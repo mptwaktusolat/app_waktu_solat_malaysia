@@ -10,6 +10,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import '../providers/updater_provider.dart';
+import '../utils/update_checker.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../providers/location_provider.dart';
@@ -56,12 +58,22 @@ class _AppBodyState extends State<AppBody> {
           onAdFailedToLoad: (ad, error) {
             // Releases an ad resource when it fails to load
             ad.dispose();
-
             throw error;
           },
         ),
         request: const AdRequest());
     _ad.load();
+
+    checkForUpdate();
+  }
+
+  void checkForUpdate() async {
+    var res = await AppUpdateChecker.check();
+    print('res is $res');
+
+    if (!res) return;
+
+    Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
   }
 
   Future<RemoteConfig> fetchRemoteConfig() async {

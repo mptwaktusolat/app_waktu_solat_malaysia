@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
+import 'package:waktusolatmalaysia/providers/updater_provider.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
 import 'providers/location_provider.dart';
@@ -57,7 +58,8 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
-        ChangeNotifierProvider(create: (_) => ThemeController())
+        ChangeNotifierProvider(create: (_) => ThemeController()),
+        ChangeNotifierProvider(create: (_) => UpdaterProvider()),
       ],
       child: Consumer<ThemeController>(
         builder: (context, value, child) {
