@@ -68,9 +68,7 @@ class _AppBodyState extends State<AppBody> {
   }
 
   void checkForUpdate() async {
-    var res = await AppUpdateChecker.check();
-    print('res is $res');
-
+    var res = await AppUpdateChecker.updatesAvailable();
     if (!res) return;
 
     Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
