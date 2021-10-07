@@ -57,8 +57,9 @@ class PrayerDataTable extends StatelessWidget {
     @required this.model,
   }) : super(key: key);
 
-  final int todayIndex = DateTime.now().day - 1;
+  final int _todayIndex = DateTime.now().day - 1;
   final Mpti906PrayerModel model;
+  final bool _is12pm = GetStorage().read(kStoredTimeIs12);
 
   List<List<int>> addOtherPrayerTimes(List<List<dynamic>> timesFromSnapshot) {
     List<List<int>> result = [];
@@ -108,7 +109,7 @@ class PrayerDataTable extends StatelessWidget {
           // columnSpacing: MediaQuery.of(context).size.width / 10,
           // columnSpacing: 30,
           rows: List.generate(model.data.times.length, (index) {
-            return DataRow(selected: index == todayIndex, cells: [
+            return DataRow(selected: index == _todayIndex, cells: [
               DataCell(Container(
                 padding: EdgeInsets.all(3),
                 decoration: BoxDecoration(
@@ -118,7 +119,7 @@ class PrayerDataTable extends StatelessWidget {
                     borderRadius: BorderRadius.circular(3.0)),
                 child: Text(
                   '${index + 1} / ${model.data.month} (${DateFormat('E').format(DateTime(model.data.year, model.data.month, index + 1))})',
-                  style: index == todayIndex
+                  style: index == _todayIndex
                       ? TextStyle(fontWeight: FontWeight.bold)
                       : null,
                 ),
@@ -126,10 +127,10 @@ class PrayerDataTable extends StatelessWidget {
               ...addOtherPrayerTimes(model.data.times)[index].map((day) {
                 return DataCell(Center(
                   child: Opacity(
-                      opacity: (index < todayIndex) ? 0.60 : 1.0,
+                      opacity: (index < _todayIndex) ? 0.60 : 1.0,
                       child: Text(
-                        DateAndTime.toTimeReadable(day, true),
-                        style: index == todayIndex
+                        DateAndTime.toTimeReadable(day, _is12pm),
+                        style: index == _todayIndex
                             ? TextStyle(fontWeight: FontWeight.bold)
                             : null,
                       )),

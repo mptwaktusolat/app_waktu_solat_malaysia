@@ -17,7 +17,7 @@ class AppBody extends StatelessWidget {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.color,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(40),
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,8 +32,7 @@ class MyApp extends StatelessWidget {
           primaryColor: _primaryColour,
           bottomAppBarColor: Colors.teal.shade50,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme:
-              AppBarTheme(color: _primaryColour, brightness: Brightness.dark),
+          appBarTheme: AppBarTheme(color: _primaryColour),
         ),
         darkTheme: ThemeData.dark().copyWith(
             primaryColor: _primaryColour,
