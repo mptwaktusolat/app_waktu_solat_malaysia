@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 
 class DateAndTime {
+  /// Convert epovh timestamp to human readable time
   static String toTimeReadable(int unix, bool is12hr) {
     var formatToReadable = is12hr ? DateFormat('h:mm a') : DateFormat('HH:mm');
     var date = DateTime.fromMillisecondsSinceEpoch(unix, isUtc: true);
@@ -10,6 +11,7 @@ class DateAndTime {
     return (formattedTime);
   }
 
+  /// check if input date is in this month
   static bool isSameMonthFromMillis(int millis) {
     var savedMonth = DateTime.fromMillisecondsSinceEpoch(millis).month;
 

@@ -11,10 +11,11 @@ import '../CONSTANTS.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
-  final int todayIndex = DateTime.now().day - 1;
-  final int month = DateTime.now().month;
-  final int year = DateTime.now().year;
-  final String locationCode = GetStorage().read(kStoredLocationJakimCode);
+  final int _todayIndex = DateTime.now().day - 1;
+  final int _month = DateTime.now().month;
+  final int _year = DateTime.now().year;
+  final String _locationCode = GetStorage().read(kStoredLocationJakimCode);
+  final bool _is12HourFormat = GetStorage().read(kStoredTimeIs12);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class PrayerFullTable extends StatelessWidget {
                 ),
                 centerTitle: true,
                 title: Text(
-                  '${DateAndTime.monthName(month)} timetable ($locationCode)',
+                  '${DateAndTime.monthName(_month)} timetable ($_locationCode)',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -48,7 +49,7 @@ class PrayerFullTable extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
-              future: MptApiFetch.fetchMpt(locationCode),
+              future: MptApiFetch.fetchMpt(_locationCode),
               builder: (context, AsyncSnapshot<JakimEsolatModel> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
@@ -81,13 +82,13 @@ class PrayerFullTable extends StatelessWidget {
                         .toList(),
                     rows: List.generate(snapshot.data!.prayerTime!.length,
                         (index) {
-                      return DataRow(selected: index == todayIndex, cells: [
+                      return DataRow(selected: index == _todayIndex, cells: [
                         DataCell(
                           Text(
-                            DateFormat('d / M (E)')
-                                .format(DateTime(year, month, index + 1)),
+                            DateFormat('d/M (E)')
+                                .format(DateTime(_year, _month, index + 1)),
                             style: TextStyle(
-                                fontWeight: index == todayIndex
+                                fontWeight: index == _todayIndex
                                     ? FontWeight.bold
                                     : null),
                           ),
@@ -97,11 +98,12 @@ class PrayerFullTable extends StatelessWidget {
                                   Center(
                                     child: Opacity(
                                       opacity:
-                                          (index < todayIndex) ? 0.55 : 1.0,
+                                          (index < _todayIndex) ? 0.55 : 1.0,
                                       child: Text(
-                                        DateAndTime.toTimeReadable(day, true),
+                                        DateAndTime.toTimeReadable(
+                                            day, _is12HourFormat),
                                         style: TextStyle(
-                                            fontWeight: index == todayIndex
+                                            fontWeight: index == _todayIndex
                                                 ? FontWeight.bold
                                                 : null),
                                       ),
