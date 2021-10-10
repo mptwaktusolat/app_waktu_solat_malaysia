@@ -222,7 +222,7 @@ class AboutAppPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  const Divider(height: 8, thickness: 2),
+                  const Divider(height: 16),
                   Card(
                     child: ListTile(
                         shape: RoundedRectangleBorder(
