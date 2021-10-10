@@ -88,34 +88,6 @@ class _AppBodyState extends State<AppBody> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      // show prompt azan notif
-      if (GetStorage().read(kHaventIntroducedToNotifType) ?? true) {
-        // to prevent dialog showing multiple times
-        GetStorage().write(kHaventIntroducedToNotifType, false);
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Image.asset('assets/bam/Clock.png', width: 150),
-                  Text('Azan notification is now available.\nTry it out today!',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.headline6),
-                  const SizedBox(height: 15),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) =>
-                                const NotificationPageSetting()));
-                      },
-                      child: const Text('Open settings'))
-                ]),
-              );
-            });
-      }
-    });
     SizeConfig().init(context);
     return SafeArea(
       child: Column(

@@ -143,7 +143,6 @@ class _OnboardingPageState extends State<OnboardingPage>
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           GetStorage().write(kIsFirstRun, false);
-          GetStorage().write(kHaventIntroducedToNotifType, false);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (builder) => const MyHomePage()));
         });
