@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-// import 'package:device_info_plus/device_info_plus.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import '../models/github_releases_model.dart';
@@ -11,13 +11,12 @@ class AppUpdateChecker {
   /// Check if installed app has lower version number than remote version
   /// Will return `false` if device running lower than unsupported version.
   static Future<bool> updatesAvailable() async {
-    // TODO: Enable this before update flutter_qibla
-    // final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
-    // final AndroidDeviceInfo _androidInfo = await _deviceInfo.androidInfo;
+    final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
+    final AndroidDeviceInfo _androidInfo = await _deviceInfo.androidInfo;
 
-    // int _deviceSdk = _androidInfo.version.sdkInt!;
-    // const int _unsupportedSdkInt = 23;
-    // if (_deviceSdk <= _unsupportedSdkInt) return false;
+    int _deviceSdk = _androidInfo.version.sdkInt!;
+    const int _unsupportedSdkInt = 23;
+    if (_deviceSdk <= _unsupportedSdkInt) return false;
 
     final PackageInfo _packageInfo = await PackageInfo.fromPlatform();
 

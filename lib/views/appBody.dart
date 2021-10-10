@@ -74,6 +74,7 @@ class _AppBodyState extends State<AppBody> {
     Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
   }
 
+  /// fetch offset value of hijri date
   Future<RemoteConfig> fetchRemoteConfig() async {
     final RemoteConfig remoteConfig = RemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
