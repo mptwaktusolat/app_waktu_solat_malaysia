@@ -8,7 +8,12 @@ import 'lib/locationUtil/locationDatabase.dart';
 enum Test { first, second }
 
 void main() {
-  updateCheck();
+  weekday();
+}
+
+void weekday() {
+  print(DateTime.now().subtract(const Duration(days: 1)).weekday);
+  print(DateTime.friday);
 }
 
 void updateCheck() {

@@ -100,7 +100,8 @@ class MyNotifScheduler {
               zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
           title: 'It\'s Zohor',
           body: 'in ' + currentLocation,
-          // summary: zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+          summary:
+              zuhrDateTime.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(zuhrDateTime, local),
         );
       }
@@ -183,8 +184,8 @@ class MyNotifScheduler {
                 zuhrDateTime.millisecondsSinceEpoch.toString().substring(5)),
             title: 'It\'s Zohor',
             body: 'in ' + currentLocation,
-            // summary:
-            //     zuhrDateTime.day == DateTime.friday ? 'Salam Jumaat' : null,
+            summary:
+                zuhrDateTime.weekday == DateTime.friday ? 'Salam Jumaat' : null,
             scheduledTime: TZDateTime.from(zuhrDateTime, local),
             customSound: 'azan_kurdhi2010');
       }
