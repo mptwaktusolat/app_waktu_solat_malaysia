@@ -45,39 +45,34 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    String? administrativeArea;
-    String? locality;
-    String? country;
+    Placemark _firstPlacemark;
 
     Position _pos = await LocationData.getCurrentLocation();
     DebugToast.show(_pos.toString());
     try {
       List<Placemark> placemarks =
           await placemarkFromCoordinates(_pos.latitude, _pos.longitude);
-      var first = placemarks.first;
-      administrativeArea = first.administrativeArea;
-      locality = first.locality;
-      country = first.country;
-      GetStorage().write(kStoredLocationLocality, locality);
+      _firstPlacemark = placemarks.first;
     } on PlatformException catch (e) {
-      GetStorage().write(kStoredLocationLocality, e.message.toString());
       if (e.message!.contains('A network error occurred')) {
         throw 'A network error occurred trying to lookup the supplied coordinates.';
       } else {
         rethrow;
       }
     }
-    DebugToast.show(country);
-    if (country!.toLowerCase() != "malaysia") {
+    DebugToast.show(_firstPlacemark.country);
+    if (_firstPlacemark.country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
     }
     var zone = LocationCoordinate.getJakimCodeNearby(
-        _pos.latitude, _pos.longitude, administrativeArea!);
+        _pos.latitude, _pos.longitude, _firstPlacemark.administrativeArea!);
 
     return LocationCoordinateData(
         zone: zone,
-        negeri: administrativeArea,
-        lokasi: locality,
+        negeri: _firstPlacemark.administrativeArea,
+        lokasi: _firstPlacemark.locality!.isNotEmpty
+            ? _firstPlacemark.locality
+            : _firstPlacemark.name,
         lat: null,
         lng: null);
   }

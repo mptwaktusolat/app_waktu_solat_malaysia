@@ -216,9 +216,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             ? GeoPoint(LocationData.position!.latitude,
                                 LocationData.position!.longitude)
                             : 'no detect',
-                        'Locality':
-                            GetStorage().read(kStoredLocationLocality) ??
-                                'no locality called',
                         'Device info': _logIsChecked! ? _deviceInfo : null,
                         'Hijri Offset': GetStorage().read(kHijriOffset),
                       });

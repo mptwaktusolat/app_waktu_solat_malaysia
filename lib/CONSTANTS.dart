@@ -8,7 +8,6 @@ const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
-const kStoredLocationLocality = "storedLocationLocality";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
 const kStoredApiPrayerCall = "storedApiPrayCall";
 const kStoredShouldUpdateNotif = "storedShouldUpdateNotif";
