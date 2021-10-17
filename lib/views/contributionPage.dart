@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 import '../CONSTANTS.dart' as constants;
 import '../utils/launchUrl.dart';
 
