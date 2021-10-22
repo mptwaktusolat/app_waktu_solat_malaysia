@@ -25,6 +25,7 @@ const kAppLaunchCount = "appLaunchCount";
 const kHasOpenSharingDialog = "openedSharedDialog";
 const kShowNotifPrompt = "notifPrompt";
 const kNotificationType = "notiftype";
+const kHasShowQiblaWarning = "storedqiblawarn";
 
 //Network image
 const kAppIconUrl =

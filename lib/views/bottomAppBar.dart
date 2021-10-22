@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
+import 'Qibla%20part/qibla_warn.dart';
 import 'prayer_full_table.dart';
 import '../providers/updater_provider.dart';
 import '../CONSTANTS.dart';
@@ -63,8 +65,14 @@ class MyBottomAppBar extends StatelessWidget {
             color: iconColour,
             tooltip: 'Kibla compass',
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Qibla()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GetStorage().read(kHasShowQiblaWarning)
+                      ? const Qibla()
+                      : const QiblaWarn(),
+                ),
+              );
             },
           )
         ],

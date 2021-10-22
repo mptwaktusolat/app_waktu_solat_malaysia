@@ -126,9 +126,6 @@ void _showCalibrateCompassDialog(BuildContext context) {
                 padding: const EdgeInsets.all(16.0),
                 child: SvgPicture.asset(
                   'assets/qibla/compass callibrate.svg',
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black87,
                   height: 230,
                 ),
               ),
