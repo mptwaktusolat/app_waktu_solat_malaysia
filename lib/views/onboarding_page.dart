@@ -110,7 +110,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           RadioListTile(
               value: MyNotificationType.azan,
               groupValue: _type,
-              title: const Text('Azan notification [NEW]'),
+              title: const Text('Azan notification'),
               onChanged: (MyNotificationType? type) {
                 GetStorage().write(kNotificationType, type?.index);
                 setState(() => _type = type!);
