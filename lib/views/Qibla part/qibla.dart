@@ -64,74 +64,76 @@ class _QiblaState extends State<Qibla> {
               },
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: compassActionButton(context))),
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: CompassActionButtons())),
         ],
       ),
     );
   }
 }
 
-Widget compassActionButton(BuildContext context) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      OutlinedButton(
-        onPressed: () {
-          LaunchUrl.normalLaunchUrl(
-              url: 'https://g.co/qiblafinder', useCustomTabs: true);
-        },
-        onLongPress: () {
-          Clipboard.setData(const ClipboardData(text: 'g.co/qiblafinder'))
-              .then((value) => Fluttertoast.showToast(msg: 'URL copied :)'));
-        },
-        child: Row(
-          children: const [
-            Text('Google Qiblafinder'),
-            SizedBox(width: 8),
-            FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
-          ],
-        ),
-      ),
-      const SizedBox(width: 10),
-      OutlinedButton(
-        onPressed: () => _showCalibrateCompassDialog(context),
-        child: const Text('Calibration tip'),
-      )
-    ],
-  );
-}
+class CompassActionButtons extends StatelessWidget {
+  const CompassActionButtons({Key? key}) : super(key: key);
 
-void _showCalibrateCompassDialog(BuildContext context) {
-  //TODO: Kasi lawa
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        insetPadding: const EdgeInsets.all(10),
-        child: Container(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Move your phone in "figure 8 pattern".',
-                style: TextStyle(fontSize: 16),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(
-                  'assets/qibla/compass callibrate.svg',
-                  height: 230,
-                ),
-              ),
+  final _qiblaFinderUrl = 'g.co/qiblafinder';
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        OutlinedButton(
+          onPressed: () {
+            LaunchUrl.normalLaunchUrl(
+                url: 'https://$_qiblaFinderUrl', useCustomTabs: true);
+          },
+          onLongPress: () {
+            Clipboard.setData(ClipboardData(text: _qiblaFinderUrl))
+                .then((value) => Fluttertoast.showToast(msg: 'URL copied :)'));
+          },
+          child: Row(
+            children: const [
+              Text('Google Qiblafinder'),
+              SizedBox(width: 8),
+              FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
             ],
           ),
         ),
+        const SizedBox(width: 10),
+        OutlinedButton(
+          onPressed: () => _showCalibrateCompassDialog(context),
+          child: const Text('Calibration tip'),
+        )
+      ],
+    );
+  }
+}
+
+void _showCalibrateCompassDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        insetPadding: const EdgeInsets.all(10),
+        title: const Text(
+          'Move your phone in "figure 8 pattern"',
+          textAlign: TextAlign.center,
+        ),
+        content: SvgPicture.asset(
+          'assets/qibla/compass callibrate.svg',
+          height: 230,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Done'))
+        ],
       );
     },
   );

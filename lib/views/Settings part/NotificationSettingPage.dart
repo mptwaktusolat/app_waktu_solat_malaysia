@@ -44,7 +44,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               RadioListTile(
                   value: MyNotificationType.azan,
                   groupValue: _type,
-                  title: const Text('Azan notification [NEW]'),
+                  title: const Text('Azan notification'),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
@@ -99,7 +99,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               padding: EdgeInsets.all(8.0), child: Text('Troubleshooting')),
           Card(
             child: ListTile(
-              title: const Text('Fix notification not showing on some devices'),
+              title: const Text('Fix notification not working on some devices'),
               subtitle: const Text('Example: Xiaomi / Redmi, Realme etc.'),
               onTap: () => Navigator.push(
                   context,
