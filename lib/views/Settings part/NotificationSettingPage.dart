@@ -48,7 +48,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
-              Builder(builder: (context) {
+              Builder(builder: (_) {
                 if (_type !=
                     MyNotificationType
                         .values[GetStorage().read(kNotificationType)]) {

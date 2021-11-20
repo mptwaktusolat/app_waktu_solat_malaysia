@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../CONSTANTS.dart';
 import 'qibla.dart';
@@ -16,10 +17,10 @@ class QiblaWarn extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            Icon(Icons.warning_amber_rounded,
+            FaIcon(FontAwesomeIcons.exclamationTriangle,
                 color: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.yellow
-                    : Colors.yellow.shade700,
+                    ? Colors.green
+                    : Colors.green.shade700,
                 size: 45),
             const SizedBox(height: 15),
             const UnorderedListItem(

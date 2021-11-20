@@ -91,7 +91,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             FutureBuilder(
               future: DeviceInfoPlugin().androidInfo,
-              builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
+              builder: (_, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
                 if (snapshot.hasData) {
                   _deviceInfo = {
                     'Android version': snapshot.data!.version.release,
@@ -114,7 +114,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                   child: ListView.builder(
                                 shrinkWrap: true,
                                 itemCount: _deviceInfo!.length + 1,
-                                itemBuilder: (context, index) {
+                                itemBuilder: (_, index) {
                                   if (index < _deviceInfo!.length) {
                                     var key =
                                         _deviceInfo!.keys.elementAt(index);

@@ -1,4 +1,4 @@
-import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
+import '../models/jakim_esolat_model.dart';
 
 final int day = DateTime.now().day;
 

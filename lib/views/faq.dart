@@ -27,11 +27,11 @@ class _FaqPageState extends State<FaqPage> {
       ),
       body: FutureBuilder(
         future: _faqCollection.get(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        builder: (_, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) {
+              itemBuilder: (_, index) {
                 return ListTile(
                   title: Text(snapshot.data!.docs[index]['title']),
                   subtitle: Text(

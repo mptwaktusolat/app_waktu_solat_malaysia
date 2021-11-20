@@ -143,7 +143,7 @@ class _ThemesOptionState extends State<ThemesOption> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: _themeOptions.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (_, index) {
             return RadioListTile(
                 title: Text(_themeOptions.keys.elementAt(index)),
                 subtitle:

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
+import '../models/jakim_esolat_model.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../CONSTANTS.dart';
@@ -22,7 +22,7 @@ class PrayerFullTable extends StatelessWidget {
     return Scaffold(
       // https://stackoverflow.com/questions/51948252/hide-appbar-on-scroll-flutter
       body: NestedScrollView(
-        headerSliverBuilder: (ctx, innerboxIsScrolled) {
+        headerSliverBuilder: (_, innerboxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               floating: true,
@@ -50,13 +50,13 @@ class PrayerFullTable extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
-              builder: (context, AsyncSnapshot<JakimEsolatModel> snapshot) {
+              builder: (_, AsyncSnapshot<JakimEsolatModel> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                       child: SpinKitFadingCube(size: 35, color: Colors.teal));
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error as String);
-                } else if (snapshot.hasData) {
+                } else {
                   return DataTable(
                     columnSpacing: 30,
                     // Map of title and tooltip
@@ -114,8 +114,6 @@ class PrayerFullTable extends StatelessWidget {
                       ]);
                     }),
                   );
-                } else {
-                  return const Text('ERROR!');
                 }
               },
             ),

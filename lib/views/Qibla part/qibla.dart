@@ -41,7 +41,7 @@ class _QiblaState extends State<Qibla> {
             alignment: Alignment.center,
             child: FutureBuilder(
               future: _deviceSupport,
-              builder: (context, AsyncSnapshot<bool?> snapshot) {
+              builder: (_, AsyncSnapshot<bool?> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(
                     child: CircularProgressIndicator(

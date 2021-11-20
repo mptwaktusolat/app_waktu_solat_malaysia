@@ -1,7 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
-import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
+import '../models/jakim_esolat_model.dart';
 import '../views/Settings%20part/NotificationSettingPage.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';

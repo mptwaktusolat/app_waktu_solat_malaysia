@@ -74,7 +74,7 @@ class _OnboardingPageState extends State<OnboardingPage>
         image: Padding(
           padding: const EdgeInsets.all(50.0),
           child: Builder(
-            builder: (context) {
+            builder: (_) {
               bool _isDarkMode =
                   Theme.of(context).brightness == Brightness.dark;
               if (_isDarkMode) {

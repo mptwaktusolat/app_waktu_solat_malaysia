@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/models/jakim_esolat_model.dart';
+import '../models/jakim_esolat_model.dart';
 import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../providers/location_provider.dart';
@@ -37,7 +37,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
       builder: (context, value, child) {
         return FutureBuilder<JakimEsolatModel>(
           future: MptApiFetch.fetchMpt(value.currentLocationCode),
-          builder: (context, snapshot) {
+          builder: (_, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Loading();
             } else if (snapshot.hasData) {
@@ -103,20 +103,17 @@ class _PrayTimeListState extends State<PrayTimeList> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            showOtherPrayerTime!
-                ? solatCard(imsakTime, 'Imsak', false)
-                : Container(),
-            solatCard(subuhTime, 'Subuh', true),
-            showOtherPrayerTime!
-                ? solatCard(syurukTime, 'Syuruk', false)
-                : Container(),
-            showOtherPrayerTime!
-                ? solatCard(dhuhaTime, 'Dhuha', false)
-                : Container(),
-            solatCard(zohorTime, 'Zohor', true),
-            solatCard(asarTime, 'Asar', true),
-            solatCard(maghribTime, 'Maghrib', true),
-            solatCard(isyaTime, 'Isyak', true),
+            if (showOtherPrayerTime!)
+              SolatCard(time: imsakTime, name: 'Imsak', isOther: false),
+            SolatCard(time: subuhTime, name: 'Subuh', isOther: true),
+            if (showOtherPrayerTime!)
+              SolatCard(time: syurukTime, name: 'Syuruk', isOther: false),
+            if (showOtherPrayerTime!)
+              SolatCard(time: dhuhaTime, name: 'Dhuha', isOther: false),
+            SolatCard(time: zohorTime, name: 'Zohor', isOther: true),
+            SolatCard(time: asarTime, name: 'Asar', isOther: true),
+            SolatCard(time: maghribTime, name: 'Maghrib', isOther: true),
+            SolatCard(time: isyaTime, name: 'Isyak', isOther: true),
           ],
         );
       },
@@ -124,40 +121,53 @@ class _PrayTimeListState extends State<PrayTimeList> {
   }
 }
 
-Widget solatCard(String time, String name, bool isOtherPrayerTime) {
-  return Container(
-    constraints: const BoxConstraints(maxWidth: 320),
-    margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
-    height: isOtherPrayerTime ? 80 : 55,
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      margin: const EdgeInsets.symmetric(vertical: 4.0),
-      shadowColor: Colors.black54,
-      elevation: 4.0,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(10.0),
-        splashColor: Colors.teal.withAlpha(30),
-        onLongPress: () =>
-            Clipboard.setData(ClipboardData(text: '$name: $time'))
-                .then((value) {
-          Fluttertoast.showToast(
-            msg: 'Copied to clipboard',
-            toastLength: Toast.LENGTH_SHORT,
-            backgroundColor: Colors.grey.shade700,
-            textColor: Colors.white,
-          );
-        }),
-        child: Center(child: Consumer<SettingProvider>(
-          builder: (context, setting, child) {
-            return Text(
-              name + ' at $time',
-              style: TextStyle(fontSize: setting.prayerFontSize),
+class SolatCard extends StatelessWidget {
+  const SolatCard(
+      {Key? key, required this.isOther, required this.name, required this.time})
+      : super(key: key);
+
+  /// Imsak, Syuruk, Dhuha set to true
+  final bool isOther;
+  final String name;
+  final String time;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 320),
+      margin: EdgeInsets.symmetric(vertical: SizeConfig.screenHeight / 320),
+      height: isOther ? 80 : 55,
+      child: Card(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        margin: const EdgeInsets.symmetric(vertical: 4.0),
+        shadowColor: Colors.black54,
+        elevation: 4.0,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10.0),
+          splashColor: Colors.teal.withAlpha(30),
+          onLongPress: () =>
+              Clipboard.setData(ClipboardData(text: '$name: $time'))
+                  .then((value) {
+            Fluttertoast.showToast(
+              msg: 'Copied to clipboard',
+              toastLength: Toast.LENGTH_SHORT,
+              backgroundColor: Colors.grey.shade700,
+              textColor: Colors.white,
             );
-          },
-        )),
+          }),
+          child: Center(child: Consumer<SettingProvider>(
+            builder: (context, setting, child) {
+              return Text(
+                name + ' at $time',
+                style: TextStyle(fontSize: setting.prayerFontSize),
+              );
+            },
+          )),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class Error extends StatelessWidget {

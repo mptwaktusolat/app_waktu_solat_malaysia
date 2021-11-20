@@ -84,7 +84,8 @@ Future<void> scheduleSinglePrayerNotification({
   var androidSpecifics = AndroidNotificationDetails(
     '$name id', // This specifies the ID of the Notification
     '$name notification', // This specifies the name of the notification channel
-    'Scheduled daily prayer notification', //This specifies the description of the channel
+    channelDescription:
+        'Scheduled daily prayer notification', //This specifies the description of the channel
     priority: Priority.max,
     importance: Importance.high,
     styleInformation: styleInformation,
@@ -118,7 +119,8 @@ Future<void> scheduleSingleAzanNotification(
   var androidSpecifics = AndroidNotificationDetails(
     '$name azan id', // This specifies the ID of the Notification
     '$name azan notification', // This specifies the name of the notification channel
-    'Scheduled daily prayer azan', //This specifies the description of the channel
+    channelDescription:
+        'Scheduled daily prayer azan', //This specifies the description of the channel
     priority: Priority.max,
     importance: Importance.high,
     styleInformation: styleInformation,
@@ -150,7 +152,8 @@ Future<void> scheduleAlertNotification(
   var androidSpecifics = AndroidNotificationDetails(
     'Alert id', // This specifies the ID of the Notification
     'Alert notification', // This specifies the name of the notification channel
-    'Alerts and reminders to user', //This specifies the description of the channel
+    channelDescription:
+        'Alerts and reminders to user', //This specifies the description of the channel
     priority: Priority.defaultPriority,
     importance: Importance.high,
     styleInformation: styleInformation,
@@ -175,7 +178,7 @@ Future<void> showDebugNotification() async {
       AndroidNotificationDetails(
     'Debug id',
     'Debug channel',
-    'Notification debug test',
+    channelDescription: 'Notification debug test',
     importance: Importance.defaultImportance,
     priority: Priority.high,
   );

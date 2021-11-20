@@ -10,7 +10,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/locationUtil/location.dart';
+import '../locationUtil/location.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
@@ -120,9 +120,9 @@ class LocationChooser {
       backgroundColor: Colors.transparent,
       context: context,
       isScrollControlled: true,
-      builder: (BuildContext context) {
+      builder: (_) {
         return Consumer<LocationProvider>(
-          builder: (context, value, child) {
+          builder: (_, value, __) {
             return FractionallySizedBox(
               heightFactor: 0.68,
               child: ClipRRect(
@@ -144,7 +144,7 @@ class LocationChooser {
                           ),
                         ),
                       ),
-                      itemBuilder: (context, element) {
+                      itemBuilder: (_, element) {
                         bool _selected =
                             value.currentLocationCode == element.jakimCode;
                         return ListTile(

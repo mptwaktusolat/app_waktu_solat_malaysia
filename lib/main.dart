@@ -8,8 +8,8 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:waktusolatmalaysia/locationUtil/locationDatabase.dart';
-import 'package:waktusolatmalaysia/providers/updater_provider.dart';
+import 'locationUtil/locationDatabase.dart';
+import 'providers/updater_provider.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'CONSTANTS.dart';
 import 'providers/location_provider.dart';
@@ -115,7 +115,7 @@ class MyHomePage extends StatelessWidget {
 }
 
 void migrateLocationIndexToLocationCode() {
-  //TODO: Remove migration is no longer needed
+  //TODO: Will be remove in 2022 release
   var storedIndex = GetStorage().read(kStoredGlobalIndex);
   if (storedIndex != null) {
     GetStorage().write(

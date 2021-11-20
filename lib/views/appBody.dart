@@ -130,8 +130,8 @@ class _AppBodyState extends State<AppBody> {
                               ),
                               child: FutureBuilder<RemoteConfig>(
                                 future: fetchRemoteConfig(),
-                                builder: (context,
-                                    AsyncSnapshot<RemoteConfig> snapshot) {
+                                builder:
+                                    (_, AsyncSnapshot<RemoteConfig> snapshot) {
                                   /// Fetch data from server whenever possible
                                   if (snapshot.hasData) {
                                     int _offset =
@@ -219,7 +219,7 @@ class _AppBodyState extends State<AppBody> {
             padding: EdgeInsets.symmetric(horizontal: 26),
             child: GetPrayerTime(),
           ),
-          Builder(builder: (context) {
+          Builder(builder: (_) {
             if (_isAdLoaded) {
               return Container(
                   child: AdWidget(ad: _ad),
@@ -236,7 +236,7 @@ class _AppBodyState extends State<AppBody> {
   }
 
   Builder showNotifPrompt(BuildContext context) {
-    return Builder(builder: (builder) {
+    return Builder(builder: (_) {
       if (_showNotifPrompt) {
         return AnimatedCrossFade(
           layoutBuilder: (topChild, topChildKey, bottomChild, bottomChildKey) {

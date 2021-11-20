@@ -200,7 +200,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Card(
       child: FutureBuilder(
         future: PackageInfo.fromPlatform(),
-        builder: (context, AsyncSnapshot<PackageInfo> snapshot) {
+        builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
           if (snapshot.hasData) {
             return ListTile(
               title: Text('About app (Ver. ${snapshot.data!.version})'),

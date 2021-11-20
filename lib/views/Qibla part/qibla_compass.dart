@@ -32,7 +32,7 @@ class _QiblaCompassState extends State<QiblaCompass> {
       padding: const EdgeInsets.all(8.0),
       child: StreamBuilder(
         stream: stream,
-        builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
+        builder: (_, AsyncSnapshot<LocationStatus> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const CupertinoActivityIndicator();
           }
