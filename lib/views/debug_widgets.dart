@@ -54,8 +54,8 @@ class DebugWidgets {
               await scheduleSingleAzanNotification(
                   name: 'name',
                   id: 2321,
-                  title: 'title',
-                  body: 'body',
+                  title: 'Azan test',
+                  body: 'azan_hejaz2013_fajr',
                   customSound: 'azan_hejaz2013_fajr',
                   scheduledTime: tz.TZDateTime.now(tz.local)
                       .add(const Duration(seconds: 30)));
