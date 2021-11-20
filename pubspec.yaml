@@ -49,6 +49,10 @@ dependencies:
   restart_app: ^1.0.3
   grouped_list: ^4.1.0
 
+dependency_overrides:
+  flutter_compass:
+    git: https://github.com/hemanthrajv/flutter_compass.git
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

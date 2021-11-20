@@ -15,8 +15,8 @@ class AppUpdateChecker {
     final AndroidDeviceInfo _androidInfo = await _deviceInfo.androidInfo;
 
     int _deviceSdk = _androidInfo.version.sdkInt!;
-    const int _unsupportedSdkInt = 23;
-    if (_deviceSdk <= _unsupportedSdkInt) return false;
+    const int _minSdk = 20;
+    if (_deviceSdk < _minSdk) return false;
 
     final PackageInfo _packageInfo = await PackageInfo.fromPlatform();
 

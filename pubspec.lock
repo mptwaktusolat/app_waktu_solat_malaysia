@@ -252,11 +252,13 @@ packages:
     source: hosted
     version: "3.1.3"
   flutter_compass:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: flutter_compass
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "8f753aefe76b08092c0e5bda93775ade8fe66016"
+      url: "https://github.com/hemanthrajv/flutter_compass.git"
+    source: git
     version: "0.7.0"
   flutter_lints:
     dependency: "direct dev"
