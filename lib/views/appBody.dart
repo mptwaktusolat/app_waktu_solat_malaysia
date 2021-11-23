@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -342,11 +341,10 @@ class DateWidget extends StatelessWidget {
           DateFormat('EEEE').format(DateTime.now()),
           style: GoogleFonts.spartan(color: Colors.white),
         ),
-        AutoSizeText(
+        Text(
           HijriCalendar.fromDate(DateTime.now().add(_hijriOffset))
               .toFormat("dd MMMM yyyy"),
           style: GoogleFonts.acme(color: Colors.white, fontSize: 17),
-          stepGranularity: 1,
         ),
         Text(
           DateFormat('dd MMM yyyy').format(DateTime.now()),
