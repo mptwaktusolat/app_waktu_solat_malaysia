@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+
+import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/mpt_fetch_api.dart';
-import '../CONSTANTS.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);

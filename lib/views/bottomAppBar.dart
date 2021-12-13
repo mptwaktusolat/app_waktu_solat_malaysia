@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import 'Qibla%20part/qibla_warn.dart';
-import 'prayer_full_table.dart';
-import '../providers/updater_provider.dart';
+
 import '../CONSTANTS.dart';
+import '../providers/updater_provider.dart';
 import '../utils/launchUrl.dart';
 import 'Qibla%20part/qibla.dart';
+import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
+import 'prayer_full_table.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({Key? key}) : super(key: key);

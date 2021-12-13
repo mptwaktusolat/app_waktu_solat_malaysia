@@ -8,15 +8,15 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'locationUtil/locationDatabase.dart';
-import 'providers/updater_provider.dart';
-import 'views/Settings%20part/NotificationSettingPage.dart';
+
 import 'CONSTANTS.dart';
-import 'providers/location_provider.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
+import 'providers/location_provider.dart';
 import 'providers/settingsProvider.dart';
+import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
+import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
@@ -37,8 +37,6 @@ void main() async {
 
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
-
-  migrateLocationIndexToLocationCode();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
@@ -111,17 +109,6 @@ class MyHomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
       body: const SingleChildScrollView(child: AppBody()),
     );
-  }
-}
-
-void migrateLocationIndexToLocationCode() {
-  //TODO: Will be remove in 2022 release
-  var storedIndex = GetStorage().read(kStoredGlobalIndex);
-  if (storedIndex != null) {
-    GetStorage().write(
-        kStoredLocationJakimCode, LocationDatabase.getJakimCode(storedIndex));
-    GetStorage().remove(
-        kStoredGlobalIndex); // delete this key so it will never be used again
   }
 }
 

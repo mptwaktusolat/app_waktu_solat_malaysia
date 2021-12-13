@@ -1,7 +1,5 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,14 +7,15 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../providers/updater_provider.dart';
-import '../utils/update_checker.dart';
+
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../providers/location_provider.dart';
+import '../providers/updater_provider.dart';
 import '../utils/sizeconfig.dart';
-import 'Settings%20part/NotificationSettingPage.dart';
+import '../utils/update_checker.dart';
 import 'GetPrayerTime.dart';
+import 'Settings%20part/NotificationSettingPage.dart';
 import 'ZoneChooser.dart';
 import 'debug_widgets.dart';
 
