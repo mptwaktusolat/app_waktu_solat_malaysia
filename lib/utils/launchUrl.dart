@@ -13,10 +13,13 @@ class LaunchUrl {
         : FlutterWebBrowser.openWebPage(
             url: url!,
             customTabsOptions: CustomTabsOptions(
-                addDefaultShareMenuItem: true,
+              shareState: CustomTabsShareState.on,
+              defaultColorSchemeParams: CustomTabsColorSchemeParams(
                 navigationBarColor: Colors.tealAccent,
                 toolbarColor: Colors.teal.shade700,
-                secondaryToolbarColor: Colors.teal),
+                secondaryToolbarColor: Colors.teal,
+              ),
+            ),
           );
   }
 }
