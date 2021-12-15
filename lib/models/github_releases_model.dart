@@ -10,11 +10,11 @@ class GithubReleasesModel {
   // String? nodeId;
   String? tagName;
   // String? targetCommitish;
-  // String? name;
+  String? name;
   // bool? draft;
   // bool? prerelease;
   // String? createdAt;
-  // String? publishedAt;
+  String? publishedAt;
   // List<dynamic>? assets;
   // String? tarballUrl;
   // String? zipballUrl;
@@ -30,11 +30,11 @@ class GithubReleasesModel {
     // this.nodeId,
     this.tagName,
     // this.targetCommitish,
-    // this.name,
+    this.name,
     // this.draft,
     // this.prerelease,
     // this.createdAt,
-    // this.publishedAt,
+    this.publishedAt,
     // this.assets,
     // this.tarballUrl,
     // this.zipballUrl,
@@ -51,11 +51,11 @@ class GithubReleasesModel {
     // this.nodeId = json["node_id"];
     tagName = json["tag_name"];
     // this.targetCommitish = json["target_commitish"];
-    // this.name = json["name"];
+    name = json["name"];
     // this.draft = json["draft"];
     // this.prerelease = json["prerelease"];
     // this.createdAt = json["created_at"];
-    // this.publishedAt = json["published_at"];
+    publishedAt = json["published_at"];
     // this.assets = json["assets"] ?? [];
     // this.tarballUrl = json["tarball_url"];
     // this.zipballUrl = json["zipball_url"];
@@ -74,11 +74,11 @@ class GithubReleasesModel {
     // data["node_id"] = this.nodeId;
     data["tag_name"] = tagName;
     // data["target_commitish"] = this.targetCommitish;
-    // data["name"] = this.name;
+    data["name"] = name;
     // data["draft"] = this.draft;
     // data["prerelease"] = this.prerelease;
     // data["created_at"] = this.createdAt;
-    // data["published_at"] = this.publishedAt;
+    data["published_at"] = publishedAt;
     // if(this.assets != null)
     //     data["assets"] = this.assets;
     // data["tarball_url"] = this.tarballUrl;

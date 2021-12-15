@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';

@@ -13,6 +13,7 @@ import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
 import 'prayer_full_table.dart';
+import 'update_page.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({Key? key}) : super(key: key);
@@ -143,7 +144,11 @@ void menuModalBottomSheet(BuildContext context) {
                   onTap: () {
                     Navigator.pop(context);
                     setting.needForUpdate = false;
-                    LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const UpdatePage(),
+                        ));
                   },
                 );
               } else {
