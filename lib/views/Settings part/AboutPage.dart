@@ -17,7 +17,7 @@ import '../faq.dart';
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
   final PackageInfo? packageInfo;
-  final appLegalese = 'Copyright © 2020-2021 Fareez Iqmal';
+  final appLegalese = 'Copyright © 2020-2022 Fareez Iqmal';
 
   @override
   Widget build(BuildContext context) {
