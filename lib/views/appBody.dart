@@ -7,6 +7,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -337,7 +338,8 @@ class DateWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          DateFormat('EEEE').format(DateTime.now()),
+          DateFormat('EEEE', AppLocalizations.of(context)!.localeName)
+              .format(DateTime.now()),
           style: GoogleFonts.spartan(color: Colors.white),
         ),
         Text(

@@ -1,0 +1,14 @@
+{
+  "appTitle": "🇲🇾 Prayer Time",
+  "@appTitle": {
+    "description": "app title material app"
+  },
+  "imsakName": "Imsak",
+  "fajrName": "Fajr",
+  "sunriseName": "Sunrise",
+  "dhuhaName": "Dhuha",
+  "dhuhrName": "Dhuhr",
+  "asrName": "Asr",
+  "maghribName": "Maghrib",
+  "ishaName": "Isha"
+}

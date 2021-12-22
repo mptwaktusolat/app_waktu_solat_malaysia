@@ -11,7 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   http: ^0.13.1
   intl: ^0.17.0
   google_fonts: ^2.0.0
@@ -58,6 +59,7 @@ dev_dependencies:
   flutter_lints: ^1.0.4
 
 flutter:
+  generate: true
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -67,7 +69,6 @@ flutter:
     - assets/qibla/
     - assets/bam/
   #   - assets/grouped.json
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

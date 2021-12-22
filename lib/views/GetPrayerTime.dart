@@ -8,6 +8,7 @@ import '../models/jakim_esolat_model.dart';
 import '../providers/settingsProvider.dart';
 import '../CONSTANTS.dart';
 import '../providers/location_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../utils/DateAndTime.dart';
@@ -104,16 +105,40 @@ class _PrayTimeListState extends State<PrayTimeList> {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             if (showOtherPrayerTime!)
-              SolatCard(time: imsakTime, name: 'Imsak', isOther: false),
-            SolatCard(time: subuhTime, name: 'Subuh', isOther: true),
+              SolatCard(
+                  time: imsakTime,
+                  name: AppLocalizations.of(context)!.imsakName,
+                  isOther: false),
+            SolatCard(
+                time: subuhTime,
+                name: AppLocalizations.of(context)!.fajrName,
+                isOther: true),
             if (showOtherPrayerTime!)
-              SolatCard(time: syurukTime, name: 'Syuruk', isOther: false),
+              SolatCard(
+                  time: syurukTime,
+                  name: AppLocalizations.of(context)!.sunriseName,
+                  isOther: false),
             if (showOtherPrayerTime!)
-              SolatCard(time: dhuhaTime, name: 'Dhuha', isOther: false),
-            SolatCard(time: zohorTime, name: 'Zohor', isOther: true),
-            SolatCard(time: asarTime, name: 'Asar', isOther: true),
-            SolatCard(time: maghribTime, name: 'Maghrib', isOther: true),
-            SolatCard(time: isyaTime, name: 'Isyak', isOther: true),
+              SolatCard(
+                  time: dhuhaTime,
+                  name: AppLocalizations.of(context)!.dhuhaName,
+                  isOther: false),
+            SolatCard(
+                time: zohorTime,
+                name: AppLocalizations.of(context)!.dhuhrName,
+                isOther: true),
+            SolatCard(
+                time: asarTime,
+                name: AppLocalizations.of(context)!.asrName,
+                isOther: true),
+            SolatCard(
+                time: maghribTime,
+                name: AppLocalizations.of(context)!.maghribName,
+                isOther: true),
+            SolatCard(
+                time: isyaTime,
+                name: AppLocalizations.of(context)!.ishaName,
+                isOther: true),
           ],
         );
       },

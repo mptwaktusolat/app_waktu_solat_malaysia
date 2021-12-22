@@ -8,7 +8,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'CONSTANTS.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
@@ -79,6 +79,8 @@ class MyApp extends StatelessWidget {
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
             themeMode: value.themeMode,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
             home: GetStorage().read(kIsFirstRun)
                 ? const OnboardingPage()
                 : const MyHomePage(),
@@ -97,7 +99,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          '🇲🇾 Prayer Time',
+          AppLocalizations.of(context)!.appTitle,
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,
