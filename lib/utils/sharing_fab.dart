@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import '../providers/settingsProvider.dart';
+
 import '../CONSTANTS.dart';
+import '../providers/settingsProvider.dart';
 import 'copyAndShare.dart';
 import 'launchUrl.dart';
 
@@ -31,17 +33,17 @@ class ShareFAB extends StatelessWidget {
           },
         ),
         mini: true,
-        tooltip: 'Share solat time',
+        tooltip: AppLocalizations.of(context)!.shareTooltip,
         onPressed: () {
           switch (setting.sharingFormat) {
             case 1:
-              shareUniversal();
+              shareUniversal(context);
               break;
             case 2:
-              shareToWhatsApp();
+              shareToWhatsApp(context);
               break;
             case 3:
-              copy();
+              copy(context);
               break;
             default:
               showShareDialog(context);
@@ -60,27 +62,27 @@ class ShareFAB extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: const Text('Share as plain text'),
-              subtitle: const Text('Compatible to all apps'),
+              title: Text(AppLocalizations.of(context)!.sharePlainTitle),
+              subtitle: Text(AppLocalizations.of(context)!.sharePlainDesc),
               onTap: () {
                 Navigator.pop(context);
-                shareUniversal();
+                shareUniversal(context);
               },
             ),
             ListTile(
-              title: const Text('Share to WhatsApp'),
-              subtitle: const Text('Using WhatsApp compatible format'),
+              title: Text(AppLocalizations.of(context)!.shareWhatsappTitle),
+              subtitle: Text(AppLocalizations.of(context)!.shareWhatsappDesc),
               trailing: const FaIcon(FontAwesomeIcons.whatsapp),
               onTap: () {
                 Navigator.pop(context);
-                shareToWhatsApp();
+                shareToWhatsApp(context);
               },
             ),
             ListTile(
-              title: const Text('Copy to clipboard'),
+              title: Text(AppLocalizations.of(context)!.shareCopy),
               trailing: const FaIcon(FontAwesomeIcons.clone),
               onTap: () {
-                copy();
+                copy(context);
                 Navigator.pop(context);
               },
             ),
@@ -91,14 +93,16 @@ class ShareFAB extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     child: RichText(
                       text: TextSpan(
-                        text: 'You can set defaults in ',
+                        text: AppLocalizations.of(context)!.shareSettingPrompt,
                         style: DefaultTextStyle.of(context)
                             .style
                             .copyWith(fontSize: 12),
-                        children: const <TextSpan>[
+                        children: <TextSpan>[
                           TextSpan(
-                              text: 'Setting -> Sharing',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
+                              text: AppLocalizations.of(context)!
+                                  .shareSettingPromptDestination,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -110,17 +114,20 @@ class ShareFAB extends StatelessWidget {
     GetStorage().write(kHasOpenSharingDialog, true);
   }
 
-  void shareToWhatsApp() => LaunchUrl.normalLaunchUrl(
-        url: 'http://wa.me/?text=${CopyAndShare.getMessage(type: 2)}',
+  void shareToWhatsApp(BuildContext context) => LaunchUrl.normalLaunchUrl(
+        url: 'http://wa.me/?text=${CopyAndShare.getMessage(context, type: 2)}',
       );
 
-  void shareUniversal() => Share.share(CopyAndShare.getMessage(),
-      subject: 'Malaysia prayer time for today');
+  void shareUniversal(BuildContext context) =>
+      Share.share(CopyAndShare.getMessage(context),
+          subject: AppLocalizations.of(context)!.shareSubject);
 
-  void copy() =>
-      Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage())).then(
+  void copy(BuildContext context) =>
+      Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage(context)))
+          .then(
         (value) {
-          Fluttertoast.showToast(msg: 'Timetable copied');
+          Fluttertoast.showToast(
+              msg: AppLocalizations.of(context)!.shareTimetableCopied);
         },
       );
 }

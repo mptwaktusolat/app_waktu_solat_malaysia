@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -30,7 +31,7 @@ class MyBottomAppBar extends StatelessWidget {
         children: [
           Consumer<UpdaterProvider>(builder: (_, setting, __) {
             return IconButton(
-                tooltip: 'Open menu',
+                tooltip: AppLocalizations.of(context)?.menuThemes,
                 icon: Stack(children: [
                   const Align(
                       alignment: Alignment.center,
@@ -54,7 +55,7 @@ class MyBottomAppBar extends StatelessWidget {
           }),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarAlt),
-            tooltip: 'Full timetable',
+            tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
             color: iconColour,
             onPressed: () {
               Navigator.of(context)
@@ -64,7 +65,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.kaaba),
             color: iconColour,
-            tooltip: 'Kibla compass',
+            tooltip: AppLocalizations.of(context)?.menuKiblaCompassTooltip,
             onPressed: () {
               Navigator.push(
                 context,
@@ -96,7 +97,7 @@ void menuModalBottomSheet(BuildContext context) {
         child: Wrap(
           children: <Widget>[
             ListTile(
-              title: const Text('Themes'),
+              title: Text(AppLocalizations.of(context)!.menuThemes),
               leading: const FaIcon(FontAwesomeIcons.palette),
               onTap: () {
                 Navigator.pop(context);
@@ -107,7 +108,7 @@ void menuModalBottomSheet(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Settings'),
+              title: Text(AppLocalizations.of(context)!.menuSettings),
               leading: const FaIcon(FontAwesomeIcons.cog),
               onTap: () {
                 Navigator.pop(context);
@@ -136,7 +137,7 @@ void menuModalBottomSheet(BuildContext context) {
                         height: 8,
                       ),
                     ),
-                    const Text('Updates available')
+                    Text(AppLocalizations.of(context)!.menuUpdateAvailable)
                   ]),
                   leading: const FaIcon(FontAwesomeIcons.googlePlay),
                   trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
@@ -153,7 +154,7 @@ void menuModalBottomSheet(BuildContext context) {
                 );
               } else {
                 return ListTile(
-                  title: const Text('Rate and review'),
+                  title: Text(AppLocalizations.of(context)!.menuRate),
                   leading: const FaIcon(FontAwesomeIcons.solidStar),
                   trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
                       size: 21),
@@ -170,7 +171,7 @@ void menuModalBottomSheet(BuildContext context) {
               }
             }),
             ListTile(
-              title: const Text('MPT on web'),
+              title: Text(AppLocalizations.of(context)!.menuWeb),
               leading: const FaIcon(FontAwesomeIcons.chrome),
               trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
                   size: 21),
@@ -180,7 +181,7 @@ void menuModalBottomSheet(BuildContext context) {
               },
             ),
             ListTile(
-              title: const Text('Send feedback'),
+              title: Text(AppLocalizations.of(context)!.menuFeedback),
               leading: const FaIcon(FontAwesomeIcons.solidCommentDots),
               onTap: () {
                 Navigator.pop(context);

@@ -2,22 +2,23 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import '../../providers/settingsProvider.dart';
+
 import '../../CONSTANTS.dart';
+import '../../providers/settingsProvider.dart';
 import '../../utils/launchUrl.dart';
-import '../debug_widgets.dart';
 import '../contributionPage.dart';
+import '../debug_widgets.dart';
 import '../faq.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
   final PackageInfo? packageInfo;
-  final appLegalese = 'Copyright © 2020-2022 Fareez Iqmal';
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class AboutAppPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('About App'),
+        title: Text(AppLocalizations.of(context)!.aboutTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -94,11 +95,13 @@ class AboutAppPage extends StatelessWidget {
                               msg: 'Copied version info'));
                     },
                     child: Text(
-                      'Version ${packageInfo!.version}\n',
+                      AppLocalizations.of(context)!
+                          .aboutVersion(packageInfo!.version),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
                     ),
                   ),
+                  const SizedBox(height: 10),
                   Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
@@ -111,11 +114,11 @@ class AboutAppPage extends StatelessWidget {
                               color:
                                   Theme.of(context).textTheme.bodyText2!.color),
                           children: [
-                            const TextSpan(
-                              text: 'Prayer times data are from',
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.aboutJakim,
                             ),
                             TextSpan(
-                              text: ' Jabatan Kemajuan Islam Malaysia',
+                              text: ' Jabatan Kemajuan Islam Malaysia (JAKIM)',
                               style: _linkTextStyle,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -133,8 +136,8 @@ class AboutAppPage extends StatelessWidget {
                       child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
-                        title: const Text(
-                          'Contribution and Support',
+                        title: Text(
+                          AppLocalizations.of(context)!.aboutContribution,
                           textAlign: TextAlign.center,
                         ),
                         onTap: () {
@@ -151,8 +154,8 @@ class AboutAppPage extends StatelessWidget {
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      title: const Text(
-                        'Release Notes',
+                      title: Text(
+                        AppLocalizations.of(context)!.aboutReleaseNotes,
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
@@ -165,8 +168,8 @@ class AboutAppPage extends StatelessWidget {
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      title: const Text(
-                        'Frequently Asked Questions (FAQ)',
+                      title: Text(
+                        AppLocalizations.of(context)!.aboutFaq,
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
@@ -183,8 +186,8 @@ class AboutAppPage extends StatelessWidget {
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      title: const Text(
-                        'Open Source Licenses',
+                      title: Text(
+                        AppLocalizations.of(context)!.aboutLicense,
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
@@ -212,8 +215,8 @@ class AboutAppPage extends StatelessWidget {
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
-                      title: const Text(
-                        'Privacy Policy',
+                      title: Text(
+                        AppLocalizations.of(context)!.aboutPrivacy,
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
@@ -227,8 +230,10 @@ class AboutAppPage extends StatelessWidget {
                     child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
-                        title: const Text('More apps',
-                            textAlign: TextAlign.center),
+                        title: Text(
+                          AppLocalizations.of(context)!.aboutMoreApps,
+                          textAlign: TextAlign.center,
+                        ),
                         onTap: () {
                           LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink);
                         }),
@@ -261,7 +266,8 @@ class AboutAppPage extends StatelessWidget {
                     child: Opacity(
                       opacity: 0.58,
                       child: Text(
-                        appLegalese,
+                        AppLocalizations.of(context)!
+                            .aboutLegalese("2020-2022"),
                         textAlign: TextAlign.center,
                       ),
                     ),

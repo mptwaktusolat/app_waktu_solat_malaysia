@@ -1,6 +1,7 @@
 /// This class will be used to hold prayer data so when copy or share is invoked,
 /// the data can be accessed immediately
 class TempPrayerTimeData {
+  TempPrayerTimeData._();
   static String? subuhTime;
   static String? zohorTime;
   static String? asarTime;

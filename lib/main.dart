@@ -60,10 +60,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
       ],
       child: Consumer<ThemeController>(
-        builder: (context, value, child) {
+        builder: (_, value, __) {
           return MaterialApp(
-            // debugShowCheckedModeBanner: false,
-            title: 'MY Prayer Time', // will show in Android "RECENT" page.
+            onGenerateTitle: (context) =>
+                AppLocalizations.of(context)!.appTitle,
             theme: ThemeData.light().copyWith(
               primaryColor: _primaryColour,
               bottomAppBarColor: Colors.teal.shade50,
@@ -99,7 +99,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.appTitle,
+          AppLocalizations.of(context)!.appbarTitle,
           style: GoogleFonts.balooTamma(),
         ),
         elevation: 0.0,

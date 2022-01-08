@@ -338,7 +338,7 @@ class DateWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          DateFormat('EEEE', AppLocalizations.of(context)!.localeName)
+          DateFormat('EEEE', AppLocalizations.of(context)?.localeName)
               .format(DateTime.now()),
           style: GoogleFonts.spartan(color: Colors.white),
         ),
@@ -348,7 +348,8 @@ class DateWidget extends StatelessWidget {
           style: GoogleFonts.acme(color: Colors.white, fontSize: 17),
         ),
         Text(
-          DateFormat('dd MMM yyyy').format(DateTime.now()),
+          DateFormat('dd MMM yyyy', AppLocalizations.of(context)?.localeName)
+              .format(DateTime.now()),
           style: TextStyle(color: Colors.teal.shade100, fontSize: 12),
         ),
       ],

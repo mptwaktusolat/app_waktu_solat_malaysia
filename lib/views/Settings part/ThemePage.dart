@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+
 import '../../providers/ThemeController.dart';
 
 class ThemesPage extends StatefulWidget {
@@ -22,7 +24,7 @@ class _ThemesPageState extends State<ThemesPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Theme'),
+        title: Text(AppLocalizations.of(context)!.themeTitle),
         centerTitle: true,
       ),
       body: Column(
@@ -130,13 +132,13 @@ class ThemesOption extends StatefulWidget {
 }
 
 class _ThemesOptionState extends State<ThemesOption> {
-  final Map<String, ThemeMode> _themeOptions = {
-    'System Theme': ThemeMode.system,
-    'Light Theme': ThemeMode.light,
-    'Dark Theme': ThemeMode.dark
-  };
   @override
   Widget build(BuildContext context) {
+    final Map<String, ThemeMode> _themeOptions = {
+      AppLocalizations.of(context)!.themeOptionSystem: ThemeMode.system,
+      AppLocalizations.of(context)!.themeOptionLight: ThemeMode.light,
+      AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
+    };
     return Consumer<ThemeController>(
       builder: (context, setting, child) {
         return ListView.builder(
@@ -146,8 +148,9 @@ class _ThemesOptionState extends State<ThemesOption> {
           itemBuilder: (_, index) {
             return RadioListTile(
                 title: Text(_themeOptions.keys.elementAt(index)),
-                subtitle:
-                    index == 0 ? const Text('On supported device only') : null,
+                subtitle: index == 0
+                    ? Text(AppLocalizations.of(context)!.themeSupportedDevice)
+                    : null,
                 value: _themeOptions.values.elementAt(index),
                 groupValue: setting.themeMode,
                 onChanged: (dynamic value) {

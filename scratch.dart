@@ -8,7 +8,8 @@ import 'lib/locationUtil/locationDatabase.dart';
 enum Test { first, second }
 
 void main() {
-  weekday();
+  var date = DateFormat('EEEE, d MMMM yyyy').format(DateTime.now());
+  print(date);
 }
 
 void weekday() {
@@ -46,4 +47,21 @@ void listTest() {
   print('\n');
 
   // print(_myList.getRange(0, 7));
+}
+
+void stringMultiline() {
+  String message = 'Solat timetable: "_dayFormat", "_dateFormat"\n';
+  message += '\n';
+  message += '📍 "daerah" ("negeri")\n';
+  message += '📆 ${"hijriToday"}H\n';
+  message += '\n';
+  message += "☁ Timothy Taylor: b119:d44e:9e33:1a29:35f5:fb42:327a:2960\n";
+  message += "🌞 Dennis Walsh: 292c:c75a:8378:2251:eafb:03b4:8689:b379\n";
+  message += "☀ Christina Bryan: f539:dcc8:35d8:495e:ff08:473b:5aff:e764\n";
+  message += "🌙 Myrtle Kim: a7bd:b687:c4c6:9e0f:04ca:4e87:638c:59b1\n";
+  message += "⭐ Dylan Sanchez: 8147:f110:3630:f616:d96d:284c:4aeb:946f\n";
+  message += '\n';
+  message += 'Get the app: meiow';
+
+  print(message);
 }

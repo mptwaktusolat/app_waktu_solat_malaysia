@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
@@ -37,7 +38,7 @@ class PrayerFullTable extends StatelessWidget {
                 ),
                 centerTitle: true,
                 title: Text(
-                  '${DateAndTime.monthName(_month)} timetable ($_locationCode)',
+                  '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -61,15 +62,18 @@ class PrayerFullTable extends StatelessWidget {
                     columnSpacing: 30,
                     // Map of title and tooltip
                     columns: {
-                      'Date': null,
-                      'Imsak': '10 minutes before Subuh',
-                      'Subuh': null,
-                      'Syuruk': 'Sunrise',
-                      'Dhuha': '28 Minutes After Syuruk Time (Sunrise)',
-                      'Zohor': null,
-                      'Asar': null,
-                      'Maghrib': null,
-                      'Isyak': null,
+                      AppLocalizations.of(context)!.timetableDate: null,
+                      AppLocalizations.of(context)!.imsakName:
+                          AppLocalizations.of(context)!.imsakDescription,
+                      AppLocalizations.of(context)!.fajrName: null,
+                      AppLocalizations.of(context)!.sunriseName:
+                          AppLocalizations.of(context)!.sunriseDescription,
+                      AppLocalizations.of(context)!.dhuhaName:
+                          AppLocalizations.of(context)!.dhuhaDescription,
+                      AppLocalizations.of(context)!.dhuhrName: null,
+                      AppLocalizations.of(context)!.asrName: null,
+                      AppLocalizations.of(context)!.maghribName: null,
+                      AppLocalizations.of(context)!.ishaName: null,
                     }
                         .entries
                         .map((e) => DataColumn(
@@ -85,7 +89,8 @@ class PrayerFullTable extends StatelessWidget {
                       return DataRow(selected: index == _todayIndex, cells: [
                         DataCell(
                           Text(
-                            DateFormat('d/M (E)')
+                            DateFormat('d/M (E)',
+                                    AppLocalizations.of(context)?.localeName)
                                 .format(DateTime(_year, _month, index + 1)),
                             style: TextStyle(
                                 fontWeight: index == _todayIndex

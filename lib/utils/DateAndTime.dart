@@ -30,20 +30,8 @@ class DateAndTime {
   }
 
   ///Convert int month to month name
-  static String monthName(int month) {
-    return [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ][month - 1];
+  static String monthName(int month, String locale) {
+    // The year doesnt matter kot
+    return DateFormat("MMMM", locale).format(DateTime(2021, month));
   }
 }

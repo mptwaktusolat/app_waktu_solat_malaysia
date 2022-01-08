@@ -1,14 +1,116 @@
 {
-  "appTitle": "🇲🇾 Prayer Time",
-  "@appTitle": {
+  "appbarTitle": "🇲🇾 Prayer Time",
+  "@appbarTitle": {
     "description": "app title material app"
   },
+  "appTitle": "Malaysia Prayer Time",
+  "@appTitle": {
+    "description": "Will show on RECENT (Android)"
+  },
   "imsakName": "Imsak",
+  "imsakDescription": "10 minutes before Subuh",
   "fajrName": "Fajr",
   "sunriseName": "Sunrise",
+  "sunriseDescription": "Sunrise",
   "dhuhaName": "Dhuha",
+  "dhuhaDescription": "28 minutes after Sunrise",
   "dhuhrName": "Dhuhr",
   "asrName": "Asr",
   "maghribName": "Maghrib",
-  "ishaName": "Isha"
+  "ishaName": "Isha",
+  "menuThemes": "Themes",
+  "menuSettings": "Settings",
+  "menuRate": "Rate and review",
+  "menuWeb": "MPT on Web",
+  "menuFeedback": "Send feedback",
+  "menuUpdateAvailable": "Updates available",
+  "menuTooltip": "Open menu",
+  "menuTimetableTooltip": "Full timetable",
+  "menuKiblaCompassTooltip": "Kibla compass",
+  "timetableTitle": "{month} timetable",
+  "@timetableTitle": {
+    "description": "Title in SliverAppBar",
+    "placeholders": {
+      "month": {
+        "type": "String",
+        "example": "September"
+      }
+    }
+  },
+  "timetableDate": "Date",
+  "themeTitle": "Theme",
+  "themeOptionSystem": "System Theme",
+  "themeOptionLight": "Light Theme",
+  "themeOptionDark": "Dark Theme",
+  "themeSupportedDevice": "On supported device only",
+  "aboutLegalese": "Copyright © {year} Fareez Iqmal",
+  "@aboutLegalese": {
+    "description": "Copyright info",
+    "placeholders": {
+      "year": {
+        "type": "String",
+        "example": "2020-2022"
+      }
+    }
+  },
+  "aboutTitle": "About App",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "description": "App version",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "2.2.9"
+      }
+    }
+  },
+  "aboutJakim": "Prayer times data are from",
+  "aboutContribution": "Contribution and Support",
+  "aboutReleaseNotes": "Release Notes",
+  "aboutLicense": "Open Source Licenses",
+  "aboutPrivacy": "Privacy Policy",
+  "aboutFaq": "Frequently Asked Questions (FAQ)",
+  "aboutMoreApps": "More apps",
+  "shareTitle": "Prayer timetable today",
+  "shareGetApp": "Get the app: {link}",
+  "@shareGetApp": {
+    "description": "Link in share message",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "shareTooltip": "Share solat time",
+  "sharePlainTitle": "Share as plain text",
+  "sharePlainDesc": "Compatible to all apps",
+  "shareWhatsappTitle": "Share to WhatsApp",
+  "shareWhatsappDesc": "Using WhatsApp formatting",
+  "shareCopy": "Copy to clipboard",
+  "shareSettingPrompt": "You can set defaults in ",
+  "shareSettingPromptDestination": "Setting -> Sharing",
+  "shareSubject": "Malaysia prayer time for today",
+  "shareTimetableCopied": "Timetable copied",
+  "settingTitle": "Settings",
+  "settingDisplay": "Display",
+  "settingTimeFormat": "Time format",
+  "settingOtherPrayer": "Show other times",
+  "settingFontSize": "Font size",
+  "settingNotification": "Notification",
+  "settingNotification2": "Notification settings",
+  "settingSharing": "Sharing",
+  "settingShareDefault": "Default behaviour when sharing",
+  "settingShareAsk": "Ask first",
+  "settingPlain": "Plain Text",
+  "settingCopy": "Copy",
+  "settingMore": "More",
+  "settingAbout": "About app (Ver. {version})",
+  "@settingAbout": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "settingMoreDesc": "Release Notes, Contribution, Twitter etc."
 }
