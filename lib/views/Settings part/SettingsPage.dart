@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/providers/locale_provider.dart';
 
 import '../../CONSTANTS.dart' as constants;
 import '../../providers/settingsProvider.dart';
@@ -38,6 +39,8 @@ class SettingsPage extends StatelessWidget {
               const OtherTimesSettings(),
               const SizedBox(height: 3),
               const FontSizeSetting(),
+              const SizedBox(height: 3),
+              const LocaleSetting(),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child:
@@ -61,6 +64,38 @@ class SettingsPage extends StatelessWidget {
                   : const SizedBox.shrink(),
               const SizedBox(height: 40),
             ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class LocaleSetting extends StatelessWidget {
+  const LocaleSetting({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Consumer<LocaleProvider>(
+        builder: (_, value, __) {
+          return ListTile(
+            title: Text(AppLocalizations.of(context)!.settingLocaleTitle),
+            trailing: DropdownButton<String>(
+              value: value.appLocale,
+              items: {"en": "English", "ms": "Bahasa Malaysia"}
+                  .entries
+                  .map((e) => DropdownMenuItem(
+                        child: Text(
+                          e.value,
+                        ),
+                        value: e.key,
+                      ))
+                  .toList(),
+              onChanged: (newValue) {
+                value.appLocale = newValue!;
+              },
+            ),
           );
         },
       ),
@@ -315,11 +350,12 @@ class TimeFormatSettings extends StatelessWidget {
               padding: EdgeInsets.all(4.0),
               child: FaIcon(FontAwesomeIcons.caretDown, size: 13),
             ),
-            items: <String>['12 hour', '24 hour']
+            items: <String>['12', '24']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
+                value: "$value hour", // yes, this is the value
+                child: Text(AppLocalizations.of(context)!
+                    .settingTimeFormatDropdown(value)),
               );
             }).toList(),
             onChanged: (String? newValue) =>

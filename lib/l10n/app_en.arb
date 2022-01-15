@@ -99,8 +99,17 @@
   "settingTitle": "Settings",
   "settingDisplay": "Display",
   "settingTimeFormat": "Time format",
+  "settingTimeFormatDropdown": "{time} hour",
+  "@settingTimeFormatDropdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "settingOtherPrayer": "Show other times",
   "settingFontSize": "Font size",
+  "settingLocaleTitle": "Language",
   "settingNotification": "Notification",
   "settingNotification2": "Notification settings",
   "settingSharing": "Sharing",
