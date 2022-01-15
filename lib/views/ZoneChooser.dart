@@ -359,7 +359,8 @@ class SuccessWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextButton(
-                      child: const Text('Set manually'),
+                      child:
+                          Text(AppLocalizations.of(context)!.zoneSetManually),
                       onPressed: () async {
                         bool res =
                             await LocationChooser.openLocationBottomSheet(

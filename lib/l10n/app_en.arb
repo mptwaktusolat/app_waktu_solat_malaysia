@@ -167,5 +167,27 @@
   "zoneSetThis": "Set this location",
   "zoneError": "Error",
   "zoneOpenLocationSettings": "Open Location Settings",
-  "zoneLoading": "Loading"
+  "zoneLoading": "Loading",
+  "notifSettingBasic": "Basic",
+  "notifSettingChangesDetect": "Changes detected",
+  "notifSettingRestartApp": "Apply and restart app",
+  "notifSettingSysSetting": "App notification System Setting",
+  "notifSettingSysSettingDesc": "Customize sound, toggle channel of prayer notification etc.",
+  "notifSettingTroubleshoot": "Troubleshooting",
+  "notifSettingTroubleshootDesc": "Fix notification not working on some devices",
+  "notifSettingTroubleshootExample": "Example: {phonesModel} etc.",
+  "@notifSettingTroubleshootExample": {
+    "placeholders": {
+      "phonesModel": {
+        "type": "String"
+      }
+    }
+  },
+  "notifSettingAdvancedTroubleshoot": "Advanced troubleshooting",
+  "notifSettingLimitNotif": "Limit notification scheduling",
+  "notifSettingLimitNotifDesc": "Enable if you experience an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).",
+  "notifSettingForceReschedule": "Force rescheduling notification...",
+  "notifSettingForceRescheduleDesc": "By default, notification will not reschedule if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.",
+  "notifSettingCancel": "Cancel",
+  "notifSettingProceed": "Proceed"
 }

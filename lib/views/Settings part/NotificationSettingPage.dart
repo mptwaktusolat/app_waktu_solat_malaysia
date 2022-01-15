@@ -1,11 +1,13 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
-import 'troubleshoot_notif.dart';
+
 import '../../CONSTANTS.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
+import 'troubleshoot_notif.dart';
 
 enum MyNotificationType { noazan, azan }
 
@@ -23,13 +25,15 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notification'),
+        title: Text(AppLocalizations.of(context)!.settingNotification),
         centerTitle: true,
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          const Padding(padding: EdgeInsets.all(8.0), child: Text('Basic')),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(AppLocalizations.of(context)!.notifSettingBasic)),
           Card(
               child: ListView(
             shrinkWrap: true,
@@ -37,14 +41,16 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               RadioListTile(
                   value: MyNotificationType.noazan,
                   groupValue: _type,
-                  title: const Text('Default notification sound'),
+                  title: Text(
+                      AppLocalizations.of(context)!.onboardingNotifDefault),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
               RadioListTile(
                   value: MyNotificationType.azan,
                   groupValue: _type,
-                  title: const Text('Azan notification'),
+                  title:
+                      Text(AppLocalizations.of(context)!.onboardingNotifAzan),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
@@ -58,7 +64,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Changes detected',
+                          AppLocalizations.of(context)!
+                              .notifSettingChangesDetect,
                           style: Theme.of(context).textTheme.subtitle2,
                         ),
                         ElevatedButton(
@@ -68,7 +75,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                                   .write(kNotificationType, _type.index);
                               Restart.restartApp();
                             },
-                            child: const Text('Apply and restart app')),
+                            child: Text(AppLocalizations.of(context)!
+                                .notifSettingRestartApp)),
                       ],
                     ),
                   );
@@ -80,10 +88,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           )),
           Card(
             child: ListTile(
-              title: const Text('App notification System Setting'),
+              title: Text(AppLocalizations.of(context)!.notifSettingSysSetting),
               isThreeLine: true,
-              subtitle: const Text(
-                  'Customize sound, toggle channel of prayer notification etc.'),
+              subtitle: Text(
+                  AppLocalizations.of(context)!.notifSettingSysSettingDesc),
               trailing: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -95,12 +103,16 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               },
             ),
           ),
-          const Padding(
-              padding: EdgeInsets.all(8.0), child: Text('Troubleshooting')),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child:
+                  Text(AppLocalizations.of(context)!.notifSettingTroubleshoot)),
           Card(
             child: ListTile(
-              title: const Text('Fix notification not working on some devices'),
-              subtitle: const Text('Example: Xiaomi / Redmi, Realme etc.'),
+              title: Text(
+                  AppLocalizations.of(context)!.notifSettingTroubleshootDesc),
+              subtitle: Text(AppLocalizations.of(context)!
+                  .notifSettingTroubleshootExample("Xiaomi / Redmi, Realme")),
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -108,17 +120,19 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   )),
             ),
           ),
-          const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('Advanced troubleshooting')),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(AppLocalizations.of(context)!
+                  .notifSettingAdvancedTroubleshoot)),
           Card(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: CupertinoSwitchListTile(
                   activeColor: CupertinoColors.activeBlue,
-                  title: const Text('Limit notification scheduling'),
-                  subtitle: const Text(
-                      'Enable if you experiencing an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).'),
+                  title: Text(
+                      AppLocalizations.of(context)!.notifSettingLimitNotif),
+                  subtitle: Text(
+                      AppLocalizations.of(context)!.notifSettingLimitNotifDesc),
                   value: GetStorage().read(kStoredNotificationLimit),
                   onChanged: (value) {
                     setState(() {
@@ -129,27 +143,30 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           ),
           Card(
             child: ListTile(
-              title: const Text('Force rescheduling notification...'),
+              title: Text(
+                  AppLocalizations.of(context)!.notifSettingForceReschedule),
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      content: const Text(
-                          'By default, notification will not rescheduled if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.'),
+                      content: Text(AppLocalizations.of(context)!
+                          .notifSettingForceRescheduleDesc),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text('Cancel'),
+                          child: Text(
+                              AppLocalizations.of(context)!.notifSettingCancel),
                         ),
                         TextButton(
                           onPressed: () {
                             GetStorage().write(kForceUpdateNotif, true);
                             Restart.restartApp();
                           },
-                          child: const Text('Proceed'),
+                          child: Text(AppLocalizations.of(context)!
+                              .notifSettingProceed),
                         )
                       ],
                     );
