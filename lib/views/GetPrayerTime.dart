@@ -175,7 +175,7 @@ class SolatCard extends StatelessWidget {
               Clipboard.setData(ClipboardData(text: '$name: $time'))
                   .then((value) {
             Fluttertoast.showToast(
-              msg: 'Copied to clipboard',
+              msg: AppLocalizations.of(context)!.getPtCopied,
               toastLength: Toast.LENGTH_SHORT,
               backgroundColor: Colors.grey.shade700,
               textColor: Colors.white,

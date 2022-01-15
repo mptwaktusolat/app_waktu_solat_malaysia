@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
+
 import '../../CONSTANTS.dart';
 import 'qibla.dart';
 
@@ -23,49 +26,10 @@ class QiblaWarn extends StatelessWidget {
                     : Colors.green.shade700,
                 size: 45),
             const SizedBox(height: 15),
-            const UnorderedListItem(
-              TextSpan(
-                children: [
-                  TextSpan(
-                      text:
-                          "Users must understand that Qibla Compass feature utilises the sensors of the user's device and does not use any data from JAKIM. Therefore, users should "),
-                  TextSpan(
-                      text: "wisely evaluate ",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: "the information obtained.")
-                ],
-              ),
-            ),
-            const UnorderedListItem(
-              TextSpan(
-                children: [
-                  TextSpan(text: "MPT app provides this function as a"),
-                  TextSpan(
-                      text: ' guide ',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(
-                      text:
-                          "only. MPT app is not responsible if the information obtained is inaccurate. Please refer to the recommended way to get the exact Qibla direction."),
-                ],
-              ),
-            ),
-            const UnorderedListItem(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text:
-                        "To improve the accuracy, make sure the internet and GPS connection are stable and perform the calibration by rotating your device in an",
-                  ),
-                  TextSpan(
-                      text: ' 8 ',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: 'or'),
-                  TextSpan(
-                      text: ' infinity ',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: "shape as below:"),
-                ],
-              ),
+            MarkdownBody(
+              data: AppLocalizations.of(context)!.qiblaWarnBody,
+              styleSheet: MarkdownStyleSheet(
+                  unorderedListAlign: WrapAlignment.spaceBetween),
             ),
             SvgPicture.asset(
               'assets/qibla/compass callibrate.svg',
@@ -73,7 +37,7 @@ class QiblaWarn extends StatelessWidget {
             ),
             const Spacer(),
             CupertinoButton.filled(
-              child: const Text('I understood'),
+              child: Text(AppLocalizations.of(context)!.qiblaWarnProceed),
               onPressed: () {
                 GetStorage().write(kHasShowQiblaWarning, true);
                 Navigator.of(context).pushReplacement(
@@ -85,27 +49,6 @@ class QiblaWarn extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class UnorderedListItem extends StatelessWidget {
-  const UnorderedListItem(this.text, {Key? key}) : super(key: key);
-  final TextSpan text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Text("• "),
-          Expanded(
-            child: Text.rich(text, textAlign: TextAlign.justify),
-          ),
-        ],
       ),
     );
   }

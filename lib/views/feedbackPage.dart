@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
@@ -47,7 +48,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Feedback'),
+          title: Text(AppLocalizations.of(context)!.feedbackTitle),
           centerTitle: true,
         ),
         body: Column(
@@ -62,12 +63,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextFormField(
-                        validator: (value) =>
-                            value!.isNotEmpty ? null : 'Field can\'t be empty',
+                        validator: (value) => value!.isNotEmpty
+                            ? null
+                            : AppLocalizations.of(context)!.feedbackFieldEmpty,
                         controller: _messageController,
-                        decoration: const InputDecoration(
-                            hintText: 'Please leave your feedback/report here',
-                            border: OutlineInputBorder()),
+                        decoration: InputDecoration(
+                            hintText:
+                                AppLocalizations.of(context)!.feedbackWriteHere,
+                            border: const OutlineInputBorder()),
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.next,
                         maxLines: 4),
@@ -76,13 +79,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       validator: (value) => value!.isNotEmpty
                           ? EmailValidator.validate(value)
                               ? null
-                              : 'Incorrect email format'
+                              : AppLocalizations.of(context)!
+                                  .feedbackIncorrectEmail
                           : null,
                       controller: _emailController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           isDense: true,
-                          hintText: 'Your email address (optional)',
-                          border: OutlineInputBorder()),
+                          hintText:
+                              AppLocalizations.of(context)!.feedbackEmailHere,
+                          border: const OutlineInputBorder()),
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,
                     ),
@@ -106,7 +111,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                   return CheckboxListTile(
                       secondary: OutlinedButton(
-                        child: const Text('View...'),
+                        child: Text(AppLocalizations.of(context)!
+                            .feedbackViewDeviceInfo),
                         onPressed: () {
                           showDialog(
                             context: context,
@@ -137,9 +143,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                                                   text: _deviceInfo.toString()))
                                               .then((value) =>
                                                   Fluttertoast.showToast(
-                                                      msg: 'Copied'));
+                                                      msg: AppLocalizations.of(
+                                                              context)!
+                                                          .feedbackDeviceInfoCopy));
                                         },
-                                        label: const Text('Copy all'));
+                                        label: Text(
+                                            AppLocalizations.of(context)!
+                                                .feedbackDeviceInfoCopyAll));
                                   }
                                 },
                               ));
@@ -148,25 +158,25 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         },
                       ),
                       controlAffinity: ListTileControlAffinity.leading,
-                      subtitle: const Text('(Recommended)'),
-                      title: const Text(
-                        'Include device info',
-                      ),
+                      subtitle: Text(AppLocalizations.of(context)!
+                          .feedbackDeviceInfoRecommended),
+                      title: Text(AppLocalizations.of(context)!
+                          .feedbackIncludeDeviceInfo),
                       value: _logIsChecked,
                       onChanged: (value) {
-                        setState(() {
-                          _logIsChecked = value;
-                        });
+                        setState(() => _logIsChecked = value);
                       });
                 } else if (snapshot.hasError) {
-                  return const Text('Trouble getting device info');
+                  return Text(
+                      AppLocalizations.of(context)!.feedbackTroubleDeviceInfo);
                 } else {
-                  return const ListTile(
-                    leading: SizedBox(
+                  return ListTile(
+                    leading: const SizedBox(
                         height: 15,
                         width: 15,
                         child: CircularProgressIndicator()),
-                    title: Text('Getting device info...'),
+                    title:
+                        Text(AppLocalizations.of(context)!.feedbackGettingInfo),
                   );
                 }
               },
@@ -179,19 +189,21 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         context: context,
                         builder: (ctx) {
                           return AlertDialog(
-                            content: const Text(
-                                'Looks like your message contain question(s). Please provide your email so we can get back to you.\n\nWould you like to add your email?'),
+                            content: Text(AppLocalizations.of(context)!
+                                .feedbackGettingInfo),
                             actions: [
                               TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(true);
                                   },
-                                  child: const Text('Send anyway')),
+                                  child: Text(AppLocalizations.of(context)!
+                                      .feedbackSendAnyway)),
                               TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pop(false);
                                   },
-                                  child: const Text('Add email'))
+                                  child: Text(AppLocalizations.of(context)!
+                                      .feedbackAddEmail))
                             ],
                           );
                         });
@@ -222,7 +234,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       });
                       setState(() => _isSendLoading = false);
                       Fluttertoast.showToast(
-                              msg: 'Thank you for your valuable feedback.',
+                              msg: AppLocalizations.of(context)!.feedbackThanks,
                               backgroundColor: Colors.green,
                               toastLength: Toast.LENGTH_LONG)
                           .then((value) => Navigator.pop(context));
@@ -245,13 +257,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         child: CircularProgressIndicator(
                           color: Colors.white,
                         ))
-                    : const Text('Send')),
+                    : Text(AppLocalizations.of(context)!.feedbackSend)),
             const Spacer(flex: 3),
             Row(
-              children: const [
-                Expanded(child: Divider()),
-                Text('OR'),
-                Expanded(child: Divider())
+              children: [
+                const Expanded(child: Divider()),
+                Text(AppLocalizations.of(context)!.feedbackAlsoDo),
+                const Expanded(child: Divider())
               ],
             ),
             const SizedBox(height: 10),
@@ -261,7 +273,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const FaqPage()));
               },
-              label: const Text('Read Frequently Asked Questions (FAQ)'),
+              label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(primary: Colors.black),
@@ -269,7 +281,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(url: kGithubRepoLink + '/issues');
               },
-              label: const Text('Report / Follow issues on GitHub'),
+              label: Text(AppLocalizations.of(context)!.feedbackReportGithub),
             ),
             const Spacer(),
           ],

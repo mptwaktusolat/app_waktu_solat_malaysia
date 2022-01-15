@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'Settings part/NotificationSettingPage.dart';
-import 'Settings%20part/ThemePage.dart';
+import 'package:provider/provider.dart';
+import 'package:waktusolatmalaysia/providers/locale_provider.dart';
+
 import '../CONSTANTS.dart';
 import '../main.dart';
+import 'Settings part/NotificationSettingPage.dart';
+import 'Settings%20part/ThemePage.dart';
 import 'ZoneChooser.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -24,7 +28,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   bool _isDoneSetLocation = false;
   AnimationController? _animController;
-  MyNotificationType _type =
+  MyNotificationType _notificationType =
       MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
 
   @override
@@ -38,17 +42,43 @@ class _OnboardingPageState extends State<OnboardingPage>
   Widget build(BuildContext context) {
     List<PageViewModel> _pages = [
       PageViewModel(
-          title: "Set your location",
-          body:
-              "Keep your GPS on so that the app can detect your current location.",
+        title: AppLocalizations.of(context)!.onboardingChooseLang,
+        image: Image.asset(
+          'assets/3d/chat-bubble-dynamic-color.png',
+          width: 200,
+        ),
+        decoration: _pageDecoration,
+        bodyWidget: Consumer<LocaleProvider>(builder: (_, value, __) {
+          return Column(mainAxisSize: MainAxisSize.min, children: [
+            RadioListTile(
+                value: "en",
+                groupValue: value.appLocale,
+                title: const Text("English"),
+                onChanged: (String? newValue) {
+                  value.appLocale = newValue!;
+                }),
+            RadioListTile(
+                value: "ms",
+                groupValue: value.appLocale,
+                title: const Text("Bahasa Malaysia"),
+                onChanged: (String? newValue) {
+                  GetStorage().write(kAppLanguage, newValue);
+                  value.appLocale = newValue!;
+                }),
+          ]);
+        }),
+      ),
+      PageViewModel(
+          title: AppLocalizations.of(context)!.onboardingSetLocation,
+          body: AppLocalizations.of(context)!.onboardingLocationDesc,
           image: Image.asset(
-            'assets/bam/Pin.png',
+            'assets/3d/Pin.png',
             width: 200,
           ),
           decoration: _pageDecoration,
           footer: _isDoneSetLocation
-              ? const Text(
-                  'Location set. You can change location anytime by tapping the location code at upper right corner.',
+              ? Text(
+                  AppLocalizations.of(context)!.onboardingLocationToast,
                   textAlign: TextAlign.center,
                 )
               : ElevatedButton(
@@ -62,15 +92,10 @@ class _OnboardingPageState extends State<OnboardingPage>
                       });
                     }
                   },
-                  child: const Text(
-                    'Set location',
-                  ),
+                  child:
+                      Text(AppLocalizations.of(context)!.onboardingLocationSet),
                 )),
       PageViewModel(
-        // image: Image.asset(
-        //   'assets/bam/Message.png',
-        //   width: 200,
-        // ),
         image: Padding(
           padding: const EdgeInsets.all(50.0),
           child: Builder(
@@ -91,38 +116,37 @@ class _OnboardingPageState extends State<OnboardingPage>
           ),
         ),
         bodyWidget: const ThemesOption(),
-        title: "Set your favourite theme",
+        title: AppLocalizations.of(context)!.onboardingThemeFav,
         decoration: _pageDecoration,
       ),
       PageViewModel(
-        image: Image.asset('assets/bam/Clock.png', width: 200),
-        title: 'Select notification preferences',
+        image: Image.asset('assets/3d/Clock.png', width: 200),
+        title: AppLocalizations.of(context)!.onboardingNotifOption,
         decoration: _pageDecoration,
         bodyWidget: Column(mainAxisSize: MainAxisSize.min, children: [
           RadioListTile(
               value: MyNotificationType.noazan,
-              groupValue: _type,
-              title: const Text('Default notification sound'),
+              groupValue: _notificationType,
+              title: Text(AppLocalizations.of(context)!.onboardingNotifDefault),
               onChanged: (MyNotificationType? type) {
                 GetStorage().write(kNotificationType, type?.index);
-                setState(() => _type = type!);
+                setState(() => _notificationType = type!);
               }),
           RadioListTile(
               value: MyNotificationType.azan,
-              groupValue: _type,
-              title: const Text('Azan notification'),
+              groupValue: _notificationType,
+              title: Text(AppLocalizations.of(context)!.onboardingNotifAzan),
               onChanged: (MyNotificationType? type) {
                 GetStorage().write(kNotificationType, type?.index);
-                setState(() => _type = type!);
+                setState(() => _notificationType = type!);
               }),
         ]),
       ),
       PageViewModel(
-        title: "Alhamdulillah. All set",
-        body:
-            "Welcome abroad. Do explore other features and tweak other settings as well.",
+        title: AppLocalizations.of(context)!.onboardingFinish,
+        body: AppLocalizations.of(context)!.onboardingFinishDesc,
         image: Image.asset(
-          'assets/bam/Tick.png',
+          'assets/3d/Succes.png',
           width: 200,
         ),
         decoration: _pageDecoration,
@@ -138,8 +162,10 @@ class _OnboardingPageState extends State<OnboardingPage>
           activeShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         ),
-        done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
-        next: const Text('Next', style: TextStyle(fontWeight: FontWeight.w600)),
+        done: Text(AppLocalizations.of(context)!.onboardingDone,
+            style: const TextStyle(fontWeight: FontWeight.w600)),
+        next: Text(AppLocalizations.of(context)!.onboardingNext,
+            style: const TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           GetStorage().write(kIsFirstRun, false);

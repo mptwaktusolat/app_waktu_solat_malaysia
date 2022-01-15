@@ -262,12 +262,13 @@ class _AppBodyState extends State<AppBody> {
           firstChild: Column(
             children: [
               const SizedBox(height: 10),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Opacity(
                   opacity: 0.8,
                   child: Text(
-                    'Did notification(s) from this app shows at prayer time?',
+                    AppLocalizations.of(context)!.appBodyNotifPrompt,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -289,7 +290,8 @@ class _AppBodyState extends State<AppBody> {
                                   GetStorage().write(kShowNotifPrompt, false);
                                 }));
                       },
-                      child: const Text('Yes')),
+                      child: Text(
+                          AppLocalizations.of(context)!.appBodyNotifPromptYes)),
                   TextButton(
                       style: TextButton.styleFrom(
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -301,17 +303,18 @@ class _AppBodyState extends State<AppBody> {
                                 builder: (_) =>
                                     const NotificationPageSetting()));
                       },
-                      child: const Text('No'))
+                      child: Text(
+                          AppLocalizations.of(context)!.appBodyNotifPromptNo))
                 ],
               )
             ],
           ),
-          secondChild: const Padding(
-            padding: EdgeInsets.all(4.0),
+          secondChild: Padding(
+            padding: const EdgeInsets.all(4.0),
             child: Opacity(
               opacity: 0.8,
               child: Text(
-                'Cool. Glad to hear that!',
+                AppLocalizations.of(context)!.appBodyNotifPromptResponse,
                 textAlign: TextAlign.center,
               ),
             ),

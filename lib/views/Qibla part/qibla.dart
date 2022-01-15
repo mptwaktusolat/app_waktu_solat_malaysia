@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import '../../utils/launchUrl.dart';
 import '../Qibla%20part/qibla_compass.dart';
 import 'no_compass_sensor.dart';
@@ -21,20 +23,20 @@ class _QiblaState extends State<Qibla> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Qibla Compass'),
+        title: Text(AppLocalizations.of(context)!.qiblaTitle),
         centerTitle: true,
       ),
       body: Stack(
         children: [
-          const Align(
+          Align(
             alignment: Alignment.topCenter,
             child: ListTile(
-              leading: FaIcon(FontAwesomeIcons.info),
+              leading: const FaIcon(FontAwesomeIcons.info),
               title: Text(
-                "Align both arrow head\nDo not put device close to metal object.",
+                AppLocalizations.of(context)!.qiblaOverheadWarn,
                 // textAlign: TextAlign.center,
               ),
-              trailing: FaIcon(FontAwesomeIcons.exclamation),
+              trailing: const FaIcon(FontAwesomeIcons.exclamation),
             ),
           ),
           Align(
@@ -91,8 +93,9 @@ class CompassActionButtons extends StatelessWidget {
                 url: 'https://$_qiblaFinderUrl', useCustomTabs: true);
           },
           onLongPress: () {
-            Clipboard.setData(ClipboardData(text: _qiblaFinderUrl))
-                .then((value) => Fluttertoast.showToast(msg: 'URL copied :)'));
+            Clipboard.setData(ClipboardData(text: _qiblaFinderUrl)).then(
+                (value) => Fluttertoast.showToast(
+                    msg: AppLocalizations.of(context)!.qiblaCopyUrl));
           },
           child: Row(
             children: const [
@@ -105,7 +108,7 @@ class CompassActionButtons extends StatelessWidget {
         const SizedBox(width: 10),
         OutlinedButton(
           onPressed: () => _showCalibrateCompassDialog(context),
-          child: const Text('Calibration tip'),
+          child: Text(AppLocalizations.of(context)!.qiblaCalibrationTip),
         )
       ],
     );
@@ -118,8 +121,8 @@ void _showCalibrateCompassDialog(BuildContext context) {
     builder: (context) {
       return AlertDialog(
         insetPadding: const EdgeInsets.all(10),
-        title: const Text(
-          'Move your phone in "figure 8 pattern"',
+        title: Text(
+          AppLocalizations.of(context)!.qiblaCalibrate,
           textAlign: TextAlign.center,
         ),
         content: SvgPicture.asset(
@@ -132,7 +135,7 @@ void _showCalibrateCompassDialog(BuildContext context) {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Done'))
+              child: Text(AppLocalizations.of(context)!.qiblaCalibrateDone))
         ],
       );
     },

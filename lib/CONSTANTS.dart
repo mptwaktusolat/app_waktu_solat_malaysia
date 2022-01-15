@@ -26,6 +26,7 @@ const kHasOpenSharingDialog = "openedSharedDialog";
 const kShowNotifPrompt = "notifPrompt";
 const kNotificationType = "notiftype";
 const kHasShowQiblaWarning = "storedqiblawarn";
+const kAppLanguage = "storedAppLang";
 
 //Network image
 const kAppIconUrl =

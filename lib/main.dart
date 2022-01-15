@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -8,10 +9,11 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'CONSTANTS.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
+import 'providers/locale_provider.dart';
 import 'providers/location_provider.dart';
 import 'providers/settingsProvider.dart';
 import 'providers/updater_provider.dart';
@@ -58,9 +60,10 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => ThemeController()),
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider())
       ],
-      child: Consumer<ThemeController>(
-        builder: (_, value, __) {
+      child: Consumer2<ThemeController, LocaleProvider>(
+        builder: (_, themeValue, localeValue, __) {
           return MaterialApp(
             onGenerateTitle: (context) =>
                 AppLocalizations.of(context)!.appTitle,
@@ -78,9 +81,10 @@ class MyApp extends StatelessWidget {
                 bottomAppBarColor: Colors.teal.withOpacity(0.4),
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
-            themeMode: value.themeMode,
+            themeMode: themeValue.themeMode,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(localeValue.appLocale),
             home: GetStorage().read(kIsFirstRun)
                 ? const OnboardingPage()
                 : const MyHomePage(),
@@ -134,6 +138,7 @@ void initGetStorage() {
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);
   _get.writeIfNull(kHijriOffset, -1);
+  _get.writeIfNull(kAppLanguage, "en");
 }
 
 Future<void> _configureLocalTimeZone() async {

@@ -4,10 +4,12 @@ import 'dart:async';
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 import '../locationUtil/location.dart';
@@ -37,7 +39,7 @@ class LocationChooser {
                   : Colors.white70,
             ),
             const SizedBox(width: 10),
-            const Text('Location updated'),
+            Text(AppLocalizations.of(context)!.zoneUpdatedToast),
           ],
         ),
       ),
@@ -94,10 +96,9 @@ class LocationChooser {
                 builder:
                     (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return _onLoadingWidget();
+                    return const LoadingWidget();
                   } else if (snapshot.hasData) {
-                    return _onCompletedWidget(context,
-                        location: snapshot.data!);
+                    return SuccessWidget(coordinateData: snapshot.data!);
                   } else if (snapshot.hasError) {
                     return _onErrorWidget(
                       context,
@@ -155,7 +156,7 @@ class LocationChooser {
                           },
                           title:
                               Text(LocationDatabase.daerah(element.jakimCode)),
-                          trailing: _locationBubble(context, element.jakimCode,
+                          trailing: LocationBubble(element.jakimCode,
                               selected: _selected),
                           selected: _selected,
                         );
@@ -171,105 +172,6 @@ class LocationChooser {
     );
   }
 
-  static Widget _locationBubble(BuildContext context, String shortCode,
-      {bool selected = false}) {
-    return Container(
-      padding: const EdgeInsets.all(4.0),
-      decoration: BoxDecoration(
-        color: selected ? Colors.blue : null,
-        border: Border.all(
-            color: selected
-                ? Colors.blue
-                : Theme.of(context).brightness == Brightness.light
-                    ? Colors.black
-                    : Colors.white),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Text(
-        shortCode,
-        style: selected ? const TextStyle(color: Colors.white) : null,
-      ),
-    );
-  }
-
-  static Widget _onCompletedWidget(BuildContext context,
-      {required LocationCoordinateData location}) {
-    return Consumer<LocationProvider>(
-      builder: (context, value, child) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Expanded(
-              flex: 1,
-              child: Center(child: Text('Your location')),
-            ),
-            Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    location.lokasi!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                )),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Theme.of(context).bottomAppBarColor,
-              ),
-              child: ListTile(
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _locationBubble(context, location.zone.toUpperCase()),
-                  ],
-                ),
-                title: Text(
-                  LocationDatabase.daerah(location.zone),
-                  style: const TextStyle(fontSize: 13),
-                ),
-                subtitle: Text(
-                  LocationDatabase.negeri(location.zone),
-                  style: const TextStyle(fontSize: 11),
-                ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Expanded(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                      child: const Text('Set manually'),
-                      onPressed: () async {
-                        bool res =
-                            await openLocationBottomSheet(context) ?? false;
-                        Navigator.pop(context, res);
-                      },
-                    ),
-                    TextButton(
-                      child: const Text('Set this location'),
-                      onPressed: () {
-                        value.currentLocationCode = location.zone;
-                        onNewLocationSaved(context);
-
-                        Navigator.pop(context, true);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   static Widget _onErrorWidget(BuildContext context,
       {required String errorMessage}) {
     return Center(
@@ -277,10 +179,10 @@ class LocationChooser {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          const Expanded(
+          Expanded(
               flex: 1,
               child: Center(
-                child: Text('Error'),
+                child: Text(AppLocalizations.of(context)!.zoneError),
               )),
           Expanded(
             flex: 3,
@@ -308,46 +210,18 @@ class LocationChooser {
                       ),
                     ],
                   ),
-                  Text.rich(
-                    const TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Check your ',
-                        ),
-                        TextSpan(
-                          text: 'internet connection ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: 'or '),
-                        TextSpan(
-                          text: 'location services.',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.red.shade300),
+                  MarkdownBody(
+                    data:
+                        "Check your **internet connection** or **location services**.",
+                    styleSheet: MarkdownStyleSheet(
+                        textAlign: WrapAlignment.center,
+                        p: TextStyle(color: Colors.red.shade300)),
                   ),
-                  const Text.rich(
-                    TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(text: '\nPlease'),
-                        TextSpan(
-                          text: ' retry ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: 'or set your location'),
-                        TextSpan(
-                          text: ' manually.',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                  const SizedBox(height: 10),
+                  MarkdownBody(
+                    data: "Please **retry** or choose location **manually**.",
+                    styleSheet: MarkdownStyleSheet(
+                      textAlign: WrapAlignment.center,
                     ),
                   ),
                 ],
@@ -375,8 +249,8 @@ class LocationChooser {
                 TextButton(
                   onPressed: () async =>
                       await AppSettings.openLocationSettings(),
-                  child: const Text(
-                    'Open Location Settings',
+                  child: Text(
+                    AppLocalizations.of(context)!.zoneOpenLocationSettings,
                   ),
                 ),
                 TextButton(
@@ -384,8 +258,8 @@ class LocationChooser {
                     bool res = await openLocationBottomSheet(context) ?? false;
                     Navigator.pop(context, res);
                   },
-                  child: const Text(
-                    'Set manually',
+                  child: Text(
+                    AppLocalizations.of(context)!.zoneSetManually,
                   ),
                 ),
               ],
@@ -395,14 +269,136 @@ class LocationChooser {
       ),
     );
   }
+}
 
-  static Widget _onLoadingWidget({String loadingMessage = 'Loading'}) {
+class LocationBubble extends StatelessWidget {
+  const LocationBubble(this.shortCode, {Key? key, this.selected = false})
+      : super(key: key);
+
+  final bool selected;
+  final String shortCode;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(4.0),
+      decoration: BoxDecoration(
+        color: selected ? Colors.blue : null,
+        border: Border.all(
+            color: selected
+                ? Colors.blue
+                : Theme.of(context).brightness == Brightness.light
+                    ? Colors.black
+                    : Colors.white),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Text(
+        shortCode,
+        style: selected ? const TextStyle(color: Colors.white) : null,
+      ),
+    );
+  }
+}
+
+class SuccessWidget extends StatelessWidget {
+  const SuccessWidget({Key? key, required this.coordinateData})
+      : super(key: key);
+
+  final LocationCoordinateData coordinateData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<LocationProvider>(
+      builder: (_, value, __) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Center(
+                  child: Text(AppLocalizations.of(context)!.zoneYourLocation)),
+            ),
+            Expanded(
+                flex: 3,
+                child: Center(
+                  child: Text(
+                    coordinateData.lokasi!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                )),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Theme.of(context).bottomAppBarColor,
+              ),
+              child: ListTile(
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LocationBubble(coordinateData.zone.toUpperCase()),
+                  ],
+                ),
+                title: Text(
+                  LocationDatabase.daerah(coordinateData.zone),
+                  style: const TextStyle(fontSize: 13),
+                ),
+                subtitle: Text(
+                  LocationDatabase.negeri(coordinateData.zone),
+                  style: const TextStyle(fontSize: 11),
+                ),
+              ),
+            ),
+            const SizedBox(height: 5),
+            Expanded(
+              flex: 1,
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      child: const Text('Set manually'),
+                      onPressed: () async {
+                        bool res =
+                            await LocationChooser.openLocationBottomSheet(
+                                    context) ??
+                                false;
+                        Navigator.pop(context, res);
+                      },
+                    ),
+                    TextButton(
+                      child: Text(AppLocalizations.of(context)!.zoneSetThis),
+                      onPressed: () {
+                        value.currentLocationCode = coordinateData.zone;
+                        LocationChooser.onNewLocationSaved(context);
+
+                        Navigator.pop(context, true);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            loadingMessage,
+            AppLocalizations.of(context)!.zoneLoading,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 24,

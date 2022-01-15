@@ -140,7 +140,7 @@ class _ThemesOptionState extends State<ThemesOption> {
       AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
     };
     return Consumer<ThemeController>(
-      builder: (context, setting, child) {
+      builder: (_, setting, __) {
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

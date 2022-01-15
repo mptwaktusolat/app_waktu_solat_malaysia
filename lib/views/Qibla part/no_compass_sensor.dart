@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NoCompassSensor extends StatelessWidget {
   const NoCompassSensor({Key? key}) : super(key: key);
@@ -18,17 +19,17 @@ class NoCompassSensor extends StatelessWidget {
             color: Colors.redAccent,
           ),
           box,
-          const Text(
-            'Sorry. No compass sensor is available in this device.',
+          Text(
+            AppLocalizations.of(context)!.qiblaErrNoCompass,
             textAlign: TextAlign.center,
-            style:
-                TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.redAccent, fontWeight: FontWeight.bold),
           ),
           box,
           ElevatedButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text(
-              'Go back',
+            child: Text(
+              AppLocalizations.of(context)!.qiblaErrBack,
             ),
           )
         ],
