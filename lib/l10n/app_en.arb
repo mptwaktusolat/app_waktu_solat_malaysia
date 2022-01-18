@@ -198,5 +198,37 @@
   "notifSettingForceReschedule": "Force rescheduling notification...",
   "notifSettingForceRescheduleDesc": "By default, notification will not reschedule if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.",
   "notifSettingCancel": "Cancel",
-  "notifSettingProceed": "Proceed"
+  "notifSettingProceed": "Proceed",
+  "contributenDesc": "Alhamdulillah. I appreciate your interest in donating to the Malaysia Prayer Time app. May Allah SWT rewards your kindness.",
+  "contributeShare": "Share this app",
+  "contributeShareDesc": "Share your experience of using this app with your family and friends.",
+  "contributeShareNow": "Share now",
+  "contributeShareContent": "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\nTry it now:\n{playStoreShortLink} (Google Play)\n ${webAppLink} (Web app)",
+  "@contributeShareContent": {
+    "placeholders": {
+      "playStoreShortLink": {
+        "type": "String"
+      },
+      "webAppLink": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeShareSubject": "Sharing MPT App",
+  "contributeCoffee": "Buy me a coffee?",
+  "contributeCoffeeDesc": "I'm such an organism that converts coffee into code.\n\n{coffeeLink}",
+  "@contributeCoffeeDesc": {
+    "placeholders": {
+      "coffeeLink": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeCopy": "Copy",
+  "contributeOpen": "Open",
+  "contributeDirect": "Direct support",
+  "contributeSource": "Contribute to source",
+  "contributeSourceDesc": "MPT app is open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.",
+  "contributeOpenGh": "Open GitHub",
+  "contributeCopied": "Copied to clipboard"
 }

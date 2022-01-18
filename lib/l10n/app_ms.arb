@@ -136,5 +136,30 @@
   "notifSettingForceReschedule": "Paksa penjadualan pemberitahuan semula...",
   "notifSettingForceRescheduleDesc": "Secara lalai, pemberitahuan tidak akan dijadualkan semula jika penjadual terakhir dijalankan kurang daripada dua hari.\n\nKetik teruskan untuk memulakan penjadualan pemberitahuan segera. Apl akan dimulakan semula.",
   "notifSettingCancel": "Batal",
-  "notifSettingProceed": "Teruskan"
+  "notifSettingProceed": "Teruskan",
+  "contributenDesc": "Alhamdulillah. Saya menghargai niat anda untuk menderma ke aplikasi Waktu Solat Malaysia. Semoga Allah SWT membalas jasa baik kalian.",
+  "contributeShare": "Kongsi aplikasi ini",
+  "contributeShareDesc": "Kongsi pengalaman anda menggunakan aplikasi ini dengan keluarga dan rakan anda.",
+  "contributeShareNow": "Kongsi sekarang",
+  "contributeShareContent": "Hai. Saya menggunakan aplikasi Waktu Solat Malaysia. Ia pantas dan percuma.\nTry it now:\n{playStoreShortLink} (Google Play)\n ${webAppLink} (Web app)",
+  "@contributeShareContent": {
+    "placeholders": {
+      "playStoreShortLink": {
+        "type": "String"
+      },
+      "webAppLink": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeShareSubject": "Berkongsi Aplikasi Waktu Solat",
+  "contributeCoffee": "Belikan saya kopi?",
+  "contributeCoffeeDesc": "Saya adalah organisma yang menukar kopi kepada kod.\n\n{coffeeLink}",
+  "contributeCopy": "Salin",
+  "contributeOpen": "Buka",
+  "contributeDirect": "Sokongan langsung",
+  "contributeSource": "Sumbang ke kod sumber",
+  "contributeSourceDesc": "Apl MPT ialah sumber terbuka. Laporkan sebarang pepijat atau sumbangkan terus kepada kod sumber. Ia dilesenkan di bawah GNU GPLv3.",
+  "contributeOpenGh": "Buka GitHub",
+  "contributeCopied": "Disalin ke papan keratan"
 }
