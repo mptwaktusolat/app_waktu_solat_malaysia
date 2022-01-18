@@ -73,11 +73,13 @@ class AnimatedMoon extends StatelessWidget {
   final bool? isDarkMode;
   final AnimationController? _animationController;
 
+  // moon animation swatches (light)
   final List<Color> lightSwatches = [
     const Color(0xDDFF0080),
     const Color(0xDDFF8C00),
   ];
 
+  // moon animation swatches (dark)
   final List<Color> darkSwatches = [
     const Color(0xFF8983F7),
     const Color(0xFFA3DAFB),
@@ -139,7 +141,7 @@ class _ThemesOptionState extends State<ThemesOption> {
       AppLocalizations.of(context)!.themeOptionLight: ThemeMode.light,
       AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
     };
-    return Consumer<ThemeController>(
+    return Consumer<ThemeProvider>(
       builder: (_, setting, __) {
         return ListView.builder(
           shrinkWrap: true,

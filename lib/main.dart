@@ -58,11 +58,11 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
-        ChangeNotifierProvider(create: (_) => ThemeController()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider())
       ],
-      child: Consumer2<ThemeController, LocaleProvider>(
+      child: Consumer2<ThemeProvider, LocaleProvider>(
         builder: (_, themeValue, localeValue, __) {
           return MaterialApp(
             onGenerateTitle: (context) =>
@@ -139,6 +139,7 @@ void initGetStorage() {
   _get.writeIfNull(kFontSize, 14.0);
   _get.writeIfNull(kHijriOffset, -1);
   _get.writeIfNull(kAppLanguage, "en");
+  _get.writeIfNull(kAppTheme, "light");
 }
 
 Future<void> _configureLocalTimeZone() async {

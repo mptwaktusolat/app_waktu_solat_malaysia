@@ -3,8 +3,6 @@ const kPayloadMonthly = 'monthlyRefresh';
 const kPayloadDebug = 'payloadDebug';
 
 //GetStorage
-@Deprecated('No longer store location based on index')
-const kStoredGlobalIndex = "storedGlobalIndex";
 const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
@@ -27,6 +25,7 @@ const kShowNotifPrompt = "notifPrompt";
 const kNotificationType = "notiftype";
 const kHasShowQiblaWarning = "storedqiblawarn";
 const kAppLanguage = "storedAppLang";
+const kAppTheme = "theme";
 
 //Network image
 const kAppIconUrl =
