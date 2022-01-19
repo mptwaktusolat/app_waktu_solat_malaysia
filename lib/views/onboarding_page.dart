@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/providers/locale_provider.dart';
+import '../providers/locale_provider.dart';
 
 import '../CONSTANTS.dart';
 import '../main.dart';

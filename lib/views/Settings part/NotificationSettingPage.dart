@@ -21,6 +21,8 @@ class NotificationPageSetting extends StatefulWidget {
 class _NotificationPageSettingState extends State<NotificationPageSetting> {
   MyNotificationType _type =
       MyNotificationType.values[GetStorage().read(kNotificationType)];
+
+  // TODO: Add areNotificationsEnabled() fronm the plugin
   @override
   Widget build(BuildContext context) {
     return Scaffold(

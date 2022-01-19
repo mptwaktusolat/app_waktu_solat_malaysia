@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
+import '../CONSTANTS.dart';
 import '../../notificationUtil/prevent_update_notifs.dart';
 
 class ThemeProvider with ChangeNotifier {

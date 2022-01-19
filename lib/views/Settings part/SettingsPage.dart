@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:waktusolatmalaysia/providers/locale_provider.dart';
+import '../../providers/locale_provider.dart';
 
 import '../../CONSTANTS.dart' as constants;
 import '../../providers/settingsProvider.dart';

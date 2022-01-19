@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:waktusolatmalaysia/CONSTANTS.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'package:waktusolatmalaysia/utils/update_checker.dart';
+import '../CONSTANTS.dart';
+import '../utils/launchUrl.dart';
+import '../utils/update_checker.dart';
 
 class _UpdateInfo {
   String updateName;
