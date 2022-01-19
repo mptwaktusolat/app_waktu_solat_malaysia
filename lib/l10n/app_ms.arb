@@ -161,5 +161,9 @@
   "contributeSource": "Sumbang ke kod sumber",
   "contributeSourceDesc": "Apl MPT ialah sumber terbuka. Laporkan sebarang pepijat atau sumbangkan terus kepada kod sumber. Ia dilesenkan di bawah GNU GPLv3.",
   "contributeOpenGh": "Buka GitHub",
-  "contributeCopied": "Disalin ke papan keratan"
+  "contributeCopied": "Disalin ke papan keratan",
+  "notifTsPara1": "Sesetengah apl yang dipasang daripada **Gedung Google Play**, **Autostart** akan dilumpuhkan secara lalai. Disebabkan hal ini, pemberitahuan (kadang-kadang) tidak akan keluar pada telefon anda.",
+  "notifTsPara2": "Penyelesaiannya adalah untuk menghidupkan **Autostart** untuk apl ini. Ketik butang di bawah untuk membuka Tetapan Apl, kemudian cari pilihan Autostart untuk menghidupkannya.",
+  "notifTsOpenSetting": "Buka Tetapan Apl",
+  "notifTsRelatedArticle": "Artikel Berkaitan:"
 }
