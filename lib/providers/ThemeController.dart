@@ -13,7 +13,7 @@ class ThemeProvider with ChangeNotifier {
   set themeMode(ThemeMode themeMode) {
     PreventUpdatingNotifs.setNow();
     _themeMode = themeMode;
-    GetStorage().write(GetStorage().read(kAppTheme), themeMode.name);
+    GetStorage().write(kAppTheme, themeMode.name);
     notifyListeners();
   }
 }

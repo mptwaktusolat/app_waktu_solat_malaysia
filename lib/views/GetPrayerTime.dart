@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
-import '../models/jakim_esolat_model.dart';
-import '../providers/settingsProvider.dart';
+
 import '../CONSTANTS.dart';
-import '../providers/location_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../models/jakim_esolat_model.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
+import '../providers/location_provider.dart';
+import '../providers/settingsProvider.dart';
 import '../utils/DateAndTime.dart';
 import '../utils/RawPrayDataHandler.dart';
-import '../utils/temp_prayer_data.dart';
 import '../utils/mpt_fetch_api.dart';
 import '../utils/sizeconfig.dart';
+import '../utils/temp_prayer_data.dart';
 
 String? location;
 
@@ -35,7 +36,7 @@ class _GetPrayerTimeState extends State<GetPrayerTime> {
   @override
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
-      builder: (context, value, child) {
+      builder: (_, value, __) {
         return FutureBuilder<JakimEsolatModel>(
           future: MptApiFetch.fetchMpt(value.currentLocationCode),
           builder: (_, snapshot) {
@@ -76,11 +77,11 @@ class _PrayTimeListState extends State<PrayTimeList> {
     if (GetStorage().read(kStoredShouldUpdateNotif)) {
       //schedule notification if needed
       MyNotifScheduler.schedulePrayNotification(
-          PrayDataHandler.removePastDate(prayerTimeData!));
+          context, PrayDataHandler.removePastDate(prayerTimeData!));
     }
 
     return Consumer<SettingProvider>(
-      builder: (context, setting, child) {
+      builder: (_, setting, __) {
         use12hour = setting.use12hour;
         showOtherPrayerTime = setting.showOtherPrayerTime;
         var _today = PrayDataHandler.todayPrayData(prayerTimeData!)!;
@@ -182,9 +183,9 @@ class SolatCard extends StatelessWidget {
             );
           }),
           child: Center(child: Consumer<SettingProvider>(
-            builder: (context, setting, child) {
+            builder: (_, setting, __) {
               return Text(
-                name + ' at $time',
+                AppLocalizations.of(context)!.getPtTimeAt(name, time),
                 style: TextStyle(fontSize: setting.prayerFontSize),
               );
             },
@@ -210,7 +211,7 @@ class Error extends StatelessWidget {
         const SizedBox(height: 15),
         Text(
           errorMessage!.isEmpty
-              ? 'Unexpected error. Please retry'
+              ? AppLocalizations.of(context)!.getPtError
               : errorMessage!,
           textAlign: TextAlign.center,
           style: const TextStyle(
@@ -219,7 +220,8 @@ class Error extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          child: const Text('Retry', style: TextStyle(color: Colors.black)),
+          child: Text(AppLocalizations.of(context)!.getPtRetry,
+              style: const TextStyle(color: Colors.black)),
           onPressed: onRetryPressed as void Function()?,
         ),
         const SizedBox(height: 100),
@@ -233,16 +235,16 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        SizedBox(height: 15),
+      children: [
+        const SizedBox(height: 15),
         Text(
-          'Fetching prayer time. Please wait.',
+          AppLocalizations.of(context)!.getPtFetch,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18,
           ),
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(vertical: 200),
           child: SpinKitChasingDots(
             size: 35,

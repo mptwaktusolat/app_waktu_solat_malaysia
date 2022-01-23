@@ -94,19 +94,15 @@ class LocationChooser {
                 future:
                     _getAllLocationData().timeout(const Duration(seconds: 12)),
                 builder:
-                    (context, AsyncSnapshot<LocationCoordinateData> snapshot) {
+                    (_, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const LoadingWidget();
+                    return const ZoneLoadingWidget();
                   } else if (snapshot.hasData) {
-                    return SuccessWidget(coordinateData: snapshot.data!);
+                    return ZoneSuccessWidget(coordinateData: snapshot.data!);
                   } else if (snapshot.hasError) {
-                    return _onErrorWidget(
-                      context,
-                      errorMessage: snapshot.error.toString(),
-                    );
+                    return ZoneErrorWidget(errorMessage: snapshot.error.toString())
                   } else {
-                    return _onErrorWidget(context,
-                        errorMessage: 'Unexpected error occured');
+                    return const ZoneErrorWidget(errorMessage: 'Unexpected error occured',)
                   }
                 }),
           ),
@@ -171,104 +167,6 @@ class LocationChooser {
       },
     );
   }
-
-  static Widget _onErrorWidget(BuildContext context,
-      {required String errorMessage}) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Expanded(
-              flex: 1,
-              child: Center(
-                child: Text(AppLocalizations.of(context)!.zoneError),
-              )),
-          Expanded(
-            flex: 3,
-            child: DefaultTextStyle(
-              style: TextStyle(
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? Colors.black
-                      : Colors.white),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.fmd_bad_outlined,
-                        size: 40,
-                        color: Colors.red.shade300,
-                      ),
-                      Icon(
-                        Icons
-                            .signal_cellular_connected_no_internet_0_bar_outlined,
-                        size: 40,
-                        color: Colors.red.shade300,
-                      ),
-                    ],
-                  ),
-                  MarkdownBody(
-                    data:
-                        "Check your **internet connection** or **location services**.",
-                    styleSheet: MarkdownStyleSheet(
-                        textAlign: WrapAlignment.center,
-                        p: TextStyle(color: Colors.red.shade300)),
-                  ),
-                  const SizedBox(height: 10),
-                  MarkdownBody(
-                    data: "Please **retry** or choose location **manually**.",
-                    styleSheet: MarkdownStyleSheet(
-                      textAlign: WrapAlignment.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text(
-                errorMessage,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 10,
-                    fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () async =>
-                      await AppSettings.openLocationSettings(),
-                  child: Text(
-                    AppLocalizations.of(context)!.zoneOpenLocationSettings,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    bool res = await openLocationBottomSheet(context) ?? false;
-                    Navigator.pop(context, res);
-                  },
-                  child: Text(
-                    AppLocalizations.of(context)!.zoneSetManually,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
 }
 
 class LocationBubble extends StatelessWidget {
@@ -300,8 +198,8 @@ class LocationBubble extends StatelessWidget {
   }
 }
 
-class SuccessWidget extends StatelessWidget {
-  const SuccessWidget({Key? key, required this.coordinateData})
+class ZoneSuccessWidget extends StatelessWidget {
+  const ZoneSuccessWidget({Key? key, required this.coordinateData})
       : super(key: key);
 
   final LocationCoordinateData coordinateData;
@@ -389,8 +287,8 @@ class SuccessWidget extends StatelessWidget {
   }
 }
 
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({Key? key}) : super(key: key);
+class ZoneLoadingWidget extends StatelessWidget {
+  const ZoneLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -408,6 +306,112 @@ class LoadingWidget extends StatelessWidget {
           const SizedBox(height: 24),
           const SpinKitPulse(
             color: Colors.teal,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ZoneErrorWidget extends StatelessWidget {
+  const ZoneErrorWidget({Key? key, required this.errorMessage}) : super(key: key);
+
+  final String errorMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Expanded(
+              flex: 1,
+              child: Center(
+                child: Text(AppLocalizations.of(context)!.zoneError),
+              )),
+          Expanded(
+            flex: 3,
+            child: DefaultTextStyle(
+              style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.fmd_bad_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                      Icon(
+                        Icons
+                            .signal_cellular_connected_no_internet_0_bar_outlined,
+                        size: 40,
+                        color: Colors.red.shade300,
+                      ),
+                    ],
+                  ),
+                  MarkdownBody(
+                    data:
+                        AppLocalizations.of(context)!.zoneErrorPara1,
+                    styleSheet: MarkdownStyleSheet(
+                        textAlign: WrapAlignment.center,
+                        p: TextStyle(color: Colors.red.shade300)),
+                  ),
+                  const SizedBox(height: 10),
+                  MarkdownBody(
+                    data: AppLocalizations.of(context)!.zoneErrorPara2,
+                    styleSheet: MarkdownStyleSheet(
+                      textAlign: WrapAlignment.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: Text(
+                errorMessage,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    color: Colors.red,
+                    fontSize: 10,
+                    fontStyle: FontStyle.italic),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                  onPressed: () async =>
+                      await AppSettings.openLocationSettings(),
+                  child: Text(
+                    AppLocalizations.of(context)!.zoneOpenLocationSettings,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    bool res = await LocationChooser.openLocationBottomSheet(
+                            context) ??
+                        false;
+                    Navigator.pop(context, res);
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.zoneSetManually,
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),

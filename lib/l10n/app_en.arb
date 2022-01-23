@@ -18,11 +18,38 @@
   "asrName": "Asr",
   "maghribName": "Maghrib",
   "ishaName": "Isha",
+  "getPtFetch": "Fetching prayer time. Please wait.",
+  "getPtError": "Unexpected error. Please retry",
+  "getPtRetry": "Retry",
+  "getPtTimeAt": "{name} at {time}",
+  "@getPtTimeAt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "getPtCopied": "Copied",
   "appBodyNotifPrompt": "Did notification(s) from this app shows at prayer time?",
   "appBodyNotifPromptYes": "Yes",
   "appBodyNotifPromptNo": "No",
+  "appBodyNotifPromptDissm": "Dismiss",
   "appBodyNotifPromptResponse": "Cool. Glad to hear that!",
+  "appBodyCurrentLocation": "Currently set to {daerah} in {negeri}",
+  "@appBodyCurrentLocation": {
+    "placeholders": {
+      "daerah": {
+        "type": "String"
+      },
+      "negeri": {
+        "type": "String"
+      }
+    }
+  },
+  "appBodyChangeLocation": "Change",
   "menuThemes": "Themes",
   "menuSettings": "Settings",
   "menuRate": "Rate and review",
@@ -69,7 +96,8 @@
       }
     }
   },
-  "aboutJakim": "Prayer times data are from",
+  "aboutVersionCopied": "Copied version info",
+  "aboutJakim": "Prayer times data are from [Department of Islamic Development Malaysia (JAKIM)](https://www.e-solat.gov.my/)",
   "aboutContribution": "Contribution and Support",
   "aboutReleaseNotes": "Release Notes",
   "aboutLicense": "Open Source Licenses",
@@ -175,6 +203,8 @@
   "zoneSetManually": "Set manually",
   "zoneSetThis": "Set this location",
   "zoneError": "Error",
+  "zoneErrorPara1": "Check your **internet connection** or **location services**.",
+  "zoneErrorPara2": "Please **retry** or choose location **manually**.",
   "zoneOpenLocationSettings": "Open Location Settings",
   "zoneLoading": "Loading",
   "notifSettingBasic": "Basic",
@@ -203,7 +233,7 @@
   "contributeShare": "Share this app",
   "contributeShareDesc": "Share your experience of using this app with your family and friends.",
   "contributeShareNow": "Share now",
-  "contributeShareContent": "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\nTry it now:\n{playStoreShortLink} (Google Play)\n ${webAppLink} (Web app)",
+  "contributeShareContent": "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\n\nTry it now:\n{playStoreShortLink} (Google Play)\n{webAppLink} (Web app)",
   "@contributeShareContent": {
     "placeholders": {
       "playStoreShortLink": {
@@ -234,5 +264,24 @@
   "notifTsPara1": "Some apps installed from the **Google Play Store** will disable **Autostart** by default. Due to this behaviour, prayer notification (sometimes) will not appear on your phone.",
   "notifTsPara2": "The solution is to enable **Autostart** for this app. Tap the button below to open App Setting, then find the Autostart option there to enable it.",
   "notifTsOpenSetting": "Open App Setting",
-  "notifTsRelatedArticle": "Related Article:"
+  "notifTsRelatedArticle": "Related Article:",
+  "notifMonthlyReminderTitle": "Monthly refresh reminder",
+  "notifMonthlyReminderDesc": "To continue receive prayer notification, open app at least once every month.",
+  "notifItsTime": "It's {name}",
+  "@notifItsTime": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifIn": "in {location}",
+  "@notifIn": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "notifEndSubh": "Ends of Fajr"
 }

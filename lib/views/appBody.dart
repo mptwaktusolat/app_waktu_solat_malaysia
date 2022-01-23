@@ -155,7 +155,7 @@ class _AppBodyState extends State<AppBody> {
                     ),
                     Expanded(
                       child: Consumer<LocationProvider>(
-                        builder: (context, value, child) {
+                        builder: (_, value, __) {
                           String shortCode = value.currentLocationCode;
                           return Container(
                             margin: const EdgeInsets.all(5.0),
@@ -174,11 +174,16 @@ class _AppBodyState extends State<AppBody> {
                               onLongPress: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                        'Currently set to ${LocationDatabase.daerah(value.currentLocationCode)} in ${LocationDatabase.negeri(value.currentLocationCode)}'),
+                                    content: Text(AppLocalizations.of(context)!
+                                        .appBodyCurrentLocation(
+                                            LocationDatabase.daerah(
+                                                value.currentLocationCode),
+                                            LocationDatabase.negeri(
+                                                value.currentLocationCode))),
                                     behavior: SnackBarBehavior.floating,
                                     action: SnackBarAction(
-                                      label: 'Change',
+                                      label: AppLocalizations.of(context)!
+                                          .appBodyChangeLocation,
                                       onPressed: () {
                                         LocationChooser.openLocationBottomSheet(
                                             context);
@@ -281,9 +286,7 @@ class _AppBodyState extends State<AppBody> {
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
                       onPressed: () {
-                        setState(() {
-                          showFirstChild = false;
-                        });
+                        setState(() => showFirstChild = false);
                         Future.delayed(const Duration(seconds: 3))
                             .then((value) => setState(() {
                                   _showNotifPrompt = false;
@@ -293,18 +296,33 @@ class _AppBodyState extends State<AppBody> {
                       child: Text(
                           AppLocalizations.of(context)!.appBodyNotifPromptYes)),
                   TextButton(
-                      style: TextButton.styleFrom(
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) =>
-                                    const NotificationPageSetting()));
-                      },
-                      child: Text(
-                          AppLocalizations.of(context)!.appBodyNotifPromptNo))
+                    style: TextButton.styleFrom(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const NotificationPageSetting()));
+                    },
+                    child: Text(
+                        AppLocalizations.of(context)!.appBodyNotifPromptNo),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: () {
+                      Future.delayed(const Duration(seconds: 3)).then(
+                        (value) => setState(() {
+                          _showNotifPrompt = false;
+                          GetStorage().write(kShowNotifPrompt, false);
+                        }),
+                      );
+                    },
+                    child: Text(
+                        AppLocalizations.of(context)!.appBodyNotifPromptDissm),
+                  )
                 ],
               )
             ],

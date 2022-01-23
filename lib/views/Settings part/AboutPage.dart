@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,10 +22,7 @@ class AboutAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFirstTry = true;
-    TextStyle _linkTextStyle = Theme.of(context).brightness == Brightness.light
-        ? const TextStyle(color: Colors.blueAccent)
-        : TextStyle(color: Colors.blueAccent.shade100);
+    bool _isFirstTry = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -38,15 +35,15 @@ class AboutAppPage extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
           child: Consumer<SettingProvider>(
-            builder: (context, setting, child) {
+            builder: (_, setting, __) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   GestureDetector(
                     onLongPress: () {
-                      if (isFirstTry && !setting.isDeveloperOption!) {
+                      if (_isFirstTry && !setting.isDeveloperOption!) {
                         Fluttertoast.showToast(msg: '(⌐■_■)');
-                        isFirstTry = false;
+                        _isFirstTry = false;
                       } else {
                         if (!setting.isDeveloperOption!) {
                           Fluttertoast.showToast(
@@ -92,7 +89,8 @@ class AboutAppPage extends StatelessWidget {
                       Clipboard.setData(
                               ClipboardData(text: packageInfo!.version))
                           .then((value) => Fluttertoast.showToast(
-                              msg: 'Copied version info'));
+                              msg: AppLocalizations.of(context)!
+                                  .aboutVersionCopied));
                     },
                     child: Text(
                       AppLocalizations.of(context)!
@@ -103,33 +101,18 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).bottomAppBarColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyText2!.color),
-                          children: [
-                            TextSpan(
-                              text: AppLocalizations.of(context)!.aboutJakim,
-                            ),
-                            TextSpan(
-                              text: ' Jabatan Kemajuan Islam Malaysia (JAKIM)',
-                              style: _linkTextStyle,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  LaunchUrl.normalLaunchUrl(
-                                      url: kSolatJakimLink);
-                                },
-                            ),
-                            const TextSpan(text: '.')
-                          ],
-                        ),
-                      )),
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).bottomAppBarColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: MarkdownBody(
+                      data: AppLocalizations.of(context)!.aboutJakim,
+                      styleSheet:
+                          MarkdownStyleSheet(textAlign: WrapAlignment.center),
+                      onTapLink: (_, href, __) =>
+                          LaunchUrl.normalLaunchUrl(url: href),
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Card(
                     child: InkWell(

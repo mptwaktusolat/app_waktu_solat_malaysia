@@ -17,7 +17,7 @@ class ShareFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SettingProvider>(builder: (context, setting, child) {
+    return Consumer<SettingProvider>(builder: (_, setting, __) {
       return FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         child: Builder(
