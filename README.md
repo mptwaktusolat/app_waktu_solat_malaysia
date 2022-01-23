@@ -70,6 +70,7 @@ Do submit your review and comments. Some of the version are also available in Go
 - [Part 3](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTM5MTYyNTU1MTQ0MjYx)
 - [Part 4](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODg2ODQ3MDQwMjc2ODM3)
 - [Part 5](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE1MTkzNDAzODk3MDk1)
+- [Part 6](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
 
 ## Honourable mention
 
