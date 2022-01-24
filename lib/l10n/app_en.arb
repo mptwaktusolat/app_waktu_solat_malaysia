@@ -283,5 +283,9 @@
       }
     }
   },
-  "notifEndSubh": "Ends of Fajr"
+  "notifEndSubh": "Ends of Fajr",
+  "whatsUpdateTitle": "What's new in this update?",
+  "whatsUpdateContent": "Alhamdulillah, we finally ships the ability to **change the language** in the app. There are two language available, English and Bahasa Malaysia.\\\n\\\nTry it below! *(You can find this option again in Settings page)*",
+  "whatsUpdateChangelog": "Read the release notes",
+  "whatsUpdateDismiss": "Dismiss"
 }

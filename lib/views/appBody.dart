@@ -1,13 +1,14 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/locationDatabase.dart';
@@ -19,6 +20,7 @@ import 'GetPrayerTime.dart';
 import 'Settings%20part/NotificationSettingPage.dart';
 import 'ZoneChooser.dart';
 import 'debug_widgets.dart';
+import 'whats_new_update.dart';
 
 class AppBody extends StatefulWidget {
   const AppBody({Key? key}) : super(key: key);
@@ -64,6 +66,7 @@ class _AppBodyState extends State<AppBody> {
     _ad.load();
 
     checkForUpdate();
+    showUpdateNotes();
   }
 
   void checkForUpdate() async {
@@ -71,6 +74,13 @@ class _AppBodyState extends State<AppBody> {
     if (!res) return;
 
     Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
+  }
+
+  void showUpdateNotes() async {
+    var version =
+        await PackageInfo.fromPlatform().then((value) => value.version);
+    print("From appbody, version is $version");
+    WhatsNewUpdate.showUpdateDialog(context, version);
   }
 
   /// fetch offset value of hijri date
@@ -313,12 +323,10 @@ class _AppBodyState extends State<AppBody> {
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
                     onPressed: () {
-                      Future.delayed(const Duration(seconds: 3)).then(
-                        (value) => setState(() {
-                          _showNotifPrompt = false;
-                          GetStorage().write(kShowNotifPrompt, false);
-                        }),
-                      );
+                      setState(() {
+                        _showNotifPrompt = false;
+                        GetStorage().write(kShowNotifPrompt, false);
+                      });
                     },
                     child: Text(
                         AppLocalizations.of(context)!.appBodyNotifPromptDissm),

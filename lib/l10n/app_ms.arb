@@ -180,5 +180,9 @@
   "notifMonthlyReminderDesc": "Untuk terus menerima pemberitahuan, buka aplikasi sekurang-kurangnya sekali setiap bulan.",
   "notifItsTime": "Telah masuk waktu {name}",
   "notifIn": "di {location}",
-  "notifEndSubh": "Tamat waktu Subuh"
+  "notifEndSubh": "Tamat waktu Subuh",
+  "whatsUpdateTitle": "Apa yang baharu dalam kemaskini ini?",
+  "whatsUpdateContent": "Alhamdulillah, akhirnya kami menambah fungsi untuk **menukar bahasa** dalam apl. Terdapat dua bahasa yang tersedia, Bahasa Inggeris dan Bahasa Malaysia.\\\n\\\nCuba di bawah! *(Anda boleh menemui pilihan ini sekali lagi dalam halaman Tetapan)*",
+  "whatsUpdateChangelog": "Baca Nota keluaran",
+  "whatsUpdateDismiss": "Abaikan"
 }
