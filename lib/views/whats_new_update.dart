@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:waktusolatmalaysia/utils/launchUrl.dart';
-import 'Settings%20part/SettingsPage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
-// Update version number
+import '../CONSTANTS.dart';
+import '../utils/launchUrl.dart';
+import 'Settings%20part/SettingsPage.dart';
+
 // Update Markdown body / content
-// Update link changelog
-
-class WhatsNewUpdate {
-  static void showUpdateDialog(BuildContext context, String version) {
-    String latestVersion = "2.3.0";
-    // TODO: Add checks
-    // if (version == latestVersion) {
-    showDialog(context: context, builder: (_) => const WhatsNewUpdateDialog());
-    // }
-  }
-}
 
 class WhatsNewUpdateDialog extends StatelessWidget {
   const WhatsNewUpdateDialog({Key? key}) : super(key: key);
@@ -24,6 +14,8 @@ class WhatsNewUpdateDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      //TODO: Boleh buang insetPadding ni bila xpaki LocaleSetting widget tu
+      insetPadding: const EdgeInsets.symmetric(horizontal: 32),
       title: Text(AppLocalizations.of(context)!.whatsUpdateTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -31,19 +23,18 @@ class WhatsNewUpdateDialog extends StatelessWidget {
           MarkdownBody(
             data: AppLocalizations.of(context)!.whatsUpdateContent,
           ),
+          const SizedBox(height: 15),
           const LocaleSetting()
         ],
       ),
       actions: [
         TextButton(
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: "https://example.com");
+              LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
             },
             child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog)),
         TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            onPressed: () => Navigator.pop(context),
             child: Text(AppLocalizations.of(context)!.whatsUpdateDismiss))
       ],
     );

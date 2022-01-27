@@ -33,12 +33,12 @@ class _AppBodyState extends State<AppBody> {
   late BannerAd _ad;
   bool _isAdLoaded = false;
   bool showFirstChild = true;
-  late bool _showNotifPrompt;
+  late bool _shouldShowNotifPrompt;
 
   @override
   void initState() {
     super.initState();
-    _showNotifPrompt = GetStorage().read(kShowNotifPrompt) &&
+    _shouldShowNotifPrompt = GetStorage().read(kShowNotifPrompt) &&
         GetStorage().read(kAppLaunchCount) > 5;
 
     MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
@@ -65,26 +65,38 @@ class _AppBodyState extends State<AppBody> {
         request: const AdRequest());
     _ad.load();
 
-    checkForUpdate();
-    showUpdateNotes();
+    _checkForUpdate();
+    _showUpdateNotes();
   }
 
-  void checkForUpdate() async {
+  void _checkForUpdate() async {
     var res = await AppUpdateChecker.updatesAvailable();
     if (!res) return;
 
     Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
   }
 
-  void showUpdateNotes() async {
+  /// Show update dialog if app if recently updated
+  void _showUpdateNotes() async {
     var version =
         await PackageInfo.fromPlatform().then((value) => value.version);
-    print("From appbody, version is $version");
-    WhatsNewUpdate.showUpdateDialog(context, version);
+
+    bool _shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
+        GetStorage().read<String>(version) == null;
+
+    GetStorage()
+        .write(kIsFirstRun, false); // app no longer consider as first run
+
+    if (_shouldShowDialog) {
+      await showDialog(
+          context: context, builder: (_) => const WhatsNewUpdateDialog());
+    }
+    GetStorage().write(version,
+        DateTime.now().toString()); // write something to the version key
   }
 
   /// fetch offset value of hijri date
-  Future<RemoteConfig> fetchRemoteConfig() async {
+  Future<RemoteConfig> _fetchRemoteConfig() async {
     final RemoteConfig remoteConfig = RemoteConfig.instance;
     await remoteConfig.setConfigSettings(RemoteConfigSettings(
       fetchTimeout: const Duration(seconds: 15),
@@ -138,7 +150,7 @@ class _AppBodyState extends State<AppBody> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: FutureBuilder<RemoteConfig>(
-                                future: fetchRemoteConfig(),
+                                future: _fetchRemoteConfig(),
                                 builder:
                                     (_, AsyncSnapshot<RemoteConfig> snapshot) {
                                   /// Fetch data from server whenever possible
@@ -164,59 +176,67 @@ class _AppBodyState extends State<AppBody> {
                       ),
                     ),
                     Expanded(
+                      // TODO: Maybe we can extract this widget
+                      // to another file/stless widget
                       child: Consumer<LocationProvider>(
                         builder: (_, value, __) {
-                          String shortCode = value.currentLocationCode;
+                          String _shortCode = value.currentLocationCode;
                           return Container(
                             margin: const EdgeInsets.all(5.0),
                             padding: const EdgeInsets.all(18.0),
-                            child: TextButton(
-                              style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(-5.0),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  side: const BorderSide(color: Colors.white),
+                            child: Semantics(
+                              button: true,
+                              label: AppLocalizations.of(context)!
+                                  .appBodyLocSemanticLabel,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.all(-5.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    side: const BorderSide(color: Colors.white),
+                                  ),
                                 ),
-                              ),
-                              onPressed: () {
-                                LocationChooser.showLocationChooser(context);
-                              },
-                              onLongPress: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(AppLocalizations.of(context)!
-                                        .appBodyCurrentLocation(
-                                            LocationDatabase.daerah(
-                                                value.currentLocationCode),
-                                            LocationDatabase.negeri(
-                                                value.currentLocationCode))),
-                                    behavior: SnackBarBehavior.floating,
-                                    action: SnackBarAction(
-                                      label: AppLocalizations.of(context)!
-                                          .appBodyChangeLocation,
-                                      onPressed: () {
-                                        LocationChooser.openLocationBottomSheet(
-                                            context);
-                                      },
+                                onPressed: () {
+                                  LocationChooser.showLocationChooser(context);
+                                },
+                                onLongPress: () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(AppLocalizations.of(
+                                              context)!
+                                          .appBodyCurrentLocation(
+                                              LocationDatabase.daerah(
+                                                  value.currentLocationCode),
+                                              LocationDatabase.negeri(
+                                                  value.currentLocationCode))),
+                                      behavior: SnackBarBehavior.floating,
+                                      action: SnackBarAction(
+                                        label: AppLocalizations.of(context)!
+                                            .appBodyChangeLocation,
+                                        onPressed: () {
+                                          LocationChooser
+                                              .openLocationBottomSheet(context);
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  FaIcon(FontAwesomeIcons.mapMarkerAlt,
-                                      color: Colors.teal.shade50, size: 15),
-                                  Text(
-                                    '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
-                                    style: GoogleFonts.montserrat(
-                                      textStyle: const TextStyle(
-                                          color: Colors.white, fontSize: 13),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    FaIcon(FontAwesomeIcons.mapMarkerAlt,
+                                        color: Colors.teal.shade50, size: 15),
+                                    Text(
+                                      '  ${_shortCode.substring(0, 3).toUpperCase()}  ${_shortCode.substring(3, 5)}',
+                                      style: GoogleFonts.montserrat(
+                                        textStyle: const TextStyle(
+                                            color: Colors.white, fontSize: 13),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -251,7 +271,7 @@ class _AppBodyState extends State<AppBody> {
 
   Builder showNotifPrompt(BuildContext context) {
     return Builder(builder: (_) {
-      if (_showNotifPrompt) {
+      if (_shouldShowNotifPrompt) {
         return AnimatedCrossFade(
           layoutBuilder: (topChild, topChildKey, bottomChild, bottomChildKey) {
             return Stack(
@@ -299,7 +319,7 @@ class _AppBodyState extends State<AppBody> {
                         setState(() => showFirstChild = false);
                         Future.delayed(const Duration(seconds: 3))
                             .then((value) => setState(() {
-                                  _showNotifPrompt = false;
+                                  _shouldShowNotifPrompt = false;
                                   GetStorage().write(kShowNotifPrompt, false);
                                 }));
                       },
@@ -324,7 +344,7 @@ class _AppBodyState extends State<AppBody> {
                     ),
                     onPressed: () {
                       setState(() {
-                        _showNotifPrompt = false;
+                        _shouldShowNotifPrompt = false;
                         GetStorage().write(kShowNotifPrompt, false);
                       });
                     },

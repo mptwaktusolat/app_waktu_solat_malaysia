@@ -1,13 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
@@ -182,82 +184,86 @@ class _FeedbackPageState extends State<FeedbackPage> {
               },
             ),
             ElevatedButton.icon(
-                onPressed: () async {
-                  if (_emailController.text.isEmpty &&
-                      _messageController.text.contains('?')) {
-                    var res = await showDialog(
-                        context: context,
-                        builder: (ctx) {
-                          return AlertDialog(
-                            content: Text(AppLocalizations.of(context)!
-                                .feedbackGettingInfo),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(true);
-                                  },
-                                  child: Text(AppLocalizations.of(context)!
-                                      .feedbackSendAnyway)),
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(false);
-                                  },
-                                  child: Text(AppLocalizations.of(context)!
-                                      .feedbackAddEmail))
-                            ],
-                          );
-                        });
-
-                    // Cancel next operation for user to enter their email
-                    if (!res) return;
-                  }
-
-                  if (_formKey.currentState!.validate()) {
-                    FocusScope.of(context).unfocus();
-                    setState(() => _isSendLoading = true);
-                    try {
-                      await _reportsCollection.add({
-                        'Date creation': FieldValue.serverTimestamp(),
-                        'User email': _emailController.text.trim(),
-                        'User message': _messageController.text.trim(),
-                        'App version': packageInfo.version,
-                        'App build number': packageInfo.buildNumber,
-                        'Prayer API called':
-                            GetStorage().read(kStoredApiPrayerCall) ??
-                                'no pray api called',
-                        'Position': (LocationData.position != null)
-                            ? GeoPoint(LocationData.position!.latitude,
-                                LocationData.position!.longitude)
-                            : 'no detect',
-                        'Device info': _logIsChecked! ? _deviceInfo : null,
-                        'Hijri Offset': GetStorage().read(kHijriOffset),
+              onPressed: () async {
+                if (_emailController.text.isEmpty &&
+                    _messageController.text.contains('?')) {
+                  var res = await showDialog(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                          content: Text(AppLocalizations.of(context)!
+                              .feedbackMessageContainQ),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(true);
+                                },
+                                child: Text(AppLocalizations.of(context)!
+                                    .feedbackSendAnyway)),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(false);
+                                },
+                                child: Text(AppLocalizations.of(context)!
+                                    .feedbackAddEmail))
+                          ],
+                        );
                       });
-                      setState(() => _isSendLoading = false);
-                      Fluttertoast.showToast(
-                              msg: AppLocalizations.of(context)!.feedbackThanks,
-                              backgroundColor: Colors.green,
-                              toastLength: Toast.LENGTH_LONG)
-                          .then((value) => Navigator.pop(context));
-                    } on FirebaseException catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Error: ${e.message}'),
-                        backgroundColor: Colors.red,
-                      ));
-                      setState(() => _isSendLoading = false);
-                    }
+
+                  // Cancel next operation for user to enter their email
+                  if (!res) return;
+                }
+
+                if (_formKey.currentState!.validate()) {
+                  FocusScope.of(context).unfocus();
+                  setState(() => _isSendLoading = true);
+                  try {
+                    await _reportsCollection.add({
+                      'Date creation': FieldValue.serverTimestamp(),
+                      'User email': _emailController.text.trim(),
+                      'User message': _messageController.text.trim(),
+                      'App version': packageInfo.version,
+                      'App build number': packageInfo.buildNumber,
+                      'Prayer API called':
+                          GetStorage().read(kStoredApiPrayerCall) ??
+                              'no pray api called',
+                      'Position': (LocationData.position != null)
+                          ? GeoPoint(LocationData.position!.latitude,
+                              LocationData.position!.longitude)
+                          : 'no detect',
+                      'Device info': _logIsChecked! ? _deviceInfo : null,
+                      'Hijri Offset': GetStorage().read(kHijriOffset),
+                      'zone': GetStorage().read(kStoredLocationJakimCode),
+                      'app locale': AppLocalizations.of(context)!.localeName,
+                      'device locale': Platform.localeName,
+                    });
+                    setState(() => _isSendLoading = false);
+                    Fluttertoast.showToast(
+                            msg: AppLocalizations.of(context)!.feedbackThanks,
+                            backgroundColor: Colors.green,
+                            toastLength: Toast.LENGTH_LONG)
+                        .then((value) => Navigator.pop(context));
+                  } on FirebaseException catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Error: ${e.message}'),
+                      backgroundColor: Colors.red,
+                    ));
+                    setState(() => _isSendLoading = false);
                   }
-                },
-                icon: !_isSendLoading
-                    ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
-                    : const SizedBox.shrink(),
-                label: _isSendLoading
-                    ? const SizedBox(
-                        height: 15,
-                        width: 15,
-                        child: CircularProgressIndicator(
-                          color: Colors.white,
-                        ))
-                    : Text(AppLocalizations.of(context)!.feedbackSend)),
+                }
+              },
+              icon: !_isSendLoading
+                  ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
+                  : const SizedBox.shrink(),
+              label: _isSendLoading
+                  ? const SizedBox(
+                      height: 15,
+                      width: 15,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ))
+                  : Text(AppLocalizations.of(context)!.feedbackSend),
+            ),
             const Spacer(flex: 3),
             Row(
               children: [

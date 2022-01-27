@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.3.0-pre.2+88
+version: 2.3.0+89
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -51,6 +51,7 @@ dependencies:
   flutter_markdown: ^0.6.9
 
 dependency_overrides:
+  # flutter compass in pub.dev is not updated
   flutter_compass:
     git: https://github.com/hemanthrajv/flutter_compass.git
 

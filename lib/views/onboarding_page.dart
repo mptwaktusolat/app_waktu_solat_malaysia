@@ -31,6 +31,9 @@ class _OnboardingPageState extends State<OnboardingPage>
   MyNotificationType _notificationType =
       MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
 
+  // TODO: Samada page 3 or 4 boleh scroll, check nnti
+  // sepatutnya tkleh scroll
+
   @override
   void initState() {
     super.initState();
@@ -87,9 +90,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     var res =
                         await LocationChooser.showLocationChooser(context);
                     if (res) {
-                      setState(() {
-                        _isDoneSetLocation = true;
-                      });
+                      setState(() => _isDoneSetLocation = true);
                     }
                   },
                   child:
@@ -168,7 +169,7 @@ class _OnboardingPageState extends State<OnboardingPage>
             style: const TextStyle(fontWeight: FontWeight.w600)),
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
-          GetStorage().write(kIsFirstRun, false);
+          // kIsFirstRun false setter are changed to Whats New Update Dialog
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (builder) => const MyHomePage()));
         });

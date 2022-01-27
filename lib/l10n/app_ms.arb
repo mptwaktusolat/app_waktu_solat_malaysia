@@ -24,6 +24,7 @@
   "appBodyNotifPromptResponse": "Alhamdulillah",
   "appBodyCurrentLocation": "Lokasi ditetapkan di {daerah} di {negeri}",
   "appBodyChangeLocation": "Ubah",
+  "appBodyLocSemanticLabel": "Butang untuk mengubah lokasi",
   "menuThemes": "Tema",
   "menuSettings": "Tetapan",
   "menuRate": "Penilaian dan Ulasan",

@@ -50,6 +50,7 @@
     }
   },
   "appBodyChangeLocation": "Change",
+  "appBodyLocSemanticLabel": "A button to change location",
   "menuThemes": "Themes",
   "menuSettings": "Settings",
   "menuRate": "Rate and review",

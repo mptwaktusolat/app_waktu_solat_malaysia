@@ -67,10 +67,12 @@ class _QiblaState extends State<Qibla> {
             ),
           ),
           const Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                  padding: EdgeInsets.only(bottom: 16.0),
-                  child: CompassActionButtons())),
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
+              child: CompassActionButtons(),
+            ),
+          ),
         ],
       ),
     );

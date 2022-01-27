@@ -75,7 +75,7 @@ class PrayerTime {
     var _monthNumeric =
         _monthMap.indexWhere((element) => date.contains(element)) + 1;
 
-    int end = _monthNumeric == 8 ? 7 : 6;
+    int end = _monthNumeric == 8 ? 7 : 6; // Only Ogos has 4 month character
 
     date = date.replaceRange(3, end, _monthNumeric.toString());
 
