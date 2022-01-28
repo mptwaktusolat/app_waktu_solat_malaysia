@@ -1,10 +1,11 @@
 # App Waktu Solat Malaysia
 
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
-![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)
+[![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)](https://waktusolat.web.app/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
-![Installs](https://img.shields.io/badge/installs-30k+-orange)
-![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)
+[![Installs](https://img.shields.io/badge/installs-30k+-orange)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
+[![style: lint](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg)](https://pub.dev/packages/flutter_lints)
+[![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)](https://twitter.com/iqfareez)
 
 App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
 
