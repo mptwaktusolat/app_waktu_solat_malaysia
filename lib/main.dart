@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -38,6 +39,12 @@ void main() async {
 
   initGetStorage();
   // readAllGetStorage();
+
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('assets/OFL.txt');
+    // TODO: Add license to pubspec and tukar path dy
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
 
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
@@ -85,6 +92,7 @@ class MyApp extends StatelessWidget {
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
             themeMode: themeValue.themeMode,
+            // Material 3 ?
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(localeValue.appLocale),
