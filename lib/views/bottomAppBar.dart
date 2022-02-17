@@ -20,8 +20,7 @@ class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    var iconColour = Theme.of(context).brightness == Brightness.light
+    var _iconColour = Theme.of(context).brightness == Brightness.light
         ? Colors.grey.shade600
         : Colors.white60;
     return BottomAppBar(
@@ -48,7 +47,7 @@ class MyBottomAppBar extends StatelessWidget {
                         )
                       : const SizedBox.shrink(),
                 ]),
-                color: iconColour,
+                color: _iconColour,
                 onPressed: () {
                   menuModalBottomSheet(context);
                 });
@@ -56,7 +55,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarAlt),
             tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
-            color: iconColour,
+            color: _iconColour,
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => PrayerFullTable()));
@@ -64,7 +63,7 @@ class MyBottomAppBar extends StatelessWidget {
           ),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.kaaba),
-            color: iconColour,
+            color: _iconColour,
             tooltip: AppLocalizations.of(context)?.menuKiblaCompassTooltip,
             onPressed: () {
               Navigator.push(

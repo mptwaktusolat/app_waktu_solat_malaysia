@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
+
 import '../models/github_releases_model.dart';
 
 /// Compare app version with GitHub releases version

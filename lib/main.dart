@@ -41,8 +41,8 @@ void main() async {
   // readAllGetStorage();
 
   LicenseRegistry.addLicense(() async* {
+    // This adds SIL license to the registrar
     final license = await rootBundle.loadString('assets/OFL.txt');
-    // TODO: Add license to pubspec and tukar path dy
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
 
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
-        ChangeNotifierProvider(create: (_) => LocaleProvider())
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: Consumer2<ThemeProvider, LocaleProvider>(
         builder: (_, themeValue, localeValue, __) {

@@ -7,8 +7,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
-import '../utils/DateAndTime.dart';
-import '../utils/mpt_fetch_api.dart';
+import '../utils/date_and_time.dart';
+import '../networking/mpt_fetch_api.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
@@ -42,6 +42,14 @@ class PrayerFullTable extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      print("Setting pressed");
+                      // TODO: Siapkan settings
+                    },
+                    icon: const Icon(Icons.settings))
+              ],
             )
           ];
         },
@@ -63,6 +71,7 @@ class PrayerFullTable extends StatelessWidget {
                     // Map of title and tooltip
                     columns: {
                       AppLocalizations.of(context)!.timetableDate: null,
+                      "Hijri": null,
                       AppLocalizations.of(context)!.imsakName:
                           AppLocalizations.of(context)!.imsakDescription,
                       AppLocalizations.of(context)!.fajrName: null,
@@ -98,6 +107,8 @@ class PrayerFullTable extends StatelessWidget {
                                     : null),
                           ),
                         ),
+                        DataCell(Text(snapshot.data!.prayerTime![index].hijri!
+                            .toString())),
                         ...snapshot.data!.prayerTime![index].times!
                             .map((day) => DataCell(
                                   Center(

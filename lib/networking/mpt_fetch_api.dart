@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'DateAndTime.dart';
-import 'debug_toast.dart';
-import '../models/jakim_esolat_model.dart';
+
 import '../CONSTANTS.dart';
+import '../models/jakim_esolat_model.dart';
+import '../utils/date_and_time.dart';
+import '../utils/debug_toast.dart';
 
 class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,
@@ -27,10 +29,16 @@ class MptApiFetch {
         'period': 'month',
         'zone': location,
       });
-      final response = await http.get(api);
+      DebugToast.show('Calling jakim api');
+
+      // timeout is sueful in a case that JAKIM return nothing at all
+      final response = await http.get(api).timeout(
+            const Duration(seconds: 8),
+            onTimeout: () => http.Response('Error', 408),
+          );
+
       GetStorage()
           .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-      DebugToast.show('Calling jakim api');
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
@@ -44,7 +52,8 @@ class MptApiFetch {
         final response = await http.get(api);
         GetStorage()
             .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-        DebugToast.show('Calling backup API');
+        DebugToast.show("Cannot reach JAKIM at the moment. Using backup API.");
+
         if (response.statusCode == 200) {
           var json = jsonDecode(response.body);
           var parsedModel = JakimEsolatModel.fromJson(json);

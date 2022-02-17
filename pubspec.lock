@@ -211,27 +211,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.3"
-  firebase_remote_config:
-    dependency: "direct main"
-    description:
-      name: firebase_remote_config
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
-  firebase_remote_config_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
-  firebase_remote_config_web:
-    dependency: transitive
-    description:
-      name: firebase_remote_config_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -438,15 +417,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
-  hijri:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "7616970a477cb006e3d51fc2ed62ea43fc3f0146"
-      url: "https://github.com/iqfareez/hijri_date.git"
-    source: git
-    version: "3.0.2"
   http:
     dependency: "direct main"
     description:

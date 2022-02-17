@@ -3,7 +3,7 @@
 import 'package:get_storage/get_storage.dart';
 import '../utils/debug_toast.dart';
 import '../CONSTANTS.dart';
-import '../utils/DateAndTime.dart';
+import '../utils/date_and_time.dart';
 
 class PreventUpdatingNotifs {
   /// setNow() function
