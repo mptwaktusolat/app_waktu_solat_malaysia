@@ -71,6 +71,8 @@
     }
   },
   "timetableDate": "Date",
+  "timetableSettingTitle": "Timetable setting",
+  "timetableSettingHijri": "Show Hijri",
   "themeTitle": "Theme",
   "themeOptionSystem": "System Theme",
   "themeOptionLight": "Light Theme",

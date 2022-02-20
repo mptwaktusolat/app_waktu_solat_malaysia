@@ -26,6 +26,7 @@ const kNotificationType = "notiftype";
 const kHasShowQiblaWarning = "storedqiblawarn";
 const kAppLanguage = "storedAppLang";
 const kAppTheme = "theme";
+const kTimetableHijri = "timetableHijri";
 
 //Network image
 const kAppIconUrl =

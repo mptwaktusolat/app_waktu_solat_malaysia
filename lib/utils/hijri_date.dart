@@ -45,4 +45,14 @@ class HijriDate {
   String toString() {
     return "$day $monthName $year";
   }
+
+  /// Example: 12 Jak 1453
+  String dMY() {
+    return "$day $shortMonthName $year";
+  }
+
+  /// Example: 12 Jak
+  String dM() {
+    return "$day $shortMonthName";
+  }
 }

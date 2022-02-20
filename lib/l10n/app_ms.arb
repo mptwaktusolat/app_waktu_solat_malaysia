@@ -36,6 +36,8 @@
   "menuKiblaCompassTooltip": "Kompas arah kiblat",
   "timetableTitle": "Jadual {month}",
   "timetableDate": "Tarikh",
+  "timetableSettingTitle": "Tetapan jadual",
+  "timetableSettingHijri": "Tunjukkan Hijri",
   "themeTitle": "Tema",
   "themeOptionSystem": "Tema Sistem",
   "themeOptionLight": "Tema Terang",

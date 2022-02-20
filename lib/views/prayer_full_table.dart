@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart' show CupertinoColors;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
+import '../providers/timetable_provider.dart';
+import '../utils/cupertinoSwitchListTile.dart';
 import '../utils/date_and_time.dart';
 import '../networking/mpt_fetch_api.dart';
 
@@ -45,8 +49,30 @@ class PrayerFullTable extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      print("Setting pressed");
-                      // TODO: Siapkan settings
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return Consumer<TimetableProvider>(
+                              builder: (_, value, __) => AlertDialog(
+                                title: Text(AppLocalizations.of(context)!
+                                    .timetableSettingTitle),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    CupertinoSwitchListTile(
+                                        title: Text(
+                                            AppLocalizations.of(context)!
+                                                .timetableSettingHijri),
+                                        activeColor: CupertinoColors.activeBlue,
+                                        value: value.showHijri,
+                                        onChanged: (bool newValue) {
+                                          value.showHijri = newValue;
+                                        })
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
                     icon: const Icon(Icons.settings))
               ],
@@ -66,75 +92,102 @@ class PrayerFullTable extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text(snapshot.error as String);
                 } else {
-                  return DataTable(
-                    columnSpacing: 30,
-                    // Map of title and tooltip
-                    columns: {
-                      AppLocalizations.of(context)!.timetableDate: null,
-                      "Hijri": null,
-                      AppLocalizations.of(context)!.imsakName:
-                          AppLocalizations.of(context)!.imsakDescription,
-                      AppLocalizations.of(context)!.fajrName: null,
-                      AppLocalizations.of(context)!.sunriseName:
-                          AppLocalizations.of(context)!.sunriseDescription,
-                      AppLocalizations.of(context)!.dhuhaName:
-                          AppLocalizations.of(context)!.dhuhaDescription,
-                      AppLocalizations.of(context)!.dhuhrName: null,
-                      AppLocalizations.of(context)!.asrName: null,
-                      AppLocalizations.of(context)!.maghribName: null,
-                      AppLocalizations.of(context)!.ishaName: null,
-                    }
-                        .entries
-                        .map((e) => DataColumn(
-                            tooltip: e.value,
-                            label: Text(
-                              e.key,
-                              style:
-                                  const TextStyle(fontStyle: FontStyle.italic),
-                            )))
-                        .toList(),
-                    rows: List.generate(snapshot.data!.prayerTime!.length,
-                        (index) {
-                      return DataRow(selected: index == _todayIndex, cells: [
-                        DataCell(
-                          Text(
-                            DateFormat('d/M (E)',
-                                    AppLocalizations.of(context)?.localeName)
-                                .format(DateTime(_year, _month, index + 1)),
+                  return _PrayerDataTable(
+                      todayIndex: _todayIndex,
+                      model: snapshot.data!,
+                      year: _year,
+                      month: _month,
+                      is12HourFormat: _is12HourFormat);
+                }
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PrayerDataTable extends StatelessWidget {
+  const _PrayerDataTable({
+    Key? key,
+    required JakimEsolatModel model,
+    required int todayIndex,
+    required int year,
+    required int month,
+    required bool is12HourFormat,
+  })  : _todayIndex = todayIndex,
+        _model = model,
+        _year = year,
+        _month = month,
+        _is12HourFormat = is12HourFormat,
+        super(key: key);
+
+  final int _todayIndex;
+  final int _year;
+  final int _month;
+  final bool _is12HourFormat;
+  final JakimEsolatModel _model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<TimetableProvider>(
+      builder: (_, value, __) => DataTable(
+        columnSpacing: 30,
+        // Map of title and tooltip
+        columns: {
+          AppLocalizations.of(context)!.timetableDate: null,
+          if (value.showHijri) "Hijri": null,
+          AppLocalizations.of(context)!.imsakName:
+              AppLocalizations.of(context)!.imsakDescription,
+          AppLocalizations.of(context)!.fajrName: null,
+          AppLocalizations.of(context)!.sunriseName:
+              AppLocalizations.of(context)!.sunriseDescription,
+          AppLocalizations.of(context)!.dhuhaName:
+              AppLocalizations.of(context)!.dhuhaDescription,
+          AppLocalizations.of(context)!.dhuhrName: null,
+          AppLocalizations.of(context)!.asrName: null,
+          AppLocalizations.of(context)!.maghribName: null,
+          AppLocalizations.of(context)!.ishaName: null,
+        }
+            .entries
+            .map((e) => DataColumn(
+                tooltip: e.value,
+                label: Text(
+                  e.key,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
+                )))
+            .toList(),
+        rows: List.generate(_model.prayerTime!.length, (index) {
+          return DataRow(selected: index == _todayIndex, cells: [
+            DataCell(
+              Text(
+                DateFormat('d/M (E)', AppLocalizations.of(context)?.localeName)
+                    .format(DateTime(_year, _month, index + 1)),
+                style: TextStyle(
+                    fontWeight: index == _todayIndex ? FontWeight.bold : null),
+              ),
+            ),
+            if (value.showHijri)
+              DataCell(Text(_model.prayerTime![index].hijri!.dM())),
+            ..._model.prayerTime![index].times!
+                .map((day) => DataCell(
+                      Center(
+                        child: Opacity(
+                          opacity: (index < _todayIndex) ? 0.55 : 1.0,
+                          child: Text(
+                            DateAndTime.toTimeReadable(day, _is12HourFormat),
                             style: TextStyle(
                                 fontWeight: index == _todayIndex
                                     ? FontWeight.bold
                                     : null),
                           ),
                         ),
-                        DataCell(Text(snapshot.data!.prayerTime![index].hijri!
-                            .toString())),
-                        ...snapshot.data!.prayerTime![index].times!
-                            .map((day) => DataCell(
-                                  Center(
-                                    child: Opacity(
-                                      opacity:
-                                          (index < _todayIndex) ? 0.55 : 1.0,
-                                      child: Text(
-                                        DateAndTime.toTimeReadable(
-                                            day, _is12HourFormat),
-                                        style: TextStyle(
-                                            fontWeight: index == _todayIndex
-                                                ? FontWeight.bold
-                                                : null),
-                                      ),
-                                    ),
-                                  ),
-                                ))
-                            .toList()
-                      ]);
-                    }),
-                  );
-                }
-              },
-            ),
-          ),
-        ),
+                      ),
+                    ))
+                .toList()
+          ]);
+        }),
       ),
     );
   }

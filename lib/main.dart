@@ -19,6 +19,7 @@ import 'providers/ThemeController.dart';
 import 'providers/locale_provider.dart';
 import 'providers/location_provider.dart';
 import 'providers/settingsProvider.dart';
+import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => TimetableProvider()),
       ],
       child: Consumer2<ThemeProvider, LocaleProvider>(
         builder: (_, themeValue, localeValue, __) {
