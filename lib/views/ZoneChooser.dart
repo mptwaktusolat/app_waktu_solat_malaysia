@@ -1,25 +1,27 @@
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
 import 'dart:async';
+
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
-import '../locationUtil/location.dart';
-import '../utils/debug_toast.dart';
+
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
+import '../locationUtil/location.dart';
 import '../locationUtil/locationDatabase.dart';
 import '../locationUtil/location_coordinate.dart';
 import '../locationUtil/location_coordinate_model.dart';
 import '../providers/location_provider.dart';
+import '../utils/debug_toast.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
@@ -129,6 +131,7 @@ class LocationChooser {
                   color: Theme.of(context).canvasColor,
                   child: Scrollbar(
                     child: GroupedListView<Location, String>(
+                      addSemanticIndexes: true,
                       elements: LocationDatabase.allLocationData,
                       groupBy: (element) => element.negeri,
                       groupSeparatorBuilder: (String groupByValue) => Padding(
