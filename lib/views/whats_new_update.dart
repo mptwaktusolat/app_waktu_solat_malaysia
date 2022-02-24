@@ -4,7 +4,6 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
-import 'Settings%20part/SettingsPage.dart';
 
 // Update Markdown body / content
 
@@ -14,17 +13,14 @@ class WhatsNewUpdateDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      //TODO: Boleh buang insetPadding ni bila xpaki LocaleSetting widget tu
-      insetPadding: const EdgeInsets.symmetric(horizontal: 32),
       title: Text(AppLocalizations.of(context)!.whatsUpdateTitle),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           MarkdownBody(
+            // styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceAround),
             data: AppLocalizations.of(context)!.whatsUpdateContent,
           ),
-          const SizedBox(height: 15),
-          const LocaleSetting()
         ],
       ),
       actions: [

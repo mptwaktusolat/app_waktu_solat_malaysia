@@ -85,7 +85,6 @@ class MyApp extends StatelessWidget {
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
                 color: _primaryColour,
-                // ssytem overlay style
               ),
             ),
             darkTheme: ThemeData.dark().copyWith(
@@ -126,7 +125,9 @@ class MyHomePage extends StatelessWidget {
       bottomNavigationBar: const MyBottomAppBar(),
       floatingActionButton: const ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-      body: const SingleChildScrollView(child: AppBody()),
+      body: const SingleChildScrollView(
+        child: AppBody(),
+      ),
     );
   }
 }
