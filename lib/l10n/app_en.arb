@@ -287,8 +287,37 @@
     }
   },
   "notifEndSubh": "Ends of Fajr",
-  "whatsUpdateTitle": "What's new in this update?",
-  "whatsUpdateContent": "Alhamdulillah, we finally ships the ability to **change the language** in the app. There are two language available, English and Bahasa Malaysia.\\\n\\\nTry it below! *(You can find this option again in Settings page)*",
-  "whatsUpdateChangelog": "Read the release notes",
-  "whatsUpdateDismiss": "Dismiss"
+  "whatsUpdateTitle": "Just updated to the latest version. Here what's new",
+  "whatsUpdateContent": "🐛 **Fixed a bug** where the Hijri date is inconsistent in some cases. Now the app should consume data from JAKIM.\\\n\\\n✨ Introduced new **Hijri date column** in full prayer timetable (can be hide/unhide).\\\n\\\nAnd many more...",
+  "whatsUpdateChangelog": "Read release notes",
+  "whatsUpdateDismiss": "Dismiss",
+  "updatePageError": "Sorry. Error occurred when checking for update",
+  "updatePageTryAgain": "Please try again",
+  "updatePageAvailable": "Updates available",
+  "updatePageReleased": "Released {day} days ago",
+  "@updatePageReleased": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "updatePageCurrentVer": "You have: **{version}**",
+  "@updatePageCurrentVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updatePageLatestVer": "Latest available: **{version}**",
+  "@updatePageLatestVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updatePageGPlay": "Get updates on Google Play",
+  "updatePageBeta": "Get beta versions"
 }

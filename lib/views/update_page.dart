@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -23,7 +25,7 @@ class _UpdateInfo {
 class UpdatePage extends StatelessWidget {
   const UpdatePage({Key? key}) : super(key: key);
 
-  Future<_UpdateInfo> fetchUpdateInfo() async {
+  Future<_UpdateInfo> _fetchUpdateInfo() async {
     var _githubReleases = await AppUpdateChecker.getUpdateInfo();
     var _packageInfo = await PackageInfo.fromPlatform();
 
@@ -43,7 +45,7 @@ class UpdatePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-          future: fetchUpdateInfo(),
+          future: _fetchUpdateInfo(),
           builder: (context, AsyncSnapshot<_UpdateInfo> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return LinearProgressIndicator(
@@ -57,7 +59,7 @@ class UpdatePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Error occured when checking for update",
+                    AppLocalizations.of(context)!.updatePageError,
                     style: Theme.of(context).textTheme.bodyText2,
                   ),
                   Text(
@@ -65,7 +67,7 @@ class UpdatePage extends StatelessWidget {
                     style: Theme.of(context).textTheme.caption,
                   ),
                   const SizedBox(height: 20),
-                  const Text("Please try again"),
+                  Text(AppLocalizations.of(context)!.updatePageTryAgain),
                 ],
               ));
             }
@@ -78,40 +80,70 @@ class UpdatePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Updates available",
+                    AppLocalizations.of(context)!.updatePageAvailable,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   const SizedBox(height: 30),
+                  Text(snapshot.data!.updateName,
+                      style: Theme.of(context).textTheme.headline5!),
                   Text(
-                    snapshot.data!.updateName,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                  Text(
-                    "Released ${snapshot.data!.daySinceRelease} days ago",
+                    AppLocalizations.of(context)!
+                        .updatePageReleased(snapshot.data!.daySinceRelease),
                     style: Theme.of(context).textTheme.caption,
                   ),
                   const SizedBox(height: 20),
-                  Text('You have: ${snapshot.data?.currentVersion}'),
-                  Text("Latest available: ${snapshot.data?.latestVersion}"),
+                  MarkdownBody(
+                      data: AppLocalizations.of(context)!
+                          .updatePageCurrentVer(snapshot.data!.currentVersion)),
+                  MarkdownBody(
+                      data: AppLocalizations.of(context)!
+                          .updatePageLatestVer(snapshot.data!.latestVersion)),
                   const SizedBox(height: 20),
-                  ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(primary: Colors.teal),
-                      onPressed: () {
-                        LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
-                      },
-                      icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
-                      label: const Text("Get updates on Google Play")),
-                  TextButton(
-                      onPressed: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: "https://bit.ly/mptchanges");
-                      },
-                      child: const Text("Read release notes"))
+                  const _CallToActions()
                 ],
               ),
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _CallToActions extends StatelessWidget {
+  const _CallToActions({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 28),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(primary: Colors.teal),
+              onPressed: () {
+                LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+              },
+              icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
+              label: Text(AppLocalizations.of(context)!.updatePageGPlay)),
+          OutlinedButton(
+            onPressed: () {
+              LaunchUrl.normalLaunchUrl(url: "$kGithubRepoLink/wiki/Changelog");
+            },
+            child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog),
+          ),
+          const Divider(),
+          OutlinedButton(
+            onPressed: () {
+              LaunchUrl.normalLaunchUrl(url: "$kGithubRepoLink/releases");
+            },
+            child: Text(AppLocalizations.of(context)!.updatePageBeta),
+          ),
+        ],
       ),
     );
   }

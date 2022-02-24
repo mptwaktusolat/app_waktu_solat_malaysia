@@ -184,8 +184,16 @@
   "notifItsTime": "Telah masuk waktu {name}",
   "notifIn": "di {location}",
   "notifEndSubh": "Tamat waktu Subuh",
-  "whatsUpdateTitle": "Apa yang baharu dalam kemaskini ini?",
-  "whatsUpdateContent": "Alhamdulillah, akhirnya kami menambah fungsi untuk **menukar bahasa** dalam apl. Terdapat dua bahasa yang tersedia, Bahasa Inggeris dan Bahasa Malaysia.\\\n\\\nCuba di bawah! *(Anda boleh menemui pilihan ini sekali lagi dalam halaman Tetapan)*",
+  "whatsUpdateTitle": "Baru sahaja dikemas kini kepada versi terkini. Berikut adalah pembaharuan",
+  "whatsUpdateContent": "🐛 **Memperbaiki pepijat** di mana tarikh Hijrah tidak konsisten. Kini apl menggunakan data daripada JAKIM.\\\n\\\n✨ Memperkenalkan **lajur tarikh Hijrah** baharu dalam jadual waktu solat penuh (boleh disembunyikan / nyahsembunyikan).\\\n\\\ndan lain-lain.",
   "whatsUpdateChangelog": "Baca Nota keluaran",
-  "whatsUpdateDismiss": "Abaikan"
+  "whatsUpdateDismiss": "Abaikan",
+  "updatePageError": "Ralat berlaku semasa menyemak kemas kini",
+  "updatePageTryAgain": "Sila cuba lagi",
+  "updatePageAvailable": "Kemas kini tersedia",
+  "updatePageReleased": "Dikeluarkan {day} hari lepas",
+  "updatePageCurrentVer": "Anda ada: **{version}**",
+  "updatePageLatestVer": "Terkini tersedia: **{version}**",
+  "updatePageGPlay": "Dapatkan kemas kini di Google Play",
+  "updatePageBeta": "Dapatkan versi beta"
 }
