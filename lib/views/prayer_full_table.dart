@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart' show CupertinoColors;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
+import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/cupertinoSwitchListTile.dart';
 import '../utils/date_and_time.dart';
-import '../networking/mpt_fetch_api.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
@@ -159,19 +159,33 @@ class _PrayerDataTable extends StatelessWidget {
                 )))
             .toList(),
         rows: List.generate(_model.prayerTime!.length, (index) {
-          return DataRow(selected: index == _todayIndex, cells: [
-            DataCell(
-              Text(
-                DateFormat('d/M (E)', AppLocalizations.of(context)?.localeName)
-                    .format(DateTime(_year, _month, index + 1)),
-                style: TextStyle(
-                    fontWeight: index == _todayIndex ? FontWeight.bold : null),
+          return DataRow(
+            selected: index == _todayIndex,
+            cells: [
+              DataCell(
+                Text(
+                  DateFormat(
+                          'd/M (E)', AppLocalizations.of(context)?.localeName)
+                      .format(
+                    DateTime(_year, _month, index + 1),
+                  ),
+                  style: TextStyle(
+                    fontWeight: index == _todayIndex ? FontWeight.bold : null,
+                  ),
+                ),
               ),
-            ),
-            if (value.showHijri)
-              DataCell(Text(_model.prayerTime![index].hijri!.dM())),
-            ..._model.prayerTime![index].times!
-                .map((day) => DataCell(
+              if (value.showHijri)
+                DataCell(
+                  Text(
+                    _model.prayerTime![index].hijri!.dM(),
+                    style: TextStyle(
+                      fontWeight: index == _todayIndex ? FontWeight.bold : null,
+                    ),
+                  ),
+                ),
+              ..._model.prayerTime![index].times!
+                  .map(
+                    (day) => DataCell(
                       Center(
                         child: Opacity(
                           opacity: (index < _todayIndex) ? 0.55 : 1.0,
@@ -184,9 +198,11 @@ class _PrayerDataTable extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ))
-                .toList()
-          ]);
+                    ),
+                  )
+                  .toList()
+            ],
+          );
         }),
       ),
     );
