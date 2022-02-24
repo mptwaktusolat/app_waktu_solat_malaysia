@@ -22,7 +22,8 @@ class _OnboardingPageState extends State<OnboardingPage>
   final _pageDecoration = const PageDecoration(
     titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
     bodyTextStyle: TextStyle(fontSize: 19.0),
-    descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+    // descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
+    bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
     imagePadding: EdgeInsets.all(8.0),
   );
 
@@ -155,7 +156,8 @@ class _OnboardingPageState extends State<OnboardingPage>
     ];
     return IntroductionScreen(
         pages: _pages,
-        color: Colors.teal,
+        // color: Colors.teal,
+        // baseBtnStyle: ButtonStyle(foregroundColor: Colors.teal),
         dotsDecorator: DotsDecorator(
           activeColor: Colors.teal,
           size: const Size.square(9.0),
@@ -165,8 +167,10 @@ class _OnboardingPageState extends State<OnboardingPage>
         ),
         done: Text(AppLocalizations.of(context)!.onboardingDone,
             style: const TextStyle(fontWeight: FontWeight.w600)),
+        doneSemantic: "Done button",
         next: Text(AppLocalizations.of(context)!.onboardingNext,
             style: const TextStyle(fontWeight: FontWeight.w600)),
+        nextSemantic: "Next button",
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
           // kIsFirstRun false setter are changed to Whats New Update Dialog
