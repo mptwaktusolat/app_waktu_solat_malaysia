@@ -15,7 +15,6 @@ class LaunchUrl {
             customTabsOptions: CustomTabsOptions(
               shareState: CustomTabsShareState.on,
               defaultColorSchemeParams: CustomTabsColorSchemeParams(
-                navigationBarColor: Colors.tealAccent,
                 toolbarColor: Colors.teal.shade700,
                 secondaryToolbarColor: Colors.teal,
               ),
