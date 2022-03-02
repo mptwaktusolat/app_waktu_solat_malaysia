@@ -1,11 +1,16 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../CONSTANTS.dart';
+import '../../notificationUtil/notifications_helper.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 
@@ -22,7 +27,6 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
   MyNotificationType _type =
       MyNotificationType.values[GetStorage().read(kNotificationType)];
 
-  // TODO: Add areNotificationsEnabled() fronm the plugin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,8 +181,107 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               },
             ),
           ),
+          const _DebugNotifWidget(),
         ],
       ),
+    );
+  }
+}
+
+class _DebugNotifWidget extends StatelessWidget {
+  const _DebugNotifWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text(
+            "Debug (for dev)",
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: const Text('Send immediate test notification'),
+            subtitle: const Text('Without azan'),
+            onTap: () async {
+              await showDebugNotification();
+            },
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: const Text('Send azan test in 30 secs'),
+            onTap: () async {
+              await scheduleSingleAzanNotification(
+                  name: 'name',
+                  id: 2321,
+                  title: 'Azan test',
+                  body: 'azan_hejaz2013_fajr',
+                  customSound: 'azan_hejaz2013_fajr',
+                  scheduledTime: tz.TZDateTime.now(tz.local)
+                      .add(const Duration(seconds: 30)));
+            },
+          ),
+        ),
+        ListTile(
+          title: const Text('Last update notification'),
+          subtitle: Text(DateTime.fromMillisecondsSinceEpoch(
+                  GetStorage().read(kStoredLastUpdateNotif))
+              .toString()),
+          onLongPress: () {
+            Clipboard.setData(ClipboardData(
+                    text: GetStorage().read(kStoredLastUpdateNotif).toString()))
+                .then((value) => Fluttertoast.showToast(msg: 'Copied millis'));
+          },
+        ),
+        ListTile(
+          title: const Text('Number of scheduled notification'),
+          subtitle:
+              Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
+        ),
+        FutureBuilder<List<PendingNotificationRequest>>(
+            future:
+                FlutterLocalNotificationsPlugin().pendingNotificationRequests(),
+            builder:
+                (_, AsyncSnapshot<List<PendingNotificationRequest>> snapshot) {
+              return ExpansionTile(
+                title: const Text("Pending Notification Requests"),
+                subtitle: Text(snapshot.data?.length.toString() ?? "no data"),
+                children: snapshot.data!
+                    .map((e) => ListTile(
+                          trailing: Text(e.id.toString()),
+                          title: Text(e.title!),
+                          subtitle: Text(e.body!),
+                        ))
+                    .toList(),
+                // onTap: () {
+                //   showDialog(
+                //       context: context,
+                //       builder: (_) {
+                //         return Dialog(
+                //           child: ListView.builder(
+                //             shrinkWrap: true,
+                //             itemCount: snapshot.data!.length,
+                //             itemBuilder: (_, index) {
+                //               PendingNotificationRequest? _data =
+                //                   snapshot.data![index];
+                //               return ListTile(
+                //                 leading: Text(_data.id.toString()),
+                //                 title: Text(_data.title ?? "no title"),
+                //                 subtitle: Text(_data.body ?? "no body"),
+                //               );
+                //             },
+                //           ),
+                //         );
+                //       });
+                // },
+              );
+            }),
+      ],
     );
   }
 }

@@ -3,11 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:timezone/timezone.dart' as tz;
-import '../notificationUtil/notifications_helper.dart';
+
+import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
-import '../CONSTANTS.dart';
 
 class DebugWidgets {
   static Dialog debugDialog() {
@@ -42,45 +41,8 @@ class DebugWidgets {
             },
           ),
           ListTile(
-            title: const Text('Send immediate test notification'),
-            subtitle: const Text('Without azan'),
-            onTap: () async {
-              await showDebugNotification();
-            },
-          ),
-          ListTile(
-            title: const Text('Send azan test in 30 secs'),
-            onTap: () async {
-              await scheduleSingleAzanNotification(
-                  name: 'name',
-                  id: 2321,
-                  title: 'Azan test',
-                  body: 'azan_hejaz2013_fajr',
-                  customSound: 'azan_hejaz2013_fajr',
-                  scheduledTime: tz.TZDateTime.now(tz.local)
-                      .add(const Duration(seconds: 30)));
-            },
-          ),
-          ListTile(
-              title: const Text('Current zone'),
-              subtitle: Text('${GetStorage().read(kStoredLocationJakimCode)}')),
-          ListTile(
-            title: const Text('Last update notification'),
-            subtitle: Text(DateTime.fromMillisecondsSinceEpoch(
-                    GetStorage().read(kStoredLastUpdateNotif))
-                .toString()),
-            onLongPress: () {
-              Clipboard.setData(ClipboardData(
-                      text:
-                          GetStorage().read(kStoredLastUpdateNotif).toString()))
-                  .then(
-                      (value) => Fluttertoast.showToast(msg: 'Copied millis'));
-            },
-          ),
-          ListTile(
-            title: const Text('Number of scheduled notification'),
-            subtitle:
-                Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
+            title: const Text('Current zone'),
+            subtitle: Text('${GetStorage().read(kStoredLocationJakimCode)}'),
           ),
           ListTile(
             title: const Text('Open in app review'),
