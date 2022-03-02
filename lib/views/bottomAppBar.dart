@@ -14,6 +14,7 @@ import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'feedbackPage.dart';
 import 'prayer_full_table.dart';
+import 'tasbih.dart';
 import 'update_page.dart';
 
 class MyBottomAppBar extends StatelessWidget {
@@ -69,9 +70,22 @@ class MyBottomAppBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => GetStorage().read(kHasShowQiblaWarning)
+                  builder: (_) => GetStorage().read(kHasShowQiblaWarning)
                       ? const Qibla()
                       : const QiblaWarn(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.prayingHands),
+            color: _iconColour,
+            tooltip: "Tasbih for Zikr",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const Tasbih(),
                 ),
               );
             },

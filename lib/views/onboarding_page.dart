@@ -32,9 +32,6 @@ class _OnboardingPageState extends State<OnboardingPage>
   MyNotificationType _notificationType =
       MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
 
-  // TODO: Samada page 3 or 4 boleh scroll, check nnti
-  // sepatutnya tkleh scroll
-
   @override
   void initState() {
     super.initState();
