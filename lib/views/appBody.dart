@@ -225,7 +225,7 @@ class DateWidget extends StatelessWidget {
               ),
               Text(
                 DateFormat(
-                        'dd MMM yyyy', AppLocalizations.of(context)?.localeName)
+                        'd MMM yyyy', AppLocalizations.of(context)?.localeName)
                     .format(DateTime.now()),
                 style: TextStyle(color: Colors.teal.shade100, fontSize: 12),
               ),

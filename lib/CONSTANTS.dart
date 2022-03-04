@@ -11,7 +11,6 @@ const kStoredApiPrayerCall = "storedApiPrayCall";
 const kStoredShouldUpdateNotif = "storedShouldUpdateNotif";
 const kStoredLastUpdateNotif = "storedLastUpdateNotif";
 const kStoredNotificationLimit = "storedNotificationLimit";
-const kNumberOfNotifsScheduled = "numnotifscheduled";
 const kIsDebugMode = "debugModeSet";
 const kForceUpdateNotif = "storedForceUpdateNotif";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
@@ -27,6 +26,7 @@ const kHasShowQiblaWarning = "storedqiblawarn";
 const kAppLanguage = "storedAppLang";
 const kAppTheme = "theme";
 const kTimetableHijri = "timetableHijri";
+const kTasbihCount = "tasbihCount";
 
 //Network image
 const kAppIconUrl =

@@ -185,7 +185,7 @@
   "notifIn": "di {location}",
   "notifEndSubh": "Tamat waktu Subuh",
   "whatsUpdateTitle": "Baru sahaja dikemas kini kepada versi terkini. Berikut adalah pembaharuan",
-  "whatsUpdateContent": "🐛 **Memperbaiki pepijat** di mana tarikh Hijrah tidak konsisten. Kini apl menggunakan data daripada JAKIM.\\\n\\\n✨ Memperkenalkan **lajur tarikh Hijrah** baharu dalam jadual waktu solat penuh (boleh disembunyikan / nyahsembunyikan).\\\n\\\ndan lain-lain.",
+  "whatsUpdateContent": "🐛 **Membaiki pepijat** dimana pemberitahuan gagal ditunjukkan. Minta maaf atas kesulitan. [Isu #103](https://github.com/iqfareez/app_waktu_solat_malaysia/issues/103)\\\n\\\n✨ Memperkenalkan **halaman tasbih** baharu. [Ciri #37](https://github.com/iqfareez/app_waktu_solat_malaysia/issues/37)\\\n\\\n💄 Bar navigasi sistem kini mengikuti tema apl.",
   "whatsUpdateChangelog": "Baca Nota keluaran",
   "whatsUpdateDismiss": "Abaikan",
   "updatePageError": "Ralat berlaku semasa menyemak kemas kini",
@@ -195,5 +195,7 @@
   "updatePageCurrentVer": "Anda ada: **{version}**",
   "updatePageLatestVer": "Terkini tersedia: **{version}**",
   "updatePageGPlay": "Dapatkan kemas kini di Google Play",
-  "updatePageBeta": "Dapatkan versi beta"
+  "updatePageBeta": "Dapatkan versi beta",
+  "tasbihResetDialog": "Pastikan set semula ?",
+  "tasbihReset": "Set semula"
 }

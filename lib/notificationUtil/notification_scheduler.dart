@@ -24,8 +24,6 @@ class MyNotifScheduler {
     if (GetStorage().read(kStoredNotificationLimit)) {
       times = times.take(7).toList();
     }
-    // for debug dialog
-    GetStorage().write(kNumberOfNotifsScheduled, times.length);
 
     MyNotificationType _notifType =
         MyNotificationType.values[GetStorage().read(kNotificationType)];
@@ -37,6 +35,7 @@ class MyNotifScheduler {
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
+        print('Notification: Azan');
         _azanScheduler(context, times, _currentDateTime, currentDaerah);
         break;
     }
@@ -58,8 +57,11 @@ class MyNotifScheduler {
   }
 
   /// Classic Notification Scheduler, default notification sound
-  static void _defaultScheduler(BuildContext context, List<PrayerTime> times,
-      DateTime currentDateTime, String currentLocation) async {
+  static Future<void> _defaultScheduler(
+      BuildContext context,
+      List<PrayerTime> times,
+      DateTime currentDateTime,
+      String currentLocation) async {
     for (var dayTime in times) {
       DateTime subuhDateTime =
           DateTime.fromMillisecondsSinceEpoch(dayTime.times![1]);

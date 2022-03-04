@@ -6,11 +6,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../CONSTANTS.dart';
 import '../../notificationUtil/notifications_helper.dart';
+import '../../providers/settingsProvider.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 
@@ -181,7 +183,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               },
             ),
           ),
-          const _DebugNotifWidget(),
+          if (Provider.of<SettingProvider>(context, listen: false)
+                  .isDeveloperOption ??
+              false)
+            const _DebugNotifWidget(),
         ],
       ),
     );
@@ -238,11 +243,6 @@ class _DebugNotifWidget extends StatelessWidget {
                 .then((value) => Fluttertoast.showToast(msg: 'Copied millis'));
           },
         ),
-        ListTile(
-          title: const Text('Number of scheduled notification'),
-          subtitle:
-              Text(GetStorage().read(kNumberOfNotifsScheduled).toString()),
-        ),
         FutureBuilder<List<PendingNotificationRequest>>(
             future:
                 FlutterLocalNotificationsPlugin().pendingNotificationRequests(),
@@ -251,34 +251,19 @@ class _DebugNotifWidget extends StatelessWidget {
               return ExpansionTile(
                 title: const Text("Pending Notification Requests"),
                 subtitle: Text(snapshot.data?.length.toString() ?? "no data"),
-                children: snapshot.data!
-                    .map((e) => ListTile(
-                          trailing: Text(e.id.toString()),
-                          title: Text(e.title!),
-                          subtitle: Text(e.body!),
-                        ))
-                    .toList(),
-                // onTap: () {
-                //   showDialog(
-                //       context: context,
-                //       builder: (_) {
-                //         return Dialog(
-                //           child: ListView.builder(
-                //             shrinkWrap: true,
-                //             itemCount: snapshot.data!.length,
-                //             itemBuilder: (_, index) {
-                //               PendingNotificationRequest? _data =
-                //                   snapshot.data![index];
-                //               return ListTile(
-                //                 leading: Text(_data.id.toString()),
-                //                 title: Text(_data.title ?? "no title"),
-                //                 subtitle: Text(_data.body ?? "no body"),
-                //               );
-                //             },
-                //           ),
-                //         );
-                //       });
-                // },
+                children: snapshot.hasData
+                    ? snapshot.data!
+                        .map((e) => ListTile(
+                              trailing: Text(e.id.toString()),
+                              title: Text(e.title!),
+                              subtitle: Text(e.body!),
+                            ))
+                        .toList()
+                    : const [
+                        ListTile(
+                          subtitle: Text("Please wait"),
+                        )
+                      ],
               );
             }),
       ],

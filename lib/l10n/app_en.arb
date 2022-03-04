@@ -288,7 +288,7 @@
   },
   "notifEndSubh": "Ends of Fajr",
   "whatsUpdateTitle": "Just updated to the latest version. Here what's new",
-  "whatsUpdateContent": "🐛 **Fixed a bug** where the Hijri date is inconsistent in some cases. Now the app should consume data from JAKIM.\\\n\\\n✨ Introduced new **Hijri date column** in full prayer timetable (can be hide/unhide).\\\n\\\nAnd many more...",
+  "whatsUpdateContent": "🐛 **Fixed a bug** where notification failed to show. Sorry for inconviniences. [Issue #103](https://github.com/iqfareez/app_waktu_solat_malaysia/issues/103).\\\n\\\n✨ Introduced new **tasbih page**. [Feature #37](https://github.com/iqfareez/app_waktu_solat_malaysia/issues/37)\\\n\\\n💄 System navigation bar now respects app theme.",
   "whatsUpdateChangelog": "Read release notes",
   "whatsUpdateDismiss": "Dismiss",
   "updatePageError": "Sorry. Error occurred when checking for update",
@@ -319,5 +319,7 @@
     }
   },
   "updatePageGPlay": "Get updates on Google Play",
-  "updatePageBeta": "Get beta versions"
+  "updatePageBeta": "Get beta versions",
+  "tasbihResetDialog": "Confirm reset ?",
+  "tasbihReset": "Reset"
 }

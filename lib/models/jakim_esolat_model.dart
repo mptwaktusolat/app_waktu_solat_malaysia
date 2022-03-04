@@ -57,16 +57,16 @@ class PrayerTime {
     var _monthMap = [
       'Jan',
       'Feb',
-      'Mac',
+      'Mar',
       'Apr',
-      'Mei',
+      'May',
       'Jun',
       'Jul',
-      'Ogos',
+      'Aug',
       'Sep',
-      'Okt',
+      'Oct',
       'Nov',
-      'Dis'
+      'Dec'
     ];
 
     String pattern = 'd-M-y HH:mm:ss';
@@ -77,9 +77,7 @@ class PrayerTime {
     var _monthNumeric =
         _monthMap.indexWhere((element) => date.contains(element)) + 1;
 
-    int end = _monthNumeric == 8 ? 7 : 6; // Only Ogos has 4 month character
-
-    date = date.replaceRange(3, end, _monthNumeric.toString());
+    date = date.replaceRange(3, 6, _monthNumeric.toString());
 
     times = [
       DateFormat(pattern).parse('$date $imsak').millisecondsSinceEpoch,
@@ -94,5 +92,10 @@ class PrayerTime {
       DateFormat(pattern).parse('$date $maghrib').millisecondsSinceEpoch,
       DateFormat(pattern).parse('$date $isha').millisecondsSinceEpoch,
     ];
+  }
+
+  @override
+  String toString() {
+    return times.toString();
   }
 }

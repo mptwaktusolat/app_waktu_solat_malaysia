@@ -8,8 +8,38 @@ import 'lib/locationUtil/locationDatabase.dart';
 enum Test { first, second }
 
 void main() {
-  var date = DateFormat('EEEE, d MMMM yyyy').format(DateTime.now());
-  print(date);
+  var date = "04-Mar-2022";
+
+  var _monthMap = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  String pattern = 'd-M-y HH:mm:ss';
+
+  // Changing Text month to its numeric equivalent
+  // eg: 2-Okt-2021 will be 2-10-2021
+
+  var _monthNumeric =
+      _monthMap.indexWhere((element) => date.contains(element)) + 1;
+
+  int end = _monthNumeric == 8 ? 7 : 6; // Only Ogos has 4 month character
+
+  date = date.replaceRange(3, end, _monthNumeric.toString());
+
+  var imsak = "06:11:00";
+
+  print("pattern is $date $imsak");
 }
 
 void weekday() {
