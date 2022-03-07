@@ -26,6 +26,7 @@ const kHasShowQiblaWarning = "storedqiblawarn";
 const kAppLanguage = "storedAppLang";
 const kAppTheme = "theme";
 const kTimetableHijri = "timetableHijri";
+const kTimetableHijriStyle = "timetableHijriStyle";
 const kTasbihCount = "tasbihCount";
 
 //Network image

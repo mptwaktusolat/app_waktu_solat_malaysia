@@ -1,0 +1,60 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/timetable_provider.dart';
+import '../../utils/cupertinoSwitchListTile.dart';
+
+enum HijriStyle { full, short }
+
+class FullPrayerTableSettings extends StatelessWidget {
+  const FullPrayerTableSettings({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppLocalizations.of(context)!.timetableSettingTitle),
+      ),
+      body: Consumer<TimetableProvider>(
+        builder: (_, value, __) => ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            Card(
+              child: CupertinoSwitchListTile(
+                  title:
+                      Text(AppLocalizations.of(context)!.timetableSettingHijri),
+                  activeColor: CupertinoColors.activeBlue,
+                  value: value.showHijri,
+                  onChanged: (bool newValue) {
+                    value.showHijri = newValue;
+                  }),
+            ),
+            if (value.showHijri)
+              Card(
+                child: ListTile(
+                  title: Text(
+                      AppLocalizations.of(context)!.timetableSettingHijriStyle),
+                  trailing: DropdownButton<HijriStyle>(
+                    value: value.hijriStyle,
+                    items:
+                        {HijriStyle.short: "Shortform", HijriStyle.full: "Full"}
+                            .entries
+                            .map((e) => DropdownMenuItem(
+                                  child: Text(e.value),
+                                  value: e.key,
+                                ))
+                            .toList(),
+                    onChanged: (newValue) {
+                      value.hijriStyle = newValue!;
+                    },
+                  ),
+                ),
+              )
+          ],
+        ),
+      ),
+    );
+  }
+}

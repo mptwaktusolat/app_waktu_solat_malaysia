@@ -55,4 +55,8 @@ class HijriDate {
   String dM() {
     return "$day $shortMonthName";
   }
+
+  String dMMM() {
+    return "$day $monthName";
+  }
 }

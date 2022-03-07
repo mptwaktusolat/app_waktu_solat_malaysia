@@ -13,6 +13,7 @@ import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/cupertinoSwitchListTile.dart';
 import '../utils/date_and_time.dart';
+import 'Settings part/full_prayer_table_settings.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
@@ -49,30 +50,12 @@ class PrayerFullTable extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (_) {
-                            return Consumer<TimetableProvider>(
-                              builder: (_, value, __) => AlertDialog(
-                                title: Text(AppLocalizations.of(context)!
-                                    .timetableSettingTitle),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    CupertinoSwitchListTile(
-                                        title: Text(
-                                            AppLocalizations.of(context)!
-                                                .timetableSettingHijri),
-                                        activeColor: CupertinoColors.activeBlue,
-                                        value: value.showHijri,
-                                        onChanged: (bool newValue) {
-                                          value.showHijri = newValue;
-                                        })
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const FullPrayerTableSettings(),
+                        ),
+                      );
                     },
                     icon: const Icon(Icons.settings))
               ],
@@ -177,7 +160,9 @@ class _PrayerDataTable extends StatelessWidget {
               if (value.showHijri)
                 DataCell(
                   Text(
-                    _model.prayerTime![index].hijri!.dM(),
+                    value.hijriStyle == HijriStyle.short
+                        ? _model.prayerTime![index].hijri!.dM()
+                        : _model.prayerTime![index].hijri!.dMMM(),
                     style: TextStyle(
                       fontWeight: index == _todayIndex ? FontWeight.bold : null,
                     ),
