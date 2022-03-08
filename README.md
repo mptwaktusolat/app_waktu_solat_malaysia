@@ -11,11 +11,10 @@ App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
 
 Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
-## App UI
+![mpt gihtub screenshots](https://user-images.githubusercontent.com/60868965/157147575-33735055-4bd0-401e-bbec-275c464301f6.png)
 
-| GIF                                                                                                                                        | Screenshot                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| <img src="https://user-images.githubusercontent.com/60868965/94505796-77702c00-023e-11eb-8973-d8050f8ad369.gif" heigth="512" width="288"/> | <img src="https://user-images.githubusercontent.com/60868965/94504603-c36da180-023b-11eb-9c8e-97b63557ec5b.jpg" heigth="512" width="288"/> |
+More screenshots [here](https://imgur.com/a/Zhh7aBB)!
+
 
 ## API
 
@@ -51,11 +50,10 @@ _Web app working directory has been seperated to `web` branches._
 Get it on:
 
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
-<a href='https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v='><img alt='Explore on Huawei App Gallery' src='https://huaweimobileservices.com/wp-content/uploads/2019/12/AppGallery_DownlaodBadge_ENG.png' style="max-width:55%;"/></a>
 
 Require **Android 4.4W and up**
 
-_i'm having difficulties to update the app in App Gallery. So it will be very outdated._
+_i'm having difficulties to update the app in [Huawei App Gallery](https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v). So it will be very outdated._
 
 _Not available for iOS sorry :disappointed:_
 
