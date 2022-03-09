@@ -28,6 +28,7 @@ const kAppTheme = "theme";
 const kTimetableHijri = "timetableHijri";
 const kTimetableHijriStyle = "timetableHijriStyle";
 const kTasbihCount = "tasbihCount";
+const kTasbihGradientColour = "tasbihColours";
 
 //Network image
 const kAppIconUrl =

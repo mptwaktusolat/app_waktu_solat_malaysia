@@ -54,7 +54,7 @@ void main() async {
 
   runApp(const MyApp());
 
-  showReviewPrompt();
+  _showReviewPrompt();
 }
 
 class MyApp extends StatelessWidget {
@@ -165,8 +165,7 @@ Future<void> _configureLocalTimeZone() async {
   tz.setLocalLocation(tz.getLocation(timeZoneName));
 }
 
-// ignore_for_file: avoid_print
-void readAllGetStorage() {
+void _readAllGetStorage() {
   // print (almost) all GetStorage item to the console
   print("-----All GET STORAGE-----\n");
 
@@ -179,7 +178,7 @@ void readAllGetStorage() {
 }
 
 /// Show InAppReview if all conditions are met
-void showReviewPrompt() async {
+void _showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
   int _appLaunchCount = GetStorage().read(kAppLaunchCount);

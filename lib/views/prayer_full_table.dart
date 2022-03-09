@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart' show CupertinoColors;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -11,7 +10,6 @@ import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
-import '../utils/cupertinoSwitchListTile.dart';
 import '../utils/date_and_time.dart';
 import 'Settings part/full_prayer_table_settings.dart';
 
