@@ -165,19 +165,10 @@ class _ColourChooserDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: List.generate(
                 TasbihColors.gradientColour().length,
-                (int index) => GestureDetector(
-                  onTap: () => Navigator.pop(context, index),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 2),
-                    child: SizedBox(
-                      height: 32,
-                      width: 32,
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: TasbihBead(tasbihColourindex: index),
-                      ),
-                    ),
-                  ),
+                (int index) => IconButton(
+                  padding: const EdgeInsets.all(4),
+                  onPressed: () => Navigator.pop(context, index),
+                  icon: TasbihBead(tasbihColourindex: index),
                 ),
               ),
             ),
