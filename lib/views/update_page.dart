@@ -132,7 +132,7 @@ class _CallToActions extends StatelessWidget {
               label: Text(AppLocalizations.of(context)!.updatePageGPlay)),
           OutlinedButton(
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: "$kGithubRepoLink/wiki/Changelog");
+              LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
             },
             child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog),
           ),

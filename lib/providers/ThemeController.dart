@@ -5,7 +5,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../notificationUtil/prevent_update_notifs.dart';
 import '../CONSTANTS.dart';
 
 class ThemeProvider with ChangeNotifier {
@@ -18,7 +17,6 @@ class ThemeProvider with ChangeNotifier {
   ThemeMode get themeMode => _themeMode;
 
   set themeMode(ThemeMode mode) {
-    PreventUpdatingNotifs.setNow();
     _themeMode = mode;
     GetStorage().write(kAppTheme, mode.name);
     _changeSystemUI();

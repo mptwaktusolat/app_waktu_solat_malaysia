@@ -25,7 +25,7 @@ import '../utils/debug_toast.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
-    GetStorage().write(kStoredShouldUpdateNotif,
+    GetStorage().write(kShouldUpdateNotif,
         true); //if zone changes, update the notification
     //this setState will be called when user select a new location, this will update the Text short code
     ScaffoldMessenger.of(context).showSnackBar(

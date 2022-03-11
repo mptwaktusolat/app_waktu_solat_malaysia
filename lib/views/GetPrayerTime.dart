@@ -27,15 +27,8 @@ class _PrayTimeListState extends State<PrayTimeList> {
   bool? showOtherPrayerTime;
 
   @override
-  void initState() {
-    super.initState();
-    PreventUpdatingNotifs.setNow();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (GetStorage().read(kStoredShouldUpdateNotif)) {
-      //schedule notification if needed
+    if (PreventUpdatingNotifs.shouldUpdate()) {
       MyNotifScheduler.schedulePrayNotification(
           context, PrayDataHandler.notificationTimes());
     }

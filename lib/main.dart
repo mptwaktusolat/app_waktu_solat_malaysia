@@ -143,11 +143,10 @@ void initGetStorage() {
   _get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
   _get.writeIfNull(kStoredTimeIs12, true);
   _get.writeIfNull(kStoredShowOtherPrayerTime, false);
-  _get.writeIfNull(kStoredShouldUpdateNotif, true);
+  _get.writeIfNull(kShouldUpdateNotif, true);
   _get.writeIfNull(kStoredLastUpdateNotif, 0);
   _get.writeIfNull(kStoredNotificationLimit, false);
   _get.writeIfNull(kIsDebugMode, false);
-  _get.writeIfNull(kForceUpdateNotif, false);
   _get.writeIfNull(kDiscoveredDeveloperOption, false);
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);

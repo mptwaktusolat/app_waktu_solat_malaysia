@@ -78,7 +78,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                         ),
                         ElevatedButton(
                             onPressed: () {
-                              GetStorage().write(kForceUpdateNotif, true);
+                              GetStorage().write(kShouldUpdateNotif, true);
                               GetStorage()
                                   .write(kNotificationType, _type.index);
                               Restart.restartApp();
@@ -170,7 +170,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                         ),
                         TextButton(
                           onPressed: () {
-                            GetStorage().write(kForceUpdateNotif, true);
+                            GetStorage().write(kShouldUpdateNotif, true);
                             Restart.restartApp();
                           },
                           child: Text(AppLocalizations.of(context)!
