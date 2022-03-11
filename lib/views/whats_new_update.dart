@@ -19,21 +19,12 @@ class WhatsNewUpdateDialog extends StatelessWidget {
         children: [
           MarkdownBody(
             // styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceAround),
-            data: AppLocalizations.of(context)!.whatsUpdateContent,
+            data: AppLocalizations.of(context)!
+                .whatsUpdateContent(kReleaseNotesLink),
             onTapLink: (_, href, __) => LaunchUrl.normalLaunchUrl(url: href),
           ),
         ],
       ),
-      actions: [
-        TextButton(
-            onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
-            },
-            child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog)),
-        TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(AppLocalizations.of(context)!.whatsUpdateDismiss))
-      ],
     );
   }
 }
