@@ -39,14 +39,6 @@ class TasbihColors {
     Color(0xffBE5869),
   ];
 
-  static List<List<Color>> gradientColour() => [
-        _betweenNightAndDay,
-        _blush,
-        _timber,
-        _flickr,
-        _flickr,
-        _vine,
-        _predown,
-        _poncho
-      ];
+  static List<List<Color>> gradientColour() =>
+      [_betweenNightAndDay, _blush, _timber, _flickr, _vine, _predown, _poncho];
 }

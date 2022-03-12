@@ -78,7 +78,8 @@ class MyBottomAppBar extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: const FaIcon(FontAwesomeIcons.prayingHands),
+            icon: Image.asset('assets/icons/tasbih-Custom.png',
+                color: Theme.of(context).iconTheme.color),
             color: _iconColour,
             tooltip: "Tasbih for Zikr",
             onPressed: () {
