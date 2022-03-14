@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 [![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)](https://waktusolat.web.app/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
-[![Installs](https://img.shields.io/badge/installs-30k+-orange)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
+[![Installs](https://img.shields.io/badge/installs-32k+-orange)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 [![style: lint](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg)](https://pub.dev/packages/flutter_lints)
 [![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)](https://twitter.com/iqfareez)
 
@@ -69,10 +69,11 @@ Do submit your review and comments. Some of the version are also available in Go
 - [Part 4](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODg2ODQ3MDQwMjc2ODM3)
 - [Part 5](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE1MTkzNDAzODk3MDk1)
 - [Part 6](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
+- [Part 7](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
 
 ## Honourable mention
 
-Article that help me througout the development(Read: Website yg function teruk. The real MVP!. Banyak lagi website/blog2 lain tpi yang kt bwawh ni is da real lifesaver!)
+Article, assets, resources that help me througout the development.
 
 1. ~~https://medium.com/platform45/flutter-handling-your-network-api-calls-like-a-boss-9093c71a7c97~~
 2. ~~https://stackoverflow.com/questions/50115311/flutter-how-to-force-an-application-restart-in-production-mode~~
@@ -83,6 +84,9 @@ Article that help me througout the development(Read: Website yg function teruk. 
 7. 3D assets you see on the onboarding screen is from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/) & [3dicons](https://3dicons.co/).
 8. https://github.com/SuaMusica/googleads-mobile-flutter - Ads without jank
 9. https://github.com/shubhamhackz/light_dark_toggle - Sun/moon toggle animation.
+10. [Tasbih icons created by Freepik](https://www.flaticon.com/free-icons/tasbih)
+
+and sure, there's a lot more.
 
 <!-- ## Attribution
 
@@ -91,9 +95,8 @@ Article that help me througout the development(Read: Website yg function teruk. 
 ## Legalese
 
 - [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24)
-- [Privacy Policy](https://telegra.ph/MPT-Privacy-Policy-07-24)
+- [Privacy Policy](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Privacy-Policy)
 - Google Play and the Google Play logo are trademarks of Google LLC.
-- Huawei logo are trademarks of Huawei Technologies Co., Ltd.
 
 <!-- **No redistruba -->
 
