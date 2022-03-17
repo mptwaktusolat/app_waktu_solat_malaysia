@@ -85,6 +85,7 @@ Article, assets, resources that help me througout the development.
 8. https://github.com/SuaMusica/googleads-mobile-flutter - Ads without jank
 9. https://github.com/shubhamhackz/light_dark_toggle - Sun/moon toggle animation.
 10. [Tasbih icons created by Freepik](https://www.flaticon.com/free-icons/tasbih)
+11. Last third of the night calculation https://muftiwp.gov.my/en/artikel/al-kafi-li-al-fatawi/1376-al-kafi-251-pembahagian-malam-dan-qiamullail
 
 and sure, there's a lot more.
 

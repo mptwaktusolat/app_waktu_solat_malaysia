@@ -51,6 +51,7 @@ dependency_overrides:
   # flutter compass in pub.dev is not updated
   flutter_compass:
     git: https://github.com/hemanthrajv/flutter_compass.git
+  geolocator: ^8.2.0
 
 dev_dependencies:
   flutter_test:
