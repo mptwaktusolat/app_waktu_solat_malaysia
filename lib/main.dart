@@ -50,7 +50,7 @@ void main() async {
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
 
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 
   runApp(const MyApp());
 
@@ -114,6 +114,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
         title: Text(
           AppLocalizations.of(context)!.appbarTitle,
           style: GoogleFonts.balooTamma(),

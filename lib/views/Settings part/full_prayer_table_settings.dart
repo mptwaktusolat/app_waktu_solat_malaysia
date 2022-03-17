@@ -51,7 +51,20 @@ class FullPrayerTableSettings extends StatelessWidget {
                     },
                   ),
                 ),
-              )
+              ),
+            Card(
+                child: CupertinoSwitchListTile(
+              activeColor: CupertinoColors.activeBlue,
+              title:
+                  Text(AppLocalizations.of(context)!.timetableSettingOneThird),
+              subtitle: Text(
+                  AppLocalizations.of(context)!.timetableSettingOneThirdSub),
+              isThreeLine: true,
+              value: value.showLastOneThirdNight,
+              onChanged: (bool newValue) {
+                value.showLastOneThirdNight = newValue;
+              },
+            ))
           ],
         ),
       ),

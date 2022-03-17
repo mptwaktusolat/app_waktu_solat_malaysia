@@ -34,4 +34,16 @@ class DateAndTime {
     // The year doesnt matter kot
     return DateFormat("MMMM", locale).format(DateTime(2021, month));
   }
+
+  static DateTime nightOneThird(int maghrib, int subuh) {
+    var subuhDateTime =
+        DateTime.fromMillisecondsSinceEpoch(subuh).add(const Duration(days: 1));
+    var maghribDateTime = DateTime.fromMillisecondsSinceEpoch(maghrib);
+
+    var difference = subuhDateTime.difference(maghribDateTime);
+    var oneThirdDifference = difference.inMinutes ~/ 3;
+
+    // sepertiga akhir malam
+    return subuhDateTime.subtract(Duration(minutes: oneThirdDifference));
+  }
 }

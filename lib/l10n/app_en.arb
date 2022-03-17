@@ -71,9 +71,12 @@
     }
   },
   "timetableDate": "Date",
+  "timetableOneThird": "last 1/3 night",
   "timetableSettingTitle": "Timetable setting",
   "timetableSettingHijri": "Show Hijri column",
   "timetableSettingHijriStyle": "Hijri month style",
+  "timetableSettingOneThird": "Show last one third of the night",
+  "timetableSettingOneThirdSub": "Calculation method based on Mufti of Federal Territory Office",
   "themeTitle": "Theme",
   "themeOptionSystem": "System Theme",
   "themeOptionLight": "Light Theme",

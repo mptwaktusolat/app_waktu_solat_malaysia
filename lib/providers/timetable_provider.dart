@@ -10,6 +10,8 @@ class TimetableProvider extends ChangeNotifier {
   HijriStyle _hijriStyle = HijriStyle.values
       .byName(GetStorage().read(kTimetableHijriStyle) ?? HijriStyle.short.name);
 
+  bool _showLastOneThirdNight = false;
+
   bool get showHijri => _showHijri;
 
   set showHijri(bool value) {
@@ -23,6 +25,13 @@ class TimetableProvider extends ChangeNotifier {
   set hijriStyle(HijriStyle value) {
     _hijriStyle = value;
     GetStorage().write(kTimetableHijriStyle, value.name);
+    notifyListeners();
+  }
+
+  bool get showLastOneThirdNight => _showLastOneThirdNight;
+
+  set showLastOneThirdNight(bool newValue) {
+    _showLastOneThirdNight = newValue;
     notifyListeners();
   }
 }

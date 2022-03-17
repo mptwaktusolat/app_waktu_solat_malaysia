@@ -130,6 +130,8 @@ class _PrayerDataTable extends StatelessWidget {
           AppLocalizations.of(context)!.asrName: null,
           AppLocalizations.of(context)!.maghribName: null,
           AppLocalizations.of(context)!.ishaName: null,
+          if (value.showLastOneThirdNight)
+            AppLocalizations.of(context)!.timetableOneThird: null,
         }
             .entries
             .map((e) => DataColumn(
@@ -183,7 +185,23 @@ class _PrayerDataTable extends StatelessWidget {
                       ),
                     ),
                   )
-                  .toList()
+                  .toList(),
+              if (value.showLastOneThirdNight)
+                DataCell(Opacity(
+                  opacity: (index < _todayIndex) ? 0.55 : 1.0,
+                  child: Text(
+                    '~' +
+                        DateAndTime.toTimeReadable(
+                            DateAndTime.nightOneThird(
+                              _model.prayerTime![index].times![6],
+                              _model.prayerTime![index].times![1],
+                            ).millisecondsSinceEpoch,
+                            _is12HourFormat),
+                    style: TextStyle(
+                        fontWeight:
+                            index == _todayIndex ? FontWeight.bold : null),
+                  ),
+                )),
             ],
           );
         }),
