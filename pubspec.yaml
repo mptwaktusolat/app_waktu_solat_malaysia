@@ -46,6 +46,7 @@ dependencies:
   restart_app: ^1.0.3
   grouped_list: ^4.1.0
   flutter_markdown: ^0.6.9
+  firebase_analytics: ^9.1.2
 
 dependency_overrides:
   # flutter compass in pub.dev is not updated

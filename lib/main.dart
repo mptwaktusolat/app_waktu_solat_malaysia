@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,6 @@ void main() async {
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
 
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-
   runApp(const MyApp());
 
   _showReviewPrompt();
@@ -61,6 +60,10 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   final _primaryColour = Colors.teal;
   // TODO: Add another colour
+
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +82,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             onGenerateTitle: (context) =>
                 AppLocalizations.of(context)!.appTitle,
+            navigatorObservers: <NavigatorObserver>[observer],
+
             theme: ThemeData.light().copyWith(
               primaryColor: _primaryColour,
               bottomAppBarColor: Colors.teal.shade50,
