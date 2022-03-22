@@ -39,20 +39,35 @@ class JakimEsolatModel {
 }
 
 class PrayerTime {
-  List<int>? times;
-  HijriDate? hijri;
-  PrayerTime({this.times, this.hijri});
+  late HijriDate hijri;
+  late DateTime imsak;
+  late DateTime fajr;
+  late DateTime syuruk;
+  late DateTime dhuha;
+  late DateTime dhuhr;
+  late DateTime asr;
+  late DateTime maghrib;
+  late DateTime isha;
+  PrayerTime(
+      {required this.hijri,
+      required this.imsak,
+      required this.fajr,
+      required this.syuruk,
+      required this.dhuhr,
+      required this.asr,
+      required this.maghrib,
+      required this.isha});
 
   PrayerTime.fromJson(Map<String, dynamic> json) {
     hijri = HijriDate.fromJson(json["hijri"]);
     var date = json["date"];
-    var imsak = json["imsak"];
-    var fajr = json["fajr"];
-    var syuruk = json["syuruk"];
-    var dhuhr = json["dhuhr"];
-    var asr = json["asr"];
-    var maghrib = json["maghrib"];
-    var isha = json["isha"];
+    var imsakRaw = json["imsak"];
+    var fajrRaw = json["fajr"];
+    var syurukRaw = json["syuruk"];
+    var dhuhrRaw = json["dhuhr"];
+    var asrRaw = json["asr"];
+    var maghribRaw = json["maghrib"];
+    var ishaRaw = json["isha"];
 
     var _monthMap = [
       'Jan',
@@ -79,23 +94,18 @@ class PrayerTime {
 
     date = date.replaceRange(3, 6, _monthNumeric.toString());
 
-    times = [
-      DateFormat(pattern).parse('$date $imsak').millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $fajr').millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $syuruk').millisecondsSinceEpoch,
-      DateFormat(pattern)
-          .parse('$date $syuruk')
-          .add(const Duration(minutes: 28))
-          .millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $dhuhr').millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $asr').millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $maghrib').millisecondsSinceEpoch,
-      DateFormat(pattern).parse('$date $isha').millisecondsSinceEpoch,
-    ];
+    imsak = DateFormat(pattern).parse('$date $imsakRaw');
+    fajr = DateFormat(pattern).parse('$date $fajrRaw');
+    syuruk = DateFormat(pattern).parse('$date $syurukRaw');
+    dhuha = syuruk.add(const Duration(minutes: 28));
+    dhuhr = DateFormat(pattern).parse('$date $dhuhrRaw');
+    asr = DateFormat(pattern).parse('$date $asrRaw');
+    maghrib = DateFormat(pattern).parse('$date $maghribRaw');
+    isha = DateFormat(pattern).parse('$date $ishaRaw');
   }
 
   @override
   String toString() {
-    return times.toString();
+    return "{hijri: $hijri, fajr: $fajr, dhuhr: $dhuhr, asr: $asr, maghrib: $maghrib, isha: $isha}";
   }
 }

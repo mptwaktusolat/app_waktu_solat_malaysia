@@ -71,7 +71,7 @@ class PrayerFullTable extends StatelessWidget {
                   return const Center(
                       child: SpinKitFadingCube(size: 35, color: Colors.teal));
                 } else if (snapshot.hasError) {
-                  return Text(snapshot.error as String);
+                  return Text(snapshot.error.toString());
                 } else {
                   return _PrayerDataTable(
                       todayIndex: _todayIndex,
@@ -161,21 +161,30 @@ class _PrayerDataTable extends StatelessWidget {
                 DataCell(
                   Text(
                     value.hijriStyle == HijriStyle.short
-                        ? _model.prayerTime![index].hijri!.dM()
-                        : _model.prayerTime![index].hijri!.dMMM(),
+                        ? _model.prayerTime![index].hijri.dM()
+                        : _model.prayerTime![index].hijri.dMMM(),
                     style: TextStyle(
                       fontWeight: index == _todayIndex ? FontWeight.bold : null,
                     ),
                   ),
                 ),
-              ..._model.prayerTime![index].times!
+              ...[
+                _model.prayerTime![index].imsak,
+                _model.prayerTime![index].fajr,
+                _model.prayerTime![index].syuruk,
+                _model.prayerTime![index].dhuha,
+                _model.prayerTime![index].dhuhr,
+                _model.prayerTime![index].asr,
+                _model.prayerTime![index].maghrib,
+                _model.prayerTime![index].isha
+              ]
                   .map(
                     (day) => DataCell(
                       Center(
                         child: Opacity(
                           opacity: (index < _todayIndex) ? 0.55 : 1.0,
                           child: Text(
-                            DateAndTime.toTimeReadable(day, _is12HourFormat),
+                            day.format(_is12HourFormat),
                             style: TextStyle(
                                 fontWeight: index == _todayIndex
                                     ? FontWeight.bold
@@ -191,12 +200,10 @@ class _PrayerDataTable extends StatelessWidget {
                   opacity: (index < _todayIndex) ? 0.55 : 1.0,
                   child: Text(
                     '~' +
-                        DateAndTime.toTimeReadable(
-                            DateAndTime.nightOneThird(
-                              _model.prayerTime![index].times![6],
-                              _model.prayerTime![index].times![1],
-                            ).millisecondsSinceEpoch,
-                            _is12HourFormat),
+                        DateAndTime.nightOneThird(
+                          _model.prayerTime![index].maghrib,
+                          _model.prayerTime![index].isha,
+                        ).format(_is12HourFormat),
                     style: TextStyle(
                         fontWeight:
                             index == _todayIndex ? FontWeight.bold : null),

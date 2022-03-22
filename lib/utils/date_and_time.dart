@@ -1,16 +1,14 @@
 import 'package:intl/intl.dart';
 
-class DateAndTime {
-  /// Convert epovh timestamp to human readable time
-  static String toTimeReadable(int unix, bool is12hr) {
+extension TimeFormat on DateTime {
+  /// Format dateTime
+  String format(bool is12hr) {
     var formatToReadable = is12hr ? DateFormat('h:mm a') : DateFormat('HH:mm');
-    var date = DateTime.fromMillisecondsSinceEpoch(unix, isUtc: true);
-    date =
-        date.add(const Duration(hours: 8)); //phone already formatted like this
-    var formattedTime = formatToReadable.format(date);
-    return (formattedTime);
+    return formatToReadable.format(this);
   }
+}
 
+class DateAndTime {
   /// check if input date is in this month
   static bool isSameMonthFromMillis(int millis) {
     var savedMonth = DateTime.fromMillisecondsSinceEpoch(millis).month;
@@ -35,15 +33,13 @@ class DateAndTime {
     return DateFormat("MMMM", locale).format(DateTime(2021, month));
   }
 
-  static DateTime nightOneThird(int maghrib, int subuh) {
-    var subuhDateTime =
-        DateTime.fromMillisecondsSinceEpoch(subuh).add(const Duration(days: 1));
-    var maghribDateTime = DateTime.fromMillisecondsSinceEpoch(maghrib);
+  static DateTime nightOneThird(DateTime maghrib, DateTime subuh) {
+    subuh = subuh.add(const Duration(days: 1));
 
-    var difference = subuhDateTime.difference(maghribDateTime);
+    var difference = subuh.difference(maghrib);
     var oneThirdDifference = difference.inMinutes ~/ 3;
 
     // sepertiga akhir malam
-    return subuhDateTime.subtract(Duration(minutes: oneThirdDifference));
+    return subuh.subtract(Duration(minutes: oneThirdDifference));
   }
 }
