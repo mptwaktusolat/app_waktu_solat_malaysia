@@ -202,7 +202,7 @@ class _PrayerDataTable extends StatelessWidget {
                     '~' +
                         DateAndTime.nightOneThird(
                           _model.prayerTime![index].maghrib,
-                          _model.prayerTime![index].isha,
+                          _model.prayerTime![index].fajr,
                         ).format(_is12HourFormat),
                     style: TextStyle(
                         fontWeight:
