@@ -232,7 +232,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               LocationData.position!.longitude)
                           : 'no detect',
                       'Device info': _logIsChecked! ? _deviceInfo : null,
-                      'Hijri Offset': GetStorage().read(kHijriOffset),
                       'zone': GetStorage().read(kStoredLocationJakimCode),
                       'app locale': AppLocalizations.of(context)!.localeName,
                       'device locale': Platform.localeName,

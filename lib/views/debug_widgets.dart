@@ -6,7 +6,6 @@ import 'package:in_app_review/in_app_review.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
-import '../utils/launchUrl.dart';
 
 class DebugWidgets {
   static Dialog debugDialog() {
@@ -59,27 +58,5 @@ class DebugWidgets {
         ],
       ),
     );
-  }
-
-  static Dialog hijriDialog() {
-    return Dialog(
-        child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Hijri offset: ${GetStorage().read(kHijriOffset)}',
-            style: const TextStyle(fontSize: 26),
-          ),
-          ElevatedButton(
-              onPressed: () {
-                LaunchUrl.normalLaunchUrl(
-                    url: 'https://mpt-hijri-converter.web.app/');
-              },
-              child: const Text('Open MPT Hijri'))
-        ],
-      ),
-    ));
   }
 }

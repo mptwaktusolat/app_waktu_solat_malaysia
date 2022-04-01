@@ -15,7 +15,6 @@ const kIsDebugMode = "debugModeSet";
 const kDiscoveredDeveloperOption = "storedDevDiscovered";
 const kSharingFormat = "storedSharingFormat";
 const kFontSize = "storedFontSize";
-const kHijriOffset = "storedHijriOffset";
 const kJsonCache = "jsonCache2";
 const kAppLaunchCount = "appLaunchCount";
 const kHasOpenSharingDialog = "openedSharedDialog";

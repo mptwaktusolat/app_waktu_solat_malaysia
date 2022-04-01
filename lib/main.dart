@@ -157,7 +157,6 @@ void initGetStorage() {
   _get.writeIfNull(kDiscoveredDeveloperOption, false);
   _get.writeIfNull(kSharingFormat, 0);
   _get.writeIfNull(kFontSize, 14.0);
-  _get.writeIfNull(kHijriOffset, -1);
   // make default to default locale
   var _localeName = Platform.localeName.split('_').first;
   _get.writeIfNull(kAppLanguage, _localeName == "ms" ? _localeName : "en");
