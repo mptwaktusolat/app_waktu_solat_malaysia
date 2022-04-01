@@ -125,10 +125,12 @@ class AboutAppPage extends StatelessWidget {
                         ),
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ContributionPage()));
+                            context,
+                            MaterialPageRoute(
+                                settings: const RouteSettings(
+                                    name: 'Contribution Page'),
+                                builder: (_) => const ContributionPage()),
+                          );
                         },
                       ),
                     ),
@@ -159,7 +161,8 @@ class AboutAppPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const FaqPage(),
+                            settings: const RouteSettings(name: 'FAQ Page'),
+                            builder: (_) => const FaqPage(),
                           ),
                         );
                       },

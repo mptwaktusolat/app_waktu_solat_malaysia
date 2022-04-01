@@ -51,6 +51,8 @@ class PrayerFullTable extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
+                          settings: const RouteSettings(
+                              name: 'Prayer Timetable Settings'),
                           builder: (_) => const FullPrayerTableSettings(),
                         ),
                       );

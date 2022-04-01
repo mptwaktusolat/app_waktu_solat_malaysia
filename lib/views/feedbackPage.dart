@@ -276,8 +276,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ElevatedButton.icon(
               icon: const FaIcon(FontAwesomeIcons.questionCircle, size: 13),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const FaqPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        settings: const RouteSettings(name: 'FAQ Page'),
+                        builder: (_) => const FaqPage()));
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),

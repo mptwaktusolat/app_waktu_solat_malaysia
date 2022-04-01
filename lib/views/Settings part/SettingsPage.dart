@@ -275,8 +275,8 @@ class AboutApp extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        AboutAppPage(packageInfo: snapshot.data),
+                    settings: const RouteSettings(name: 'About Page'),
+                    builder: (_) => AboutAppPage(packageInfo: snapshot.data),
                   ),
                 );
               },
@@ -307,8 +307,8 @@ class NotificationSetting extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  const NotificationPageSetting(),
+              settings: const RouteSettings(name: 'Notification Settings Page'),
+              builder: (_) => const NotificationPageSetting(),
             ),
           );
         },

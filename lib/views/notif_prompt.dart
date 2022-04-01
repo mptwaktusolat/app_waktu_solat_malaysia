@@ -88,6 +88,8 @@ class _NotifPromptState extends State<NotifPrompt> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
+                            settings: const RouteSettings(
+                                name: 'Notification Settings'),
                             builder: (_) => const NotificationPageSetting()));
                   },
                   child:

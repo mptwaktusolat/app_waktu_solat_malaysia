@@ -11,6 +11,7 @@ class ThemeProvider with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.values.byName(GetStorage().read(kAppTheme));
 
   ThemeProvider() {
+    // Setup correct status bar during startup
     _changeSystemUI();
   }
 

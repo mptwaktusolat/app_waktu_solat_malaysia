@@ -124,6 +124,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
+                    settings: const RouteSettings(
+                        name: 'Notification troubleshoot page'),
                     builder: (_) => const TroubleshootNotif(),
                   )),
             ),

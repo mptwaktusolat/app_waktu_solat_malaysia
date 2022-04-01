@@ -42,6 +42,8 @@ class QiblaWarn extends StatelessWidget {
                 GetStorage().write(kHasShowQiblaWarning, true);
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
+                    // no need route settings here, already defined in bottom
+                    // ap bar icon
                     builder: (_) => const Qibla(),
                   ),
                 );

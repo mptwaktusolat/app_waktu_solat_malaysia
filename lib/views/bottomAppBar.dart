@@ -58,8 +58,9 @@ class MyBottomAppBar extends StatelessWidget {
             tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
             color: _iconColour,
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => PrayerFullTable()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Full Prayer Timetable'),
+                  builder: (_) => PrayerFullTable()));
             },
           ),
           IconButton(
@@ -70,6 +71,7 @@ class MyBottomAppBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Qibla'),
                   builder: (_) => GetStorage().read(kHasShowQiblaWarning)
                       ? const Qibla()
                       : const QiblaWarn(),
@@ -86,6 +88,7 @@ class MyBottomAppBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Tasbih'),
                   builder: (_) => const Tasbih(),
                 ),
               );
@@ -118,7 +121,8 @@ void menuModalBottomSheet(BuildContext context) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ThemesPage()));
+                        settings: const RouteSettings(name: 'Themes'),
+                        builder: (_) => const ThemesPage()));
               },
             ),
             ListTile(
@@ -129,7 +133,8 @@ void menuModalBottomSheet(BuildContext context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SettingsPage(),
+                    settings: const RouteSettings(name: 'Settings'),
+                    builder: (_) => const SettingsPage(),
                   ),
                 );
               },
@@ -162,6 +167,7 @@ void menuModalBottomSheet(BuildContext context) {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
+                          settings: const RouteSettings(name: 'Update Page'),
                           builder: (_) => const UpdatePage(),
                         ));
                   },
@@ -213,9 +219,9 @@ void openFeedbackDialog(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (BuildContext context) {
-          return const FeedbackPage();
-        },
-        fullscreenDialog: true),
+      settings: const RouteSettings(name: 'Feedback Page'),
+      builder: (_) => const FeedbackPage(),
+      fullscreenDialog: true,
+    ),
   );
 }
