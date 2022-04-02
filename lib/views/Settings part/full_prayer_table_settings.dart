@@ -38,14 +38,18 @@ class FullPrayerTableSettings extends StatelessWidget {
                       AppLocalizations.of(context)!.timetableSettingHijriStyle),
                   trailing: DropdownButton<HijriStyle>(
                     value: value.hijriStyle,
-                    items:
-                        {HijriStyle.short: "Shortform", HijriStyle.full: "Full"}
-                            .entries
-                            .map((e) => DropdownMenuItem(
-                                  child: Text(e.value),
-                                  value: e.key,
-                                ))
-                            .toList(),
+                    items: {
+                      HijriStyle.short: AppLocalizations.of(context)!
+                          .timetableSettingShortform,
+                      HijriStyle.full:
+                          AppLocalizations.of(context)!.timetableSettingLongform
+                    }
+                        .entries
+                        .map((e) => DropdownMenuItem(
+                              child: Text(e.value),
+                              value: e.key,
+                            ))
+                        .toList(),
                     onChanged: (newValue) {
                       value.hijriStyle = newValue!;
                     },

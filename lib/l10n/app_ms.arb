@@ -42,6 +42,8 @@
   "timetableSettingHijriStyle": "Gaya bulan Hijri",
   "timetableSettingOneThird": "Tunjukkan sepertiga akhir malam",
   "timetableSettingOneThirdSub": "Pengiraan berdasarkan Pejabat Mufti Wilayah Persekutuan",
+  "timetableSettingShortform": "Pendek",
+  "timetableSettingLongform": "Penuh",
   "themeTitle": "Tema",
   "themeOptionSystem": "Tema Sistem",
   "themeOptionLight": "Tema Terang",
