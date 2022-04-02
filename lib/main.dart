@@ -83,7 +83,6 @@ class MyApp extends StatelessWidget {
             onGenerateTitle: (context) =>
                 AppLocalizations.of(context)!.appTitle,
             navigatorObservers: <NavigatorObserver>[observer],
-
             theme: ThemeData.light().copyWith(
               primaryColor: _primaryColour,
               bottomAppBarColor: Colors.teal.shade50,

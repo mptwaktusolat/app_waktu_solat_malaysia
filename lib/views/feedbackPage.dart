@@ -273,7 +273,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton.icon(
-              icon: const FaIcon(FontAwesomeIcons.questionCircle, size: 13),
+              icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
                 Navigator.push(
                     context,

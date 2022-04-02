@@ -54,7 +54,7 @@ class MyBottomAppBar extends StatelessWidget {
                 });
           }),
           IconButton(
-            icon: const FaIcon(FontAwesomeIcons.calendarAlt),
+            icon: const FaIcon(FontAwesomeIcons.calendarDays),
             tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
             color: _iconColour,
             onPressed: () {
@@ -126,7 +126,7 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuSettings),
-              leading: const FaIcon(FontAwesomeIcons.cog),
+              leading: const FaIcon(FontAwesomeIcons.gear),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -158,8 +158,8 @@ void menuModalBottomSheet(BuildContext context) {
                     Text(AppLocalizations.of(context)!.menuUpdateAvailable)
                   ]),
                   leading: const FaIcon(FontAwesomeIcons.googlePlay),
-                  trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
-                      size: 21),
+                  trailing:
+                      const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
                   onTap: () {
                     Navigator.pop(context);
                     setting.needForUpdate = false;
@@ -175,8 +175,8 @@ void menuModalBottomSheet(BuildContext context) {
                 return ListTile(
                   title: Text(AppLocalizations.of(context)!.menuRate),
                   leading: const FaIcon(FontAwesomeIcons.solidStar),
-                  trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
-                      size: 21),
+                  trailing:
+                      const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
                   onTap: () {
                     Navigator.pop(context);
                     Fluttertoast.showToast(
@@ -192,8 +192,7 @@ void menuModalBottomSheet(BuildContext context) {
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuWeb),
               leading: const FaIcon(FontAwesomeIcons.chrome),
-              trailing: const FaIcon(FontAwesomeIcons.externalLinkSquareAlt,
-                  size: 21),
+              trailing: const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
               onTap: () {
                 Navigator.pop(context);
                 LaunchUrl.normalLaunchUrl(url: kWebappUrl);

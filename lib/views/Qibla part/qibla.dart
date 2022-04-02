@@ -103,7 +103,7 @@ class CompassActionButtons extends StatelessWidget {
             children: const [
               Text('Google Qiblafinder'),
               SizedBox(width: 8),
-              FaIcon(FontAwesomeIcons.externalLinkSquareAlt, size: 13)
+              FaIcon(FontAwesomeIcons.squareUpRight, size: 13)
             ],
           ),
         ),

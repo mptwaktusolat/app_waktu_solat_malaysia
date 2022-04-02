@@ -178,7 +178,7 @@ class ZoneWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FaIcon(FontAwesomeIcons.mapMarkerAlt,
+                  FaIcon(FontAwesomeIcons.locationDot,
                       color: Colors.teal.shade50, size: 15),
                   Text(
                     '  ${_shortCode.substring(0, 3).toUpperCase()}  ${_shortCode.substring(3, 5)}',

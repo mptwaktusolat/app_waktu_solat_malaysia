@@ -20,7 +20,7 @@ class QiblaWarn extends StatelessWidget {
         child: Column(
           children: [
             const Spacer(),
-            FaIcon(FontAwesomeIcons.exclamationTriangle,
+            FaIcon(FontAwesomeIcons.triangleExclamation,
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.green
                     : Colors.green.shade700,

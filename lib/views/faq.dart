@@ -40,7 +40,7 @@ class _FaqPageState extends State<FaqPage> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   trailing: const FaIcon(
-                    FontAwesomeIcons.externalLinkAlt,
+                    FontAwesomeIcons.upRightFromSquare,
                     size: 18,
                   ),
                   onTap: () {

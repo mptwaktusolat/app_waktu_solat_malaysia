@@ -28,7 +28,7 @@ class ShareFAB extends StatelessWidget {
               case 3:
                 return const FaIcon(FontAwesomeIcons.clone);
               default:
-                return const FaIcon(FontAwesomeIcons.shareAlt);
+                return const FaIcon(FontAwesomeIcons.shareNodes);
             }
           },
         ),
