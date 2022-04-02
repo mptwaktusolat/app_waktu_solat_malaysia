@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:in_app_review/in_app_review.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
@@ -43,17 +42,9 @@ class DebugWidgets {
             title: const Text('Current zone'),
             subtitle: Text('${GetStorage().read(kStoredLocationJakimCode)}'),
           ),
-          ListTile(
-            title: const Text('Open in app review'),
-            subtitle: const Text(
-                'This should not be used frequently as the underlying API\'s enforce strict quotas.'),
-            onTap: () async {
-              final InAppReview inAppReview = InAppReview.instance;
-
-              if (await inAppReview.isAvailable()) {
-                inAppReview.requestReview();
-              }
-            },
+          const ListTile(
+            title: Text('Notification debug'),
+            subtitle: Text('Moved to notification settings page'),
           ),
         ],
       ),
