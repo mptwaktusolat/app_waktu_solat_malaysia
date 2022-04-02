@@ -81,8 +81,7 @@ class MyBottomAppBar extends StatelessWidget {
           ),
           IconButton(
             icon: Image.asset('assets/icons/tasbih-Custom.png',
-                color: Theme.of(context).iconTheme.color),
-            color: _iconColour,
+                color: _iconColour),
             tooltip: "Tasbih for Zikr",
             onPressed: () {
               Navigator.push(
