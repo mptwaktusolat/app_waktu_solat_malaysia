@@ -25,6 +25,7 @@ const kAppLanguage = "storedAppLang";
 const kAppTheme = "theme";
 const kTimetableHijri = "timetableHijri";
 const kTimetableHijriStyle = "timetableHijriStyle";
+const kTimetableShowOneThird = "tbOneThird";
 const kTasbihCount = "tasbihCount";
 const kTasbihGradientColour = "tasbihColours";
 
