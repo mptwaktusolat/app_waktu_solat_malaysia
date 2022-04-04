@@ -13,6 +13,9 @@ import 'prayer_data_handler.dart';
 class CopyAndShare {
   static const int _padLength = 8;
 
+  /// For [Type], 1 is normal, 2 is whatsapp
+  /// TODO: Change type to enum
+  /// Might as well do migration getstorage for this
   static String getMessage(BuildContext context, {int type = 1}) {
     var _l10n = AppLocalizations.of(context);
     var _date = DateFormat('EEEE, d MMMM yyyy', _l10n!.localeName)

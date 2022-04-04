@@ -3,7 +3,7 @@
 ![Works with Android](https://img.shields.io/badge/Works_with-Android-green?style=flat-square)
 [![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8)](https://waktusolat.web.app/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
-[![Installs](https://img.shields.io/badge/installs-32k+-orange)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
+[![Installs](https://img.shields.io/badge/installs-33k+-orange)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 [![style: lint](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg)](https://pub.dev/packages/flutter_lints)
 [![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)](https://twitter.com/iqfareez)
 
@@ -56,10 +56,10 @@ _i'm having difficulties to update the app in [Huawei App Gallery](https://appga
 
 _Not available for iOS sorry :disappointed:_
 
-## Try the pre-releases
+## Try the pre-releases (Beta track)
 
 Get it [here](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
-Do submit your review and comments. Some of the version are also available in Google Play beta program.
+Do let mew know your feedback and comments. Some of the version are also available in Google Play beta program.
 
 ## Devlogs
 

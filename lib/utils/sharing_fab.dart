@@ -87,26 +87,25 @@ class ShareFAB extends StatelessWidget {
               },
             ),
             // Message should only show once
-            GetStorage().read(kHasOpenSharingDialog) ?? false
-                ? const SizedBox.shrink()
-                : Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: AppLocalizations.of(context)!.shareSettingPrompt,
-                        style: DefaultTextStyle.of(context)
-                            .style
-                            .copyWith(fontSize: 12),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: AppLocalizations.of(context)!
-                                  .shareSettingPromptDestination,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold)),
-                        ],
-                      ),
-                    ),
+            // Show only if it is not open before
+            if (!(GetStorage().read<bool?>(kHasOpenSharingDialog) ?? false))
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: RichText(
+                  text: TextSpan(
+                    text: AppLocalizations.of(context)!.shareSettingPrompt,
+                    style: DefaultTextStyle.of(context)
+                        .style
+                        .copyWith(fontSize: 12),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: AppLocalizations.of(context)!
+                              .shareSettingPromptDestination,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                    ],
                   ),
+                ),
+              ),
           ],
         );
       },
