@@ -10,13 +10,13 @@ import '../providers/settingsProvider.dart';
 import 'date_and_time.dart';
 import 'prayer_data_handler.dart';
 
+enum ShareTarget { universal, whatsapp }
+
 class CopyAndShare {
   static const int _padLength = 8;
 
-  /// For [Type], 1 is normal, 2 is whatsapp
-  /// TODO: Change type to enum
-  /// Might as well do migration getstorage for this
-  static String getMessage(BuildContext context, {int type = 1}) {
+  static String getMessage(BuildContext context,
+      {ShareTarget shareTarget = ShareTarget.universal}) {
     var _l10n = AppLocalizations.of(context);
     var _date = DateFormat('EEEE, d MMMM yyyy', _l10n!.localeName)
         .format(DateTime.now());
@@ -27,8 +27,8 @@ class CopyAndShare {
     var _times = PrayDataHandler.today();
     var _use12 =
         Provider.of<SettingProvider>(context, listen: false).use12hour!;
-    switch (type) {
-      case 1:
+    switch (shareTarget) {
+      case ShareTarget.universal:
         String message = _l10n.shareTitle;
         message += '\n\n';
         message += '🌺 $_date\n';
@@ -45,7 +45,7 @@ class CopyAndShare {
         message += _l10n.shareGetApp(constants.kMptFdlGetLink);
 
         return message;
-      case 2:
+      case ShareTarget.whatsapp:
         String message = _l10n.shareTitle;
         message += '\n\n';
         message += '🌺 *$_date*\n';
@@ -66,8 +66,6 @@ class CopyAndShare {
         message += _l10n.shareGetApp(constants.kMptFdlGetLink);
 
         return message;
-      default:
-        return '';
     }
   }
 }

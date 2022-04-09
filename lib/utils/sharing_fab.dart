@@ -113,9 +113,13 @@ class ShareFAB extends StatelessWidget {
     GetStorage().write(kHasOpenSharingDialog, true);
   }
 
-  void shareToWhatsApp(BuildContext context) => LaunchUrl.normalLaunchUrl(
-        url: 'http://wa.me/?text=${CopyAndShare.getMessage(context, type: 2)}',
-      );
+  void shareToWhatsApp(BuildContext context) {
+    var message =
+        CopyAndShare.getMessage(context, shareTarget: ShareTarget.whatsapp);
+    LaunchUrl.normalLaunchUrl(
+      url: 'http://wa.me/?text=$message',
+    );
+  }
 
   void shareUniversal(BuildContext context) =>
       Share.share(CopyAndShare.getMessage(context),
