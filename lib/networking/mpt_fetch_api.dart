@@ -23,6 +23,8 @@ class MptApiFetch {
         return parsedModel;
       }
     }
+
+    dynamic jsonResponse;
     try {
       final api = Uri.https('www.e-solat.gov.my', 'index.php', {
         'r': 'esolatApi/takwimsolat',
@@ -42,36 +44,39 @@ class MptApiFetch {
       if (response.statusCode == 200) {
         // If the server did return a 200 OK response,
         // then parse the JSON.
-        var json = jsonDecode(response.body);
-        GetStorage().write(kJsonCache, json);
-        return JakimEsolatModel.fromJson(json);
+        jsonResponse = jsonDecode(response.body);
       } else {
-        // If jakim failed, call the backup API
-        final api =
-            Uri.parse('https://mpt-backup-api.herokuapp.com/solat/$location');
-        final response = await http.get(api);
-        GetStorage()
-            .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-        DebugToast.show("Cannot reach JAKIM at the moment. Using backup API.");
-
-        if (response.statusCode == 200) {
-          var json = jsonDecode(response.body);
-          var parsedModel = JakimEsolatModel.fromJson(json);
-
-          if (_validateResponse(parsedModel, location)) {
-            GetStorage().write(kJsonCache, json);
-            return parsedModel;
-          }
-        } else {
-          throw 'Failed to load prayer time (backup API). Status code ${response.statusCode}';
-        }
-
-        // If the server did not return a 200 OK response,
-        // then throw an exception.
-        throw 'Failed to load prayer time. Status code ${response.statusCode}';
+        jsonResponse = await _backupApi(location);
       }
     } on SocketException {
       throw 'No internet connection.';
+    } on http.ClientException {
+      // Handle SocketException error like in the
+      // https://github.com/iqfareez/app_waktu_solat_malaysia/issues/113
+      jsonResponse = await _backupApi(location);
+    }
+    var parsedModel = JakimEsolatModel.fromJson(jsonResponse);
+
+    if (_validateResponse(parsedModel, location)) {
+      GetStorage().write(kJsonCache, jsonResponse);
+      return parsedModel;
+    } else {
+      throw 'Data invalid. Contact developer.';
+    }
+  }
+
+  static Future<dynamic> _backupApi(String location) async {
+    // If jakim failed, call the backup API
+    final api =
+        Uri.parse('https://mpt-backup-api.herokuapp.com/solat/$location');
+    final response = await http.get(api);
+    GetStorage().write(kStoredApiPrayerCall, api.toString()); //for debug dialog
+    DebugToast.show("Cannot reach JAKIM at the moment. Using backup API.");
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw 'Failed to load prayer time (backup API). Status code ${response.statusCode}';
     }
   }
 
