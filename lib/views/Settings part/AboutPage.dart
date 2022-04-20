@@ -14,7 +14,6 @@ import '../../providers/settingsProvider.dart';
 import '../../utils/launchUrl.dart';
 import '../contributionPage.dart';
 import '../debug_widgets.dart';
-import '../faq.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
@@ -158,13 +157,8 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            settings: const RouteSettings(name: 'FAQ Page'),
-                            builder: (_) => const FaqPage(),
-                          ),
-                        );
+                        LaunchUrl.normalLaunchUrl(
+                            url: 'https://mywaktusolat.vercel.app/docs/intro');
                       },
                     ),
                   ),

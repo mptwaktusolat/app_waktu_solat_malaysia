@@ -1,6 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
@@ -9,12 +9,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
-import 'faq.dart';
+
+const _baseUrl = 'mpt-firestore-server.herokuapp.com';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
@@ -26,7 +28,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   final TextEditingController _messageController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late CollectionReference _reportsCollection;
   Map<String, dynamic>? _deviceInfo;
   late PackageInfo packageInfo;
   bool _isSendLoading = false;
@@ -34,7 +35,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   void initState() {
     super.initState();
-    _reportsCollection = FirebaseFirestore.instance.collection('reports');
+    http.get(Uri.https(_baseUrl, '')); // Wake up the bot
+
     getPackageInfo();
   }
 
@@ -216,38 +218,40 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                 if (_formKey.currentState!.validate()) {
                   FocusScope.of(context).unfocus();
+                  var payload = {
+                    'User email': _emailController.text.trim(),
+                    'User message': _messageController.text.trim(),
+                    'App version': packageInfo.version,
+                    'App build number': int.parse(packageInfo.buildNumber),
+                    'Prayer API': GetStorage().read(kStoredApiPrayerCall),
+                    'Position':
+                        '${LocationData.position?.latitude},${LocationData.position?.longitude}',
+                    'Device info': _logIsChecked! ? _deviceInfo : null,
+                    'zone': GetStorage().read(kStoredLocationJakimCode),
+                    'app locale': AppLocalizations.of(context)!.localeName,
+                    'device locale': Platform.localeName,
+                  };
                   setState(() => _isSendLoading = true);
                   try {
-                    await _reportsCollection.add({
-                      'Date creation': FieldValue.serverTimestamp(),
-                      'User email': _emailController.text.trim(),
-                      'User message': _messageController.text.trim(),
-                      'App version': packageInfo.version,
-                      'App build number': packageInfo.buildNumber,
-                      'Prayer API called':
-                          GetStorage().read(kStoredApiPrayerCall) ??
-                              'no pray api called',
-                      'Position': (LocationData.position != null)
-                          ? GeoPoint(LocationData.position!.latitude,
-                              LocationData.position!.longitude)
-                          : 'no detect',
-                      'Device info': _logIsChecked! ? _deviceInfo : null,
-                      'zone': GetStorage().read(kStoredLocationJakimCode),
-                      'app locale': AppLocalizations.of(context)!.localeName,
-                      'device locale': Platform.localeName,
-                    });
+                    await http.post(Uri.https(_baseUrl, '/feedback'),
+                        headers: {
+                          HttpHeaders.contentTypeHeader:
+                              ContentType.json.toString()
+                        },
+                        body: jsonEncode(payload));
                     setState(() => _isSendLoading = false);
                     Fluttertoast.showToast(
                             msg: AppLocalizations.of(context)!.feedbackThanks,
                             backgroundColor: Colors.green,
                             toastLength: Toast.LENGTH_LONG)
                         .then((value) => Navigator.pop(context));
-                  } on FirebaseException catch (e) {
+                  } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Error: ${e.message}'),
+                      content: Text('Error: $e'),
                       backgroundColor: Colors.red,
                     ));
                     setState(() => _isSendLoading = false);
+                    rethrow;
                   }
                 }
               },
@@ -275,11 +279,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ElevatedButton.icon(
               icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        settings: const RouteSettings(name: 'FAQ Page'),
-                        builder: (_) => const FaqPage()));
+                LaunchUrl.normalLaunchUrl(
+                    url: 'https://mywaktusolat.vercel.app/docs/intro');
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),

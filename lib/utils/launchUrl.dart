@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LaunchUrl {
+  LaunchUrl._();
   static void normalLaunchUrl(
       {required String? url, bool useCustomTabs = false}) {
     print('Launching $url');
