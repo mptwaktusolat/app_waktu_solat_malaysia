@@ -21,7 +21,7 @@ class WhatsNewUpdateDialog extends StatelessWidget {
             // styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceAround),
             data: AppLocalizations.of(context)!
                 .whatsUpdateContent(kReleaseNotesLink),
-            onTapLink: (_, href, __) => LaunchUrl.normalLaunchUrl(url: href),
+            onTapLink: (_, href, __) => LaunchUrl.normalLaunchUrl(url: href!),
           ),
         ],
       ),

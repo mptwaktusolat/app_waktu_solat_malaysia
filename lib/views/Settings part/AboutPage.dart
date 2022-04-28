@@ -109,7 +109,7 @@ class AboutAppPage extends StatelessWidget {
                       styleSheet:
                           MarkdownStyleSheet(textAlign: WrapAlignment.center),
                       onTapLink: (_, href, __) =>
-                          LaunchUrl.normalLaunchUrl(url: href),
+                          LaunchUrl.normalLaunchUrl(url: href!),
                     ),
                   ),
                   const SizedBox(height: 8),

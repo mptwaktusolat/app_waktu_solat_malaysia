@@ -6,13 +6,13 @@ import 'package:url_launcher/url_launcher.dart';
 class LaunchUrl {
   LaunchUrl._();
   static void normalLaunchUrl(
-      {required String? url, bool useCustomTabs = false}) {
+      {required String url, bool useCustomTabs = false}) {
     print('Launching $url');
 
     !useCustomTabs
-        ? _launchURL(url!)
+        ? _launchURL(Uri.parse(url))
         : FlutterWebBrowser.openWebPage(
-            url: url!,
+            url: url,
             customTabsOptions: CustomTabsOptions(
               shareState: CustomTabsShareState.on,
               defaultColorSchemeParams: CustomTabsColorSchemeParams(
@@ -24,9 +24,9 @@ class LaunchUrl {
   }
 }
 
-_launchURL(String url) async {
+_launchURL(Uri uri) async {
   try {
-    await launch(url);
+    await launchUrl(uri);
   } catch (e) {
     Fluttertoast.showToast(
         msg:
