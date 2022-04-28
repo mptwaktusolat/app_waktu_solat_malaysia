@@ -111,6 +111,7 @@ class _AppBodyState extends State<AppBody> {
                             onRetryPressed: () => setState(() {}));
                       }
 
+                      // display the list of prayer timee
                       return const PrayTimeList();
                     }),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -80,7 +81,7 @@ class MyBottomAppBar extends StatelessWidget {
             },
           ),
           IconButton(
-            icon: Image.asset('assets/icons/tasbih-Custom.png',
+            icon: SvgPicture.asset('assets/icons/tasbih-plain.svg',
                 color: _iconColour),
             tooltip: "Tasbih for Zikr",
             onPressed: () {
