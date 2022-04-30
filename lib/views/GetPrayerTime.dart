@@ -113,9 +113,9 @@ class SolatCard extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(10.0),
             splashColor: Colors.teal.withAlpha(30),
-            onLongPress: () =>
-                Clipboard.setData(ClipboardData(text: '$name: $time'))
-                    .then((value) {
+            onLongPress: () => Clipboard.setData(ClipboardData(
+                    text: '$name: ${time.format(value.use12hour!)}'))
+                .then((value) {
               Fluttertoast.showToast(
                 msg: AppLocalizations.of(context)!.getPtCopied,
                 toastLength: Toast.LENGTH_SHORT,
