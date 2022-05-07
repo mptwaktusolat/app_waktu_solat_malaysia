@@ -30,13 +30,25 @@ class _QiblaState extends State<Qibla> {
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child: ListTile(
-              leading: const FaIcon(FontAwesomeIcons.info),
-              title: Text(
-                AppLocalizations.of(context)!.qiblaOverheadWarn,
-                // textAlign: TextAlign.center,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              margin: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                  color: Colors.amber.withOpacity(.3),
+                  borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const FaIcon(FontAwesomeIcons.circleInfo),
+                  const SizedBox(width: 15),
+                  Flexible(
+                    child: Text(
+                      AppLocalizations.of(context)!.qiblaOverheadWarn,
+                      // textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
-              trailing: const FaIcon(FontAwesomeIcons.exclamation),
             ),
           ),
           Align(
