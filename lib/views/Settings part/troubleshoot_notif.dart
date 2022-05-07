@@ -1,9 +1,12 @@
 import 'package:app_settings/app_settings.dart';
+import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../utils/launchUrl.dart';
+final _mdStyleSheet = MarkdownStyleSheet(
+    textAlign: WrapAlignment.spaceAround, textScaleFactor: 1.1);
 
 class TroubleshootNotif extends StatelessWidget {
   const TroubleshootNotif({Key? key}) : super(key: key);
@@ -17,17 +20,23 @@ class TroubleshootNotif extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MarkdownBody(
-                data: AppLocalizations.of(context)!.notifTsPara1,
-                styleSheet: MarkdownStyleSheet(
-                    textAlign: WrapAlignment.spaceAround, textScaleFactor: 1.2),
+              FutureBuilder<bool?>(
+                future: isAutoStartAvailable,
+                builder: (_, snapshot) {
+                  if (snapshot.hasData && snapshot.data!) {
+                    return const SizedBox.shrink();
+                  }
+
+                  return const _DeviceOKAdmonition();
+                },
               ),
+              MarkdownBody(
+                  data: AppLocalizations.of(context)!.notifTsPara1,
+                  styleSheet: _mdStyleSheet),
               const SizedBox(height: 5),
               MarkdownBody(
-                data: AppLocalizations.of(context)!.notifTsPara2,
-                styleSheet: MarkdownStyleSheet(
-                    textAlign: WrapAlignment.spaceAround, textScaleFactor: 1.2),
-              ),
+                  data: AppLocalizations.of(context)!.notifTsPara2,
+                  styleSheet: _mdStyleSheet),
               const SizedBox(height: 5),
               Card(
                 child: ListTile(
@@ -36,22 +45,39 @@ class TroubleshootNotif extends StatelessWidget {
                   trailing: const Icon(Icons.launch_rounded),
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                AppLocalizations.of(context)!.notifTsRelatedArticle,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              const SizedBox(height: 5),
+              MarkdownBody(
+                data: AppLocalizations.of(context)!.notifTsPara3(
+                    'https://mywaktusolat.vercel.com/notifications'),
               ),
-              TextButton(
-                  onPressed: () {
-                    LaunchUrl.normalLaunchUrl(
-                        url:
-                            'https://telegra.ph/Notification-didnt-show-on-some-devices-07-31');
-                  },
-                  child:
-                      const Text('Notification didn\'t show on some devices'))
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _DeviceOKAdmonition extends StatelessWidget {
+  const _DeviceOKAdmonition({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+          color: Colors.green.withOpacity(.3),
+          borderRadius: BorderRadius.circular(16)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const FaIcon(FontAwesomeIcons.check),
+          const SizedBox(width: 15),
+          Flexible(
+            child: Text(AppLocalizations.of(context)!.notifTsAdmonition),
+          )
+        ],
       ),
     );
   }

@@ -167,7 +167,7 @@
   "qiblaWarnBody": "- Users must understand that Qibla Compass feature utilises the sensors of the user's device and does not use any data from JAKIM. Therefore, users should **wisely evaluate** the information obtained.\n- MPT app provides this function as a **guide** only. MPT app is not responsible if the information obtained is inaccurate. Please refer to the recommended way to get the exact Qibla direction.\n- To improve the accuracy, make sure the internet and GPS connection are stable and perform the calibration by rotating your device in an **8** or **infinity** shape as below:",
   "qiblaWarnProceed": "I understood",
   "qiblaTitle": "Qibla Compass",
-  "qiblaOverheadWarn": "Align both arrow head.\nDo not put device close to metal object.",
+  "qiblaOverheadWarn": "Avoid placing the device close to metal object or electrical appliances.",
   "qiblaCopyUrl": "URL copied :)",
   "qiblaCalibrationTip": "Calibration tip",
   "qiblaCalibrate": "Move your phone in 'figure 8 pattern'",
@@ -203,6 +203,15 @@
   "onboardingNotifOption": "Select notification preferences",
   "onboardingNotifDefault": "Default notification sound",
   "onboardingNotifAzan": "Azan notification",
+  "onboardingNotifAutostart": "**Autostart** need to be enabled for the app to send notifications. [Learn more...]({link})",
+  "@onboardingNotifAutostart": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingNotifAutostartSetting": "Open Settings",
   "onboardingFinish": "Alhamdulillah. All set",
   "onboardingFinishDesc": "Welcome abroad. Do explore other features and tweak other settings as well.",
   "onboardingDone": "Done",
@@ -270,10 +279,18 @@
   "contributeSourceDesc": "MPT app is open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.",
   "contributeOpenGh": "Open GitHub",
   "contributeCopied": "Copied to clipboard",
+  "notifTsAdmonition": "Your device may not be affected with this particular issue.",
   "notifTsPara1": "Some apps installed from the **Google Play Store** will disable **Autostart** by default. Due to this behaviour, prayer notification (sometimes) will not appear on your phone.",
   "notifTsPara2": "The solution is to enable **Autostart** for this app. Tap the button below to open App Setting, then find the Autostart option there to enable it.",
+  "notifTsPara3": "To learn more, kindly read [this article]({link}).",
+  "@notifTsPara3": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "notifTsOpenSetting": "Open App Setting",
-  "notifTsRelatedArticle": "Related Article:",
   "notifMonthlyReminderTitle": "Monthly refresh reminder",
   "notifMonthlyReminderDesc": "To continue receive prayer notification, open app at least once every month.",
   "notifItsTime": "It's {name}",

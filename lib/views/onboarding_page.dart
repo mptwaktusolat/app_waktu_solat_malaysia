@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:provider/provider.dart';
 import '../providers/locale_provider.dart';
 
 import '../CONSTANTS.dart';
 import '../main.dart';
+import '../utils/launchUrl.dart';
 import 'Settings part/NotificationSettingPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'ZoneChooser.dart';
@@ -28,6 +31,7 @@ class _OnboardingPageState extends State<OnboardingPage>
   );
 
   bool _isDoneSetLocation = false;
+
   AnimationController? _animController;
   MyNotificationType _notificationType =
       MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
@@ -139,6 +143,15 @@ class _OnboardingPageState extends State<OnboardingPage>
                 GetStorage().write(kNotificationType, type?.index);
                 setState(() => _notificationType = type!);
               }),
+          FutureBuilder<bool?>(
+              future: isAutoStartAvailable,
+              builder: (_, snapshot) {
+                if (snapshot.hasData && snapshot.data!) {
+                  return const _AutostartAdmonition();
+                }
+
+                return const SizedBox.shrink();
+              })
         ]),
       ),
       PageViewModel(
@@ -174,5 +187,46 @@ class _OnboardingPageState extends State<OnboardingPage>
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (builder) => const MyHomePage()));
         });
+  }
+}
+
+class _AutostartAdmonition extends StatelessWidget {
+  const _AutostartAdmonition({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 14, 14, 2),
+      margin: const EdgeInsets.only(top: 15),
+      decoration: BoxDecoration(
+          color: Colors.amber.withOpacity(.3),
+          borderRadius: BorderRadius.circular(16)),
+      child: Column(
+        children: [
+          MarkdownBody(
+            data: AppLocalizations.of(context)!.onboardingNotifAutostart(
+                'https://mywaktusolat.vercel.com/notifications'),
+            onTapLink: (_, href, __) {
+              LaunchUrl.normalLaunchUrl(url: href!);
+            },
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: TextButton(
+                style: TextButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    primary: Theme.of(context).textTheme.bodyLarge!.color),
+                onPressed: () {
+                  // open auto start setting
+                  getAutoStartPermission();
+                },
+                child: Text(AppLocalizations.of(context)!
+                    .onboardingNotifAutostartSetting)),
+          ),
+        ],
+      ),
+    );
   }
 }
