@@ -64,6 +64,8 @@ class LocationChooser {
         rethrow;
       }
     }
+    print(_firstPlacemark);
+    //TODO: remove this print statement
     DebugToast.show(_firstPlacemark.country);
     if (_firstPlacemark.country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
@@ -75,8 +77,9 @@ class LocationChooser {
         zone: zone,
         negeri: _firstPlacemark.administrativeArea,
         lokasi: _firstPlacemark.locality!.isNotEmpty
-            ? _firstPlacemark.locality
-            : _firstPlacemark.name,
+            ? "${_firstPlacemark.locality} (l)"
+            : "${_firstPlacemark.street} (s)",
+            // TODO: Remove (l) & (s) before publishing
         lat: null,
         lng: null);
   }

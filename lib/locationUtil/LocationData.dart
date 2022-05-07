@@ -34,8 +34,7 @@ class LocationData {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy:
-            LocationAccuracy.low); //on Android, low is in 500m radius
+        desiredAccuracy: LocationAccuracy.medium); //100-500m radius for Android
     _position = position;
     return position;
   }
