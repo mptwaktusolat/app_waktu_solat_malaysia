@@ -11,7 +11,7 @@ App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
 
 Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
-![malaysia prayer time screenshots](https://user-images.githubusercontent.com/60868965/157147575-33735055-4bd0-401e-bbec-275c464301f6.png)
+![malaysia prayer time screenshots](https://user-images.githubusercontent.com/60868965/167505576-d8e0c62a-76b4-4d82-ade9-fa0722539b5d.png)
 
 More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 
