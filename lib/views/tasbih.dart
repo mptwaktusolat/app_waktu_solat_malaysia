@@ -35,6 +35,7 @@ class _TasbihState extends State<Tasbih> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Tasbih"),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {

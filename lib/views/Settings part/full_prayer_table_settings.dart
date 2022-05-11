@@ -16,6 +16,7 @@ class FullPrayerTableSettings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.timetableSettingTitle),
+        centerTitle: true,
       ),
       body: Consumer<TimetableProvider>(
         builder: (_, value, __) => ListView(
