@@ -16,6 +16,8 @@ import '../CONSTANTS.dart';
 import '../locationUtil/LocationData.dart';
 import '../utils/launchUrl.dart';
 
+/// This just an app built with express js, that handle
+/// the transaction to the Firebase.
 const _baseUrl = 'mpt-firestore-server.herokuapp.com';
 
 class FeedbackPage extends StatefulWidget {
