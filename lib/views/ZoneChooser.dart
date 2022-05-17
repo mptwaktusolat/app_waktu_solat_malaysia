@@ -25,8 +25,8 @@ import '../utils/debug_toast.dart';
 
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
-    GetStorage().write(kShouldUpdateNotif,
-        true); //if zone changes, update the notification
+    GetStorage().write(
+        kShouldUpdateNotif, true); //if zone changes, update the notification
     //this setState will be called when user select a new location, this will update the Text short code
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -64,8 +64,6 @@ class LocationChooser {
         rethrow;
       }
     }
-    print(_firstPlacemark);
-    //TODO: remove this print statement
     DebugToast.show(_firstPlacemark.country);
     if (_firstPlacemark.country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
@@ -77,9 +75,8 @@ class LocationChooser {
         zone: zone,
         negeri: _firstPlacemark.administrativeArea,
         lokasi: _firstPlacemark.locality!.isNotEmpty
-            ? "${_firstPlacemark.locality} (l)"
-            : "${_firstPlacemark.street} (s)",
-            // TODO: Remove (l) & (s) before publishing
+            ? "${_firstPlacemark.locality}"
+            : "${_firstPlacemark.name}",
         lat: null,
         lng: null);
   }
@@ -98,16 +95,18 @@ class LocationChooser {
             child: FutureBuilder(
                 future:
                     _getAllLocationData().timeout(const Duration(seconds: 12)),
-                builder:
-                    (_, AsyncSnapshot<LocationCoordinateData> snapshot) {
+                builder: (_, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const ZoneLoadingWidget();
                   } else if (snapshot.hasData) {
                     return ZoneSuccessWidget(coordinateData: snapshot.data!);
                   } else if (snapshot.hasError) {
-                    return ZoneErrorWidget(errorMessage: snapshot.error.toString())
+                    return ZoneErrorWidget(
+                        errorMessage: snapshot.error.toString());
                   } else {
-                    return const ZoneErrorWidget(errorMessage: 'Unexpected error occured',)
+                    return const ZoneErrorWidget(
+                      errorMessage: 'Unexpected error occured',
+                    );
                   }
                 }),
           ),
@@ -320,7 +319,8 @@ class ZoneLoadingWidget extends StatelessWidget {
 }
 
 class ZoneErrorWidget extends StatelessWidget {
-  const ZoneErrorWidget({Key? key, required this.errorMessage}) : super(key: key);
+  const ZoneErrorWidget({Key? key, required this.errorMessage})
+      : super(key: key);
 
   final String errorMessage;
 
@@ -363,8 +363,7 @@ class ZoneErrorWidget extends StatelessWidget {
                     ],
                   ),
                   MarkdownBody(
-                    data:
-                        AppLocalizations.of(context)!.zoneErrorPara1,
+                    data: AppLocalizations.of(context)!.zoneErrorPara1,
                     styleSheet: MarkdownStyleSheet(
                         textAlign: WrapAlignment.center,
                         p: TextStyle(color: Colors.red.shade300)),
