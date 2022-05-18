@@ -26,7 +26,7 @@ class LaunchUrl {
 
 _launchURL(Uri uri) async {
   try {
-    await launchUrl(uri);
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
   } catch (e) {
     Fluttertoast.showToast(
         msg:
