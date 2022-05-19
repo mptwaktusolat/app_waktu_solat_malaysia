@@ -43,7 +43,7 @@ dependencies:
       path: packages/google_mobile_ads
       ref: feature/suamusica
   restart_app: ^1.0.3
-  grouped_list: ^4.1.0
+  grouped_list: ^5.0.1
   flutter_markdown: ^0.6.9
   firebase_analytics: ^9.1.2
   auto_start_flutter: ^0.1.0
