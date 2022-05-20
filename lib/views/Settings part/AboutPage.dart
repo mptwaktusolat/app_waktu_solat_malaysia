@@ -40,11 +40,11 @@ class AboutAppPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onLongPress: () {
-                      if (_isFirstTry && !setting.isDeveloperOption!) {
+                      if (_isFirstTry && !setting.isDeveloperOption) {
                         Fluttertoast.showToast(msg: '(⌐■_■)');
                         _isFirstTry = false;
                       } else {
-                        if (!setting.isDeveloperOption!) {
+                        if (!setting.isDeveloperOption) {
                           Fluttertoast.showToast(
                               msg: 'Developer mode discovered',
                               toastLength: Toast.LENGTH_LONG,
@@ -157,8 +157,7 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       onTap: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: 'https://mywaktusolat.vercel.app/docs/intro');
+                        LaunchUrl.normalLaunchUrl(url: '$kWebsite/docs/intro');
                       },
                     ),
                   ),

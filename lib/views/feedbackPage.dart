@@ -281,8 +281,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             ElevatedButton.icon(
               icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(
-                    url: 'https://mywaktusolat.vercel.app/docs/intro');
+                LaunchUrl.normalLaunchUrl(url: '$kWebsite/docs/intro');
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),

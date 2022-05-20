@@ -7,9 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import '../../providers/locale_provider.dart';
 
-import '../../CONSTANTS.dart' as constants;
+import '../../CONSTANTS.dart';
+import '../../providers/locale_provider.dart';
 import '../../providers/settingsProvider.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
@@ -55,11 +55,11 @@ class SettingsPage extends StatelessWidget {
                   child: Text(AppLocalizations.of(context)!.settingMore)),
               const AboutApp(),
               const SizedBox(height: 3),
-              setting.isDeveloperOption!
+              setting.isDeveloperOption
                   ? const VerboseDebugDialog()
                   : const SizedBox.shrink(),
               const SizedBox(height: 3),
-              setting.isDeveloperOption!
+              setting.isDeveloperOption
                   ? const ResetAllSavedData()
                   : const SizedBox.shrink(),
               const SizedBox(height: 40),
@@ -118,11 +118,11 @@ class FontSizeSetting extends StatelessWidget {
         subtitle: Slider(
           activeColor: CupertinoColors.activeBlue,
           // inactiveColor: Colors.teal.withAlpha(40),
-          label: value.prayerFontSize!.round().toString(),
+          label: value.prayerFontSize.round().toString(),
           min: 12.0,
           max: 22.0,
           divisions: 5,
-          value: value.prayerFontSize!,
+          value: value.prayerFontSize,
           onChanged: (double newValue) => value.prayerFontSize = newValue,
         ),
       ),
@@ -179,7 +179,7 @@ class VerboseDebugDialog extends StatelessWidget {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text(GetStorage().read(constants.kIsDebugMode)
+                title: Text(GetStorage().read(kIsDebugMode)
                     ? 'Verbose debug mode is ON'
                     : 'Verbose debug mode is OFF'),
                 contentPadding:
@@ -194,11 +194,11 @@ class VerboseDebugDialog extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       //inverse if false then become true & vice versa
-                      GetStorage().write(constants.kIsDebugMode,
-                          !GetStorage().read(constants.kIsDebugMode));
+                      GetStorage().write(
+                          kIsDebugMode, !GetStorage().read(kIsDebugMode));
                       CustomNavigatorPop.popTo(context, 2);
                     },
-                    child: GetStorage().read(constants.kIsDebugMode)
+                    child: GetStorage().read(kIsDebugMode)
                         ? const Text('Turn off')
                         : const Text(
                             'Turn on',
@@ -327,9 +327,11 @@ class OtherTimesSettings extends StatelessWidget {
         builder: (_, value, __) => CupertinoSwitchListTile(
           activeColor: CupertinoColors.activeBlue,
           title: Text(AppLocalizations.of(context)!.settingOtherPrayer),
-          subtitle: const Text('Imsak, Syuruk, Dhuha'),
+          // display 'Imsak, Syuruk & DHuha' according to locale
+          subtitle: Text(
+              '${AppLocalizations.of(context)!.imsakName}, ${AppLocalizations.of(context)!.sunriseName} & ${AppLocalizations.of(context)!.dhuhaName}'),
           onChanged: (bool newValue) => value.showOtherPrayerTime = newValue,
-          value: value.showOtherPrayerTime!,
+          value: value.showOtherPrayerTime,
         ),
       ),
     );
@@ -350,17 +352,16 @@ class TimeFormatSettings extends StatelessWidget {
               padding: EdgeInsets.all(4.0),
               child: FaIcon(FontAwesomeIcons.caretDown, size: 13),
             ),
-            items: <String>['12', '24']
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: "$value hour", // yes, this is the value
+            // check dropdown ni borken atau tak
+            items: [12, 24].map<DropdownMenuItem<int>>((int value) {
+              return DropdownMenuItem<int>(
+                value: value, // yes, this is the value
                 child: Text(AppLocalizations.of(context)!
-                    .settingTimeFormatDropdown(value)),
+                    .settingTimeFormatDropdown(value.toString())),
               );
             }).toList(),
-            onChanged: (String? newValue) =>
-                value.use12hour = (newValue == '12 hour'),
-            value: value.use12hour! ? '12 hour' : '24 hour',
+            onChanged: (int? newValue) => value.use12hour = (newValue == 12),
+            value: value.use12hour ? 12 : 24,
           ),
         ),
       ),

@@ -25,8 +25,7 @@ class CopyAndShare {
     var _daerah = LocationDatabase.daerah(_currentLocation);
     var _negeri = LocationDatabase.negeri(_currentLocation);
     var _times = PrayDataHandler.today();
-    var _use12 =
-        Provider.of<SettingProvider>(context, listen: false).use12hour!;
+    var _use12 = Provider.of<SettingProvider>(context, listen: false).use12hour;
     switch (shareTarget) {
       case ShareTarget.universal:
         String message = _l10n.shareTitle;

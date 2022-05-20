@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../CONSTANTS.dart';
 import '../../utils/launchUrl.dart';
 
 final _mdStyleSheet = MarkdownStyleSheet(
@@ -49,8 +50,8 @@ class TroubleshootNotif extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               MarkdownBody(
-                data: AppLocalizations.of(context)!.notifTsPara3(
-                    'https://mywaktusolat.vercel.com/notifications'),
+                data: AppLocalizations.of(context)!
+                    .notifTsPara3('$kWebsite/docs/troubleshoot/notifications'),
                 onTapLink: (_, href, __) =>
                     LaunchUrl.normalLaunchUrl(url: href!),
               ),

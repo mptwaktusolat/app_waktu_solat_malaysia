@@ -207,7 +207,7 @@ class _AutostartAdmonition extends StatelessWidget {
         children: [
           MarkdownBody(
             data: AppLocalizations.of(context)!.onboardingNotifAutostart(
-                'https://mywaktusolat.vercel.com/notifications'),
+                '$kWebsite/docs/troubleshoot/notifications'),
             onTapLink: (_, href, __) {
               LaunchUrl.normalLaunchUrl(url: href!);
             },

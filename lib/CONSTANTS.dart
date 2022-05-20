@@ -69,12 +69,11 @@ const kInstaStoryDevlog =
 const kGithubLink = 'https://github.com/iqfareez';
 const kPlayStoreDevLink =
     'https://play.google.com/store/apps/dev?id=9200064795631584674';
+const kWebsite = 'https://mywaktusolat.vercel.app';
 
 //Contribution page
 const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
 const kBankAccountNum = '162348620850'; //maybank
-const kPaypalDonateShortLink = 'paypal.me/iqfareez';
-const kPaypalDonateFullLink = 'https://www.paypal.com/paypalme/iqfareez';
 
 //hero tag
 const kAppIconTag = 'appIconTag';

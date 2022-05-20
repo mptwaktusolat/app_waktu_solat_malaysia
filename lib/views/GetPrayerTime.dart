@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
@@ -24,9 +22,6 @@ class PrayTimeList extends StatefulWidget {
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
-  bool? use12hour = GetStorage().read(kStoredTimeIs12);
-  bool? showOtherPrayerTime;
-
   @override
   Widget build(BuildContext context) {
     if (PreventUpdatingNotifs.shouldUpdate()) {
@@ -36,15 +31,14 @@ class _PrayTimeListState extends State<PrayTimeList> {
 
     return Consumer<SettingProvider>(
       builder: (_, setting, __) {
-        use12hour = setting.use12hour;
-        showOtherPrayerTime = setting.showOtherPrayerTime;
+        bool showOtherPrayerTime = setting.showOtherPrayerTime;
         var _today = PrayDataHandler.today();
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            if (showOtherPrayerTime!)
+            if (showOtherPrayerTime)
               SolatCard(
                   time: _today.imsak,
                   name: AppLocalizations.of(context)!.imsakName,
@@ -53,12 +47,12 @@ class _PrayTimeListState extends State<PrayTimeList> {
                 time: _today.fajr,
                 name: AppLocalizations.of(context)!.fajrName,
                 isOther: true),
-            if (showOtherPrayerTime!)
+            if (showOtherPrayerTime)
               SolatCard(
                   time: _today.syuruk,
                   name: AppLocalizations.of(context)!.sunriseName,
                   isOther: false),
-            if (showOtherPrayerTime!)
+            if (showOtherPrayerTime)
               SolatCard(
                   time: _today.dhuha,
                   name: AppLocalizations.of(context)!.dhuhaName,
@@ -114,7 +108,7 @@ class SolatCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.0),
             splashColor: Colors.teal.withAlpha(30),
             onLongPress: () => Clipboard.setData(ClipboardData(
-                    text: '$name: ${time.format(value.use12hour!)}'))
+                    text: '$name: ${time.format(value.use12hour)}'))
                 .then((value) {
               Fluttertoast.showToast(
                 msg: AppLocalizations.of(context)!.getPtCopied,
@@ -126,7 +120,7 @@ class SolatCard extends StatelessWidget {
             child: Center(
               child: Text(
                 AppLocalizations.of(context)!
-                    .getPtTimeAt(name, time.format(value.use12hour!)),
+                    .getPtTimeAt(name, time.format(value.use12hour)),
                 style: TextStyle(fontSize: value.prayerFontSize),
               ),
             ),

@@ -27,7 +27,7 @@ class ThemeProvider with ChangeNotifier {
 
   /// Change system navigation colour
   void _changeSystemUI() {
-    var brightness = SchedulerBinding.instance!.window.platformBrightness;
+    var brightness = SchedulerBinding.instance.window.platformBrightness;
     bool isDeviceDarkMode = brightness == Brightness.dark;
 
     if (_themeMode == ThemeMode.system

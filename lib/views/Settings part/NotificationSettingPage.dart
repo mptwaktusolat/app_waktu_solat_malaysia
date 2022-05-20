@@ -186,8 +186,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
             ),
           ),
           if (Provider.of<SettingProvider>(context, listen: false)
-                  .isDeveloperOption ??
-              false)
+              .isDeveloperOption)
             const _DebugNotifWidget(),
         ],
       ),
