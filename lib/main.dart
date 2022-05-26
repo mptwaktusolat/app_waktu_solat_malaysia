@@ -51,6 +51,8 @@ void main() async {
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
 
+  HttpOverrides.global = MyHttpOverrides();
+
   runApp(const MyApp());
 
   _showReviewPrompt();
@@ -190,5 +192,16 @@ void _showReviewPrompt() async {
   if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
     inAppReview.requestReview();
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    // allow e-solat jakim to bypass
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) =>
+              host == 'www.e-solat.gov.my';
   }
 }
