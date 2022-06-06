@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: Create a report to help me improve
-title: ''
+title: ""
 labels: bug
-assignees: ''
-
+assignees: ""
 ---
 
 **Describe the bug**
@@ -12,6 +11,7 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
@@ -24,13 +24,11 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Debug Info:**
- - Head over to about tab
- - Tap 'Copy Debug Info' button
- - Paste below 
--------------
+Android version, app version etc.
 
+---
 
--------------
+---
 
 **Additional context**
 Add any other context about the problem here.
