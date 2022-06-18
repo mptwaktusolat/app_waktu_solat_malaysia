@@ -122,10 +122,8 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         systemOverlayStyle:
             const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-        title: Text(
-          AppLocalizations.of(context)!.appbarTitle,
-          style: GoogleFonts.balooTamma(),
-        ),
+        title: Text(AppLocalizations.of(context)!.appbarTitle,
+            style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
         elevation: 0.0,
         centerTitle: true,
         toolbarHeight: 50,
@@ -142,26 +140,26 @@ class MyHomePage extends StatelessWidget {
 
 void initGetStorage() {
   // init default settings
-  GetStorage _get = GetStorage();
-  _get.writeIfNull(kHasShowQiblaWarning, false);
-  _get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
-  _get.writeIfNull(kShowNotifPrompt, true);
-  _get.writeIfNull(kAppLaunchCount, 0);
-  _get.writeIfNull(kIsFirstRun, true);
-  _get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
-  _get.writeIfNull(kStoredTimeIs12, true);
-  _get.writeIfNull(kStoredShowOtherPrayerTime, false);
-  _get.writeIfNull(kShouldUpdateNotif, true);
-  _get.writeIfNull(kStoredLastUpdateNotif, 0);
-  _get.writeIfNull(kStoredNotificationLimit, false);
-  _get.writeIfNull(kIsDebugMode, false);
-  _get.writeIfNull(kDiscoveredDeveloperOption, false);
-  _get.writeIfNull(kSharingFormat, 0);
-  _get.writeIfNull(kFontSize, 14.0);
+  GetStorage get = GetStorage();
+  get.writeIfNull(kHasShowQiblaWarning, false);
+  get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
+  get.writeIfNull(kShowNotifPrompt, true);
+  get.writeIfNull(kAppLaunchCount, 0);
+  get.writeIfNull(kIsFirstRun, true);
+  get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
+  get.writeIfNull(kStoredTimeIs12, true);
+  get.writeIfNull(kStoredShowOtherPrayerTime, false);
+  get.writeIfNull(kShouldUpdateNotif, true);
+  get.writeIfNull(kStoredLastUpdateNotif, 0);
+  get.writeIfNull(kStoredNotificationLimit, false);
+  get.writeIfNull(kIsDebugMode, false);
+  get.writeIfNull(kDiscoveredDeveloperOption, false);
+  get.writeIfNull(kSharingFormat, 0);
+  get.writeIfNull(kFontSize, 14.0);
   // make default to default locale
-  var _localeName = Platform.localeName.split('_').first;
-  _get.writeIfNull(kAppLanguage, _localeName == "ms" ? _localeName : "en");
-  _get.writeIfNull(kAppTheme, ThemeMode.light.name);
+  var localeName = Platform.localeName.split('_').first;
+  get.writeIfNull(kAppLanguage, localeName == "ms" ? localeName : "en");
+  get.writeIfNull(kAppTheme, ThemeMode.light.name);
 }
 
 Future<void> _configureLocalTimeZone() async {
@@ -187,9 +185,9 @@ void _readAllGetStorage() {
 void _showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int _appLaunchCount = GetStorage().read(kAppLaunchCount);
+  int appLaunchCount = GetStorage().read(kAppLaunchCount);
 
-  if (_appLaunchCount == 10 && await inAppReview.isAvailable()) {
+  if (appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
     inAppReview.requestReview();
   }

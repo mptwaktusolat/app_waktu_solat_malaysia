@@ -218,7 +218,7 @@ class DateWidget extends StatelessWidget {
               Text(
                 DateFormat('EEEE', AppLocalizations.of(context)?.localeName)
                     .format(DateTime.now()),
-                style: GoogleFonts.spartan(color: Colors.white),
+                style: GoogleFonts.leagueSpartan(color: Colors.white),
               ),
               Text(
                 hijriDate,
