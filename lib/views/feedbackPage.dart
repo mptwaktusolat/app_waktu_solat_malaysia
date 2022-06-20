@@ -23,7 +23,7 @@ const _baseUrl = 'mpt-firestore-server.herokuapp.com';
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
   @override
-  _FeedbackPageState createState() => _FeedbackPageState();
+  State<FeedbackPage> createState() => _FeedbackPageState();
 }
 
 class _FeedbackPageState extends State<FeedbackPage> {
@@ -289,7 +289,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               style: ElevatedButton.styleFrom(primary: Colors.black),
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(url: kGithubRepoLink + '/issues');
+                LaunchUrl.normalLaunchUrl(url: '$kGithubRepoLink/issues');
               },
               label: Text(AppLocalizations.of(context)!.feedbackReportGithub),
             ),

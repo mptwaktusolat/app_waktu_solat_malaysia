@@ -7,7 +7,7 @@ import '../../providers/ThemeController.dart';
 class ThemesPage extends StatefulWidget {
   const ThemesPage({Key? key}) : super(key: key);
   @override
-  _ThemesPageState createState() => _ThemesPageState();
+  State<ThemesPage> createState() => _ThemesPageState();
 }
 
 class _ThemesPageState extends State<ThemesPage>
@@ -35,9 +35,9 @@ class _ThemesPageState extends State<ThemesPage>
               padding: const EdgeInsets.all(18.0),
               child: Builder(
                 builder: (context) {
-                  bool _isDarkMode =
+                  bool isDarkMode =
                       Theme.of(context).brightness == Brightness.dark;
-                  if (_isDarkMode) {
+                  if (isDarkMode) {
                     _animationController!.forward();
                   } else {
                     _animationController!.reverse();
@@ -46,7 +46,7 @@ class _ThemesPageState extends State<ThemesPage>
                     child: AnimatedMoon(
                       animationController: _animationController,
                       width: MediaQuery.of(context).size.width,
-                      isDarkMode: _isDarkMode,
+                      isDarkMode: isDarkMode,
                     ),
                   );
                 },
@@ -130,13 +130,13 @@ class AnimatedMoon extends StatelessWidget {
 class ThemesOption extends StatefulWidget {
   const ThemesOption({Key? key}) : super(key: key);
   @override
-  _ThemesOptionState createState() => _ThemesOptionState();
+  State<ThemesOption> createState() => _ThemesOptionState();
 }
 
 class _ThemesOptionState extends State<ThemesOption> {
   @override
   Widget build(BuildContext context) {
-    final Map<String, ThemeMode> _themeOptions = {
+    final Map<String, ThemeMode> themeOptions = {
       AppLocalizations.of(context)!.themeOptionSystem: ThemeMode.system,
       AppLocalizations.of(context)!.themeOptionLight: ThemeMode.light,
       AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
@@ -146,14 +146,14 @@ class _ThemesOptionState extends State<ThemesOption> {
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: _themeOptions.length,
+          itemCount: themeOptions.length,
           itemBuilder: (_, index) {
             return RadioListTile(
-                title: Text(_themeOptions.keys.elementAt(index)),
+                title: Text(themeOptions.keys.elementAt(index)),
                 subtitle: index == 0
                     ? Text(AppLocalizations.of(context)!.themeSupportedDevice)
                     : null,
-                value: _themeOptions.values.elementAt(index),
+                value: themeOptions.values.elementAt(index),
                 groupValue: setting.themeMode,
                 onChanged: (dynamic value) {
                   setting.themeMode = value;

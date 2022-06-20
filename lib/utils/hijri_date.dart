@@ -32,11 +32,11 @@ class HijriDate {
   late String shortMonthName;
 
   HijriDate.fromJson(String hijriDate) {
-    var _date = hijriDate.split('-');
+    var date = hijriDate.split('-');
 
-    year = int.parse(_date.first);
-    month = int.parse(_date[1]);
-    day = int.parse(_date.last);
+    year = int.parse(date.first);
+    month = int.parse(date[1]);
+    day = int.parse(date.last);
     monthName = _hijriNames[month - 1];
     shortMonthName = _shortHijriNames[month - 1];
   }

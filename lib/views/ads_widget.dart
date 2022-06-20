@@ -5,7 +5,7 @@ class AdsWidget extends StatefulWidget {
   const AdsWidget({Key? key}) : super(key: key);
 
   @override
-  _AdsWidgetState createState() => _AdsWidgetState();
+  State<AdsWidget> createState() => _AdsWidgetState();
 }
 
 class _AdsWidgetState extends State<AdsWidget> {
@@ -44,10 +44,10 @@ class _AdsWidgetState extends State<AdsWidget> {
   Widget build(BuildContext context) {
     if (_isAdLoaded) {
       return Container(
-          child: AdWidget(ad: _ad),
           width: _ad.size.width.toDouble(),
           height: _ad.size.height.toDouble() + 30,
-          alignment: Alignment.center);
+          alignment: Alignment.center,
+          child: AdWidget(ad: _ad));
     } else {
       return const SizedBox.shrink();
     }

@@ -26,14 +26,14 @@ class UpdatePage extends StatelessWidget {
   const UpdatePage({Key? key}) : super(key: key);
 
   Future<_UpdateInfo> _fetchUpdateInfo() async {
-    var _githubReleases = await AppUpdateChecker.getUpdateInfo();
-    var _packageInfo = await PackageInfo.fromPlatform();
+    var githubReleases = await AppUpdateChecker.getUpdateInfo();
+    var packageInfo = await PackageInfo.fromPlatform();
 
     return _UpdateInfo(
-      updateName: _githubReleases.name!,
-      latestVersion: _githubReleases.tagName!.split('+').first,
-      currentVersion: _packageInfo.version,
-      daySinceRelease: DateTime.parse(_githubReleases.publishedAt!)
+      updateName: githubReleases.name!,
+      latestVersion: githubReleases.tagName!.split('+').first,
+      currentVersion: packageInfo.version,
+      daySinceRelease: DateTime.parse(githubReleases.publishedAt!)
           .difference(DateTime.now())
           .inDays
           .abs(),

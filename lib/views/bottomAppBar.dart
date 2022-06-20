@@ -22,7 +22,7 @@ class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var _iconColour = Theme.of(context).brightness == Brightness.light
+    var iconColour = Theme.of(context).brightness == Brightness.light
         ? Colors.grey.shade600
         : Colors.white60;
     return BottomAppBar(
@@ -49,7 +49,7 @@ class MyBottomAppBar extends StatelessWidget {
                         )
                       : const SizedBox.shrink(),
                 ]),
-                color: _iconColour,
+                color: iconColour,
                 onPressed: () {
                   menuModalBottomSheet(context);
                 });
@@ -57,7 +57,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarDays),
             tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
-            color: _iconColour,
+            color: iconColour,
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                   settings: const RouteSettings(name: 'Full Prayer Timetable'),
@@ -66,7 +66,7 @@ class MyBottomAppBar extends StatelessWidget {
           ),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.kaaba),
-            color: _iconColour,
+            color: iconColour,
             tooltip: AppLocalizations.of(context)?.menuKiblaCompassTooltip,
             onPressed: () {
               Navigator.push(
@@ -82,7 +82,7 @@ class MyBottomAppBar extends StatelessWidget {
           ),
           IconButton(
             icon: SvgPicture.asset('assets/icons/tasbih-plain.svg',
-                color: _iconColour),
+                color: iconColour),
             tooltip: "Tasbih for Zikr",
             onPressed: () {
               Navigator.push(

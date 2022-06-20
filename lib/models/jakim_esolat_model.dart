@@ -69,7 +69,7 @@ class PrayerTime {
     var maghribRaw = json["maghrib"];
     var ishaRaw = json["isha"];
 
-    var _monthMap = [
+    var monthMap = [
       'Jan',
       'Feb',
       'Mar',
@@ -89,10 +89,10 @@ class PrayerTime {
     // Changing Text month to its numeric equivalent
     // eg: 2-Okt-2021 will be 2-10-2021
 
-    var _monthNumeric =
-        _monthMap.indexWhere((element) => date.contains(element)) + 1;
+    var monthNumeric =
+        monthMap.indexWhere((element) => date.contains(element)) + 1;
 
-    date = date.replaceRange(3, 6, _monthNumeric.toString());
+    date = date.replaceRange(3, 6, monthNumeric.toString());
 
     imsak = DateFormat(pattern).parse('$date $imsakRaw');
     fajr = DateFormat(pattern).parse('$date $fajrRaw');

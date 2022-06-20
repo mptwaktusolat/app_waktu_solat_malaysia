@@ -47,8 +47,8 @@ class FullPrayerTableSettings extends StatelessWidget {
                     }
                         .entries
                         .map((e) => DropdownMenuItem(
-                              child: Text(e.value),
                               value: e.key,
+                              child: Text(e.value),
                             ))
                         .toList(),
                     onChanged: (newValue) {

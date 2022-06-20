@@ -21,7 +21,7 @@ enum MyNotificationType { noazan, azan }
 class NotificationPageSetting extends StatefulWidget {
   const NotificationPageSetting({Key? key}) : super(key: key);
   @override
-  _NotificationPageSettingState createState() =>
+  State<NotificationPageSetting> createState() =>
       _NotificationPageSettingState();
 }
 

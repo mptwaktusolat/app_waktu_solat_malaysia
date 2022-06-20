@@ -48,13 +48,13 @@ class _AppBodyState extends State<AppBody> {
     var version =
         await PackageInfo.fromPlatform().then((value) => value.version);
 
-    bool _shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
+    bool shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
         GetStorage().read<String>(version) == null;
 
     GetStorage()
         .write(kIsFirstRun, false); // app no longer consider as first run
 
-    if (_shouldShowDialog) {
+    if (shouldShowDialog) {
       await showDialog(
           context: context, builder: (_) => const WhatsNewUpdateDialog());
     }
@@ -137,7 +137,7 @@ class ZoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
       builder: (_, value, __) {
-        String _shortCode = value.currentLocationCode;
+        String shortCode = value.currentLocationCode;
         return Container(
           margin: const EdgeInsets.all(5.0),
           padding: const EdgeInsets.all(18.0),
@@ -182,7 +182,7 @@ class ZoneWidget extends StatelessWidget {
                   FaIcon(FontAwesomeIcons.locationDot,
                       color: Colors.teal.shade50, size: 15),
                   Text(
-                    '  ${_shortCode.substring(0, 3).toUpperCase()}  ${_shortCode.substring(3, 5)}',
+                    '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
                     style: GoogleFonts.montserrat(
                       textStyle:
                           const TextStyle(color: Colors.white, fontSize: 13),
@@ -262,9 +262,9 @@ class Error extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
+          onPressed: onRetryPressed as void Function()?,
           child: Text(AppLocalizations.of(context)!.getPtRetry,
               style: const TextStyle(color: Colors.black)),
-          onPressed: onRetryPressed as void Function()?,
         ),
         const SizedBox(height: 350),
       ],

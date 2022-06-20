@@ -17,7 +17,7 @@ import 'ZoneChooser.dart';
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
   @override
-  _OnboardingPageState createState() => _OnboardingPageState();
+  State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
 class _OnboardingPageState extends State<OnboardingPage>
@@ -45,7 +45,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   @override
   Widget build(BuildContext context) {
-    List<PageViewModel> _pages = [
+    List<PageViewModel> pages = [
       PageViewModel(
         title: AppLocalizations.of(context)!.onboardingChooseLang,
         image: Image.asset(
@@ -103,16 +103,15 @@ class _OnboardingPageState extends State<OnboardingPage>
           padding: const EdgeInsets.all(50.0),
           child: Builder(
             builder: (_) {
-              bool _isDarkMode =
-                  Theme.of(context).brightness == Brightness.dark;
-              if (_isDarkMode) {
+              bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+              if (isDarkMode) {
                 _animController!.forward();
               } else {
                 _animController!.reverse();
               }
               return AnimatedMoon(
                 animationController: _animController,
-                isDarkMode: _isDarkMode,
+                isDarkMode: isDarkMode,
                 width: 305,
               );
             },
@@ -165,7 +164,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       ),
     ];
     return IntroductionScreen(
-        pages: _pages,
+        pages: pages,
         // color: Colors.teal,
         // baseBtnStyle: ButtonStyle(foregroundColor: Colors.teal),
         dotsDecorator: DotsDecorator(

@@ -201,11 +201,10 @@ class _PrayerDataTable extends StatelessWidget {
                 DataCell(Opacity(
                   opacity: (index < _todayIndex) ? 0.55 : 1.0,
                   child: Text(
-                    '~' +
-                        DateAndTime.nightOneThird(
-                          _model.prayerTime![index].maghrib,
-                          _model.prayerTime![index].fajr,
-                        ).format(_is12HourFormat),
+                    '~${DateAndTime.nightOneThird(
+                      _model.prayerTime![index].maghrib,
+                      _model.prayerTime![index].fajr,
+                    ).format(_is12HourFormat)}',
                     style: TextStyle(
                         fontWeight:
                             index == _todayIndex ? FontWeight.bold : null),

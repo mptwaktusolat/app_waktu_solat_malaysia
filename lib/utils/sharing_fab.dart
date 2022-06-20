@@ -20,18 +20,6 @@ class ShareFAB extends StatelessWidget {
     return Consumer<SettingProvider>(builder: (_, setting, __) {
       return FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        child: Builder(
-          builder: (context) {
-            switch (setting.sharingFormat) {
-              case 2:
-                return const FaIcon(FontAwesomeIcons.whatsapp);
-              case 3:
-                return const FaIcon(FontAwesomeIcons.clone);
-              default:
-                return const FaIcon(FontAwesomeIcons.shareNodes);
-            }
-          },
-        ),
         mini: true,
         tooltip: AppLocalizations.of(context)!.shareTooltip,
         onPressed: () {
@@ -50,6 +38,18 @@ class ShareFAB extends StatelessWidget {
               break;
           }
         },
+        child: Builder(
+          builder: (context) {
+            switch (setting.sharingFormat) {
+              case 2:
+                return const FaIcon(FontAwesomeIcons.whatsapp);
+              case 3:
+                return const FaIcon(FontAwesomeIcons.clone);
+              default:
+                return const FaIcon(FontAwesomeIcons.shareNodes);
+            }
+          },
+        ),
       );
     });
   }

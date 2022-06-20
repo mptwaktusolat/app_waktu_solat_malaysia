@@ -15,7 +15,7 @@ class MyNotifScheduler {
   static void schedulePrayNotification(
       BuildContext context, List<PrayerTime> times) async {
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
-    var _currentDateTime = DateTime.now();
+    var currentDateTime = DateTime.now();
 
     String currentDaerah =
         LocationDatabase.daerah(GetStorage().read(kStoredLocationJakimCode));
@@ -25,18 +25,18 @@ class MyNotifScheduler {
       times = times.take(7).toList();
     }
 
-    MyNotificationType _notifType =
+    MyNotificationType notifType =
         MyNotificationType.values[GetStorage().read(kNotificationType)];
 
-    switch (_notifType) {
+    switch (notifType) {
       case MyNotificationType.noazan:
         DebugToast.show('Notification: Default sound');
-        _defaultScheduler(context, times, _currentDateTime, currentDaerah);
+        _defaultScheduler(context, times, currentDateTime, currentDaerah);
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
         print('Notification: Azan');
-        _azanScheduler(context, times, _currentDateTime, currentDaerah);
+        _azanScheduler(context, times, currentDateTime, currentDaerah);
         break;
     }
 
@@ -48,7 +48,7 @@ class MyNotifScheduler {
       // if month (12 + 1) = 13, it will auto-increment to next year
       //2021-01-01 00:05:00.000+0800
       scheduledTime: TZDateTime.local(
-          _currentDateTime.year, _currentDateTime.month + 1, 1, 0, 5),
+          currentDateTime.year, currentDateTime.month + 1, 1, 0, 5),
     );
 
     //This timestamp is later used to determine wether notification should be updated or not

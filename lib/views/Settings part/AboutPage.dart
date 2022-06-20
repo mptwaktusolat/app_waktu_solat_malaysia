@@ -21,7 +21,7 @@ class AboutAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _isFirstTry = true;
+    bool isFirstTry = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -40,9 +40,9 @@ class AboutAppPage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onLongPress: () {
-                      if (_isFirstTry && !setting.isDeveloperOption) {
+                      if (isFirstTry && !setting.isDeveloperOption) {
                         Fluttertoast.showToast(msg: '(⌐■_■)');
-                        _isFirstTry = false;
+                        isFirstTry = false;
                       } else {
                         if (!setting.isDeveloperOption) {
                           Fluttertoast.showToast(

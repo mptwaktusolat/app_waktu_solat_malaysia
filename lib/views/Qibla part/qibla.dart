@@ -13,7 +13,7 @@ import 'no_compass_sensor.dart';
 class Qibla extends StatefulWidget {
   const Qibla({Key? key}) : super(key: key);
   @override
-  _QiblaState createState() => _QiblaState();
+  State<Qibla> createState() => _QiblaState();
 }
 
 class _QiblaState extends State<Qibla> {

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+// ignore: depend_on_referenced_packages
 import 'package:rxdart/subjects.dart' as rxsub;
 import 'package:timezone/timezone.dart';
 import '../CONSTANTS.dart';
@@ -38,7 +39,7 @@ Future<void> initNotifications() async {
   await FlutterLocalNotificationsPlugin().initialize(initializationSettings,
       onSelectNotification: (String? payload) async {
     if (payload != null) {
-      print('notification payload: ' + payload);
+      print('notification payload: $payload');
       selectNotificationSubject.add(payload);
     }
   });

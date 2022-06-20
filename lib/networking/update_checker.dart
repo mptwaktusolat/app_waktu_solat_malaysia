@@ -11,14 +11,14 @@ class AppUpdateChecker {
   /// Check if installed app has lower version number than remote version
   /// Will return `false` if device running lower than unsupported version.
   static Future<bool> updatesAvailable() async {
-    final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
-    final AndroidDeviceInfo _androidInfo = await _deviceInfo.androidInfo;
+    final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-    int _deviceSdk = _androidInfo.version.sdkInt!;
-    const int _minSdk = 20;
-    if (_deviceSdk < _minSdk) return false;
+    int deviceSdk = androidInfo.version.sdkInt!;
+    const int minSdk = 20;
+    if (deviceSdk < minSdk) return false;
 
-    final PackageInfo _packageInfo = await PackageInfo.fromPlatform();
+    final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
     var response = await http.get(Uri.parse(
         'https://api.github.com/repos/iqfareez/app_waktu_solat_malaysia/releases/latest'));
@@ -27,7 +27,7 @@ class AppUpdateChecker {
 
     var remoteVersion = remoteRelease.tagName!.split('+');
     int remoteBuildNumber = int.parse(remoteVersion.last);
-    int appBuildNumber = int.parse(_packageInfo.buildNumber);
+    int appBuildNumber = int.parse(packageInfo.buildNumber);
 
     return (appBuildNumber < remoteBuildNumber);
   }

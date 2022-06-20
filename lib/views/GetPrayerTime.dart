@@ -18,7 +18,7 @@ class PrayTimeList extends StatefulWidget {
   final JakimEsolatModel? prayerTime;
 
   @override
-  _PrayTimeListState createState() => _PrayTimeListState();
+  State<PrayTimeList> createState() => _PrayTimeListState();
 }
 
 class _PrayTimeListState extends State<PrayTimeList> {
@@ -32,7 +32,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
     return Consumer<SettingProvider>(
       builder: (_, setting, __) {
         bool showOtherPrayerTime = setting.showOtherPrayerTime;
-        var _today = PrayDataHandler.today();
+        var today = PrayDataHandler.today();
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -40,37 +40,37 @@ class _PrayTimeListState extends State<PrayTimeList> {
           children: <Widget>[
             if (showOtherPrayerTime)
               SolatCard(
-                  time: _today.imsak,
+                  time: today.imsak,
                   name: AppLocalizations.of(context)!.imsakName,
                   isOther: false),
             SolatCard(
-                time: _today.fajr,
+                time: today.fajr,
                 name: AppLocalizations.of(context)!.fajrName,
                 isOther: true),
             if (showOtherPrayerTime)
               SolatCard(
-                  time: _today.syuruk,
+                  time: today.syuruk,
                   name: AppLocalizations.of(context)!.sunriseName,
                   isOther: false),
             if (showOtherPrayerTime)
               SolatCard(
-                  time: _today.dhuha,
+                  time: today.dhuha,
                   name: AppLocalizations.of(context)!.dhuhaName,
                   isOther: false),
             SolatCard(
-                time: _today.dhuhr,
+                time: today.dhuhr,
                 name: AppLocalizations.of(context)!.dhuhrName,
                 isOther: true),
             SolatCard(
-                time: _today.asr,
+                time: today.asr,
                 name: AppLocalizations.of(context)!.asrName,
                 isOther: true),
             SolatCard(
-                time: _today.maghrib,
+                time: today.maghrib,
                 name: AppLocalizations.of(context)!.maghribName,
                 isOther: true),
             SolatCard(
-                time: _today.isha,
+                time: today.isha,
                 name: AppLocalizations.of(context)!.ishaName,
                 isOther: true),
           ],

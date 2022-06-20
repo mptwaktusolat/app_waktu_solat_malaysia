@@ -11,7 +11,7 @@ class NotifPrompt extends StatefulWidget {
   const NotifPrompt({Key? key}) : super(key: key);
 
   @override
-  _NotifPromptState createState() => _NotifPromptState();
+  State<NotifPrompt> createState() => _NotifPromptState();
 }
 
 class _NotifPromptState extends State<NotifPrompt> {
@@ -34,13 +34,13 @@ class _NotifPromptState extends State<NotifPrompt> {
             alignment: Alignment.center,
             children: [
               Positioned(
-                child: bottomChild,
                 top: 0,
                 key: bottomChildKey,
+                child: bottomChild,
               ),
               Positioned(
-                child: topChild,
                 key: topChildKey,
+                child: topChild,
               )
             ],
           );

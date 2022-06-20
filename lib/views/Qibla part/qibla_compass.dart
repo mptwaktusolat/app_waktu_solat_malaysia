@@ -12,7 +12,7 @@ import '../Qibla%20part/location_error_widget.dart';
 class QiblaCompass extends StatefulWidget {
   const QiblaCompass({Key? key}) : super(key: key);
   @override
-  _QiblaCompassState createState() => _QiblaCompassState();
+  State<QiblaCompass> createState() => _QiblaCompassState();
 }
 
 class _QiblaCompassState extends State<QiblaCompass> {
@@ -99,7 +99,7 @@ class QiblahCompassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _platformBrightness = Theme.of(context).brightness;
+    var platformBrightness = Theme.of(context).brightness;
     return StreamBuilder(
       stream: FlutterQiblah.qiblahStream,
       builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
@@ -108,21 +108,21 @@ class QiblahCompassWidget extends StatelessWidget {
         }
 
         final qiblahDirection = snapshot.data!;
-        var _angle = qiblahDirection.qiblah * (pi / 180) * -1;
+        var angle = qiblahDirection.qiblah * (pi / 180) * -1;
 
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[
             Transform.rotate(
-              angle: _angle,
+              angle: angle,
               child: SvgPicture.asset('assets/qibla/compass.svg', // compass
-                  color: _platformBrightness == Brightness.dark
+                  color: platformBrightness == Brightness.dark
                       ? Colors.teal
                       : Colors.teal.shade400),
             ),
             _kaabaSvg,
             SvgPicture.asset('assets/qibla/needle.svg', //needle
-                color: _platformBrightness == Brightness.dark
+                color: platformBrightness == Brightness.dark
                     ? Colors.teal
                     : Colors.teal.shade800),
           ],

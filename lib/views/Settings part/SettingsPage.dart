@@ -86,10 +86,10 @@ class LocaleSetting extends StatelessWidget {
               items: {"en": "English", "ms": "Bahasa Malaysia"}
                   .entries
                   .map((e) => DropdownMenuItem(
+                        value: e.key,
                         child: Text(
                           e.value,
                         ),
-                        value: e.key,
                       ))
                   .toList(),
               onChanged: (newValue) {

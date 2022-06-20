@@ -50,14 +50,14 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    Placemark _firstPlacemark;
+    Placemark firstPlacemark;
 
-    Position _pos = await LocationData.getCurrentLocation();
-    DebugToast.show(_pos.toString());
+    Position pos = await LocationData.getCurrentLocation();
+    DebugToast.show(pos.toString());
     try {
       List<Placemark> placemarks =
-          await placemarkFromCoordinates(_pos.latitude, _pos.longitude);
-      _firstPlacemark = placemarks.first;
+          await placemarkFromCoordinates(pos.latitude, pos.longitude);
+      firstPlacemark = placemarks.first;
     } on PlatformException catch (e) {
       if (e.message!.contains('A network error occurred')) {
         throw 'A network error occurred trying to lookup the supplied coordinates.';
@@ -65,19 +65,19 @@ class LocationChooser {
         rethrow;
       }
     }
-    DebugToast.show(_firstPlacemark.country);
-    if (_firstPlacemark.country!.toLowerCase() != "malaysia") {
+    DebugToast.show(firstPlacemark.country);
+    if (firstPlacemark.country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
     }
     var zone = LocationCoordinate.getJakimCodeNearby(
-        _pos.latitude, _pos.longitude, _firstPlacemark.administrativeArea!);
+        pos.latitude, pos.longitude, firstPlacemark.administrativeArea!);
 
     return LocationCoordinateData(
         zone: zone,
-        negeri: _firstPlacemark.administrativeArea,
-        lokasi: _firstPlacemark.locality!.isNotEmpty
-            ? "${_firstPlacemark.locality}"
-            : "${_firstPlacemark.name}",
+        negeri: firstPlacemark.administrativeArea,
+        lokasi: firstPlacemark.locality!.isNotEmpty
+            ? "${firstPlacemark.locality}"
+            : "${firstPlacemark.name}",
         lat: null,
         lng: null);
   }
@@ -148,7 +148,7 @@ class LocationChooser {
                         ),
                       ),
                       itemBuilder: (_, element) {
-                        bool _selected =
+                        bool selected =
                             value.currentLocationCode == element.jakimCode;
                         return ListTile(
                           onTap: () {
@@ -159,8 +159,8 @@ class LocationChooser {
                           title:
                               Text(LocationDatabase.daerah(element.jakimCode)),
                           trailing: LocationBubble(element.jakimCode,
-                              selected: _selected),
-                          selected: _selected,
+                              selected: selected),
+                          selected: selected,
                         );
                       },
                     ),
