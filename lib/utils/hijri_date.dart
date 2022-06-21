@@ -1,18 +1,21 @@
 class HijriDate {
+  /// List of full hijri names based on JAKIM
   final List<String> _hijriNames = [
     "Muharram",
     "Safar",
-    "Rabi'ulawwal",
+    "Rabi'ulawal",
     "Rabi'ulakhir",
     "Jamadilawwal",
     "Jamadilakhir",
     "Rejab",
     "Sya'ban",
     "Ramadhan",
-    "Syawal",
-    "Zulqa'idah",
+    "Syawwal",
+    "Zulkaedah",
     "Zulhijjah",
   ];
+
+  /// List of shorthand hijri names based on JAKIM api
   final List<String> _shortHijriNames = [
     "Muh",
     "Saf",
@@ -27,10 +30,12 @@ class HijriDate {
     "Zkh",
     "Zhj",
   ];
+
   late int day, month, year;
   late String monthName;
   late String shortMonthName;
 
+  /// Parse Hijri date from JAKIM API response
   HijriDate.fromJson(String hijriDate) {
     var date = hijriDate.split('-');
 
