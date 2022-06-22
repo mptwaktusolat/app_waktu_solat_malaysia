@@ -58,8 +58,7 @@
   "menuFeedback": "Send feedback",
   "menuUpdateAvailable": "Updates available",
   "menuTooltip": "Open menu",
-  "menuTimetableTooltip": "Full timetable",
-  "menuKiblaCompassTooltip": "Kibla compass",
+  "menuTimetableTooltip": "Monthly Timetable",
   "timetableTitle": "{month} timetable",
   "@timetableTitle": {
     "description": "Title in SliverAppBar",

@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
+import 'package:quick_actions/quick_actions.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -27,6 +28,8 @@ import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
 import 'views/onboarding_page.dart';
+import 'views/prayer_full_table.dart';
+import 'views/tasbih.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -118,6 +121,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    configureQuickAction(context);
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle:
@@ -160,6 +164,36 @@ void initGetStorage() {
   var localeName = Platform.localeName.split('_').first;
   get.writeIfNull(kAppLanguage, localeName == "ms" ? localeName : "en");
   get.writeIfNull(kAppTheme, ThemeMode.light.name);
+}
+
+/// Laucher icon shortcuts
+void configureQuickAction(BuildContext context) {
+  const QuickActions quickActions = QuickActions();
+  quickActions.initialize((shortcutType) {
+    if (shortcutType == 'action_main') {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => PrayerFullTable()));
+    }
+    if (shortcutType == 'action_help') {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const Tasbih()));
+    }
+  });
+
+  quickActions.setShortcutItems(<ShortcutItem>[
+    ShortcutItem(
+        type: 'action_qibla',
+        localizedTitle: AppLocalizations.of(context)!.qiblaTitle,
+        icon: 'ic_shortcut_kaaba'),
+    ShortcutItem(
+        type: 'action_timetable',
+        localizedTitle: AppLocalizations.of(context)!.menuTimetableTooltip,
+        icon: 'ic_shortcut_calendar'),
+    const ShortcutItem(
+        type: 'action_tasbih',
+        localizedTitle: 'Tasbih',
+        icon: 'ic_shortcut_tasbih')
+  ]);
 }
 
 Future<void> _configureLocalTimeZone() async {

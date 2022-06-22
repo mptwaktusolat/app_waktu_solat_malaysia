@@ -67,7 +67,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.kaaba),
             color: iconColour,
-            tooltip: AppLocalizations.of(context)?.menuKiblaCompassTooltip,
+            tooltip: AppLocalizations.of(context)?.qiblaTitle,
             onPressed: () {
               Navigator.push(
                 context,
@@ -83,7 +83,7 @@ class MyBottomAppBar extends StatelessWidget {
           IconButton(
             icon: SvgPicture.asset('assets/icons/tasbih-plain.svg',
                 color: iconColour),
-            tooltip: "Tasbih for Zikr",
+            tooltip: "Tasbih",
             onPressed: () {
               Navigator.push(
                 context,
