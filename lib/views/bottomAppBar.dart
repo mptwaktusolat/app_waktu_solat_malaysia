@@ -13,7 +13,7 @@ import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
-import 'feedbackPage.dart';
+import 'feedback_page.dart';
 import 'prayer_full_table.dart';
 import 'tasbih.dart';
 import 'update_page.dart';

@@ -1,18 +1,18 @@
+import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:provider/provider.dart';
-import '../providers/locale_provider.dart';
 
 import '../CONSTANTS.dart';
 import '../main.dart';
+import '../providers/locale_provider.dart';
 import '../utils/launchUrl.dart';
 import 'Settings part/NotificationSettingPage.dart';
 import 'Settings%20part/ThemePage.dart';
-import 'ZoneChooser.dart';
+import 'zone_chooser.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);

@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../../CONSTANTS.dart';
 import '../../providers/settingsProvider.dart';
 import '../../utils/launchUrl.dart';
-import '../contributionPage.dart';
+import '../contribution_page.dart';
 import '../debug_widgets.dart';
 
 class AboutAppPage extends StatelessWidget {

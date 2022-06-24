@@ -14,11 +14,11 @@ import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
 import '../utils/prayer_data_handler.dart';
 import '../networking/update_checker.dart';
-import 'GetPrayerTime.dart';
-import 'ZoneChooser.dart';
 import 'ads_widget.dart';
 import 'notif_prompt.dart';
+import 'prayer_time_view.dart';
 import 'whats_new_update.dart';
+import 'zone_chooser.dart';
 
 class AppBody extends StatefulWidget {
   const AppBody({Key? key}) : super(key: key);
