@@ -11,4 +11,9 @@ class LocationCoordinateData {
       required this.lokasi,
       required this.lat,
       required this.lng});
+
+  @override
+  String toString() {
+    return 'LocationCoordinateData{zone: $zone, negeri: $negeri, lokasi: $lokasi, lat: $lat, lng: $lng}';
+  }
 }
