@@ -24,6 +24,9 @@ import 'providers/settingsProvider.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
+import 'views/Qibla part/qibla.dart';
+import 'views/Qibla part/qibla_compass.dart';
+import 'views/Qibla part/qibla_warn.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'views/appBody.dart';
 import 'views/bottomAppBar.dart';
@@ -170,13 +173,38 @@ void initGetStorage() {
 void configureQuickAction(BuildContext context) {
   const QuickActions quickActions = QuickActions();
   quickActions.initialize((shortcutType) {
-    if (shortcutType == 'action_main') {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => PrayerFullTable()));
-    }
-    if (shortcutType == 'action_help') {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => const Tasbih()));
+    switch (shortcutType) {
+      case 'action_qibla':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            settings: const RouteSettings(name: 'Qibla'),
+            builder: (_) => GetStorage().read(kHasShowQiblaWarning)
+                ? const Qibla()
+                : const QiblaWarn(),
+          ),
+        );
+        break;
+      case 'action_tasbih':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            settings: const RouteSettings(name: 'Tasbih'),
+            builder: (_) => const Tasbih(),
+          ),
+        );
+        break;
+      case 'action_timetable':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            settings: const RouteSettings(name: 'Full timetable'),
+            builder: (context) => PrayerFullTable(),
+          ),
+        );
+        break;
+      default:
+        print('Unknown shortcut');
     }
   });
 
