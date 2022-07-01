@@ -25,7 +25,6 @@ import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
 import 'views/Qibla part/qibla.dart';
-import 'views/Qibla part/qibla_compass.dart';
 import 'views/Qibla part/qibla_warn.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'views/appBody.dart';

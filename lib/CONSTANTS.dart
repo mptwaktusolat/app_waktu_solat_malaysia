@@ -77,3 +77,6 @@ const kBankAccountNum = '162348620850'; //maybank
 
 //hero tag
 const kAppIconTag = 'appIconTag';
+
+// analytics events name
+const kEventFetch = 'api_fetch';

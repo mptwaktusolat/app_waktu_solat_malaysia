@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,6 +21,8 @@ class MptApiFetch {
       // Check is same location code, month and year
       if (_validateResponse(parsedModel, location)) {
         DebugToast.show('Reading from cache');
+        await FirebaseAnalytics.instance
+            .logEvent(name: kEventFetch, parameters: {"type": "cached"});
         return parsedModel;
       }
     }
@@ -38,6 +41,9 @@ class MptApiFetch {
             const Duration(seconds: 8),
             onTimeout: () => http.Response('Error', 408),
           );
+
+      await FirebaseAnalytics.instance
+          .logEvent(name: kEventFetch, parameters: {"type": "jakim"});
 
       GetStorage()
           .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
@@ -72,6 +78,9 @@ class MptApiFetch {
     final response = await http.get(api);
     GetStorage().write(kStoredApiPrayerCall, api.toString()); //for debug dialog
     DebugToast.show("Cannot reach JAKIM at the moment. Using backup API.");
+
+    await FirebaseAnalytics.instance
+        .logEvent(name: kEventFetch, parameters: {"type": "backup"});
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);

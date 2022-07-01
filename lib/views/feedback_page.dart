@@ -112,7 +112,9 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     'Brand': snapshot.data!.brand,
                     'Model': snapshot.data!.model,
                     'Supported ABIs': snapshot.data!.supportedAbis,
-                    'Screen Sizes': MediaQuery.of(context).size.toString()
+                    'Screen Sizes': MediaQuery.of(context).size.toString(),
+                    'Timezone': DateTime.now().timeZoneOffset,
+                    'Device Locale': Platform.localeName,
                   };
 
                   return CheckboxListTile(
@@ -224,14 +226,13 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     'User email': _emailController.text.trim(),
                     'User message': _messageController.text.trim(),
                     'App version': packageInfo.version,
-                    'App build number': int.parse(packageInfo.buildNumber),
+                    'App build number': packageInfo.buildNumber,
                     'Prayer API': GetStorage().read(kStoredApiPrayerCall),
                     'Position':
                         '${LocationData.position?.latitude},${LocationData.position?.longitude}',
                     'Device info': _logIsChecked! ? _deviceInfo : null,
                     'zone': GetStorage().read(kStoredLocationJakimCode),
                     'app locale': AppLocalizations.of(context)!.localeName,
-                    'device locale': Platform.localeName,
                   };
                   setState(() => _isSendLoading = true);
                   try {
