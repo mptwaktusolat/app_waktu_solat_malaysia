@@ -28,6 +28,7 @@ const kTimetableHijriStyle = "timetableHijriStyle";
 const kTimetableShowOneThird = "tbOneThird";
 const kTasbihCount = "tasbihCount";
 const kTasbihGradientColour = "tasbihColours";
+const kNoAdsStartTime = "noAdsStartTime";
 
 //Network image
 const kAppIconUrl =

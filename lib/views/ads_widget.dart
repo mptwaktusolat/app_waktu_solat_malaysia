@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import '../CONSTANTS.dart';
 
 class AdsWidget extends StatefulWidget {
   const AdsWidget({Key? key}) : super(key: key);
@@ -37,6 +40,17 @@ class _AdsWidgetState extends State<AdsWidget> {
           },
         ),
         request: const AdRequest());
+
+    int? noAdsStartTime = GetStorage().read(kNoAdsStartTime);
+    if (noAdsStartTime != null) {
+      int now = DateTime.now().millisecondsSinceEpoch;
+      if ((now - noAdsStartTime) < const Duration(minutes: 10).inMilliseconds) {
+        return; // return immediately to prevent _ad.load() call
+      }
+      // if the time has exceeded, remove the key from storage
+      GetStorage().remove(kNoAdsStartTime);
+    }
+    // ads load normally
     _ad.load();
   }
 
