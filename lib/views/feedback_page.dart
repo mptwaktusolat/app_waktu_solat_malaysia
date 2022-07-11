@@ -31,22 +31,23 @@ class _FeedbackPageState extends State<FeedbackPage> {
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Map<String, dynamic>? _deviceInfo;
-  late PackageInfo packageInfo;
+  Map<String, dynamic>? _appMetadata;
+  Map<String, dynamic>? _sensitiveData;
   bool _isSendLoading = false;
+  bool _logIsChecked = true;
+  bool _isSensitiveChecked = false;
 
   @override
   void initState() {
     super.initState();
     http.get(Uri.https(_baseUrl, '')); // Wake up the bot
 
-    getPackageInfo();
+    _sensitiveData = {
+      'Recent GPS loc':
+          '${LocationData.position?.latitude},${LocationData.position?.longitude}',
+    };
   }
 
-  void getPackageInfo() async {
-    packageInfo = await PackageInfo.fromPlatform();
-  }
-
-  bool? _logIsChecked = true;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -113,7 +114,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     'Model': snapshot.data!.model,
                     'Supported ABIs': snapshot.data!.supportedAbis,
                     'Screen Sizes': MediaQuery.of(context).size.toString(),
-                    'Timezone': DateTime.now().timeZoneOffset,
+                    'Timezone': DateTime.now().timeZoneOffset.toString(),
                     'Device Locale': Platform.localeName,
                   };
 
@@ -124,44 +125,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (context) {
-                              return Dialog(
-                                  child: ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: _deviceInfo!.length + 1,
-                                itemBuilder: (_, index) {
-                                  if (index < _deviceInfo!.length) {
-                                    var key =
-                                        _deviceInfo!.keys.elementAt(index);
-                                    return ListTile(
-                                      leading: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [Text(key)],
-                                      ),
-                                      title: Text(_deviceInfo![key].toString()),
-                                    );
-                                  } else {
-                                    return TextButton.icon(
-                                        icon: const FaIcon(
-                                            FontAwesomeIcons.copy,
-                                            size: 12),
-                                        onPressed: () {
-                                          Clipboard.setData(ClipboardData(
-                                                  text: _deviceInfo.toString()))
-                                              .then((value) =>
-                                                  Fluttertoast.showToast(
-                                                      msg: AppLocalizations.of(
-                                                              context)!
-                                                          .feedbackDeviceInfoCopy));
-                                        },
-                                        label: Text(
-                                            AppLocalizations.of(context)!
-                                                .feedbackDeviceInfoCopyAll));
-                                  }
-                                },
-                              ));
-                            },
+                            builder: (_) =>
+                                DetailedInfoDialog(details: _deviceInfo!),
                           );
                         },
                       ),
@@ -172,7 +137,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           .feedbackIncludeDeviceInfo),
                       value: _logIsChecked,
                       onChanged: (value) {
-                        setState(() => _logIsChecked = value);
+                        setState(() => _logIsChecked = value!);
                       });
                 } else if (snapshot.hasError) {
                   return Text(
@@ -189,6 +154,72 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 }
               },
             ),
+            FutureBuilder(
+              future: PackageInfo.fromPlatform(),
+              builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
+                if (snapshot.hasData) {
+                  _appMetadata = {
+                    'App version': snapshot.data!.version,
+                    'App build number': snapshot.data!.buildNumber,
+                    'Prayer API': GetStorage().read(kStoredApiPrayerCall),
+                    'zone': GetStorage().read(kStoredLocationJakimCode),
+                    'app locale': AppLocalizations.of(context)!.localeName,
+                  };
+
+                  return CheckboxListTile(
+                      secondary: OutlinedButton(
+                        child: Text(AppLocalizations.of(context)!
+                            .feedbackViewDeviceInfo),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (_) =>
+                                DetailedInfoDialog(details: _appMetadata!),
+                          );
+                        },
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
+                      subtitle: Text(
+                          AppLocalizations.of(context)!.feedbackAppMetadataSub),
+                      title: Text(
+                          AppLocalizations.of(context)!.feedbackAppMetadata),
+                      value: true,
+                      onChanged: null);
+                } else if (snapshot.hasError) {
+                  return Text(
+                      AppLocalizations.of(context)!.feedbackTroubleDeviceInfo);
+                } else {
+                  return ListTile(
+                    leading: const SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator()),
+                    title:
+                        Text(AppLocalizations.of(context)!.feedbackGettingInfo),
+                  );
+                }
+              },
+            ),
+            CheckboxListTile(
+                secondary: OutlinedButton(
+                  child: Text(
+                      AppLocalizations.of(context)!.feedbackViewDeviceInfo),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (_) =>
+                          DetailedInfoDialog(details: _sensitiveData!),
+                    );
+                  },
+                ),
+                controlAffinity: ListTileControlAffinity.leading,
+                subtitle:
+                    Text(AppLocalizations.of(context)!.feedbackSensitiveSub),
+                title: Text(AppLocalizations.of(context)!.feedbackSensitive),
+                value: _isSensitiveChecked,
+                onChanged: (value) {
+                  setState(() => _isSensitiveChecked = value!);
+                }),
             ElevatedButton.icon(
               onPressed: () async {
                 if (_emailController.text.isEmpty &&
@@ -225,15 +256,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   var payload = {
                     'User email': _emailController.text.trim(),
                     'User message': _messageController.text.trim(),
-                    'App version': packageInfo.version,
-                    'App build number': packageInfo.buildNumber,
-                    'Prayer API': GetStorage().read(kStoredApiPrayerCall),
-                    'Position':
-                        '${LocationData.position?.latitude},${LocationData.position?.longitude}',
-                    'Device info': _logIsChecked! ? _deviceInfo : null,
-                    'zone': GetStorage().read(kStoredLocationJakimCode),
-                    'app locale': AppLocalizations.of(context)!.localeName,
+                    if (_logIsChecked) 'Device info': _deviceInfo
                   };
+
+                  payload.addAll(_appMetadata!);
+                  if (_isSensitiveChecked) payload.addAll(_sensitiveData!);
+
                   setState(() => _isSendLoading = true);
                   try {
                     await http.post(Uri.https(_baseUrl, '/feedback'),
@@ -299,5 +327,43 @@ class _FeedbackPageState extends State<FeedbackPage> {
         ),
       ),
     );
+  }
+}
+
+class DetailedInfoDialog extends StatelessWidget {
+  const DetailedInfoDialog({Key? key, required this.details}) : super(key: key);
+
+  final Map<String, dynamic> details;
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+        child: ListView.builder(
+      shrinkWrap: true,
+      itemCount: details.length + 1,
+      itemBuilder: (_, index) {
+        if (index < details.length) {
+          var key = details.keys.elementAt(index);
+          return ListTile(
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text(key)],
+            ),
+            title: Text(details[key].toString()),
+          );
+        } else {
+          return TextButton.icon(
+              icon: const FaIcon(FontAwesomeIcons.copy, size: 12),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: details.toString())).then(
+                    (value) => Fluttertoast.showToast(
+                        msg: AppLocalizations.of(context)!
+                            .feedbackDeviceInfoCopy));
+              },
+              label: Text(
+                  AppLocalizations.of(context)!.feedbackDeviceInfoCopyAll));
+        }
+      },
+    ));
   }
 }

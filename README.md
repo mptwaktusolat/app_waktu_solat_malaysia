@@ -70,6 +70,7 @@ Do let mew know your feedback and comments. Some of the version are also availab
 - [Part 5](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE1MTkzNDAzODk3MDk1)
 - [Part 6](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
 - [Part 7](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
+- [Part 8](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
 
 ## Honourable mention
 
