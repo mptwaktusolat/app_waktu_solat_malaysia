@@ -37,7 +37,6 @@ class AppUpdateChecker {
         'https://api.github.com/repos/iqfareez/app_waktu_solat_malaysia/releases/latest'));
 
     var remoteRelease = GithubReleasesModel.fromJson(jsonDecode(response.body));
-
     return remoteRelease;
   }
 }

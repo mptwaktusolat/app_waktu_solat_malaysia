@@ -334,6 +334,7 @@
       }
     }
   },
+  "updatePageReleasedToday": "Released today",
   "updatePageCurrentVer": "You have: **{version}**",
   "@updatePageCurrentVer": {
     "placeholders": {

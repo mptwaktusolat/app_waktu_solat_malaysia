@@ -87,8 +87,10 @@ class UpdatePage extends StatelessWidget {
                   Text(snapshot.data!.updateName,
                       style: Theme.of(context).textTheme.headline5!),
                   Text(
-                    AppLocalizations.of(context)!
-                        .updatePageReleased(snapshot.data!.daySinceRelease),
+                    snapshot.data!.daySinceRelease == 0
+                        ? AppLocalizations.of(context)!.updatePageReleasedToday
+                        : AppLocalizations.of(context)!
+                            .updatePageReleased(snapshot.data!.daySinceRelease),
                     style: Theme.of(context).textTheme.caption,
                   ),
                   const SizedBox(height: 20),

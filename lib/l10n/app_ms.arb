@@ -203,6 +203,7 @@
   "updatePageTryAgain": "Sila cuba lagi",
   "updatePageAvailable": "Kemas kini tersedia",
   "updatePageReleased": "Dikeluarkan {day} hari lepas",
+  "updatePageReleasedToday": "Dikeluarkan hari ini",
   "updatePageCurrentVer": "Anda ada: **{version}**",
   "updatePageLatestVer": "Terkini tersedia: **{version}**",
   "updatePageGPlay": "Dapatkan kemas kini di Google Play",
