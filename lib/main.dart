@@ -30,7 +30,7 @@ import 'views/Qibla part/qibla.dart';
 import 'views/Qibla part/qibla_warn.dart';
 import 'views/Settings%20part/NotificationSettingPage.dart';
 import 'views/appBody.dart';
-import 'views/bottomAppBar.dart';
+import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/prayer_full_table.dart';
 import 'views/tasbih.dart';

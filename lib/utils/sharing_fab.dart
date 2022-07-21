@@ -9,7 +9,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../CONSTANTS.dart';
 import '../providers/settingsProvider.dart';
-import 'copyAndShare.dart';
+import 'copy_and_share.dart';
 import 'launchUrl.dart';
 
 class ShareFAB extends StatelessWidget {

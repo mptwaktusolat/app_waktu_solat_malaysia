@@ -15,9 +15,9 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
-import '../locationUtil/LocationData.dart';
+import '../locationUtil/location_data.dart';
 import '../locationUtil/location.dart';
-import '../locationUtil/locationDatabase.dart';
+import '../locationUtil/location_database.dart';
 import '../locationUtil/location_coordinate.dart';
 import '../locationUtil/location_coordinate_model.dart';
 import '../providers/location_provider.dart';

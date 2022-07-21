@@ -3,7 +3,7 @@
 import 'dart:math';
 
 import 'package:intl/intl.dart';
-import 'lib/locationUtil/locationDatabase.dart';
+import 'lib/locationUtil/location_database.dart';
 
 enum Test { first, second }
 
