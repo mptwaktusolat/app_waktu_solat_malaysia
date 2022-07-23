@@ -70,7 +70,7 @@ class LocationChooser {
       throw 'Outside Malaysia';
     }
     var zone = LocationCoordinate.getJakimCodeNearby(
-        pos.latitude, pos.longitude, firstPlacemark.administrativeArea!);
+        pos.latitude, pos.longitude, firstPlacemark.administrativeArea);
 
     return LocationCoordinateData(
         zone: zone,

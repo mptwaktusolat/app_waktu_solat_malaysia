@@ -1552,7 +1552,11 @@ class LocationCoordinate {
   /// Return nearest JAKIM code from the given coordinate and negeri.
   /// Pass administrative area as negeri.
   static String getJakimCodeNearby(
-      double latitude, double longitude, String negeri) {
+      double latitude, double longitude, String? negeri) {
+    // when user is on perairan (kawasan air), negeri xdetect.
+    if (negeri == null || negeri.isEmpty) {
+      throw "Area not detected. Are you on a boat?";
+    }
     List<int> tempIndex = [];
     double nearestDistance = 50000; //init distance to be 50 km
     late int nearestIndex;
