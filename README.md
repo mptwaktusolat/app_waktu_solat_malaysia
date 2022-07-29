@@ -26,11 +26,11 @@ More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 
 Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit [here](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog)!
 
-## Report an issue / Feature request
+## Report issues / Feature requests
 
-Found a bug(s):bug:? Report issues using the **Send Feedback** feature or file them directly on the [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues)[ tracker](https://github.com/iqfareez/app_waktu_solat_malaysia/issues).
+Found a bug(s):bug:? Report issues using the in-app **Send Feedback** feature.
 
-Have an idea :bulb: that may benefit the app? Do not hesitate to [submit](https://github.com/iqfareez/app_waktu_solat_malaysia/issues) your suggestion. Your input would be really appreciated.
+Alternatively, you could browse/open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues). If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
 
 ## Discussion
 
@@ -52,14 +52,15 @@ Get it on:
 
 Require **Android 4.4W and up**
 
-_i'm \_having difficulties \_updating_ the app* in [Huawei App Gallery](https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v). So it will be very outdated.*
+_I'm having difficulties updating the app in [Huawei App Gallery](https://appgallery.cloud.huawei.com/ag/n/app/C102547121?channelId=github&id=b4b4309a3f5a46cfabca1672b917609b&s=75C9C29E4E75B1193F97FCAB29C7789774C16C7625285C7D8F38ED8609BD6B70&detailType=0&v). So it will be very outdated._
 
 _Not available for iOS sorry :disappointed:_
 
 ## Try the pre-releases (Beta track)
 
-Get it [here](https://github.com/iqfareez/app_waktu_solat_malaysia/releases).
-Do let mew know your feedback and comments. Some of the version are also available in Google Play beta program.
+Download and install the `.apk` from the [releases](https://github.com/iqfareez/app_waktu_solat_malaysia/releases) page. Don't forget to share your feedback and comments.
+
+Note: Pre-release app are no longer submitted to the Google Play Store.
 
 ## Devlogs
 
@@ -96,11 +97,17 @@ and sure, there's a lot more.
 
 ## Legalese
 
-- [Terms and Conditions](https://telegra.ph/MPT-Terms-07-24)
-- [Privacy Policy](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Privacy-Policy)
+- [Terms and Conditions](https://waktusolat.iqfareez.com/terms-and-conditions)
+- [Privacy Policy](https://waktusolat.iqfareez.com/privacy-policy)
 - Google Play and the Google Play logo are trademarks of Google LLC.
 
 <!-- **No redistruba -->
+
+## Website
+
+Features and troubleshooting steps are documented on the website.
+
+https://waktusolat.iqfareez.com/
 
 ## Contact Us
 

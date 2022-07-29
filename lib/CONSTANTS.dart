@@ -52,8 +52,7 @@ const kDeveloperActivityImage =
 const kPlayStoreListingLink =
     'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
 const kPlayStoreListingShortLink = 'https://go.iqfareez.com/mpt';
-const kPrivacyPolicyLink =
-    'https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Privacy-Policy';
+const kPrivacyPolicyLink = 'https://waktusolat.iqfareez.com/privacy-policy';
 const kReleaseNotesLink =
     'https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog';
 const kReleaseNotesShortLink = 'https://go.iqfareez.com/mptchanges';
@@ -70,7 +69,7 @@ const kInstaStoryDevlog =
 const kGithubLink = 'https://github.com/iqfareez';
 const kPlayStoreDevLink =
     'https://play.google.com/store/apps/dev?id=9200064795631584674';
-const kWebsite = 'https://mywaktusolat.vercel.app';
+const kWebsite = 'https://waktusolat.iqfareez.com/';
 
 //Contribution page
 const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
