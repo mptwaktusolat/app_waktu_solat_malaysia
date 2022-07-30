@@ -32,7 +32,7 @@ class MyBottomAppBar extends StatelessWidget {
         children: [
           Consumer<UpdaterProvider>(builder: (_, setting, __) {
             return IconButton(
-                tooltip: AppLocalizations.of(context)?.menuThemes,
+                tooltip: AppLocalizations.of(context)?.menuTooltip,
                 icon: Stack(children: [
                   const Align(
                       alignment: Alignment.center,
