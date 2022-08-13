@@ -47,6 +47,10 @@ void main() async {
   // Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+  // Disable analytics & crashlytics when in debug mode
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
+  FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
+
   await _configureLocalTimeZone();
   await initNotifications();
   // requestIOSPermissions(notifsPlugin);
