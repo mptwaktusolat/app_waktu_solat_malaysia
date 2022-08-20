@@ -11,7 +11,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/iqfareez/app_waktu_solat_malaysia?style=social)
 [![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)](https://twitter.com/iqfareez)
 
-App waktu solat seluruh Malaysia. Prayer time app across Malaysia.
+App waktu solat seluruh negeri di Malaysia | Prayer time app across all states in Malaysia.
 
 Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
 
@@ -26,6 +26,16 @@ More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 [~~MPTi906 API~~](https://mpt.i906.my/)\
 [e-solat JAKIM API](https://www.e-solat.gov.my/) & [mpt-backup-api](https://mpt-backup-api.herokuapp.com/)
 
+## Website
+
+Features and troubleshooting steps are documented on the website.
+
+https://waktusolat.iqfareez.com/
+
+## Getting started
+
+See [wiki](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki).
+
 ## Changelog History
 
 Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit [here](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog)!
@@ -36,21 +46,8 @@ Found a bug(s):bug:? Report issues using the in-app **Send Feedback** feature.
 
 Alternatively, you could browse/open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues). If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
 
-## Discussion
-
-You can also use [**Discussions** ](https://github.com/iqfareez/app_waktu_solat_malaysia/discussions) ask any questions or suggest any idea. Kita sembang2 santai je gituu :relaxed:
-
-## Web app
-
-<a href='https://waktusolat.web.app/'><img alt='Open in Web' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
-
-_Web app working directory has been separated to `web` branches._
-
-<!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 
 ## App Releases
-
-Get it on:
 
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
 
@@ -60,6 +57,13 @@ _I'm having difficulties updating the app in [Huawei App Gallery](https://appgal
 
 _Not available for iOS sorry :disappointed:_
 
+## Web app
+
+<a href='https://waktusolat.web.app/'><img alt='Open in Web' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
+
+_Web app working directory has been separated to `web` branches._
+
+<!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 ## Try the pre-releases
 
 Pre-release is a release track to test the apps that have been added with new features/bug fixes/experiment features that are not ready for production.
@@ -79,7 +83,25 @@ _Note: Pre-release app are no longer submitted to the Google Play Store._
 [![Part 7](https://img.shields.io/badge/highlights-Part%207-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
 [![Part 8](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
 
-## Honourable mention
+## Motivation
+
+<!-- A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists. -->
+
+Started from the intention to learn Flutter, now the app has achieved over 10 thousands install, beyond far on what can I imagine.
+
+I always wanted to contribute something to the ummah, and this is one of my way to doing it. This project will be kept maintained so it will relevant for many generation to come. Inshallah.
+
+<!-- ## Attribution
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+
+## Legalese
+
+- [Terms and Conditions](https://waktusolat.iqfareez.com/terms-and-conditions)
+- [Privacy Policy](https://waktusolat.iqfareez.com/privacy-policy)
+- Google Play and the Google Play logo are trademarks of Google LLC.
+
+## Acknowledgements
 
 Article, assets, and resources that help me throughout the development.
 
@@ -115,24 +137,5 @@ and sure, there's a lot more.
   - Perak - [Masjid Ubudiah](https://www.kualakangsar.gov.my/sites/default/files/styles/panopoly_image_original/public/ubudiah.jpg?itok=zE8SjsYa) from [MP Kuala Kangsar](https://www.kualakangsar.gov.my/ms/masjid-ubudiah-0)
   - Melaka - [Masjid Selat Melaka](https://upload.wikimedia.org/wikipedia/commons/7/78/Masjid_Selat_Melaka_%287870872160%29.jpg) from [Wikipedia](https://ms.wikipedia.org/wiki/Masjid_Selat_Melaka)
 
-<!-- ## Attribution
-
-<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-
-## Legalese
-
-- [Terms and Conditions](https://waktusolat.iqfareez.com/terms-and-conditions)
-- [Privacy Policy](https://waktusolat.iqfareez.com/privacy-policy)
-- Google Play and the Google Play logo are trademarks of Google LLC.
-
-## Website
-
-Features and troubleshooting steps are documented on the website.
-
-https://waktusolat.iqfareez.com/
-
-## Contact Us
-
-Email: mptwaktusolat@gmail.com
 
 ### May Allah ease everything in developing MPT. InshaAllah!
