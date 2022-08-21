@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
+import '../models/mosque_image.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/date_and_time.dart';
@@ -32,13 +35,28 @@ class PrayerFullTable extends StatelessWidget {
               floating: true,
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
-                background: CachedNetworkImage(
-                  imageUrl:
-                      'https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?ssl=1',
-                  fit: BoxFit.cover,
-                  color: Colors.black.withOpacity(0.4),
-                  colorBlendMode: BlendMode.overlay,
-                ),
+                background: FutureBuilder(
+                    future: DefaultAssetBundle.of(context)
+                        .loadString("assets/mosques.json"),
+                    builder: (context, AsyncSnapshot<String> snapshot) {
+                      // Load background image based on the user zones
+                      if (snapshot.hasData) {
+                        final List<dynamic> mosques =
+                            json.decode(snapshot.data!);
+                        final MosqueImage image = MosqueImage.fromJson(
+                            mosques.firstWhere((element) =>
+                                _locationCode.contains(element['zone'])));
+
+                        return CachedNetworkImage(
+                          imageUrl: image.imgUrl,
+                          fit: BoxFit.cover,
+                          color: Colors.black.withOpacity(0.4),
+                          colorBlendMode: BlendMode.overlay,
+                        );
+                      }
+
+                      return Container();
+                    }),
                 centerTitle: true,
                 title: Text(
                   '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
@@ -69,19 +87,18 @@ class PrayerFullTable extends StatelessWidget {
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
               builder: (_, AsyncSnapshot<JakimEsolatModel> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                      child: SpinKitFadingCube(size: 35, color: Colors.teal));
-                } else if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                } else {
+                if (snapshot.hasData) {
                   return _PrayerDataTable(
-                      todayIndex: _todayIndex,
-                      model: snapshot.data!,
-                      year: _year,
-                      month: _month,
-                      is12HourFormat: _is12HourFormat);
+                    todayIndex: _todayIndex,
+                    model: snapshot.data!,
+                    year: _year,
+                    month: _month,
+                    is12HourFormat: _is12HourFormat,
+                  );
                 }
+                return const Center(
+                  child: SpinKitFadingCube(size: 35, color: Colors.teal),
+                );
               },
             ),
           ),
