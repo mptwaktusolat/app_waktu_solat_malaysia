@@ -72,12 +72,16 @@ class LocationChooser {
     var zone = LocationCoordinate.getJakimCodeNearby(
         pos.latitude, pos.longitude, firstPlacemark.administrativeArea);
 
+    // for [lokasi], the priority us `subLocality`. If empty, `locality`.
+    // If empty, fallback to `name`.
     return LocationCoordinateData(
         zone: zone,
         negeri: firstPlacemark.administrativeArea,
-        lokasi: firstPlacemark.locality!.isNotEmpty
-            ? "${firstPlacemark.locality}"
-            : "${firstPlacemark.name}",
+        lokasi: firstPlacemark.subLocality!.isNotEmpty
+            ? firstPlacemark.subLocality
+            : firstPlacemark.locality!.isNotEmpty
+                ? firstPlacemark.locality
+                : firstPlacemark.name,
         lat: null,
         lng: null);
   }
