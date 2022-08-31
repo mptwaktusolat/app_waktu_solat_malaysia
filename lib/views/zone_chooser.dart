@@ -16,10 +16,10 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../locationUtil/location_data.dart';
-import '../locationUtil/location.dart';
 import '../locationUtil/location_database.dart';
 import '../locationUtil/location_coordinate.dart';
 import '../locationUtil/location_coordinate_model.dart';
+import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';
 
@@ -137,9 +137,9 @@ class LocationChooser {
                 child: Container(
                   color: Theme.of(context).canvasColor,
                   child: Scrollbar(
-                    child: GroupedListView<Location, String>(
+                    child: GroupedListView<JakimZones, String>(
                       addSemanticIndexes: true,
-                      elements: LocationDatabase.allLocationData,
+                      elements: LocationDatabase.allLocation,
                       groupBy: (element) => element.negeri,
                       groupSeparatorBuilder: (String groupByValue) => Padding(
                         padding: const EdgeInsets.only(left: 16, top: 8),

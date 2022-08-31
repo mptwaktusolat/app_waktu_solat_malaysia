@@ -1,13 +1,27 @@
 //ignore_for_file: avoid_print, unused_import, unused_local_variable, no_leading_underscores_for_local_identifiers
 
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:intl/intl.dart';
-import 'lib/locationUtil/location_database.dart';
+import 'package:waktusolatmalaysia/models/jakim_zones.dart';
 
 enum Test { first, second }
 
 void main() {
+  String jsonData =
+      '[{"jakimCode": "JHR01","negeri": "Johor","daerah": "Pulau Aur, Pulau Pemanggil"},{"jakimCode": "JHR02","negeri": "Johor","daerah": "Kota Tinggi, Mersing, Johor Bahru"}]';
+
+  List<dynamic> jsonDecoded = jsonDecode(jsonData);
+
+  var myList = List.from(jsonDecoded.map((e) => JakimZones.fromJson(e)));
+  // var myList = List.
+
+  // var data = JakimZones.fromJson(jsonDecode(jsonData));
+  print(myList);
+}
+
+void readEnum() {
   print(Test.first.index);
 }
 

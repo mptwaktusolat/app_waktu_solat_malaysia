@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -18,6 +19,8 @@ import 'package:timezone/timezone.dart' as tz;
 
 import 'CONSTANTS.dart';
 import 'firebase_options.dart';
+import 'locationUtil/location_database.dart';
+import 'models/jakim_zones.dart';
 import 'notificationUtil/notifications_helper.dart';
 import 'providers/ThemeController.dart';
 import 'providers/locale_provider.dart';
@@ -57,6 +60,7 @@ void main() async {
 
   initGetStorage();
   // readAllGetStorage();
+  await initializeJakimZoneData();
 
   LicenseRegistry.addLicense(() async* {
     // This adds SIL license to the registrar
@@ -251,6 +255,13 @@ void _readAllGetStorage() {
     print('$key ${GetStorage().read(key)}');
   }
   print('-----------------------\n');
+}
+
+Future initializeJakimZoneData() async {
+  String data = await rootBundle.loadString('assets/json/zones.json');
+  List<dynamic> jsonDecoded = json.decode(data);
+  LocationDatabase.allLocation =
+      List.from(jsonDecoded.map((e) => JakimZones.fromJson(e)));
 }
 
 /// Show InAppReview if all conditions are met
