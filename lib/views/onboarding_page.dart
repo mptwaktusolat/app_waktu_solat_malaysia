@@ -87,7 +87,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                   textAlign: TextAlign.center,
                 )
               : ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.teal),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                   onPressed: () async {
                     var res =
                         await LocationChooser.showLocationChooser(context);
@@ -216,7 +216,8 @@ class _AutostartAdmonition extends StatelessWidget {
             child: TextButton(
                 style: TextButton.styleFrom(
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    primary: Theme.of(context).textTheme.bodyLarge!.color),
+                    foregroundColor:
+                        Theme.of(context).textTheme.bodyLarge!.color),
                 onPressed: () {
                   // open auto start setting
                   getAutoStartPermission();

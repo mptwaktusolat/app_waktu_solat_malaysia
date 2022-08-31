@@ -315,7 +315,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),
             ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(primary: Colors.black),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(url: '$kGithubRepoLink/issues');

@@ -126,7 +126,7 @@ class _CallToActions extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(primary: Colors.teal),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
               },
