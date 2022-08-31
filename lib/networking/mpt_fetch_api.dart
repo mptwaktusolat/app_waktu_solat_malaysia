@@ -12,7 +12,7 @@ import '../utils/debug_toast.dart';
 
 class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,
-  /// proceed using JAKIM's API, if unreachable, use the backup API.
+  /// proceed using mpt-server's API, if data invalid, use JAKIM's
   static Future<JakimEsolatModel> fetchMpt(String location) async {
     if (GetStorage().read(kJsonCache) != null) {
       var json = GetStorage().read(kJsonCache);
@@ -26,69 +26,82 @@ class MptApiFetch {
         return parsedModel;
       }
     }
+    dynamic mptJsonResponse;
 
-    dynamic jsonResponse;
+    // TODO: kemaskan, buat early return or smth
     try {
-      final api = Uri.https('www.e-solat.gov.my', 'index.php', {
-        'r': 'esolatApi/takwimsolat',
-        'period': 'month',
-        'zone': location,
-      });
-      DebugToast.show('Calling jakim api');
+      final api = Uri.https('mpt-server.vercel.app', '/api/log');
 
-      // timeout is sueful in a case that JAKIM return nothing at all
+      // return error if request takes too much time
       final response = await http.get(api).timeout(
-            const Duration(seconds: 8),
+            const Duration(seconds: 6),
             onTimeout: () => http.Response('Error', 408),
           );
-
-      await FirebaseAnalytics.instance
-          .logEvent(name: kEventFetch, parameters: {"type": "jakim"});
-
-      GetStorage()
-          .write(kStoredApiPrayerCall, api.toString()); //for debug dialog
       if (response.statusCode == 200) {
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
-        jsonResponse = jsonDecode(response.body);
+        var jsonResponse = jsonDecode(response.body);
+
+        if (DateAndTime.isTheSameYear(jsonResponse['valid_year']) &&
+            DateAndTime.isSameMonthFromM(jsonResponse['valid_month'])) {
+          mptJsonResponse = await _mptServerApi(location);
+          GetStorage().write(kJsonCache, mptJsonResponse);
+        } else {
+          // If data is out of date, use JAKIM's API
+          DebugToast.show('mpt-server data not valid');
+          mptJsonResponse = await _jakimApi(location);
+          GetStorage().write(kJsonCache, mptJsonResponse);
+        }
       } else {
-        jsonResponse = await _backupApi(location);
+        // If return other than 200, use JAKIM's API
+        mptJsonResponse = await _jakimApi(location);
+        GetStorage().write(kJsonCache, mptJsonResponse);
       }
+
+      return JakimEsolatModel.fromJson(mptJsonResponse);
     } on SocketException {
       throw 'No internet connection.';
-    } on http.ClientException {
-      // Handle SocketException error like in the
-      // https://github.com/iqfareez/app_waktu_solat_malaysia/issues/113
-      jsonResponse = await _backupApi(location);
-    }
-    var parsedModel = JakimEsolatModel.fromJson(jsonResponse);
-
-    if (_validateResponse(parsedModel, location)) {
-      GetStorage().write(kJsonCache, jsonResponse);
-      return parsedModel;
-    } else {
-      throw 'Data invalid. Contact developer.';
     }
   }
 
-  static Future<dynamic> _backupApi(String location) async {
-    // If jakim failed, call the backup API
-    final api =
-        Uri.parse('https://mpt-backup-api.herokuapp.com/solat/$location');
+  static Future<dynamic> _mptServerApi(String location) async {
+    final api = Uri.https('mpt-server.vercel.app', 'api/solat/$location');
+    DebugToast.show('Using mpt-server api');
+    GetStorage().write(kStoredApiPrayerCall, api.toString()); //for debug dialog
+    final response = await http.get(api).timeout(
+          const Duration(seconds: 6),
+          onTimeout: () => http.Response('Error', 408),
+        );
+    await FirebaseAnalytics.instance
+        .logEvent(name: kEventFetch, parameters: {"type": "mpt-server"});
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      return jsonDecode(response.body);
+    } else {
+      throw 'Error getting mpt-server api';
+    }
+  }
+
+  static Future<dynamic> _jakimApi(String location) async {
+    final api = Uri.https('www.e-solat.gov.my', 'index.php', {
+      'r': 'esolatApi/takwimsolat',
+      'period': 'month',
+      'zone': location,
+    });
     final response = await http.get(api);
     GetStorage().write(kStoredApiPrayerCall, api.toString()); //for debug dialog
-    DebugToast.show("Cannot reach JAKIM at the moment. Using backup API.");
+    DebugToast.show("Using JAKIM api");
 
     await FirebaseAnalytics.instance
-        .logEvent(name: kEventFetch, parameters: {"type": "backup"});
+        .logEvent(name: kEventFetch, parameters: {"type": "jakim"});
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
-      throw 'Failed to load prayer time (backup API). Status code ${response.statusCode}';
+      throw 'Failed to load prayer time (JAKIM api). Status code ${response.statusCode}';
     }
   }
 
+  /// Check if data is valid by compating its month and year
   static bool _validateResponse(
       JakimEsolatModel model, String requestedLocationCode) {
     var lastApiFetched = DateTime.parse(model.serverTime!);

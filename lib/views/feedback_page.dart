@@ -18,7 +18,6 @@ import '../utils/launchUrl.dart';
 
 /// This just an app built with express js, that handle
 /// the transaction to the Firebase.
-const _baseUrl = 'mpt-firestore-server.herokuapp.com';
 
 class FeedbackPage extends StatefulWidget {
   const FeedbackPage({Key? key}) : super(key: key);
@@ -40,7 +39,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   void initState() {
     super.initState();
-    http.get(Uri.https(_baseUrl, '')); // Wake up the bot
 
     _sensitiveData = {
       'Recent GPS loc':
@@ -264,7 +262,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                   setState(() => _isSendLoading = true);
                   try {
-                    await http.post(Uri.https(_baseUrl, '/feedback'),
+                    await http.post(
+                        Uri.https('mpt-server.vercel.app', '/api/feedback'),
                         headers: {
                           HttpHeaders.contentTypeHeader:
                               ContentType.json.toString()
