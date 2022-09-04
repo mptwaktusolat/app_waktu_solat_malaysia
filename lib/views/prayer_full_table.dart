@@ -37,7 +37,7 @@ class PrayerFullTable extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: FutureBuilder(
                     future: DefaultAssetBundle.of(context)
-                        .loadString("assets/mosques.json"),
+                        .loadString("assets/json/mosques.json"),
                     builder: (context, AsyncSnapshot<String> snapshot) {
                       // Load background image based on the user zones
                       if (snapshot.hasData) {
@@ -47,10 +47,12 @@ class PrayerFullTable extends StatelessWidget {
                             mosques.firstWhere((element) =>
                                 _locationCode.contains(element['zone'])));
 
+                        print('image.imgUrl ${image.imgUrl}');
+
                         return CachedNetworkImage(
                           imageUrl: image.imgUrl,
                           fit: BoxFit.cover,
-                          color: Colors.black.withOpacity(0.4),
+                          color: Colors.black.withOpacity(0.7),
                           colorBlendMode: BlendMode.overlay,
                         );
                       }
