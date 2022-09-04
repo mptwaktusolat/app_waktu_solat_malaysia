@@ -95,6 +95,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           border: const OutlineInputBorder()),
                       textInputAction: TextInputAction.done,
                       keyboardType: TextInputType.emailAddress,
+                      autofillHints: const [AutofillHints.email],
                     ),
                   ],
                 ),
