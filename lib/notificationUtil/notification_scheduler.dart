@@ -35,7 +35,6 @@ class MyNotifScheduler {
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
-        print('Notification: Azan');
         _azanScheduler(context, times, currentDateTime, currentDaerah);
         break;
     }
