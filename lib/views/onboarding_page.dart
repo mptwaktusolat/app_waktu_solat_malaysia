@@ -190,10 +190,16 @@ class _OnboardingPageState extends State<OnboardingPage>
         overrideNext: TextButton(
             child: Text(AppLocalizations.of(context)!.onboardingNext,
                 style: const TextStyle(fontWeight: FontWeight.w600)),
-            onPressed: () {
+            onPressed: () async {
               bool hasClick =
                   Provider.of<AutostartWarningProvider>(context, listen: false)
                       .hasClick;
+              bool isAutostartAvailable = await isAutoStartAvailable ?? false;
+
+              if (!isAutostartAvailable) {
+                _introScreenKey.currentState?.next();
+                return;
+              }
 
               if (_introScreenKey.currentState!.controller.page!.toInt() == 3 &&
                   !hasClick) {

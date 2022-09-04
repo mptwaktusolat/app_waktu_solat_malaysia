@@ -18,11 +18,12 @@ class _AdsWidgetState extends State<AdsWidget> {
   @override
   void initState() {
     super.initState();
-    MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
-        testDeviceIds: [
-          'DF693493239FEF390746FE861B201FC3',
-          'EB458550DFD9A5B6EF3D8FD1A0705EFA'
-        ]));
+    MobileAds.instance
+        .updateRequestConfiguration(RequestConfiguration(testDeviceIds: [
+      'DF693493239FEF390746FE861B201FC3',
+      'EB458550DFD9A5B6EF3D8FD1A0705EFA',
+      '5BF49B5666B0C509C03B9E26F4DA9DDD'
+    ]));
 
     _ad = BannerAd(
         size: AdSize.banner,
