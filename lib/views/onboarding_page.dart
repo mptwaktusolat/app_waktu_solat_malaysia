@@ -1,5 +1,6 @@
 import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,10 +9,12 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../main.dart';
+import '../providers/autostart_warning_provider.dart';
 import '../providers/locale_provider.dart';
 import '../utils/launchUrl.dart';
 import 'Settings part/NotificationSettingPage.dart';
 import 'Settings%20part/ThemePage.dart';
+import 'shake_widget.dart';
 import 'zone_chooser.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -22,6 +25,9 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage>
     with SingleTickerProviderStateMixin {
+  final GlobalKey<IntroductionScreenState> _introScreenKey =
+      GlobalKey<IntroductionScreenState>();
+  final shakeKey = GlobalKey<ShakeWidgetState>();
   final _pageDecoration = const PageDecoration(
     titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
     bodyTextStyle: TextStyle(fontSize: 19.0),
@@ -31,7 +37,6 @@ class _OnboardingPageState extends State<OnboardingPage>
   );
 
   bool _isDoneSetLocation = false;
-
   AnimationController? _animController;
   MyNotificationType _notificationType =
       MyNotificationType.values.elementAt(GetStorage().read(kNotificationType));
@@ -146,7 +151,14 @@ class _OnboardingPageState extends State<OnboardingPage>
               future: isAutoStartAvailable,
               builder: (_, snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
-                  return const _AutostartAdmonition();
+                  // https://mobikul.com/shake-effect-in-flutter/
+                  return ShakeWidget(
+                    key: shakeKey,
+                    shakeOffset: 10,
+                    shakeCount: 5,
+                    shakeDuration: const Duration(milliseconds: 200),
+                    child: const _AutostartAdmonition(),
+                  );
                 }
 
                 return const SizedBox.shrink();
@@ -164,6 +176,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       ),
     ];
     return IntroductionScreen(
+        key: _introScreenKey,
         pages: pages,
         // color: Colors.teal,
         // baseBtnStyle: ButtonStyle(foregroundColor: Colors.teal),
@@ -174,11 +187,28 @@ class _OnboardingPageState extends State<OnboardingPage>
           activeShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         ),
+        overrideNext: TextButton(
+            child: Text(AppLocalizations.of(context)!.onboardingNext,
+                style: const TextStyle(fontWeight: FontWeight.w600)),
+            onPressed: () {
+              bool hasClick =
+                  Provider.of<AutostartWarningProvider>(context, listen: false)
+                      .hasClick;
+
+              if (_introScreenKey.currentState!.controller.page!.toInt() == 3 &&
+                  !hasClick) {
+                // if the open setting button hasn't been clicked
+                // shake the widgeta and wibrate a lil
+                shakeKey.currentState?.shake();
+                HapticFeedback.mediumImpact();
+              } else {
+                // using internal controller to go next
+                _introScreenKey.currentState?.next();
+              }
+            }),
         done: Text(AppLocalizations.of(context)!.onboardingDone,
             style: const TextStyle(fontWeight: FontWeight.w600)),
         doneSemantic: "Done button",
-        next: Text(AppLocalizations.of(context)!.onboardingNext,
-            style: const TextStyle(fontWeight: FontWeight.w600)),
         nextSemantic: "Next button",
         curve: Curves.fastLinearToSlowEaseIn,
         onDone: () {
@@ -219,6 +249,9 @@ class _AutostartAdmonition extends StatelessWidget {
                     foregroundColor:
                         Theme.of(context).textTheme.bodyLarge!.color),
                 onPressed: () {
+                  // to track the state of click
+                  Provider.of<AutostartWarningProvider>(context, listen: false)
+                      .hasClick = true;
                   // open auto start setting
                   getAutoStartPermission();
                 },

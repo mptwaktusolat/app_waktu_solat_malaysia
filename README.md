@@ -46,7 +46,6 @@ Found a bug(s):bug:? Report issues using the in-app **Send Feedback** feature.
 
 Alternatively, you could browse/open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues). If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
 
-
 ## App Releases
 
 <a href='https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style="max-width:55%;"/></a>
@@ -64,6 +63,7 @@ _Not available for iOS sorry :disappointed:_
 _Web app working directory has been separated to `web` branches._
 
 <!-- https://github.com/webmaxru/progressive-web-apps-logo -->
+
 ## Try the pre-releases
 
 Pre-release is a release track to test the apps that have been added with new features/bug fixes/experiment features that are not ready for production.
@@ -114,6 +114,7 @@ Article, assets, and resources that help me throughout the development.
 7. ~~https://github.com/SuaMusica/googleads-mobile-flutter - Ads without jank~~
 8. https://github.com/shubhamhackz/light_dark_toggle - Sun/moon toggle animation.
 9. Last third of the night calculation https://muftiwp.gov.my/en/artikel/al-kafi-li-al-fatawi/1376-al-kafi-251-pembahagian-malam-dan-qiamullail
+10. Shake widget - https://mobikul.com/shake-effect-in-flutter/
 
 and sure, there's a lot more.
 
@@ -136,6 +137,5 @@ and sure, there's a lot more.
   - Pahang - [Masjid Sultan Ahmad](https://itc.gov.my/wp-content/uploads/2021/04/Masjid-Sultan-Ahmad-1-Kuantan.jpg) from [ITC](https://itc.gov.my/listings/masjid-sultan-ahmad-1-kuantan/)
   - Perak - [Masjid Ubudiah](https://www.kualakangsar.gov.my/sites/default/files/styles/panopoly_image_original/public/ubudiah.jpg?itok=zE8SjsYa) from [MP Kuala Kangsar](https://www.kualakangsar.gov.my/ms/masjid-ubudiah-0)
   - Melaka - [Masjid Selat Melaka](https://upload.wikimedia.org/wikipedia/commons/7/78/Masjid_Selat_Melaka_%287870872160%29.jpg) from [Wikipedia](https://ms.wikipedia.org/wiki/Masjid_Selat_Melaka)
-
 
 ### May Allah ease everything in developing MPT. InshaAllah!
