@@ -35,30 +35,13 @@ class PrayerFullTable extends StatelessWidget {
               floating: true,
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
-                background: FutureBuilder(
-                    future: DefaultAssetBundle.of(context)
-                        .loadString("assets/json/mosques.json"),
-                    builder: (context, AsyncSnapshot<String> snapshot) {
-                      // Load background image based on the user zones
-                      if (snapshot.hasData) {
-                        final List<dynamic> mosques =
-                            json.decode(snapshot.data!);
-                        final MosqueImage image = MosqueImage.fromJson(
-                            mosques.firstWhere((element) =>
-                                _locationCode.contains(element['zone'])));
-
-                        print('image.imgUrl ${image.imgUrl}');
-
-                        return CachedNetworkImage(
-                          imageUrl: image.imgUrl,
-                          fit: BoxFit.cover,
-                          color: Colors.black.withOpacity(0.7),
-                          colorBlendMode: BlendMode.overlay,
-                        );
-                      }
-
-                      return Container();
-                    }),
+                background: CachedNetworkImage(
+                  imageUrl:
+                      'https://mpt-server.vercel.app/api/mosque/$_locationCode',
+                  fit: BoxFit.cover,
+                  color: Colors.black.withOpacity(0.7),
+                  colorBlendMode: BlendMode.overlay,
+                ),
                 centerTitle: true,
                 title: Text(
                   '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
@@ -67,17 +50,18 @@ class PrayerFullTable extends StatelessWidget {
               ),
               actions: [
                 IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          settings: const RouteSettings(
-                              name: 'Prayer Timetable Settings'),
-                          builder: (_) => const FullPrayerTableSettings(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.settings))
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        settings: const RouteSettings(
+                            name: 'Prayer Timetable Settings'),
+                        builder: (_) => const FullPrayerTableSettings(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.settings),
+                )
               ],
             )
           ];
