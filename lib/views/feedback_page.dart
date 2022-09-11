@@ -68,17 +68,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextFormField(
-                        validator: (value) => value!.isNotEmpty
-                            ? null
-                            : AppLocalizations.of(context)!.feedbackFieldEmpty,
-                        controller: _messageController,
-                        decoration: InputDecoration(
-                            hintText:
-                                AppLocalizations.of(context)!.feedbackWriteHere,
-                            border: const OutlineInputBorder()),
-                        keyboardType: TextInputType.text,
-                        textInputAction: TextInputAction.next,
-                        maxLines: 4),
+                      validator: (value) => value!.isNotEmpty
+                          ? null
+                          : AppLocalizations.of(context)!.feedbackFieldEmpty,
+                      controller: _messageController,
+                      decoration: InputDecoration(
+                          hintText:
+                              AppLocalizations.of(context)!.feedbackWriteHere,
+                          border: const OutlineInputBorder()),
+                      keyboardType: TextInputType.multiline,
+                      textCapitalization: TextCapitalization.sentences,
+                      maxLines: 4,
+                    ),
                     const SizedBox(height: 10),
                     TextFormField(
                       validator: (value) => value!.isNotEmpty
