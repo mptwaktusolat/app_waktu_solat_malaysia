@@ -4,7 +4,7 @@
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
 [![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8?style=flat-square)](https://waktusolat.web.app/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
-[![Installs](https://img.shields.io/badge/installs-39k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
+[![Installs](https://img.shields.io/badge/installs-40k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iqfareez/app_waktu_solat_malaysia?style=flat-square)
 ![License](https://img.shields.io/github/license/iqfareez/app_waktu_solat_malaysia?style=flat-square)
 [![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg?style=flat-square)](https://pub.dev/packages/flutter_lints)
@@ -24,7 +24,8 @@ More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 [~~Azanpro API~~](https://api.azanpro.com/)\
 [~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
 [~~MPTi906 API~~](https://mpt.i906.my/)\
-[e-solat JAKIM API](https://www.e-solat.gov.my/) & [mpt-backup-api](https://mpt-backup-api.herokuapp.com/)
+~~[e-solat JAKIM API](https://www.e-solat.gov.my/) & [mpt-backup-api](https://mpt-backup-api.herokuapp.com/)~~\
+[MPT-Server](https://mpt-server.vercel.app/) & [e-solat JAKIM API](https://www.e-solat.gov.my/)
 
 ## Website
 
@@ -42,9 +43,11 @@ Wondering what changed with every :new: release? Or what bug :bug: has been fixe
 
 ## Report issues / Feature requests
 
-Found a bug(s):bug:? Report issues using the in-app **Send Feedback** feature.
+_With great power comes great responsibility_. Since this a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporing issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues).
 
-Alternatively, you could browse/open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues). If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
+If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
+
+_p/s: If I'm not responding to the new issue/PR for more than 48 hours. Kindly tag me @iqfareez._
 
 ## App Releases
 
@@ -87,9 +90,9 @@ _Note: Pre-release app are no longer submitted to the Google Play Store._
 
 <!-- A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists. -->
 
-Started from the intention to learn Flutter, now the app has achieved over 10 thousands install, beyond far on what can I imagine.
+Started with the intention to learn Flutter, until the app has achieved over 40 thousand installs, beyond far on what can I imagine.
 
-I always wanted to contribute something to the ummah, and this is one of my way to doing it. This project will be kept maintained so it will relevant for many generation to come. Inshallah.
+I always wanted to contribute something to the ummah (Islam), and this is one of my way of doing it. I hope this project will benefit Malaysians (including people who reside in Malaysia) by providing quick and easy access to prayer times in their area. This project will be kept maintained so it will relevant for many generations to come. Inshallah.
 
 <!-- ## Attribution
 
