@@ -54,9 +54,10 @@ const kPlayStoreListingLink =
 const kPlayStoreListingShortLink = 'https://go.iqfareez.com/mpt';
 const kPrivacyPolicyLink = 'https://waktusolat.iqfareez.com/privacy-policy';
 const kReleaseNotesLink =
-    'https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog';
+    'https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Changelog';
 const kReleaseNotesShortLink = 'https://go.iqfareez.com/mptchanges';
-const kGithubRepoLink = 'https://github.com/iqfareez/app_waktu_solat_malaysia';
+const kGithubRepoLink =
+    'https://github.com/mptwaktusolat/app_waktu_solat_malaysia';
 const kWebappUrl = 'https://waktusolat.web.app';
 const kMptFdlGetLink = 'https://solat.page.link/get';
 

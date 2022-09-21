@@ -5,10 +5,10 @@
 [![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8?style=flat-square)](https://waktusolat.web.app/)
 ![Maintenance](https://img.shields.io/maintenance/yes/2022?style=flat-square)
 [![Installs](https://img.shields.io/badge/installs-40k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iqfareez/app_waktu_solat_malaysia?style=flat-square)
-![License](https://img.shields.io/github/license/iqfareez/app_waktu_solat_malaysia?style=flat-square)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
+![License](https://img.shields.io/github/license/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
 [![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg?style=flat-square)](https://pub.dev/packages/flutter_lints)
-![GitHub Repo stars](https://img.shields.io/github/stars/iqfareez/app_waktu_solat_malaysia?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/mptwaktusolat/app_waktu_solat_malaysia?style=social)
 [![Twitter Follow](https://img.shields.io/twitter/follow/iqfareez?label=Follow&style=social)](https://twitter.com/iqfareez)
 
 App waktu solat seluruh negeri di Malaysia | Prayer time app across all states in Malaysia.
@@ -35,17 +35,17 @@ https://waktusolat.iqfareez.com/
 
 ## Getting started
 
-See [wiki](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki).
+See [wiki](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki).
 
 ## Changelog History
 
-Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit [here](https://github.com/iqfareez/app_waktu_solat_malaysia/wiki/Changelog)!
+Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit [here](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Changelog)!
 
 ## Report issues / Feature requests
 
-_With great power comes great responsibility_. Since this a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporing issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/iqfareez/app_waktu_solat_malaysia/issues).
+_With great power comes great responsibility_. Since this a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporing issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues).
 
-If you would like to contribute to this project, please submit a [pull request](https://github.com/iqfareez/app_waktu_solat_malaysia/pulls).
+If you would like to contribute to this project, please submit a [pull request](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls).
 
 _p/s: If I'm not responding to the new issue/PR for more than 48 hours. Kindly tag me @iqfareez._
 
@@ -71,7 +71,7 @@ _Web app working directory has been separated to `web` branches._
 
 Pre-release is a release track to test the apps that have been added with new features/bug fixes/experiment features that are not ready for production.
 
-Download and install the `.apk` from the [releases](https://github.com/iqfareez/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Don't forget to share your feedback and comments.
+Download and install the `.apk` from the [releases](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Don't forget to share your feedback and comments.
 
 _Note: Pre-release app are no longer submitted to the Google Play Store._
 

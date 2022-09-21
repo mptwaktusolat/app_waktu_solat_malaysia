@@ -14,18 +14,19 @@ class AppUpdateChecker {
     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-    int deviceSdk = androidInfo.version.sdkInt!;
+    final int deviceSdk = androidInfo.version.sdkInt!;
     const int minSdk = 20;
     if (deviceSdk < minSdk) return false;
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-    var response = await http.get(Uri.parse(
-        'https://api.github.com/repos/iqfareez/app_waktu_solat_malaysia/releases/latest'));
+    final response = await http.get(Uri.parse(
+        'https://api.github.com/repos/mptwaktusolat/app_waktu_solat_malaysia/releases/latest'));
 
-    var remoteRelease = GithubReleasesModel.fromJson(jsonDecode(response.body));
+    final remoteRelease =
+        GithubReleasesModel.fromJson(jsonDecode(response.body));
 
-    var remoteVersion = remoteRelease.tagName!.split('+');
+    final remoteVersion = remoteRelease.tagName!.split('+');
     int remoteBuildNumber = int.parse(remoteVersion.last);
     int appBuildNumber = int.parse(packageInfo.buildNumber);
 
@@ -33,10 +34,11 @@ class AppUpdateChecker {
   }
 
   static Future<GithubReleasesModel> getUpdateInfo() async {
-    var response = await http.get(Uri.parse(
-        'https://api.github.com/repos/iqfareez/app_waktu_solat_malaysia/releases/latest'));
+    final response = await http.get(Uri.parse(
+        'https://api.github.com/repos/mptwaktusolat/app_waktu_solat_malaysia/releases/latest'));
 
-    var remoteRelease = GithubReleasesModel.fromJson(jsonDecode(response.body));
+    final remoteRelease =
+        GithubReleasesModel.fromJson(jsonDecode(response.body));
     return remoteRelease;
   }
 }
