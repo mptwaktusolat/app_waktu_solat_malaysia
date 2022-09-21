@@ -13,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../CONSTANTS.dart';
-import '../locationUtil/location_data.dart';
+import '../location_utils/location_data.dart';
 import '../utils/launchUrl.dart';
 
 /// This just an app built with express js, that handle

@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
 
 import '../CONSTANTS.dart';
-import '../locationUtil/location_data.dart';
+import '../location_utils/location_data.dart';
 
 class DebugWidgets {
   static Dialog debugDialog() {

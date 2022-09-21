@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
 
 import '../CONSTANTS.dart';
-import '../locationUtil/location_database.dart';
+import '../location_utils/location_database.dart';
 import '../models/jakim_esolat_model.dart';
 import '../utils/debug_toast.dart';
 import '../views/Settings%20part/NotificationSettingPage.dart';

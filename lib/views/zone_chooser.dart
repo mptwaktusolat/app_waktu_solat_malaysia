@@ -15,10 +15,10 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
-import '../locationUtil/location_data.dart';
-import '../locationUtil/location_database.dart';
-import '../locationUtil/location_coordinate.dart';
-import '../locationUtil/location_coordinate_model.dart';
+import '../location_utils/location_data.dart';
+import '../location_utils/location_database.dart';
+import '../location_utils/location_coordinate.dart';
+import '../location_utils/location_coordinate_model.dart';
 import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';

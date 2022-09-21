@@ -33,10 +33,14 @@ class DateAndTime {
     return DateFormat("MMMM", locale).format(DateTime(2021, month));
   }
 
+  /// Calculate an estimation of one third of the night
+  /// Supply [maghrib] and [subuh] that are on the same day
+  /// The actual calculation is (tomorrow's subh - today's maghrib) / 3
   static DateTime nightOneThird(DateTime maghrib, DateTime subuh) {
-    subuh = subuh.add(const Duration(days: 1));
+    /// since we are passing today's subh, we add so it will become tomorrow's subh
+    var tomorrowSubuh = subuh.add(const Duration(days: 1));
 
-    var difference = subuh.difference(maghrib);
+    var difference = tomorrowSubuh.difference(maghrib);
     var oneThirdDifference = difference.inMinutes ~/ 3;
 
     // sepertiga akhir malam
