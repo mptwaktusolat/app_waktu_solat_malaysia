@@ -5,8 +5,8 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import '../CONSTANTS.dart';
 import '../utils/launchUrl.dart';
 
-// Update Markdown body / content
-
+/// This dialog will show when user update the app
+/// Called in `_showUpdateNotes()` function on `appBody.dart` file
 class WhatsNewUpdateDialog extends StatelessWidget {
   const WhatsNewUpdateDialog({Key? key}) : super(key: key);
 
