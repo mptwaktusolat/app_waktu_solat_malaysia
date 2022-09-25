@@ -241,13 +241,18 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30.0),
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
                     child: Opacity(
                       opacity: 0.58,
-                      child: Text(
-                        AppLocalizations.of(context)!
-                            .aboutLegalese("2020-2022"),
-                        textAlign: TextAlign.center,
+                      child: TextButton(
+                        onPressed: () => LaunchUrl.normalLaunchUrl(
+                            url: 'https://iqfareez.com'),
+                        child: Text(
+                          AppLocalizations.of(context)!
+                              .aboutLegalese("2020-2022"),
+                          style: Theme.of(context).textTheme.labelMedium,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),
