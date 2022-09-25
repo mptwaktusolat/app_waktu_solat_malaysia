@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// ignore: depend_on_referenced_packages
 import 'package:rxdart/subjects.dart' as rxsub;
 import 'package:timezone/timezone.dart';
+
 import '../CONSTANTS.dart';
 
 final rxsub.BehaviorSubject<NotificationClass>
@@ -25,37 +25,23 @@ class NotificationClass {
 Future<void> initNotifications() async {
   var initializationSettingsAndroid =
       const AndroidInitializationSettings('icon');
-  var initializationSettingsIOS = IOSInitializationSettings(
-      requestAlertPermission: false,
-      requestBadgePermission: false,
-      requestSoundPermission: false,
-      onDidReceiveLocalNotification:
-          (int id, String? title, String? body, String? payload) async {
-        didReceiveLocalNotificationSubject.add(NotificationClass(
-            id: id, title: title, body: body, payload: payload));
-      });
-  var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  await FlutterLocalNotificationsPlugin().initialize(initializationSettings,
-      onSelectNotification: (String? payload) async {
-    if (payload != null) {
-      print('notification payload: $payload');
-      selectNotificationSubject.add(payload);
-    }
-  });
-}
 
-// void requestIOSPermissions(
-//     FlutterLocalNotificationsPlugin notifsPlugin) {
-//   notifsPlugin
-//       .resolvePlatformSpecificImplementation<
-//           IOSFlutterLocalNotificationsPlugin>()
-//       ?.requestPermissions(
-//         alert: true,
-//         badge: true,
-//         sound: true,
-//       );
-// }
+  var initializationSettings =
+      InitializationSettings(android: initializationSettingsAndroid);
+  await FlutterLocalNotificationsPlugin().initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse:
+        (NotificationResponse notificationResponse) {
+      switch (notificationResponse.notificationResponseType) {
+        case NotificationResponseType.selectedNotification:
+          selectNotificationSubject.add(notificationResponse.payload);
+          break;
+        case NotificationResponseType.selectedNotificationAction:
+          break;
+      }
+    },
+  );
+}
 
 void configureSelectNotificationSubject() {
   selectNotificationSubject.stream.listen((String? payload) async {
@@ -93,9 +79,7 @@ Future<void> scheduleSinglePrayerNotification({
     when: scheduledTime.millisecondsSinceEpoch,
     color: const Color(0xFF19e3cb),
   );
-  var iOSSpecifics = const IOSNotificationDetails();
-  var platformChannelSpecifics =
-      NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+  var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
@@ -130,9 +114,7 @@ Future<void> scheduleSingleAzanNotification(
     sound: RawResourceAndroidNotificationSound(customSound),
     color: const Color(0xFF19e3cb),
   );
-  var iOSSpecifics = const IOSNotificationDetails();
-  var platformChannelSpecifics =
-      NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+  var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
@@ -161,9 +143,7 @@ Future<void> scheduleAlertNotification(
     color: const Color(0xFFfcbd00),
   );
 
-  var iOSSpecifics = const IOSNotificationDetails();
-  var platformChannelSpecifics =
-      NotificationDetails(android: androidSpecifics, iOS: iOSSpecifics);
+  var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidAllowWhileIdle: true,
