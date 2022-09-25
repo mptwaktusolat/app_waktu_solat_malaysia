@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -10,7 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../models/jakim_esolat_model.dart';
-import '../models/mosque_image.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/date_and_time.dart';
