@@ -30,14 +30,10 @@ Future<void> initNotifications() async {
       InitializationSettings(android: initializationSettingsAndroid);
   await FlutterLocalNotificationsPlugin().initialize(
     initializationSettings,
-    onDidReceiveNotificationResponse:
-        (NotificationResponse notificationResponse) {
-      switch (notificationResponse.notificationResponseType) {
-        case NotificationResponseType.selectedNotification:
-          selectNotificationSubject.add(notificationResponse.payload);
-          break;
-        case NotificationResponseType.selectedNotificationAction:
-          break;
+    onSelectNotification: (String? payload) async {
+      if (payload != null) {
+        print('notification payload: $payload');
+        selectNotificationSubject.add(payload);
       }
     },
   );
