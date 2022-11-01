@@ -4,7 +4,7 @@
   ],
   "imageSize": 75,
   "commit": false,
-  "commitConvention": "gitmoji",
+  "commitConvention": "eslint",
   "contributors": [
     {
       "login": "iqfareez",
