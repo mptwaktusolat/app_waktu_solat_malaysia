@@ -1,7 +1,4 @@
 # Malaysia Prayer Time app / Apl Waktu Solat Malaysia
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat-square&logo=Flutter&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
@@ -110,7 +107,7 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="100px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Tests">⚠️</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="#content-iqfareez" title="Content">🖋</a></td>
+      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="75px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Tests">⚠️</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="#content-iqfareez" title="Content">🖋</a></td>
     </tr>
   </tbody>
 </table>
