@@ -98,8 +98,25 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 
-## Contributions
+## Contributors
 
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="100px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Aiqfareez" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## Legalese
 
@@ -128,40 +145,6 @@ and sure, there's a lot more.
 
 - 3D assets you see on the onboarding screen are from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/) & [3dicons](https://3dicons.co/).
 - Tasbih icons created by [Freepik](https://www.flaticon.com/free-icons/tasbih).
-- Mosques images (in full timetable page)
-  - Selangor - [IIUM SHAS Mosque](https://i2.wp.com/news.iium.edu.my/wp-content/uploads/2017/06/10982272836_29abebc100_b.jpg?ssl=1) from [IIUM](https://news.iium.edu.my/?tag=mosque)
-  - WP KL/Putrajaya - [Masjid Putra](https://central.menarikdi.com/wp-content/uploads/2020/10/WhatsApp-Image-2020-10-16-at-11.24.55.jpeg) from [central.menarikdi.com](https://central.menarikdi.com/2020/10/16/menarikdiputrajaya-masjid-putra-putrajaya/)
-  - Negeri Sembilan - [Masjid Sri Sendayan](https://1.bp.blogspot.com/-ZW8tBE2gGmw/XzKRI3DNXKI/AAAAAAAANQ8/4CCgKWVwvjk8BojQ_WwtaXMv5XjrSt1EwCLcBGAsYHQ/s1079/IMG_20200811_203714.jpg) from [mywilayah.com](https://www.mywilayah.com/2020/08/keunikan-masjid-sri-sendayan-negeri.html)
-  - Kelantan - [Masjid Al-Ismaili](https://live.staticflickr.com/4504/37094479654_b5a03c0bce_b.jpg) from [Flicker](<(https://www.flickr.com/photos/159566909@N03/37094479654)>)
-  - Terengganu - [Masjid Kristal](https://itc.gov.my/wp-content/uploads/2021/04/Masjid-Kristal-Kuala-Terengganu.jpg) from [ITC](https://itc.gov.my/listings/masjid-kristal-kuala-terengganu/)
-  - Perlis - [Masjid Al-Hussain](https://www.maips.gov.my/images/2019/07/08/masjid_alhussain.jpg) from [MAIPS](https://www.maips.gov.my/index.php?option=com_sppagebuilder&view=page&id=140&Itemid=862&lang=ms)
-  - Sarawak - [Masjid Terapung](https://assets.bharian.com.my/images/articles/MASJID_INDIA_BANDAR_KUCHING_1552789924.jpg) from [BHarian](https://www.bharian.com.my/berita/wilayah/2019/03/541946/masjid-terapung-tarikan-terbaharu-di-kuching)
-  - Sabah - [Masjid Bdraya Kota Kinabalu](https://itc.gov.my/wp-content/uploads/2021/04/Masjid-Bandaraya-Kota-Kinabalu.jpg) from [ITC](https://itc.gov.my/listings/masjid-bandaraya-kota-kinabalu/)
-  - WP Labuan - [Masjid Jamek An-Nur](https://www.pulaulabuan.com/wp-content/uploads/Masjid-Jamek-An-Nur-Labuan-Romel-Jacinto.jpg) from [pulaulabuan.com](https://www.pulaulabuan.com/masjid-jamek-an-nur/)
-  - Johor - [Masjid Sultan Iskandar](https://cdn.libur.com.my/2019/12/99715-19_04_785369.jpeg) from [libur.com.my](https://www.libur.com.my/masjid-sultan-iskandarjohor-diisytihar-masjid-pelancongan-pertama/)
-  - Kedah - [Masjid Zahir](https://live.staticflickr.com/7144/6751142693_ca74a2432d_b.jpg) from [Flickr](https://www.flickr.com/photos/samkranzphotography/6751142693)
-  - Pahang - [Masjid Sultan Ahmad](https://itc.gov.my/wp-content/uploads/2021/04/Masjid-Sultan-Ahmad-1-Kuantan.jpg) from [ITC](https://itc.gov.my/listings/masjid-sultan-ahmad-1-kuantan/)
-  - Perak - [Masjid Ubudiah](https://www.kualakangsar.gov.my/sites/default/files/styles/panopoly_image_original/public/ubudiah.jpg?itok=zE8SjsYa) from [MP Kuala Kangsar](https://www.kualakangsar.gov.my/ms/masjid-ubudiah-0)
-  - Melaka - [Masjid Selat Melaka](https://upload.wikimedia.org/wikipedia/commons/7/78/Masjid_Selat_Melaka_%287870872160%29.jpg) from [Wikipedia](https://ms.wikipedia.org/wiki/Masjid_Selat_Melaka)
+- Mosques images (in full timetable page) is taken from various sources
 
 ### May Allah ease everything in developing MPT. InshaAllah!
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="100px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Aiqfareez" title="Reviewed Pull Requests">👀</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
