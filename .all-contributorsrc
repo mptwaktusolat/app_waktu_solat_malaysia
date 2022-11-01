@@ -2,9 +2,9 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 75,
   "commit": false,
-  "commitConvention": "angular",
+  "commitConvention": "gitmoji",
   "contributors": [
     {
       "login": "iqfareez",
@@ -21,6 +21,7 @@
   ],
   "contributorsPerLine": 7,
   "skipCi": true,
+  "linkToUsage": false,
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "app_waktu_solat_malaysia",
