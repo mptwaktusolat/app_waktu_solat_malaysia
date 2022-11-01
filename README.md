@@ -101,10 +101,16 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="100px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Tests">⚠️</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="#content-iqfareez" title="Content">🖋</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
