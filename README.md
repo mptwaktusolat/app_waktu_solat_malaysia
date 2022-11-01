@@ -98,6 +98,9 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 
+## Contributions
+
+
 ## Legalese
 
 - [Terms and Conditions](https://waktusolat.iqfareez.com/terms-and-conditions)
