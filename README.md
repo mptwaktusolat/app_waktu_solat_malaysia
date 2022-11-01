@@ -105,13 +105,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="100px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Aiqfareez" title="Reviewed Pull Requests">👀</a></td>
-    </tr>
-  </tbody>
-</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
