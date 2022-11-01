@@ -1,4 +1,7 @@
 # Malaysia Prayer Time app / Apl Waktu Solat Malaysia
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat-square&logo=Flutter&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
@@ -145,3 +148,25 @@ and sure, there's a lot more.
   - Melaka - [Masjid Selat Melaka](https://upload.wikimedia.org/wikipedia/commons/7/78/Masjid_Selat_Melaka_%287870872160%29.jpg) from [Wikipedia](https://ms.wikipedia.org/wiki/Masjid_Selat_Melaka)
 
 ### May Allah ease everything in developing MPT. InshaAllah!
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/fareez2"><img src="https://avatars.githubusercontent.com/u/110817071?v=4?s=100" width="100px;" alt="fareez2"/><br /><sub><b>fareez2</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Code">💻</a> <a href="#design-fareez2" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Afareez2" title="Reviewed Pull Requests">👀</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
