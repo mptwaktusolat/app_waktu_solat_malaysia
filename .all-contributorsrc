@@ -1,0 +1,29 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 75,
+  "commit": false,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "iqfareez",
+      "name": "Fareez Iqmal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60868965?v=4",
+      "profile": "http://iqfareez.com",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "linkToUsage": false,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "app_waktu_solat_malaysia",
+  "projectOwner": "mptwaktusolat"
+}
