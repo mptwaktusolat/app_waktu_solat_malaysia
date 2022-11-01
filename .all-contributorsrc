@@ -15,7 +15,8 @@
         "code",
         "design",
         "doc",
-        "review"
+        "review",
+        "test"
       ]
     }
   ],
