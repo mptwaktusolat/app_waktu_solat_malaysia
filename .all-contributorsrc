@@ -2,9 +2,9 @@
   "files": [
     "README.md"
   ],
-  "imageSize": 100,
+  "imageSize": 75,
   "commit": false,
-  "commitConvention": "angular",
+  "commitConvention": "gitmoji",
   "contributors": [
     {
       "login": "iqfareez",
