@@ -107,7 +107,8 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=100" width="75px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Tests">⚠️</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="#content-iqfareez" title="Content">🖋</a></td>
+      <td align="center"><a href="http://iqfareez.com"><img src="https://avatars.githubusercontent.com/u/60868965?v=4?s=75" width="75px;" alt="Fareez Iqmal"/><br /><sub><b>Fareez Iqmal</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Tests">⚠️</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=iqfareez" title="Documentation">📖</a> <a href="#design-iqfareez" title="Design">🎨</a> <a href="#content-iqfareez" title="Content">🖋</a></td>
+      <td align="center"><a href="https://github.com/fareez2"><img src="https://avatars.githubusercontent.com/u/110817071?v=4?s=75" width="75px;" alt="fareez2"/><br /><sub><b>fareez2</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Code">💻</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
