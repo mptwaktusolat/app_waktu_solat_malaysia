@@ -159,7 +159,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href="https://github.com/fareez2"><img src="https://avatars.githubusercontent.com/u/110817071?v=4?s=100" width="100px;" alt="fareez2"/><br /><sub><b>fareez2</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Code">💻</a> <a href="#design-fareez2" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Afareez2" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center"><a href="https://github.com/fareez2"><img src="https://avatars.githubusercontent.com/u/110817071?v=4?s=100" width="100px;" alt="fareez2"/><br /><sub><b>fareez2</b></sub></a><br /><a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Code">💻</a> <a href="#design-fareez2" title="Design">🎨</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Documentation">📖</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls?q=is%3Apr+reviewed-by%3Afareez2" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/mptwaktusolat/app_waktu_solat_malaysia/commits?author=fareez2" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
