@@ -90,7 +90,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    configureSelectNotificationSubject();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),

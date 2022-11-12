@@ -1,7 +1,3 @@
-//constants
-const kPayloadMonthly = 'monthlyRefresh';
-const kPayloadDebug = 'payloadDebug';
-
 //GetStorage
 const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";

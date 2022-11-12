@@ -1,17 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:rxdart/subjects.dart' as rxsub;
 import 'package:timezone/timezone.dart';
-
-import '../CONSTANTS.dart';
-
-final rxsub.BehaviorSubject<NotificationClass>
-    didReceiveLocalNotificationSubject =
-    rxsub.BehaviorSubject<NotificationClass>();
-final rxsub.BehaviorSubject<String?> selectNotificationSubject =
-    rxsub.BehaviorSubject<String?>();
 
 class NotificationClass {
   final int? id;
@@ -28,29 +18,7 @@ Future<void> initNotifications() async {
 
   var initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
-  await FlutterLocalNotificationsPlugin().initialize(
-    initializationSettings,
-    onSelectNotification: (String? payload) async {
-      if (payload != null) {
-        print('notification payload: $payload');
-        selectNotificationSubject.add(payload);
-      }
-    },
-  );
-}
-
-void configureSelectNotificationSubject() {
-  selectNotificationSubject.stream.listen((String? payload) async {
-    if (payload == kPayloadMonthly) {
-      Fluttertoast.showToast(
-          msg:
-              'Please wait for a few seconds for the notification to be resheduled',
-          toastLength: Toast.LENGTH_LONG);
-    } else if (payload == kPayloadDebug) {
-      Fluttertoast.showToast(
-          msg: 'Debug payload here!', toastLength: Toast.LENGTH_SHORT);
-    }
-  });
+  await FlutterLocalNotificationsPlugin().initialize(initializationSettings);
 }
 
 /// Single prayer notification without azan

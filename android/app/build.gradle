@@ -41,6 +41,14 @@ android {
         disable 'InvalidPackage'
     }
 
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
+        // Sets Java compatibility to Java 8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "live.iqfareez.waktusolatmalaysia"
         minSdkVersion 20
@@ -73,4 +81,5 @@ flutter {
 
 dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 }
