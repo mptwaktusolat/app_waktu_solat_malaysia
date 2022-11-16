@@ -1,5 +1,3 @@
-///This widget is rendered as Location button at header part.
-///Also handle the location selection
 import 'dart:async';
 
 import 'package:app_settings/app_settings.dart';
@@ -8,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
@@ -23,6 +22,8 @@ import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';
 
+///This widget is rendered as Location button at header part.
+///Also handle the location selection
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
     GetStorage().write(
@@ -65,10 +66,10 @@ class LocationChooser {
         rethrow;
       }
     }
-    DebugToast.show(firstPlacemark.country);
     if (firstPlacemark.country!.toLowerCase() != "malaysia") {
       throw 'Outside Malaysia';
     }
+    DebugToast.show(firstPlacemark.toString(), duration: Toast.LENGTH_LONG);
     var zone = LocationCoordinate.getJakimCodeNearby(
         pos.latitude, pos.longitude, firstPlacemark.administrativeArea);
 

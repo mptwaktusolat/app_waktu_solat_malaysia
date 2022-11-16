@@ -14,7 +14,7 @@ class AppUpdateChecker {
     final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-    final int deviceSdk = androidInfo.version.sdkInt!;
+    final int deviceSdk = androidInfo.version.sdkInt;
     const int minSdk = 20;
     if (deviceSdk < minSdk) return false;
 

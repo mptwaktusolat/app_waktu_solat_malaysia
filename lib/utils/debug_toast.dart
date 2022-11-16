@@ -3,9 +3,10 @@ import 'package:get_storage/get_storage.dart';
 import '../CONSTANTS.dart';
 
 class DebugToast {
-  static void show(String? mesage, {bool force = false}) {
+  static void show(String? mesage,
+      {bool force = false, Toast duration = Toast.LENGTH_SHORT}) {
     if (force || GetStorage().read(kIsDebugMode)) {
-      Fluttertoast.showToast(msg: mesage!);
+      Fluttertoast.showToast(msg: mesage!, toastLength: duration);
     }
   }
 }
