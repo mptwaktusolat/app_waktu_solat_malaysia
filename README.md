@@ -13,7 +13,7 @@
 
 App waktu solat seluruh negeri di Malaysia | Prayer time app across all states in Malaysia.
 
-Focusing on lightweight, fast app, easy-to-use and modern UI :wink:
+Focusing on a lightweight, fast app, easy-to-use and modern UI :wink:
 
 ![malaysia prayer time screenshots](https://user-images.githubusercontent.com/60868965/167505576-d8e0c62a-76b4-4d82-ade9-fa0722539b5d.png)
 
@@ -43,7 +43,7 @@ Wondering what changed with every :new: release? Or what bug :bug: has been fixe
 
 ## Report issues / Feature requests
 
-_With great power comes great responsibility_. Since this a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporing issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues).
+_With great power comes great responsibility_. Since this is a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporting issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues).
 
 If you would like to contribute to this project, please submit a [pull request](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls).
 
@@ -63,7 +63,7 @@ _Not available for iOS sorry :disappointed:_
 
 <a href='https://waktusolat.web.app/'><img alt='Open in Web' src='https://user-images.githubusercontent.com/60868965/99348515-bc2a5200-28d4-11eb-8d34-ac47f3e11f3d.png' style="max-width:45%;"/></a>
 
-_Web app working directory has been separated to `web` branches._
+_Web app working directory is moved to its own [repo](https://github.com/mptwaktusolat/app_waktu_solat_malaysia_web_legacy)_
 
 <!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 
@@ -73,7 +73,7 @@ Pre-release is a release track to test the apps that have been added with new fe
 
 Download and install the `.apk` from the [releases](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Don't forget to share your feedback and comments.
 
-_Note: Pre-release app are no longer submitted to the Google Play Store._
+_Note: Pre-release versions are not always submitted to the Google Play Store (Beta track)._
 
 ## Devlogs
 
@@ -85,6 +85,7 @@ _Note: Pre-release app are no longer submitted to the Google Play Store._
 [![Part 6](https://img.shields.io/badge/highlights-Part%206-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
 [![Part 7](https://img.shields.io/badge/highlights-Part%207-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
 [![Part 8](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
+[![Part 9](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/stories/highlights/17961012149100642/)
 
 ## Motivation
 
@@ -99,7 +100,6 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
 
 ## Contributors
-
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -117,13 +117,14 @@ I always wanted to contribute something to the ummah (Islam), and this is one of
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 ## Legalese
 
 - [Terms and Conditions](https://waktusolat.iqfareez.com/terms-and-conditions)
 - [Privacy Policy](https://waktusolat.iqfareez.com/privacy-policy)
 - Google Play and the Google Play logo are trademarks of Google LLC.
 
-## Acknowledgements
+## Acknowledgments
 
 Article, assets, and resources that help me throughout the development.
 
