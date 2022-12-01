@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.7.1-pre.2+114
+version: 2.7.1+115
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -42,7 +42,9 @@ dependencies:
   grouped_list: ^5.0.1
   flutter_markdown: ^0.6.9
   firebase_analytics: ^10.0.5
-  auto_start_flutter: ^0.1.0
+  auto_start_flutter:
+    # Issue https://github.com/seena98/auto_start_flutter/issues/6
+    git: https://github.com/iqfareez/auto_start_flutter.git
   timezone: ^0.9.0
   quick_actions: ^1.0.0
   firebase_crashlytics: ^3.0.5

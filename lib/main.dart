@@ -184,7 +184,7 @@ void initGetStorage() {
   get.writeIfNull(kAppTheme, ThemeMode.light.name);
 }
 
-/// Laucher icon shortcuts
+/// Launcher icon shortcuts
 void configureQuickAction(BuildContext context) {
   const QuickActions quickActions = QuickActions();
   quickActions.initialize((shortcutType) {
