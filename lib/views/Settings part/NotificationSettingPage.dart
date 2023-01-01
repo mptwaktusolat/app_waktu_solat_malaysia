@@ -16,7 +16,7 @@ import '../../providers/settingsProvider.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 
-enum MyNotificationType { noazan, azan }
+enum MyNotificationType { noazan, azan, shortAzan }
 
 class NotificationPageSetting extends StatefulWidget {
   const NotificationPageSetting({Key? key}) : super(key: key);
@@ -51,6 +51,14 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   groupValue: _type,
                   title: Text(
                       AppLocalizations.of(context)!.onboardingNotifDefault),
+                  onChanged: (MyNotificationType? type) {
+                    setState(() => _type = type!);
+                  }),
+              RadioListTile(
+                  value: MyNotificationType.shortAzan,
+                  groupValue: _type,
+                  title: Text(
+                      AppLocalizations.of(context)!.onboardingNotifShortAzan),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),

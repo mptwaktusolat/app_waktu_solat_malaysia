@@ -37,6 +37,9 @@ class MyNotifScheduler {
         DebugToast.show('Notification: Azan');
         _azanScheduler(context, times, currentDateTime, currentDaerah);
         break;
+      case MyNotificationType.shortAzan:
+        _azanScheduler(context, times, currentDateTime, currentDaerah,
+            short: true);
     }
 
     scheduleAlertNotification(
@@ -136,19 +139,21 @@ class MyNotifScheduler {
 
   /// Notification but with azan
   static void _azanScheduler(BuildContext context, List<PrayerTime> times,
-      DateTime currentDateTime, String currentLocation) async {
+      DateTime currentDateTime, String currentLocation,
+      {bool short = false}) async {
     for (var dayTime in times) {
       if (dayTime.fajr.isAfter(currentDateTime)) {
         //to make sure the time is in future
         await scheduleSingleAzanNotification(
-            name: 'Fajr',
-            id: int.parse(
-                dayTime.fajr.millisecondsSinceEpoch.toString().substring(5)),
-            title: AppLocalizations.of(context)!
-                .notifItsTime(AppLocalizations.of(context)!.fajrName),
-            scheduledTime: TZDateTime.from(dayTime.fajr, local),
-            body: AppLocalizations.of(context)!.notifIn(currentLocation),
-            customSound: 'azan_hejaz2013_fajr');
+          name: 'Fajr',
+          id: int.parse(
+              dayTime.fajr.millisecondsSinceEpoch.toString().substring(5)),
+          title: AppLocalizations.of(context)!
+              .notifItsTime(AppLocalizations.of(context)!.fajrName),
+          scheduledTime: TZDateTime.from(dayTime.fajr, local),
+          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+        );
       }
       if (dayTime.syuruk.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
@@ -164,50 +169,53 @@ class MyNotifScheduler {
       }
       if (dayTime.dhuhr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
-            name: 'Zuhr',
-            id: int.parse(
-                dayTime.dhuhr.millisecondsSinceEpoch.toString().substring(5)),
-            title: AppLocalizations.of(context)!
-                .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
-            body: AppLocalizations.of(context)!.notifIn(currentLocation),
-            summary: dayTime.dhuhr.weekday == DateTime.friday
-                ? 'Salam Jumaat'
-                : null,
-            scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
-            customSound: 'azan_kurdhi2010');
+          name: 'Zuhr',
+          id: int.parse(
+              dayTime.dhuhr.millisecondsSinceEpoch.toString().substring(5)),
+          title: AppLocalizations.of(context)!
+              .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
+          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          summary:
+              dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
+          scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
+          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+        );
       }
       if (dayTime.asr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
-            name: 'Asr',
-            id: int.parse(
-                dayTime.asr.millisecondsSinceEpoch.toString().substring(5)),
-            title: AppLocalizations.of(context)!
-                .notifItsTime(AppLocalizations.of(context)!.asrName),
-            body: AppLocalizations.of(context)!.notifIn(currentLocation),
-            scheduledTime: TZDateTime.from(dayTime.asr, local),
-            customSound: 'azan_kurdhi2010');
+          name: 'Asr',
+          id: int.parse(
+              dayTime.asr.millisecondsSinceEpoch.toString().substring(5)),
+          title: AppLocalizations.of(context)!
+              .notifItsTime(AppLocalizations.of(context)!.asrName),
+          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          scheduledTime: TZDateTime.from(dayTime.asr, local),
+          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+        );
       }
       if (dayTime.maghrib.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
-            name: 'Maghrib',
-            id: int.parse(
-                dayTime.maghrib.millisecondsSinceEpoch.toString().substring(5)),
-            title: AppLocalizations.of(context)!
-                .notifItsTime(AppLocalizations.of(context)!.maghribName),
-            body: AppLocalizations.of(context)!.notifIn(currentLocation),
-            scheduledTime: TZDateTime.from(dayTime.maghrib, local),
-            customSound: 'azan_kurdhi2010');
+          name: 'Maghrib',
+          id: int.parse(
+              dayTime.maghrib.millisecondsSinceEpoch.toString().substring(5)),
+          title: AppLocalizations.of(context)!
+              .notifItsTime(AppLocalizations.of(context)!.maghribName),
+          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          scheduledTime: TZDateTime.from(dayTime.maghrib, local),
+          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+        );
       }
       if (dayTime.isha.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
-            name: 'Isya\'',
-            id: int.parse(
-                dayTime.isha.millisecondsSinceEpoch.toString().substring(5)),
-            title: AppLocalizations.of(context)!
-                .notifItsTime(AppLocalizations.of(context)!.ishaName),
-            body: AppLocalizations.of(context)!.notifIn(currentLocation),
-            scheduledTime: TZDateTime.from(dayTime.isha, local),
-            customSound: 'azan_kurdhi2010');
+          name: 'Isya\'',
+          id: int.parse(
+              dayTime.isha.millisecondsSinceEpoch.toString().substring(5)),
+          title: AppLocalizations.of(context)!
+              .notifItsTime(AppLocalizations.of(context)!.ishaName),
+          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          scheduledTime: TZDateTime.from(dayTime.isha, local),
+          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+        );
       }
     }
   }

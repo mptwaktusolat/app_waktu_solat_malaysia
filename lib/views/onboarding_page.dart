@@ -140,6 +140,15 @@ class _OnboardingPageState extends State<OnboardingPage>
                 setState(() => _notificationType = type!);
               }),
           RadioListTile(
+              value: MyNotificationType.shortAzan,
+              groupValue: _notificationType,
+              title:
+                  Text(AppLocalizations.of(context)!.onboardingNotifShortAzan),
+              onChanged: (MyNotificationType? type) {
+                GetStorage().write(kNotificationType, type?.index);
+                setState(() => _notificationType = type!);
+              }),
+          RadioListTile(
               value: MyNotificationType.azan,
               groupValue: _notificationType,
               title: Text(AppLocalizations.of(context)!.onboardingNotifAzan),
