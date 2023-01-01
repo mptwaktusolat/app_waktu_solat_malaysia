@@ -205,7 +205,8 @@
   "onboardingThemeFav": "Set your favourite theme",
   "onboardingNotifOption": "Select notification preferences",
   "onboardingNotifDefault": "Default notification sound",
-  "onboardingNotifAzan": "Azan notification",
+  "onboardingNotifAzan": "Azan (full)",
+  "onboardingNotifShortAzan": "Azan (short)",
   "onboardingNotifAutostart": "**Autostart** need to be enabled for the app to send notifications. [Learn more...]({link})",
   "@onboardingNotifAutostart": {
     "placeholders": {
