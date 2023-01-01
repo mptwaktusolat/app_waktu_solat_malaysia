@@ -205,7 +205,8 @@
   "onboardingThemeFav": "Tetapkan tema kegemaran anda",
   "onboardingNotifOption": "Pilih jenis pemberitahuan",
   "onboardingNotifDefault": "Bunyi pemberitahuan lalai",
-  "onboardingNotifAzan": "Pemberitahuan azan",
+  "onboardingNotifAzan": "Azan (full)",
+  "onboardingNotifShortAzan": "Azan (short)",
   "onboardingNotifAutostart": "**Autostart** perlu dihidupkan untuk apl menghantar pemberitahuan. [Ketahui lebih lanjut..]({link})",
   "@onboardingNotifAutostart": {
     "placeholders": {
