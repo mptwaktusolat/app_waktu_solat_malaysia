@@ -80,7 +80,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    '\nMPT 2022',
+                    '\nMPT 2023',
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
