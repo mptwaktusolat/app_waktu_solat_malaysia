@@ -45,7 +45,7 @@ Wondering what changed with every :new: release? Or what bug :bug: has been fixe
 
 _With great power comes great responsibility_. Since this is a prayer time app, keeping the data as accurate as possible is crucial Helps me solve issues/find bugs by reporting issues using the in-app **Send Feedback** feature **or** you could open a new [issue](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues).
 
-If you would like to contribute to this project, please submit a [pull request](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls).
+If you are interested in contributing to this project, we welcome pull requests. Simply submit one on the [pull request](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/pulls) page.
 
 _p/s: If I'm not responding to the new issue/PR for more than 48 hours. Kindly tag me @iqfareez._
 
@@ -69,11 +69,11 @@ _Web app working directory is moved to its own [repo](https://github.com/mptwakt
 
 ## Try the pre-releases
 
-Pre-release is a release track to test the apps that have been added with new features/bug fixes/experiment features that are not ready for production.
+The pre-release track allows you to test the latest version of the app, which may include new features, bug fixes, or experimental features that are not yet ready for production in [discussions](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/discussions).
 
-Download and install the `.apk` from the [releases](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Don't forget to share your feedback and comments.
+To try the pre-release version, download and install the `.apk` file from the [releases](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Please don't forget to share your feedback and comments.
 
-_Note: Pre-release versions are not always submitted to the Google Play Store (Beta track)._
+Note: Pre-release versions are not always submitted to the Google Play Store (Beta track).
 
 ## Devlogs
 
@@ -91,9 +91,9 @@ _Note: Pre-release versions are not always submitted to the Google Play Store (B
 
 <!-- A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists. -->
 
-Started with the intention to learn Flutter, until the app has achieved over 40 thousand installs, beyond far on what can I imagine.
+I started this project with the intention of learning Flutter, but it has since gained over 40,000 installs, far beyond my expectations.
 
-I always wanted to contribute something to the ummah (Islam), and this is one of my way of doing it. I hope this project will benefit Malaysians (including people who reside in Malaysia) by providing quick and easy access to prayer times in their area. This project will be kept maintained so it will relevant for many generations to come. Inshallah.
+I have always wanted to contribute something to the ummah (the global Muslim community), and this project is my way of doing so. I hope it will benefit Malaysians (including those living in Malaysia) by providing quick and easy access to prayer times in their area. I plan to maintain this project so that it will remain relevant for many generations to come, inshallah (God willing).
 
 <!-- ## Attribution
 
@@ -146,5 +146,6 @@ and sure, there's a lot more.
 - 3D assets you see on the onboarding screen are from [BAM 3D Illustration kit](https://www.uistore.design/items/bam-free-3d-illustration-kit/) & [3dicons](https://3dicons.co/).
 - Tasbih icons created by [Freepik](https://www.flaticon.com/free-icons/tasbih).
 - Mosques images (in full timetable page) is taken from various sources
+- [Azan(s)](https://soundcloud.com/alafasy/sets/athan) by Syeikh Mishary Rashid Alafasy
 
 ### May Allah ease everything in developing MPT. InshaAllah!
