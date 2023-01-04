@@ -38,6 +38,7 @@ Future<void> scheduleSinglePrayerNotification({
     priority: Priority.max,
     importance: Importance.high,
     styleInformation: styleInformation,
+    category: AndroidNotificationCategory.alarm,
     when: scheduledTime.millisecondsSinceEpoch,
     color: const Color(0xFF19e3cb),
   );
@@ -72,6 +73,8 @@ Future<void> scheduleSingleAzanNotification(
     styleInformation: styleInformation,
     when: scheduledTime.millisecondsSinceEpoch,
     playSound: true,
+    category: AndroidNotificationCategory.alarm,
+
     sound: RawResourceAndroidNotificationSound(customSound),
     color: const Color(0xFF19e3cb),
   );
@@ -99,6 +102,7 @@ Future<void> scheduleAlertNotification(
     channelDescription: 'Alerts and reminders to user',
     priority: Priority.defaultPriority,
     importance: Importance.high,
+    category: AndroidNotificationCategory.reminder,
     styleInformation: styleInformation,
     color: const Color(0xFFfcbd00),
   );
