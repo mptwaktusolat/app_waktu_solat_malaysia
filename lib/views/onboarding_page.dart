@@ -80,29 +80,36 @@ class _OnboardingPageState extends State<OnboardingPage>
       ),
       PageViewModel(
           title: AppLocalizations.of(context)!.onboardingSetLocation,
-          body: AppLocalizations.of(context)!.onboardingLocationDesc,
-          image: Image.asset(
-            'assets/3d/Pin.png',
-            width: 200,
-          ),
+          image: Image.asset('assets/3d/Pin.png', width: 200),
           decoration: _pageDecoration,
-          footer: _isDoneSetLocation
-              ? Text(
-                  AppLocalizations.of(context)!.onboardingLocationToast,
-                  textAlign: TextAlign.center,
-                )
-              : ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
-                  onPressed: () async {
-                    var res =
-                        await LocationChooser.showLocationChooser(context);
-                    if (res) {
-                      setState(() => _isDoneSetLocation = true);
-                    }
-                  },
-                  child:
-                      Text(AppLocalizations.of(context)!.onboardingLocationSet),
-                )),
+          bodyWidget: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                AppLocalizations.of(context)!.onboardingLocationDesc,
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 71),
+              _isDoneSetLocation
+                  ? Text(
+                      AppLocalizations.of(context)!.onboardingLocationToast,
+                      textAlign: TextAlign.center,
+                    )
+                  : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.teal),
+                      onPressed: () async {
+                        var res =
+                            await LocationChooser.showLocationChooser(context);
+                        if (res) {
+                          setState(() => _isDoneSetLocation = true);
+                        }
+                      },
+                      child: Text(
+                          AppLocalizations.of(context)!.onboardingLocationSet),
+                    ),
+            ],
+          )),
       PageViewModel(
         image: Padding(
           padding: const EdgeInsets.all(50.0),
