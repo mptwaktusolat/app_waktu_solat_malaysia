@@ -14,7 +14,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../CONSTANTS.dart';
 import '../location_utils/location_data.dart';
-import '../utils/launchUrl.dart';
+import '../utils/launch_url.dart';
 
 /// This just an app built with express js, that handle
 /// the transaction to the Firebase.

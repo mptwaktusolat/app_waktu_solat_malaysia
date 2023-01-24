@@ -6,7 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../CONSTANTS.dart';
 import '../networking/update_checker.dart';
-import '../utils/launchUrl.dart';
+import '../utils/launch_url.dart';
 
 class _UpdateInfo {
   String updateName;

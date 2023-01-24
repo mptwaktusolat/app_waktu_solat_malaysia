@@ -12,7 +12,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../../CONSTANTS.dart';
 import '../../notificationUtil/notifications_helper.dart';
-import '../../providers/settingsProvider.dart';
+import '../../providers/setting_provider.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart' as constants;
 import '../location_utils/location_database.dart';
-import '../providers/settingsProvider.dart';
+import '../providers/setting_provider.dart';
 import 'date_and_time.dart';
 import 'prayer_data_handler.dart';
 

@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../CONSTANTS.dart' as constants;
-import '../utils/launchUrl.dart';
+import '../utils/launch_url.dart';
 
 class ButtonContent {
   String label;

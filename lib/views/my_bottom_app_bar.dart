@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../providers/updater_provider.dart';
-import '../utils/launchUrl.dart';
+import '../utils/launch_url.dart';
 import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';

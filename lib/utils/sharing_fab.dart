@@ -8,9 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../CONSTANTS.dart';
-import '../providers/settingsProvider.dart';
+import '../providers/setting_provider.dart';
 import 'copy_and_share.dart';
-import 'launchUrl.dart';
+import 'launch_url.dart';
 
 class ShareFAB extends StatelessWidget {
   const ShareFAB({Key? key}) : super(key: key);

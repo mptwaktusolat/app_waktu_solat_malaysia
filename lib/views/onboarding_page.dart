@@ -11,7 +11,7 @@ import '../CONSTANTS.dart';
 import '../main.dart';
 import '../providers/autostart_warning_provider.dart';
 import '../providers/locale_provider.dart';
-import '../utils/launchUrl.dart';
+import '../utils/launch_url.dart';
 import 'Settings part/NotificationSettingPage.dart';
 import 'Settings%20part/ThemePage.dart';
 import 'shake_widget.dart';

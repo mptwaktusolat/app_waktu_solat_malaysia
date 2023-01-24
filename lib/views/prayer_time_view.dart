@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../models/jakim_esolat_model.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
-import '../providers/settingsProvider.dart';
+import '../providers/setting_provider.dart';
 import '../utils/date_and_time.dart';
 import '../utils/prayer_data_handler.dart';
 

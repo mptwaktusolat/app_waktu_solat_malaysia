@@ -10,8 +10,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../CONSTANTS.dart';
-import '../../providers/settingsProvider.dart';
-import '../../utils/launchUrl.dart';
+import '../../providers/setting_provider.dart';
+import '../../utils/launch_url.dart';
 import '../contribution_page.dart';
 import '../debug_widgets.dart';
 

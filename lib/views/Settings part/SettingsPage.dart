@@ -10,11 +10,11 @@ import 'package:provider/provider.dart';
 
 import '../../CONSTANTS.dart';
 import '../../providers/locale_provider.dart';
-import '../../providers/settingsProvider.dart';
+import '../../providers/setting_provider.dart';
 import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
-import '../Settings%20part/AboutPage.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
+import 'about_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
