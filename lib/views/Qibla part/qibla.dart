@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../utils/launchUrl.dart';
+import '../../utils/launch_url.dart';
 import '../Qibla%20part/qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
