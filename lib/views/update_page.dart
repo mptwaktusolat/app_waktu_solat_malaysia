@@ -60,11 +60,11 @@ class UpdatePage extends StatelessWidget {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.updatePageError,
-                    style: Theme.of(context).textTheme.bodyText2,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Text(
                     snapshot.error.toString(),
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 20),
                   Text(AppLocalizations.of(context)!.updatePageTryAgain),
@@ -81,17 +81,17 @@ class UpdatePage extends StatelessWidget {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.updatePageAvailable,
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 30),
                   Text(snapshot.data!.updateName,
-                      style: Theme.of(context).textTheme.headline5!),
+                      style: Theme.of(context).textTheme.headlineSmall!),
                   Text(
                     snapshot.data!.daySinceRelease == 0
                         ? AppLocalizations.of(context)!.updatePageReleasedToday
                         : AppLocalizations.of(context)!
                             .updatePageReleased(snapshot.data!.daySinceRelease),
-                    style: Theme.of(context).textTheme.caption,
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                   const SizedBox(height: 20),
                   MarkdownBody(

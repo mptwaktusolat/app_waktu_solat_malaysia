@@ -240,7 +240,7 @@ class ZoneSuccessWidget extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Theme.of(context).bottomAppBarColor,
+                color: Theme.of(context).bottomAppBarTheme.color,
               ),
               child: ListTile(
                 trailing: Column(

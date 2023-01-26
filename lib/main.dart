@@ -108,7 +108,7 @@ class MyApp extends StatelessWidget {
             navigatorObservers: <NavigatorObserver>[observer],
             theme: ThemeData.light().copyWith(
               primaryColor: _primaryColour,
-              bottomAppBarColor: Colors.teal.shade50,
+              bottomAppBarTheme: BottomAppBarTheme(color: Colors.teal.shade50),
               visualDensity: VisualDensity.adaptivePlatformDensity,
               appBarTheme: AppBarTheme(
                 color: _primaryColour,
@@ -116,7 +116,8 @@ class MyApp extends StatelessWidget {
             ),
             darkTheme: ThemeData.dark().copyWith(
                 primaryColor: _primaryColour,
-                bottomAppBarColor: Colors.teal.withOpacity(0.4),
+                bottomAppBarTheme:
+                    BottomAppBarTheme(color: Colors.teal.withOpacity(0.4)),
                 visualDensity: VisualDensity.adaptivePlatformDensity,
                 appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
             themeMode: themeValue.themeMode,

@@ -102,7 +102,7 @@ class AboutAppPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).bottomAppBarColor,
+                        color: Theme.of(context).bottomAppBarTheme.color,
                         borderRadius: BorderRadius.circular(10)),
                     child: MarkdownBody(
                       data: AppLocalizations.of(context)!.aboutJakim,

@@ -22,7 +22,8 @@ class _AdsWidgetState extends State<AdsWidget> {
         .updateRequestConfiguration(RequestConfiguration(testDeviceIds: [
       'DF693493239FEF390746FE861B201FC3',
       'EB458550DFD9A5B6EF3D8FD1A0705EFA',
-      '5BF49B5666B0C509C03B9E26F4DA9DDD'
+      '5BF49B5666B0C509C03B9E26F4DA9DDD',
+      'E40EE0533B0AE80A89AE8F5ED8DE334D',
     ]));
 
     _ad = BannerAd(

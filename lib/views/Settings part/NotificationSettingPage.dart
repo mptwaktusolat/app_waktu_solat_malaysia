@@ -84,7 +84,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                         Text(
                           AppLocalizations.of(context)!
                               .notifSettingChangesDetect,
-                          style: Theme.of(context).textTheme.subtitle2,
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                         ElevatedButton(
                             onPressed: () {
