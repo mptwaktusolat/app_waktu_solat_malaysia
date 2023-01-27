@@ -61,11 +61,15 @@ class _AdsWidgetState extends State<AdsWidget> {
     if (_isAdLoaded) {
       return Container(
           width: _ad.size.width.toDouble(),
-          height: _ad.size.height.toDouble() + 30,
+          height: _ad.size.height.toDouble(),
           alignment: Alignment.center,
           child: AdWidget(ad: _ad));
     } else {
       return const SizedBox.shrink();
+      // return const Placeholder(
+      //   fallbackHeight: 50,
+      //   fallbackWidth: 320,
+      // );
     }
   }
 }

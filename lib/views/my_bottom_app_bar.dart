@@ -13,6 +13,7 @@ import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';
 import 'Settings%20part/ThemePage.dart';
+import 'ads_widget.dart';
 import 'feedback_page.dart';
 import 'prayer_full_table.dart';
 import 'tasbih.dart';
@@ -25,77 +26,84 @@ class MyBottomAppBar extends StatelessWidget {
     var iconColour = Theme.of(context).brightness == Brightness.light
         ? Colors.grey.shade600
         : Colors.white60;
-    return BottomAppBar(
-      elevation: 18.0,
-      shape: const CircularNotchedRectangle(),
-      child: Row(
-        children: [
-          Consumer<UpdaterProvider>(builder: (_, setting, __) {
-            return IconButton(
-                tooltip: AppLocalizations.of(context)?.menuTooltip,
-                icon: Stack(children: [
-                  const Align(
-                      alignment: Alignment.center,
-                      child: FaIcon(FontAwesomeIcons.bars)),
-                  setting.needForUpdate
-                      ? Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.red),
-                            width: 8,
-                            height: 8,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ]),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const AdsWidget(),
+        BottomAppBar(
+          elevation: 18.0,
+          shape: const CircularNotchedRectangle(),
+          child: Row(
+            children: [
+              Consumer<UpdaterProvider>(builder: (_, setting, __) {
+                return IconButton(
+                    tooltip: AppLocalizations.of(context)?.menuTooltip,
+                    icon: Stack(children: [
+                      const Align(
+                          alignment: Alignment.center,
+                          child: FaIcon(FontAwesomeIcons.bars)),
+                      setting.needForUpdate
+                          ? Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    shape: BoxShape.circle, color: Colors.red),
+                                width: 8,
+                                height: 8,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    ]),
+                    color: iconColour,
+                    onPressed: () {
+                      menuModalBottomSheet(context);
+                    });
+              }),
+              IconButton(
+                icon: const FaIcon(FontAwesomeIcons.calendarDays),
+                tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
                 color: iconColour,
                 onPressed: () {
-                  menuModalBottomSheet(context);
-                });
-          }),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.calendarDays),
-            tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
-            color: iconColour,
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Full Prayer Timetable'),
-                  builder: (_) => PrayerFullTable()));
-            },
+                  Navigator.of(context).push(MaterialPageRoute(
+                      settings:
+                          const RouteSettings(name: 'Full Prayer Timetable'),
+                      builder: (_) => PrayerFullTable()));
+                },
+              ),
+              IconButton(
+                icon: const FaIcon(FontAwesomeIcons.kaaba),
+                color: iconColour,
+                tooltip: AppLocalizations.of(context)?.qiblaTitle,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      settings: const RouteSettings(name: 'Qibla'),
+                      builder: (_) => GetStorage().read(kHasShowQiblaWarning)
+                          ? const Qibla()
+                          : const QiblaWarn(),
+                    ),
+                  );
+                },
+              ),
+              IconButton(
+                icon: SvgPicture.asset('assets/icons/tasbih-plain.svg',
+                    color: iconColour),
+                tooltip: "Tasbih",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      settings: const RouteSettings(name: 'Tasbih'),
+                      builder: (_) => const Tasbih(),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.kaaba),
-            color: iconColour,
-            tooltip: AppLocalizations.of(context)?.qiblaTitle,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Qibla'),
-                  builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                      ? const Qibla()
-                      : const QiblaWarn(),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: SvgPicture.asset('assets/icons/tasbih-plain.svg',
-                color: iconColour),
-            tooltip: "Tasbih",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Tasbih'),
-                  builder: (_) => const Tasbih(),
-                ),
-              );
-            },
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

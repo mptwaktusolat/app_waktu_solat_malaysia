@@ -14,7 +14,6 @@ import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
 import '../utils/prayer_data_handler.dart';
 import '../networking/update_checker.dart';
-import 'ads_widget.dart';
 import 'notif_prompt.dart';
 import 'prayer_time_view.dart';
 import 'whats_new_update.dart';
@@ -110,14 +109,10 @@ class _AppBodyState extends State<AppBody> {
                             errorMessage: snapshot.error.toString(),
                             onRetryPressed: () => setState(() {}));
                       }
-
                       // display the list of prayer timee
                       return const PrayTimeList();
                     }),
                   ),
-                  // show ads only if no prayer times error happen
-                  // annoying bila prayer time tk kluar, tapi ads laju je kluar
-                  if (!snapshot.hasError) const AdsWidget()
                 ],
               );
             },

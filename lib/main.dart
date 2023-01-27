@@ -153,7 +153,7 @@ class MyHomePage extends StatelessWidget {
       ),
       bottomNavigationBar: const MyBottomAppBar(),
       floatingActionButton: const ShareFAB(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: const SingleChildScrollView(
         child: AppBody(),
       ),
