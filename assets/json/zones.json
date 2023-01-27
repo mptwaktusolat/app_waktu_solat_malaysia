@@ -7,7 +7,7 @@
   {
     "jakimCode": "JHR02",
     "negeri": "Johor",
-    "daerah": "Kota Tinggi, Mersing, Johor Bahru"
+    "daerah": "Kota Tinggi, Mersing, Johor Bahru, Kulai"
   },
   {
     "jakimCode": "JHR03",
@@ -17,9 +17,8 @@
   {
     "jakimCode": "JHR04",
     "negeri": "Johor",
-    "daerah": "Batu Pahat, Muar, Segamat, Gemas"
+    "daerah": "Batu Pahat, Muar, Segamat, Gemas, Tangkak"
   },
-
   {
     "jakimCode": "KDH01",
     "negeri": "Kedah",
@@ -43,7 +42,7 @@
   {
     "jakimCode": "KDH05",
     "negeri": "Kedah",
-    "daerah": "Kulim, Bandar Bahru"
+    "daerah": "Kulim, Bandar Baharu"
   },
   {
     "jakimCode": "KDH06",
@@ -55,24 +54,21 @@
     "negeri": "Kedah",
     "daerah": "Puncak Gunung Jerai"
   },
-
   {
     "jakimCode": "KTN01",
     "negeri": "Kelantan",
-    "daerah": "Kota Bahru, Bachok, Pasir Puteh, Tumpat, Pasir Mas, Tanah Merah, Machang, Kuala Krai, Mukim Chiku"
+    "daerah": "Kota Bharu, Bachok, Pasir Puteh, Tumpat, Pasir Mas, Tanah Merah, Machang, Kuala Krai, Mukim Chiku"
   },
   {
-    "jakimCode": "KTN03",
+    "jakimCode": "KTN02",
     "negeri": "Kelantan",
-    "daerah": "Jeli, Gua Musang (Daerah Galas dan Bertam)"
+    "daerah": "Jeli, Gua Musang (Daerah Galas dan Bertam), Jajahan Kecil Lojing"
   },
-
   {
     "jakimCode": "MLK01",
     "negeri": "Melaka",
     "daerah": "SELURUH NEGERI MELAKA"
   },
-
   {
     "jakimCode": "NGS01",
     "negeri": "Negeri Sembilan",
@@ -81,9 +77,13 @@
   {
     "jakimCode": "NGS02",
     "negeri": "Negeri Sembilan",
-    "daerah": "Port Dickson, Seremban, Kuala Pilah, Jelebu, Rembau"
+    "daerah": "Kuala Pilah, Jelebu, Rembau"
   },
-
+  {
+    "jakimCode": "NGS03",
+    "negeri": "Negeri Sembilan",
+    "daerah": "Port Dickson, Seremban"
+  },
   {
     "jakimCode": "PHG01",
     "negeri": "Pahang",
@@ -102,7 +102,7 @@
   {
     "jakimCode": "PHG04",
     "negeri": "Pahang",
-    "daerah": "Bentong, Raub, Kuala Lipis"
+    "daerah": "Bentong, Raub, Lipis"
   },
   {
     "jakimCode": "PHG05",
@@ -114,7 +114,6 @@
     "negeri": "Pahang",
     "daerah": "Bukit Fraser, Genting Highlands, Cameron Highlands"
   },
-
   {
     "jakimCode": "PRK01",
     "negeri": "Perak",
@@ -123,7 +122,7 @@
   {
     "jakimCode": "PRK02",
     "negeri": "Perak",
-    "daerah": "Ipoh, Batu Gajah, Kampar, Sungai Siput (Daerah Kecil}, Kuala Kangsar"
+    "daerah": "Ipoh, Batu Gajah, Kampar, Sg. Siput, Kuala Kangsar"
   },
   {
     "jakimCode": "PRK03",
@@ -150,19 +149,16 @@
     "negeri": "Perak",
     "daerah": "Bukit Larut"
   },
-
   {
     "jakimCode": "PLS01",
     "negeri": "Perlis",
-    "daerah": "Kangar, Padang Besar, Arau"
+    "daerah": "SELURUH NEGERI PERLIS"
   },
-
   {
     "jakimCode": "PNG01",
     "negeri": "Pulau Pinang",
     "daerah": "SELURUH NEGERI PULAU PINANG"
   },
-
   {
     "jakimCode": "SBH01",
     "negeri": "Sabah",
@@ -208,7 +204,6 @@
     "negeri": "Sabah",
     "daerah": "Sipitang, Membakut, Beaufort, Kuala Penyu, Weston, Tenom, Long Pa Sia, Pendalaman (Bawah)"
   },
-
   {
     "jakimCode": "SWK01",
     "negeri": "Sarawak",
@@ -252,7 +247,7 @@
   {
     "jakimCode": "SWK09",
     "negeri": "Sarawak",
-    "daerah": "Zon Khas"
+    "daerah": "Zon Khas (Kampung Patarikan)"
   },
   {
     "jakimCode": "SGR01",
