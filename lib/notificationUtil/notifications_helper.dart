@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart';
 
+import '../views/Settings part/NotificationSettingPage.dart';
+
 class NotificationClass {
   final int? id;
   final String? title;
@@ -74,7 +76,6 @@ Future<void> scheduleSingleAzanNotification(
     when: scheduledTime.millisecondsSinceEpoch,
     playSound: true,
     category: AndroidNotificationCategory.alarm,
-
     sound: RawResourceAndroidNotificationSound(customSound),
     color: const Color(0xFF19e3cb),
   );
@@ -131,5 +132,53 @@ Future<void> showDebugNotification() async {
     android: androidPlatformChannelSpecifics,
   );
   await FlutterLocalNotificationsPlugin()
-      .show(0, 'Debug ', 'For developer purposes', platformChannelSpecifics);
+      .show(0, 'Debug', 'For developer purposes', platformChannelSpecifics);
+}
+
+/// Play default notification immediately
+Future<void> fireDefaultNotification() async {
+  var androidSpecifics = const AndroidNotificationDetails(
+    'fire default id', // Different prayer time have different id
+    'fire default notification',
+    channelDescription: 'Demo notification',
+    priority: Priority.max,
+    importance: Importance.high,
+    category: AndroidNotificationCategory.alarm,
+    color: Color.fromARGB(255, 251, 53, 172),
+  );
+  var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+
+  await FlutterLocalNotificationsPlugin().show(
+    344, // just random id
+    'Default notification',
+    'This is how it will notify you',
+    platformChannelSpecifics,
+  ); // This literally schedules the notification
+}
+
+/// Play selected azan immediately
+Future<void> fireAzanNotification({
+  MyNotificationType type = MyNotificationType.shortAzan,
+}) async {
+  var androidSpecifics = AndroidNotificationDetails(
+    'fire ${type.name} id', // Different prayer time have different id
+    'fire ${type.name} notification',
+    channelDescription: 'Scheduled daily prayer azan',
+    priority: Priority.max,
+    importance: Importance.high,
+    playSound: true,
+    category: AndroidNotificationCategory.alarm,
+    sound: RawResourceAndroidNotificationSound(
+        type == MyNotificationType.shortAzan
+            ? 'azan_short_lamy2005'
+            : 'azan_kurdhi2010'),
+    color: const Color.fromARGB(255, 251, 53, 172),
+  );
+  var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+
+  await FlutterLocalNotificationsPlugin().show(
+      MyNotificationType.shortAzan.index * 2,
+      type.name,
+      'This is how it will notify you',
+      platformChannelSpecifics); // This literally schedules the notification
 }

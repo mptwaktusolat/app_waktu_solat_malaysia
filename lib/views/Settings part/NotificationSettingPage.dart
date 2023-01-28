@@ -51,24 +51,57 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               RadioListTile(
                   value: MyNotificationType.noazan,
                   groupValue: _type,
-                  title: Text(
-                      AppLocalizations.of(context)!.onboardingNotifDefault),
+                  title: Row(
+                    children: [
+                      Text(
+                          AppLocalizations.of(context)!.onboardingNotifDefault),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {
+                            print('calledf');
+                            fireDefaultNotification();
+                          },
+                          icon: const Icon(Icons.play_arrow)),
+                    ],
+                  ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
               RadioListTile(
                   value: MyNotificationType.shortAzan,
                   groupValue: _type,
-                  title: Text(
-                      AppLocalizations.of(context)!.onboardingNotifShortAzan),
+                  title: Row(
+                    children: [
+                      Text(AppLocalizations.of(context)!
+                          .onboardingNotifShortAzan),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          fireAzanNotification(
+                              type: MyNotificationType.shortAzan);
+                        },
+                        icon: const Icon(Icons.play_arrow),
+                      ),
+                    ],
+                  ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
               RadioListTile(
                   value: MyNotificationType.azan,
                   groupValue: _type,
-                  title:
+                  title: Row(
+                    children: [
                       Text(AppLocalizations.of(context)!.onboardingNotifAzan),
+                      const Spacer(),
+                      IconButton(
+                        onPressed: () {
+                          fireAzanNotification(type: MyNotificationType.azan);
+                        },
+                        icon: const Icon(Icons.play_arrow),
+                      ),
+                    ],
+                  ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
                   }),
