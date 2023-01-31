@@ -136,7 +136,9 @@ Future<void> showDebugNotification() async {
 }
 
 /// Play default notification immediately
-Future<void> fireDefaultNotification() async {
+Future<void> fireDefaultNotification({
+  required String message,
+}) async {
   var androidSpecifics = const AndroidNotificationDetails(
     'fire default id', // Different prayer time have different id
     'fire default notification',
@@ -151,14 +153,15 @@ Future<void> fireDefaultNotification() async {
   await FlutterLocalNotificationsPlugin().show(
     344, // just random id
     'Default notification',
-    'This is how it will notify you',
+    message,
     platformChannelSpecifics,
   ); // This literally schedules the notification
 }
 
 /// Play selected azan immediately
 Future<void> fireAzanNotification({
-  MyNotificationType type = MyNotificationType.shortAzan,
+  required MyNotificationType type,
+  required String message,
 }) async {
   var androidSpecifics = AndroidNotificationDetails(
     'fire ${type.name} id', // Different prayer time have different id
@@ -179,6 +182,6 @@ Future<void> fireAzanNotification({
   await FlutterLocalNotificationsPlugin().show(
       MyNotificationType.shortAzan.index * 2,
       type.name,
-      'This is how it will notify you',
+      message,
       platformChannelSpecifics); // This literally schedules the notification
 }

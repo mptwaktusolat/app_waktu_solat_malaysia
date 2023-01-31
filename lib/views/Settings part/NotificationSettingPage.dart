@@ -31,6 +31,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
   MyNotificationType _type =
       MyNotificationType.values[GetStorage().read(kNotificationType)];
 
+  // to make sure only one banner is shown at a time
+  ScaffoldFeatureController<MaterialBanner, MaterialBannerClosedReason>?
+      _bannerController;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,14 +62,17 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                       const Spacer(),
                       IconButton(
                           onPressed: () {
-                            print('calledf');
-                            fireDefaultNotification();
+                            fireDefaultNotification(
+                              message: AppLocalizations.of(context)!
+                                  .notifSettingNotifDemo,
+                            );
                           },
                           icon: const Icon(Icons.play_arrow)),
                     ],
                   ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
+                    _handleRestartBanner();
                   }),
               RadioListTile(
                   value: MyNotificationType.shortAzan,
@@ -78,7 +85,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                       IconButton(
                         onPressed: () {
                           fireAzanNotification(
-                              type: MyNotificationType.shortAzan);
+                            type: MyNotificationType.shortAzan,
+                            message: AppLocalizations.of(context)!
+                                .notifSettingNotifDemo,
+                          );
                         },
                         icon: const Icon(Icons.play_arrow),
                       ),
@@ -86,6 +96,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
+                    _handleRestartBanner();
                   }),
               RadioListTile(
                   value: MyNotificationType.azan,
@@ -96,7 +107,11 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                       const Spacer(),
                       IconButton(
                         onPressed: () {
-                          fireAzanNotification(type: MyNotificationType.azan);
+                          fireAzanNotification(
+                            type: MyNotificationType.azan,
+                            message: AppLocalizations.of(context)!
+                                .notifSettingNotifDemo,
+                          );
                         },
                         icon: const Icon(Icons.play_arrow),
                       ),
@@ -104,39 +119,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   ),
                   onChanged: (MyNotificationType? type) {
                     setState(() => _type = type!);
+                    _handleRestartBanner();
                   }),
-              Builder(builder: (_) {
-                if (_type !=
-                    MyNotificationType
-                        .values[GetStorage().read(kNotificationType)]) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!
-                              .notifSettingChangesDetect,
-                          style: Theme.of(context).textTheme.titleSmall,
-                        ),
-                        ElevatedButton(
-                            onPressed: () {
-                              // mark as need to update notification
-                              // when the app restart
-                              GetStorage().write(kShouldUpdateNotif, true);
-                              GetStorage()
-                                  .write(kNotificationType, _type.index);
-                              Restart.restartApp();
-                            },
-                            child: Text(AppLocalizations.of(context)!
-                                .notifSettingRestartApp)),
-                      ],
-                    ),
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              }),
             ],
           )),
           Card(
@@ -236,6 +220,39 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
         ],
       ),
     );
+  }
+
+  /// Handle showing/hiding of banner when the user change the notification type
+  void _handleRestartBanner() async {
+    var currentNotifType =
+        MyNotificationType.values[GetStorage().read(kNotificationType)];
+
+    // show if new type is different from the old one (stored in storage)
+    if (_type != currentNotifType) {
+      // if material banner already shown, do nothing
+      if (_bannerController != null) return;
+
+      // show material banner
+      _bannerController = ScaffoldMessenger.of(context).showMaterialBanner(
+          MaterialBanner(
+              content:
+                  Text(AppLocalizations.of(context)!.notifSettingChangesDetect),
+              actions: [
+            TextButton(
+              child: Text(AppLocalizations.of(context)!.notifSettingRestartApp),
+              onPressed: () {
+                // mark as need to update notification
+                // when the app restart
+                GetStorage().write(kShouldUpdateNotif, true);
+                GetStorage().write(kNotificationType, _type.index);
+                Restart.restartApp();
+              },
+            )
+          ]));
+    } else {
+      ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+      _bannerController = null;
+    }
   }
 }
 
