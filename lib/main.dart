@@ -181,7 +181,7 @@ void initGetStorage() {
   get.writeIfNull(kFontSize, 14.0);
   // make default to default locale
   var localeName = Platform.localeName.split('_').first;
-  get.writeIfNull(kAppLanguage, localeName == "ms" ? localeName : "en");
+  get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
   get.writeIfNull(kAppTheme, ThemeMode.light.name);
 }
 
