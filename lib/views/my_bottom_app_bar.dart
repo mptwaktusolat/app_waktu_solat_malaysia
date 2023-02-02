@@ -12,7 +12,7 @@ import '../utils/launch_url.dart';
 import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';
-import 'Settings%20part/ThemePage.dart';
+import 'Settings part/theme_page.dart';
 import 'ads_widget.dart';
 import 'feedback_page.dart';
 import 'prayer_full_table.dart';

@@ -13,7 +13,7 @@ import '../providers/autostart_warning_provider.dart';
 import '../providers/locale_provider.dart';
 import '../utils/launch_url.dart';
 import 'Settings part/NotificationSettingPage.dart';
-import 'Settings%20part/ThemePage.dart';
+import 'Settings part/theme_page.dart';
 import 'shake_widget.dart';
 import 'zone_chooser.dart';
 
