@@ -88,9 +88,7 @@ app.*.map.json
 
 # key file
 key.properties
-
-# secret file
-SECRETS.dart
+android/key.jks
 
 # scratch file
 scratch.dart
