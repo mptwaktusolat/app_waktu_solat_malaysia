@@ -1,0 +1,84 @@
+# Build fat apk and splitted apk(s)
+
+name: Build Android (.apk(s))
+
+"on":
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      flutterChannel:
+        description: "Flutter channel"
+        default: stable
+        required: true
+        type: choice
+        options:
+          - stable
+          - beta
+          - master
+
+jobs:
+  build_android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ inputs.flutterChannel }}
+
+      - name: Decoding android/key.properties
+        run: echo "${{ secrets.KEY_PROP }}" | base64 --decode > android/key.properties
+
+      - name: Decoding android/key.jks
+        run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
+
+      - name: Build splitted apk(s)
+        run: |
+          flutter pub get
+          flutter build apk --split-per-abi --release
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: splitted apk artifacts
+          path: build/app/outputs/apk/release/*.apk
+
+      - name: Upload artifacts (arm64-v8a)
+        uses: actions/upload-artifact@v3
+        with:
+          path: build/app/outputs/apk/release/app-arm64-v8a-release.apk
+
+      - name: Upload artifacts (armeabi-v7a)
+        uses: actions/upload-artifact@v3
+        with:
+          path: build/app/outputs/apk/release/app-armeabi-v7a-release.apk
+
+      - name: Upload artifacts (x86_64)
+        uses: actions/upload-artifact@v3
+        with:
+          path: build/app/outputs/apk/release/app-x86_64-release.apk
+
+      - name: Build fat apk
+        run: |
+          flutter pub get
+          flutter build apk --release
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: fat apk artifact
+          path: build/app/outputs/apk/release/app-release.apk
+
+      - name: Write summary
+        run: |
+          echo ":blue_heart: Using **`flutter --version`**" >> $GITHUB_STEP_SUMMARY

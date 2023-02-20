@@ -1,0 +1,67 @@
+name: Build all on release and put in assets
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build_android:
+    needs: read_config
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3.9.0
+        with:
+          distribution: "zulu"
+          java-version: "11"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2.8.0
+        with:
+          channel: "stable"
+
+      # File can be encoded to base64 on https://base64.guru/converter/encode/file
+      - name: Decoding android/key.properties
+        run: echo "${{ secrets.KEY_PROP }}" | base64 --decode > android/key.properties
+
+      - name: Decoding android/key.jks
+        run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
+
+      - name: Build release appbundle
+        if: "!github.event.release.prerelease"
+        run: flutter build appbundle
+
+      - name: Upload aab
+        uses: actions/upload-artifact@v3
+        if: "!github.event.release.prerelease"
+        with:
+          name: app-release
+          path: build/app/outputs/bundle/release/app-release.aab
+
+      - name: Adding markdown
+        if: "!github.event.release.prerelease"
+        run: |
+          echo :white_check_mark: Build appbundle **todo: Publish to Google Play** >> $GITHUB_STEP_SUMMARY
+
+      - name: Build release APK(s) per ABIs
+        run: |
+          flutter pub get
+          flutter build apk --split-per-abi
+
+      - name: Adding markdown
+        run: |
+          echo ":white_check_mark: Build split apk" >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload file to the assets release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/app/outputs/apk/release/*.apk
+
+      - name: Adding markdown
+        run: |
+          echo ":rocket: Added release apk(s) to assets" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":blue_heart: Using **`flutter --version`**" >> $GITHUB_STEP_SUMMARY

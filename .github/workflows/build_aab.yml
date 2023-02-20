@@ -1,0 +1,52 @@
+name: Build Android appbundle (.aab)
+
+on:
+  workflow_dispatch:
+    inputs:
+      flutterChannel:
+        description: "Flutter channel"
+        default: stable
+        required: true
+        type: choice
+        options:
+          - stable
+          - beta
+          - master
+
+jobs:
+  build_android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "11"
+
+      - name: Setup Flutter stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: ${{ inputs.flutterChannel }}
+
+      - name: Decoding android/key.properties
+        run: echo "${{ secrets.KEY_PROP }}" | base64 --decode > android/key.properties
+
+      - name: Decoding android/key.jks
+        run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
+
+      - name: Build release appbundle
+        run: flutter build appbundle
+
+      - name: Upload aab
+        uses: actions/upload-artifact@v3
+        with:
+          path: build/app/outputs/bundle/release/app-release.aab
+
+      - name: Adding markdown
+        run: |
+          echo :rocket: Added appbundle to artifacts >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo ":blue_heart: Using **`flutter --version`**" >> $GITHUB_STEP_SUMMARY
