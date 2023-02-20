@@ -150,6 +150,7 @@
   "notifSettingBasic": "Asas",
   "notifSettingChangesDetect": "Perubahan akan berkesan selepas memulakan semula aplikasi.",
   "notifSettingRestartApp": "Mulakan semula",
+  "notificationSettingPlayNotifTooltip": "Bunyikan notifikasi percubaan",
   "notifSettingSysSetting": "Pemberitahuan apl Tetapan Sistem",
   "notifSettingSysSettingDesc": "Sesuaikan bunyi, ubah saluran pemberitahuan dll.",
   "notifSettingTroubleshoot": "Penyelesaian masalah",

@@ -232,6 +232,7 @@
   "notifSettingBasic": "Basic",
   "notifSettingChangesDetect": "Changes will take effect after restarting the app",
   "notifSettingRestartApp": "Restart",
+  "notificationSettingPlayNotifTooltip": "Play test notification",
   "notifSettingSysSetting": "App notification System Setting",
   "notifSettingSysSettingDesc": "Customize sound, toggle channel of prayer notification etc.",
   "notifSettingTroubleshoot": "Troubleshooting",

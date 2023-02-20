@@ -49,8 +49,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               padding: const EdgeInsets.all(8.0),
               child: Text(AppLocalizations.of(context)!.notifSettingBasic)),
           Card(
-              child: ListView(
-            shrinkWrap: true,
+              child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               RadioListTile(
                   value: MyNotificationType.noazan,
@@ -67,6 +67,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                                   .notifSettingNotifDemo,
                             );
                           },
+                          tooltip: AppLocalizations.of(context)!
+                              .notificationSettingPlayNotifTooltip,
                           icon: const Icon(Icons.play_arrow)),
                     ],
                   ),
@@ -90,6 +92,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                                 .notifSettingNotifDemo,
                           );
                         },
+                        tooltip: AppLocalizations.of(context)!
+                            .notificationSettingPlayNotifTooltip,
                         icon: const Icon(Icons.play_arrow),
                       ),
                     ],
@@ -113,6 +117,8 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                                 .notifSettingNotifDemo,
                           );
                         },
+                        tooltip: AppLocalizations.of(context)!
+                            .notificationSettingPlayNotifTooltip,
                         icon: const Icon(Icons.play_arrow),
                       ),
                     ],
