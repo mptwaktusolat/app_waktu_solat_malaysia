@@ -232,6 +232,7 @@
   "notifSettingBasic": "Asas",
   "notifSettingChangesDetect": "Changes will take effect after restarting the app",
   "notifSettingRestartApp": "Restart",
+  "notificationSettingPlayNotifTooltip": "Play test notification",
   "notifSettingSysSetting": "Pemberitahuan apl Tetapan Sistem",
   "notifSettingSysSettingDesc": "Sesuaikan bunyi, ubah saluran pemberitahuan dll.",
   "notifSettingTroubleshoot": "Penyelesaian masalah",
