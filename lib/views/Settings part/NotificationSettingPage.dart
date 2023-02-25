@@ -1,5 +1,4 @@
 import 'package:app_settings/app_settings.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,7 +12,6 @@ import 'package:timezone/timezone.dart' as tz;
 import '../../CONSTANTS.dart';
 import '../../notificationUtil/notifications_helper.dart';
 import '../../providers/setting_provider.dart';
-import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 
 enum MyNotificationType { noazan, azan, shortAzan }
@@ -172,8 +170,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
           Card(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CupertinoSwitchListTile(
-                  activeColor: CupertinoColors.activeBlue,
+              child: SwitchListTile(
                   title: Text(
                       AppLocalizations.of(context)!.notifSettingLimitNotif),
                   subtitle: Text(

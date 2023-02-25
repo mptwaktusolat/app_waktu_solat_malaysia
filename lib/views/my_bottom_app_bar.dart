@@ -28,8 +28,6 @@ class MyBottomAppBar extends StatelessWidget {
       children: [
         const AdsWidget(),
         BottomAppBar(
-          elevation: 18.0,
-          shape: const CircularNotchedRectangle(),
           child: Row(
             children: [
               Consumer<UpdaterProvider>(builder: (_, setting, __) {
