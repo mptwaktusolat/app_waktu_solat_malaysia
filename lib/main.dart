@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -82,7 +83,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   final _primaryColour = Colors.teal;
-  // TODO: Add another colour
 
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   static FirebaseAnalyticsObserver observer =
@@ -102,33 +102,42 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer2<ThemeProvider, LocaleProvider>(
         builder: (_, themeValue, localeValue, __) {
-          return MaterialApp(
-            onGenerateTitle: (context) =>
-                AppLocalizations.of(context)!.appTitle,
-            navigatorObservers: <NavigatorObserver>[observer],
-            theme: ThemeData.light().copyWith(
-              primaryColor: _primaryColour,
-              bottomAppBarTheme: BottomAppBarTheme(color: Colors.teal.shade50),
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              appBarTheme: AppBarTheme(
-                color: _primaryColour,
+          return DynamicColorBuilder(
+              builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+            return MaterialApp(
+              onGenerateTitle: (context) =>
+                  AppLocalizations.of(context)!.appTitle,
+              navigatorObservers: <NavigatorObserver>[observer],
+              theme: ThemeData(
+                colorScheme: lightDynamic,
+                // primaryColor: _primaryColour,
+                // bottomAppBarTheme:
+                //     BottomAppBarTheme(color: Colors.teal.shade50),
+                // visualDensity: VisualDensity.adaptivePlatformDensity,
+                // appBarTheme: AppBarTheme(
+                //   color: _primaryColour,
+                // ),
+                useMaterial3: true,
               ),
-            ),
-            darkTheme: ThemeData.dark().copyWith(
-                primaryColor: _primaryColour,
-                bottomAppBarTheme:
-                    BottomAppBarTheme(color: Colors.teal.withOpacity(0.4)),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                appBarTheme: AppBarTheme(color: _primaryColour.shade800)),
-            themeMode: themeValue.themeMode,
-            // Material 3 ?
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: Locale(localeValue.appLocale),
-            home: GetStorage().read(kIsFirstRun)
-                ? const OnboardingPage()
-                : const MyHomePage(),
-          );
+              darkTheme: ThemeData.dark().copyWith(
+                colorScheme: darkDynamic,
+                // primaryColor: _primaryColour,
+                // bottomAppBarTheme:
+                //     BottomAppBarTheme(color: Colors.teal.withOpacity(0.4)),
+                // visualDensity: VisualDensity.adaptivePlatformDensity,
+                // appBarTheme: AppBarTheme(color: _primaryColour.shade800),
+                useMaterial3: true,
+              ),
+              themeMode: themeValue.themeMode,
+              // Material 3 ?
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              locale: Locale(localeValue.appLocale),
+              home: GetStorage().read(kIsFirstRun)
+                  ? const OnboardingPage()
+                  : const MyHomePage(),
+            );
+          });
         },
       ),
     );

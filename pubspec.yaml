@@ -48,6 +48,7 @@ dependencies:
   timezone: ^0.9.0
   quick_actions: ^1.0.0
   firebase_crashlytics: ^3.0.5
+  dynamic_color: ^1.6.2
 
 dependency_overrides:
   # flutter compass in pub.dev is not updated
@@ -70,7 +71,6 @@ flutter:
     - assets/qibla/
     - assets/3d/
     - assets/OFL.txt
-    - assets/icons/
     - assets/json/
   #   - assets/grouped.json
   # To add custom fonts to your application, add a fonts section here,
@@ -78,17 +78,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: MyMptIcons
+      fonts:
+        - asset: assets/fonts/MyMptIcons.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
