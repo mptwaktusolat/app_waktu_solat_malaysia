@@ -63,62 +63,55 @@ class _AppBodyState extends State<AppBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Consumer<LocationProvider>(
-        builder: (_, value, __) {
-          return FutureBuilder<String>(
-            future: PrayDataHandler.init(value.currentLocationCode),
-            builder: (_, snapshot) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).appBarTheme.backgroundColor,
-                      borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(40)),
-                    ),
-                    padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Expanded(
-                              child:
-                                  DateWidget(hijriDate: snapshot.data ?? "..."),
-                            ),
-                            const Expanded(
-                              child: ZoneWidget(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+    return Consumer<LocationProvider>(
+      builder: (_, value, __) {
+        return FutureBuilder<String>(
+          future: PrayDataHandler.init(value.currentLocationCode),
+          builder: (_, snapshot) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceTint,
+                    borderRadius: const BorderRadius.vertical(
+                        bottom: Radius.circular(40)),
                   ),
-                  const NotifPrompt(), // implementation is in the widget
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 26),
-                    child: Builder(builder: (_) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Loading();
-                      }
-                      if (snapshot.hasError) {
-                        return Error(
-                            errorMessage: snapshot.error.toString(),
-                            onRetryPressed: () => setState(() {}));
-                      }
-                      // display the list of prayer timee
-                      return const PrayTimeList();
-                    }),
+                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: DateWidget(hijriDate: snapshot.data ?? "..."),
+                      ),
+                      const Expanded(
+                        child: ZoneWidget(),
+                      ),
+                    ],
                   ),
-                ],
-              );
-            },
-          );
-        },
-      ),
+                ),
+                const NotifPrompt(), // implementation is in the widget
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 26),
+                  child: Builder(builder: (_) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Loading();
+                    }
+                    if (snapshot.hasError) {
+                      return Error(
+                          errorMessage: snapshot.error.toString(),
+                          onRetryPressed: () => setState(() {}));
+                    }
+                    // display the list of prayer timee
+                    return const PrayTimeList();
+                  }),
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -145,7 +138,9 @@ class ZoneWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  side: const BorderSide(color: Colors.white),
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
               ),
               onPressed: () {
@@ -175,12 +170,14 @@ class ZoneWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   FaIcon(FontAwesomeIcons.locationDot,
-                      color: Colors.teal.shade50, size: 15),
+                      color: Theme.of(context).colorScheme.onPrimary, size: 15),
                   Text(
                     '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
                     style: GoogleFonts.montserrat(
-                      textStyle:
-                          const TextStyle(color: Colors.white, fontSize: 13),
+                      textStyle: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontSize: 13,
+                      ),
                     ),
                   ),
                 ],

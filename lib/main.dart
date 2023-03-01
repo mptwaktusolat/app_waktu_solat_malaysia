@@ -109,7 +109,8 @@ class MyApp extends StatelessWidget {
                   AppLocalizations.of(context)!.appTitle,
               navigatorObservers: <NavigatorObserver>[observer],
               theme: ThemeData(
-                colorScheme: lightDynamic,
+                colorScheme: lightDynamic ??
+                    ColorScheme.fromSeed(seedColor: _primaryColour),
                 // primaryColor: _primaryColour,
                 // bottomAppBarTheme:
                 //     BottomAppBarTheme(color: Colors.teal.shade50),
@@ -120,7 +121,9 @@ class MyApp extends StatelessWidget {
                 useMaterial3: true,
               ),
               darkTheme: ThemeData.dark().copyWith(
-                colorScheme: darkDynamic,
+                colorScheme: darkDynamic ??
+                    ColorScheme.fromSeed(
+                        seedColor: _primaryColour, brightness: Brightness.dark),
                 // primaryColor: _primaryColour,
                 // bottomAppBarTheme:
                 //     BottomAppBarTheme(color: Colors.teal.withOpacity(0.4)),
@@ -152,14 +155,20 @@ class MyHomePage extends StatelessWidget {
     configureQuickAction(context);
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle:
-            const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: Brightness.light,
+        ),
         title: Text(AppLocalizations.of(context)!.appbarTitle,
             style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
         elevation: 0.0,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         toolbarHeight: 50,
       ),
+      // known issue that causes white line appear between appbar and widget below
+      // https://github.com/flutter/flutter/issues/14288
       bottomNavigationBar: const MyBottomAppBar(),
       floatingActionButton: const ShareFAB(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
