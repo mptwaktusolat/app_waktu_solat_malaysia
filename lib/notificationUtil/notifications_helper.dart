@@ -67,7 +67,11 @@ Future<void> scheduleSingleAzanNotification(
   BigTextStyleInformation styleInformation =
       BigTextStyleInformation(body, summaryText: summary);
   var androidSpecifics = AndroidNotificationDetails(
-    '$name azan id', // Different prayer time have different id
+    // Different prayer time have different channel id
+    // The `1` in the `azan1` is to distinguish from previosly created channel. See
+    // issue https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/173#issuecomment-1454333533
+    // for details
+    '$name azan1 id',
     '$name azan notification',
     channelDescription: 'Scheduled daily prayer azan',
     priority: Priority.max,
