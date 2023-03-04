@@ -85,7 +85,7 @@ Note: Pre-release versions are not always submitted to the Google Play Store (Be
 [![Part 6](https://img.shields.io/badge/highlights-Part%206-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
 [![Part 7](https://img.shields.io/badge/highlights-Part%207-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
 [![Part 8](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
-[![Part 9](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/stories/highlights/17961012149100642/)
+[![Part 9](https://img.shields.io/badge/highlights-Part%209-blueviolet?style=for-the-badge)](https://www.instagram.com/stories/highlights/17961012149100642/)
 
 ## Motivation
 
