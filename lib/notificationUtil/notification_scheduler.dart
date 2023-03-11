@@ -178,7 +178,7 @@ class MyNotifScheduler {
           summary:
               dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
-          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+          customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
       }
       if (dayTime.asr.isAfter(currentDateTime)) {
@@ -190,7 +190,7 @@ class MyNotifScheduler {
               .notifItsTime(AppLocalizations.of(context)!.asrName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.asr, local),
-          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+          customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
       }
       if (dayTime.maghrib.isAfter(currentDateTime)) {
@@ -202,7 +202,7 @@ class MyNotifScheduler {
               .notifItsTime(AppLocalizations.of(context)!.maghribName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.maghrib, local),
-          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+          customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
       }
       if (dayTime.isha.isAfter(currentDateTime)) {
@@ -214,7 +214,7 @@ class MyNotifScheduler {
               .notifItsTime(AppLocalizations.of(context)!.ishaName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.isha, local),
-          customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
+          customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
       }
     }

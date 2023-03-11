@@ -38,7 +38,7 @@ jobs:
         run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
 
       - name: Build release appbundle
-        run: flutter build appbundle
+        run: flutter build appbundle -v
 
       - name: Upload aab
         uses: actions/upload-artifact@v3
