@@ -19,7 +19,6 @@ class ShareFAB extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SettingProvider>(builder: (_, setting, __) {
       return FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
         mini: true,
         tooltip: AppLocalizations.of(context)!.shareTooltip,
         onPressed: () {

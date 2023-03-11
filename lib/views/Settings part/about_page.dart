@@ -29,7 +29,6 @@ class AboutAppPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),

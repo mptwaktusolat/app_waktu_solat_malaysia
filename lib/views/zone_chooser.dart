@@ -192,10 +192,10 @@ class LocationBubble extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
-        color: selected ? Colors.blue : null,
+        color: selected ? Theme.of(context).colorScheme.primary : null,
         border: Border.all(
             color: selected
-                ? Colors.blue
+                ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).brightness == Brightness.light
                     ? Colors.black
                     : Colors.white),
@@ -358,13 +358,13 @@ class ZoneErrorWidget extends StatelessWidget {
                       Icon(
                         Icons.fmd_bad_outlined,
                         size: 40,
-                        color: Colors.red.shade300,
+                        color: Theme.of(context).colorScheme.error,
                       ),
                       Icon(
                         Icons
                             .signal_cellular_connected_no_internet_0_bar_outlined,
                         size: 40,
-                        color: Colors.red.shade300,
+                        color: Theme.of(context).colorScheme.error,
                       ),
                     ],
                   ),
@@ -372,7 +372,8 @@ class ZoneErrorWidget extends StatelessWidget {
                     data: AppLocalizations.of(context)!.zoneErrorPara1,
                     styleSheet: MarkdownStyleSheet(
                         textAlign: WrapAlignment.center,
-                        p: TextStyle(color: Colors.red.shade300)),
+                        p: TextStyle(
+                            color: Theme.of(context).colorScheme.error)),
                   ),
                   const SizedBox(height: 10),
                   MarkdownBody(
@@ -391,8 +392,8 @@ class ZoneErrorWidget extends StatelessWidget {
               child: Text(
                 errorMessage,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.red,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.error,
                     fontSize: 10,
                     fontStyle: FontStyle.italic),
               ),

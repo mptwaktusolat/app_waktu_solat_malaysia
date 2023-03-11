@@ -144,6 +144,7 @@ class SharingSetting extends StatelessWidget {
           ),
           subtitle: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
+            // pakai SegmentedButton tak lawa sangat
             child: CupertinoSlidingSegmentedControl(
               groupValue: value.sharingFormat,
               onValueChanged: (dynamic newValue) =>

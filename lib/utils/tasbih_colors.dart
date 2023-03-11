@@ -39,6 +39,20 @@ class TasbihColors {
     Color(0xffBE5869),
   ];
 
-  static List<List<Color>> gradientColour() =>
-      [_betweenNightAndDay, _blush, _timber, _flickr, _vine, _predown, _poncho];
+  static List<BeadColor> beadDesigns() => [
+        BeadColor("Between Night and Day", _betweenNightAndDay),
+        BeadColor("Blush", _blush),
+        BeadColor("Timber", _timber),
+        BeadColor("Flickr", _flickr),
+        BeadColor("Vine", _vine),
+        BeadColor("Predawn", _predown),
+        BeadColor("Poncho", _poncho),
+      ];
+}
+
+class BeadColor {
+  final String name;
+  final List<Color> gradient;
+
+  BeadColor(this.name, this.gradient);
 }
