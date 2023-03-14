@@ -77,7 +77,7 @@ jobs:
       - name: Upload file to the assets release
         uses: softprops/action-gh-release@v1
         with:
-          files: *.apk
+          files: "*.apk"
 
       - name: Adding markdown
         run: |
