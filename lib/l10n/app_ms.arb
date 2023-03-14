@@ -253,7 +253,7 @@
   "notifSettingCancel": "Batal",
   "notifSettingProceed": "Teruskan",
   "notifSettingNotifDemo": "This is how the notification/azan will sound like",
-  "contributenDesc": "Alhamdulillah. Saya menghargai niat anda untuk menderma ke aplikasi Waktu Solat Malaysia. Semoga Allah SWT membalas jasa baik kalian.",
+  "contributenDesc": "Alhamdulillah. If you love using our app and would like to show your appreciation, you can now make a financial contribution to support our ongoing efforts. May Allah SWT rewards your kindness.",
   "contributeShare": "Kongsi aplikasi ini",
   "contributeShareDesc": "Kongsi pengalaman anda menggunakan aplikasi ini dengan keluarga dan rakan anda.",
   "contributeShareNow": "Kongsi sekarang",
@@ -270,17 +270,9 @@
   },
   "contributeShareSubject": "Berkongsi Aplikasi Waktu Solat",
   "contributeCoffee": "Belikan saya kopi?",
-  "contributeCoffeeDesc": "Saya adalah organisma yang menukar kopi kepada kod.\n\n{coffeeLink}",
-  "@contributeCoffeeDesc": {
-    "placeholders": {
-      "coffeeLink": {
-        "type": "String"
-      }
-    }
-  },
+  "contributeCoffeeDesc": "You can contribute any amount you like, and we appreciate any support you can give.",
   "contributeCopy": "Salin",
   "contributeOpen": "Buka",
-  "contributeDirect": "Sokongan langsung",
   "contributeSource": "Sumbang ke kod sumber",
   "contributeSourceDesc": "Apl MPT ialah sumber terbuka. Laporkan sebarang pepijat atau sumbangkan terus kepada kod sumber. Ia dilesenkan di bawah GNU GPLv3.",
   "contributeOpenGh": "Buka GitHub",
