@@ -8,12 +8,6 @@ import 'package:share_plus/share_plus.dart';
 import '../CONSTANTS.dart' as constants;
 import '../utils/launch_url.dart';
 
-class ButtonContent {
-  String label;
-  Function onClick;
-  ButtonContent(this.label, this.onClick);
-}
-
 class ContributionPage extends StatelessWidget {
   const ContributionPage({Key? key}) : super(key: key);
   @override
@@ -33,59 +27,66 @@ class ContributionPage extends StatelessWidget {
                 child: Text(AppLocalizations.of(context)!.contributenDesc),
               ),
               const SizedBox(height: 8),
-              MyCard(
-                  title: AppLocalizations.of(context)!.contributeShare,
-                  description:
-                      AppLocalizations.of(context)!.contributeShareDesc,
-                  buttonContent: [
-                    ButtonContent(
-                        AppLocalizations.of(context)!.contributeShareNow, () {
+              _MyCard(
+                title: AppLocalizations.of(context)!.contributeShare,
+                description: AppLocalizations.of(context)!.contributeShareDesc,
+                actions: [
+                  TextButton(
+                    onPressed: () {
                       Share.share(
                           AppLocalizations.of(context)!.contributeShareContent(
                               constants.kPlayStoreListingShortLink,
                               constants.kWebappUrl),
                           subject: AppLocalizations.of(context)!
                               .contributeShareSubject);
-                    })
-                  ]),
+                    },
+                    child: Text(AppLocalizations.of(context)!.contributeShare),
+                  ),
+                ],
+              ),
               const Divider(),
-              MyCard(
+              _MyCard(
                 title: AppLocalizations.of(context)!.contributeCoffee,
-                description: AppLocalizations.of(context)!.contributeCoffeeDesc(
-                    constants.kBuyMeACoffeeLink
-                        .replaceFirst("https://www.", "")),
-                buttonContent: [
-                  ButtonContent(
-                    AppLocalizations.of(context)!.contributeCopy,
-                    () => copyClipboard(context, constants.kBuyMeACoffeeLink),
-                  ),
-                  ButtonContent(AppLocalizations.of(context)!.contributeOpen,
-                      () {
-                    LaunchUrl.normalLaunchUrl(url: constants.kBuyMeACoffeeLink);
-                  })
+                description: AppLocalizations.of(context)!.contributeCoffeeDesc,
+                extraDescription:
+                    '${constants.kBankAccountNum} - Maybank (Muhammad Fareez)',
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      copyClipboard(context, constants.kBankAccountNum);
+                    },
+                    child: Text(AppLocalizations.of(context)!.contributeCopy),
+                  )
                 ],
               ),
-              MyCard(
-                title: AppLocalizations.of(context)!.contributeDirect,
-                description:
-                    '${constants.kBankAccountNum} - Muhammad Fareez Iqmal (Maybank)',
-                buttonContent: [
-                  ButtonContent(
-                    AppLocalizations.of(context)!.contributeCopy,
-                    () => copyClipboard(context, constants.kBankAccountNum),
-                  ),
-                ],
-              ),
-              MyCard(
+              // MyCard(
+              //   title: AppLocalizations.of(context)!.contributeCoffee,
+              //   description:
+              //       '${constants.kBankAccountNum} - Muhammad Fareez Iqmal (Maybank)',
+              //   buttonContent: [
+              //     ButtonContent(
+              //       AppLocalizations.of(context)!.contributeCopy,
+              //       () => copyClipboard(context, constants.kBankAccountNum),
+              //     ),
+              //   ],
+              // ),
+              _MyCard(
                 title: AppLocalizations.of(context)!.contributeSource,
                 description: AppLocalizations.of(context)!.contributeSourceDesc,
-                buttonContent: [
-                  ButtonContent(AppLocalizations.of(context)!.contributeCopy,
-                      () => copyClipboard(context, constants.kGithubRepoLink)),
-                  ButtonContent(
-                      AppLocalizations.of(context)!.contributeOpenGh,
-                      () => LaunchUrl.normalLaunchUrl(
-                          url: constants.kGithubRepoLink)),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        copyClipboard(context, constants.kGithubRepoLink);
+                      },
+                      child:
+                          Text(AppLocalizations.of(context)!.contributeCopy)),
+                  TextButton(
+                      onPressed: () {
+                        LaunchUrl.normalLaunchUrl(
+                            url: constants.kGithubRepoLink);
+                      },
+                      child:
+                          Text(AppLocalizations.of(context)!.contributeOpenGh)),
                 ],
               ),
               FittedBox(
@@ -110,43 +111,46 @@ class ContributionPage extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-class MyCard extends StatelessWidget {
-  MyCard({Key? key, this.title, this.description, this.buttonContent})
-      : super(key: key);
+class _MyCard extends StatelessWidget {
+  const _MyCard({
+    Key? key,
+    required this.title,
+    this.description,
+    this.extraDescription,
+    this.actions,
+  }) : super(key: key);
 
-  final String? title;
+  final String title;
   final String? description;
-  final List<ButtonContent>? buttonContent;
-  List<TextButton> textButton = [];
-
-  void generateButtons() {
-    for (var item in buttonContent!) {
-      textButton.add(TextButton(
-          onPressed: item.onClick as void Function()?,
-          child: Text(item.label)));
-    }
-  }
+  final String? extraDescription;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
-    generateButtons();
     return Card(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ListTile(
               contentPadding: const EdgeInsets.all(0),
               title: Text(
-                title!,
+                title,
                 style: const TextStyle(fontSize: 18),
               ),
               subtitle: Text('\n$description'),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: textButton,
-            )
+            if (extraDescription != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                  extraDescription!,
+                  textAlign: TextAlign.start,
+                ),
+              ),
+            if (actions != null)
+              Row(mainAxisAlignment: MainAxisAlignment.end, children: actions!)
           ],
         ),
       ),

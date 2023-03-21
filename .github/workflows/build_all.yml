@@ -62,7 +62,8 @@ jobs:
           path: build/app/outputs/apk/release/*.apk
 
       - name: Adding markdown
-        run: echo ":blue_heart: Using **`flutter --version`**" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo ":blue_heart: Using **`flutter --version`**" >> $GITHUB_STEP_SUMMARY
 
   upload_assets:
     runs-on: ubuntu-latest
@@ -76,10 +77,11 @@ jobs:
       - name: Upload file to the assets release
         uses: softprops/action-gh-release@v1
         with:
-          files: *.apk
+          files: "*.apk"
 
       - name: Adding markdown
-        run: echo ":rocket: Added release apk(s) to assets" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo ":rocket: Added release apk(s) to assets" >> $GITHUB_STEP_SUMMARY
 
   upload_google_play:
     if: "!github.event.release.prerelease"
@@ -98,8 +100,8 @@ jobs:
           packageName: live.iqfareez.waktusolatmalaysia
           releaseFiles: app-release.aab
           track: production
-          changesNotSentForReview: true
           status: draft
 
       - name: Adding markdown
-        run: echo ":rocket: Uploaded to Google Play" >> $GITHUB_STEP_SUMMARY
+        run: |
+          echo ":rocket: Uploaded to Google Play" >> $GITHUB_STEP_SUMMARY
