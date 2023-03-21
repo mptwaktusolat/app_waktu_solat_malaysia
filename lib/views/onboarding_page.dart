@@ -96,8 +96,6 @@ class _OnboardingPageState extends State<OnboardingPage>
                       textAlign: TextAlign.center,
                     )
                   : ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.teal),
                       onPressed: () async {
                         var res =
                             await LocationChooser.showLocationChooser(context);
