@@ -202,7 +202,7 @@ class DateWidget extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
           decoration: BoxDecoration(
-            color: Colors.white.withAlpha(70),
+            color: Theme.of(context).colorScheme.onPrimary.withAlpha(70),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Column(
@@ -210,17 +210,24 @@ class DateWidget extends StatelessWidget {
               Text(
                 DateFormat('EEEE', AppLocalizations.of(context)?.localeName)
                     .format(DateTime.now()),
-                style: GoogleFonts.leagueSpartan(color: Colors.white),
+                style: GoogleFonts.leagueSpartan(
+                    color: Theme.of(context).colorScheme.onPrimary),
+                // style: GoogleFonts.leagueSpartan(),
               ),
               Text(
                 hijriDate,
-                style: GoogleFonts.acme(color: Colors.white, fontSize: 17),
+                style: GoogleFonts.acme(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 17),
+                // style: GoogleFonts.acme(),
               ),
               Text(
                 DateFormat(
                         'd MMM yyyy', AppLocalizations.of(context)?.localeName)
                     .format(DateTime.now()),
-                style: TextStyle(color: Colors.teal.shade100, fontSize: 12),
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontSize: 12),
               ),
             ],
           ),

@@ -29,6 +29,8 @@ class PrayerFullTable extends StatelessWidget {
         headerSliverBuilder: (_, innerboxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
               floating: true,
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
