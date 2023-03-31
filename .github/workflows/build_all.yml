@@ -1,5 +1,4 @@
 name: Build all on release
-description: Build aab and apk. The apk(s) will be uploaded to assets and the aab will be uploaded to Google Play Store
 
 on:
   release:
