@@ -46,31 +46,6 @@ class ContributionPage extends StatelessWidget {
               ),
               const Divider(),
               _MyCard(
-                title: AppLocalizations.of(context)!.contributeCoffee,
-                description: AppLocalizations.of(context)!.contributeCoffeeDesc,
-                extraDescription:
-                    '${constants.kBankAccountNum} - Maybank (Muhammad Fareez)',
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      copyClipboard(context, constants.kBankAccountNum);
-                    },
-                    child: Text(AppLocalizations.of(context)!.contributeCopy),
-                  )
-                ],
-              ),
-              // MyCard(
-              //   title: AppLocalizations.of(context)!.contributeCoffee,
-              //   description:
-              //       '${constants.kBankAccountNum} - Muhammad Fareez Iqmal (Maybank)',
-              //   buttonContent: [
-              //     ButtonContent(
-              //       AppLocalizations.of(context)!.contributeCopy,
-              //       () => copyClipboard(context, constants.kBankAccountNum),
-              //     ),
-              //   ],
-              // ),
-              _MyCard(
                 title: AppLocalizations.of(context)!.contributeSource,
                 description: AppLocalizations.of(context)!.contributeSourceDesc,
                 actions: [
