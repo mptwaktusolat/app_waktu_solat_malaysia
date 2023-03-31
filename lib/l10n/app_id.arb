@@ -269,8 +269,6 @@
     }
   },
   "contributeShareSubject": "Sharing MPT App",
-  "contributeCoffee": "Buy me a coffee?",
-  "contributeCoffeeDesc": "You can contribute any amount you like, and we appreciate any support you can give.",
   "contributeCopy": "Copy",
   "contributeOpen": "Open",
   "contributeSource": "Contribute to source",
