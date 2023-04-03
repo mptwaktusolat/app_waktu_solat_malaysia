@@ -78,7 +78,12 @@ class _TasbihState extends State<Tasbih> {
                         icon: TasbihBead(
                             gradientColor:
                                 TasbihColors.beadDesigns()[e].gradient),
-                        label: Text(TasbihColors.beadDesigns()[e].name),
+                        label: Text(TasbihColors.beadDesigns()[e].name,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .color)),
                         onPressed: null,
                       ),
                     ),

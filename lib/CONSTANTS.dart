@@ -68,10 +68,6 @@ const kPlayStoreDevLink =
     'https://play.google.com/store/apps/dev?id=9200064795631584674';
 const kWebsite = 'https://waktusolat.iqfareez.com/';
 
-//Contribution page
-const kBuyMeACoffeeLink = 'https://www.buymeacoffee.com/iqfareez';
-const kBankAccountNum = '162348620850'; //maybank
-
 //hero tag
 const kAppIconTag = 'appIconTag';
 

@@ -418,19 +418,6 @@ class ZoneErrorWidget extends StatelessWidget {
           ),
           Expanded(
             flex: 1,
-            child: Center(
-              child: Text(
-                errorMessage,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                    fontSize: 10,
-                    fontStyle: FontStyle.italic),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
