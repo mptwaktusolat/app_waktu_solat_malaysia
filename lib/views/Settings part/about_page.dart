@@ -113,6 +113,7 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: InkWell(
                       child: ListTile(
                         shape: RoundedRectangleBorder(
@@ -134,6 +135,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
@@ -148,6 +150,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
@@ -161,6 +164,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
@@ -190,6 +194,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
@@ -205,6 +210,7 @@ class AboutAppPage extends StatelessWidget {
                   ),
                   const Divider(height: 16),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4)),
@@ -217,6 +223,7 @@ class AboutAppPage extends StatelessWidget {
                         }),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
@@ -227,6 +234,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   Card(
+                    clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),

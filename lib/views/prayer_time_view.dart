@@ -99,9 +99,8 @@ class SolatCard extends StatelessWidget {
             vertical: MediaQuery.of(context).size.height / 320),
         height: isOther ? 80 : 55,
         child: Card(
-          // color: Theme.of(context).colorScheme.surfaceVariant,
+          clipBehavior: Clip.hardEdge,
           child: InkWell(
-            borderRadius: BorderRadius.circular(10.0),
             splashColor: Theme.of(context).colorScheme.surfaceVariant,
             onLongPress: () => Clipboard.setData(ClipboardData(
                     text: '$name: ${time.format(value.use12hour)}'))

@@ -21,6 +21,7 @@ class FullPrayerTableSettings extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: [
             Card(
+              clipBehavior: Clip.hardEdge,
               child: SwitchListTile(
                   title:
                       Text(AppLocalizations.of(context)!.timetableSettingHijri),
@@ -55,17 +56,18 @@ class FullPrayerTableSettings extends StatelessWidget {
                 ),
               ),
             Card(
+                clipBehavior: Clip.hardEdge,
                 child: SwitchListTile(
-              title:
-                  Text(AppLocalizations.of(context)!.timetableSettingOneThird),
-              subtitle: Text(
-                  AppLocalizations.of(context)!.timetableSettingOneThirdSub),
-              isThreeLine: true,
-              value: value.showLastOneThirdNight,
-              onChanged: (bool newValue) {
-                value.showLastOneThirdNight = newValue;
-              },
-            ))
+                  title: Text(
+                      AppLocalizations.of(context)!.timetableSettingOneThird),
+                  subtitle: Text(AppLocalizations.of(context)!
+                      .timetableSettingOneThirdSub),
+                  isThreeLine: true,
+                  value: value.showLastOneThirdNight,
+                  onChanged: (bool newValue) {
+                    value.showLastOneThirdNight = newValue;
+                  },
+                ))
           ],
         ),
       ),

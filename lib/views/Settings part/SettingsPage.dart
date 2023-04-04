@@ -263,6 +263,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: FutureBuilder(
         future: PackageInfo.fromPlatform(),
         builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
@@ -300,6 +301,7 @@ class NotificationSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: ListTile(
         title: Text(AppLocalizations.of(context)!.settingNotification2),
         onTap: () {
@@ -322,6 +324,7 @@ class OtherTimesSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: Consumer<SettingProvider>(
         builder: (_, value, __) => SwitchListTile(
           title: Text(AppLocalizations.of(context)!.settingOtherPrayer),
