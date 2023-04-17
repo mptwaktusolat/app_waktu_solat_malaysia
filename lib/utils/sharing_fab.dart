@@ -71,7 +71,10 @@ class ShareFAB extends StatelessWidget {
             ListTile(
               title: Text(AppLocalizations.of(context)!.shareWhatsappTitle),
               subtitle: Text(AppLocalizations.of(context)!.shareWhatsappDesc),
-              trailing: const FaIcon(FontAwesomeIcons.whatsapp),
+              trailing: FaIcon(
+                FontAwesomeIcons.whatsapp,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
               onTap: () {
                 Navigator.pop(context);
                 shareToWhatsApp(context);
@@ -79,7 +82,10 @@ class ShareFAB extends StatelessWidget {
             ),
             ListTile(
               title: Text(AppLocalizations.of(context)!.shareCopy),
-              trailing: const FaIcon(FontAwesomeIcons.clone),
+              trailing: FaIcon(
+                FontAwesomeIcons.clone,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
               onTap: () {
                 copy(context);
                 Navigator.pop(context);

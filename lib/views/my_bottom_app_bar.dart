@@ -115,7 +115,8 @@ void menuModalBottomSheet(BuildContext context) {
           children: <Widget>[
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuThemes),
-              leading: const FaIcon(FontAwesomeIcons.palette),
+              leading: FaIcon(FontAwesomeIcons.palette,
+                  color: Theme.of(context).colorScheme.secondary),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -127,7 +128,8 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuSettings),
-              leading: const FaIcon(FontAwesomeIcons.gear),
+              leading: FaIcon(FontAwesomeIcons.gear,
+                  color: Theme.of(context).colorScheme.secondary),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -158,7 +160,8 @@ void menuModalBottomSheet(BuildContext context) {
                     ),
                     Text(AppLocalizations.of(context)!.menuUpdateAvailable)
                   ]),
-                  leading: const FaIcon(FontAwesomeIcons.googlePlay),
+                  leading: FaIcon(FontAwesomeIcons.googlePlay,
+                      color: Theme.of(context).colorScheme.secondary),
                   trailing:
                       const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
                   onTap: () {
@@ -175,7 +178,8 @@ void menuModalBottomSheet(BuildContext context) {
               } else {
                 return ListTile(
                   title: Text(AppLocalizations.of(context)!.menuRate),
-                  leading: const FaIcon(FontAwesomeIcons.solidStar),
+                  leading: FaIcon(FontAwesomeIcons.solidStar,
+                      color: Theme.of(context).colorScheme.secondary),
                   trailing:
                       const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
                   onTap: () {
@@ -192,7 +196,8 @@ void menuModalBottomSheet(BuildContext context) {
             }),
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuWeb),
-              leading: const FaIcon(FontAwesomeIcons.chrome),
+              leading: FaIcon(FontAwesomeIcons.chrome,
+                  color: Theme.of(context).colorScheme.secondary),
               trailing: const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
               onTap: () {
                 Navigator.pop(context);
@@ -201,7 +206,8 @@ void menuModalBottomSheet(BuildContext context) {
             ),
             ListTile(
               title: Text(AppLocalizations.of(context)!.menuFeedback),
-              leading: const FaIcon(FontAwesomeIcons.solidCommentDots),
+              leading: FaIcon(FontAwesomeIcons.solidCommentDots,
+                  color: Theme.of(context).colorScheme.secondary),
               onTap: () {
                 Navigator.pop(context);
                 openFeedbackDialog(context);
