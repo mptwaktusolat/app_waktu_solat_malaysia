@@ -308,15 +308,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
               ],
             ),
             const SizedBox(height: 10),
-            ElevatedButton.icon(
+            TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(url: '$kWebsite/docs/intro');
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+            TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
                 LaunchUrl.normalLaunchUrl(url: '$kGithubRepoLink/issues');
