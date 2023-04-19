@@ -82,6 +82,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  // default colour seed for devices that didn't support dynamic colour
   final _primaryColour = Colors.teal;
 
   static FirebaseAnalytics analytics = FirebaseAnalytics.instance;

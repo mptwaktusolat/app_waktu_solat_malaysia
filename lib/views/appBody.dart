@@ -285,11 +285,11 @@ class Loading extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 200),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 200),
           child: SpinKitChasingDots(
             size: 35,
-            color: Colors.teal,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
       ],

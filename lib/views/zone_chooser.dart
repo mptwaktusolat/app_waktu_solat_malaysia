@@ -344,8 +344,8 @@ class ZoneLoadingWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          const SpinKitPulse(
-            color: Colors.teal,
+          SpinKitPulse(
+            color: Theme.of(context).colorScheme.primary,
           )
         ],
       ),
