@@ -29,6 +29,8 @@ class PrayerFullTable extends StatelessWidget {
         headerSliverBuilder: (_, innerboxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              foregroundColor: Colors.white,
+              backgroundColor: Theme.of(context).colorScheme.primary,
               floating: true,
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
@@ -79,8 +81,9 @@ class PrayerFullTable extends StatelessWidget {
                     is12HourFormat: _is12HourFormat,
                   );
                 }
-                return const Center(
-                  child: SpinKitFadingCube(size: 35, color: Colors.teal),
+                return Center(
+                  child: SpinKitFadingCube(
+                      size: 35, color: Theme.of(context).colorScheme.primary),
                 );
               },
             ),

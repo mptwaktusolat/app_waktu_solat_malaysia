@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import '../../CONSTANTS.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
-import '../../utils/cupertinoSwitchListTile.dart';
 import '../../utils/custom_navigator_pop.dart';
 import '../Settings%20part/NotificationSettingPage.dart';
 import 'about_page.dart';
@@ -116,7 +115,6 @@ class FontSizeSetting extends StatelessWidget {
           child: Text(AppLocalizations.of(context)!.settingFontSize),
         ),
         subtitle: Slider(
-          activeColor: CupertinoColors.activeBlue,
           // inactiveColor: Colors.teal.withAlpha(40),
           label: value.prayerFontSize.round().toString(),
           min: 12.0,
@@ -146,6 +144,7 @@ class SharingSetting extends StatelessWidget {
           ),
           subtitle: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
+            // pakai SegmentedButton tak lawa sangat
             child: CupertinoSlidingSegmentedControl(
               groupValue: value.sharingFormat,
               onValueChanged: (dynamic newValue) =>
@@ -264,6 +263,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: FutureBuilder(
         future: PackageInfo.fromPlatform(),
         builder: (_, AsyncSnapshot<PackageInfo> snapshot) {
@@ -301,6 +301,7 @@ class NotificationSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: ListTile(
         title: Text(AppLocalizations.of(context)!.settingNotification2),
         onTap: () {
@@ -323,9 +324,9 @@ class OtherTimesSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.hardEdge,
       child: Consumer<SettingProvider>(
-        builder: (_, value, __) => CupertinoSwitchListTile(
-          activeColor: CupertinoColors.activeBlue,
+        builder: (_, value, __) => SwitchListTile(
           title: Text(AppLocalizations.of(context)!.settingOtherPrayer),
           // display 'Imsak, Syuruk & DHuha' according to locale
           subtitle: Text(

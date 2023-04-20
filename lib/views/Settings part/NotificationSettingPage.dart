@@ -1,5 +1,4 @@
 import 'package:app_settings/app_settings.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,7 +12,6 @@ import 'package:timezone/timezone.dart' as tz;
 import '../../CONSTANTS.dart';
 import '../../notificationUtil/notifications_helper.dart';
 import '../../providers/setting_provider.dart';
-import '../../utils/cupertinoSwitchListTile.dart';
 import 'troubleshoot_notif.dart';
 
 enum MyNotificationType { noazan, azan, shortAzan }
@@ -49,87 +47,90 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               padding: const EdgeInsets.all(8.0),
               child: Text(AppLocalizations.of(context)!.notifSettingBasic)),
           Card(
+              clipBehavior: Clip.hardEdge,
               child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile(
-                  value: MyNotificationType.noazan,
-                  groupValue: _type,
-                  title: Row(
-                    children: [
-                      Text(
-                          AppLocalizations.of(context)!.onboardingNotifDefault),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () {
-                            fireDefaultNotification(
-                              message: AppLocalizations.of(context)!
-                                  .notifSettingNotifDemo,
-                            );
-                          },
-                          tooltip: AppLocalizations.of(context)!
-                              .notificationSettingPlayNotifTooltip,
-                          icon: const Icon(Icons.play_arrow)),
-                    ],
-                  ),
-                  onChanged: (MyNotificationType? type) {
-                    setState(() => _type = type!);
-                    _handleRestartBanner();
-                  }),
-              RadioListTile(
-                  value: MyNotificationType.shortAzan,
-                  groupValue: _type,
-                  title: Row(
-                    children: [
-                      Text(AppLocalizations.of(context)!
-                          .onboardingNotifShortAzan),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          fireAzanNotification(
-                            type: MyNotificationType.shortAzan,
-                            message: AppLocalizations.of(context)!
-                                .notifSettingNotifDemo,
-                          );
-                        },
-                        tooltip: AppLocalizations.of(context)!
-                            .notificationSettingPlayNotifTooltip,
-                        icon: const Icon(Icons.play_arrow),
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RadioListTile(
+                      value: MyNotificationType.noazan,
+                      groupValue: _type,
+                      title: Row(
+                        children: [
+                          Text(AppLocalizations.of(context)!
+                              .onboardingNotifDefault),
+                          const Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                fireDefaultNotification(
+                                  message: AppLocalizations.of(context)!
+                                      .notifSettingNotifDemo,
+                                );
+                              },
+                              tooltip: AppLocalizations.of(context)!
+                                  .notificationSettingPlayNotifTooltip,
+                              icon: const Icon(Icons.play_arrow)),
+                        ],
                       ),
-                    ],
-                  ),
-                  onChanged: (MyNotificationType? type) {
-                    setState(() => _type = type!);
-                    _handleRestartBanner();
-                  }),
-              RadioListTile(
-                  value: MyNotificationType.azan,
-                  groupValue: _type,
-                  title: Row(
-                    children: [
-                      Text(AppLocalizations.of(context)!.onboardingNotifAzan),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          fireAzanNotification(
-                            type: MyNotificationType.azan,
-                            message: AppLocalizations.of(context)!
-                                .notifSettingNotifDemo,
-                          );
-                        },
-                        tooltip: AppLocalizations.of(context)!
-                            .notificationSettingPlayNotifTooltip,
-                        icon: const Icon(Icons.play_arrow),
+                      onChanged: (MyNotificationType? type) {
+                        setState(() => _type = type!);
+                        _handleRestartBanner();
+                      }),
+                  RadioListTile(
+                      value: MyNotificationType.shortAzan,
+                      groupValue: _type,
+                      title: Row(
+                        children: [
+                          Text(AppLocalizations.of(context)!
+                              .onboardingNotifShortAzan),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              fireAzanNotification(
+                                type: MyNotificationType.shortAzan,
+                                message: AppLocalizations.of(context)!
+                                    .notifSettingNotifDemo,
+                              );
+                            },
+                            tooltip: AppLocalizations.of(context)!
+                                .notificationSettingPlayNotifTooltip,
+                            icon: const Icon(Icons.play_arrow),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  onChanged: (MyNotificationType? type) {
-                    setState(() => _type = type!);
-                    _handleRestartBanner();
-                  }),
-            ],
-          )),
+                      onChanged: (MyNotificationType? type) {
+                        setState(() => _type = type!);
+                        _handleRestartBanner();
+                      }),
+                  RadioListTile(
+                      value: MyNotificationType.azan,
+                      groupValue: _type,
+                      title: Row(
+                        children: [
+                          Text(AppLocalizations.of(context)!
+                              .onboardingNotifAzan),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {
+                              fireAzanNotification(
+                                type: MyNotificationType.azan,
+                                message: AppLocalizations.of(context)!
+                                    .notifSettingNotifDemo,
+                              );
+                            },
+                            tooltip: AppLocalizations.of(context)!
+                                .notificationSettingPlayNotifTooltip,
+                            icon: const Icon(Icons.play_arrow),
+                          ),
+                        ],
+                      ),
+                      onChanged: (MyNotificationType? type) {
+                        setState(() => _type = type!);
+                        _handleRestartBanner();
+                      }),
+                ],
+              )),
           Card(
+            clipBehavior: Clip.hardEdge,
             child: ListTile(
               title: Text(AppLocalizations.of(context)!.notifSettingSysSetting),
               isThreeLine: true,
@@ -151,6 +152,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               child:
                   Text(AppLocalizations.of(context)!.notifSettingTroubleshoot)),
           Card(
+            clipBehavior: Clip.hardEdge,
             child: ListTile(
               title: Text(
                   AppLocalizations.of(context)!.notifSettingTroubleshootDesc),
@@ -170,10 +172,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               child: Text(AppLocalizations.of(context)!
                   .notifSettingAdvancedTroubleshoot)),
           Card(
+            clipBehavior: Clip.hardEdge,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: CupertinoSwitchListTile(
-                  activeColor: CupertinoColors.activeBlue,
+              child: SwitchListTile(
                   title: Text(
                       AppLocalizations.of(context)!.notifSettingLimitNotif),
                   subtitle: Text(
@@ -187,6 +189,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
             ),
           ),
           Card(
+            clipBehavior: Clip.hardEdge,
             child: ListTile(
               title: Text(
                   AppLocalizations.of(context)!.notifSettingForceReschedule),

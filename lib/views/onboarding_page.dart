@@ -96,8 +96,6 @@ class _OnboardingPageState extends State<OnboardingPage>
                       textAlign: TextAlign.center,
                     )
                   : ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.teal),
                       onPressed: () async {
                         var res =
                             await LocationChooser.showLocationChooser(context);
@@ -194,10 +192,8 @@ class _OnboardingPageState extends State<OnboardingPage>
     return IntroductionScreen(
         key: _introScreenKey,
         pages: pages,
-        // color: Colors.teal,
-        // baseBtnStyle: ButtonStyle(foregroundColor: Colors.teal),
         dotsDecorator: DotsDecorator(
-          activeColor: Colors.teal,
+          activeColor: Theme.of(context).colorScheme.primary,
           size: const Size.square(9.0),
           activeSize: const Size(18.0, 9.0),
           activeShape:

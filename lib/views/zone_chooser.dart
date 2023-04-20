@@ -192,10 +192,10 @@ class LocationBubble extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4.0),
       decoration: BoxDecoration(
-        color: selected ? Colors.blue : null,
+        color: selected ? Theme.of(context).colorScheme.primary : null,
         border: Border.all(
             color: selected
-                ? Colors.blue
+                ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).brightness == Brightness.light
                     ? Colors.black
                     : Colors.white),
@@ -221,6 +221,7 @@ class ZoneSuccessWidget extends StatelessWidget {
       builder: (_, value, __) {
         return Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               flex: 1,
@@ -240,7 +241,7 @@ class ZoneSuccessWidget extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: Theme.of(context).bottomAppBarTheme.color,
+                color: Theme.of(context).colorScheme.surfaceTint.withAlpha(26),
               ),
               child: ListTile(
                 trailing: Column(
@@ -251,7 +252,8 @@ class ZoneSuccessWidget extends StatelessWidget {
                 ),
                 title: Text(
                   LocationDatabase.daerah(coordinateData.zone),
-                  style: const TextStyle(fontSize: 13),
+                  style: const TextStyle(
+                      fontSize: 13, height: 1.1, fontWeight: FontWeight.normal),
                 ),
                 subtitle: Text(
                   LocationDatabase.negeri(coordinateData.zone),
@@ -260,37 +262,64 @@ class ZoneSuccessWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            Expanded(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.bottomRight,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                      child:
-                          Text(AppLocalizations.of(context)!.zoneSetManually),
-                      onPressed: () async {
-                        bool res =
-                            await LocationChooser.openLocationBottomSheet(
-                                    context) ??
-                                false;
-                        Navigator.pop(context, res);
-                      },
-                    ),
-                    TextButton(
-                      child: Text(AppLocalizations.of(context)!.zoneSetThis),
-                      onPressed: () {
-                        value.currentLocationCode = coordinateData.zone;
-                        LocationChooser.onNewLocationSaved(context);
+            Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: OverflowBar(
+                overflowAlignment: OverflowBarAlignment.end,
+                children: [
+                  TextButton(
+                    child: Text(AppLocalizations.of(context)!.zoneSetManually),
+                    onPressed: () async {
+                      bool res = await LocationChooser.openLocationBottomSheet(
+                              context) ??
+                          false;
+                      Navigator.pop(context, res);
+                    },
+                  ),
+                  TextButton(
+                    child: Text(AppLocalizations.of(context)!.zoneSetThis),
+                    onPressed: () {
+                      value.currentLocationCode = coordinateData.zone;
+                      LocationChooser.onNewLocationSaved(context);
 
-                        Navigator.pop(context, true);
-                      },
-                    ),
-                  ],
-                ),
+                      Navigator.pop(context, true);
+                    },
+                  ),
+                ],
               ),
             ),
+
+            // Expanded(
+            //   flex: 1,
+            //   child: Align(
+            //     alignment: Alignment.bottomRight,
+            //     child: Row(
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: [
+            //         TextButton(
+            //           child:
+            //               Text(AppLocalizations.of(context)!.zoneSetManually),
+            //           onPressed: () async {
+            //             bool res =
+            //                 await LocationChooser.openLocationBottomSheet(
+            //                         context) ??
+            //                     false;
+            //             Navigator.pop(context, res);
+            //           },
+            //         ),
+            //         TextButton(
+            //           child: Text(AppLocalizations.of(context)!.zoneSetThis),
+            //           onPressed: () {
+            //             value.currentLocationCode = coordinateData.zone;
+            //             LocationChooser.onNewLocationSaved(context);
+
+            //             Navigator.pop(context, true);
+            //           },
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         );
       },
@@ -315,8 +344,8 @@ class ZoneLoadingWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          const SpinKitPulse(
-            color: Colors.teal,
+          SpinKitPulse(
+            color: Theme.of(context).colorScheme.primary,
           )
         ],
       ),
@@ -358,13 +387,13 @@ class ZoneErrorWidget extends StatelessWidget {
                       Icon(
                         Icons.fmd_bad_outlined,
                         size: 40,
-                        color: Colors.red.shade300,
+                        color: Theme.of(context).colorScheme.error,
                       ),
                       Icon(
                         Icons
                             .signal_cellular_connected_no_internet_0_bar_outlined,
                         size: 40,
-                        color: Colors.red.shade300,
+                        color: Theme.of(context).colorScheme.error,
                       ),
                     ],
                   ),
@@ -372,7 +401,8 @@ class ZoneErrorWidget extends StatelessWidget {
                     data: AppLocalizations.of(context)!.zoneErrorPara1,
                     styleSheet: MarkdownStyleSheet(
                         textAlign: WrapAlignment.center,
-                        p: TextStyle(color: Colors.red.shade300)),
+                        p: TextStyle(
+                            color: Theme.of(context).colorScheme.error)),
                   ),
                   const SizedBox(height: 10),
                   MarkdownBody(
@@ -382,19 +412,6 @@ class ZoneErrorWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: Text(
-                errorMessage,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 10,
-                    fontStyle: FontStyle.italic),
               ),
             ),
           ),

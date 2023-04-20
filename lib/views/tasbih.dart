@@ -66,22 +66,39 @@ class _TasbihState extends State<Tasbih> {
             },
             icon: const Icon(Icons.restart_alt),
           ),
-          IconButton(
-              onPressed: () async {
-                var selectedColourIndex = await showDialog(
-                  context: context,
-                  builder: (_) => const _ColourChooserDialog(),
-                );
+          PopupMenuButton(
+            icon: const Icon(Icons.palette_outlined),
+            itemBuilder: (context) {
+              return List.generate(
+                      TasbihColors.beadDesigns().length, (index) => index)
+                  .map(
+                    (e) => PopupMenuItem(
+                      value: e,
+                      child: TextButton.icon(
+                        icon: TasbihBead(
+                            gradientColor:
+                                TasbihColors.beadDesigns()[e].gradient),
+                        label: Text(TasbihColors.beadDesigns()[e].name,
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyLarge!
+                                    .color)),
+                        onPressed: null,
+                      ),
+                    ),
+                  )
+                  .toList();
+            },
+            onSelected: (int? value) {
+              if (value == null) return;
 
-                if (selectedColourIndex == null) return;
-
-                setState(() {
-                  _tasbihColourindex = selectedColourIndex;
-                  GetStorage()
-                      .write(kTasbihGradientColour, selectedColourIndex);
-                });
-              },
-              icon: const Icon(Icons.palette_outlined)),
+              setState(() {
+                _tasbihColourindex = value;
+                GetStorage().write(kTasbihGradientColour, value);
+              });
+            },
+          ),
         ],
       ),
       body: Row(
@@ -114,8 +131,10 @@ class _TasbihState extends State<Tasbih> {
                 controller: _controller,
                 itemCount: null,
                 scrollDirection: Axis.vertical,
-                itemBuilder: (_, __) =>
-                    TasbihBead(tasbihColourindex: _tasbihColourindex),
+                itemBuilder: (_, __) => TasbihBead(
+                    gradientColor:
+                        TasbihColors.beadDesigns()[_tasbihColourindex]
+                            .gradient),
               ),
             ),
           ),
@@ -128,53 +147,23 @@ class _TasbihState extends State<Tasbih> {
 class TasbihBead extends StatelessWidget {
   const TasbihBead({
     Key? key,
-    required int tasbihColourindex,
-  })  : _tasbihColourindex = tasbihColourindex,
-        super(key: key);
+    required this.gradientColor,
+  }) : super(key: key);
 
-  final int _tasbihColourindex;
+  final List<Color> gradientColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 34,
+      height: 34,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: TasbihColors.gradientColour()[_tasbihColourindex],
+          colors: gradientColor,
         ),
         shape: BoxShape.circle,
-      ),
-    );
-  }
-}
-
-class _ColourChooserDialog extends StatelessWidget {
-  const _ColourChooserDialog({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 56),
-        child: Material(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                TasbihColors.gradientColour().length,
-                (int index) => IconButton(
-                  padding: const EdgeInsets.all(4),
-                  onPressed: () => Navigator.pop(context, index),
-                  icon: TasbihBead(tasbihColourindex: index),
-                ),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/timetable_provider.dart';
-import '../../utils/cupertinoSwitchListTile.dart';
 
 enum HijriStyle { full, short }
 
@@ -23,10 +21,10 @@ class FullPrayerTableSettings extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           children: [
             Card(
-              child: CupertinoSwitchListTile(
+              clipBehavior: Clip.hardEdge,
+              child: SwitchListTile(
                   title:
                       Text(AppLocalizations.of(context)!.timetableSettingHijri),
-                  activeColor: CupertinoColors.activeBlue,
                   value: value.showHijri,
                   onChanged: (bool newValue) {
                     value.showHijri = newValue;
@@ -58,18 +56,18 @@ class FullPrayerTableSettings extends StatelessWidget {
                 ),
               ),
             Card(
-                child: CupertinoSwitchListTile(
-              activeColor: CupertinoColors.activeBlue,
-              title:
-                  Text(AppLocalizations.of(context)!.timetableSettingOneThird),
-              subtitle: Text(
-                  AppLocalizations.of(context)!.timetableSettingOneThirdSub),
-              isThreeLine: true,
-              value: value.showLastOneThirdNight,
-              onChanged: (bool newValue) {
-                value.showLastOneThirdNight = newValue;
-              },
-            ))
+                clipBehavior: Clip.hardEdge,
+                child: SwitchListTile(
+                  title: Text(
+                      AppLocalizations.of(context)!.timetableSettingOneThird),
+                  subtitle: Text(AppLocalizations.of(context)!
+                      .timetableSettingOneThirdSub),
+                  isThreeLine: true,
+                  value: value.showLastOneThirdNight,
+                  onChanged: (bool newValue) {
+                    value.showLastOneThirdNight = newValue;
+                  },
+                ))
           ],
         ),
       ),

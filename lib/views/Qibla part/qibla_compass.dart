@@ -99,7 +99,6 @@ class QiblahCompassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var platformBrightness = Theme.of(context).brightness;
     return StreamBuilder(
       stream: FlutterQiblah.qiblahStream,
       builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
@@ -115,16 +114,18 @@ class QiblahCompassWidget extends StatelessWidget {
           children: <Widget>[
             Transform.rotate(
               angle: angle,
-              child: SvgPicture.asset('assets/qibla/compass.svg', // compass
-                  color: platformBrightness == Brightness.dark
-                      ? Colors.teal
-                      : Colors.teal.shade400),
+              child: SvgPicture.asset(
+                'assets/qibla/compass.svg', // compass
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+              ),
             ),
             _kaabaSvg,
-            SvgPicture.asset('assets/qibla/needle.svg', //needle
-                color: platformBrightness == Brightness.dark
-                    ? Colors.teal
-                    : Colors.teal.shade800),
+            SvgPicture.asset(
+              'assets/qibla/needle.svg', //needle
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).colorScheme.primary, BlendMode.srcIn),
+            ),
           ],
         );
       },
