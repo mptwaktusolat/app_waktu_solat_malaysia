@@ -108,23 +108,23 @@ class FontSizeSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Consumer<SettingProvider>(
-      builder: (_, value, __) => ListTile(
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Text(AppLocalizations.of(context)!.settingFontSize),
-        ),
-        subtitle: Slider(
-          // inactiveColor: Colors.teal.withAlpha(40),
-          label: value.prayerFontSize.round().toString(),
-          min: 12.0,
-          max: 22.0,
-          divisions: 5,
-          value: value.prayerFontSize,
-          onChanged: (double newValue) => value.prayerFontSize = newValue,
+      child: Consumer<SettingProvider>(
+        builder: (_, value, __) => ListTile(
+          title: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(AppLocalizations.of(context)!.settingFontSize),
+          ),
+          subtitle: Slider(
+            label: value.prayerFontSize.round().toString(),
+            min: 12.0,
+            max: 24.0,
+            divisions: 6,
+            value: value.prayerFontSize,
+            onChanged: (double newValue) => value.prayerFontSize = newValue,
+          ),
         ),
       ),
-    ));
+    );
   }
 }
 

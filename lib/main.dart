@@ -112,28 +112,15 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 colorScheme: lightDynamic ??
                     ColorScheme.fromSeed(seedColor: _primaryColour),
-                // primaryColor: _primaryColour,
-                // bottomAppBarTheme:
-                //     BottomAppBarTheme(color: Colors.teal.shade50),
-                // visualDensity: VisualDensity.adaptivePlatformDensity,
-                // appBarTheme: AppBarTheme(
-                //   color: _primaryColour,
-                // ),
                 useMaterial3: true,
               ),
               darkTheme: ThemeData.dark().copyWith(
                 colorScheme: darkDynamic ??
                     ColorScheme.fromSeed(
                         seedColor: _primaryColour, brightness: Brightness.dark),
-                // primaryColor: _primaryColour,
-                // bottomAppBarTheme:
-                //     BottomAppBarTheme(color: Colors.teal.withOpacity(0.4)),
-                // visualDensity: VisualDensity.adaptivePlatformDensity,
-                // appBarTheme: AppBarTheme(color: _primaryColour.shade800),
                 useMaterial3: true,
               ),
               themeMode: themeValue.themeMode,
-              // Material 3 ?
               localizationsDelegates: AppLocalizations.localizationsDelegates,
               supportedLocales: AppLocalizations.supportedLocales,
               locale: Locale(localeValue.appLocale),
@@ -197,7 +184,7 @@ void initGetStorage() {
   get.writeIfNull(kIsDebugMode, false);
   get.writeIfNull(kDiscoveredDeveloperOption, false);
   get.writeIfNull(kSharingFormat, 0);
-  get.writeIfNull(kFontSize, 14.0);
+  get.writeIfNull(kFontSize, 16.0);
   // make default to default locale
   var localeName = Platform.localeName.split('_').first;
   get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
