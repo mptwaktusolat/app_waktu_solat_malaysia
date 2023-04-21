@@ -3,6 +3,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -218,6 +219,20 @@ class _OnboardingPageState extends State<OnboardingPage>
           activeShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         ),
+        onChange: (value) async {
+          // show notification permission dialog
+          // when user reached the notification style chooser
+          if (value == 3) {
+            /// ask NotificationPermission
+            FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+                FlutterLocalNotificationsPlugin();
+            var res = await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    AndroidFlutterLocalNotificationsPlugin>()
+                ?.requestPermission();
+            print('res is $res');
+          }
+        },
         overrideNext: TextButton(
             child: Text(AppLocalizations.of(context)!.onboardingNext,
                 style: const TextStyle(fontWeight: FontWeight.w600)),

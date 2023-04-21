@@ -140,7 +140,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    configureQuickAction(context);
+    _configureQuickAction(context);
     return Scaffold(
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
@@ -192,7 +192,7 @@ void initGetStorage() {
 }
 
 /// Launcher icon shortcuts
-void configureQuickAction(BuildContext context) {
+void _configureQuickAction(BuildContext context) {
   const QuickActions quickActions = QuickActions();
   quickActions.initialize((shortcutType) {
     switch (shortcutType) {
