@@ -256,7 +256,7 @@ class AboutAppPage extends StatelessWidget {
                             url: 'https://iqfareez.com'),
                         child: Text(
                           AppLocalizations.of(context)!
-                              .aboutLegalese("2020-2022"),
+                              .aboutLegalese("2020-2023"),
                           style: Theme.of(context).textTheme.labelMedium,
                           textAlign: TextAlign.center,
                         ),
