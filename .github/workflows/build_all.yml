@@ -98,6 +98,7 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
           packageName: live.iqfareez.waktusolatmalaysia
           releaseFiles: app-release.aab
+          changesNotSentForReview: true
           track: production
           status: draft
 
