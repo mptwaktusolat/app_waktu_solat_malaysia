@@ -13,7 +13,6 @@ import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
 import 'Settings%20part/SettingsPage.dart';
 import 'Settings part/theme_page.dart';
-import 'ads_widget.dart';
 import 'feedback_page.dart';
 import 'prayer_full_table.dart';
 import 'tasbih.dart';
@@ -23,79 +22,72 @@ class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const AdsWidget(),
-        BottomAppBar(
-          child: Row(
-            children: [
-              Consumer<UpdaterProvider>(builder: (_, setting, __) {
-                return IconButton(
-                    tooltip: AppLocalizations.of(context)?.menuTooltip,
-                    icon: Stack(children: [
-                      const Align(
-                          alignment: Alignment.center,
-                          child: FaIcon(FontAwesomeIcons.bars)),
-                      setting.needForUpdate
-                          ? Align(
-                              alignment: Alignment.topRight,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle, color: Colors.red),
-                                width: 8,
-                                height: 8,
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    ]),
-                    onPressed: () {
-                      menuModalBottomSheet(context);
-                    });
-              }),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.calendarDays),
-                tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
+    return BottomAppBar(
+      child: Row(
+        children: [
+          Consumer<UpdaterProvider>(builder: (_, setting, __) {
+            return IconButton(
+                tooltip: AppLocalizations.of(context)?.menuTooltip,
+                icon: Stack(children: [
+                  const Align(
+                      alignment: Alignment.center,
+                      child: FaIcon(FontAwesomeIcons.bars)),
+                  setting.needForUpdate
+                      ? Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.red),
+                            width: 8,
+                            height: 8,
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ]),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      settings:
-                          const RouteSettings(name: 'Full Prayer Timetable'),
-                      builder: (_) => PrayerFullTable()));
-                },
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.kaaba),
-                // color: iconColour,
-                tooltip: AppLocalizations.of(context)?.qiblaTitle,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      settings: const RouteSettings(name: 'Qibla'),
-                      builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                          ? const Qibla()
-                          : const QiblaWarn(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(MyMptIcons.tasbih_plain),
-                tooltip: "Tasbih",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      settings: const RouteSettings(name: 'Tasbih'),
-                      builder: (_) => const Tasbih(),
-                    ),
-                  );
-                },
-              )
-            ],
+                  menuModalBottomSheet(context);
+                });
+          }),
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.calendarDays),
+            tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Full Prayer Timetable'),
+                  builder: (_) => PrayerFullTable()));
+            },
           ),
-        ),
-      ],
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.kaaba),
+            // color: iconColour,
+            tooltip: AppLocalizations.of(context)?.qiblaTitle,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Qibla'),
+                  builder: (_) => GetStorage().read(kHasShowQiblaWarning)
+                      ? const Qibla()
+                      : const QiblaWarn(),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(MyMptIcons.tasbih_plain),
+            tooltip: "Tasbih",
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  settings: const RouteSettings(name: 'Tasbih'),
+                  builder: (_) => const Tasbih(),
+                ),
+              );
+            },
+          )
+        ],
+      ),
     );
   }
 }

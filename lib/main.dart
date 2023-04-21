@@ -159,7 +159,7 @@ class MyHomePage extends StatelessWidget {
       // https://github.com/flutter/flutter/issues/14288
       bottomNavigationBar: const MyBottomAppBar(),
       floatingActionButton: const ShareFAB(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       body: const SingleChildScrollView(
         child: AppBody(),
       ),

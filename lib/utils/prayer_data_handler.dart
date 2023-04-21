@@ -7,6 +7,7 @@ class PrayDataHandler {
   static JakimEsolatModel? _esolatModel;
 
   /// This function must be called everytime the zone is changed
+  /// Returns the hijri date
   static Future<String> init(String zone) async {
     _esolatModel = await MptApiFetch.fetchMpt(zone);
     return today().hijri.toString();

@@ -14,6 +14,7 @@ import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
 import '../utils/prayer_data_handler.dart';
 import '../networking/update_checker.dart';
+import 'ads_widget.dart';
 import 'notif_prompt.dart';
 import 'prayer_time_view.dart';
 import 'whats_new_update.dart';
@@ -91,7 +92,9 @@ class _AppBodyState extends State<AppBody> {
                     ],
                   ),
                 ),
-                const NotifPrompt(), // implementation is in the widget
+                const SizedBox(height: 3),
+                const AdsWidget(),
+                const NotifPrompt(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 26),
                   child: Builder(builder: (_) {

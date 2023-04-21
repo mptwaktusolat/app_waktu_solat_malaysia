@@ -73,6 +73,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
                 time: today.isha,
                 name: AppLocalizations.of(context)!.ishaName,
                 isOther: true),
+            const SizedBox(height: 10), // give some bottom space
           ],
         );
       },
