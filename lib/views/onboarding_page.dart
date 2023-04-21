@@ -1,4 +1,5 @@
 import 'package:auto_start_flutter/auto_start_flutter.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -46,6 +47,24 @@ class _OnboardingPageState extends State<OnboardingPage>
     super.initState();
     _animController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
+  }
+
+  /// Check if platforms support AutoStart. (Excluusing Samsung devices)
+  /// Related to https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/89
+  Future<bool> checkAutoStart() async {
+    var autoStartAvailable = await isAutoStartAvailable;
+
+    if (autoStartAvailable ?? false) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      var deviceBrand = androidInfo.brand;
+
+      // skip triggering autostart banner for samsung devices because
+      // there is no option to toggle autostart settings whatsoever
+      if (deviceBrand.toLowerCase() == 'samsung') return false;
+    }
+
+    return autoStartAvailable ?? false;
   }
 
   @override
@@ -161,8 +180,8 @@ class _OnboardingPageState extends State<OnboardingPage>
                 GetStorage().write(kNotificationType, type?.index);
                 setState(() => _notificationType = type!);
               }),
-          FutureBuilder<bool?>(
-              future: isAutoStartAvailable,
+          FutureBuilder<bool>(
+              future: checkAutoStart(),
               builder: (_, snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
                   // https://mobikul.com/shake-effect-in-flutter/
@@ -206,7 +225,7 @@ class _OnboardingPageState extends State<OnboardingPage>
               bool hasClick =
                   Provider.of<AutostartWarningProvider>(context, listen: false)
                       .hasClick;
-              bool isAutostartAvailable = await isAutoStartAvailable ?? false;
+              bool isAutostartAvailable = await checkAutoStart();
 
               if (!isAutostartAvailable) {
                 _introScreenKey.currentState?.next();
