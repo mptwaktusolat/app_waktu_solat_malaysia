@@ -86,14 +86,17 @@ Note: Pre-release versions are not always submitted to the Google Play Store (Be
 [![Part 7](https://img.shields.io/badge/highlights-Part%207-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
 [![Part 8](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
 [![Part 9](https://img.shields.io/badge/highlights-Part%209-blueviolet?style=for-the-badge)](https://www.instagram.com/stories/highlights/17961012149100642/)
+[![Part 10](https://img.shields.io/badge/highlights-Part%209-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MjcxMDUwODc3MTM1ODUy)
 
 ## Motivation
 
 <!-- A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists. -->
 
-I started this project with the intention of learning Flutter, but it has since gained over 40,000 installs, far beyond my expectations.
+I started this project to learn Flutter, but it has since gained over 40,000 installs, far beyond my expectations.
 
 I have always wanted to contribute something to the ummah (the global Muslim community), and this project is my way of doing so. I hope it will benefit Malaysians (including those living in Malaysia) by providing quick and easy access to prayer times in their area. I plan to maintain this project so that it will remain relevant for many generations to come, inshallah (God willing).
+
+Nevertheless, I always keep in mind that خير الناس أنفعهم للناس (the best of people are those who are most beneficial to others). I hope that this project will be a means of bringing people closer to Allah (God) and His Messenger (peace be upon him).
 
 <!-- ## Attribution
 
