@@ -10,7 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
@@ -138,23 +137,55 @@ class LocationChooser {
                 child: Container(
                   color: Theme.of(context).canvasColor,
                   child: Scrollbar(
-                    child: GroupedListView<JakimZones, String>(
-                      addSemanticIndexes: true,
-                      elements: LocationDatabase.allLocation,
-                      groupBy: (element) => element.negeri,
-                      groupSeparatorBuilder: (String groupByValue) => Padding(
-                        padding: const EdgeInsets.only(left: 16, top: 8),
-                        child: Text(
-                          groupByValue,
-                          style: const TextStyle(
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      itemBuilder: (_, element) {
+                    child: ListView.builder(
+                      itemCount: LocationDatabase.allLocation.length,
+                      itemBuilder: (context, index) {
+                        var element = LocationDatabase.allLocation[index];
                         bool selected =
                             value.currentLocationCode == element.jakimCode;
+
+                        // Check if the current item is the first item in a new group
+                        bool isFirstItemInGroup = index == 0 ||
+                            element.negeri !=
+                                LocationDatabase.allLocation[index - 1].negeri;
+
+                        // If it's the first item in a group, create a header item
+                        if (isFirstItemInGroup) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceVariant,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 14, vertical: 8),
+                                child: Text(
+                                  element.negeri,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              ListTile(
+                                onTap: () {
+                                  value.currentLocationCode = element.jakimCode;
+                                  onNewLocationSaved(context);
+                                  Navigator.pop(context, true);
+                                },
+                                title: Text(
+                                    LocationDatabase.daerah(element.jakimCode)),
+                                trailing: LocationBubble(element.jakimCode,
+                                    selected: selected),
+                                selected: selected,
+                              ),
+                            ],
+                          );
+                        }
+
+                        // If it's not the first item in a group, create a child item
                         return ListTile(
                           onTap: () {
                             value.currentLocationCode = element.jakimCode;
@@ -288,38 +319,6 @@ class ZoneSuccessWidget extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Expanded(
-            //   flex: 1,
-            //   child: Align(
-            //     alignment: Alignment.bottomRight,
-            //     child: Row(
-            //       mainAxisSize: MainAxisSize.min,
-            //       children: [
-            //         TextButton(
-            //           child:
-            //               Text(AppLocalizations.of(context)!.zoneSetManually),
-            //           onPressed: () async {
-            //             bool res =
-            //                 await LocationChooser.openLocationBottomSheet(
-            //                         context) ??
-            //                     false;
-            //             Navigator.pop(context, res);
-            //           },
-            //         ),
-            //         TextButton(
-            //           child: Text(AppLocalizations.of(context)!.zoneSetThis),
-            //           onPressed: () {
-            //             value.currentLocationCode = coordinateData.zone;
-            //             LocationChooser.onNewLocationSaved(context);
-
-            //             Navigator.pop(context, true);
-            //           },
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         );
       },

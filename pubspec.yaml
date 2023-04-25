@@ -39,7 +39,6 @@ dependencies:
   in_app_review: ^2.0.2
   google_mobile_ads: ^2.0.0
   restart_app: ^1.0.3
-  grouped_list: ^5.0.1
   flutter_markdown: ^0.6.9
   firebase_analytics: ^10.0.5
   auto_start_flutter:
