@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/MyMptIcons.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -21,5 +21,7 @@ class MyMptIcons {
   static const _kFontFam = 'MyMptIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData tasbih_plain = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  // ignore: constant_identifier_names
+  static const IconData tasbih_plain =
+      IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

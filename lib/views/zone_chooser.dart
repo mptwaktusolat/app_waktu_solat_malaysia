@@ -17,7 +17,6 @@ import '../location_utils/location_data.dart';
 import '../location_utils/location_database.dart';
 import '../location_utils/location_coordinate.dart';
 import '../location_utils/location_coordinate_model.dart';
-import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';
 
