@@ -52,6 +52,12 @@ void main() async {
   // Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
   // Disable analytics & crashlytics when in debug mode
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
   FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
