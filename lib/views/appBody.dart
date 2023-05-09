@@ -102,7 +102,7 @@ class _AppBodyState extends State<AppBody> {
                       return const Loading();
                     }
                     if (snapshot.hasError) {
-                      return Error(
+                      return ErrorWidget(
                           errorMessage: snapshot.error.toString(),
                           onRetryPressed: () => setState(() {}));
                     }
@@ -240,8 +240,8 @@ class DateWidget extends StatelessWidget {
   }
 }
 
-class Error extends StatelessWidget {
-  const Error({Key? key, this.errorMessage, this.onRetryPressed})
+class ErrorWidget extends StatelessWidget {
+  const ErrorWidget({Key? key, this.errorMessage, this.onRetryPressed})
       : super(key: key);
 
   final String? errorMessage;
@@ -265,8 +265,9 @@ class Error extends StatelessWidget {
         const SizedBox(height: 8),
         ElevatedButton(
           onPressed: onRetryPressed as void Function()?,
-          child: Text(AppLocalizations.of(context)!.getPtRetry,
-              style: const TextStyle(color: Colors.black)),
+          child: Text(
+            AppLocalizations.of(context)!.getPtRetry,
+          ),
         ),
         const SizedBox(height: 350),
       ],
