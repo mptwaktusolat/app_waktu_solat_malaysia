@@ -48,7 +48,7 @@ Future<void> scheduleSinglePrayerNotification({
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation
               .absoluteTime); // This literally schedules the notification
@@ -87,7 +87,7 @@ Future<void> scheduleSingleAzanNotification(
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation
               .absoluteTime); // This literally schedules the notification
@@ -115,7 +115,7 @@ Future<void> scheduleAlertNotification(
   var platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
-      androidAllowWhileIdle: true,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       payload: payload,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation
