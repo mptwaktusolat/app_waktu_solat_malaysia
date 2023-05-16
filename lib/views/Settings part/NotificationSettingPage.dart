@@ -136,9 +136,9 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               isThreeLine: true,
               subtitle: Text(
                   AppLocalizations.of(context)!.notifSettingSysSettingDesc),
-              trailing: Column(
+              trailing: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Icon(Icons.launch_rounded),
                 ],
               ),

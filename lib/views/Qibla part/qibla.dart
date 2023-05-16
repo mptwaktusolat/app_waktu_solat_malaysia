@@ -111,8 +111,8 @@ class CompassActionButtons extends StatelessWidget {
                 (value) => Fluttertoast.showToast(
                     msg: AppLocalizations.of(context)!.qiblaCopyUrl));
           },
-          child: Row(
-            children: const [
+          child: const Row(
+            children: [
               Text('Google Qiblafinder'),
               SizedBox(width: 8),
               FaIcon(FontAwesomeIcons.squareUpRight, size: 13)
