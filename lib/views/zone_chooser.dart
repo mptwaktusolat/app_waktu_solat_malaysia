@@ -13,10 +13,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
+import '../components/zone_selector_dialog.dart';
 import '../location_utils/location_data.dart';
 import '../location_utils/location_database.dart';
 import '../location_utils/location_coordinate.dart';
 import '../location_utils/location_coordinate_model.dart';
+import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';
 
@@ -120,93 +122,18 @@ class LocationChooser {
     return res ?? false;
   }
 
-  static Future<bool?> openLocationBottomSheet(BuildContext context) async {
-    return await showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      isScrollControlled: true,
-      builder: (_) {
-        return Consumer<LocationProvider>(
-          builder: (_, value, __) {
-            return FractionallySizedBox(
-              heightFactor: 0.68,
-              child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(26)),
-                child: Container(
-                  color: Theme.of(context).canvasColor,
-                  child: Scrollbar(
-                    child: ListView.builder(
-                      itemCount: LocationDatabase.allLocation.length,
-                      itemBuilder: (context, index) {
-                        var element = LocationDatabase.allLocation[index];
-                        bool selected =
-                            value.currentLocationCode == element.jakimCode;
+  static Future<void> openManualZoneSelector(BuildContext context) async {
+    JakimZones? newZone =
+        await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return const ZoneSelectorDialog();
+    }));
 
-                        // Check if the current item is the first item in a new group
-                        bool isFirstItemInGroup = index == 0 ||
-                            element.negeri !=
-                                LocationDatabase.allLocation[index - 1].negeri;
+    if (newZone == null) return;
+    print('newzone is $newZone');
 
-                        // If it's the first item in a group, create a header item
-                        if (isFirstItemInGroup) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceVariant,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14, vertical: 8),
-                                child: Text(
-                                  element.negeri,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                              ListTile(
-                                onTap: () {
-                                  value.currentLocationCode = element.jakimCode;
-                                  onNewLocationSaved(context);
-                                  Navigator.pop(context, true);
-                                },
-                                title: Text(
-                                    LocationDatabase.daerah(element.jakimCode)),
-                                trailing: LocationBubble(element.jakimCode,
-                                    selected: selected),
-                                selected: selected,
-                              ),
-                            ],
-                          );
-                        }
-
-                        // If it's not the first item in a group, create a child item
-                        return ListTile(
-                          onTap: () {
-                            value.currentLocationCode = element.jakimCode;
-                            onNewLocationSaved(context);
-                            Navigator.pop(context, true);
-                          },
-                          title:
-                              Text(LocationDatabase.daerah(element.jakimCode)),
-                          trailing: LocationBubble(element.jakimCode,
-                              selected: selected),
-                          selected: selected,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
-    );
+    Provider.of<LocationProvider>(context, listen: false).currentLocationCode =
+        newZone.jakimCode;
+    onNewLocationSaved(context);
   }
 }
 
@@ -300,10 +227,8 @@ class ZoneSuccessWidget extends StatelessWidget {
                   TextButton(
                     child: Text(AppLocalizations.of(context)!.zoneSetManually),
                     onPressed: () async {
-                      bool res = await LocationChooser.openLocationBottomSheet(
-                              context) ??
-                          false;
-                      Navigator.pop(context, res);
+                      await LocationChooser.openManualZoneSelector(context);
+                      Navigator.pop(context);
                     },
                   ),
                   TextButton(
@@ -427,10 +352,8 @@ class ZoneErrorWidget extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () async {
-                    bool res = await LocationChooser.openLocationBottomSheet(
-                            context) ??
-                        false;
-                    Navigator.pop(context, res);
+                    await LocationChooser.openManualZoneSelector(context);
+                    Navigator.pop(context);
                   },
                   child: Text(
                     AppLocalizations.of(context)!.zoneSetManually,

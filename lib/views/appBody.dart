@@ -162,7 +162,7 @@ class ZoneWidget extends StatelessWidget {
                       label:
                           AppLocalizations.of(context)!.appBodyChangeLocation,
                       onPressed: () {
-                        LocationChooser.openLocationBottomSheet(context);
+                        LocationChooser.openManualZoneSelector(context);
                       },
                     ),
                   ),
