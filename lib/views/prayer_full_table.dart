@@ -35,8 +35,8 @@ class PrayerFullTable extends StatelessWidget {
               expandedHeight: 130,
               flexibleSpace: FlexibleSpaceBar(
                 background: CachedNetworkImage(
-                  imageUrl:
-                      'https://mpt-server.vercel.app/api/mosque/$_locationCode',
+                  imageUrl: Uri.https(kApiBaseUrl, '/api/mosque/$_locationCode')
+                      .toString(),
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.7),
                   colorBlendMode: BlendMode.overlay,

@@ -30,7 +30,7 @@ class MptApiFetch {
 
     // TODO: kemaskan, buat early return or smth
     try {
-      final api = Uri.https('mpt-server.vercel.app', '/api/log');
+      final api = Uri.https(kApiBaseUrl, '/api/log');
 
       // return error if request takes too much time
       final response = await http.get(api).timeout(
@@ -63,7 +63,7 @@ class MptApiFetch {
   }
 
   static Future<dynamic> _mptServerApi(String location) async {
-    final api = Uri.https('mpt-server.vercel.app', 'api/solat/$location');
+    final api = Uri.https(kApiBaseUrl, 'api/solat/$location');
     DebugToast.show('Using mpt-server api');
     GetStorage().write(kStoredApiPrayerCall, api.toString()); //for debug dialog
     final response = await http.get(api).timeout(

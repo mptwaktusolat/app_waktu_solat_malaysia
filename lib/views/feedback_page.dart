@@ -264,8 +264,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                   setState(() => _isSendLoading = true);
                   try {
-                    await http.post(
-                        Uri.https('mpt-server.vercel.app', '/api/feedback'),
+                    await http.post(Uri.https(kApiBaseUrl, '/api/feedback'),
                         headers: {
                           HttpHeaders.contentTypeHeader:
                               ContentType.json.toString()
