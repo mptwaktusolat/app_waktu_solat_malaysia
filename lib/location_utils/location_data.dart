@@ -4,10 +4,11 @@ class LocationData {
   static Position? _position;
 
   static Future<Position> getCurrentLocation() async {
+    bool serviceEnabled;
     LocationPermission permission;
 
     // Test if location services are enabled.
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       // Location services are not enabled don't continue
       // accessing the position and request users of the

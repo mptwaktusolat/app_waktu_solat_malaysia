@@ -26,6 +26,9 @@ const kTasbihCount = "tasbihCount";
 const kTasbihGradientColour = "tasbihColours";
 const kNoAdsStartTime = "noAdsStartTime";
 
+// API base
+const kApiBaseUrl = 'mpt-server.vercel.app';
+
 //Network image
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';

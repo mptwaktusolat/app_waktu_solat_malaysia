@@ -1,24 +1,24 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
 import '../components/zone_selector_dialog.dart';
 import '../location_utils/location_data.dart';
 import '../location_utils/location_database.dart';
-import '../location_utils/location_coordinate.dart';
 import '../location_utils/location_coordinate_model.dart';
 import '../models/jakim_zones.dart';
+import '../models/mpt_server_zone_info.dart';
 import '../providers/location_provider.dart';
 import '../utils/debug_toast.dart';
 
@@ -51,27 +51,15 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    Placemark firstPlacemark;
-
     Position pos = await LocationData.getCurrentLocation();
     DebugToast.show(pos.toString());
-    try {
-      List<Placemark> placemarks =
-          await placemarkFromCoordinates(pos.latitude, pos.longitude);
-      firstPlacemark = placemarks.first;
-    } on PlatformException catch (e) {
-      if (e.message!.contains('A network error occurred')) {
-        throw 'A network error occurred trying to lookup the supplied coordinates.';
-      } else {
-        rethrow;
-      }
-    }
-    if (firstPlacemark.country!.toLowerCase() != "malaysia") {
-      throw 'Outside Malaysia';
-    }
-    DebugToast.show(firstPlacemark.toString(), duration: Toast.LENGTH_LONG);
-    var zone = LocationCoordinate.getJakimCodeNearby(
-        pos.latitude, pos.longitude, firstPlacemark.administrativeArea);
+    var response = await Future.wait([
+      placemarkFromCoordinates(pos.latitude, pos.longitude),
+      _getJakimCodeNearby(pos),
+    ]);
+
+    var firstPlacemark = (response.first as List<Placemark>).first;
+    String zone = response.last as String;
 
     // for [lokasi], the priority us `subLocality`. If empty, `locality`.
     // If empty, fallback to `name`.
@@ -85,6 +73,21 @@ class LocationChooser {
                 : firstPlacemark.name,
         lat: null,
         lng: null);
+  }
+
+  static Future<String> _getJakimCodeNearby(Position position) async {
+    var uri = Uri.https(kApiBaseUrl, 'api/zones/gps', {
+      'lat': position.latitude.toString(),
+      'lang': position.longitude.toString()
+    });
+    var res = await http.get(uri);
+
+    if (res.statusCode == 200) {
+      var result = MptServerZoneInfo.fromJson(jsonDecode(res.body));
+      return result.zone;
+    } else {
+      throw 'Error getting jakim code';
+    }
   }
 
   static Future<bool> showLocationChooser(BuildContext context) async {
