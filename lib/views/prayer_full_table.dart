@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../CONSTANTS.dart';
-import '../models/jakim_esolat_model.dart';
+import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/date_and_time.dart';
@@ -71,7 +71,7 @@ class PrayerFullTable extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
-              builder: (_, AsyncSnapshot<JakimEsolatModel> snapshot) {
+              builder: (_, AsyncSnapshot<MptServerSolat> snapshot) {
                 if (snapshot.hasData) {
                   return _PrayerDataTable(
                     todayIndex: _todayIndex,
@@ -97,7 +97,7 @@ class PrayerFullTable extends StatelessWidget {
 class _PrayerDataTable extends StatelessWidget {
   const _PrayerDataTable({
     Key? key,
-    required JakimEsolatModel model,
+    required MptServerSolat model,
     required int todayIndex,
     required int year,
     required int month,
@@ -113,7 +113,7 @@ class _PrayerDataTable extends StatelessWidget {
   final int _year;
   final int _month;
   final bool _is12HourFormat;
-  final JakimEsolatModel _model;
+  final MptServerSolat _model;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +146,7 @@ class _PrayerDataTable extends StatelessWidget {
                   style: const TextStyle(fontStyle: FontStyle.italic),
                 )))
             .toList(),
-        rows: List.generate(_model.prayerTime!.length, (index) {
+        rows: List.generate(_model.prayers.length, (index) {
           return DataRow(
             selected: index == _todayIndex,
             cells: [
@@ -166,22 +166,22 @@ class _PrayerDataTable extends StatelessWidget {
                 DataCell(
                   Text(
                     value.hijriStyle == HijriStyle.short
-                        ? _model.prayerTime![index].hijri.dM()
-                        : _model.prayerTime![index].hijri.dMMM(),
+                        ? _model.prayers[index].hijri.dM()
+                        : _model.prayers[index].hijri.dMMM(),
                     style: TextStyle(
                       fontWeight: index == _todayIndex ? FontWeight.bold : null,
                     ),
                   ),
                 ),
               ...[
-                _model.prayerTime![index].imsak,
-                _model.prayerTime![index].fajr,
-                _model.prayerTime![index].syuruk,
-                _model.prayerTime![index].dhuha,
-                _model.prayerTime![index].dhuhr,
-                _model.prayerTime![index].asr,
-                _model.prayerTime![index].maghrib,
-                _model.prayerTime![index].isha
+                _model.prayers[index].imsak,
+                _model.prayers[index].fajr,
+                _model.prayers[index].syuruk,
+                _model.prayers[index].dhuha,
+                _model.prayers[index].dhuhr,
+                _model.prayers[index].asr,
+                _model.prayers[index].maghrib,
+                _model.prayers[index].isha
               ]
                   .map(
                     (day) => DataCell(
@@ -205,8 +205,8 @@ class _PrayerDataTable extends StatelessWidget {
                   opacity: (index < _todayIndex) ? 0.55 : 1.0,
                   child: Text(
                     '~${DateAndTime.nightOneThird(
-                      _model.prayerTime![index].maghrib,
-                      _model.prayerTime![index].fajr,
+                      _model.prayers[index].maghrib,
+                      _model.prayers[index].fajr,
                     ).format(_is12HourFormat)}',
                     style: TextStyle(
                         fontWeight:

@@ -6,14 +6,14 @@ import 'package:timezone/timezone.dart' hide LocationDatabase;
 
 import '../CONSTANTS.dart';
 import '../location_utils/location_database.dart';
-import '../models/jakim_esolat_model.dart';
+import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
 import '../views/Settings%20part/NotificationSettingPage.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
   static void schedulePrayNotification(
-      BuildContext context, List<PrayerTime> times) async {
+      BuildContext context, List<Prayers> times) async {
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
     var currentDateTime = DateTime.now();
 
@@ -60,7 +60,7 @@ class MyNotifScheduler {
   /// Classic Notification Scheduler, default notification sound
   static Future<void> _defaultScheduler(
       BuildContext context,
-      List<PrayerTime> times,
+      List<Prayers> times,
       DateTime currentDateTime,
       String currentLocation) async {
     for (var dayTime in times) {
@@ -138,7 +138,7 @@ class MyNotifScheduler {
   }
 
   /// Notification but with azan
-  static void _azanScheduler(BuildContext context, List<PrayerTime> times,
+  static void _azanScheduler(BuildContext context, List<Prayers> times,
       DateTime currentDateTime, String currentLocation,
       {bool short = false}) async {
     for (var dayTime in times) {

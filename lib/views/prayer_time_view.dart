@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
-import '../models/jakim_esolat_model.dart';
+import '../models/mpt_server_solat.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../providers/setting_provider.dart';
@@ -15,7 +15,7 @@ String? location;
 
 class PrayTimeList extends StatefulWidget {
   const PrayTimeList({Key? key, this.prayerTime}) : super(key: key);
-  final JakimEsolatModel? prayerTime;
+  final MptServerSolat? prayerTime;
 
   @override
   State<PrayTimeList> createState() => _PrayTimeListState();

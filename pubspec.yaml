@@ -78,6 +78,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    # Adding custom icon guide: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Custom-Icons
     - family: MyMptIcons
       fonts:
         - asset: assets/fonts/MyMptIcons.ttf
