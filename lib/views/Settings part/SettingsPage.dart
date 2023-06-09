@@ -54,13 +54,13 @@ class SettingsPage extends StatelessWidget {
                   child: Text(AppLocalizations.of(context)!.settingMore)),
               const AboutApp(),
               const SizedBox(height: 3),
-              setting.isDeveloperOption
-                  ? const VerboseDebugDialog()
-                  : const SizedBox.shrink(),
-              const SizedBox(height: 3),
-              setting.isDeveloperOption
-                  ? const ResetAllSavedData()
-                  : const SizedBox.shrink(),
+              if (setting.isDeveloperOption) ...[
+                const VerboseDebugDialog(),
+                const SizedBox(height: 3),
+                const ClearCachedMptResponse(),
+                const SizedBox(height: 3),
+                const ResetAllSavedData(),
+              ],
               const SizedBox(height: 40),
             ],
           );
@@ -251,6 +251,30 @@ class ResetAllSavedData extends StatelessWidget {
               );
             },
           );
+        },
+      ),
+    );
+  }
+}
+
+class ClearCachedMptResponse extends StatelessWidget {
+  const ClearCachedMptResponse({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        title: const Text('Clear cached MPT response(s)'),
+        onTap: () async {
+          // find the cache file
+          var cachedKeys = GetStorage()
+              .getKeys()
+              .where((element) =>
+                  element.toString().startsWith('mpt-server-cache'))
+              .toList();
+          // delete the cache file
+          await cachedKeys.forEach((element) => GetStorage().remove(element));
+          Fluttertoast.showToast(msg: 'MPT caches cleared');
         },
       ),
     );
