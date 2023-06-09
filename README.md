@@ -21,11 +21,12 @@ More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 
 ## API
 
-[~~Azanpro API~~](https://api.azanpro.com/)\
-[~~WaktuSolatApp API~~](https://waktusolatapp.com/)\
-[~~MPTi906 API~~](https://mpt.i906.my/)\
-~~[e-solat JAKIM API](https://www.e-solat.gov.my/) & [mpt-backup-api](https://mpt-backup-api.herokuapp.com/)~~\
-[MPT-Server](https://mpt-server.vercel.app/) & [e-solat JAKIM API](https://www.e-solat.gov.my/)
+- [~~Azanpro API~~](https://api.azanpro.com/)
+- [~~WaktuSolatApp API~~](https://waktusolatapp.com/)
+- [~~MPTi906 API~~](https://mpt.i906.my/)
+- [~~e-solat JAKIM API~~](https://www.e-solat.gov.my/)
+- [~~mpt-backup-api~~](https://mpt-backup-api.herokuapp.com/)
+- [MPT-Server v2](https://mpt-server.vercel.app/)
 
 ## Website
 
