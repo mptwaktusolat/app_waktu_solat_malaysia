@@ -68,8 +68,11 @@ class MyNotifScheduler {
         //to make sure the time is in future
         await scheduleSinglePrayerNotification(
           name: 'Fajr',
-          id: int.parse(
-              dayTime.fajr.millisecondsSinceEpoch.toString().substring(5)),
+          // Note: previosly, there was a bug with this id.
+          // Read more: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/201
+          id: int.parse(dayTime.fajr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
@@ -79,8 +82,9 @@ class MyNotifScheduler {
       if (dayTime.syuruk.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Syuruk',
-          id: int.parse(
-              dayTime.syuruk.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.sunriseName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -91,8 +95,9 @@ class MyNotifScheduler {
       if (dayTime.dhuhr.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Zuhr',
-          id: int.parse(
-              dayTime.dhuhr.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -104,8 +109,9 @@ class MyNotifScheduler {
       if (dayTime.asr.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Asr',
-          id: int.parse(
-              dayTime.asr.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.asr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.asrName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -115,8 +121,9 @@ class MyNotifScheduler {
       if (dayTime.maghrib.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Maghrib',
-          id: int.parse(
-              dayTime.maghrib.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.maghribName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -126,8 +133,9 @@ class MyNotifScheduler {
       if (dayTime.isha.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Isya\'',
-          id: int.parse(
-              dayTime.isha.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.isha.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.ishaName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -146,8 +154,9 @@ class MyNotifScheduler {
         //to make sure the time is in future
         await scheduleSingleAzanNotification(
           name: short ? 'Fajr short' : 'Fajr',
-          id: int.parse(
-              dayTime.fajr.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.fajr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
@@ -158,8 +167,9 @@ class MyNotifScheduler {
       if (dayTime.syuruk.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Syuruk',
-          id: int.parse(
-              dayTime.syuruk.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.sunriseName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -170,8 +180,9 @@ class MyNotifScheduler {
       if (dayTime.dhuhr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Zuhr short' : 'Zuhr',
-          id: int.parse(
-              dayTime.dhuhr.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -184,8 +195,9 @@ class MyNotifScheduler {
       if (dayTime.asr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Asr short' : 'Asr',
-          id: int.parse(
-              dayTime.asr.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.asr.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.asrName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -196,8 +208,9 @@ class MyNotifScheduler {
       if (dayTime.maghrib.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Maghrib short' : 'Maghrib',
-          id: int.parse(
-              dayTime.maghrib.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.maghribName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
@@ -208,8 +221,9 @@ class MyNotifScheduler {
       if (dayTime.isha.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Isya\' short' : 'Isya\'',
-          id: int.parse(
-              dayTime.isha.millisecondsSinceEpoch.toString().substring(5)),
+          id: int.parse(dayTime.isha.millisecondsSinceEpoch
+              .toString()
+              .replaceAll(RegExp(r'0+$'), "")),
           title: AppLocalizations.of(context)!
               .notifItsTime(AppLocalizations.of(context)!.ishaName),
           body: AppLocalizations.of(context)!.notifIn(currentLocation),
