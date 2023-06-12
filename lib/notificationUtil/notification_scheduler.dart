@@ -68,6 +68,8 @@ class MyNotifScheduler {
         //to make sure the time is in future
         await scheduleSinglePrayerNotification(
           name: 'Fajr',
+          // Note: previosly, there was a bug with this id.
+          // Read more: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/201
           id: int.parse(dayTime.fajr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
