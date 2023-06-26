@@ -78,7 +78,7 @@ class LocationChooser {
   static Future<String> _getJakimCodeNearby(Position position) async {
     var uri = Uri.https(kApiBaseUrl, 'api/zones/gps', {
       'lat': position.latitude.toString(),
-      'lang': position.longitude.toString()
+      'long': position.longitude.toString(),
     });
     var res = await http.get(uri);
 
@@ -307,21 +307,10 @@ class ZoneErrorWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.fmd_bad_outlined,
-                        size: 40,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                      Icon(
-                        Icons
-                            .signal_cellular_connected_no_internet_0_bar_outlined,
-                        size: 40,
-                        color: Theme.of(context).colorScheme.error,
-                      ),
-                    ],
+                  Icon(
+                    Icons.fmd_bad_outlined,
+                    size: 40,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                   MarkdownBody(
                     data: AppLocalizations.of(context)!.zoneErrorPara1,
@@ -337,6 +326,11 @@ class ZoneErrorWidget extends StatelessWidget {
                       textAlign: WrapAlignment.center,
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  Text(
+                    errorMessage,
+                    style: const TextStyle(fontSize: 12),
+                  )
                 ],
               ),
             ),

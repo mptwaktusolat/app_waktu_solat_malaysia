@@ -1,14 +1,14 @@
 class MptServerZoneInfo {
   late String state;
-  late String stateIso;
+  late String district;
   late String zone;
 
   MptServerZoneInfo(
-      {required this.state, required this.stateIso, required this.zone});
+      {required this.state, required this.district, required this.zone});
 
   MptServerZoneInfo.fromJson(Map<String, dynamic> json) {
     state = json["state"];
-    stateIso = json["state_iso"];
+    district = json["district"];
     zone = json["zone"];
   }
 
@@ -19,7 +19,7 @@ class MptServerZoneInfo {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data["state"] = state;
-    data["state_iso"] = stateIso;
+    data["district"] = district;
     data["zone"] = zone;
     return data;
   }
