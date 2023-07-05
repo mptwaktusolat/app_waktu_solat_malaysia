@@ -27,7 +27,7 @@ const kNoAdsStartTime = "noAdsStartTime";
 
 // API base
 // const kApiBaseUrl = 'mpt-server.vercel.app';
-const kApiBaseUrl = 'mpt-server-31ryb1kvi-iqfareez.vercel.app';
+const kApiBaseUrl = 'mpt-server-78f17jggw-iqfareez.vercel.app';
 
 //Network image
 const kAppIconUrl =

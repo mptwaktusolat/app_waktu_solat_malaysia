@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
@@ -53,10 +54,15 @@ class LocationChooser {
   static Future<LocationCoordinateData> _getAllLocationData() async {
     Position pos = await LocationData.getCurrentLocation();
     DebugToast.show(pos.toString());
-    var response = await Future.wait([
-      placemarkFromCoordinates(pos.latitude, pos.longitude),
-      _getJakimCodeNearby(pos),
-    ]);
+    late List<dynamic> response;
+    try {
+      response = await Future.wait([
+        placemarkFromCoordinates(pos.latitude, pos.longitude),
+        _getJakimCodeNearby(pos),
+      ]);
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
 
     var firstPlacemark = (response.first as List<Placemark>).first;
     String zone = response.last as String;
@@ -85,6 +91,9 @@ class LocationChooser {
     if (res.statusCode == 200) {
       var result = MptServerZoneInfo.fromJson(jsonDecode(res.body));
       return result.zone;
+    } else if (res.statusCode == 404) {
+      // location not in bound
+      throw 'Location is outside of Malaysia';
     } else {
       throw 'Error getting jakim code';
     }
@@ -109,13 +118,9 @@ class LocationChooser {
                     return const ZoneLoadingWidget();
                   } else if (snapshot.hasData) {
                     return ZoneSuccessWidget(coordinateData: snapshot.data!);
-                  } else if (snapshot.hasError) {
-                    return ZoneErrorWidget(
-                        errorMessage: snapshot.error.toString());
                   } else {
-                    return const ZoneErrorWidget(
-                      errorMessage: 'Unexpected error occured',
-                    );
+                    DebugToast.show('Probably error: ${snapshot.error}');
+                    return const ZoneErrorWidget();
                   }
                 }),
           ),
@@ -280,10 +285,7 @@ class ZoneLoadingWidget extends StatelessWidget {
 }
 
 class ZoneErrorWidget extends StatelessWidget {
-  const ZoneErrorWidget({Key? key, required this.errorMessage})
-      : super(key: key);
-
-  final String errorMessage;
+  const ZoneErrorWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -326,11 +328,6 @@ class ZoneErrorWidget extends StatelessWidget {
                       textAlign: WrapAlignment.center,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    errorMessage,
-                    style: const TextStyle(fontSize: 12),
-                  )
                 ],
               ),
             ),
