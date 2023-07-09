@@ -137,7 +137,6 @@ class LocationChooser {
     }));
 
     if (newZone == null) return;
-    print('newzone is $newZone');
 
     Provider.of<LocationProvider>(context, listen: false).currentLocationCode =
         newZone.jakimCode;

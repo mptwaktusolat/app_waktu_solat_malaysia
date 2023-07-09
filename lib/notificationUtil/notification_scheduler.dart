@@ -44,8 +44,10 @@ class MyNotifScheduler {
 
     scheduleAlertNotification(
       id: 2190,
-      title: AppLocalizations.of(context)!.notifMonthlyReminderTitle,
-      body: AppLocalizations.of(context)!.notifMonthlyReminderDesc,
+      title: AppLocalizations.of(context)?.notifMonthlyReminderTitle ??
+          'Monthly refresh reminder',
+      body: AppLocalizations.of(context)?.notifMonthlyReminderDesc ??
+          'To continue receive prayer notification, open app at least once every month',
       // if month (12 + 1) = 13, it will auto-increment to next year
       //2021-01-01 00:05:00.000+0800
       scheduledTime: TZDateTime.local(
