@@ -142,9 +142,9 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   Icon(Icons.launch_rounded),
                 ],
               ),
-              onTap: () async {
-                await AppSettings.openNotificationSettings();
-              },
+              onTap: () => AppSettings.openAppSettings(
+                type: AppSettingsType.notification,
+              ),
             ),
           ),
           Padding(

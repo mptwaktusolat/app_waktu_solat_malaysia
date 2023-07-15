@@ -11,7 +11,7 @@ import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
 import 'Qibla%20part/qibla.dart';
 import 'Qibla%20part/qibla_warn.dart';
-import 'Settings%20part/SettingsPage.dart';
+import 'Settings part/settings_page.dart';
 import 'Settings part/theme_page.dart';
 import 'feedback_page.dart';
 import 'prayer_full_table.dart';

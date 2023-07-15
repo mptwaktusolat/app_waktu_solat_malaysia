@@ -337,8 +337,9 @@ class ZoneErrorWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () async =>
-                      await AppSettings.openLocationSettings(),
+                  onPressed: () => AppSettings.openAppSettings(
+                    type: AppSettingsType.location,
+                  ),
                   child: Text(
                     AppLocalizations.of(context)!.zoneOpenLocationSettings,
                   ),
