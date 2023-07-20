@@ -12,7 +12,7 @@ import '../../CONSTANTS.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/custom_navigator_pop.dart';
-import '../Settings%20part/NotificationSettingPage.dart';
+import '../settings/NotificationSettingPage.dart';
 import 'about_page.dart';
 
 class SettingsPage extends StatelessWidget {

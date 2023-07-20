@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/launch_url.dart';
-import '../Qibla%20part/qibla_compass.dart';
+import './qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
 class Qibla extends StatefulWidget {

@@ -11,7 +11,7 @@ import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../utils/date_and_time.dart';
-import 'Settings part/full_prayer_table_settings.dart';
+import 'settings/full_prayer_table_settings.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
