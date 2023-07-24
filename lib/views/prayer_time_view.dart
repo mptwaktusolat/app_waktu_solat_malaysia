@@ -47,7 +47,7 @@ class _PrayTimeListState extends State<PrayTimeList>
   Widget build(BuildContext context) {
     if (PreventUpdatingNotifs.shouldUpdate()) {
       MyNotifScheduler.schedulePrayNotification(
-          context, PrayDataHandler.notificationTimes());
+          AppLocalizations.of(context)!, PrayDataHandler.notificationTimes());
     }
 
     return Consumer<SettingProvider>(

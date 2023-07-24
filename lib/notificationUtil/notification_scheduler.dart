@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +12,7 @@ import 'notifications_helper.dart';
 
 class MyNotifScheduler {
   static void schedulePrayNotification(
-      BuildContext context, List<Prayers> times) async {
+      AppLocalizations appLocalizationsInstance, List<Prayers> times) async {
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
     var currentDateTime = DateTime.now();
 
@@ -31,23 +30,24 @@ class MyNotifScheduler {
     switch (notifType) {
       case MyNotificationType.noazan:
         DebugToast.show('Notification: Default sound');
-        _defaultScheduler(context, times, currentDateTime, currentDaerah);
+        _defaultScheduler(
+            appLocalizationsInstance, times, currentDateTime, currentDaerah);
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
-        _azanScheduler(context, times, currentDateTime, currentDaerah);
+        _azanScheduler(
+            appLocalizationsInstance, times, currentDateTime, currentDaerah);
         break;
       case MyNotificationType.shortAzan:
-        _azanScheduler(context, times, currentDateTime, currentDaerah,
+        _azanScheduler(
+            appLocalizationsInstance, times, currentDateTime, currentDaerah,
             short: true);
     }
 
     scheduleAlertNotification(
       id: 2190,
-      title: AppLocalizations.of(context)?.notifMonthlyReminderTitle ??
-          'Monthly refresh reminder',
-      body: AppLocalizations.of(context)?.notifMonthlyReminderDesc ??
-          'To continue receive prayer notification, open app at least once every month',
+      title: appLocalizationsInstance.notifMonthlyReminderTitle,
+      body: appLocalizationsInstance.notifMonthlyReminderDesc,
       // if month (12 + 1) = 13, it will auto-increment to next year
       //2021-01-01 00:05:00.000+0800
       scheduledTime: TZDateTime.local(
@@ -61,7 +61,7 @@ class MyNotifScheduler {
 
   /// Classic Notification Scheduler, default notification sound
   static Future<void> _defaultScheduler(
-      BuildContext context,
+      AppLocalizations appLocalizations,
       List<Prayers> times,
       DateTime currentDateTime,
       String currentLocation) async {
@@ -75,10 +75,9 @@ class MyNotifScheduler {
           id: int.parse(dayTime.fajr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.fajrName),
+          title: appLocalizations.notifItsTime(appLocalizations.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          body: appLocalizations.notifIn(currentLocation),
         );
       }
       if (dayTime.syuruk.isAfter(currentDateTime)) {
@@ -87,10 +86,9 @@ class MyNotifScheduler {
           id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.sunriseName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
-          summary: AppLocalizations.of(context)!.notifEndSubh,
+          title: appLocalizations.notifItsTime(appLocalizations.sunriseName),
+          body: appLocalizations.notifIn(currentLocation),
+          summary: appLocalizations.notifEndSubh,
           scheduledTime: TZDateTime.from(dayTime.syuruk, local),
         );
       }
@@ -100,9 +98,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.dhuhrName),
+          body: appLocalizations.notifIn(currentLocation),
           summary:
               dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
@@ -114,9 +111,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.asr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.asrName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.asrName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.asr, local),
         );
       }
@@ -126,9 +122,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.maghribName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.maghribName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.maghrib, local),
         );
       }
@@ -138,9 +133,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.isha.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.ishaName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.ishaName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.isha, local),
         );
       }
@@ -148,8 +142,8 @@ class MyNotifScheduler {
   }
 
   /// Notification but with azan
-  static void _azanScheduler(BuildContext context, List<Prayers> times,
-      DateTime currentDateTime, String currentLocation,
+  static void _azanScheduler(AppLocalizations appLocalizations,
+      List<Prayers> times, DateTime currentDateTime, String currentLocation,
       {bool short = false}) async {
     for (var dayTime in times) {
       if (dayTime.fajr.isAfter(currentDateTime)) {
@@ -159,10 +153,9 @@ class MyNotifScheduler {
           id: int.parse(dayTime.fajr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.fajrName),
+          title: appLocalizations.notifItsTime(appLocalizations.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          body: appLocalizations.notifIn(currentLocation),
           customSound: short ? 'azan_short_lamy2005' : 'azan_hejaz2013_fajr',
         );
       }
@@ -172,10 +165,9 @@ class MyNotifScheduler {
           id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.sunriseName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
-          summary: AppLocalizations.of(context)!.notifEndSubh,
+          title: appLocalizations.notifItsTime(appLocalizations.sunriseName),
+          body: appLocalizations.notifIn(currentLocation),
+          summary: appLocalizations.notifEndSubh,
           scheduledTime: TZDateTime.from(dayTime.syuruk, local),
         );
       }
@@ -185,9 +177,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.dhuhrName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.dhuhrName),
+          body: appLocalizations.notifIn(currentLocation),
           summary:
               dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
@@ -200,9 +191,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.asr.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.asrName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.asrName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.asr, local),
           customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
@@ -213,9 +203,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.maghribName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.maghribName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.maghrib, local),
           customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
@@ -226,9 +215,8 @@ class MyNotifScheduler {
           id: int.parse(dayTime.isha.millisecondsSinceEpoch
               .toString()
               .replaceAll(RegExp(r'0+$'), "")),
-          title: AppLocalizations.of(context)!
-              .notifItsTime(AppLocalizations.of(context)!.ishaName),
-          body: AppLocalizations.of(context)!.notifIn(currentLocation),
+          title: appLocalizations.notifItsTime(appLocalizations.ishaName),
+          body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.isha, local),
           customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
