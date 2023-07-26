@@ -14,7 +14,7 @@ import '../main.dart';
 import '../providers/autostart_warning_provider.dart';
 import '../providers/locale_provider.dart';
 import '../utils/launch_url.dart';
-import 'settings/NotificationSettingPage.dart';
+import 'settings/notification_page_setting.dart';
 import 'settings/theme_page.dart';
 import '../components/shake_widget.dart';
 import 'zone_chooser.dart';

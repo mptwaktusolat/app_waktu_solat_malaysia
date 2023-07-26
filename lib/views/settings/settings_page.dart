@@ -12,8 +12,8 @@ import '../../CONSTANTS.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/custom_navigator_pop.dart';
-import '../settings/NotificationSettingPage.dart';
 import 'about_page.dart';
+import 'notification_page_setting.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);

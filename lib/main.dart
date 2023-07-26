@@ -33,11 +33,11 @@ import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
 import 'views/qibla/qibla.dart';
 import 'views/qibla/qibla_warn.dart';
-import 'views/settings/NotificationSettingPage.dart';
 import 'views/app_body.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/prayer_full_table.dart';
+import 'views/settings/notification_page_setting.dart';
 import 'views/tasbih.dart';
 
 void main() async {

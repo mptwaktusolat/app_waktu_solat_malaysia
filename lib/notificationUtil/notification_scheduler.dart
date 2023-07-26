@@ -7,7 +7,7 @@ import '../CONSTANTS.dart';
 import '../location_utils/location_database.dart';
 import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
-import '../views/settings/NotificationSettingPage.dart';
+import '../views/settings/notification_page_setting.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
