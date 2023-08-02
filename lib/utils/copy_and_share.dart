@@ -15,7 +15,8 @@ enum ShareTarget { universal, whatsapp }
 class CopyAndShare {
   static const int _padLength = 8;
 
-  static String getMessage(BuildContext context,
+  /// Build message given the target medium.
+  static String buildMessage(BuildContext context,
       {ShareTarget shareTarget = ShareTarget.universal}) {
     var l10n = AppLocalizations.of(context);
     var date = DateFormat('EEEE, d MMMM yyyy', l10n!.localeName)

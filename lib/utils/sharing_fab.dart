@@ -24,10 +24,10 @@ class ShareFAB extends StatelessWidget {
         onPressed: () {
           switch (setting.sharingFormat) {
             case 1:
-              shareUniversal(context);
+              _shareUniversal(context);
               break;
             case 2:
-              shareToWhatsApp(context);
+              _shareToWhatsApp(context);
               break;
             case 3:
               copy(context);
@@ -65,7 +65,7 @@ class ShareFAB extends StatelessWidget {
               subtitle: Text(AppLocalizations.of(context)!.sharePlainDesc),
               onTap: () {
                 Navigator.pop(context);
-                shareUniversal(context);
+                _shareUniversal(context);
               },
             ),
             ListTile(
@@ -77,7 +77,7 @@ class ShareFAB extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
-                shareToWhatsApp(context);
+                _shareToWhatsApp(context);
               },
             ),
             ListTile(
@@ -118,20 +118,20 @@ class ShareFAB extends StatelessWidget {
     GetStorage().write(kHasOpenSharingDialog, true);
   }
 
-  void shareToWhatsApp(BuildContext context) {
+  void _shareToWhatsApp(BuildContext context) {
     var message =
-        CopyAndShare.getMessage(context, shareTarget: ShareTarget.whatsapp);
+        CopyAndShare.buildMessage(context, shareTarget: ShareTarget.whatsapp);
     LaunchUrl.normalLaunchUrl(
       url: 'whatsapp://send/?text=$message',
     );
   }
 
-  void shareUniversal(BuildContext context) =>
-      Share.share(CopyAndShare.getMessage(context),
+  void _shareUniversal(BuildContext context) =>
+      Share.share(CopyAndShare.buildMessage(context),
           subject: AppLocalizations.of(context)!.shareSubject);
 
   void copy(BuildContext context) =>
-      Clipboard.setData(ClipboardData(text: CopyAndShare.getMessage(context)))
+      Clipboard.setData(ClipboardData(text: CopyAndShare.buildMessage(context)))
           .then(
         (value) {
           Fluttertoast.showToast(
