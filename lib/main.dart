@@ -292,9 +292,9 @@ void _showReviewPrompt() async {
 class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    // allow e-solat jakim to bypass
+    // allow mpt-server to bypass when there is error certificate expired
+    // happened in Android 5 (emulator), not happens in recent Android versions
     return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (_, String host, __) => host == 'www.e-solat.gov.my';
+      ..badCertificateCallback = (_, String host, __) => host == kApiBaseUrl;
   }
 }
