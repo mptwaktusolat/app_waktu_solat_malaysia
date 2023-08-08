@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,12 +10,12 @@ import '../CONSTANTS.dart';
 import '../providers/updater_provider.dart';
 import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
+import 'feedback_page.dart';
+import 'prayer_full_table.dart';
 import 'qibla/qibla.dart';
 import 'qibla/qibla_warn.dart';
 import 'settings/settings_page.dart';
 import 'settings/theme_page.dart';
-import 'feedback_page.dart';
-import 'prayer_full_table.dart';
 import 'tasbih.dart';
 import 'update_page.dart';
 
@@ -27,26 +28,13 @@ class MyBottomAppBar extends StatelessWidget {
         children: [
           Consumer<UpdaterProvider>(builder: (_, setting, __) {
             return IconButton(
-                tooltip: AppLocalizations.of(context)?.menuTooltip,
-                icon: Stack(children: [
-                  const Align(
-                      alignment: Alignment.center,
-                      child: FaIcon(FontAwesomeIcons.bars)),
-                  setting.needForUpdate
-                      ? Align(
-                          alignment: Alignment.topRight,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.red),
-                            width: 8,
-                            height: 8,
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ]),
-                onPressed: () {
-                  menuModalBottomSheet(context);
-                });
+              tooltip: AppLocalizations.of(context)?.menuTooltip,
+              icon: badges.Badge(
+                showBadge: setting.needForUpdate,
+                child: const FaIcon(FontAwesomeIcons.bars),
+              ),
+              onPressed: () => menuModalBottomSheet(context),
+            );
           }),
           IconButton(
             icon: const FaIcon(FontAwesomeIcons.calendarDays),
@@ -140,18 +128,13 @@ void menuModalBottomSheet(BuildContext context) {
             Consumer<UpdaterProvider>(builder: (_, setting, __) {
               if (setting.needForUpdate) {
                 return ListTile(
-                  title: Stack(children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.red),
-                        width: 8,
-                        height: 8,
-                      ),
-                    ),
-                    Text(AppLocalizations.of(context)!.menuUpdateAvailable)
-                  ]),
+                  title: Row(
+                    children: [
+                      Text(AppLocalizations.of(context)!.menuUpdateAvailable),
+                      const SizedBox(width: 5.0),
+                      badges.Badge(showBadge: setting.needForUpdate),
+                    ],
+                  ),
                   leading: FaIcon(FontAwesomeIcons.googlePlay,
                       color: Theme.of(context).colorScheme.secondary),
                   trailing:
