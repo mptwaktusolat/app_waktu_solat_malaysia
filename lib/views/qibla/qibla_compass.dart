@@ -7,7 +7,7 @@ import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 
-import './location_error_widget.dart';
+import 'location_error_widget.dart';
 
 class QiblaCompass extends StatefulWidget {
   const QiblaCompass({Key? key}) : super(key: key);
