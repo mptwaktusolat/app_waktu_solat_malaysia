@@ -57,6 +57,8 @@ android {
         versionName flutterVersionName
         multiDexEnabled true 
         //TODO: Remove multidex when app support min 21 or higher
+
+        setProperty("archivesBaseName", "MPT-$flutterVersionName")
     }
 
     signingConfigs {

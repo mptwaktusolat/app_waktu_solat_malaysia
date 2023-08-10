@@ -57,19 +57,22 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: arm64-v8a artifact
-          path: build/app/outputs/apk/release/app-arm64-v8a-release.apk
+          path: build/app/outputs/apk/release/*-arm64-v8a-release.apk
 
       - name: Upload artifacts (armeabi-v7a)
         uses: actions/upload-artifact@v3
         with:
           name: armeabi-v7a artifact
-          path: build/app/outputs/apk/release/app-armeabi-v7a-release.apk
+          path: build/app/outputs/apk/release/*-armeabi-v7a-release.apk
 
       - name: Upload artifacts (x86_64)
         uses: actions/upload-artifact@v3
         with:
           name: x86_64 artifact
-          path: build/app/outputs/apk/release/app-x86_64-release.apk
+          path: build/app/outputs/apk/release/*-x86_64-release.apk
+
+      # The previous apk will be deleted when re-running the flutter build apk again
+      # So we don't need to worry about the glob pattern for the fat apk
 
       - name: Build fat apk
         run: |
@@ -80,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: fat apk artifact
-          path: build/app/outputs/apk/release/app-release.apk
+          path: build/app/outputs/apk/release/*.apk
 
       - name: Write summary
         run: |
