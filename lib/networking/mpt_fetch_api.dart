@@ -4,7 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
 

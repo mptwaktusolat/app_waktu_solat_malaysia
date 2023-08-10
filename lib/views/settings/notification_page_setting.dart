@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:timezone/timezone.dart' as tz;
 
-import '../../CONSTANTS.dart';
+import '../../constants.dart';
 import '../../notificationUtil/notifications_helper.dart';
 import '../../providers/setting_provider.dart';
 import 'troubleshoot_notif.dart';

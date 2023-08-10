@@ -9,7 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../main.dart';
 import '../providers/autostart_warning_provider.dart';
 import '../providers/locale_provider.dart';

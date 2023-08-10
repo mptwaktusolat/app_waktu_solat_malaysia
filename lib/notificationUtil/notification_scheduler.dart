@@ -3,7 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../location_utils/location_database.dart';
 import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';

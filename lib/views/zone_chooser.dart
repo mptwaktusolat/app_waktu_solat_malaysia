@@ -13,7 +13,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../components/zone_selector_dialog.dart';
 import '../location_utils/location_data.dart';
 import '../location_utils/location_database.dart';

@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../providers/updater_provider.dart';
 import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';

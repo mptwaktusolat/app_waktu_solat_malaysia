@@ -8,7 +8,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../../CONSTANTS.dart';
+import '../../constants.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/custom_navigator_pop.dart';

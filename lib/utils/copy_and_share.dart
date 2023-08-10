@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart' as constants;
+import '../constants.dart' as constants;
 import '../location_utils/location_database.dart';
 import '../providers/setting_provider.dart';
 import 'date_and_time.dart';

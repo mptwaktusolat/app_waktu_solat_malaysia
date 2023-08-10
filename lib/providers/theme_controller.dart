@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 
 class ThemeProvider with ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.values.byName(GetStorage().read(kAppTheme));

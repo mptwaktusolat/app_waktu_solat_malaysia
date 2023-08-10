@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 
 class AdsWidget extends StatefulWidget {
   const AdsWidget({Key? key}) : super(key: key);
@@ -18,13 +18,15 @@ class _AdsWidgetState extends State<AdsWidget> {
   @override
   void initState() {
     super.initState();
-    MobileAds.instance
-        .updateRequestConfiguration(RequestConfiguration(testDeviceIds: [
-      'DF693493239FEF390746FE861B201FC3',
-      'EB458550DFD9A5B6EF3D8FD1A0705EFA',
-      '5BF49B5666B0C509C03B9E26F4DA9DDD',
-      'E40EE0533B0AE80A89AE8F5ED8DE334D',
-    ]));
+    MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
+      testDeviceIds: [
+        'DF693493239FEF390746FE861B201FC3',
+        'EB458550DFD9A5B6EF3D8FD1A0705EFA',
+        '5BF49B5666B0C509C03B9E26F4DA9DDD',
+        'E40EE0533B0AE80A89AE8F5ED8DE334D',
+        '71BEA5412A7BC33ED7B99AF4720D33BD',
+      ],
+    ));
 
     _ad = BannerAd(
         size: AdSize.banner,

@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../providers/setting_provider.dart';
 import 'copy_and_share.dart';
 import 'launch_url.dart';

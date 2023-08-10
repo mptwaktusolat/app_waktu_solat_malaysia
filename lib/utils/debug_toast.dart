@@ -1,6 +1,6 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import '../CONSTANTS.dart';
+import '../constants.dart';
 
 class DebugToast {
   static void show(String? mesage,

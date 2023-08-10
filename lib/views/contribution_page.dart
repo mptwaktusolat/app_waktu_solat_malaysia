@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../CONSTANTS.dart' as constants;
+import '../constants.dart' as constants;
 import '../utils/launch_url.dart';
 
 class ContributionPage extends StatelessWidget {

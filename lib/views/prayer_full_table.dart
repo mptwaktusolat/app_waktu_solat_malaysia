@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';

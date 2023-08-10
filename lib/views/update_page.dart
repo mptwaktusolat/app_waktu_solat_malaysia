@@ -4,7 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../networking/update_checker.dart';
 import '../utils/launch_url.dart';
 

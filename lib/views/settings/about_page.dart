@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../../CONSTANTS.dart';
+import '../../constants.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/launch_url.dart';
 import '../contribution_page.dart';

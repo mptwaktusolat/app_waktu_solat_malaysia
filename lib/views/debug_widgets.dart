@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../location_utils/location_data.dart';
 
 class DebugWidgets {

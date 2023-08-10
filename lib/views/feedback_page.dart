@@ -12,7 +12,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../location_utils/location_data.dart';
 import '../utils/launch_url.dart';
 

@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../CONSTANTS.dart';
+import '../constants.dart';
 import '../location_utils/location_database.dart';
 import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
