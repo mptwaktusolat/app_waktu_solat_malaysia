@@ -38,10 +38,13 @@ jobs:
         run: echo "${{ secrets.KEY_JKS }}" | base64 --decode > android/key.jks
 
       - name: Build release appbundle
-        run: flutter build appbundle -v
+        run: flutter build appbundle
 
       - name: Upload aab
         uses: actions/upload-artifact@v3
+        # The previous job will likely to fail because of https://github.com/flutter/flutter/issues/126971
+        # But that is false poisitive so we ignore it
+        if: failure()
         with:
           path: build/app/outputs/bundle/release/*.aab
 
