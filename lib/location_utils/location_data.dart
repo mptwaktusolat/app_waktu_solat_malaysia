@@ -34,8 +34,16 @@ class LocationData {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
+    // [LocationAccuracy.medium] corresponds to PRIORITY_BALANCED_POWER_ACCURACY in Android
+    // Where it is a tradeoff that is balanced between location accuracy and power usage.
+    // source: https://github.com/Baseflow/flutter-geolocator/issues/1082#issuecomment-1160056175
+    // source: https://developers.google.com/android/reference/com/google/android/gms/location/Priority#PRIORITY_BALANCED_POWER_ACCURACY
+    // However in this settings, Android emulator will not get use the location that have been
+    // set in the emulator settings. So, there might be an issue when testing the app
+    // in the emulator. By changing LocationAccuracy.high may solve the problem.
+    // I'll stay with medium because I think we don't need that high accuracy for this app.
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.medium); //100-500m radius for Android
+        desiredAccuracy: LocationAccuracy.medium);
     _position = position;
     return position;
   }
