@@ -97,7 +97,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
           packageName: live.iqfareez.waktusolatmalaysia
-          releaseFiles: *.aab
+          releaseFiles: "*.aab"
           track: production
           status: draft
 
