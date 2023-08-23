@@ -15,6 +15,8 @@ import 'settings/full_prayer_table_settings.dart';
 
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({Key? key}) : super(key: key);
+
+  final ScrollController _scrollController = ScrollController();
   final int _todayIndex = DateTime.now().day - 1;
   final int _month = DateTime.now().month;
   final int _year = DateTime.now().year;
@@ -23,6 +25,20 @@ class PrayerFullTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Scroll to today's date after page loaded
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // delay a bit so user can see the scrol animation
+      Future.delayed(const Duration(milliseconds: 500), () {
+        _scrollController.animateTo(
+          // according to the docs, each data row have height of [kMinInteractiveDimension],
+          // so we just multiply with the day to get the offset
+          kMinInteractiveDimension * _todayIndex,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      });
+    });
+
     return Scaffold(
       // https://stackoverflow.com/questions/51948252/hide-appbar-on-scroll-flutter
       body: NestedScrollView(
@@ -68,6 +84,7 @@ class PrayerFullTable extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
+            controller: _scrollController,
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
