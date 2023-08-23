@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import '../../constants.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
-import '../../utils/custom_navigator_pop.dart';
 import 'about_page.dart';
 import 'notification_page_setting.dart';
 
@@ -195,7 +194,7 @@ class VerboseDebugDialog extends StatelessWidget {
                       //inverse if false then become true & vice versa
                       GetStorage().write(
                           kIsDebugMode, !GetStorage().read(kIsDebugMode));
-                      CustomNavigatorPop.popTo(context, 2);
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     child: GetStorage().read(kIsDebugMode)
                         ? const Text('Turn off')

@@ -13,7 +13,7 @@ import '../../constants.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/launch_url.dart';
 import '../contribution_page.dart';
-import '../debug_widgets.dart';
+import '../debug_dialog.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
@@ -53,8 +53,9 @@ class AboutAppPage extends StatelessWidget {
                         }
                         // Show the debug dialog
                         showDialog(
-                            context: context,
-                            builder: (context) => DebugWidgets.debugDialog());
+                          context: context,
+                          builder: (context) => const DebugDialog(),
+                        );
                       }
                     },
                     child: Hero(
@@ -126,9 +127,10 @@ class AboutAppPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                settings: const RouteSettings(
-                                    name: 'Contribution Page'),
-                                builder: (_) => const ContributionPage()),
+                              settings: const RouteSettings(
+                                  name: 'Contribution Page'),
+                              builder: (_) => const ContributionPage(),
+                            ),
                           );
                         },
                       ),
@@ -143,10 +145,8 @@ class AboutAppPage extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutReleaseNotes,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: kReleaseNotesLink, useCustomTabs: true);
-                      },
+                      onTap: () => LaunchUrl.normalLaunchUrl(
+                          url: kReleaseNotesLink, useCustomTabs: true),
                     ),
                   ),
                   Card(
@@ -158,9 +158,8 @@ class AboutAppPage extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutFaq,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () {
-                        LaunchUrl.normalLaunchUrl(url: '$kWebsite/docs/intro');
-                      },
+                      onTap: () => LaunchUrl.normalLaunchUrl(
+                          url: '$kWebsite/docs/intro'),
                     ),
                   ),
                   Card(
@@ -202,25 +201,23 @@ class AboutAppPage extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutPrivacy,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: kPrivacyPolicyLink, useCustomTabs: true);
-                      },
+                      onTap: () => LaunchUrl.normalLaunchUrl(
+                          url: kPrivacyPolicyLink, useCustomTabs: true),
                     ),
                   ),
                   const Divider(height: 16),
                   Card(
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4)),
-                        title: Text(
-                          AppLocalizations.of(context)!.aboutMoreApps,
-                          textAlign: TextAlign.center,
-                        ),
-                        onTap: () {
-                          LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink);
-                        }),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                      title: Text(
+                        AppLocalizations.of(context)!.aboutMoreApps,
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () =>
+                          LaunchUrl.normalLaunchUrl(url: kPlayStoreDevLink),
+                    ),
                   ),
                   Card(
                     clipBehavior: Clip.hardEdge,
@@ -228,9 +225,7 @@ class AboutAppPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4)),
                       title: const Text('Twitter', textAlign: TextAlign.center),
-                      onTap: () {
-                        LaunchUrl.normalLaunchUrl(url: kDevTwitter);
-                      },
+                      onTap: () => LaunchUrl.normalLaunchUrl(url: kDevTwitter),
                     ),
                   ),
                   Card(
@@ -242,9 +237,8 @@ class AboutAppPage extends StatelessWidget {
                         'Dev logs',
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () {
-                        LaunchUrl.normalLaunchUrl(url: kInstaStoryDevlog);
-                      },
+                      onTap: () =>
+                          LaunchUrl.normalLaunchUrl(url: kInstaStoryDevlog),
                     ),
                   ),
                   Padding(

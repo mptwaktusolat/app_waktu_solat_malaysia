@@ -7,8 +7,11 @@ import 'package:restart_app/restart_app.dart';
 import '../constants.dart';
 import '../location_utils/location_data.dart';
 
-class DebugWidgets {
-  static Dialog debugDialog() {
+class DebugDialog extends StatelessWidget {
+  const DebugDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Dialog(
       child: ListView(
         shrinkWrap: true,
