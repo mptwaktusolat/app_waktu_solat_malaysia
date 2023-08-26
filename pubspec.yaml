@@ -49,6 +49,7 @@ dependencies:
   quick_actions: ^1.0.0
   firebase_crashlytics: ^3.0.5
   dynamic_color: ^1.6.2
+  flutter_staggered_animations: ^1.1.1
 
 dependency_overrides:
   # flutter compass in pub.dev is not updated

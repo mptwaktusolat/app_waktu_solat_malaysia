@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
@@ -76,57 +77,69 @@ class _PrayTimeListState extends State<PrayTimeList>
           nowIsha = true;
         }
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            if (showOtherPrayerTime)
-              SolatCard(
-                  time: today.imsak,
-                  name: AppLocalizations.of(context)!.imsakName,
-                  isOther: false),
-            SolatCard(
-              time: today.fajr,
-              name: AppLocalizations.of(context)!.fajrName,
-              isOther: true,
-              isCurrentPrayerTime: nowSubuh,
+        return AnimationLimiter(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: AnimationConfiguration.toStaggeredList(
+              childAnimationBuilder: (widget) {
+                return SlideAnimation(
+                  verticalOffset: 50.0,
+                  child: FadeInAnimation(
+                    child: widget,
+                  ),
+                );
+              },
+              children: [
+                if (showOtherPrayerTime)
+                  SolatCard(
+                      time: today.imsak,
+                      name: AppLocalizations.of(context)!.imsakName,
+                      isOther: false),
+                SolatCard(
+                  time: today.fajr,
+                  name: AppLocalizations.of(context)!.fajrName,
+                  isOther: true,
+                  isCurrentPrayerTime: nowSubuh,
+                ),
+                if (showOtherPrayerTime)
+                  SolatCard(
+                      time: today.syuruk,
+                      name: AppLocalizations.of(context)!.sunriseName,
+                      isOther: false),
+                if (showOtherPrayerTime)
+                  SolatCard(
+                      time: today.dhuha,
+                      name: AppLocalizations.of(context)!.dhuhaName,
+                      isOther: false),
+                SolatCard(
+                  time: today.dhuhr,
+                  name: AppLocalizations.of(context)!.dhuhrName,
+                  isOther: true,
+                  isCurrentPrayerTime: nowZohor,
+                ),
+                SolatCard(
+                  time: today.asr,
+                  name: AppLocalizations.of(context)!.asrName,
+                  isOther: true,
+                  isCurrentPrayerTime: nowAsar,
+                ),
+                SolatCard(
+                  time: today.maghrib,
+                  name: AppLocalizations.of(context)!.maghribName,
+                  isOther: true,
+                  isCurrentPrayerTime: nowMaghrib,
+                ),
+                SolatCard(
+                  time: today.isha,
+                  name: AppLocalizations.of(context)!.ishaName,
+                  isOther: true,
+                  isCurrentPrayerTime: nowIsha,
+                ),
+                const SizedBox(height: 10), // give some bottom space
+              ],
             ),
-            if (showOtherPrayerTime)
-              SolatCard(
-                  time: today.syuruk,
-                  name: AppLocalizations.of(context)!.sunriseName,
-                  isOther: false),
-            if (showOtherPrayerTime)
-              SolatCard(
-                  time: today.dhuha,
-                  name: AppLocalizations.of(context)!.dhuhaName,
-                  isOther: false),
-            SolatCard(
-              time: today.dhuhr,
-              name: AppLocalizations.of(context)!.dhuhrName,
-              isOther: true,
-              isCurrentPrayerTime: nowZohor,
-            ),
-            SolatCard(
-              time: today.asr,
-              name: AppLocalizations.of(context)!.asrName,
-              isOther: true,
-              isCurrentPrayerTime: nowAsar,
-            ),
-            SolatCard(
-              time: today.maghrib,
-              name: AppLocalizations.of(context)!.maghribName,
-              isOther: true,
-              isCurrentPrayerTime: nowMaghrib,
-            ),
-            SolatCard(
-              time: today.isha,
-              name: AppLocalizations.of(context)!.ishaName,
-              isOther: true,
-              isCurrentPrayerTime: nowIsha,
-            ),
-            const SizedBox(height: 10), // give some bottom space
-          ],
+          ),
         );
       },
     );
