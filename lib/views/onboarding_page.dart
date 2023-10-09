@@ -226,11 +226,17 @@ class _OnboardingPageState extends State<OnboardingPage>
             /// ask NotificationPermission
             FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
                 FlutterLocalNotificationsPlugin();
-            var res = await flutterLocalNotificationsPlugin
+            var perm1 = await flutterLocalNotificationsPlugin
                 .resolvePlatformSpecificImplementation<
                     AndroidFlutterLocalNotificationsPlugin>()
-                ?.requestPermission();
-            print('res is $res');
+                ?.requestNotificationsPermission();
+            // requst permission to schedule exact alarms (API 33+)
+            var perm2 = await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    AndroidFlutterLocalNotificationsPlugin>()
+                ?.requestExactAlarmsPermission();
+
+            debugPrint('perm1: $perm1, perm2: $perm2');
           }
         },
         overrideNext: TextButton(
