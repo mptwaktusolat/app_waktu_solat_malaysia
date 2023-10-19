@@ -14,7 +14,7 @@ import '../utils/date_and_time.dart';
 import 'settings/full_prayer_table_settings.dart';
 
 class PrayerFullTable extends StatelessWidget {
-  PrayerFullTable({Key? key}) : super(key: key);
+  PrayerFullTable({super.key});
 
   final ScrollController _scrollController = ScrollController();
   final int _todayIndex = DateTime.now().day - 1;
@@ -113,7 +113,6 @@ class PrayerFullTable extends StatelessWidget {
 
 class _PrayerDataTable extends StatelessWidget {
   const _PrayerDataTable({
-    Key? key,
     required MptServerSolat model,
     required int todayIndex,
     required int year,
@@ -123,8 +122,7 @@ class _PrayerDataTable extends StatelessWidget {
         _model = model,
         _year = year,
         _month = month,
-        _is12HourFormat = is12HourFormat,
-        super(key: key);
+        _is12HourFormat = is12HourFormat;
 
   final int _todayIndex;
   final int _year;
@@ -216,7 +214,7 @@ class _PrayerDataTable extends StatelessWidget {
                       ),
                     ),
                   )
-                  .toList(),
+                  ,
               if (value.showLastOneThirdNight)
                 DataCell(Opacity(
                   opacity: (index < _todayIndex) ? 0.55 : 1.0,

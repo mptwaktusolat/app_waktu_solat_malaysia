@@ -7,7 +7,7 @@ import '../constants.dart';
 import '../utils/tasbih_colors.dart';
 
 class Tasbih extends StatefulWidget {
-  const Tasbih({Key? key}) : super(key: key);
+  const Tasbih({super.key});
 
   @override
   State<Tasbih> createState() => _TasbihState();
@@ -146,9 +146,9 @@ class _TasbihState extends State<Tasbih> {
 
 class TasbihBead extends StatelessWidget {
   const TasbihBead({
-    Key? key,
+    super.key,
     required this.gradientColor,
-  }) : super(key: key);
+  });
 
   final List<Color> gradientColor;
 

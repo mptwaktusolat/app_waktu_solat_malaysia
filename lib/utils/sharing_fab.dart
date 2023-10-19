@@ -13,7 +13,7 @@ import 'copy_and_share.dart';
 import 'launch_url.dart';
 
 class ShareFAB extends StatelessWidget {
-  const ShareFAB({Key? key}) : super(key: key);
+  const ShareFAB({super.key});
 
   @override
   Widget build(BuildContext context) {

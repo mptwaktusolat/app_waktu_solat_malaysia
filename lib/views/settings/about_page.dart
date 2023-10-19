@@ -16,7 +16,7 @@ import '../contribution_page.dart';
 import '../debug_dialog.dart';
 
 class AboutAppPage extends StatelessWidget {
-  const AboutAppPage({Key? key, this.packageInfo}) : super(key: key);
+  const AboutAppPage({super.key, this.packageInfo});
   final PackageInfo? packageInfo;
 
   @override

@@ -18,12 +18,12 @@ dependencies:
   google_fonts: ^6.1.0
   badges: ^3.1.1
   fluttertoast: ^8.0.3
-  package_info_plus: ^5.0.0
+  package_info_plus: ^4.2.0
   get_storage: ^2.0.1
   cached_network_image: ^3.0.0
   url_launcher: ^6.0.3
-  device_info_plus: ^10.0.0
-  share_plus: ^8.0.0
+  device_info_plus: ^9.1.0
+  share_plus: ^7.2.1
   geolocator: ^9.0.2
   flutter_spinkit: ^5.0.0
   flutter_svg: ^2.0.0
@@ -59,7 +59,7 @@ dependency_overrides:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.1
+  flutter_lints: ^3.0.0
 
 flutter:
   generate: true

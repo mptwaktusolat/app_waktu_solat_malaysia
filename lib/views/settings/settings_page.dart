@@ -15,7 +15,7 @@ import 'about_page.dart';
 import 'notification_page_setting.dart';
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class SettingsPage extends StatelessWidget {
 }
 
 class LocaleSetting extends StatelessWidget {
-  const LocaleSetting({Key? key}) : super(key: key);
+  const LocaleSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class LocaleSetting extends StatelessWidget {
 }
 
 class FontSizeSetting extends StatelessWidget {
-  const FontSizeSetting({Key? key}) : super(key: key);
+  const FontSizeSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,7 @@ class FontSizeSetting extends StatelessWidget {
 }
 
 class SharingSetting extends StatelessWidget {
-  const SharingSetting({Key? key}) : super(key: key);
+  const SharingSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +164,7 @@ class SharingSetting extends StatelessWidget {
 }
 
 class VerboseDebugDialog extends StatelessWidget {
-  const VerboseDebugDialog({Key? key}) : super(key: key);
+  const VerboseDebugDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +214,7 @@ class VerboseDebugDialog extends StatelessWidget {
 }
 
 class ResetAllSavedData extends StatelessWidget {
-  const ResetAllSavedData({Key? key}) : super(key: key);
+  const ResetAllSavedData({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +257,7 @@ class ResetAllSavedData extends StatelessWidget {
 }
 
 class ClearCachedMptResponse extends StatelessWidget {
-  const ClearCachedMptResponse({Key? key}) : super(key: key);
+  const ClearCachedMptResponse({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -281,7 +281,7 @@ class ClearCachedMptResponse extends StatelessWidget {
 }
 
 class AboutApp extends StatelessWidget {
-  const AboutApp({Key? key}) : super(key: key);
+  const AboutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -319,7 +319,7 @@ class AboutApp extends StatelessWidget {
 }
 
 class NotificationSetting extends StatelessWidget {
-  const NotificationSetting({Key? key}) : super(key: key);
+  const NotificationSetting({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -342,7 +342,7 @@ class NotificationSetting extends StatelessWidget {
 }
 
 class OtherTimesSettings extends StatelessWidget {
-  const OtherTimesSettings({Key? key}) : super(key: key);
+  const OtherTimesSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -363,7 +363,7 @@ class OtherTimesSettings extends StatelessWidget {
 }
 
 class TimeFormatSettings extends StatelessWidget {
-  const TimeFormatSettings({Key? key}) : super(key: key);
+  const TimeFormatSettings({super.key});
 
   @override
   Widget build(BuildContext context) {

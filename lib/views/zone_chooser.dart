@@ -145,8 +145,7 @@ class LocationChooser {
 }
 
 class LocationBubble extends StatelessWidget {
-  const LocationBubble(this.shortCode, {Key? key, this.selected = false})
-      : super(key: key);
+  const LocationBubble(this.shortCode, {super.key, this.selected = false});
 
   final bool selected;
   final String shortCode;
@@ -174,8 +173,7 @@ class LocationBubble extends StatelessWidget {
 }
 
 class ZoneSuccessWidget extends StatelessWidget {
-  const ZoneSuccessWidget({Key? key, required this.coordinateData})
-      : super(key: key);
+  const ZoneSuccessWidget({super.key, required this.coordinateData});
 
   final LocationCoordinateData coordinateData;
 
@@ -258,7 +256,7 @@ class ZoneSuccessWidget extends StatelessWidget {
 }
 
 class ZoneLoadingWidget extends StatelessWidget {
-  const ZoneLoadingWidget({Key? key}) : super(key: key);
+  const ZoneLoadingWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -284,7 +282,7 @@ class ZoneLoadingWidget extends StatelessWidget {
 }
 
 class ZoneErrorWidget extends StatelessWidget {
-  const ZoneErrorWidget({Key? key}) : super(key: key);
+  const ZoneErrorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

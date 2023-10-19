@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../providers/theme_controller.dart';
 
 class ThemesPage extends StatefulWidget {
-  const ThemesPage({Key? key}) : super(key: key);
+  const ThemesPage({super.key});
   @override
   State<ThemesPage> createState() => _ThemesPageState();
 }
@@ -62,12 +62,11 @@ class _ThemesPageState extends State<ThemesPage>
 
 class AnimatedMoon extends StatelessWidget {
   AnimatedMoon({
-    Key? key,
+    super.key,
     this.width,
     this.isDarkMode,
     AnimationController? animationController,
-  })  : _animationController = animationController,
-        super(key: key);
+  })  : _animationController = animationController;
 
   final double? width;
   final bool? isDarkMode;
@@ -128,7 +127,7 @@ class AnimatedMoon extends StatelessWidget {
 }
 
 class ThemesOption extends StatefulWidget {
-  const ThemesOption({Key? key}) : super(key: key);
+  const ThemesOption({super.key});
   @override
   State<ThemesOption> createState() => _ThemesOptionState();
 }

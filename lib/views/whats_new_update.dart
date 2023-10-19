@@ -8,7 +8,7 @@ import '../utils/launch_url.dart';
 /// This dialog will show when user update the app
 /// Called in `_showUpdateNotes()` function on `appBody.dart` file
 class WhatsNewUpdateDialog extends StatelessWidget {
-  const WhatsNewUpdateDialog({Key? key}) : super(key: key);
+  const WhatsNewUpdateDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

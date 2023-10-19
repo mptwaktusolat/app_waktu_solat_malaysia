@@ -19,12 +19,12 @@ abstract class AnimationControllerState<T extends StatefulWidget>
 /// Credit to https://mobikul.com/shake-effect-in-flutter/
 class ShakeWidget extends StatefulWidget {
   const ShakeWidget({
-    Key? key,
+    super.key,
     required this.child,
     required this.shakeOffset,
     this.shakeCount = 3,
     this.shakeDuration = const Duration(milliseconds: 400),
-  }) : super(key: key);
+  });
   final Widget child;
   final double shakeOffset;
   final int shakeCount;
@@ -36,7 +36,7 @@ class ShakeWidget extends StatefulWidget {
 }
 
 class ShakeWidgetState extends AnimationControllerState<ShakeWidget> {
-  ShakeWidgetState(Duration duration) : super(duration);
+  ShakeWidgetState(super.duration);
 
   @override
   void initState() {

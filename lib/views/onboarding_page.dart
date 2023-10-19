@@ -20,7 +20,7 @@ import '../components/shake_widget.dart';
 import 'zone_chooser.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key? key}) : super(key: key);
+  const OnboardingPage({super.key});
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
@@ -278,9 +278,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 }
 
 class _AutostartAdmonition extends StatelessWidget {
-  const _AutostartAdmonition({
-    Key? key,
-  }) : super(key: key);
+  const _AutostartAdmonition();
 
   @override
   Widget build(BuildContext context) {

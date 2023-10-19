@@ -10,7 +10,7 @@ import '../../constants.dart';
 import 'qibla.dart';
 
 class QiblaWarn extends StatelessWidget {
-  const QiblaWarn({Key? key}) : super(key: key);
+  const QiblaWarn({super.key});
 
   @override
   Widget build(BuildContext context) {

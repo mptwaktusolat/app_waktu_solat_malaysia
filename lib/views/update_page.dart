@@ -23,7 +23,7 @@ class _UpdateInfo {
 }
 
 class UpdatePage extends StatelessWidget {
-  const UpdatePage({Key? key}) : super(key: key);
+  const UpdatePage({super.key});
 
   Future<_UpdateInfo> _fetchUpdateInfo() async {
     var githubReleases = await AppUpdateChecker.getUpdateInfo();
@@ -113,9 +113,7 @@ class UpdatePage extends StatelessWidget {
 }
 
 class _CallToActions extends StatelessWidget {
-  const _CallToActions({
-    Key? key,
-  }) : super(key: key);
+  const _CallToActions();
 
   @override
   Widget build(BuildContext context) {

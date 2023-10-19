@@ -15,7 +15,7 @@ import '../utils/prayer_data_handler.dart';
 String? location;
 
 class PrayTimeList extends StatefulWidget {
-  const PrayTimeList({Key? key, this.prayerTime}) : super(key: key);
+  const PrayTimeList({super.key, this.prayerTime});
   final MptServerSolat? prayerTime;
 
   @override
@@ -148,12 +148,11 @@ class _PrayTimeListState extends State<PrayTimeList>
 
 class SolatCard extends StatelessWidget {
   const SolatCard(
-      {Key? key,
+      {super.key,
       required this.isOther,
       required this.name,
       required this.time,
-      this.isCurrentPrayerTime = false})
-      : super(key: key);
+      this.isCurrentPrayerTime = false});
 
   /// Imsak, Syuruk, Dhuha set to true
   final bool isOther;

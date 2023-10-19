@@ -9,7 +9,7 @@ import '../constants.dart' as constants;
 import '../utils/launch_url.dart';
 
 class ContributionPage extends StatelessWidget {
-  const ContributionPage({Key? key}) : super(key: key);
+  const ContributionPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,12 +88,11 @@ class ContributionPage extends StatelessWidget {
 // ignore: must_be_immutable
 class _MyCard extends StatelessWidget {
   const _MyCard({
-    Key? key,
     required this.title,
     this.description,
     this.extraDescription,
     this.actions,
-  }) : super(key: key);
+  });
 
   final String title;
   final String? description;

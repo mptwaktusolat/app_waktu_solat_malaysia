@@ -8,7 +8,7 @@ import 'settings/notification_page_setting.dart';
 /// It will ask "Is notification is show at prayer time" in appbody
 
 class NotifPrompt extends StatefulWidget {
-  const NotifPrompt({Key? key}) : super(key: key);
+  const NotifPrompt({super.key});
 
   @override
   State<NotifPrompt> createState() => _NotifPromptState();

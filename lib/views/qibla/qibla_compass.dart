@@ -10,7 +10,7 @@ import 'package:geolocator/geolocator.dart';
 import 'location_error_widget.dart';
 
 class QiblaCompass extends StatefulWidget {
-  const QiblaCompass({Key? key}) : super(key: key);
+  const QiblaCompass({super.key});
   @override
   State<QiblaCompass> createState() => _QiblaCompassState();
 }
@@ -94,7 +94,7 @@ class _QiblaCompassState extends State<QiblaCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  QiblahCompassWidget({Key? key}) : super(key: key);
+  QiblahCompassWidget({super.key});
   final _kaabaSvg = SvgPicture.asset('assets/qibla/kaaba.svg');
 
   @override

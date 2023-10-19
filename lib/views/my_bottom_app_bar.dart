@@ -20,7 +20,7 @@ import 'tasbih.dart';
 import 'update_page.dart';
 
 class MyBottomAppBar extends StatelessWidget {
-  const MyBottomAppBar({Key? key}) : super(key: key);
+  const MyBottomAppBar({super.key});
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(

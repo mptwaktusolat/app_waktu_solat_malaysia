@@ -20,7 +20,7 @@ import '../utils/launch_url.dart';
 /// the transaction to the Firebase.
 
 class FeedbackPage extends StatefulWidget {
-  const FeedbackPage({Key? key}) : super(key: key);
+  const FeedbackPage({super.key});
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
 }
@@ -330,7 +330,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 }
 
 class DetailedInfoDialog extends StatelessWidget {
-  const DetailedInfoDialog({Key? key, required this.details}) : super(key: key);
+  const DetailedInfoDialog({super.key, required this.details});
 
   final Map<String, dynamic> details;
 

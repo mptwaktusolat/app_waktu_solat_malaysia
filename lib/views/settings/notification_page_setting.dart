@@ -19,7 +19,7 @@ enum MyNotificationType { noazan, azan, shortAzan }
 /// Notification setting page to change notification type,
 /// troubleshooting, and system notification settings and debug notification
 class NotificationPageSetting extends StatefulWidget {
-  const NotificationPageSetting({Key? key}) : super(key: key);
+  const NotificationPageSetting({super.key});
   @override
   State<NotificationPageSetting> createState() =>
       _NotificationPageSettingState();
@@ -268,7 +268,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
 /// Widget for debug notification
 /// Only shown when (App) developer option is enabled
 class _DebugNotifWidget extends StatelessWidget {
-  const _DebugNotifWidget({Key? key}) : super(key: key);
+  const _DebugNotifWidget();
 
   @override
   Widget build(BuildContext context) {

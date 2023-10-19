@@ -12,7 +12,7 @@ final _mdStyleSheet = MarkdownStyleSheet(
     textAlign: WrapAlignment.spaceAround, textScaleFactor: 1.1);
 
 class TroubleshootNotif extends StatelessWidget {
-  const TroubleshootNotif({Key? key}) : super(key: key);
+  const TroubleshootNotif({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class TroubleshootNotif extends StatelessWidget {
 }
 
 class _DeviceOKAdmonition extends StatelessWidget {
-  const _DeviceOKAdmonition({Key? key}) : super(key: key);
+  const _DeviceOKAdmonition();
 
   @override
   Widget build(BuildContext context) {

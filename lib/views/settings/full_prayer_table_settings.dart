@@ -7,7 +7,7 @@ import '../../providers/timetable_provider.dart';
 enum HijriStyle { full, short }
 
 class FullPrayerTableSettings extends StatelessWidget {
-  const FullPrayerTableSettings({Key? key}) : super(key: key);
+  const FullPrayerTableSettings({super.key});
 
   @override
   Widget build(BuildContext context) {

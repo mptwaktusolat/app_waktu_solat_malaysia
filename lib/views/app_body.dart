@@ -21,7 +21,7 @@ import 'whats_new_update.dart';
 import 'zone_chooser.dart';
 
 class AppBody extends StatefulWidget {
-  const AppBody({Key? key}) : super(key: key);
+  const AppBody({super.key});
 
   @override
   State<AppBody> createState() => _AppBodyState();
@@ -121,8 +121,8 @@ class _AppBodyState extends State<AppBody> {
 
 class ZoneWidget extends StatelessWidget {
   const ZoneWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +194,7 @@ class ZoneWidget extends StatelessWidget {
 }
 
 class DateWidget extends StatelessWidget {
-  const DateWidget({Key? key, required this.hijriDate}) : super(key: key);
+  const DateWidget({super.key, required this.hijriDate});
 
   final String hijriDate;
 
@@ -241,8 +241,7 @@ class DateWidget extends StatelessWidget {
 }
 
 class ErrorWidget extends StatelessWidget {
-  const ErrorWidget({Key? key, this.errorMessage, this.onRetryPressed})
-      : super(key: key);
+  const ErrorWidget({super.key, this.errorMessage, this.onRetryPressed});
 
   final String? errorMessage;
   final Function? onRetryPressed;
@@ -276,7 +275,7 @@ class ErrorWidget extends StatelessWidget {
 }
 
 class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
+  const Loading({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(

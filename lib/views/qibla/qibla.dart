@@ -11,7 +11,7 @@ import 'qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
 class Qibla extends StatefulWidget {
-  const Qibla({Key? key}) : super(key: key);
+  const Qibla({super.key});
   @override
   State<Qibla> createState() => _QiblaState();
 }
@@ -92,7 +92,7 @@ class _QiblaState extends State<Qibla> {
 }
 
 class CompassActionButtons extends StatelessWidget {
-  const CompassActionButtons({Key? key}) : super(key: key);
+  const CompassActionButtons({super.key});
 
   final _qiblaFinderUrl = 'g.co/qiblafinder';
 
