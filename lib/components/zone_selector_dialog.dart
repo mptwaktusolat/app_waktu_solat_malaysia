@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../location_utils/location_database.dart';
@@ -49,14 +50,15 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: Text(
-              'Select ${currentView == CurrentView.state ? 'state' : 'zone'}'),
+          title: Text(currentView == CurrentView.state
+              ? AppLocalizations.of(context)!.zoneManualSelectState
+              : AppLocalizations.of(context)!.zoneManualSelectZone),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context, selectedJakimZone);
               },
-              child: const Text('Save'),
+              child: Text(AppLocalizations.of(context)!.zoneManualSave),
             ),
           ],
         ),
