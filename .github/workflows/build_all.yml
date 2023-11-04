@@ -35,22 +35,17 @@ jobs:
 
       - name: Upload aab
         uses: actions/upload-artifact@v3
-        # The previous job will likely to fail because of https://github.com/flutter/flutter/issues/126971
-        # But that is false poisitive so we ignore it
-        if: |
-          !github.event.release.prerelease && 
-          failure()
+        if: "!github.event.release.prerelease"
         with:
-          name: app-release
-          path: build/app/outputs/bundle/release/*.aab
+          name: aab-release
+          path: build/app/outputs/bundle/release/app-release.aab
 
       - name: Adding markdown
-        if: "!github.event.release.prerelease && failure()"
+        if: "!github.event.release.prerelease"
         run: |
           echo :white_check_mark: Build appbundle **todo: Publish to Google Play** >> $GITHUB_STEP_SUMMARY
 
       - name: Build release APK(s) per ABIs
-        if: always()
         run: |
           flutter pub get
           flutter build apk --split-per-abi
@@ -60,7 +55,6 @@ jobs:
           echo ":white_check_mark: Build split apk" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload apks
-        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: apk-releases
@@ -74,10 +68,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_android
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: apk-releases
+
+      - name: Rename apk
+        run: curl -s https://gist.githubusercontent.com/iqfareez/f57405016cc8bcc51cdcd2879c88807a/raw/5d9bbed7231a9e56bf24b88ab5286cee73dae173/rename_apk.sh | bash -s MPT .  
 
       - name: Upload file to the assets release
         uses: softprops/action-gh-release@v1
@@ -96,7 +96,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: app-release
+          name: aab-release
 
       - name: Upload file to the assets release
         uses: r0adkll/upload-google-play@v1
