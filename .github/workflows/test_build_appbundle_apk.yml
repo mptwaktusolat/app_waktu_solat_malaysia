@@ -1,8 +1,7 @@
 name: Build all on release
 
 on:
-  release:
-    types: [published]
+  push:
 
 jobs:
   build_android:
@@ -74,39 +73,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_android
     steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: apk-releases
-
-      - name: Upload file to the assets release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: "*.apk"
-
-      - name: Adding markdown
+      - name: Test
         run: |
-          echo ":rocket: Added release apk(s) to assets" >> $GITHUB_STEP_SUMMARY
+          echo "TEST HERE" >> $GITHUB_STEP_SUMMARY
 
   upload_google_play:
     if: "!github.event.release.prerelease"
     runs-on: ubuntu-latest
     needs: build_android
     steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: app-release
-
-      - name: Upload file to the assets release
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-          packageName: live.iqfareez.waktusolatmalaysia
-          releaseFiles: "*.aab"
-          track: production
-          status: draft
-
       - name: Adding markdown
         run: |
-          echo ":rocket: Uploaded to Google Play" >> $GITHUB_STEP_SUMMARY
+          echo "hiii" >> $GITHUB_STEP_SUMMARY
