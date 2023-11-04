@@ -78,11 +78,6 @@ jobs:
       - name: Rename apk
         run: curl -s https://gist.githubusercontent.com/iqfareez/f57405016cc8bcc51cdcd2879c88807a/raw/5d9bbed7231a9e56bf24b88ab5286cee73dae173/rename_apk.sh | bash -s MPT .  
 
-      - name: Upload file to the assets release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: "*.apk"
-
       - name: Adding markdown
         run: |
           echo ":rocket: Added release apk(s) to assets" >> $GITHUB_STEP_SUMMARY
@@ -96,15 +91,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: app-release
-
-      - name: Upload file to the assets release
-        uses: r0adkll/upload-google-play@v1
-        with:
-          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }}
-          packageName: live.iqfareez.waktusolatmalaysia
-          releaseFiles: "*.aab"
-          track: production
-          status: draft
 
       - name: Adding markdown
         run: |
