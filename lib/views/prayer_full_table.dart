@@ -16,12 +16,17 @@ import 'settings/full_prayer_table_settings.dart';
 class PrayerFullTable extends StatelessWidget {
   PrayerFullTable({super.key});
 
-  final ScrollController _scrollController = ScrollController();
+  final GlobalKey<NestedScrollViewState> nestedScrollKey = GlobalKey();
   final int _todayIndex = DateTime.now().day - 1;
   final int _month = DateTime.now().month;
   final int _year = DateTime.now().year;
   final String _locationCode = GetStorage().read(kStoredLocationJakimCode);
   final bool _is12HourFormat = GetStorage().read(kStoredTimeIs12);
+
+  // https://api.flutter.dev/flutter/widgets/NestedScrollViewState-class.html
+  ScrollController get innerController {
+    return nestedScrollKey.currentState!.innerController;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +34,7 @@ class PrayerFullTable extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // delay a bit so user can see the scrol animation
       Future.delayed(const Duration(milliseconds: 500), () {
-        _scrollController.animateTo(
+        innerController.animateTo(
           // according to the docs, each data row have height of [kMinInteractiveDimension],
           // so we just multiply with the day to get the offset
           kMinInteractiveDimension * _todayIndex,
@@ -42,6 +47,7 @@ class PrayerFullTable extends StatelessWidget {
     return Scaffold(
       // https://stackoverflow.com/questions/51948252/hide-appbar-on-scroll-flutter
       body: NestedScrollView(
+        key: nestedScrollKey,
         headerSliverBuilder: (_, innerboxIsScrolled) {
           return <Widget>[
             SliverAppBar(
@@ -58,9 +64,12 @@ class PrayerFullTable extends StatelessWidget {
                   colorBlendMode: BlendMode.overlay,
                 ),
                 centerTitle: true,
-                title: Text(
-                  '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
-                  textAlign: TextAlign.center,
+                title: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Text(
+                    '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
               actions: [
@@ -84,7 +93,6 @@ class PrayerFullTable extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
-            controller: _scrollController,
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
@@ -197,24 +205,21 @@ class _PrayerDataTable extends StatelessWidget {
                 _model.prayers[index].asr,
                 _model.prayers[index].maghrib,
                 _model.prayers[index].isha
-              ]
-                  .map(
-                    (day) => DataCell(
-                      Center(
-                        child: Opacity(
-                          opacity: (index < _todayIndex) ? 0.55 : 1.0,
-                          child: Text(
-                            day.format(_is12HourFormat),
-                            style: TextStyle(
-                                fontWeight: index == _todayIndex
-                                    ? FontWeight.bold
-                                    : null),
-                          ),
-                        ),
+              ].map(
+                (day) => DataCell(
+                  Center(
+                    child: Opacity(
+                      opacity: (index < _todayIndex) ? 0.55 : 1.0,
+                      child: Text(
+                        day.format(_is12HourFormat),
+                        style: TextStyle(
+                            fontWeight:
+                                index == _todayIndex ? FontWeight.bold : null),
                       ),
                     ),
-                  )
-                  ,
+                  ),
+                ),
+              ),
               if (value.showLastOneThirdNight)
                 DataCell(Opacity(
                   opacity: (index < _todayIndex) ? 0.55 : 1.0,
