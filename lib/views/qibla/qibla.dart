@@ -107,7 +107,7 @@ class CompassActionButtons extends StatelessWidget {
                 url: 'https://$_qiblaFinderUrl', useCustomTabs: true);
           },
           onLongPress: () {
-            Clipboard.setData(ClipboardData(text: _qiblaFinderUrl)).then(
+            Clipboard.setData(const ClipboardData(text: _qiblaFinderUrl)).then(
                 (value) => Fluttertoast.showToast(
                     msg: AppLocalizations.of(context)!.qiblaCopyUrl));
           },

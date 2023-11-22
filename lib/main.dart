@@ -121,8 +121,9 @@ class MyApp extends StatelessWidget {
               darkTheme: ThemeData.dark().copyWith(
                 colorScheme: darkDynamic ??
                     ColorScheme.fromSeed(
-                        seedColor: _primaryColour, brightness: Brightness.dark),
-                useMaterial3: true,
+                      seedColor: _primaryColour,
+                      brightness: Brightness.dark,
+                    ),
               ),
               themeMode: themeValue.themeMode,
               localizationsDelegates: AppLocalizations.localizationsDelegates,

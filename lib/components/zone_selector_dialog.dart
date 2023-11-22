@@ -35,19 +35,21 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
         allZones.firstWhere((element) => element.jakimCode == jakimCode);
   }
 
+  bool _checkCanPop(bool isWideScreen) {
+    if (isWideScreen) return true;
+    if (currentView == CurrentView.zone) {
+      setState(() => currentView = CurrentView.state);
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isWideScreen = MediaQuery.of(context).size.width > 768;
 
-    return WillPopScope(
-      onWillPop: () async {
-        if (isWideScreen) return true;
-        if (currentView == CurrentView.zone) {
-          setState(() => currentView = CurrentView.state);
-          return false;
-        }
-        return true;
-      },
+    return PopScope(
+      canPop: _checkCanPop(isWideScreen),
       child: Scaffold(
         appBar: AppBar(
           title: Text(currentView == CurrentView.state
