@@ -54,8 +54,11 @@ class PrayerFullTable extends StatelessWidget {
               foregroundColor: Colors.white,
               backgroundColor: Theme.of(context).colorScheme.primary,
               floating: true,
-              expandedHeight: 130,
+              pinned: true,
+              expandedHeight: 150,
               flexibleSpace: FlexibleSpaceBar(
+                titlePadding: const EdgeInsetsDirectional.only(
+                    start: 4, bottom: 16, end: 4),
                 background: CachedNetworkImage(
                   imageUrl: Uri.https(kApiBaseUrl, '/api/mosque/$_locationCode')
                       .toString(),
@@ -64,13 +67,10 @@ class PrayerFullTable extends StatelessWidget {
                   colorBlendMode: BlendMode.overlay,
                 ),
                 centerTitle: true,
-                title: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: Text(
+                title: Text(
                     '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
                     textAlign: TextAlign.center,
-                  ),
-                ),
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
               ),
               actions: [
                 IconButton(
