@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -115,6 +116,57 @@ class PrayerFullTable extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: AppLocalizations.of(context)!.timetableExportTooltip,
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (_) {
+                return SizedBox(
+                  height: 100,
+                  child: FutureBuilder(
+                      future: MptApiFetch.downloadJadualSolat(_locationCode),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Center(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!
+                                      .timetableExportSuccess),
+                                  const Spacer(),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      OpenFile.open(snapshot.data!.path);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(AppLocalizations.of(context)!
+                                        .timetableExportOpen),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(AppLocalizations.of(context)!
+                                .timetableExportError(
+                                    snapshot.error.toString())),
+                          );
+                        }
+                        return Center(
+                          child: Text(AppLocalizations.of(context)!
+                              .timetableExportExporting),
+                        );
+                      }),
+                );
+              });
+        },
+        child: const Icon(Icons.download),
+      ),
     );
   }
 }
@@ -221,18 +273,20 @@ class _PrayerDataTable extends StatelessWidget {
                 ),
               ),
               if (value.showLastOneThirdNight)
-                DataCell(Opacity(
-                  opacity: (index < _todayIndex) ? 0.55 : 1.0,
-                  child: Text(
-                    '~${DateAndTime.nightOneThird(
-                      _model.prayers[index].maghrib,
-                      _model.prayers[index].fajr,
-                    ).format(_is12HourFormat)}',
-                    style: TextStyle(
-                        fontWeight:
-                            index == _todayIndex ? FontWeight.bold : null),
+                DataCell(
+                  Opacity(
+                    opacity: (index < _todayIndex) ? 0.55 : 1.0,
+                    child: Text(
+                      '~${DateAndTime.nightOneThird(
+                        _model.prayers[index].maghrib,
+                        _model.prayers[index].fajr,
+                      ).format(_is12HourFormat)}',
+                      style: TextStyle(
+                          fontWeight:
+                              index == _todayIndex ? FontWeight.bold : null),
+                    ),
                   ),
-                )),
+                ),
             ],
           );
         }),

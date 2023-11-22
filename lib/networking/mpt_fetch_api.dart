@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 import '../constants.dart';
 import '../models/mpt_server_solat.dart';
@@ -69,4 +71,32 @@ class MptApiFetch {
   /// Save to cache
   static void _saveToCache(String cacheKey, Map<String, dynamic> response) =>
       GetStorage().write(cacheKey, response);
+
+  static Future<File> downloadJadualSolat(String zone) async {
+    var year = DateTime.now().year;
+    var month = DateTime.now().month;
+
+    final options = {
+      'year': year.toString(),
+      'month': month.toString(),
+      'zone': zone,
+    };
+
+    final tempDir = await getTemporaryDirectory();
+    // we use [options.toString().hashCode] as the filename
+    // so that we can reuse the file if the same request is made
+    // why need .toString()? because if directly use [options.hashCode]
+    // it will return different value for different Map even if the content is the same
+    final file =
+        File('${tempDir.path}/jadual_solat_${options.toString().hashCode}.pdf');
+
+    // check if file is exist
+    if (await file.exists()) return file;
+
+    // If not exist, download from server
+    final url = Uri.https(kApiBaseUrl, 'api/jadual_solat', options);
+    final data = await http.get(url);
+
+    return file.writeAsBytes(data.bodyBytes);
+  }
 }
