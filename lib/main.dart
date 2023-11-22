@@ -66,7 +66,6 @@ void main() async {
   await initNotifications();
 
   initGetStorage();
-  // readAllGetStorage();
   await _initializeJakimZoneData();
 
   LicenseRegistry.addLicense(() async* {
@@ -256,18 +255,6 @@ Future<void> _configureLocalTimeZone() async {
   tz.initializeTimeZones();
   const String timeZoneName = 'Asia/Kuala_Lumpur';
   tz.setLocalLocation(tz.getLocation(timeZoneName));
-}
-
-void _readAllGetStorage() {
-  // print (almost) all GetStorage item to the console
-  print("-----All GET STORAGE-----\n");
-
-  var keys = GetStorage().getKeys();
-
-  for (var key in keys) {
-    print('$key ${GetStorage().read(key)}');
-  }
-  print('-----------------------\n');
 }
 
 Future _initializeJakimZoneData() async {
