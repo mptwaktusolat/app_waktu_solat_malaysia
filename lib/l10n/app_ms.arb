@@ -70,6 +70,18 @@
     }
   },
   "timetableDate": "Tarikh",
+  "timetableExportTooltip": "Export timetable as PDF",
+  "timetableExportExporting": "Exporting",
+  "timetableExportSuccess": "Prayer timetable PDF file is ready",
+  "timetableExportOpen": "Open",
+  "timetableExportError": "Sorry. Error occurred when exporting timetable. Please try again. {error}",
+  "@timetableExportError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "timetableOneThird": "Sepertiga akhir malam",
   "timetableSettingTitle": "Tetapan jadual",
   "timetableSettingHijri": "Tunjukkan lajur Hijri",
