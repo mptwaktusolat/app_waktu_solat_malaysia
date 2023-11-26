@@ -82,13 +82,9 @@ class MptApiFetch {
       'zone': zone,
     };
 
+    final fileSuffix = '$zone-$year-$month';
     final tempDir = await getTemporaryDirectory();
-    // we use [options.toString().hashCode] as the filename
-    // so that we can reuse the file if the same request is made
-    // why need .toString()? because if directly use [options.hashCode]
-    // it will return different value for different Map even if the content is the same
-    final file =
-        File('${tempDir.path}/jadual_solat_${options.toString().hashCode}.pdf');
+    final file = File('${tempDir.path}/jadual_solat_$fileSuffix.pdf');
 
     // check if file is exist
     if (await file.exists()) return file;

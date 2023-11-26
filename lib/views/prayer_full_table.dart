@@ -2,10 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../constants.dart';
 import '../models/mpt_server_solat.dart';
@@ -34,12 +36,12 @@ class PrayerFullTable extends StatelessWidget {
     // Scroll to today's date after page loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // delay a bit so user can see the scrol animation
-      Future.delayed(const Duration(milliseconds: 500), () {
+      Future.delayed(Durations.long4, () {
         innerController.animateTo(
           // according to the docs, each data row have height of [kMinInteractiveDimension],
           // so we just multiply with the day to get the offset
           kMinInteractiveDimension * _todayIndex,
-          duration: const Duration(milliseconds: 500),
+          duration: Durations.long4,
           curve: Curves.easeInOut,
         );
       });
@@ -134,16 +136,42 @@ class PrayerFullTable extends StatelessWidget {
                                   const EdgeInsets.symmetric(horizontal: 16),
                               child: Row(
                                 children: [
-                                  Text(AppLocalizations.of(context)!
-                                      .timetableExportSuccess),
-                                  const Spacer(),
-                                  ElevatedButton(
+                                  Expanded(
+                                    child: Text(AppLocalizations.of(context)!
+                                        .timetableExportSuccess),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  ElevatedButton.icon(
+                                    icon: const FaIcon(
+                                        FontAwesomeIcons.squareArrowUpRight,
+                                        size: 14),
                                     onPressed: () {
                                       OpenFile.open(snapshot.data!.path);
                                       Navigator.pop(context);
                                     },
-                                    child: Text(AppLocalizations.of(context)!
+                                    label: Text(AppLocalizations.of(context)!
                                         .timetableExportOpen),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  ElevatedButton.icon(
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.share,
+                                      size: 14,
+                                    ),
+                                    onPressed: () {
+                                      Share.shareXFiles(
+                                        [
+                                          XFile(snapshot.data!.path),
+                                        ],
+                                        subject: AppLocalizations.of(context)!
+                                            .timetableExportFileShareSubject(
+                                                'https://go.iqfareez.com/mpt'),
+                                      );
+                                    },
+                                    label: Text(
+                                      (AppLocalizations.of(context)!
+                                          .timetableExportShare),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -158,8 +186,19 @@ class PrayerFullTable extends StatelessWidget {
                           );
                         }
                         return Center(
-                          child: Text(AppLocalizations.of(context)!
-                              .timetableExportExporting),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(AppLocalizations.of(context)!
+                                  .timetableExportExporting),
+                              const SizedBox(width: 20),
+                              SpinKitDualRing(
+                                color: Theme.of(context).colorScheme.primary,
+                                size: 30,
+                                lineWidth: 5,
+                              ),
+                            ],
+                          ),
                         );
                       }),
                 );
