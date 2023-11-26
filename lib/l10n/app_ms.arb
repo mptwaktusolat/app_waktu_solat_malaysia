@@ -74,10 +74,19 @@
   "timetableExportExporting": "Exporting",
   "timetableExportSuccess": "Prayer timetable PDF file is ready",
   "timetableExportOpen": "Open",
+  "timetableExportShare": "Share",
   "timetableExportError": "Sorry. Error occurred when exporting timetable. Please try again. {error}",
   "@timetableExportError": {
     "placeholders": {
       "error": {
+        "type": "String"
+      }
+    }
+  },
+  "timetableExportFileShareSubject": "Prayer Timetable. {link}",
+  "@timetableExportFileShareSubject": {
+    "placeholders": {
+      "link": {
         "type": "String"
       }
     }
