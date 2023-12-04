@@ -1,0 +1,174 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/background"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground"
+    android:theme="@style/Theme.Android.AppWidgetContainer">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#008080"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/widget_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SGR01: Taman Kinrara (Selangor)"
+            android:textSize="14sp"
+            android:textAlignment="gravity"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        >
+
+        <!-- Subuh -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subuh"
+                android:textSize="16sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorHint"/>
+
+            <TextView
+                android:id="@+id/subuh_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5.57 am"
+                android:textSize="14sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+
+        <!-- Zohor -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Zohor"
+                android:textSize="16sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorHint"/>
+
+            <TextView
+                android:id="@+id/zuhur_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1.04 pm"
+                android:textSize="14sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+
+        <!-- Asar -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Asar"
+                android:textSize="16sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorHint"/>
+
+            <TextView
+                android:id="@+id/asar_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4.28 pm"
+                android:textSize="14sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+
+        <!-- Maghrib -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maghrib"
+                android:textSize="16sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorHint"/>
+
+            <TextView
+                android:id="maghrib_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7.10 pm"
+                android:textSize="14sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+
+        <!-- Isyak -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Isyak"
+                android:textSize="16sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorHint"/>
+
+            <TextView
+                android:id="@+id/isyak_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8.23 pm"
+                android:textSize="14sp"
+                android:textAlignment="gravity"
+                android:gravity="center"
+                android:textColor="?android:attr/textColorPrimary"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
