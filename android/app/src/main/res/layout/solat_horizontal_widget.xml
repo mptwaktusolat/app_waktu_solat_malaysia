@@ -132,7 +132,7 @@
                 android:textColor="?android:attr/textColorHint"/>
 
             <TextView
-                android:id="maghrib_time"
+                android:id="@+id/maghrib_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="7.10 pm"
