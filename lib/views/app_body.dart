@@ -4,6 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,8 @@ import '../constants.dart';
 import '../location_utils/location_database.dart';
 import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
+import '../utils/date_and_time.dart';
+import '../utils/homescreen.dart';
 import '../utils/prayer_data_handler.dart';
 import '../networking/update_checker.dart';
 import '../components/ads_widget.dart';
@@ -106,6 +109,22 @@ class _AppBodyState extends State<AppBody> {
                           errorMessage: snapshot.error.toString(),
                           onRetryPressed: () => setState(() {}));
                     }
+
+                    // TODO: Use Flutter Workmanager
+                    // update homscreen widget
+                    final prayerData = PrayDataHandler.today();
+                    // TODO: Use location data from geolocation
+                    final widgetTitle =
+                        '${LocationDatabase.negeri(value.currentLocationCode)}: ${LocationDatabase.daerah(value.currentLocationCode)}';
+                    Homescreen.updateSolatWidget(
+                      title: widgetTitle,
+                      subuhTime: prayerData.fajr.format(true),
+                      zohorTime: prayerData.dhuhr.format(true),
+                      asarTime: prayerData.asr.format(true),
+                      maghribTime: prayerData.maghrib.format(true),
+                      isyakTime: prayerData.isha.format(true),
+                    );
+
                     // display the list of prayer timee
                     return const PrayTimeList();
                   }),
