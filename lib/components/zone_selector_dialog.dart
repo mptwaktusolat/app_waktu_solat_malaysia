@@ -8,6 +8,7 @@ import '../providers/location_provider.dart';
 
 enum CurrentView { state, zone }
 
+/// Dialog manually select prayer time zone
 class ZoneSelectorDialog extends StatefulWidget {
   const ZoneSelectorDialog({super.key});
 
@@ -35,21 +36,20 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
         allZones.firstWhere((element) => element.jakimCode == jakimCode);
   }
 
-  bool _checkCanPop(bool isWideScreen) {
-    if (isWideScreen) return true;
-    if (currentView == CurrentView.zone) {
-      setState(() => currentView = CurrentView.state);
-      return false;
-    }
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     bool isWideScreen = MediaQuery.of(context).size.width > 768;
 
-    return PopScope(
-      canPop: _checkCanPop(isWideScreen),
+    // Use [WillPopScope] over [PopScope] for now. Using [PopScope] may introoduce unwanted behavior https://imgur.com/a/prW2NsL
+    return WillPopScope(
+      onWillPop: () async {
+        if (isWideScreen) return true;
+        if (currentView == CurrentView.zone) {
+          setState(() => currentView = CurrentView.state);
+          return false;
+        }
+        return true;
+      },
       child: Scaffold(
         appBar: AppBar(
           title: Text(currentView == CurrentView.state
