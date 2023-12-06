@@ -18,12 +18,25 @@
             android:id="@+id/widget_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SGR01: Taman Kinrara (Selangor)"
+            android:layout_weight="3"
+            android:text="SGRXX: Taman Kinrara (Selangor)"
             android:textSize="14sp"
             android:textAlignment="gravity"
+            android:gravity="start"
             android:textStyle="bold"
-            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/widget_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="18/13/2024"
+            android:textSize="14sp"
+            android:textAlignment="gravity"
+            android:gravity="end"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="#FFFFFF"/>
