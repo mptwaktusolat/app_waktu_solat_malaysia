@@ -9,8 +9,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
+import android.util.Log
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetPlugin
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -19,6 +21,7 @@ import java.util.TimeZone
 
 
 private const val ACTION_SCHEDULED_UPDATE = "live.iqfareez.waktusolatmalaysia.SCHEDULED_UPDATE"
+private const val LOG_TAG = "MPT_Widget"
 
 /**
  * Implementation of App Widget functionality.
@@ -32,6 +35,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
         val widgetData = HomeWidgetPlugin.getData(context)
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
+            Log.i(LOG_TAG, "onUpdate: SolatHorizontalWidget called")
             updateAppWidget(context, appWidgetManager, appWidgetId, widgetData)
         }
 
@@ -50,7 +54,8 @@ class SolatHorizontalWidget : AppWidgetProvider() {
         super.onReceive(context, intent);
         if (intent.action.equals(ACTION_SCHEDULED_UPDATE)) {
             val manager = AppWidgetManager.getInstance(context)
-            val ids = manager.getAppWidgetIds(ComponentName(context, SolatHorizontalWidget::class.java))
+            val ids =
+                manager.getAppWidgetIds(ComponentName(context, SolatHorizontalWidget::class.java))
             onUpdate(context, manager, ids)
         }
     }
@@ -74,36 +79,73 @@ internal fun updateAppWidget(
     // Set the click listener for the widget
     views.setOnClickPendingIntent(android.R.id.background, pendingIntent)
 
+    // Parse the JSON in SharedPreferences
+    val prayerData = widgetData.getString("prayer_data", null);
+
+    // If data not available, display help message
+    if (prayerData == null) {
+        views.setTextViewText(R.id.widget_date, "Please open app to get prayer data")
+        return;
+    }
+
+    val parsed = JSONObject(prayerData)
+
+    Log.i(LOG_TAG, "updateAppWidget: Reading SP json ${parsed.get("zone")}, ${parsed.get("month")}-${parsed.get("year")} ")
+
+    val prayers = parsed.getJSONArray("prayers")
+
+    val calendar = Calendar.getInstance()
+    val todayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
+
+    val subuhTime = todayPrayer.getLong("fajr")
+    val zohorTime = todayPrayer.getLong("dhuhr")
+    val asarTime = todayPrayer.getLong("asr")
+    val maghribTime = todayPrayer.getLong("maghrib")
+    val isyakTime = todayPrayer.getLong("isha")
+
+    val gmt8TimeZone = TimeZone.getTimeZone("GMT+8")
+    val timeFormat = SimpleDateFormat("h:mm a")
+    timeFormat.timeZone = gmt8TimeZone
+
+    fun formatTime(timeInMillis: Long): String {
+        val date = Date(timeInMillis)
+        return timeFormat.format(date)
+    }
+
+    val formattedSubuhTime = formatTime(subuhTime)
+    val formattedZohorTime = formatTime(zohorTime)
+    val formattedAsarTime = formatTime(asarTime)
+    val formattedMaghribTime = formatTime(maghribTime)
+    val formattedIsyakTime = formatTime(isyakTime)
+
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
     dateFormat.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur") // Set Malaysia timezone
     val formattedDate = dateFormat.format(Date())
 
+    val widgetTitle = "${parsed.get("zone")}: ${widgetData.getString("widget_title", null)}"
+
+    //  Set content
     views.setTextViewText(R.id.widget_date, formattedDate)
 
-    //  Set widget content
     views.setTextViewText(
-        R.id.widget_title, widgetData.getString("widget_title", null)
+        R.id.widget_title, widgetTitle
             ?: "Please open app to set widget data"
     )
     views.setTextViewText(
-        R.id.subuh_time, widgetData.getString("widget_subuh_time", null)
-            ?: "00:00"
+        R.id.subuh_time, formattedSubuhTime
     )
     views.setTextViewText(
-        R.id.zuhur_time, widgetData.getString("widget_zuhur_time", null)
-            ?: "00:00"
+        R.id.zuhur_time, formattedZohorTime
     )
     views.setTextViewText(
-        R.id.asar_time, widgetData.getString("widget_asar_time", null)
-            ?: "00:00"
+        R.id.asar_time, formattedAsarTime
     )
     views.setTextViewText(
-        R.id.maghrib_time, widgetData.getString("widget_maghrib_time", null)
-            ?: "00:00"
+        R.id.maghrib_time, formattedMaghribTime
     )
     views.setTextViewText(
-        R.id.isyak_time, widgetData.getString("widget_isyak_time", null)
-            ?: "00:00"
+        R.id.isyak_time, formattedIsyakTime
     )
 
     // Instruct the widget manager to update the widget

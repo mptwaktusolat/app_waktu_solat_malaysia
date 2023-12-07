@@ -24,6 +24,8 @@ const kTimetableShowOneThird = "tbOneThird";
 const kTasbihCount = "tasbihCount";
 const kTasbihGradientColour = "tasbihColours";
 const kNoAdsStartTime = "noAdsStartTime";
+// store current user location name to be consumed by homescreen widget
+const kWidgetLocation = "widgetLocation";
 
 // API base
 const kApiBaseUrl = 'mpt-server.vercel.app';

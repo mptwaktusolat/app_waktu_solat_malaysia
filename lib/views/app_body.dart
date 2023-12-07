@@ -110,21 +110,6 @@ class _AppBodyState extends State<AppBody> {
                           onRetryPressed: () => setState(() {}));
                     }
 
-                    // TODO: Use Flutter Workmanager
-                    // update homscreen widget
-                    final prayerData = PrayDataHandler.today();
-                    // TODO: Use location data from geolocation
-                    final widgetTitle =
-                        '${LocationDatabase.negeri(value.currentLocationCode)}: ${LocationDatabase.daerah(value.currentLocationCode)}';
-                    Homescreen.updateSolatWidget(
-                      title: widgetTitle,
-                      subuhTime: prayerData.fajr.format(true),
-                      zohorTime: prayerData.dhuhr.format(true),
-                      asarTime: prayerData.asr.format(true),
-                      maghribTime: prayerData.maghrib.format(true),
-                      isyakTime: prayerData.isha.format(true),
-                    );
-
                     // display the list of prayer timee
                     return const PrayTimeList();
                   }),

@@ -5,7 +5,7 @@
     android:initialLayout="@layout/solat_horizontal_widget"
     android:minWidth="250dp"
     android:minHeight="40dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/example_widget_horizontal"
     android:previewLayout="@layout/solat_horizontal_widget"
     android:resizeMode="vertical"
     android:targetCellWidth="4"
