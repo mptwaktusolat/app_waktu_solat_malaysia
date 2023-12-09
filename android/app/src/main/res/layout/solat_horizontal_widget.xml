@@ -2,8 +2,8 @@
     android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="?android:attr/colorBackground"
+    android:orientation="vertical"
     android:theme="@style/Theme.Android.AppWidgetContainer">
 
     <!-- Header -->
@@ -19,35 +19,34 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="SGRXX: Taman Kinrara (Selangor)"
-            android:textSize="14sp"
-            android:textAlignment="gravity"
-            android:gravity="start"
-            android:textStyle="bold"
             android:ellipsize="end"
+            android:gravity="start"
             android:maxLines="1"
-            android:textColor="#FFFFFF"/>
+            android:text="SGRXX: Taman Kinrara (Selangor)"
+            android:textAlignment="gravity"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/widget_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="18/13/2024"
-            android:textSize="14sp"
-            android:textAlignment="gravity"
-            android:gravity="end"
             android:ellipsize="end"
+            android:gravity="end"
             android:maxLines="1"
-            android:textColor="#FFFFFF"/>
+            android:text="18/13/2024"
+            android:textAlignment="gravity"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
 
         <!-- Subuh -->
         <LinearLayout
@@ -59,21 +58,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Subuh"
-                android:textSize="16sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorHint"/>
+                android:text="Subuh"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorHint"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/subuh_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5.57 am"
-                android:textSize="14sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:text="5.57 am"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Zohor -->
@@ -86,21 +85,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Zohor"
-                android:textSize="16sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorHint"/>
+                android:text="Zohor"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorHint"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/zuhur_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1.04 pm"
-                android:textSize="14sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:text="1.04 pm"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Asar -->
@@ -113,21 +112,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Asar"
-                android:textSize="16sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorHint"/>
+                android:text="Asar"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorHint"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/asar_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4.28 pm"
-                android:textSize="14sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:text="4.28 pm"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Maghrib -->
@@ -140,21 +139,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Maghrib"
-                android:textSize="16sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorHint"/>
+                android:text="Maghrib"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorHint"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/maghrib_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="7.10 pm"
-                android:textSize="14sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:text="7.10 pm"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Isyak -->
@@ -167,21 +166,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Isyak"
-                android:textSize="16sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorHint"/>
+                android:text="Isyak"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorHint"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/isyak_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="8.23 pm"
-                android:textSize="14sp"
-                android:textAlignment="gravity"
                 android:gravity="center"
-                android:textColor="?android:attr/textColorPrimary"/>
+                android:text="8.23 pm"
+                android:textAlignment="gravity"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
