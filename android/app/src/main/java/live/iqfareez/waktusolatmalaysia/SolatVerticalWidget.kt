@@ -1,9 +1,19 @@
 package live.iqfareez.waktusolatmalaysia
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
-import android.widget.RemoteViews
+import android.content.Intent
+import android.os.Build
+import android.util.Log
+import es.antonborri.home_widget.HomeWidgetPlugin
+import java.util.Calendar
+
+private const val ACTION_SCHEDULED_UPDATE = "live.iqfareez.waktusolatmalaysia.SCHEDULED_UPDATE"
+private const val LOG_TAG = "MPT_Widget_Vertical"
 
 /**
  * Implementation of App Widget functionality.
@@ -14,10 +24,15 @@ class SolatVerticalWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+        val widgetData = HomeWidgetPlugin.getData(context)
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
+            Log.i(LOG_TAG, "onUpdate: SolatVerticalWidget called")
+            // call from SolatHorizontalWidget
+            updateAppWidget(context, appWidgetManager, appWidgetId, widgetData, R.layout.solat_vertical_widget)
         }
+
+        scheduleNextUpdate(context);
     }
 
     override fun onEnabled(context: Context) {
@@ -27,16 +42,56 @@ class SolatVerticalWidget : AppWidgetProvider() {
     override fun onDisabled(context: Context) {
         // Enter relevant functionality for when the last widget is disabled
     }
+
+    override fun onReceive(context: Context, intent: Intent) {
+        super.onReceive(context, intent)
+
+        if (intent.action.equals(ACTION_SCHEDULED_UPDATE)) {
+            val manager = AppWidgetManager.getInstance(context)
+            val ids =
+                manager.getAppWidgetIds(ComponentName(context, SolatVerticalWidget::class.java))
+            onUpdate(context, manager, ids)
+        }
+    }
 }
 
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-    // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.solat_vertical_widget)
+private fun scheduleNextUpdate(context: Context) {
+    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    // Substitute AppWidget for whatever you named your AppWidgetProvider subclass
+    val intent = Intent(context, SolatVerticalWidget::class.java)
+    intent.setAction(ACTION_SCHEDULED_UPDATE)
+    val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
-    // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
+    // Get a calendar instance for midnight tomorrow.
+    val midnight: Calendar = Calendar.getInstance()
+    midnight.set(Calendar.HOUR_OF_DAY, 0)
+    midnight.set(Calendar.MINUTE, 0)
+    // Schedule one second after midnight, to be sure we are in the right day next time this
+    // method is called.  Otherwise, we risk calling onUpdate multiple times within a few
+    // milliseconds
+    midnight.set(Calendar.SECOND, 1)
+    midnight.set(Calendar.MILLISECOND, 0)
+    midnight.add(Calendar.DAY_OF_YEAR, 1)
+
+    // For API 19 and later, set may fire the intent a little later to save battery,
+    // setExact ensures the intent goes off exactly at midnight.
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+        alarmManager[AlarmManager.RTC_WAKEUP, midnight.getTimeInMillis()] = pendingIntent
+    } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (alarmManager.canScheduleExactAlarms()) {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    midnight.timeInMillis,
+                    pendingIntent
+                )
+            } else {
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    midnight.timeInMillis,
+                    pendingIntent
+                )
+            }
+        }
+    }
 }

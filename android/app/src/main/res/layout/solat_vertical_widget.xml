@@ -14,17 +14,20 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/widget_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="3"
             android:text="SGRXX: Shah Alam, Petaling Jaya"
             android:textAlignment="gravity"
             android:textColor="#ffffff"
+            android:ellipsize="end"
             android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/widget_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -51,6 +54,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/subuh_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +85,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/zuhur_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -111,6 +116,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/asar_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -141,6 +147,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/maghrib_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -171,6 +178,7 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/isyak_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -185,6 +193,5 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
-
 
 </LinearLayout>

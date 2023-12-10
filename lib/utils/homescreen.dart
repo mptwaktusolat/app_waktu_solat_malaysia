@@ -10,10 +10,15 @@ class Homescreen {
     await HomeWidget.saveWidgetData('prayer_data', jsonEncode(json));
     await HomeWidget.saveWidgetData('widget_title', widgetTitle);
 
-    // Trigger widget update to show the new data
-    HomeWidget.updateWidget(
+    // Trigger widgets update to show the new data
+    await HomeWidget.updateWidget(
       name: 'SolatHorizontalWidget',
       androidName: 'SolatHorizontalWidget',
+    );
+
+    await HomeWidget.updateWidget(
+      name: 'SolatVerticalWidget',
+      androidName: 'SolatVerticalWidget',
     );
   }
 }

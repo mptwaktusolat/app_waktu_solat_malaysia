@@ -21,7 +21,7 @@ import java.util.TimeZone
 
 
 private const val ACTION_SCHEDULED_UPDATE = "live.iqfareez.waktusolatmalaysia.SCHEDULED_UPDATE"
-private const val LOG_TAG = "MPT_Widget"
+private const val LOG_TAG = "MPT_Widget_Horizontal"
 
 /**
  * Implementation of App Widget functionality.
@@ -36,7 +36,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             Log.i(LOG_TAG, "onUpdate: SolatHorizontalWidget called")
-            updateAppWidget(context, appWidgetManager, appWidgetId, widgetData)
+            updateAppWidget(context, appWidgetManager, appWidgetId, widgetData, R.layout.solat_horizontal_widget)
         }
 
         scheduleNextUpdate(context);
@@ -65,10 +65,11 @@ internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
-    widgetData: SharedPreferences
+    widgetData: SharedPreferences,
+    layoutId: Int
 ) {
     // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.solat_horizontal_widget)
+    val views = RemoteViews(context.packageName, layoutId)
 
     val launchIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)
     val pendingIntent = PendingIntent.getActivity(
