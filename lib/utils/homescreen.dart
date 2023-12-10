@@ -9,16 +9,11 @@ class Homescreen {
       Map<String, dynamic> json, String widgetTitle) async {
     await HomeWidget.saveWidgetData('prayer_data', jsonEncode(json));
     await HomeWidget.saveWidgetData('widget_title', widgetTitle);
+    await HomeWidget.saveWidgetData('last_updated', DateTime.now().toString());
 
     // Trigger widgets update to show the new data
-    await HomeWidget.updateWidget(
-      name: 'SolatHorizontalWidget',
-      androidName: 'SolatHorizontalWidget',
-    );
+    await HomeWidget.updateWidget(name: 'SolatHorizontalWidget');
 
-    await HomeWidget.updateWidget(
-      name: 'SolatVerticalWidget',
-      androidName: 'SolatVerticalWidget',
-    );
+    await HomeWidget.updateWidget(name: 'SolatVerticalWidget');
   }
 }

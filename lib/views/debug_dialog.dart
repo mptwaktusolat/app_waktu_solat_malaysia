@@ -6,6 +6,7 @@ import 'package:restart_app/restart_app.dart';
 
 import '../constants.dart';
 import '../location_utils/location_data.dart';
+import 'dev/widget_data_page.dart';
 
 class DebugDialog extends StatelessWidget {
   const DebugDialog({super.key});
@@ -55,6 +56,15 @@ class DebugDialog extends StatelessWidget {
           const ListTile(
             title: Text('Notification debug'),
             subtitle: Text('Available on notification settings page'),
+          ),
+          ListTile(
+            title: const Text('Homescreen widget debug'),
+            subtitle: const Text('View saved widget data'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const WidgetDataPage()),
+              );
+            },
           ),
         ],
       ),
