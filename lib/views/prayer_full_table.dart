@@ -40,7 +40,7 @@ class PrayerFullTable extends StatelessWidget {
         innerController.animateTo(
           // according to the docs, each data row have height of [kMinInteractiveDimension],
           // so we just multiply with the day to get the offset
-          kMinInteractiveDimension * _todayIndex,
+          kMinInteractiveDimension * (_todayIndex - 1),
           duration: Durations.long4,
           curve: Curves.easeInOut,
         );
@@ -56,7 +56,6 @@ class PrayerFullTable extends StatelessWidget {
             SliverAppBar(
               foregroundColor: Colors.white,
               backgroundColor: Theme.of(context).colorScheme.primary,
-              floating: true,
               pinned: true,
               expandedHeight: 150,
               flexibleSpace: FlexibleSpaceBar(
