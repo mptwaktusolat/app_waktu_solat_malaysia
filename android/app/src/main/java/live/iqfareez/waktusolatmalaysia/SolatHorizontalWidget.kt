@@ -10,10 +10,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.util.Log
+import android.view.View
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetPlugin
 import org.json.JSONObject
 import java.text.SimpleDateFormat
+import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -83,13 +86,22 @@ internal fun updateAppWidget(
     // Parse the JSON in SharedPreferences
     val prayerData = widgetData.getString("prayer_data", null);
 
-    // If data not available, display help message
+    // If data not available, display outdated layout
     if (prayerData == null) {
-        views.setTextViewText(R.id.widget_date, "Please open app to get prayer data")
+        views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
+        views.setViewVisibility(R.id.prayer_layout, View.GONE);
         return;
     }
 
     val parsed = JSONObject(prayerData)
+
+    // if the data is outdated (the month & year doesn't match), show outdated layout
+    if (!isDateValid("${parsed.get("month")}-${parsed.get("year")}")) {
+        Log.i(LOG_TAG, "updateAppWidget: Data ${parsed.get("month")}-${parsed.get("year")} is invalid");
+        views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
+        views.setViewVisibility(R.id.prayer_layout, View.GONE);
+        return;
+    }
 
     Log.i(LOG_TAG, "updateAppWidget: Reading SP json ${parsed.get("zone")}, ${parsed.get("month")}-${parsed.get("year")} ")
 
@@ -192,5 +204,30 @@ private fun scheduleNextUpdate(context: Context) {
                 )
             }
         }
+    }
+}
+
+// Function to check the validity of the given month and year
+fun isDateValid(jsonDate: String): Boolean {
+    // The YearMonth.parse only accepts month with title-case eg Jan, Feb etc.
+    fun toTitleCase(input: String): String {
+        return input.lowercase().replaceFirstChar { it.uppercase() }
+    }
+
+    val jsonFixed = toTitleCase(jsonDate);
+    return try {
+        // Parse the JSON date into YearMonth
+        val formatter = DateTimeFormatter.ofPattern("MMM-yyyy")
+        val date = YearMonth.parse(jsonFixed, formatter)
+
+        // Get the current month and year
+        val currentMonthYear = YearMonth.now()
+
+        // Check if the parsed date is after or equal to the current month and year
+        !date.isBefore(currentMonthYear) && !date.isAfter(currentMonthYear);
+    } catch (e: Exception) {
+        // Handle parsing or other exceptions
+        e.printStackTrace()
+        false
     }
 }

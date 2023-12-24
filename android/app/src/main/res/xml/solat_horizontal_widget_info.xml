@@ -6,7 +6,7 @@
     android:minWidth="250dp"
     android:minHeight="40dp"
     android:previewImage="@drawable/solat_horizontal_preview"
-    android:previewLayout="@layout/solat_horizontal_widget"
+    android:previewLayout="@layout/solat_horizontal_widget_preview"
     android:resizeMode="horizontal"
     android:targetCellWidth="4"
     android:targetCellHeight="1"

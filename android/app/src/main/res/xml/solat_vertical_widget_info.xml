@@ -6,7 +6,7 @@
     android:minWidth="110dp"
     android:minHeight="180dp"
     android:previewImage="@drawable/solat_vertical_preview"
-    android:previewLayout="@layout/solat_vertical_widget"
+    android:previewLayout="@layout/solat_vertical_widget_preview"
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="2"
     android:targetCellHeight="3"

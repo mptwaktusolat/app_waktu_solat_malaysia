@@ -22,7 +22,7 @@
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="1"
-            android:text="SGRXX: Taman Kinrara (Selangor)"
+            android:text="SGR01: Taman Kinrara (Selangor)"
             android:textAlignment="gravity"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
@@ -36,30 +36,19 @@
             android:ellipsize="end"
             android:gravity="end"
             android:maxLines="1"
-            android:text="18/13/2024"
+            android:text="18/05/2024"
             android:textAlignment="gravity"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/outdated_text"
-        android:layout_width="match_parent"
-        android:layout_height="130px"
-        android:gravity="center"
-        android:text="Data is outdated. Tap here to open app to refresh the new data"
-        android:textColor="?android:attr/textColorHint"
-        android:textSize="13sp"
-        android:visibility="gone" />
-
 
     <LinearLayout
-        android:id="@+id/prayer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:visibility="visible">
+        >
 
         <!-- Subuh -->
         <LinearLayout
