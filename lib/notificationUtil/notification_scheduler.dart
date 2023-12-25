@@ -11,8 +11,26 @@ import '../views/settings/notification_page_setting.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
+  /// Check if app can schedule notification on Android 13+ (S+)
+  static Future<bool> _canScheduleNotification() async {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    final androidNotif =
+        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
+    // underlying implementation: https://github.com/MaikuB/flutter_local_notifications/blob/ca71c96ba2a245175b44471e2e41e4958d480876/flutter_local_notifications/android/src/main/java/com/dexterous/flutterlocalnotifications/FlutterLocalNotificationsPlugin.java#L2119
+    final res = await androidNotif?.canScheduleExactNotifications();
+    return res ?? false;
+  }
+
+  /// Schedule notification for each prayer time.
   static void schedulePrayNotification(
       AppLocalizations appLocalizationsInstance, List<Prayers> times) async {
+    if (!await _canScheduleNotification()) {
+      print(
+          'Notifications are not scheduled. Schedule notification permission is not granted huhu');
+      return;
+    }
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
     var currentDateTime = DateTime.now();
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -34,6 +35,7 @@ class _AppBodyState extends State<AppBody> {
 
     _checkForUpdate();
     _showUpdateNotes();
+    _requestScheduleNotificationPermission();
   }
 
   void _checkForUpdate() async {
@@ -60,6 +62,23 @@ class _AppBodyState extends State<AppBody> {
     }
     GetStorage().write(version,
         DateTime.now().toString()); // write something to the version key
+  }
+
+  /// Request schedule notification permission. The permission already requested from the onboarding page,
+  /// but for users that have their system upgraded, the permission will be requested here.
+  void _requestScheduleNotificationPermission() async {
+    debugPrint('Requesting notification permission');
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    final androidNotif =
+        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>();
+    final permissionGranted =
+        await androidNotif?.canScheduleExactNotifications() ?? false;
+
+    if (!permissionGranted) {
+      androidNotif?.requestNotificationsPermission();
+    }
   }
 
   @override
