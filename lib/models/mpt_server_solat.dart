@@ -87,14 +87,14 @@ class Prayers {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['isha'] = isha;
-    data['syuruk'] = syuruk;
-    data['day'] = day;
-    data['dhuhr'] = dhuhr;
-    data['maghrib'] = maghrib;
-    data['fajr'] = fajr;
-    data['asr'] = asr;
-    data['hijri'] = hijri;
+    data['isha'] = isha.millisecondsSinceEpoch;
+    data['syuruk'] = syuruk.millisecondsSinceEpoch;
+    data['day'] = day.millisecondsSinceEpoch;
+    data['dhuhr'] = dhuhr.millisecondsSinceEpoch;
+    data['maghrib'] = maghrib.millisecondsSinceEpoch;
+    data['fajr'] = fajr.millisecondsSinceEpoch;
+    data['asr'] = asr.millisecondsSinceEpoch;
+    data['hijri'] = hijri.toString();
     return data;
   }
 }

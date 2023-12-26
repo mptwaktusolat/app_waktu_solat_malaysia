@@ -141,6 +141,8 @@ class LocationChooser {
     Provider.of<LocationProvider>(context, listen: false).currentLocationCode =
         newZone.jakimCode;
     onNewLocationSaved(context);
+    print(newZone.daerah);
+    GetStorage().write(kWidgetLocation, newZone.daerah);
   }
 }
 
@@ -241,6 +243,8 @@ class ZoneSuccessWidget extends StatelessWidget {
                     onPressed: () {
                       value.currentLocationCode = coordinateData.zone;
                       LocationChooser.onNewLocationSaved(context);
+                      GetStorage().write(kWidgetLocation,
+                          coordinateData.lokasi ?? coordinateData.negeri);
 
                       Navigator.pop(context, true);
                     },

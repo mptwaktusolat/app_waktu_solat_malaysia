@@ -35,7 +35,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     lintOptions {
         disable 'InvalidPackage'
@@ -73,6 +73,9 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 flutter {
@@ -83,7 +86,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
   // https://github.com/flutter/flutter/issues/110658
-  implementation "androidx.window:window:1.0.0" 
+  implementation "androidx.window:window:1.0.0"
   implementation 'androidx.window:window-java:1.0.0'
-
+  implementation 'com.google.code.gson:gson:2.10.1'
 }

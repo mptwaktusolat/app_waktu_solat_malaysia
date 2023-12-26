@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/app_widget_description"
+    android:initialKeyguardLayout="@layout/solat_horizontal_widget"
+    android:initialLayout="@layout/solat_horizontal_widget"
+    android:minWidth="250dp"
+    android:minHeight="40dp"
+    android:previewImage="@drawable/solat_horizontal_preview"
+    android:previewLayout="@layout/solat_horizontal_widget_preview"
+    android:resizeMode="horizontal"
+    android:targetCellWidth="4"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="86400000"
+    android:widgetCategory="home_screen" />

@@ -1,5 +1,10 @@
+import 'package:get_storage/get_storage.dart';
+
+import '../constants.dart';
+import '../location_utils/location_database.dart';
 import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
+import 'homescreen.dart';
 
 final int _day = DateTime.now().day;
 
@@ -10,6 +15,15 @@ class PrayDataHandler {
   /// Returns the hijri date
   static Future<String> init(String zone) async {
     _mptServerSolat = await MptApiFetch.fetchMpt(zone);
+
+    // Alang2 init, we save the data to widget
+    var widgetLocation = GetStorage().read(kWidgetLocation);
+    if (widgetLocation == null || widgetLocation.isEmpty) {
+      widgetLocation = LocationDatabase.daerah(zone);
+    }
+    Homescreen.savePrayerDataAndUpdateWidget(
+        _mptServerSolat!.toJson(), widgetLocation!);
+
     return today().hijri.toString();
   }
 
