@@ -80,7 +80,7 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    '\nMPT 2023',
+                    '\nMPT 2024',
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
@@ -250,7 +250,7 @@ class AboutAppPage extends StatelessWidget {
                             url: 'https://iqfareez.com'),
                         child: Text(
                           AppLocalizations.of(context)!
-                              .aboutLegalese("2020-2023"),
+                              .aboutLegalese("2020-2024"),
                           style: Theme.of(context).textTheme.labelMedium,
                           textAlign: TextAlign.center,
                         ),

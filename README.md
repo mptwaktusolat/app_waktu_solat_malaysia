@@ -3,7 +3,7 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat-square&logo=Flutter&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
 [![Ready on PWA](https://img.shields.io/badge/Ready%20on-PWA-5a0fc8?style=flat-square)](https://waktusolat.web.app/)
-![Maintenance](https://img.shields.io/maintenance/yes/2023?style=flat-square)
+![Maintenance](https://img.shields.io/maintenance/yes/2024?style=flat-square)
 [![Installs](https://img.shields.io/badge/installs-50k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
 ![License](https://img.shields.io/github/license/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
