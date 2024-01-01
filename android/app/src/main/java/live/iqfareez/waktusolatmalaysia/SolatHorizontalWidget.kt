@@ -90,6 +90,7 @@ internal fun updateAppWidget(
     if (prayerData == null) {
         views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
         views.setViewVisibility(R.id.prayer_layout, View.GONE);
+        appWidgetManager.updateAppWidget(appWidgetId, views)
         return;
     }
 
@@ -100,6 +101,7 @@ internal fun updateAppWidget(
         Log.i(LOG_TAG, "updateAppWidget: Data ${parsed.get("month")}-${parsed.get("year")} is invalid");
         views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
         views.setViewVisibility(R.id.prayer_layout, View.GONE);
+        appWidgetManager.updateAppWidget(appWidgetId, views)
         return;
     }
 
