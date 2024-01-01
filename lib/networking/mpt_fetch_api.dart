@@ -28,9 +28,18 @@ class MptApiFetch {
     if (cacheData != null) return cacheData;
 
     final apiResponse = await _mptServerApi(api);
-    _saveToCache(requestCacheKey, apiResponse);
 
-    return MptServerSolat.fromJson(apiResponse);
+    late final MptServerSolat mptServerSolat;
+    try {
+      // If issue https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/216 like
+      // this ever happens again, the data will not be saved to cache
+      mptServerSolat = MptServerSolat.fromJson(apiResponse);
+      _saveToCache(requestCacheKey, apiResponse);
+    } catch (e) {
+      rethrow;
+    }
+
+    return mptServerSolat;
   }
 
   /// Call MPT Server api to get prayer times data
