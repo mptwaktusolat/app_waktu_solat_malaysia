@@ -26,21 +26,19 @@ More screenshots [here](https://imgur.com/a/Zhh7aBB)!
 - [~~MPTi906 API~~](https://mpt.i906.my/)
 - [~~e-solat JAKIM API~~](https://www.e-solat.gov.my/)
 - [~~mpt-backup-api~~](https://mpt-backup-api.herokuapp.com/)
-- [MPT-Server v2](https://mpt-server.vercel.app/)
+- [Waktu Solat App API](https://api.waktusolat.app) - _Our own API 💛_
 
 ## Website
 
-Features and troubleshooting steps are documented on the website.
-
-https://waktusolat.iqfareez.com/
+Features and troubleshooting steps are documented on the website: https://help.waktusolat.app/
 
 ## Getting started
 
-See [wiki](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki).
+For developers, see [wiki](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki).
 
 ## Changelog History
 
-Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit [here](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Changelog)!
+Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit changelog page [here](https://waktusolat.app/changelog)!
 
 ## Report issues / Feature requests
 
