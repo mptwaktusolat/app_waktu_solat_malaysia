@@ -50,8 +50,8 @@ class TroubleshootNotif extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               MarkdownBody(
-                data: AppLocalizations.of(context)!
-                    .notifTsPara3('$kWebsite/docs/troubleshoot/notifications'),
+                data: AppLocalizations.of(context)!.notifTsPara3(
+                    '$kAppSupportWebsite/docs/troubleshoot/notifications'),
                 onTapLink: (_, href, __) =>
                     LaunchUrl.normalLaunchUrl(url: href!),
               ),

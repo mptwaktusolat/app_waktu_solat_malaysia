@@ -51,15 +51,14 @@ const kDeveloperActivityImage =
 //App info
 const kPlayStoreListingLink =
     'https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia';
-const kPlayStoreListingShortLink = 'https://go.iqfareez.com/mpt';
-const kPrivacyPolicyLink = 'https://waktusolat.iqfareez.com/privacy-policy';
-const kReleaseNotesLink =
-    'https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Changelog';
-const kReleaseNotesShortLink = 'https://go.iqfareez.com/mptchanges';
+const kPlayStoreListingShortLink = 'https://waktusolat.app/play';
+const kPrivacyPolicyLink = 'https://waktusolat.app/privacy-policy';
+const kReleaseNotesLink = 'https://waktusolat.app/changelog';
 const kGithubRepoLink =
     'https://github.com/mptwaktusolat/app_waktu_solat_malaysia';
 const kWebappUrl = 'https://waktusolat.web.app';
-const kMptFdlGetLink = 'https://solat.page.link/get';
+const kAppWebsite = 'https://waktusolat.app';
+const kAppSupportWebsite = 'https://help.waktusolat.app';
 
 //Developer info
 const kAppEmail = 'mptwaktusolat@gmail.com';
@@ -70,7 +69,6 @@ const kInstaStoryDevlog =
 const kGithubLink = 'https://github.com/iqfareez';
 const kPlayStoreDevLink =
     'https://play.google.com/store/apps/dev?id=9200064795631584674';
-const kWebsite = 'https://waktusolat.iqfareez.com/';
 
 //hero tag
 const kAppIconTag = 'appIconTag';

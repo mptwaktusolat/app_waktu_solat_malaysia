@@ -292,7 +292,7 @@ class _AutostartAdmonition extends StatelessWidget {
         children: [
           MarkdownBody(
             data: AppLocalizations.of(context)!.onboardingNotifAutostart(
-                '$kWebsite/docs/troubleshoot/notifications'),
+                '$kAppSupportWebsite/docs/troubleshoot/notifications'),
             onTapLink: (_, href, __) {
               LaunchUrl.normalLaunchUrl(url: href!);
             },

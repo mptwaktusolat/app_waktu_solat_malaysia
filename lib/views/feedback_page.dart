@@ -310,7 +310,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
             TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(url: '$kWebsite/docs/intro');
+                LaunchUrl.normalLaunchUrl(
+                    url: '$kAppSupportWebsite/docs/intro');
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),

@@ -159,7 +159,7 @@ class AboutAppPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       onTap: () => LaunchUrl.normalLaunchUrl(
-                          url: '$kWebsite/docs/intro'),
+                          url: '$kAppSupportWebsite/docs/intro'),
                     ),
                   ),
                   Card(

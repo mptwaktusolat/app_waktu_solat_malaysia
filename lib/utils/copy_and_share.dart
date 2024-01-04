@@ -40,7 +40,7 @@ class CopyAndShare {
         message += '🌙 ${l10n.maghribName}: ${times.maghrib.format(use12)}\n';
         message += '⭐ ${l10n.ishaName}: ${times.isha.format(use12)}\n';
         message += '\n';
-        message += l10n.shareGetApp(constants.kMptFdlGetLink);
+        message += l10n.shareGetApp(constants.kAppWebsite);
 
         return message;
       case ShareTarget.whatsapp:
@@ -61,7 +61,7 @@ class CopyAndShare {
         message +=
             '```⭐ ${l10n.ishaName.padRight(_padLength)}: ${times.isha.format(use12)}```\n';
         message += '\n';
-        message += l10n.shareGetApp(constants.kMptFdlGetLink);
+        message += l10n.shareGetApp(constants.kAppWebsite);
 
         return message;
     }
