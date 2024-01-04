@@ -23,7 +23,7 @@ class MptApiFetch {
     // Generate hashcode from api url
     // so that the cache key is unique for different location, month & year
     // and we no longer need a method to check the data is valid based on the paramaters above
-    var requestCacheKey = 'mpt-server-cache-${api.toString().hashCode}';
+    var requestCacheKey = 'waktusolat-cache-${api.toString().hashCode}';
     var cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 
