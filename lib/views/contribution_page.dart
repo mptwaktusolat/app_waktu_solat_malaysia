@@ -44,7 +44,6 @@ class ContributionPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(),
               _MyCard(
                 title: AppLocalizations.of(context)!.contributeSource,
                 description: AppLocalizations.of(context)!.contributeSourceDesc,
