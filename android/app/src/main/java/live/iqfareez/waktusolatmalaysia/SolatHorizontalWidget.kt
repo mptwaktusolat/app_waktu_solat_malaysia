@@ -64,6 +64,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
     }
 }
 
+// Used by both widgets -> SolatHorizontalWidget & SolwatVerticalWidget
 internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
@@ -110,7 +111,7 @@ internal fun updateAppWidget(
     val prayers = parsed.getJSONArray("prayers")
 
     val calendar = Calendar.getInstance()
-    val todayIndex = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+    val todayIndex = calendar.get(Calendar.DAY_OF_MONTH);
     val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
 
     val subuhTime = todayPrayer.getLong("fajr")
