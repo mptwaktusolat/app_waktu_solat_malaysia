@@ -58,6 +58,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 10),
             Padding(
@@ -100,6 +101,87 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     ),
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: ElevatedButton.icon(
+                onPressed: () async {
+                  if (_emailController.text.isEmpty &&
+                      _messageController.text.contains('?')) {
+                    var res = await showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            content: Text(AppLocalizations.of(context)!
+                                .feedbackMessageContainQ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: Text(AppLocalizations.of(context)!
+                                      .feedbackSendAnyway)),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: Text(AppLocalizations.of(context)!
+                                      .feedbackAddEmail))
+                            ],
+                          );
+                        });
+
+                    // Cancel next operation for user to enter their email
+                    if (!res) return;
+                  }
+
+                  if (_formKey.currentState!.validate()) {
+                    FocusScope.of(context).unfocus();
+                    var payload = {
+                      'User email': _emailController.text.trim(),
+                      'User message': _messageController.text.trim(),
+                      if (_logIsChecked) 'Device info': _deviceInfo
+                    };
+
+                    payload.addAll(_appMetadata!);
+                    if (_isSensitiveChecked) payload.addAll(_sensitiveData!);
+
+                    setState(() => _isSendLoading = true);
+                    try {
+                      await http.post(Uri.https(kApiBaseUrl, '/api/feedback'),
+                          headers: {
+                            HttpHeaders.contentTypeHeader:
+                                ContentType.json.toString()
+                          },
+                          body: jsonEncode(payload));
+                      setState(() => _isSendLoading = false);
+                      Fluttertoast.showToast(
+                              msg: AppLocalizations.of(context)!.feedbackThanks,
+                              backgroundColor: Colors.green,
+                              toastLength: Toast.LENGTH_LONG)
+                          .then((value) => Navigator.pop(context));
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Error: $e'),
+                        backgroundColor: Colors.red,
+                      ));
+                      setState(() => _isSendLoading = false);
+                      rethrow;
+                    }
+                  }
+                },
+                icon: !_isSendLoading
+                    ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
+                    : const SizedBox.shrink(),
+                label: _isSendLoading
+                    ? const SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ))
+                    : Text(AppLocalizations.of(context)!.feedbackSend),
               ),
             ),
             FutureBuilder(
@@ -220,84 +302,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onChanged: (value) {
                   setState(() => _isSensitiveChecked = value!);
                 }),
-            ElevatedButton.icon(
-              onPressed: () async {
-                if (_emailController.text.isEmpty &&
-                    _messageController.text.contains('?')) {
-                  var res = await showDialog(
-                      context: context,
-                      builder: (_) {
-                        return AlertDialog(
-                          content: Text(AppLocalizations.of(context)!
-                              .feedbackMessageContainQ),
-                          actions: [
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(true);
-                                },
-                                child: Text(AppLocalizations.of(context)!
-                                    .feedbackSendAnyway)),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop(false);
-                                },
-                                child: Text(AppLocalizations.of(context)!
-                                    .feedbackAddEmail))
-                          ],
-                        );
-                      });
+            // Send button / butang hantar
 
-                  // Cancel next operation for user to enter their email
-                  if (!res) return;
-                }
-
-                if (_formKey.currentState!.validate()) {
-                  FocusScope.of(context).unfocus();
-                  var payload = {
-                    'User email': _emailController.text.trim(),
-                    'User message': _messageController.text.trim(),
-                    if (_logIsChecked) 'Device info': _deviceInfo
-                  };
-
-                  payload.addAll(_appMetadata!);
-                  if (_isSensitiveChecked) payload.addAll(_sensitiveData!);
-
-                  setState(() => _isSendLoading = true);
-                  try {
-                    await http.post(Uri.https(kApiBaseUrl, '/api/feedback'),
-                        headers: {
-                          HttpHeaders.contentTypeHeader:
-                              ContentType.json.toString()
-                        },
-                        body: jsonEncode(payload));
-                    setState(() => _isSendLoading = false);
-                    Fluttertoast.showToast(
-                            msg: AppLocalizations.of(context)!.feedbackThanks,
-                            backgroundColor: Colors.green,
-                            toastLength: Toast.LENGTH_LONG)
-                        .then((value) => Navigator.pop(context));
-                  } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text('Error: $e'),
-                      backgroundColor: Colors.red,
-                    ));
-                    setState(() => _isSendLoading = false);
-                    rethrow;
-                  }
-                }
-              },
-              icon: !_isSendLoading
-                  ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
-                  : const SizedBox.shrink(),
-              label: _isSendLoading
-                  ? const SizedBox(
-                      height: 15,
-                      width: 15,
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                      ))
-                  : Text(AppLocalizations.of(context)!.feedbackSend),
-            ),
             const Spacer(flex: 3),
             Row(
               children: [
