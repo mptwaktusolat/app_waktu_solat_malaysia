@@ -111,7 +111,7 @@ internal fun updateAppWidget(
     val prayers = parsed.getJSONArray("prayers")
 
     val calendar = Calendar.getInstance()
-    val todayIndex = calendar.get(Calendar.DAY_OF_MONTH);
+    val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1;
     val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
 
     val subuhTime = todayPrayer.getLong("fajr")
