@@ -22,23 +22,23 @@ class PrayTimeList extends StatefulWidget {
   State<PrayTimeList> createState() => _PrayTimeListState();
 }
 
-class _PrayTimeListState extends State<PrayTimeList>
-    with WidgetsBindingObserver {
+class _PrayTimeListState extends State<PrayTimeList> {
+  late final AppLifecycleListener _listener;
+
   @override
   void initState() {
     super.initState();
-    // https://stackoverflow.com/a/54198839/13617136
-    WidgetsBinding.instance.addObserver(this);
+
+    _listener = AppLifecycleListener(onStateChange: _onStateChanged);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    _listener.dispose();
     super.dispose();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
+  void _onStateChanged(AppLifecycleState state) {
     // When app resume from back to view, refresh UI so that
     // the highlighted time can be updated
     if (state == AppLifecycleState.resumed) setState(() {});
