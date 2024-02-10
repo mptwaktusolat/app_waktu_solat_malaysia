@@ -2,14 +2,14 @@
     android:id="@android:id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
-    android:theme="@style/Theme.Android.AppWidgetContainer">
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#008080"
+        android:background="?attr/colorPrimaryContainer"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -21,7 +21,7 @@
             android:maxLines="3"
             android:text="SGR01: Shah Alam, Petaling Jaya"
             android:textAlignment="gravity"
-            android:textColor="#ffffff"
+            android:textColor="?attr/colorOnPrimaryContainer"
             android:ellipsize="end"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -34,7 +34,7 @@
             android:maxLines="1"
             android:text="13/04/2023"
             android:textAlignment="gravity"
-            android:textColor="#ffffff"
+            android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />
 
     </LinearLayout>
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Subuh"
-            android:textColor="?android:attr/textColorHint"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <TextView
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Zohor"
-            android:textColor="?android:attr/textColorHint"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <TextView
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Asar"
-            android:textColor="?android:attr/textColorHint"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <TextView
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Maghrib"
-            android:textColor="?android:attr/textColorHint"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <TextView
@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Isyak"
-            android:textColor="?android:attr/textColorHint"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp" />
 
         <TextView

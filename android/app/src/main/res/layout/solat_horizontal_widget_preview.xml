@@ -1,18 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/background"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?android:attr/colorBackground"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
-    android:theme="@style/Theme.Android.AppWidgetContainer">
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#008080"
+        android:background="?attr/colorPrimaryContainer"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="14dp"
+        >
 
         <TextView
             android:id="@+id/widget_title"
@@ -24,7 +26,7 @@
             android:maxLines="1"
             android:text="SGR01: Taman Kinrara (Selangor)"
             android:textAlignment="gravity"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -38,7 +40,7 @@
             android:maxLines="1"
             android:text="18/05/2024"
             android:textAlignment="gravity"
-            android:textColor="#FFFFFF"
+            android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -63,8 +65,8 @@
                 android:gravity="center"
                 android:text="Subuh"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorHint"
-                android:textSize="16sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/subuh_time"
@@ -90,8 +92,8 @@
                 android:gravity="center"
                 android:text="Zohor"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorHint"
-                android:textSize="16sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/zuhur_time"
@@ -117,8 +119,8 @@
                 android:gravity="center"
                 android:text="Asar"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorHint"
-                android:textSize="16sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/asar_time"
@@ -144,8 +146,8 @@
                 android:gravity="center"
                 android:text="Maghrib"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorHint"
-                android:textSize="16sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/maghrib_time"
@@ -171,8 +173,8 @@
                 android:gravity="center"
                 android:text="Isyak"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorHint"
-                android:textSize="16sp" />
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/isyak_time"
