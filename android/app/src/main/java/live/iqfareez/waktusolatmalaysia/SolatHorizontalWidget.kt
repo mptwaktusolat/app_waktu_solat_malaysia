@@ -89,6 +89,7 @@ internal fun updateAppWidget(
 
     // If data not available, display outdated layout
     if (prayerData == null) {
+        Log.i(LOG_TAG, "updateAppWidget: Prayer data is not available");
         views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
         views.setViewVisibility(R.id.prayer_layout, View.GONE);
         appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -107,6 +108,11 @@ internal fun updateAppWidget(
     }
 
     Log.i(LOG_TAG, "updateAppWidget: Reading SP json ${parsed.get("zone")}, ${parsed.get("month")}-${parsed.get("year")} ")
+
+    // If the prayer layout is hidden previously, make sure we unhide it to show
+    // the data. https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/224
+    views.setViewVisibility(R.id.outdated_text, View.GONE);
+    views.setViewVisibility(R.id.prayer_layout, View.VISIBLE);
 
     val prayers = parsed.getJSONArray("prayers")
 
@@ -143,6 +149,8 @@ internal fun updateAppWidget(
 
     //  Set content
     views.setTextViewText(R.id.widget_date, formattedDate)
+
+    Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data");
 
     views.setTextViewText(
         R.id.widget_title, widgetTitle
