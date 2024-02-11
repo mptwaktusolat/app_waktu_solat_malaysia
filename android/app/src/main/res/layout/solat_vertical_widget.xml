@@ -20,7 +20,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="3"
-            android:text="SGRXX: Shah Alam, Petaling Jaya"
+            android:text=""
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp"
@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:maxLines="1"
-            android:text="13/12/2023"
+            android:text="Date"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="5.59 am"
+                android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="1.21 pm"
+                android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="4.10 pm"
+                android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="7.21 pm"
+                android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary" />
 
@@ -202,7 +202,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="end"
-                android:text="8.16 pm"
+                android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary" />
 
