@@ -35,7 +35,7 @@ class _ThemesPageState extends State<ThemesPage>
               padding: const EdgeInsets.all(18.0),
               child: Builder(
                 builder: (context) {
-                  bool isDarkMode =
+                  final bool isDarkMode =
                       Theme.of(context).brightness == Brightness.dark;
                   if (isDarkMode) {
                     _animationController!.forward();

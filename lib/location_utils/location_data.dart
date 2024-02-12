@@ -42,7 +42,7 @@ class LocationData {
     // set in the emulator settings. So, there might be an issue when testing the app
     // in the emulator. By changing LocationAccuracy.high may solve the problem.
     // I'll stay with medium because I think we don't need that high accuracy for this app.
-    Position position = await Geolocator.getCurrentPosition(
+    final Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.medium);
     _position = position;
     return position;

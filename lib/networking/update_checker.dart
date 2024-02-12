@@ -27,8 +27,8 @@ class AppUpdateChecker {
         GithubReleasesModel.fromJson(jsonDecode(response.body));
 
     final remoteVersion = remoteRelease.tagName!.split('+');
-    int remoteBuildNumber = int.parse(remoteVersion.last);
-    int appBuildNumber = int.parse(packageInfo.buildNumber);
+    final int remoteBuildNumber = int.parse(remoteVersion.last);
+    final int appBuildNumber = int.parse(packageInfo.buildNumber);
 
     return (appBuildNumber < remoteBuildNumber);
   }

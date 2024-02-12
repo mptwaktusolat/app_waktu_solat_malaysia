@@ -42,7 +42,7 @@ class _AppBodyState extends State<AppBody> {
 
   void _checkForUpdate() async {
     try {
-      var res = await AppUpdateChecker.updatesAvailable();
+      final res = await AppUpdateChecker.updatesAvailable();
       if (!res) return;
 
       Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
@@ -54,10 +54,10 @@ class _AppBodyState extends State<AppBody> {
 
   /// Show update dialog if app if recently updated
   void _showUpdateNotesAndNotFirstRun() async {
-    var version =
+    final version =
         await PackageInfo.fromPlatform().then((value) => value.version);
 
-    bool shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
+    final bool shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
         GetStorage().read<String>(version) == null;
 
     GetStorage()
@@ -75,7 +75,7 @@ class _AppBodyState extends State<AppBody> {
   /// but for users that have their system upgraded, the permission will be requested here.
   void _requestScheduleNotificationPermission() async {
     debugPrint('Requesting notification permission');
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     final androidNotif =
         flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
@@ -155,7 +155,7 @@ class ZoneWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
       builder: (_, value, __) {
-        String shortCode = value.currentLocationCode;
+        final String shortCode = value.currentLocationCode;
         return Container(
           margin: const EdgeInsets.all(5.0),
           padding: const EdgeInsets.all(18.0),

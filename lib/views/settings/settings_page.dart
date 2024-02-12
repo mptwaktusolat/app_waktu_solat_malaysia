@@ -266,7 +266,7 @@ class ClearCachedMptResponse extends StatelessWidget {
         title: const Text('Clear cached MPT response(s)'),
         onTap: () async {
           // find the cache file
-          var cachedKeys = GetStorage()
+          final cachedKeys = GetStorage()
               .getKeys()
               .where((element) =>
                   element.toString().startsWith('mpt-server-cache'))

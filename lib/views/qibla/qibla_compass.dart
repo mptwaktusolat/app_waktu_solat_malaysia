@@ -107,7 +107,7 @@ class QiblahCompassWidget extends StatelessWidget {
         }
 
         final qiblahDirection = snapshot.data!;
-        var angle = qiblahDirection.qiblah * (pi / 180) * -1;
+        final angle = qiblahDirection.qiblah * (pi / 180) * -1;
 
         return Stack(
           alignment: Alignment.center,

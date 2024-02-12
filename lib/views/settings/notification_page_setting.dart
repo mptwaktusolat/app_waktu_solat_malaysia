@@ -233,7 +233,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
 
   /// Handle showing/hiding of banner when the user change the notification type
   void _handleRestartBanner() async {
-    var currentNotifType =
+    final currentNotifType =
         MyNotificationType.values[GetStorage().read(kNotificationType)];
 
     // show if new type is different from the old one (stored in storage)

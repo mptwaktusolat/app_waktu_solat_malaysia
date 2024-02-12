@@ -23,8 +23,8 @@ class MptApiFetch {
     // Generate hashcode from api url
     // so that the cache key is unique for different location, month & year
     // and we no longer need a method to check the data is valid based on the paramaters above
-    var requestCacheKey = 'waktusolat-cache-${api.toString().hashCode}';
-    var cacheData = _readFromCache(requestCacheKey);
+    final requestCacheKey = 'waktusolat-cache-${api.toString().hashCode}';
+    final cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 
     final apiResponse = await _mptServerApi(api);
@@ -66,14 +66,14 @@ class MptApiFetch {
   static MptServerSolat? _readFromCache(String cacheKey) {
     if (GetStorage().read(cacheKey) == null) return null;
 
-    var cachedData = GetStorage().read(cacheKey);
+    final cachedData = GetStorage().read(cacheKey);
     if (cachedData == null) return null;
 
     DebugToast.show('Using cached response');
     FirebaseAnalytics.instance
         .logEvent(name: kEventFetch, parameters: {"type": "cached"});
 
-    var parsedModel = MptServerSolat.fromJson(cachedData);
+    final parsedModel = MptServerSolat.fromJson(cachedData);
     return parsedModel;
   }
 
@@ -82,8 +82,8 @@ class MptApiFetch {
       GetStorage().write(cacheKey, response);
 
   static Future<File> downloadJadualSolat(String zone) async {
-    var year = DateTime.now().year;
-    var month = DateTime.now().month;
+    final year = DateTime.now().year;
+    final month = DateTime.now().month;
 
     final options = {
       'year': year.toString(),

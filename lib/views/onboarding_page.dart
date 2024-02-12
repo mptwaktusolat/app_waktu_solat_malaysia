@@ -53,12 +53,12 @@ class _OnboardingPageState extends State<OnboardingPage>
   /// Check if platforms support AutoStart. (Excluusing Samsung devices)
   /// Related to https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/89
   Future<bool> checkAutoStart() async {
-    var autoStartAvailable = await isAutoStartAvailable;
+    final autoStartAvailable = await isAutoStartAvailable;
 
     if (autoStartAvailable ?? false) {
-      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      var deviceBrand = androidInfo.brand;
+      final DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      final deviceBrand = androidInfo.brand;
 
       // skip triggering autostart banner for samsung devices because
       // there is no option to toggle autostart settings whatsoever
@@ -70,7 +70,7 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   @override
   Widget build(BuildContext context) {
-    List<PageViewModel> pages = [
+    final List<PageViewModel> pages = [
       PageViewModel(
         title: AppLocalizations.of(context)!.onboardingChooseLang,
         image: Image.asset(
@@ -117,7 +117,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     )
                   : ElevatedButton(
                       onPressed: () async {
-                        var res =
+                        final res =
                             await LocationChooser.showLocationChooser(context);
                         if (res) {
                           setState(() => _isDoneSetLocation = true);
@@ -133,7 +133,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           padding: const EdgeInsets.all(50.0),
           child: Builder(
             builder: (_) {
-              bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+              final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
               if (isDarkMode) {
                 _animController!.forward();
               } else {
@@ -224,14 +224,14 @@ class _OnboardingPageState extends State<OnboardingPage>
           // when user reached the notification style chooser
           if (value == 3) {
             /// ask NotificationPermission
-            FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+            final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
                 FlutterLocalNotificationsPlugin();
-            var perm1 = await flutterLocalNotificationsPlugin
+            final perm1 = await flutterLocalNotificationsPlugin
                 .resolvePlatformSpecificImplementation<
                     AndroidFlutterLocalNotificationsPlugin>()
                 ?.requestNotificationsPermission();
             // requst permission to schedule exact alarms (API 33+)
-            var perm2 = await flutterLocalNotificationsPlugin
+            final perm2 = await flutterLocalNotificationsPlugin
                 .resolvePlatformSpecificImplementation<
                     AndroidFlutterLocalNotificationsPlugin>()
                 ?.requestExactAlarmsPermission();
@@ -243,10 +243,10 @@ class _OnboardingPageState extends State<OnboardingPage>
             child: Text(AppLocalizations.of(context)!.onboardingNext,
                 style: const TextStyle(fontWeight: FontWeight.w600)),
             onPressed: () async {
-              bool hasClick =
+              final bool hasClick =
                   Provider.of<AutostartWarningProvider>(context, listen: false)
                       .hasClick;
-              bool isAutostartAvailable = await checkAutoStart();
+              final bool isAutostartAvailable = await checkAutoStart();
 
               if (!isAutostartAvailable) {
                 _introScreenKey.currentState?.next();

@@ -13,7 +13,7 @@ import 'notifications_helper.dart';
 class MyNotifScheduler {
   /// Check if app can schedule notification on Android 13+ (S+)
   static Future<bool> _canScheduleNotification() async {
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     final androidNotif =
         flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
@@ -32,9 +32,9 @@ class MyNotifScheduler {
       return;
     }
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
-    var currentDateTime = DateTime.now();
+    final currentDateTime = DateTime.now();
 
-    String currentDaerah =
+    final String currentDaerah =
         LocationDatabase.daerah(GetStorage().read(kStoredLocationJakimCode));
 
     //if true, notification is scheduled by at most 7 days
@@ -42,7 +42,7 @@ class MyNotifScheduler {
       times = times.take(7).toList();
     }
 
-    MyNotificationType notifType =
+    final MyNotificationType notifType =
         MyNotificationType.values[GetStorage().read(kNotificationType)];
 
     switch (notifType) {

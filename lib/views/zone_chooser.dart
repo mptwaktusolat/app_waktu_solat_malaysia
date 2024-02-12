@@ -52,7 +52,7 @@ class LocationChooser {
   }
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
-    Position pos = await LocationData.getCurrentLocation();
+    final Position pos = await LocationData.getCurrentLocation();
     DebugToast.show(pos.toString());
     late List<dynamic> response;
     try {
@@ -64,8 +64,8 @@ class LocationChooser {
       Fluttertoast.showToast(msg: e.toString());
     }
 
-    var firstPlacemark = (response.first as List<Placemark>).first;
-    String zone = response.last as String;
+    final firstPlacemark = (response.first as List<Placemark>).first;
+    final String zone = response.last as String;
 
     // for [lokasi], the priority us `subLocality`. If empty, `locality`.
     // If empty, fallback to `name`.
@@ -82,14 +82,14 @@ class LocationChooser {
   }
 
   static Future<String> _getJakimCodeNearby(Position position) async {
-    var uri = Uri.https(kApiBaseUrl, 'api/zones/gps', {
+    final uri = Uri.https(kApiBaseUrl, 'api/zones/gps', {
       'lat': position.latitude.toString(),
       'long': position.longitude.toString(),
     });
-    var res = await http.get(uri);
+    final res = await http.get(uri);
 
     if (res.statusCode == 200) {
-      var result = MptServerZoneInfo.fromJson(jsonDecode(res.body));
+      final result = MptServerZoneInfo.fromJson(jsonDecode(res.body));
       return result.zone;
     } else if (res.statusCode == 404) {
       // location not in bound
@@ -100,7 +100,7 @@ class LocationChooser {
   }
 
   static Future<bool> showLocationChooser(BuildContext context) async {
-    bool? res = await showDialog(
+    final bool? res = await showDialog(
       context: context,
       builder: (context) {
         return Dialog(
@@ -119,7 +119,7 @@ class LocationChooser {
                   } else if (snapshot.hasData) {
                     return ZoneSuccessWidget(coordinateData: snapshot.data!);
                   } else {
-                    DebugToast.show('Probably error: ${snapshot.error}');
+                    DebugToast.show('Error: ${snapshot.error}');
                     return const ZoneErrorWidget();
                   }
                 }),
@@ -131,7 +131,7 @@ class LocationChooser {
   }
 
   static Future<void> openManualZoneSelector(BuildContext context) async {
-    JakimZones? newZone =
+    final JakimZones? newZone =
         await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
       return const ZoneSelectorDialog();
     }));

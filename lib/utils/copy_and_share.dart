@@ -18,14 +18,14 @@ class CopyAndShare {
   /// Build message given the target medium.
   static String buildMessage(BuildContext context,
       {ShareTarget shareTarget = ShareTarget.universal}) {
-    var l10n = AppLocalizations.of(context);
-    var date = DateFormat('EEEE, d MMMM yyyy', l10n!.localeName)
+    final l10n = AppLocalizations.of(context);
+    final date = DateFormat('EEEE, d MMMM yyyy', l10n!.localeName)
         .format(DateTime.now());
-    var currentLocation = GetStorage().read(constants.kStoredLocationJakimCode);
-    var daerah = LocationDatabase.daerah(currentLocation);
-    var negeri = LocationDatabase.negeri(currentLocation);
-    var times = PrayDataHandler.today();
-    var use12 = Provider.of<SettingProvider>(context, listen: false).use12hour;
+    final currentLocation = GetStorage().read(constants.kStoredLocationJakimCode);
+    final daerah = LocationDatabase.daerah(currentLocation);
+    final negeri = LocationDatabase.negeri(currentLocation);
+    final times = PrayDataHandler.today();
+    final use12 = Provider.of<SettingProvider>(context, listen: false).use12hour;
     switch (shareTarget) {
       case ShareTarget.universal:
         String message = l10n.shareTitle;

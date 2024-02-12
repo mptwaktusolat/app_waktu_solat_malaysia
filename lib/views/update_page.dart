@@ -26,8 +26,8 @@ class UpdatePage extends StatelessWidget {
   const UpdatePage({super.key});
 
   Future<_UpdateInfo> _fetchUpdateInfo() async {
-    var githubReleases = await AppUpdateChecker.getUpdateInfo();
-    var packageInfo = await PackageInfo.fromPlatform();
+    final githubReleases = await AppUpdateChecker.getUpdateInfo();
+    final packageInfo = await PackageInfo.fromPlatform();
 
     return _UpdateInfo(
       updateName: githubReleases.name!,

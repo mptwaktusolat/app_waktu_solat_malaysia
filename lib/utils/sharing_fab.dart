@@ -119,7 +119,7 @@ class ShareFAB extends StatelessWidget {
   }
 
   void _shareToWhatsApp(BuildContext context) {
-    var message =
+    final message =
         CopyAndShare.buildMessage(context, shareTarget: ShareTarget.whatsapp);
     LaunchUrl.normalLaunchUrl(
       url: 'whatsapp://send/?text=$message',

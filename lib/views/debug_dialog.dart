@@ -49,7 +49,7 @@ class DebugDialog extends StatelessWidget {
               title: const Text('Disable ads for 10 minutes'),
               subtitle: const Text('App restart may be required'),
               onTap: () {
-                var now = DateTime.now().millisecondsSinceEpoch;
+                final now = DateTime.now().millisecondsSinceEpoch;
                 GetStorage().write(kNoAdsStartTime, now);
                 Restart.restartApp();
               }),

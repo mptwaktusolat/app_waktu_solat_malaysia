@@ -174,7 +174,7 @@ class MyHomePage extends StatelessWidget {
 
 void initGetStorage() {
   // init default settings
-  GetStorage get = GetStorage();
+  final GetStorage get = GetStorage();
   get.writeIfNull(kHasShowQiblaWarning, false);
   get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
   get.writeIfNull(kShowNotifPrompt, true);
@@ -191,7 +191,7 @@ void initGetStorage() {
   get.writeIfNull(kSharingFormat, 0);
   get.writeIfNull(kFontSize, 16.0);
   // make default to default locale
-  var localeName = Platform.localeName.split('_').first;
+  final localeName = Platform.localeName.split('_').first;
   get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
   get.writeIfNull(kAppTheme, ThemeMode.light.name);
 }
@@ -259,8 +259,8 @@ Future<void> _configureLocalTimeZone() async {
 }
 
 Future _initializeJakimZoneData() async {
-  String data = await rootBundle.loadString('assets/json/zones.json');
-  List<dynamic> jsonDecoded = json.decode(data);
+  final String data = await rootBundle.loadString('assets/json/zones.json');
+  final List<dynamic> jsonDecoded = json.decode(data);
   LocationDatabase.allLocation =
       List.from(jsonDecoded.map((e) => JakimZones.fromJson(e)));
 }
@@ -269,7 +269,7 @@ Future _initializeJakimZoneData() async {
 void _showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  int appLaunchCount = GetStorage().read(kAppLaunchCount);
+  final int appLaunchCount = GetStorage().read(kAppLaunchCount);
 
   if (appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));

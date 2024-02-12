@@ -8,7 +8,7 @@ class LocationDatabase {
 
   static String negeri(String jakimCode) {
     jakimCode = jakimCode.toUpperCase();
-    var res = allLocation.where((element) => element.jakimCode == jakimCode);
+    final res = allLocation.where((element) => element.jakimCode == jakimCode);
 
     if (res.isEmpty) {
       throw 'Not found. Check location code if entered correctly.';
@@ -19,7 +19,7 @@ class LocationDatabase {
 
   static daerah(String jakimCode) {
     jakimCode = jakimCode.toUpperCase();
-    var res = allLocation.where((element) => element.jakimCode == jakimCode);
+    final res = allLocation.where((element) => element.jakimCode == jakimCode);
 
     if (res.isEmpty) {
       throw 'Not found. Check location code if entered correctly.';

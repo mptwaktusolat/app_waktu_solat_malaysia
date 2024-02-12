@@ -5,7 +5,7 @@ import 'package:waktusolatmalaysia/models/mpt_server_solat.dart';
 
 void main() {
   test('Parse API response', () async {
-    var jsonString =
+    const jsonString =
         '''
 {
     "zone": "SGR01",
@@ -36,19 +36,19 @@ void main() {
     ]
 }
 ''';
-    var json = jsonDecode(jsonString);
-    var solatData = MptServerSolat.fromJson(json);
+    final json = jsonDecode(jsonString);
+    final solatData = MptServerSolat.fromJson(json);
 
     expect(solatData.zone, 'SGR01');
     expect(solatData.year, 2023);
     expect(solatData.month, 'MAY');
     expect(solatData.prayers.length, 2);
 
-    var firstPrayer = solatData.prayers[0];
+    final firstPrayer = solatData.prayers[0];
     expect(firstPrayer.day, 1);
     expect(firstPrayer.fajr, DateTime(2023, 5, 1, 5, 54));
 
-    var secondPrayer = solatData.prayers[1];
+    final secondPrayer = solatData.prayers[1];
     expect(secondPrayer.day, 2);
     expect(secondPrayer.hijri, '1444-10-11');
   });

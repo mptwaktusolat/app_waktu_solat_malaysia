@@ -23,7 +23,7 @@ class MptServerSolat {
     year = json['year'];
     month = json['month'];
     // capitalize first letter only of month
-    var monthName = month[0].toUpperCase() + month.substring(1).toLowerCase();
+    final monthName = month[0].toUpperCase() + month.substring(1).toLowerCase();
     monthNumber = DateFormat('MMM').parse(monthName).month;
     // monthNumber = DateTime.parse('2021-$month-01').month;
     lastUpdated = json['last_updated'];

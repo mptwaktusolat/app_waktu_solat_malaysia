@@ -89,7 +89,6 @@ class _MyCard extends StatelessWidget {
   const _MyCard({
     required this.title,
     this.description,
-    this.extraDescription,
     this.actions,
   });
 

@@ -37,7 +37,7 @@ class HijriDate {
 
   /// Parse Hijri date from JAKIM API response
   HijriDate.parse(String hijriDate) {
-    var date = hijriDate.split('-');
+    final date = hijriDate.split('-');
 
     year = int.parse(date.first);
     month = int.parse(date[1]);

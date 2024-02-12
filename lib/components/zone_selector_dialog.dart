@@ -29,7 +29,7 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
     super.initState();
     negeriList = allZones.map((e) => e.negeri).toSet().toList();
 
-    var jakimCode = Provider.of<LocationProvider>(context, listen: false)
+    final jakimCode = Provider.of<LocationProvider>(context, listen: false)
         .currentLocationCode;
     selectedNegeri = LocationDatabase.negeri(jakimCode);
     selectedJakimZone =
@@ -38,7 +38,7 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
 
   @override
   Widget build(BuildContext context) {
-    bool isWideScreen = MediaQuery.of(context).size.width > 768;
+    final bool isWideScreen = MediaQuery.of(context).size.width > 768;
 
     // Use [WillPopScope] over [PopScope] for now. Using [PopScope] may introoduce unwanted behavior https://imgur.com/a/prW2NsL
     return WillPopScope(

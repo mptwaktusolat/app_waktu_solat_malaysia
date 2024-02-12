@@ -53,10 +53,10 @@ class _PrayTimeListState extends State<PrayTimeList> {
 
     return Consumer<SettingProvider>(
       builder: (_, setting, __) {
-        bool showOtherPrayerTime = setting.showOtherPrayerTime;
-        var today = PrayDataHandler.today();
+        final bool showOtherPrayerTime = setting.showOtherPrayerTime;
+        final today = PrayDataHandler.today();
 
-        var now = DateTime.now();
+        final now = DateTime.now();
 
         bool nowSubuh = false,
             nowZohor = false,

@@ -45,9 +45,9 @@ class _AdsWidgetState extends State<AdsWidget> {
         ),
         request: const AdRequest());
 
-    int? noAdsStartTime = GetStorage().read(kNoAdsStartTime);
+    final int? noAdsStartTime = GetStorage().read(kNoAdsStartTime);
     if (noAdsStartTime != null) {
-      int now = DateTime.now().millisecondsSinceEpoch;
+      final int now = DateTime.now().millisecondsSinceEpoch;
       if ((now - noAdsStartTime) < const Duration(minutes: 10).inMilliseconds) {
         return; // return immediately to prevent _ad.load() call
       }

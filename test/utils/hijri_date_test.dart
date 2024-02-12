@@ -3,8 +3,8 @@ import 'package:waktusolatmalaysia/utils/hijri_date.dart';
 
 void main() {
   test('From JAKIM API response, parse to HijriDate object', () async {
-    var apiResponse = '1444-02-24';
-    var res = HijriDate.parse(apiResponse);
+    const apiResponse = '1444-02-24';
+    final res = HijriDate.parse(apiResponse);
     expect(res.day, 24);
     expect(res.month, 2);
     expect(res.year, 1444);

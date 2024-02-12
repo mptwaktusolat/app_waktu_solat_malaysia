@@ -109,7 +109,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onPressed: () async {
                   if (_emailController.text.isEmpty &&
                       _messageController.text.contains('?')) {
-                    var res = await showDialog(
+                    final res = await showDialog(
                         context: context,
                         builder: (_) {
                           return AlertDialog(
@@ -138,7 +138,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
 
                   if (_formKey.currentState!.validate()) {
                     FocusScope.of(context).unfocus();
-                    var payload = {
+                    final payload = {
                       'User email': _emailController.text.trim(),
                       'User message': _messageController.text.trim(),
                       if (_logIsChecked) 'Device info': _deviceInfo
@@ -349,7 +349,7 @@ class DetailedInfoDialog extends StatelessWidget {
       itemCount: details.length + 1,
       itemBuilder: (_, index) {
         if (index < details.length) {
-          var key = details.keys.elementAt(index);
+          final key = details.keys.elementAt(index);
           return ListTile(
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
