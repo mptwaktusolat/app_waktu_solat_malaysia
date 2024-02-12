@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Waktu Solat</string>
     <string name="app_widget_description">Paparan 5 solat harian</string>
+    <string name="widget_outdated_message">Maklumat lama. Ketik di sini untuk membuka aplikasi dan menyegarkan dengan data yang baru.</string>
+    <string name="widget_date_label">Tarikh</string>
 </resources>

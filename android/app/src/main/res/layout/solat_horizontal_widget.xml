@@ -39,7 +39,7 @@
             android:ellipsize="end"
             android:gravity="end"
             android:maxLines="1"
-            android:text="Date"
+            android:text="@string/widget_date_label"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />
@@ -48,11 +48,12 @@
     <TextView
         android:id="@+id/outdated_text"
         android:layout_width="match_parent"
-        android:layout_height="130px"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:text="Data is outdated. Tap here to open app to refresh the new data"
+        android:text="@string/widget_outdated_message"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="13sp"
+        android:layout_weight="3"
         android:visibility="gone" />
 
 
