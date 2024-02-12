@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -34,19 +36,24 @@ class _AppBodyState extends State<AppBody> {
     super.initState();
 
     _checkForUpdate();
-    _showUpdateNotes();
+    _showUpdateNotesAndNotFirstRun();
     _requestScheduleNotificationPermission();
   }
 
   void _checkForUpdate() async {
-    var res = await AppUpdateChecker.updatesAvailable();
-    if (!res) return;
+    try {
+      var res = await AppUpdateChecker.updatesAvailable();
+      if (!res) return;
 
-    Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
+      Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
+    } on SocketException catch (e) {
+      debugPrint('Error checking for update: $e');
+      return;
+    }
   }
 
   /// Show update dialog if app if recently updated
-  void _showUpdateNotes() async {
+  void _showUpdateNotesAndNotFirstRun() async {
     var version =
         await PackageInfo.fromPlatform().then((value) => value.version);
 
