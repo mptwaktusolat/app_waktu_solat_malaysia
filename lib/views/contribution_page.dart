@@ -84,7 +84,6 @@ class ContributionPage extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 class _MyCard extends StatelessWidget {
   const _MyCard({
     required this.title,
@@ -94,7 +93,6 @@ class _MyCard extends StatelessWidget {
 
   final String title;
   final String? description;
-  final String? extraDescription;
   final List<Widget>? actions;
 
   @override
@@ -113,14 +111,6 @@ class _MyCard extends StatelessWidget {
               ),
               subtitle: Text('\n$description'),
             ),
-            if (extraDescription != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: Text(
-                  extraDescription!,
-                  textAlign: TextAlign.start,
-                ),
-              ),
             if (actions != null)
               Row(mainAxisAlignment: MainAxisAlignment.end, children: actions!)
           ],
