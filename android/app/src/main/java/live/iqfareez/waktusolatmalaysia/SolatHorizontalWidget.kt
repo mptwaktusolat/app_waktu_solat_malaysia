@@ -39,9 +39,15 @@ class SolatHorizontalWidget : AppWidgetProvider() {
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             Log.i(LOG_TAG, "onUpdate: SolatHorizontalWidget called")
-            updateAppWidget(context, appWidgetManager, appWidgetId, widgetData, R.layout.solat_horizontal_widget)
+            updateAppWidget(
+                context,
+                appWidgetManager,
+                appWidgetId,
+                widgetData,
+                R.layout.solat_horizontal_widget
+            )
         }
-
+        Log.i(LOG_TAG, "onUpdate: Scheduling for next widget update..")
         scheduleNextUpdate(context);
     }
 
@@ -100,14 +106,22 @@ internal fun updateAppWidget(
 
     // if the data is outdated (the month & year doesn't match), show outdated layout
     if (!isDateValid("${parsed.get("month")}-${parsed.get("year")}")) {
-        Log.i(LOG_TAG, "updateAppWidget: Data ${parsed.get("month")}-${parsed.get("year")} is invalid");
+        Log.i(
+            LOG_TAG,
+            "updateAppWidget: Data ${parsed.get("month")}-${parsed.get("year")} is invalid"
+        );
         views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
         views.setViewVisibility(R.id.prayer_layout, View.GONE);
         appWidgetManager.updateAppWidget(appWidgetId, views)
         return;
     }
 
-    Log.i(LOG_TAG, "updateAppWidget: Reading SP json ${parsed.get("zone")}, ${parsed.get("month")}-${parsed.get("year")} ")
+    Log.i(
+        LOG_TAG,
+        "updateAppWidget: Reading SP json ${parsed.get("zone")}, ${parsed.get("month")}-${
+            parsed.get("year")
+        } "
+    )
 
     // If the prayer layout is hidden previously, make sure we unhide it to show
     // the data. https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/224
@@ -195,27 +209,31 @@ private fun scheduleNextUpdate(context: Context) {
     midnight.set(Calendar.MILLISECOND, 0)
     midnight.add(Calendar.DAY_OF_YEAR, 1)
 
-    // For API 19 and later, set may fire the intent a little later to save battery,
-    // setExact ensures the intent goes off exactly at midnight.
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-        alarmManager[AlarmManager.RTC_WAKEUP, midnight.getTimeInMillis()] = pendingIntent
-    } else {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (alarmManager.canScheduleExactAlarms()) {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    midnight.timeInMillis,
-                    pendingIntent
-                )
-            } else {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    midnight.timeInMillis,
-                    pendingIntent
-                )
-            }
+    // On device running Android 14 without granting SCHEDULE_EXACT_ALARM permission may crashes
+    // if call the [scheduleNextUpdate] function below. See issue: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/228
+    // So, if checks below to prevent to crashes from happen by not calling the function if above two conditions
+    // were met.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (!alarmManager.canScheduleExactAlarms()) {
+            // if permission was not granted, no worries, use normal set() method. But, it doesn't
+            // guarantee the timing to be run exact as the time we assigned to it
+            alarmManager.set(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
+            Log.d(LOG_TAG, "scheduleNextUpdate: Didn't have permission-Scheduled NOT exact alarm")
+            alarmManager.setExact(
+                AlarmManager.RTC,
+                midnight.timeInMillis,
+                pendingIntent
+            );
+            return;
         }
     }
+
+    // When version low than Android S, no need for permission hihi, just use setExact
+    // or when canScheduleExactAlarms() is true on Android S+
+    // The [setExact] method was added in API Level 19. Since our minSdkVersion is not lower than 19,
+    // we are safe to call this function without if checks
+    alarmManager.setExact(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
+    Log.d(LOG_TAG, "scheduleNextUpdate: Scheduled exact alarm")
 }
 
 // Function to check the validity of the given month and year

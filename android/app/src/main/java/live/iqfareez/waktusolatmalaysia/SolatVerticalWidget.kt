@@ -73,25 +73,29 @@ private fun scheduleNextUpdate(context: Context) {
     midnight.set(Calendar.MILLISECOND, 0)
     midnight.add(Calendar.DAY_OF_YEAR, 1)
 
-    // For API 19 and later, set may fire the intent a little later to save battery,
-    // setExact ensures the intent goes off exactly at midnight.
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-        alarmManager[AlarmManager.RTC_WAKEUP, midnight.getTimeInMillis()] = pendingIntent
-    } else {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (alarmManager.canScheduleExactAlarms()) {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    midnight.timeInMillis,
-                    pendingIntent
-                )
-            } else {
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    midnight.timeInMillis,
-                    pendingIntent
-                )
-            }
+    // On device running Android 14 without granting SCHEDULE_EXACT_ALARM permission may crashes
+    // if call the [scheduleNextUpdate] function below. See issue: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/228
+    // So, if checks below to prevent to crashes from happen by not calling the function if above two conditions
+    // were met.
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        if (!alarmManager.canScheduleExactAlarms()) {
+            // if permission was not granted, no worries, use normal set() method. But, it doesn't
+            // guarantee the timing to be run exact as the time we assigned to it
+            alarmManager.set(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
+            Log.d(LOG_TAG, "scheduleNextUpdate: Didn't have permission-Scheduled NOT exact alarm")
+            alarmManager.setExact(
+                AlarmManager.RTC,
+                midnight.timeInMillis,
+                pendingIntent
+            );
+        return;
         }
     }
+
+    // When version low than Android S, no need for permission hihi, just use setExact
+    // or when canScheduleExactAlarms() is true on Android S+
+    // The [setExact] method was added in API Level 19. Since our minSdkVersion is not lower than 19,
+    // we are safe to call this function without if checks
+    alarmManager.setExact(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
+    Log.d(LOG_TAG, "scheduleNextUpdate: Scheduled exact alarm")
 }
