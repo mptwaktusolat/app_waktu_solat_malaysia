@@ -14,8 +14,7 @@ class NotificationClass {
 }
 
 Future<void> initNotifications() async {
-  const initializationSettingsAndroid =
-      AndroidInitializationSettings('icon');
+  const initializationSettingsAndroid = AndroidInitializationSettings('icon');
 
   const initializationSettings =
       InitializationSettings(android: initializationSettingsAndroid);
@@ -44,26 +43,27 @@ Future<void> scheduleSinglePrayerNotification({
     when: scheduledTime.millisecondsSinceEpoch,
     color: const Color(0xFF19e3cb),
   );
-  final platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+  final platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.alarmClock,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation
               .absoluteTime); // This literally schedules the notification
 }
 
 /// Single prayer azan notification
-Future<void> scheduleSingleAzanNotification(
-    //for main prayer functionality
-    {required String name,
-    required int id,
-    required String title,
-    required String body,
-    required TZDateTime scheduledTime,
-    required String customSound,
-    String? summary}) async {
+Future<void> scheduleSingleAzanNotification({
+  required String name,
+  required int id,
+  required String title,
+  required String body,
+  required TZDateTime scheduledTime,
+  required String customSound,
+  String? summary,
+}) async {
   final BigTextStyleInformation styleInformation =
       BigTextStyleInformation(body, summaryText: summary);
   final androidSpecifics = AndroidNotificationDetails(
@@ -83,11 +83,12 @@ Future<void> scheduleSingleAzanNotification(
     sound: RawResourceAndroidNotificationSound(customSound),
     color: const Color(0xFF19e3cb),
   );
-  final platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+  final platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.alarmClock,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation
               .absoluteTime); // This literally schedules the notification
@@ -100,7 +101,8 @@ Future<void> scheduleAlertNotification(
     required String body,
     String? payload,
     required TZDateTime scheduledTime}) async {
-  final BigTextStyleInformation styleInformation = BigTextStyleInformation(body);
+  final BigTextStyleInformation styleInformation =
+      BigTextStyleInformation(body);
   final androidSpecifics = AndroidNotificationDetails(
     'Alert id',
     'Alert notification',
@@ -112,7 +114,8 @@ Future<void> scheduleAlertNotification(
     color: const Color(0xFFfcbd00),
   );
 
-  final platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+  final platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics);
   await FlutterLocalNotificationsPlugin().zonedSchedule(
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -152,7 +155,8 @@ Future<void> fireDefaultNotification({
     category: AndroidNotificationCategory.alarm,
     color: Color.fromARGB(255, 251, 53, 172),
   );
-  const platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+  const platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().show(
     344, // just random id
@@ -181,7 +185,8 @@ Future<void> fireAzanNotification({
             : 'azan_kurdhi2010'),
     color: const Color.fromARGB(255, 251, 53, 172),
   );
-  final platformChannelSpecifics = NotificationDetails(android: androidSpecifics);
+  final platformChannelSpecifics =
+      NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().show(
       MyNotificationType.shortAzan.index * 2,
