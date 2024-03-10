@@ -83,11 +83,6 @@ private fun scheduleNextUpdate(context: Context) {
             // guarantee the timing to be run exact as the time we assigned to it
             alarmManager.set(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
             Log.d(LOG_TAG, "scheduleNextUpdate: Didn't have permission-Scheduled NOT exact alarm")
-            alarmManager.setExact(
-                AlarmManager.RTC,
-                midnight.timeInMillis,
-                pendingIntent
-            );
         return;
         }
     }
