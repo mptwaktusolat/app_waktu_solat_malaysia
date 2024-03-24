@@ -136,7 +136,7 @@
   "onboardingLocationSet": "Tetapkan lokasi",
   "onboardingThemeFav": "Tetapkan tema kegemaran anda",
   "onboardingNotifOption": "Pilih jenis pemberitahuan",
-  "onboardingNotifDefault": "Bunyi pemberitahuan lalai",
+  "onboardingNotifDefault": "Pemberitahuan lalai",
   "onboardingNotifAzan": "Azan (penuh)",
   "onboardingNotifShortAzan": "Azan (pendek)",
   "onboardingNotifAutostart": "**Autostart** perlu dihidupkan untuk apl menghantar pemberitahuan. [Ketahui lebih lanjut..]({link})",

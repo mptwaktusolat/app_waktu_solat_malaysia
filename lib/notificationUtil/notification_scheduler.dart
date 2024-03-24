@@ -11,7 +11,7 @@ import '../views/settings/notification_page_setting.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
-  /// Check if app can schedule notification on Android 13+ (S+)
+  /// Check if app can schedule notification on Android 13+ (S+). Always return true on Android 12 and below.
   static Future<bool> _canScheduleNotification() async {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
