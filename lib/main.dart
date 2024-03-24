@@ -23,7 +23,6 @@ import 'firebase_options.dart';
 import 'location_utils/location_database.dart';
 import 'models/jakim_zones.dart';
 import 'notificationUtil/notifications_helper.dart';
-import 'providers/autostart_warning_provider.dart';
 import 'providers/locale_provider.dart';
 import 'providers/location_provider.dart';
 import 'providers/setting_provider.dart';
@@ -103,7 +102,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => TimetableProvider()),
-        ChangeNotifierProvider(create: (_) => AutostartWarningProvider()),
       ],
       child: Consumer2<ThemeProvider, LocaleProvider>(
         builder: (_, themeValue, localeValue, __) {

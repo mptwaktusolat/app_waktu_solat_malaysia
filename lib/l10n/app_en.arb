@@ -225,7 +225,7 @@
   "onboardingLocationSet": "Set location",
   "onboardingThemeFav": "Set your favourite theme",
   "onboardingNotifOption": "Select notification preferences",
-  "onboardingNotifDefault": "Default notification sound",
+  "onboardingNotifDefault": "Default notification",
   "onboardingNotifAzan": "Azan (full)",
   "onboardingNotifShortAzan": "Azan (short)",
   "onboardingNotifAutostart": "**Autostart** need to be enabled for the app to send notifications. [Learn more...]({link})",
