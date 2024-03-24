@@ -45,6 +45,28 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
     return res ?? false;
   }
 
+  /// Request permission kalau belum dapat permission. Kalau dah dapat, just
+  /// open the relevant setting page
+  void _requestOrOpenAlarmPermission() async {
+    // check dulu permissionnya
+    final dahAdaPermissionScheduleAlarm = await _canScheduleNotification();
+
+    if (dahAdaPermissionScheduleAlarm) {
+      AppSettings.openAppSettings(type: AppSettingsType.alarm);
+      return;
+    }
+
+    // kalau belum, request permission
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    final scheduleExactAlarmPermission = await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestExactAlarmsPermission();
+
+    debugPrint('scheduleExactAlarmPermission: $scheduleExactAlarmPermission');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,38 +206,29 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const SizedBox.shrink();
                 if (snapshot.data ?? false) {
-                  return const Card(
+                  return Card(
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
-                      title: Text('Notification scheduling permission'),
-                      subtitle: Text(
+                      onTap: _requestOrOpenAlarmPermission,
+                      title: const Text('Notification scheduling permission'),
+                      subtitle: const Text(
                           'Permission granted. The app can send azan notification on prayer times'),
                     ),
                   );
                 } else {
+                  // If not granted, highlight this option in yellow to draw user attention
                   return Card(
                     color: Theme.of(context).brightness == Brightness.light
                         ? Colors.yellow[100]
                         : Colors.yellow.withAlpha(60),
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
-                        title: const Text('Notification scheduling permission'),
-                        isThreeLine: true,
-                        subtitle: const Text(
-                            'Permission not granted. The app cannot send the azan notification. Tap here to grant permission'),
-                        onTap: () async {
-                          final flutterLocalNotificationsPlugin =
-                              FlutterLocalNotificationsPlugin();
-
-                          final scheduleExactAlarmPermission =
-                              await flutterLocalNotificationsPlugin
-                                  .resolvePlatformSpecificImplementation<
-                                      AndroidFlutterLocalNotificationsPlugin>()
-                                  ?.requestExactAlarmsPermission();
-
-                          debugPrint(
-                              'scheduleExactAlarmPermission: $scheduleExactAlarmPermission');
-                        }),
+                      title: const Text('Notification scheduling permission'),
+                      isThreeLine: true,
+                      subtitle: const Text(
+                          'Permission not granted. The app cannot send the azan notification. Tap here to grant permission'),
+                      onTap: _requestOrOpenAlarmPermission,
+                    ),
                   );
                 }
               }),
