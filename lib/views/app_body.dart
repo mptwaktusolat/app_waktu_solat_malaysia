@@ -4,14 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../features/home/views/components/exact_alarm_permission_off_sheet.dart';
+import '../features/home/views/components/notification_permission_off_sheet.dart';
 import '../location_utils/location_database.dart';
 import '../providers/location_provider.dart';
 import '../providers/updater_provider.dart';
@@ -37,7 +41,7 @@ class _AppBodyState extends State<AppBody> {
 
     _checkForUpdate();
     _showUpdateNotesAndNotFirstRun();
-    _requestScheduleNotificationPermission();
+    _promptScheduleNotificationPermission();
   }
 
   void _checkForUpdate() async {
@@ -73,19 +77,63 @@ class _AppBodyState extends State<AppBody> {
 
   /// Request schedule notification permission. The permission already requested from the onboarding page,
   /// but for users that have their system upgraded, the permission will be requested here.
-  void _requestScheduleNotificationPermission() async {
-    debugPrint('Requesting notification permission');
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-    final androidNotif =
-        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
-    final permissionGranted =
-        await androidNotif?.canScheduleExactNotifications() ?? false;
+  void _promptScheduleNotificationPermission() async {
+    // First, check is notification is enabled at all
+    final isNotificationGranted = await Permission.notification.status;
+    debugPrint('Notification permission status: $isNotificationGranted');
 
-    if (!permissionGranted) {
-      androidNotif?.requestNotificationsPermission();
+    if (!isNotificationGranted.isGranted) {
+      final PermissionStatus? status = await showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return NotificationPermissionOffSheet(
+            onTurnOnNotification: () async {
+              final res = await Permission.notification.request();
+              Navigator.pop(context, res);
+            },
+            onCancelModal: () {
+              Navigator.pop(context);
+            },
+          );
+        },
+      );
+
+      if (status != PermissionStatus.granted) {
+        // TODO: Show toast to tell this setting can be found in the settings
+        return; // Will not trigger the next checking for exact alarm permission
+      }
     }
+
+    final isScheduleExactAlarmGranted =
+        await Permission.scheduleExactAlarm.status;
+    debugPrint(
+        'Schedule exact alarm permission status: $isScheduleExactAlarmGranted');
+
+    if (isScheduleExactAlarmGranted.isGranted) return;
+
+    final PermissionStatus? exactAlarmStatus = await showModalBottomSheet(
+      context: context,
+      builder: (_) {
+        return ExactAlarmPermissionOffSheet(
+          onGrantPermission: () async {
+            final res = await Permission.scheduleExactAlarm.request();
+            Navigator.pop(context, res);
+          },
+          onCancelModal: () {
+            Navigator.pop(context);
+            // TODO: Show toast to tell this setting can be found in the settings
+          },
+        );
+      },
+    );
+
+    if (exactAlarmStatus != PermissionStatus.granted) {
+      // TODO: Show another modal says to open settings later
+      return;
+    }
+
+    Fluttertoast.showToast(
+        msg: 'Thank you for granting the permissions needed');
   }
 
   @override
