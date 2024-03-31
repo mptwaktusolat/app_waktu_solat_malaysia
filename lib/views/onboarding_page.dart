@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -66,51 +67,47 @@ class _OnboardingPageState extends State<OnboardingPage>
   }
 
   /// Request necessary permissions for notification
-  void _requestNecessaryNotificationPermissions() async {
-    // first, check if Autostart is available on this device
+  Future<void> _requestNecessaryNotificationPermissions() async {
+    // Check notification status. Prior Android 13, the notification is grancted by default
+    final isNotificationGranted = await Permission.notification.status;
+
+    // check if Autostart is available on this device
     final bool isAutostartAvailable = await checkAutoStart();
 
-    // second, check if schedule exact alarm permission is granted
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-    final androidNotif =
-        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
-
-    // underlying implementation: https://github.com/MaikuB/flutter_local_notifications/blob/ca71c96ba2a245175b44471e2e41e4958d480876/flutter_local_notifications/android/src/main/java/com/dexterous/flutterlocalnotifications/FlutterLocalNotificationsPlugin.java#L2119
-    final showScheduleExactNotificationDialog =
-        !(await androidNotif?.canScheduleExactNotifications() ?? false);
+    // check if schedule exact alarm permission is granted
+    final isScheduleAlarmGranted = await Permission.scheduleExactAlarm.status;
 
     int permissionCount = 1; // to number the permission dialog
+    if (isNotificationGranted != PermissionStatus.granted) {
+      await showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) {
+            return AlertDialog(
+              title: const Text('Permission Required'),
+              content: Text(
+                  '$permissionCount) Please grant the notification permission to allow this app to show notifications'),
+              actions: [
+                TextButton(
+                    onPressed: () async {
+                      final FlutterLocalNotificationsPlugin
+                          flutterLocalNotificationsPlugin =
+                          FlutterLocalNotificationsPlugin();
+                      final perm1 = await flutterLocalNotificationsPlugin
+                          .resolvePlatformSpecificImplementation<
+                              AndroidFlutterLocalNotificationsPlugin>()
+                          ?.requestNotificationsPermission();
+                      debugPrint('Notification permission: $perm1');
 
-    await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (_) {
-          return AlertDialog(
-            title: const Text('Permission Required'),
-            content: Text(
-                '$permissionCount) Please grant the notification permission to allow this app to show notifications'),
-            actions: [
-              TextButton(
-                  onPressed: () async {
-                    final FlutterLocalNotificationsPlugin
-                        flutterLocalNotificationsPlugin =
-                        FlutterLocalNotificationsPlugin();
-                    final perm1 = await flutterLocalNotificationsPlugin
-                        .resolvePlatformSpecificImplementation<
-                            AndroidFlutterLocalNotificationsPlugin>()
-                        ?.requestNotificationsPermission();
-                    debugPrint('Notification permission: $perm1');
-
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Grant'))
-            ],
-          );
-        });
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Grant'))
+              ],
+            );
+          });
+    }
     permissionCount++;
-    if (showScheduleExactNotificationDialog) {
+    if (isScheduleAlarmGranted != PermissionStatus.granted) {
       await showDialog(
         context: context,
         barrierDismissible: false,
@@ -325,8 +322,7 @@ class _OnboardingPageState extends State<OnboardingPage>
             /// Request necessary permissions for notification when transitioning to page 3 to final page
             if (!_isDoneSetPermission &&
                 _introScreenKey.currentState!.controller.page!.toInt() == 3) {
-              _requestNecessaryNotificationPermissions();
-              return;
+              await _requestNecessaryNotificationPermissions();
             }
             _introScreenKey.currentState?.next();
           },
