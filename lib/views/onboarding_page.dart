@@ -9,6 +9,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../features/onboarding/views/components/autostart_setting_dialog.dart';
+import '../features/onboarding/views/components/notification_exact_alarm_permission_dialog.dart';
+import '../features/onboarding/views/components/notification_permission_dialog.dart';
 import '../main.dart';
 import '../providers/locale_provider.dart';
 import 'settings/notification_page_setting.dart';
@@ -80,31 +83,26 @@ class _OnboardingPageState extends State<OnboardingPage>
     int permissionCount = 1; // to number the permission dialog
     if (isNotificationGranted != PermissionStatus.granted) {
       await showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (_) {
-            return AlertDialog(
-              title: const Text('Permission Required'),
-              content: Text(
-                  '$permissionCount) Please grant the notification permission to allow this app to show notifications'),
-              actions: [
-                TextButton(
-                    onPressed: () async {
-                      final FlutterLocalNotificationsPlugin
-                          flutterLocalNotificationsPlugin =
-                          FlutterLocalNotificationsPlugin();
-                      final perm1 = await flutterLocalNotificationsPlugin
-                          .resolvePlatformSpecificImplementation<
-                              AndroidFlutterLocalNotificationsPlugin>()
-                          ?.requestNotificationsPermission();
-                      debugPrint('Notification permission: $perm1');
+        context: context,
+        barrierDismissible: false,
+        builder: (_) {
+          return NotificationPermissionDialog(
+            leadingCount: permissionCount.toString(),
+            onGrantPermission: () async {
+              final FlutterLocalNotificationsPlugin
+                  flutterLocalNotificationsPlugin =
+                  FlutterLocalNotificationsPlugin();
+              final perm1 = await flutterLocalNotificationsPlugin
+                  .resolvePlatformSpecificImplementation<
+                      AndroidFlutterLocalNotificationsPlugin>()
+                  ?.requestNotificationsPermission();
+              debugPrint('Notification permission: $perm1');
 
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Grant'))
-              ],
-            );
-          });
+              Navigator.pop(context);
+            },
+          );
+        },
+      );
     }
     permissionCount++;
     if (isScheduleAlarmGranted != PermissionStatus.granted) {
@@ -112,35 +110,25 @@ class _OnboardingPageState extends State<OnboardingPage>
         context: context,
         barrierDismissible: false,
         builder: (_) {
-          return AlertDialog(
-            title: const Text('Permission Required'),
-            content: Text(
-                '$permissionCount) Please grant the app permission to schedule notifications at exact time'),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                child: const Text('Skip'),
-              ),
-              TextButton(
-                  onPressed: () async {
-                    final FlutterLocalNotificationsPlugin
-                        flutterLocalNotificationsPlugin =
-                        FlutterLocalNotificationsPlugin();
-                    // requst permission to schedule exact alarms (API 33+)
-                    final perm2 = await flutterLocalNotificationsPlugin
-                        .resolvePlatformSpecificImplementation<
-                            AndroidFlutterLocalNotificationsPlugin>()
-                        ?.requestExactAlarmsPermission();
+          return NotificationExactAlarmPermissionDialog(
+            leadingCount: permissionCount.toString(),
+            onSkip: () {
+              Navigator.of(context).pop();
+            },
+            onGrantPermission: () async {
+              final FlutterLocalNotificationsPlugin
+                  flutterLocalNotificationsPlugin =
+                  FlutterLocalNotificationsPlugin();
+              // requst permission to schedule exact alarms (API 33+)
+              final perm2 = await flutterLocalNotificationsPlugin
+                  .resolvePlatformSpecificImplementation<
+                      AndroidFlutterLocalNotificationsPlugin>()
+                  ?.requestExactAlarmsPermission();
 
-                    debugPrint(
-                        'Schedule Exact Notification permission: $perm2');
+              debugPrint('Schedule Exact Notification permission: $perm2');
 
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Grant'))
-            ],
+              Navigator.pop(context);
+            },
           );
         },
       );
@@ -151,26 +139,14 @@ class _OnboardingPageState extends State<OnboardingPage>
         context: context,
         barrierDismissible: false,
         builder: (_) {
-          return AlertDialog(
-            title: const Text('Permission Required'),
-            content: Text(
-                '$permissionCount) Please allow app to Autostart to keep receive notifications even if the device restarts'),
-            actions: [
-              TextButton(
-                onPressed: () async {
-                  Navigator.pop(context);
-                },
-                child: const Text('Skip'),
-              ),
-              TextButton(
-                onPressed: () async {
-                  await getAutoStartPermission();
+          return AutostartSettingDialog(
+            leadingCount: permissionCount.toString(),
+            onSkip: () => Navigator.pop(context),
+            onGrantPermission: () async {
+              await getAutoStartPermission();
 
-                  Navigator.pop(context);
-                },
-                child: const Text('Grant'),
-              )
-            ],
+              Navigator.pop(context);
+            },
           );
         },
       );
