@@ -176,9 +176,13 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                   Icon(Icons.launch_rounded),
                 ],
               ),
-              onTap: () => AppSettings.openAppSettings(
-                type: AppSettingsType.notification,
-              ),
+              onTap: () {
+                // Kalau user tekan part ni, maybe dia berminat nak turn on notification, so
+                // disable keep off sheet notification [tengok dalam app_body.dart]
+                GetStorage().write(kNotificationSheetKeepOff, false);
+
+                AppSettings.openAppSettings(type: AppSettingsType.notification);
+              },
             ),
           ),
           Padding(

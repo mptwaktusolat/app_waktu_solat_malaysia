@@ -81,6 +81,9 @@ class _AppBodyState extends State<AppBody> {
     final isNotificationGranted = await Permission.notification.status;
     debugPrint('Notification permission status: $isNotificationGranted');
 
+    // kalau user dah kata keep off, maka keep off je, takyah tnjuk any of this sheets
+    if (GetStorage().read(kNotificationSheetKeepOff)) return;
+
     if (!isNotificationGranted.isGranted) {
       final PermissionStatus? status = await showModalBottomSheet(
         context: context,
@@ -91,6 +94,8 @@ class _AppBodyState extends State<AppBody> {
               Navigator.pop(context, res);
             },
             onCancelModal: () {
+              // mark that the user doesn't want to be notified
+              GetStorage().write(kNotificationSheetKeepOff, true);
               Navigator.pop(context);
             },
           );

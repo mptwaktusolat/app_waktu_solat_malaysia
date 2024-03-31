@@ -192,6 +192,7 @@ void initGetStorage() {
   final localeName = Platform.localeName.split('_').first;
   get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
   get.writeIfNull(kAppTheme, ThemeMode.light.name);
+  get.writeIfNull(kNotificationSheetKeepOff, false);
 }
 
 /// Launcher icon shortcuts
