@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AutostartSettingDialog extends StatelessWidget {
   const AutostartSettingDialog({
@@ -14,18 +15,18 @@ class AutostartSettingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      title: const Text('Permission Required'),
-      content: Text(
-          '$leadingCount) Please allow app to Autostart to keep receive notifications even if the device restarts'),
+      title: Text(l10n.permissionDialogTitle),
+      content: Text('$leadingCount) ${l10n.autostartDialogPermissionContent}'),
       actions: [
         TextButton(
           onPressed: onSkip,
-          child: const Text('Skip'),
+          child: Text(l10n.permissionDialogSkip),
         ),
         TextButton(
           onPressed: onGrantPermission,
-          child: const Text('Grant'),
+          child: Text(l10n.permissionDialogGrant),
         )
       ],
     );

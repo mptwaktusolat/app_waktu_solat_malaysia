@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotificationPermissionDialog extends StatelessWidget {
   const NotificationPermissionDialog(
@@ -9,14 +10,14 @@ class NotificationPermissionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      title: const Text('Permission Required'),
-      content: Text(
-          '$leadingCount) Please grant the notification permission to allow this app to show notifications'),
+      title: Text(l10n.permissionDialogTitle),
+      content: Text('$leadingCount) ${l10n.notifDialogPermissionContent}'),
       actions: [
         TextButton(
           onPressed: onGrantPermission,
-          child: const Text('Grant'),
+          child: Text(l10n.permissionDialogGrant),
         )
       ],
     );

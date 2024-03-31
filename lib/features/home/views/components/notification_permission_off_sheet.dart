@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotificationPermissionOffSheet extends StatelessWidget {
   const NotificationPermissionOffSheet({
@@ -15,6 +16,7 @@ class NotificationPermissionOffSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -26,17 +28,17 @@ class NotificationPermissionOffSheet extends StatelessWidget {
             child: Icon(Icons.notifications_off_outlined, size: 80),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Notification/Azan is turned off',
-            style: TextStyle(
+          Text(
+            l10n.notifSheetNotificationTitle,
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          const Text(
-            'We may require some permissions to be able to play the notification/azan',
+          Text(
+            l10n.notifSheetNotificationDescription,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
@@ -46,11 +48,11 @@ class NotificationPermissionOffSheet extends StatelessWidget {
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
             ),
             onPressed: onTurnOnNotification,
-            child: const Text('Turn On Notification'),
+            child: Text(l10n.notifSheetNotificationPrimaryButton),
           ),
           TextButton(
             onPressed: onCancelModal,
-            child: const Text('Keep it off for now'),
+            child: Text(l10n.notifSheetNotificationCancel),
           ),
         ],
       ),

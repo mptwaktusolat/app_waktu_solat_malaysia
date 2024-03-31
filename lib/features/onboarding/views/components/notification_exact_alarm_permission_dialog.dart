@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NotificationExactAlarmPermissionDialog extends StatelessWidget {
   const NotificationExactAlarmPermissionDialog({
@@ -14,16 +15,20 @@ class NotificationExactAlarmPermissionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return AlertDialog(
-      title: const Text('Permission Required'),
-      content: Text(
-          '$leadingCount) Please grant the app permission to schedule notifications at exact time'),
+      title: Text(l10n.permissionDialogTitle),
+      content:
+          Text('$leadingCount) ${l10n.notifExactAlarmDialogPermissionContent}'),
       actions: [
         TextButton(
           onPressed: onSkip,
-          child: const Text('Skip'),
+          child: Text(l10n.permissionDialogSkip),
         ),
-        TextButton(onPressed: onGrantPermission, child: const Text('Grant'))
+        TextButton(
+          onPressed: onGrantPermission,
+          child: Text(l10n.permissionDialogGrant),
+        )
       ],
     );
   }

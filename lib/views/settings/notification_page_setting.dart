@@ -210,9 +210,10 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
                       onTap: _requestOrOpenAlarmPermission,
-                      title: const Text('Notification scheduling permission'),
-                      subtitle: const Text(
-                          'Permission granted. The app can send azan notification on prayer times'),
+                      title: Text(AppLocalizations.of(context)!
+                          .notifSettingsExactAlarmPermissionTitle),
+                      subtitle: Text(AppLocalizations.of(context)!
+                          .notifSettingsExactAlarmPermissionGrantedSubtitle),
                     ),
                   );
                 } else {
@@ -223,10 +224,11 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                         : Colors.yellow.withAlpha(60),
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
-                      title: const Text('Notification scheduling permission'),
+                      title: Text(AppLocalizations.of(context)!
+                          .notifSettingsExactAlarmPermissionTitle),
                       isThreeLine: true,
-                      subtitle: const Text(
-                          'Permission not granted. The app cannot send the azan notification. Tap here to grant permission'),
+                      subtitle: Text(AppLocalizations.of(context)!
+                          .notifSettingsExactAlarmPermissionNotGrantedSubtitle),
                       onTap: _requestOrOpenAlarmPermission,
                     ),
                   );
