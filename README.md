@@ -36,6 +36,9 @@ Features and troubleshooting steps are documented on the website: https://help.w
 
 For developers, see [wiki](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki).
 
+> [!NOTE]
+> I'm in the process in refactoring the codebase to make it more maintainable and readable since #230. So, the codebase might be a bit messy. Sorry.
+
 ## Changelog History
 
 Wondering what changed with every :new: release? Or what bug :bug: has been fixed? Visit changelog page [here](https://waktusolat.app/changelog)!
