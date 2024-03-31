@@ -1,0 +1,392 @@
+{
+  "appbarTitle": "🇲🇾 Prayer Time",
+  "@appbarTitle": {
+    "description": "app title material app"
+  },
+  "appTitle": "Malaysia Prayer Time",
+  "@appTitle": {
+    "description": "Will show on RECENT (Android)"
+  },
+  "imsakName": "Imsak",
+  "imsakDescription": "10 minutes before Subuh",
+  "fajrName": "Fajr",
+  "sunriseName": "Sunrise",
+  "sunriseDescription": "Sunrise",
+  "dhuhaName": "Dhuha",
+  "dhuhaDescription": "28 minutes after Sunrise",
+  "dhuhrName": "Dhuhr",
+  "asrName": "Asr",
+  "maghribName": "Maghrib",
+  "ishaName": "Isha",
+  "getPtFetch": "Fetching prayer time. Please wait.",
+  "getPtError": "Unexpected error. Please retry",
+  "getPtRetry": "Retry",
+  "getPtTimeAt": "{name} at {time}",
+  "@getPtTimeAt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "getPtCopied": "Copied",
+  "appBodyNotifPrompt": "Did notification(s) from this app shows at prayer time?",
+  "appBodyNotifPromptYes": "Yes",
+  "appBodyNotifPromptNo": "No",
+  "appBodyNotifPromptDissm": "Dismiss",
+  "appBodyNotifPromptResponse": "Cool. Glad to hear that!",
+  "appBodyCurrentLocation": "Currently set to {daerah} in {negeri}",
+  "@appBodyCurrentLocation": {
+    "placeholders": {
+      "daerah": {
+        "type": "String"
+      },
+      "negeri": {
+        "type": "String"
+      }
+    }
+  },
+  "appBodyChangeLocation": "Change",
+  "appBodyLocSemanticLabel": "A button to change location",
+  "menuThemes": "Themes",
+  "menuSettings": "Settings",
+  "menuRate": "Rate and review",
+  "menuWeb": "MPT on Web",
+  "menuFeedback": "Send feedback",
+  "menuUpdateAvailable": "Updates available",
+  "menuTooltip": "Open menu",
+  "menuTimetableTooltip": "Monthly Timetable",
+  "timetableTitle": "{month} timetable",
+  "@timetableTitle": {
+    "description": "Title in SliverAppBar",
+    "placeholders": {
+      "month": {
+        "type": "String",
+        "example": "September"
+      }
+    }
+  },
+  "timetableDate": "Date",
+  "timetableExportTooltip": "Export timetable as PDF",
+  "timetableExportExporting": "Exporting",
+  "timetableExportSuccess": "Prayer timetable PDF file is ready",
+  "timetableExportOpen": "Open",
+  "timetableExportShare": "Share",
+  "timetableExportError": "Sorry. Error occurred when exporting timetable. Please try again. {error}",
+  "@timetableExportError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "timetableExportFileShareSubject": "Prayer Timetable. {link}",
+  "@timetableExportFileShareSubject": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "timetableOneThird": "Last 1/3 night",
+  "timetableSettingTitle": "Timetable setting",
+  "timetableSettingHijri": "Show Hijri column",
+  "timetableSettingHijriStyle": "Hijri month style",
+  "timetableSettingOneThird": "Show last one third of the night",
+  "timetableSettingOneThirdSub": "Calculation method based on Mufti of Federal Territory Office",
+  "timetableSettingShortform": "Shortform",
+  "timetableSettingLongform": "Full",
+  "themeTitle": "Theme",
+  "themeOptionSystem": "System Theme",
+  "themeOptionLight": "Light Theme",
+  "themeOptionDark": "Dark Theme",
+  "themeSupportedDevice": "On supported device only",
+  "aboutLegalese": "Copyright © {year} Fareez Iqmal",
+  "@aboutLegalese": {
+    "description": "Copyright info",
+    "placeholders": {
+      "year": {
+        "type": "String",
+        "example": "2020-2022"
+      }
+    }
+  },
+  "aboutTitle": "About App",
+  "aboutVersion": "Version {version}",
+  "@aboutVersion": {
+    "description": "App version",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "2.2.9"
+      }
+    }
+  },
+  "aboutVersionCopied": "Copied version info",
+  "aboutJakim": "Prayer times data are from [Department of Islamic Development Malaysia (JAKIM)](https://www.e-solat.gov.my/)",
+  "aboutContribution": "Contribution and Support",
+  "aboutReleaseNotes": "Release Notes",
+  "aboutLicense": "Open Source Licenses",
+  "aboutPrivacy": "Privacy Policy",
+  "aboutFaq": "Documentation",
+  "aboutMoreApps": "More apps",
+  "shareTitle": "Prayer timetable today",
+  "shareGetApp": "Get the app: {link}",
+  "@shareGetApp": {
+    "description": "Link in share message",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "shareTooltip": "Share solat time",
+  "sharePlainTitle": "Share as plain text",
+  "sharePlainDesc": "Compatible to all apps",
+  "shareWhatsappTitle": "Share to WhatsApp",
+  "shareWhatsappDesc": "Using WhatsApp formatting",
+  "shareCopy": "Copy to clipboard",
+  "shareSettingPrompt": "You can set defaults in ",
+  "shareSettingPromptDestination": "Setting -> Sharing",
+  "shareSubject": "Malaysia prayer time for today",
+  "shareTimetableCopied": "Timetable copied",
+  "settingTitle": "Settings",
+  "settingDisplay": "Display",
+  "settingTimeFormat": "Time format",
+  "settingTimeFormatDropdown": "{time} hour",
+  "@settingTimeFormatDropdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "settingOtherPrayer": "Show other times",
+  "settingFontSize": "Font size",
+  "settingLocaleTitle": "Language",
+  "settingNotification": "Notification",
+  "settingNotification2": "Notification settings",
+  "settingSharing": "Sharing",
+  "settingShareDefault": "Default behaviour when sharing",
+  "settingShareAsk": "Ask first",
+  "settingPlain": "Plain Text",
+  "settingCopy": "Copy",
+  "settingMore": "More",
+  "settingAbout": "About app (Ver. {version})",
+  "@settingAbout": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "settingMoreDesc": "Release Notes, Contribution, Twitter etc.",
+  "qiblaWarnBody": "- Users must understand that Qibla Compass feature utilises the sensors of the user's device and does not use any data from JAKIM. Therefore, users should **wisely evaluate** the information obtained.\n- MPT app provides this function as a **guide** only. MPT app is not responsible if the information obtained is inaccurate. Please refer to the recommended way to get the exact Qibla direction.\n- To improve the accuracy, make sure the internet and GPS connection are stable and perform the calibration by rotating your device in an **8** or **infinity** shape as below:",
+  "qiblaWarnProceed": "I understood",
+  "qiblaTitle": "Qibla Compass",
+  "qiblaOverheadWarn": "Avoid placing the device close to metal object or electrical appliances.",
+  "qiblaCopyUrl": "URL copied :)",
+  "qiblaCalibrationTip": "Calibration tip",
+  "qiblaCalibrate": "Move your phone in 'figure 8 pattern'",
+  "qiblaCalibrateDone": "Done",
+  "qiblaErrNoCompass": "Sorry. No compass sensor is available in this device.",
+  "qiblaErrBack": "Go back",
+  "feedbackTitle": "Feedback",
+  "feedbackFieldEmpty": "Field can't be empty",
+  "feedbackWriteHere": "Please leave your feedback/report here",
+  "feedbackIncorrectEmail": "Incorrect email format",
+  "feedbackEmailHere": "Your email address (optional)",
+  "feedbackViewDeviceInfo": "View...",
+  "feedbackDeviceInfoCopy": "Copied",
+  "feedbackDeviceInfoCopyAll": "Copy all",
+  "feedbackIncludeDeviceInfo": "Include device info",
+  "feedbackDeviceInfoRecommended": "(Recommended)",
+  "feedbackTroubleDeviceInfo": "Trouble getting device info",
+  "feedbackGettingInfo": "Getting device info...",
+  "feedbackAppMetadata": "App metadata",
+  "feedbackAppMetadataSub": "(Always included)",
+  "feedbackSensitive": "User sensitive data",
+  "feedbackSensitiveSub": "Include whenever necessary",
+  "feedbackMessageContainQ": "Looks like your message contain question(s). Please provide your email so we can get back to you.\n\nWould you like to add your email?",
+  "feedbackSendAnyway": "Send anyway",
+  "feedbackAddEmail": "Add email",
+  "feedbackSend": "Send",
+  "feedbackAlsoDo": "You can also do",
+  "feedbackReadFaq": "Read Frequently Asked Questions (FAQ)",
+  "feedbackReportGithub": "Report / Follow issues on GitHub",
+  "feedbackThanks": "Thank you for your valuable feedback.",
+  "onboardingChooseLang": "Choose language",
+  "onboardingSetLocation": "Set your location",
+  "onboardingLocationDesc": "Make sure the location services are turned on so the app can determine the best location",
+  "onboardingLocationToast": "Location set. You can change location anytime by tapping the location code at upper right corner.",
+  "onboardingLocationSet": "Set location",
+  "onboardingThemeFav": "Set your favourite theme",
+  "onboardingNotifOption": "Select notification preferences",
+  "onboardingNotifDefault": "Default notification",
+  "onboardingNotifAzan": "Azan (full)",
+  "onboardingNotifShortAzan": "Azan (short)",
+  "onboardingNotifAutostart": "**Autostart** need to be enabled for the app to send notifications. [Learn more...]({link})",
+  "@onboardingNotifAutostart": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "onboardingNotifAutostartSetting": "Open Settings",
+  "onboardingFinish": "Alhamdulillah. All set",
+  "onboardingFinishDesc": "Welcome aboard. Do explore other features and tweak other settings as well.",
+  "onboardingDone": "Done",
+  "onboardingNext": "Next",
+  "permissionDialogTitle": "Permission required",
+  "permissionDialogSkip": "Skip",
+  "permissionDialogGrant": "Grant",
+  "autostartDialogPermissionContent": "Please allow app to Autostart to keep receive notifications even if the device restarts",
+  "notifDialogPermissionContent": "Please grant the notification permission to allow this app to show notifications",
+  "notifExactAlarmDialogPermissionContent": "Please grant the app permission to schedule notifications at exact time",
+  "zoneUpdatedToast": "Location updated",
+  "zoneYourLocation": "Your location",
+  "zoneSetManually": "Set manually",
+  "zoneSetThis": "Set this location",
+  "zoneError": "Error",
+  "zoneErrorPara1": "Check your **internet connection** or **location services**.",
+  "zoneErrorPara2": "Please **retry** or choose location **manually**.",
+  "zoneOpenLocationSettings": "Open Location Settings",
+  "zoneLoading": "Loading",
+  "zoneManualSelectState": "Select state",
+  "zoneManualSelectZone": "Select zone",
+  "zoneManualSave": "Save",
+  "notifSettingBasic": "Basic",
+  "notifSettingChangesDetect": "Changes will take effect after restarting the app",
+  "notifSettingRestartApp": "Restart",
+  "notificationSettingPlayNotifTooltip": "Play test notification",
+  "notifSettingSysSetting": "App notification System Setting",
+  "notifSettingSysSettingDesc": "Customize sound, toggle channel of prayer notification etc.",
+  "notifSettingTroubleshoot": "Troubleshooting",
+  "notifSettingTroubleshootDesc": "Fix notification not working on some devices",
+  "notifSettingTroubleshootExample": "Example: {phonesModel} etc.",
+  "@notifSettingTroubleshootExample": {
+    "placeholders": {
+      "phonesModel": {
+        "type": "String"
+      }
+    }
+  },
+  "notifSettingAdvancedTroubleshoot": "Advanced troubleshooting",
+  "notifSettingLimitNotif": "Limit notification scheduling",
+  "notifSettingLimitNotifDesc": "Enable if you experience an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).",
+  "notifSettingForceReschedule": "Force rescheduling notification...",
+  "notifSettingForceRescheduleDesc": "By default, notification will not reschedule if the last scheduler ran is less than two days.\n\nTap proceed to start an immediate notification scheduling. The app will be restarted.",
+  "notifSettingCancel": "Cancel",
+  "notifSettingProceed": "Proceed",
+  "notifSettingNotifDemo": "This is how the notification/azan will sound like",
+  "notifSettingsExactAlarmPermissionTitle": "Notification scheduling permission",
+  "notifSettingsExactAlarmPermissionGrantedSubtitle": "Permission granted. The app can send azan notification on prayer times",
+  "notifSettingsExactAlarmPermissionNotGrantedSubtitle": "Permission not granted. The app cannot send the azan notification. Tap here to grant permission",
+  "notifSheetExactAlarmTitle": "We require one more permission to trigger the notification/azan at the right time",
+  "notifSheetExactAlarmDescription": "This permission is needed to push the notification at the correct time. If you say no, the app might still schedule the notification, but the delivery may be delayed.",
+  "notifSheetExactAlarmPrimaryButton": "Grant now",
+  "notifSheetExactAlarmCancel": "Cancel",
+  "notifSheetNotificationTitle": "Notification/Azan is turned off",
+  "notifSheetNotificationDescription": "We may require some permissions to be able to play the notification/azan",
+  "notifSheetNotificationPrimaryButton": "Turn On Notification'",
+  "notifSheetNotificationCancel": "Keep it off for now",
+  "contributenDesc": "Alhamdulillah. If you love using our app and would like to show your appreciation, you can now make a financial contribution to support our ongoing efforts. May Allah SWT rewards your kindness.",
+  "contributeShare": "Share this app",
+  "contributeShareDesc": "Share your experience of using this app with your family and friends.",
+  "contributeShareNow": "Share now",
+  "contributeShareContent": "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\n\nTry it now:\n{playStoreShortLink} (Google Play)\n{webAppLink} (Web app)",
+  "@contributeShareContent": {
+    "placeholders": {
+      "playStoreShortLink": {
+        "type": "String"
+      },
+      "webAppLink": {
+        "type": "String"
+      }
+    }
+  },
+  "contributeShareSubject": "Sharing MPT App",
+  "contributeCopy": "Copy",
+  "contributeOpen": "Open",
+  "contributeSource": "Contribute to source",
+  "contributeSourceDesc": "MPT app is open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.",
+  "contributeOpenGh": "Open GitHub",
+  "contributeCopied": "Copied to clipboard",
+  "notifTsAdmonition": "Your device may not be affected with this particular issue.",
+  "notifTsPara1": "Some apps installed from the **Google Play Store** will disable **Autostart** by default. Due to this behaviour, prayer notification (sometimes) will not appear on your phone.",
+  "notifTsPara2": "The solution is to enable **Autostart** for this app. Tap the button below to open App Setting, then find the Autostart option there to enable it.",
+  "notifTsPara3": "To learn more, kindly read [this article]({link}).",
+  "@notifTsPara3": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "notifTsOpenSetting": "Open App Setting",
+  "notifMonthlyReminderTitle": "Monthly refresh reminder",
+  "notifMonthlyReminderDesc": "To continue receive prayer notification, open app at least once every month.",
+  "notifItsTime": "It's {name}",
+  "@notifItsTime": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifIn": "in {location}",
+  "@notifIn": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
+  "notifEndSubh": "Ends of Fajr",
+  "whatsUpdateTitle": "Just updated to the latest version.",
+  "whatsUpdateContent": "What's new in this update? Read the release notes [here]({releaseNotesLink}).",
+  "@whatsUpdateContent": {
+    "placeholders": {
+      "releaseNotesLink": {
+        "type": "String"
+      }
+    }
+  },
+  "whatsUpdateChangelog": "Read release notes",
+  "updatePageError": "Sorry. Error occurred when checking for update",
+  "updatePageTryAgain": "Please try again",
+  "updatePageAvailable": "Updates available",
+  "updatePageReleased": "Released {day} days ago",
+  "@updatePageReleased": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "updatePageReleasedToday": "Released today",
+  "updatePageCurrentVer": "You have: **{version}**",
+  "@updatePageCurrentVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updatePageLatestVer": "Latest available: **{version}**",
+  "@updatePageLatestVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "updatePageGPlay": "Get updates on Google Play",
+  "updatePageBeta": "Get beta versions",
+  "tasbihResetDialog": "Confirm reset ?",
+  "tasbihReset": "Reset"
+}
