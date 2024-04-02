@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../features/check_updates/views/update_page.dart';
 import '../providers/updater_provider.dart';
 import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
@@ -17,7 +18,6 @@ import 'qibla/qibla_warn.dart';
 import 'settings/settings_page.dart';
 import 'settings/theme_page.dart';
 import 'tasbih.dart';
-import 'update_page.dart';
 
 class MyBottomAppBar extends StatelessWidget {
   const MyBottomAppBar({super.key});

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../constants.dart';
-import '../utils/launch_url.dart';
+import '../../../constants.dart';
+import '../../../utils/launch_url.dart';
 
 /// This dialog will show when user update the app
 /// Called in `_showUpdateNotes()` function on `appBody.dart` file

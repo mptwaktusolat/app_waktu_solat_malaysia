@@ -4,10 +4,10 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../models/github_releases_model.dart';
+import '../model/check_version_response.dart';
 
 /// Compare app version with GitHub releases version
-class AppUpdateChecker {
+class UpdateCheckerService {
   /// Check if installed app has lower version number than remote version
   /// Will return `false` if device running lower than unsupported version.
   static Future<bool> updatesAvailable() async {
@@ -20,25 +20,23 @@ class AppUpdateChecker {
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-    final response = await http.get(Uri.parse(
-        'https://api.github.com/repos/mptwaktusolat/app_waktu_solat_malaysia/releases/latest'));
+    final response =
+        await http.get(Uri.parse('https://waktusolat.app/api/check_version'));
 
     final remoteRelease =
-        GithubReleasesModel.fromJson(jsonDecode(response.body));
+        CheckVersionResponse.fromJson(jsonDecode(response.body));
 
-    final remoteVersion = remoteRelease.tagName!.split('+');
-    final int remoteBuildNumber = int.parse(remoteVersion.last);
     final int appBuildNumber = int.parse(packageInfo.buildNumber);
 
-    return (appBuildNumber < remoteBuildNumber);
+    return (appBuildNumber < remoteRelease.buildNumber);
   }
 
-  static Future<GithubReleasesModel> getUpdateInfo() async {
-    final response = await http.get(Uri.parse(
-        'https://api.github.com/repos/mptwaktusolat/app_waktu_solat_malaysia/releases/latest'));
+  static Future<CheckVersionResponse> getUpdateInfo() async {
+    final response =
+        await http.get(Uri.parse('https://waktusolat.app/api/check_version'));
 
     final remoteRelease =
-        GithubReleasesModel.fromJson(jsonDecode(response.body));
+        CheckVersionResponse.fromJson(jsonDecode(response.body));
     return remoteRelease;
   }
 }
