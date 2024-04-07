@@ -13,8 +13,8 @@ import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
 import 'feedback_page.dart';
 import 'prayer_full_table.dart';
-import 'qibla/qibla.dart';
-import 'qibla/qibla_warn.dart';
+import '../features/kompas_kiblat/views/qibla_page.dart';
+import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'settings/settings_page.dart';
 import 'settings/theme_page.dart';
 import 'tasbih.dart';
@@ -55,8 +55,8 @@ class MyBottomAppBar extends StatelessWidget {
                 MaterialPageRoute(
                   settings: const RouteSettings(name: 'Qibla'),
                   builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                      ? const Qibla()
-                      : const QiblaWarn(),
+                      ? const QiblaPage()
+                      : const QiblaDisclaimerPage(),
                 ),
               );
             },

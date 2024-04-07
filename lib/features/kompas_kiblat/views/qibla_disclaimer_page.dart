@@ -6,11 +6,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../constants.dart';
-import 'qibla.dart';
+import '../../../constants.dart';
+import 'qibla_page.dart';
 
-class QiblaWarn extends StatelessWidget {
-  const QiblaWarn({super.key});
+class QiblaDisclaimerPage extends StatelessWidget {
+  const QiblaDisclaimerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class QiblaWarn extends StatelessWidget {
                   MaterialPageRoute(
                     // no need route settings here, already defined in bottom
                     // ap bar icon
-                    builder: (_) => const Qibla(),
+                    builder: (_) => const QiblaPage(),
                   ),
                 );
               },

@@ -6,17 +6,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../utils/launch_url.dart';
+import '../../../utils/launch_url.dart';
 import 'qibla_compass.dart';
 import 'no_compass_sensor.dart';
 
-class Qibla extends StatefulWidget {
-  const Qibla({super.key});
+/// Entry point for the Qibla page
+class QiblaPage extends StatefulWidget {
+  const QiblaPage({super.key});
   @override
-  State<Qibla> createState() => _QiblaState();
+  State<QiblaPage> createState() => _QiblaPageState();
 }
 
-class _QiblaState extends State<Qibla> {
+class _QiblaPageState extends State<QiblaPage> {
   final _deviceSupport = FlutterQiblah.androidDeviceSensorSupport();
 
   @override

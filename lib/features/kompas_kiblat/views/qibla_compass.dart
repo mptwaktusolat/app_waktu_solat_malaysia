@@ -3,6 +3,7 @@ import 'dart:math' show pi;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
@@ -20,6 +21,8 @@ class _QiblaCompassState extends State<QiblaCompass> {
       StreamController<LocationStatus>.broadcast();
 
   get stream => _locationStreamController.stream;
+
+  bool _isVibrating = false;
 
   @override
   void initState() {
@@ -42,7 +45,9 @@ class _QiblaCompassState extends State<QiblaCompass> {
             switch (snapshot.data!.status) {
               case LocationPermission.always:
               case LocationPermission.whileInUse:
-                return QiblahCompassWidget();
+                return QiblahCompassWidget(
+                  onStraightAngle: _handleStraightAngle,
+                );
 
               case LocationPermission.denied:
                 return LocationErrorWidget(
@@ -73,6 +78,23 @@ class _QiblaCompassState extends State<QiblaCompass> {
     );
   }
 
+  void _handleStraightAngle(bool isStraight) {
+    if (isStraight && !_isVibrating) {
+      _vibrate();
+      _isVibrating = true;
+    } else if (!isStraight && _isVibrating) {
+      // Vibration.cancel();
+      _isVibrating = false;
+    }
+  }
+
+  void _vibrate() async {
+    HapticFeedback.mediumImpact();
+    //   if (await Vibration.hasVibrator()) {
+    //     Vibration.vibrate();
+    //   }
+  }
+
   Future<void> _checkLocationStatus() async {
     final locationStatus = await FlutterQiblah.checkLocationStatus();
     if (locationStatus.enabled &&
@@ -94,7 +116,9 @@ class _QiblaCompassState extends State<QiblaCompass> {
 }
 
 class QiblahCompassWidget extends StatelessWidget {
-  QiblahCompassWidget({super.key});
+  QiblahCompassWidget({super.key, required this.onStraightAngle});
+
+  final void Function(bool) onStraightAngle;
   final _kaabaSvg = SvgPicture.asset('assets/qibla/kaaba.svg');
 
   @override
@@ -108,6 +132,10 @@ class QiblahCompassWidget extends StatelessWidget {
 
         final qiblahDirection = snapshot.data!;
         final angle = qiblahDirection.qiblah * (pi / 180) * -1;
+        final isStraightAngle = _isStraightLineAngle(qiblahDirection.qiblah);
+
+        // Notify parent widget about the straight angle
+        onStraightAngle(isStraightAngle);
 
         return Stack(
           alignment: Alignment.center,
@@ -130,5 +158,9 @@ class QiblahCompassWidget extends StatelessWidget {
         );
       },
     );
+  }
+
+  bool _isStraightLineAngle(double angle) {
+    return (angle % 360).toInt() == 0;
   }
 }

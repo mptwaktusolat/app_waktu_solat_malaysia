@@ -30,8 +30,8 @@ import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
-import 'views/qibla/qibla.dart';
-import 'views/qibla/qibla_warn.dart';
+import 'features/kompas_kiblat/views/qibla_page.dart';
+import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'views/app_body.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
@@ -206,8 +206,8 @@ void _configureQuickAction(BuildContext context) {
           MaterialPageRoute(
             settings: const RouteSettings(name: 'Qibla'),
             builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                ? const Qibla()
-                : const QiblaWarn(),
+                ? const QiblaPage()
+                : const QiblaDisclaimerPage(),
           ),
         );
         break;
