@@ -33,7 +33,9 @@ dependencies:
   flutter_web_browser: ^0.17.0
   geocoding: ^2.0.0
   font_awesome_flutter: ^10.1.0
-  flutter_qiblah: ^2.0.1
+  # flutter compass in pub.dev is not updated
+  flutter_compass:
+    git: https://github.com/hemanthrajv/flutter_compass.git
   firebase_core: ^2.2.0
   email_validator: ^2.0.1
   introduction_screen: ^3.0.0
@@ -54,11 +56,6 @@ dependencies:
   open_file: ^3.3.2
   home_widget: ^0.4.1
   permission_handler: ^11.3.1
-
-dependency_overrides:
-  # flutter compass in pub.dev is not updated
-  flutter_compass:
-    git: https://github.com/hemanthrajv/flutter_compass.git
 
 dev_dependencies:
   flutter_test:
