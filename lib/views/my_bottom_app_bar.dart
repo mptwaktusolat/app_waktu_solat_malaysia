@@ -11,7 +11,7 @@ import '../features/check_updates/views/update_page.dart';
 import '../providers/updater_provider.dart';
 import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
-import 'feedback_page.dart';
+import '../features/feedback/views/feedback_page.dart';
 import 'prayer_full_table.dart';
 import '../features/kompas_kiblat/views/qibla_page.dart';
 import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';

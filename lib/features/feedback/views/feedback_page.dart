@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
@@ -9,12 +8,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../constants.dart';
-import '../location_utils/location_data.dart';
-import '../utils/launch_url.dart';
+import '../../../constants.dart';
+import '../../../location_utils/location_data.dart';
+import '../../../utils/launch_url.dart';
+import '../services/feedback_submission_service.dart';
 
 /// This just an app built with express js, that handle
 /// the transaction to the Firebase.
@@ -44,6 +43,68 @@ class _FeedbackPageState extends State<FeedbackPage> {
       'Recent GPS loc':
           '${LocationData.position?.latitude},${LocationData.position?.longitude}',
     };
+  }
+
+  void _submitFeedback() async {
+    // Kalau soalan tu ada tanda soalan, prompt user untuk masukkan emel
+    // supaya saya dapat reply ke dia nanti. But optional je
+    if (_emailController.text.isEmpty &&
+        _messageController.text.contains('?')) {
+      final res = await showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            content:
+                Text(AppLocalizations.of(context)!.feedbackMessageContainQ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child:
+                      Text(AppLocalizations.of(context)!.feedbackSendAnyway)),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: Text(AppLocalizations.of(context)!.feedbackAddEmail))
+            ],
+          );
+        },
+      );
+
+      // Cancel next operation for user to enter their email
+      if (!res) return;
+    }
+
+    if (_formKey.currentState!.validate()) {
+      FocusScope.of(context).unfocus();
+
+      setState(() => _isSendLoading = true);
+      try {
+        await FeedbackSubmissionService.submitFeedback(
+          _messageController.text.trim(),
+          email: _emailController.text.trim(),
+          otherPayloads: {
+            ..._appMetadata!,
+            if (_logIsChecked) 'Device info': _deviceInfo,
+            if (_isSensitiveChecked) ..._sensitiveData!
+          },
+        );
+        setState(() => _isSendLoading = false);
+        Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.feedbackThanks,
+                backgroundColor: Colors.green,
+                toastLength: Toast.LENGTH_LONG)
+            .then((value) => Navigator.pop(context));
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error: $e'),
+          backgroundColor: Colors.red,
+        ));
+        setState(() => _isSendLoading = false);
+      }
+    }
   }
 
   @override
@@ -83,12 +144,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      validator: (value) => value!.isNotEmpty
-                          ? EmailValidator.validate(value)
-                              ? null
-                              : AppLocalizations.of(context)!
-                                  .feedbackIncorrectEmail
-                          : null,
+                      validator: (value) {
+                        if (value!.isEmpty) return null;
+                        if (EmailValidator.validate(value)) {
+                          return null;
+                        }
+                        return AppLocalizations.of(context)!
+                            .feedbackIncorrectEmail;
+                      },
                       controller: _emailController,
                       decoration: InputDecoration(
                           isDense: true,
@@ -103,74 +166,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 ),
               ),
             ),
+            // Send button / butang hantar
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: ElevatedButton.icon(
-                onPressed: () async {
-                  if (_emailController.text.isEmpty &&
-                      _messageController.text.contains('?')) {
-                    final res = await showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            content: Text(AppLocalizations.of(context)!
-                                .feedbackMessageContainQ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(true);
-                                  },
-                                  child: Text(AppLocalizations.of(context)!
-                                      .feedbackSendAnyway)),
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(false);
-                                  },
-                                  child: Text(AppLocalizations.of(context)!
-                                      .feedbackAddEmail))
-                            ],
-                          );
-                        });
-
-                    // Cancel next operation for user to enter their email
-                    if (!res) return;
-                  }
-
-                  if (_formKey.currentState!.validate()) {
-                    FocusScope.of(context).unfocus();
-                    final payload = {
-                      'User email': _emailController.text.trim(),
-                      'User message': _messageController.text.trim(),
-                      if (_logIsChecked) 'Device info': _deviceInfo
-                    };
-
-                    payload.addAll(_appMetadata!);
-                    if (_isSensitiveChecked) payload.addAll(_sensitiveData!);
-
-                    setState(() => _isSendLoading = true);
-                    try {
-                      await http.post(Uri.https(kApiBaseUrl, '/api/feedback'),
-                          headers: {
-                            HttpHeaders.contentTypeHeader:
-                                ContentType.json.toString()
-                          },
-                          body: jsonEncode(payload));
-                      setState(() => _isSendLoading = false);
-                      Fluttertoast.showToast(
-                              msg: AppLocalizations.of(context)!.feedbackThanks,
-                              backgroundColor: Colors.green,
-                              toastLength: Toast.LENGTH_LONG)
-                          .then((value) => Navigator.pop(context));
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Error: $e'),
-                        backgroundColor: Colors.red,
-                      ));
-                      setState(() => _isSendLoading = false);
-                      rethrow;
-                    }
-                  }
-                },
+                onPressed: _submitFeedback,
                 icon: !_isSendLoading
                     ? const FaIcon(FontAwesomeIcons.paperPlane, size: 13)
                     : const SizedBox.shrink(),
@@ -208,7 +208,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           showDialog(
                             context: context,
                             builder: (_) =>
-                                DetailedInfoDialog(details: _deviceInfo!),
+                                _DetailedInfoDialog(details: _deviceInfo!),
                           );
                         },
                       ),
@@ -256,7 +256,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                           showDialog(
                             context: context,
                             builder: (_) =>
-                                DetailedInfoDialog(details: _appMetadata!),
+                                _DetailedInfoDialog(details: _appMetadata!),
                           );
                         },
                       ),
@@ -290,7 +290,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     showDialog(
                       context: context,
                       builder: (_) =>
-                          DetailedInfoDialog(details: _sensitiveData!),
+                          _DetailedInfoDialog(details: _sensitiveData!),
                     );
                   },
                 ),
@@ -302,13 +302,14 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 onChanged: (value) {
                   setState(() => _isSensitiveChecked = value!);
                 }),
-            // Send button / butang hantar
-
             const Spacer(flex: 3),
             Row(
               children: [
                 const Expanded(child: Divider()),
-                Text(AppLocalizations.of(context)!.feedbackAlsoDo),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(AppLocalizations.of(context)!.feedbackAlsoDo),
+                ),
                 const Expanded(child: Divider())
               ],
             ),
@@ -336,8 +337,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
   }
 }
 
-class DetailedInfoDialog extends StatelessWidget {
-  const DetailedInfoDialog({super.key, required this.details});
+class _DetailedInfoDialog extends StatelessWidget {
+  const _DetailedInfoDialog({required this.details});
 
   final Map<String, dynamic> details;
 
