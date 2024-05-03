@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -8,13 +7,13 @@ import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import '../features/check_updates/views/update_page.dart';
+import '../features/feedback/views/feedback_page.dart';
+import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
+import '../features/kompas_kiblat/views/qibla_page.dart';
 import '../providers/updater_provider.dart';
 import '../utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
-import '../features/feedback/views/feedback_page.dart';
 import 'prayer_full_table.dart';
-import '../features/kompas_kiblat/views/qibla_page.dart';
-import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'settings/settings_page.dart';
 import 'settings/theme_page.dart';
 import 'tasbih.dart';
@@ -29,10 +28,12 @@ class MyBottomAppBar extends StatelessWidget {
           Consumer<UpdaterProvider>(builder: (_, setting, __) {
             return IconButton(
               tooltip: AppLocalizations.of(context)?.menuTooltip,
-              icon: badges.Badge(
-                showBadge: setting.needForUpdate,
-                child: const FaIcon(FontAwesomeIcons.bars),
-              ),
+              icon: setting.needForUpdate
+                  ? const Badge(
+                      smallSize: 12,
+                      child: FaIcon(FontAwesomeIcons.bars),
+                    )
+                  : const FaIcon(FontAwesomeIcons.bars),
               onPressed: () => menuModalBottomSheet(context),
             );
           }),
@@ -132,7 +133,7 @@ void menuModalBottomSheet(BuildContext context) {
                     children: [
                       Text(AppLocalizations.of(context)!.menuUpdateAvailable),
                       const SizedBox(width: 5.0),
-                      badges.Badge(showBadge: setting.needForUpdate),
+                      const Badge(smallSize: 8),
                     ],
                   ),
                   leading: FaIcon(FontAwesomeIcons.googlePlay,
