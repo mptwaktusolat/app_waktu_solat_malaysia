@@ -1,6 +1,12 @@
 {
   "appbarTitle": "Waktu Solat 🇲🇾",
+  "@appbarTitle": {
+    "description": "app title material app"
+  },
   "appTitle": "Waktu Solat Malaysia",
+  "@appTitle": {
+    "description": "Will show on RECENT (Android)"
+  },
   "imsakName": "Imsak",
   "imsakDescription": "10 minit sebelum Subuh",
   "fajrName": "Subuh",
@@ -16,6 +22,16 @@
   "getPtError": "Alamak, terdapat ralat. Sila cuba semula.",
   "getPtRetry": "Cuba semula",
   "getPtTimeAt": "{name} pada {time}",
+  "@getPtTimeAt": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "getPtCopied": "Disalin",
   "appBodyNotifPrompt": "Adakah pemberitahuan daripada apl ini dipaparkan pada waktu solat?",
   "appBodyNotifPromptYes": "Ya",
@@ -23,6 +39,16 @@
   "appBodyNotifPromptDissm": "Abaikan",
   "appBodyNotifPromptResponse": "Alhamdulillah",
   "appBodyCurrentLocation": "Lokasi ditetapkan di {daerah} di {negeri}",
+  "@appBodyCurrentLocation": {
+    "placeholders": {
+      "daerah": {
+        "type": "String"
+      },
+      "negeri": {
+        "type": "String"
+      }
+    }
+  },
   "appBodyChangeLocation": "Ubah",
   "appBodyLocSemanticLabel": "Butang untuk mengubah lokasi",
   "menuThemes": "Tema",
@@ -34,6 +60,15 @@
   "menuTooltip": "Buka menu",
   "menuTimetableTooltip": "Jadual Bulanan",
   "timetableTitle": "Jadual {month}",
+  "@timetableTitle": {
+    "description": "Title in SliverAppBar",
+    "placeholders": {
+      "month": {
+        "type": "String",
+        "example": "September"
+      }
+    }
+  },
   "timetableDate": "Tarikh",
   "timetableExportTooltip": "Eksport jadual sebagai PDF",
   "timetableExportExporting": "Sedang dieksport",
@@ -41,7 +76,21 @@
   "timetableExportOpen": "Buka",
   "timetableExportShare": "Kongsi",
   "timetableExportError": "Maaf. Ralat berlaku semasa eksport jadual. Sila cuba lagi. {error}",
+  "@timetableExportError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "timetableExportFileShareSubject": "Jadual Waktu Solat. {link}",
+  "@timetableExportFileShareSubject": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "timetableOneThird": "Sepertiga akhir malam",
   "timetableSettingTitle": "Tetapan jadual",
   "timetableSettingHijri": "Tunjukkan lajur Hijri",
@@ -56,8 +105,26 @@
   "themeOptionDark": "Tema Gelap",
   "themeSupportedDevice": "Untuk peranti yang disokong sahaja",
   "aboutLegalese": "Hak Cipta Terpelihara © {year} Fareez Iqmal",
+  "@aboutLegalese": {
+    "description": "Copyright info",
+    "placeholders": {
+      "year": {
+        "type": "String",
+        "example": "2020-2022"
+      }
+    }
+  },
   "aboutTitle": "Perihal apl",
   "aboutVersion": "Versi {version}",
+  "@aboutVersion": {
+    "description": "App version",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "2.2.9"
+      }
+    }
+  },
   "aboutVersionCopied": "Versi aplikasi disalin",
   "aboutJakim": "Maklumat waktu solat adalah daripada [Jabatan Kemajuan Islam Malaysia (JAKIM)](https://www.e-solat.gov.my/)",
   "aboutContribution": "Sumbangan dan Sokongan",
@@ -68,6 +135,14 @@
   "aboutMoreApps": "Lebih apl.",
   "shareTitle": "Jadual waktu solat hari ini",
   "shareGetApp": "Dapatkan aplikasi di: {link}",
+  "@shareGetApp": {
+    "description": "Link in share message",
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "shareTooltip": "Kongsi waktu solat",
   "sharePlainTitle": "Kongsi sebagai teks biasa",
   "sharePlainDesc": "Serasi dengan semua apl",
@@ -82,6 +157,13 @@
   "settingDisplay": "Paparan",
   "settingTimeFormat": "Format masa",
   "settingTimeFormatDropdown": "{time} jam",
+  "@settingTimeFormatDropdown": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "settingOtherPrayer": "Tunjukkan waktu lain",
   "settingFontSize": "Saiz fon",
   "settingLocaleTitle": "Bahasa",
@@ -94,6 +176,13 @@
   "settingCopy": "Salin",
   "settingMore": "Lain-lain",
   "settingAbout": "Perihal apl. (Ver. {version})",
+  "@settingAbout": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "settingMoreDesc": "Nota keluaran, Sokongan, Twitter etc.",
   "qiblaWarnBody": "- Pengguna harus faham yang fungsi ini menggunakan penderia peranti pengguna sepenuhnya dan tidak menggunakan apa apa data atau maklumat dari JAKIM. Jadi, pengguna seharusnya **arif menilai** maklumat yang diperolehi.\n- Apl MPT menyediakan fungsi ini sebagai **panduan** sahaja. Apl MPT tidak bertanggungjawab sekiranya maklumat yang diperolehi tidak tepat. Sila rujuk cara yang disyorkan untuk mendapatkan arah Qiblat yang tepat.\n- Untuk meningkatkan ketepatan fungsi ini, sila pastikan sambungan internet dan GPS yang stabil dan laksanakan kalibrasi dengan memusingkan peranti anda dalam bentuk **8** atau **infiniti** seperti di bawah.",
   "qiblaWarnProceed": "Saya faham",
@@ -140,6 +229,13 @@
   "onboardingNotifAzan": "Azan (penuh)",
   "onboardingNotifShortAzan": "Azan (pendek)",
   "onboardingNotifAutostart": "**Autostart** perlu dihidupkan untuk apl menghantar pemberitahuan. [Ketahui lebih lanjut..]({link})",
+  "@onboardingNotifAutostart": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "onboardingNotifAutostartSetting": "Buka Settings",
   "onboardingFinish": "Alhamdulillah. Selesai tetapan.",
   "onboardingFinishDesc": "Selamat datang. Terokai ciri dan ubah suai tetapan lain mengikut citarasa anda.",
@@ -172,6 +268,13 @@
   "notifSettingTroubleshoot": "Penyelesaian masalah",
   "notifSettingTroubleshootDesc": "Betulkan pemberitahuan tidak berfungsi pada sesetengah peranti",
   "notifSettingTroubleshootExample": "Contoh: {phonesModel} dsb.",
+  "@notifSettingTroubleshootExample": {
+    "placeholders": {
+      "phonesModel": {
+        "type": "String"
+      }
+    }
+  },
   "notifSettingAdvancedTroubleshoot": "Penyelesaian masalah lanjutan",
   "notifSettingLimitNotif": "Hadkan penjadualan pemberitahuan",
   "notifSettingLimitNotifDesc": "Hidupkan jika anda mengalami kelembapan yang melampau dalam apl. Pemberitahuan akan dijadualkan setiap minggu. Lalai adalah MATI (bulanan).",
@@ -217,22 +320,71 @@
   "notifTsPara1": "Sesetengah apl yang dipasang daripada **Gedung Google Play**, **Autostart** akan dilumpuhkan secara lalai. Disebabkan hal ini, pemberitahuan (kadang-kadang) tidak akan keluar pada telefon anda.",
   "notifTsPara2": "Penyelesaiannya adalah untuk menghidupkan **Autostart** untuk apl ini. Ketik butang di bawah untuk membuka Tetapan Apl, kemudian cari pilihan Autostart untuk menghidupkannya.",
   "notifTsPara3": "Untuk ketahui lebih lanjut, sila ikuti [artikel ini]({link}).",
+  "@notifTsPara3": {
+    "placeholders": {
+      "link": {
+        "type": "String"
+      }
+    }
+  },
   "notifTsOpenSetting": "Buka Tetapan Apl",
   "notifMonthlyReminderTitle": "Peringatan bulanan segar semula",
   "notifMonthlyReminderDesc": "Untuk terus menerima pemberitahuan, buka aplikasi sekurang-kurangnya sekali setiap bulan.",
   "notifItsTime": "Telah masuk waktu {name}",
+  "@notifItsTime": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "notifIn": "di {location}",
+  "@notifIn": {
+    "placeholders": {
+      "location": {
+        "type": "String"
+      }
+    }
+  },
   "notifEndSubh": "Tamat waktu Subuh",
   "whatsUpdateTitle": "Baru sahaja dikemas kini kepada versi terkini.",
   "whatsUpdateContent": "Apa yang baharu dalam kemaskini ini, baca lanjut di [sini]({releaseNotesLink}).",
+  "@whatsUpdateContent": {
+    "placeholders": {
+      "releaseNotesLink": {
+        "type": "String"
+      }
+    }
+  },
   "whatsUpdateChangelog": "Baca Nota keluaran",
   "updatePageError": "Ralat berlaku semasa menyemak kemas kini",
   "updatePageTryAgain": "Sila cuba lagi",
   "updatePageAvailable": "Kemas kini tersedia",
   "updatePageReleased": "Dikeluarkan {day} hari lepas",
+  "@updatePageReleased": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
   "updatePageReleasedToday": "Dikeluarkan hari ini",
   "updatePageCurrentVer": "Anda ada: **{version}**",
+  "@updatePageCurrentVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "updatePageLatestVer": "Terkini tersedia: **{version}**",
+  "@updatePageLatestVer": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
   "updatePageGPlay": "Dapatkan kemas kini di Google Play",
   "updatePageBeta": "Dapatkan versi beta",
   "tasbihResetDialog": "Pastikan set semula ?",
