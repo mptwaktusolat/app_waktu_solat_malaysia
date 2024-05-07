@@ -292,7 +292,7 @@
   "notifSheetExactAlarmCancel": "Cancel",
   "notifSheetNotificationTitle": "Notification/Azan is turned off",
   "notifSheetNotificationDescription": "We may require some permissions to be able to play the notification/azan",
-  "notifSheetNotificationPrimaryButton": "Turn On Notification'",
+  "notifSheetNotificationPrimaryButton": "Turn On Notification",
   "notifSheetNotificationCancel": "Keep it off for now",
   "contributenDesc": "Alhamdulillah. If you love using our app and would like to show your appreciation, you can now make a financial contribution to support our ongoing efforts. May Allah SWT rewards your kindness.",
   "contributeShare": "Share this app",
