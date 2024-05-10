@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
-import '../../../constants.dart';
+import '../../../env.dart';
 
 class FeedbackSubmissionService {
   static Future<void> submitFeedback(String message,
@@ -18,8 +18,12 @@ class FeedbackSubmissionService {
       if (otherPayloads != null) ...otherPayloads,
     };
 
-    await http.post(Uri.https(kApiBaseUrl, '/api/feedback'),
-        headers: {HttpHeaders.contentTypeHeader: ContentType.json.toString()},
-        body: jsonEncode(body));
+    final feedbackApiUri = Uri.https(envApiBaseHost).resolve('/api/feedback');
+
+    await http.post(
+      feedbackApiUri,
+      headers: {HttpHeaders.contentTypeHeader: ContentType.json.toString()},
+      body: jsonEncode(body),
+    );
   }
 }

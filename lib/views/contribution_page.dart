@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../constants.dart' as constants;
+import '../env.dart';
 import '../utils/launch_url.dart';
 
 class ContributionPage extends StatelessWidget {
@@ -35,8 +36,7 @@ class ContributionPage extends StatelessWidget {
                     onPressed: () {
                       Share.share(
                           AppLocalizations.of(context)!.contributeShareContent(
-                              constants.kPlayStoreListingShortLink,
-                              constants.kWebappUrl),
+                              envPlayStoreListingShortLink, envWebappUrl),
                           subject: AppLocalizations.of(context)!
                               .contributeShareSubject);
                     },
@@ -50,14 +50,13 @@ class ContributionPage extends StatelessWidget {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        copyClipboard(context, constants.kGithubRepoLink);
+                        copyClipboard(context, envGithubRepoLink);
                       },
                       child:
                           Text(AppLocalizations.of(context)!.contributeCopy)),
                   TextButton(
                       onPressed: () {
-                        LaunchUrl.normalLaunchUrl(
-                            url: constants.kGithubRepoLink);
+                        LaunchUrl.normalLaunchUrl(url: envGithubRepoLink);
                       },
                       child:
                           Text(AppLocalizations.of(context)!.contributeOpenGh)),

@@ -11,6 +11,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../constants.dart';
+import '../../../env.dart';
 import '../../../location_utils/location_data.dart';
 import '../../../utils/launch_url.dart';
 import '../services/feedback_submission_service.dart';
@@ -317,15 +318,19 @@ class _FeedbackPageState extends State<FeedbackPage> {
             TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.circleQuestion, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(
-                    url: '$kAppSupportWebsite/docs/intro');
+                final faqPageUrl = Uri.parse(envAppSupportWebsite)
+                    .resolve('/docs/intro')
+                    .toString();
+                LaunchUrl.normalLaunchUrl(url: faqPageUrl);
               },
               label: Text(AppLocalizations.of(context)!.feedbackReadFaq),
             ),
             TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(url: '$kGithubRepoLink/issues');
+                final githubIssueUrl =
+                    Uri.https(envGithubRepoLink).resolve('/issues').toString();
+                LaunchUrl.normalLaunchUrl(url: githubIssueUrl);
               },
               label: Text(AppLocalizations.of(context)!.feedbackReportGithub),
             ),

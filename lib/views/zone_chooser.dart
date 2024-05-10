@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 import '../constants.dart';
 import '../components/zone_selector_dialog.dart';
+import '../env.dart';
 import '../location_utils/location_data.dart';
 import '../location_utils/location_database.dart';
 import '../location_utils/location_coordinate_model.dart';
@@ -82,7 +83,7 @@ class LocationChooser {
   }
 
   static Future<String> _getJakimCodeNearby(Position position) async {
-    final uri = Uri.https(kApiBaseUrl, 'api/zones/gps', {
+    final uri = Uri.https(envApiBaseHost, 'api/zones/gps', {
       'lat': position.latitude.toString(),
       'long': position.longitude.toString(),
     });

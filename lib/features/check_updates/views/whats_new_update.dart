@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../../constants.dart';
+import '../../../env.dart';
 import '../../../utils/launch_url.dart';
 
 /// This dialog will show when user update the app
@@ -20,7 +20,7 @@ class WhatsNewUpdateDialog extends StatelessWidget {
           MarkdownBody(
             // styleSheet: MarkdownStyleSheet(textAlign: WrapAlignment.spaceAround),
             data: AppLocalizations.of(context)!
-                .whatsUpdateContent(kReleaseNotesLink),
+                .whatsUpdateContent(envReleaseNotesLink),
             onTapLink: (_, href, __) => LaunchUrl.normalLaunchUrl(url: href!),
           ),
         ],

@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../constants.dart';
+import '../env.dart';
 import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
@@ -62,8 +63,9 @@ class PrayerFullTable extends StatelessWidget {
                 titlePadding: const EdgeInsetsDirectional.only(
                     start: 4, bottom: 16, end: 4),
                 background: CachedNetworkImage(
-                  imageUrl: Uri.https(kApiBaseUrl, '/api/mosque/$_locationCode')
-                      .toString(),
+                  imageUrl:
+                      Uri.https(envApiBaseHost, '/api/mosque/$_locationCode')
+                          .toString(),
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.7),
                   colorBlendMode: BlendMode.overlay,

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart' as constants;
+import '../env.dart';
 import '../location_utils/location_database.dart';
 import '../providers/setting_provider.dart';
 import 'date_and_time.dart';
@@ -21,11 +22,13 @@ class CopyAndShare {
     final l10n = AppLocalizations.of(context);
     final date = DateFormat('EEEE, d MMMM yyyy', l10n!.localeName)
         .format(DateTime.now());
-    final currentLocation = GetStorage().read(constants.kStoredLocationJakimCode);
+    final currentLocation =
+        GetStorage().read(constants.kStoredLocationJakimCode);
     final daerah = LocationDatabase.daerah(currentLocation);
     final negeri = LocationDatabase.negeri(currentLocation);
     final times = PrayDataHandler.today();
-    final use12 = Provider.of<SettingProvider>(context, listen: false).use12hour;
+    final use12 =
+        Provider.of<SettingProvider>(context, listen: false).use12hour;
     switch (shareTarget) {
       case ShareTarget.universal:
         String message = l10n.shareTitle;
@@ -40,7 +43,7 @@ class CopyAndShare {
         message += '🌙 ${l10n.maghribName}: ${times.maghrib.format(use12)}\n';
         message += '⭐ ${l10n.ishaName}: ${times.isha.format(use12)}\n';
         message += '\n';
-        message += l10n.shareGetApp(constants.kAppWebsite);
+        message += l10n.shareGetApp(envAppWebsite);
 
         return message;
       case ShareTarget.whatsapp:
@@ -61,7 +64,7 @@ class CopyAndShare {
         message +=
             '```⭐ ${l10n.ishaName.padRight(_padLength)}: ${times.isha.format(use12)}```\n';
         message += '\n';
-        message += l10n.shareGetApp(constants.kAppWebsite);
+        message += l10n.shareGetApp(envAppWebsite);
 
         return message;
     }

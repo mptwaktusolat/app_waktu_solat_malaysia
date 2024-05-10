@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 import '../constants.dart';
+import '../env.dart';
 import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
 
@@ -15,10 +16,12 @@ class MptApiFetch {
   /// fetch data from mpt-server's API
   static Future<MptServerSolat> fetchMpt(String location) async {
     // build the URI
-    final api = Uri.https(kApiBaseUrl, 'api/v2/solat/$location', {
+    final queryParams = {
       'year': DateTime.now().year.toString(),
       'month': DateTime.now().month.toString(),
-    });
+    };
+    final api =
+        Uri.https(envApiBaseHost, 'api/v2/solat/$location', queryParams);
 
     // Generate hashcode from api url
     // so that the cache key is unique for different location, month & year
@@ -99,7 +102,7 @@ class MptApiFetch {
     if (await file.exists()) return file;
 
     // If not exist, download from server
-    final url = Uri.https(kApiBaseUrl, 'api/jadual_solat', options);
+    final url = Uri.https(envApiBaseHost, 'api/jadual_solat', options);
     final data = await http.get(url);
 
     return file.writeAsBytes(data.bodyBytes);

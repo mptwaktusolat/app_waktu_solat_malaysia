@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
+import '../env.dart';
 import '../features/check_updates/views/update_page.dart';
 import '../features/feedback/views/feedback_page.dart';
 import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
@@ -165,7 +166,7 @@ void menuModalBottomSheet(BuildContext context) {
                       toastLength: Toast.LENGTH_LONG,
                       backgroundColor: Colors.grey.shade700,
                     );
-                    LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+                    LaunchUrl.normalLaunchUrl(url: envPlayStoreListingLink);
                   },
                 );
               }
@@ -177,7 +178,7 @@ void menuModalBottomSheet(BuildContext context) {
               trailing: const FaIcon(FontAwesomeIcons.squareUpRight, size: 21),
               onTap: () {
                 Navigator.pop(context);
-                LaunchUrl.normalLaunchUrl(url: kWebappUrl);
+                LaunchUrl.normalLaunchUrl(url: envWebappUrl);
               },
             ),
             ListTile(

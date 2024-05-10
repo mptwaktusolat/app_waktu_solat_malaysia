@@ -4,10 +4,10 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../constants.dart';
+import '../../../env.dart';
+import '../../../utils/launch_url.dart';
 import '../model/check_version_response.dart';
 import '../services/update_checker_service.dart';
-import '../../../utils/launch_url.dart';
 
 class UpdatePage extends StatefulWidget {
   const UpdatePage({super.key});
@@ -130,20 +130,22 @@ class _CallToActions extends StatelessWidget {
                 foregroundColor: Theme.of(context).colorScheme.onPrimary,
               ),
               onPressed: () {
-                LaunchUrl.normalLaunchUrl(url: kPlayStoreListingLink);
+                LaunchUrl.normalLaunchUrl(url: envPlayStoreListingLink);
               },
               icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
               label: Text(AppLocalizations.of(context)!.updatePageGPlay)),
           OutlinedButton(
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: kReleaseNotesLink);
+              LaunchUrl.normalLaunchUrl(url: envReleaseNotesLink);
             },
             child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog),
           ),
           const Divider(),
           OutlinedButton(
             onPressed: () {
-              LaunchUrl.normalLaunchUrl(url: "$kGithubRepoLink/releases");
+              final githubReleasesUrl =
+                  Uri.parse(envGithubLink).resolve('/releases').toString();
+              LaunchUrl.normalLaunchUrl(url: githubReleasesUrl);
             },
             child: Text(AppLocalizations.of(context)!.updatePageBeta),
           ),

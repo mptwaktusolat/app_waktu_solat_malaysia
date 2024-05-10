@@ -19,6 +19,9 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import 'constants.dart';
+import 'env.dart';
+import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
+import 'features/kompas_kiblat/views/qibla_page.dart';
 import 'firebase_options.dart';
 import 'location_utils/location_database.dart';
 import 'models/jakim_zones.dart';
@@ -30,8 +33,6 @@ import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
-import 'features/kompas_kiblat/views/qibla_page.dart';
-import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'views/app_body.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
@@ -282,6 +283,6 @@ class MyHttpOverrides extends HttpOverrides {
     // allow mpt-server to bypass when there is error certificate expired
     // happened in Android 5 (emulator), not happens in recent Android versions
     return super.createHttpClient(context)
-      ..badCertificateCallback = (_, String host, __) => host == kApiBaseUrl;
+      ..badCertificateCallback = (_, String host, __) => host == envApiBaseHost;
   }
 }
