@@ -9,7 +9,9 @@ import '../../constants.dart';
 import '../../utils/launch_url.dart';
 
 final _mdStyleSheet = MarkdownStyleSheet(
-    textAlign: WrapAlignment.spaceAround, textScaleFactor: 1.1);
+  textAlign: WrapAlignment.spaceAround,
+  textScaler: const TextScaler.linear(1.1),
+);
 
 class TroubleshootNotif extends StatelessWidget {
   const TroubleshootNotif({super.key});
