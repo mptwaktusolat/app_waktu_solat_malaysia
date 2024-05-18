@@ -9,18 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v3.9.0
+        uses: actions/setup-java@v4
         with:
           distribution: "zulu"
-          java-version: "11"
+          java-version: "17"
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2.8.0
+        uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          flutter-version-file: pubspec.yaml # path to pubspec.yaml
 
       # File can be encoded to base64 on https://base64.guru/converter/encode/file
       - name: Decoding android/key.properties
@@ -34,7 +35,7 @@ jobs:
         run: flutter build appbundle
 
       - name: Upload aab
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: "!github.event.release.prerelease"
         with:
           name: aab-release
@@ -55,7 +56,7 @@ jobs:
           echo ":white_check_mark: Build split apk" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload apks
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: apk-releases
           path: build/app/outputs/apk/release/*.apk
@@ -69,10 +70,10 @@ jobs:
     needs: build_android
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: apk-releases
 
@@ -80,7 +81,7 @@ jobs:
         run: curl -s https://gist.githubusercontent.com/iqfareez/f57405016cc8bcc51cdcd2879c88807a/raw/5d9bbed7231a9e56bf24b88ab5286cee73dae173/rename_apk.sh | bash -s MPT .  
 
       - name: Upload file to the assets release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: "*.apk"
 
@@ -94,7 +95,7 @@ jobs:
     needs: build_android
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: aab-release
 
