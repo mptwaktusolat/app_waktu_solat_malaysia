@@ -1,0 +1,21 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "malaysia-waktu-solat",
+          "appId": "1:1012545476549:android:631d6aab3ef111555a9dac",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "malaysia-waktu-solat",
+          "configurations": {
+            "android": "1:1012545476549:android:631d6aab3ef111555a9dac"
+          }
+        }
+      }
+    }
+  }
+}

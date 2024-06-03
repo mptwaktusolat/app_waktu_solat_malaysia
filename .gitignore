@@ -86,10 +86,6 @@ app.*.map.json
 *.apk
 *.aab
 
-# key file
-key.properties
-android/key.jks
-
 # scratch file
 scratch.dart
 untranslated.txt
