@@ -3,14 +3,14 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-# After update version, check the flutter version in the [environment.flutter]
-version: 2.12.4-pre.1+148
+# After update this value, check the flutter version in the [environment.flutter]
+version: 2.12.4+149
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
   # Purely used in CI workflow that have [flutter-version-file] specified
-  # Put this version same as the version used in development to have predictable output
-  flutter: 3.22.0
+  # Put this version same as the version used in development environment to have predictable output
+  flutter: 3.22.2
 
 dependencies:
   flutter:
@@ -37,20 +37,20 @@ dependencies:
   geocoding: ^3.0.0
   font_awesome_flutter: ^10.1.0
   flutter_qiblah: ^3.0.3
-  firebase_core: ^2.2.0
-  email_validator: ^2.0.1
+  firebase_core: ^3.2.0
+  email_validator: ^3.0.0
   introduction_screen: ^3.0.0
   in_app_review: ^2.0.2
   google_mobile_ads: ^5.0.0
   restart_app: ^1.0.3
   flutter_markdown: ^0.7.1
-  firebase_analytics: ^10.0.5
+  firebase_analytics: ^11.2.0
   auto_start_flutter:
     # Issue https://github.com/seena98/auto_start_flutter/issues/6
     git: https://github.com/iqfareez/auto_start_flutter.git
   timezone: ^0.9.0
   quick_actions: ^1.0.0
-  firebase_crashlytics: ^3.0.5
+  firebase_crashlytics: ^4.0.3
   dynamic_color: ^1.6.2
   flutter_staggered_animations: ^1.1.1
   path_provider: ^2.1.1
