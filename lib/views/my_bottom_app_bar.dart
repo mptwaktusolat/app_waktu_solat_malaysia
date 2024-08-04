@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
 import '../constants.dart';
@@ -36,46 +37,67 @@ class MyBottomAppBar extends StatelessWidget {
                     )
                   : const FaIcon(FontAwesomeIcons.bars),
               onPressed: () => menuModalBottomSheet(context),
+            ).withHotspot(
+              order: 3,
+              title:
+                  AppLocalizations.of(context)!.onboardingCoachmarkSettingTitle,
+              text: AppLocalizations.of(context)!
+                  .onboardingCoachmarkSettingContent,
+              flow: kOnboardingCoachmarkFlow,
             );
           }),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.calendarDays),
-            tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Full Prayer Timetable'),
-                  builder: (_) => PrayerFullTable()));
-            },
+          // These buttons were grouped into Row because we want to combine
+          // the coachmark
+          Row(
+            children: [
+              IconButton(
+                icon: const FaIcon(FontAwesomeIcons.calendarDays),
+                tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      settings:
+                          const RouteSettings(name: 'Full Prayer Timetable'),
+                      builder: (_) => PrayerFullTable()));
+                },
+              ),
+              IconButton(
+                icon: const FaIcon(FontAwesomeIcons.kaaba),
+                // color: iconColour,
+                tooltip: AppLocalizations.of(context)?.qiblaTitle,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      settings: const RouteSettings(name: 'Qibla'),
+                      builder: (_) => GetStorage().read(kHasShowQiblaWarning)
+                          ? const QiblaPage()
+                          : const QiblaDisclaimerPage(),
+                    ),
+                  );
+                },
+              ),
+              IconButton(
+                icon: const Icon(MyMptIcons.tasbih_plain),
+                tooltip: "Tasbih",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      settings: const RouteSettings(name: 'Tasbih'),
+                      builder: (_) => const Tasbih(),
+                    ),
+                  );
+                },
+              )
+            ],
+          ).withHotspot(
+            order: 2,
+            title:
+                AppLocalizations.of(context)!.onboardingCoachmarkUtilitiesTitle,
+            text: AppLocalizations.of(context)!
+                .onboardingCoachmarkUtilitiesContent,
+            flow: kOnboardingCoachmarkFlow,
           ),
-          IconButton(
-            icon: const FaIcon(FontAwesomeIcons.kaaba),
-            // color: iconColour,
-            tooltip: AppLocalizations.of(context)?.qiblaTitle,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Qibla'),
-                  builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                      ? const QiblaPage()
-                      : const QiblaDisclaimerPage(),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(MyMptIcons.tasbih_plain),
-            tooltip: "Tasbih",
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  settings: const RouteSettings(name: 'Tasbih'),
-                  builder: (_) => const Tasbih(),
-                ),
-              );
-            },
-          )
         ],
       ),
     );

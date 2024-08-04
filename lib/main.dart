@@ -12,6 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hotspot/hotspot.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
 import 'package:quick_actions/quick_actions.dart';
@@ -147,27 +148,38 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _configureQuickAction(context);
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
+    return HotspotProvider(
+      actionBuilder: (context, controller) {
+        return HotspotActionBuilder(
+          controller,
+          doneText: AppLocalizations.of(context)!.coachmarkDone,
+          nextText: AppLocalizations.of(context)!.coachmarkNext,
+          previousText: AppLocalizations.of(context)!.coachmarkPrevious,
+          endText: AppLocalizations.of(context)!.coachmarkEnd,
+        );
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+            statusBarIconBrightness: Brightness.light,
+          ),
+          title: Text(AppLocalizations.of(context)!.appbarTitle,
+              style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
+          elevation: 0.0,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Theme.of(context).colorScheme.background,
+          centerTitle: true,
+          toolbarHeight: 50,
         ),
-        title: Text(AppLocalizations.of(context)!.appbarTitle,
-            style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
-        elevation: 0.0,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.background,
-        centerTitle: true,
-        toolbarHeight: 50,
-      ),
-      // known issue that causes white line appear between appbar and widget below
-      // https://github.com/flutter/flutter/issues/14288
-      bottomNavigationBar: const MyBottomAppBar(),
-      floatingActionButton: const ShareFAB(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: const SingleChildScrollView(
-        child: AppBody(),
+        // known issue that causes white line appear between appbar and widget below
+        // https://github.com/flutter/flutter/issues/14288
+        bottomNavigationBar: const MyBottomAppBar(),
+        floatingActionButton: const ShareFAB(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        body: const SingleChildScrollView(
+          child: AppBody(),
+        ),
       ),
     );
   }

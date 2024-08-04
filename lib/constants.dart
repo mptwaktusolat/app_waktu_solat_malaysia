@@ -27,6 +27,10 @@ const kNoAdsStartTime = "noAdsStartTime";
 // store current user location name to be consumed by homescreen widget
 const kWidgetLocation = "widgetLocation";
 const kNotificationSheetKeepOff = "notifSheetKeepOff";
+const kCoachmarkOnboardingShown = "coachmarkOnboardingShown";
+
+// Hotspot Flow (Coachmarks)
+const kOnboardingCoachmarkFlow = 'onboarding';
 
 //Network image
 const kAppIconUrl =

@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hotspot/hotspot.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -41,6 +42,10 @@ class _AppBodyState extends State<AppBody> {
     _checkForUpdate();
     _showUpdateNotesAndNotFirstRun();
     _promptScheduleNotificationPermission();
+
+    Future.delayed(const Duration(milliseconds: 550)).then((_) {
+      _showOnboardingCoachmarks();
+    });
   }
 
   void _checkForUpdate() async {
@@ -140,6 +145,16 @@ class _AppBodyState extends State<AppBody> {
         msg: 'Thank you for granting the permissions needed');
   }
 
+  void _showOnboardingCoachmarks() async {
+    final coachmarkOnboardingShown =
+        GetStorage().read(kCoachmarkOnboardingShown) ?? false;
+
+    if (!coachmarkOnboardingShown) {
+      HotspotProvider.of(context).startFlow(kOnboardingCoachmarkFlow);
+      GetStorage().write(kCoachmarkOnboardingShown, true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
@@ -164,8 +179,15 @@ class _AppBodyState extends State<AppBody> {
                       Expanded(
                         child: DateWidget(hijriDate: snapshot.data ?? "..."),
                       ),
-                      const Expanded(
-                        child: ZoneWidget(),
+                      Expanded(
+                        child: const ZoneWidget().withHotspot(
+                          order: 1,
+                          title: AppLocalizations.of(context)!
+                              .onboardingCoachmarkLocationTitle,
+                          text: AppLocalizations.of(context)!
+                              .onboardingCoachmarkLocationContent,
+                          flow: kOnboardingCoachmarkFlow,
+                        ),
                       ),
                     ],
                   ),
