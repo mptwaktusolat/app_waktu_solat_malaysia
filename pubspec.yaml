@@ -4,13 +4,13 @@ description: App waktu solat seluruh Malaysia
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # After update this value, check the flutter version in the [environment.flutter]
-version: 2.12.4+149
+version: 2.12.5+150
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  # Purely used in CI workflow that have [flutter-version-file] specified
+  # For CI use only. Used in workflow that have [flutter-version-file]
   # Put this version same as the version used in development environment to have predictable output
-  flutter: 3.22.2
+  flutter: 3.24.1
 
 dependencies:
   flutter:
@@ -55,7 +55,7 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   path_provider: ^2.1.1
   open_file: ^3.3.2
-  home_widget: ^0.6.0
+  home_widget: ^0.7.0
   permission_handler: ^11.3.1
   hotspot: ^0.1.3
 
