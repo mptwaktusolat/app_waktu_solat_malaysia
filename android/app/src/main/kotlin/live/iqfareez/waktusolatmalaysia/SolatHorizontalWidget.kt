@@ -241,7 +241,7 @@ fun isDateValid(jsonDate: String): Boolean {
     val jsonFixed = toTitleCase(jsonDate);
     return try {
         // Parse the JSON date into YearMonth
-        val formatter = DateTimeFormatter.ofPattern("MMM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("MMM-yyyy", Locale.ENGLISH)
         val date = YearMonth.parse(jsonFixed, formatter)
 
         // Get the current month and year
