@@ -38,10 +38,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9cf72f73235f6d0a2196c93516cefeee7b48c2af"
+      resolved-ref: f927de376fd632316e3afa6c73df1b8a53beb1ab
       url: "https://github.com/iqfareez/auto_start_flutter.git"
     source: git
-    version: "0.1.1"
+    version: "0.1.2"
   boolean_selector:
     dependency: transitive
     description:
