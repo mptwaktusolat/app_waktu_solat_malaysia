@@ -55,8 +55,8 @@ class PrayerFullTable extends StatelessWidget {
         headerSliverBuilder: (_, innerboxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              foregroundColor: Colors.white,
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
               pinned: true,
               expandedHeight: 150,
               flexibleSpace: FlexibleSpaceBar(
@@ -68,13 +68,19 @@ class PrayerFullTable extends StatelessWidget {
                           .toString(),
                   fit: BoxFit.cover,
                   color: Colors.black.withOpacity(0.7),
-                  colorBlendMode: BlendMode.overlay,
+                  colorBlendMode: switch (Theme.of(context).brightness) {
+                    Brightness.light => BlendMode.dstATop,
+                    Brightness.dark => BlendMode.multiply,
+                  },
                 ),
                 centerTitle: true,
                 title: Text(
                     '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    )),
               ),
               actions: [
                 IconButton(
