@@ -35,8 +35,6 @@ const kOnboardingCoachmarkFlow = 'onboarding';
 //Network image
 const kAppIconUrl =
     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
-const kDeveloperActivityImage =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/In%20app%2Fundraw_developer_activity_bv83.svg?alt=media&token=e787419a-fb75-4484-860d-512b4b634c97';
 
 //Network Image (Scenery time images)
 // const kWaktuSubuhImage =

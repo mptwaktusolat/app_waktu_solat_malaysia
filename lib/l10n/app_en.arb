@@ -304,10 +304,7 @@
   "notifSheetNotificationDescription": "We may require some permissions to be able to play the notification/azan",
   "notifSheetNotificationPrimaryButton": "Turn On Notification",
   "notifSheetNotificationCancel": "Keep it off for now",
-  "contributenDesc": "Alhamdulillah. If you love using our app and would like to show your appreciation, you can now make a financial contribution to support our ongoing efforts. May Allah SWT rewards your kindness.",
   "contributeShare": "Share this app",
-  "contributeShareDesc": "Share your experience of using this app with your family and friends.",
-  "contributeShareNow": "Share now",
   "contributeShareContent": "Hi. I'm using the Malaysia Prayer Time app. It's fast and free.\n\nTry it now:\n{playStoreShortLink} (Google Play)\n{webAppLink} (Web app)",
   "@contributeShareContent": {
     "placeholders": {
@@ -322,9 +319,6 @@
   "contributeShareSubject": "Sharing MPT App",
   "contributeCopy": "Copy",
   "contributeOpen": "Open",
-  "contributeSource": "Contribute to source",
-  "contributeSourceDesc": "MPT app is open source. Report any bugs or contribute directly to the source code. It is licensed under GNU GPLv3.",
-  "contributeOpenGh": "Open GitHub",
   "contributeCopied": "Copied to clipboard",
   "notifTsAdmonition": "Your device may not be affected with this particular issue.",
   "notifTsPara1": "Some apps installed from the **Google Play Store** will disable **Autostart** by default. Due to this behaviour, prayer notification (sometimes) will not appear on your phone.",

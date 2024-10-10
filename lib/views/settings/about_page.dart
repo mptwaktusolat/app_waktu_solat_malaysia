@@ -8,12 +8,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../constants.dart';
 import '../../env.dart';
 import '../../providers/setting_provider.dart';
 import '../../utils/launch_url.dart';
-import '../contribution_page.dart';
 import '../debug_dialog.dart';
 
 class AboutAppPage extends StatelessWidget {
@@ -38,47 +38,70 @@ class AboutAppPage extends StatelessWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  GestureDetector(
-                    onLongPress: () {
-                      if (isFirstTry && !setting.isDeveloperOption) {
-                        Fluttertoast.showToast(msg: '(⌐■_■)');
-                        isFirstTry = false;
-                      } else {
-                        if (!setting.isDeveloperOption) {
-                          Fluttertoast.showToast(
-                              msg: 'Developer mode discovered',
-                              toastLength: Toast.LENGTH_LONG,
-                              backgroundColor: Colors.teal);
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Hack to make the app icon in the center
+                      // The value is just I come up with by just eyeballing the logo to be in the center
+                      // I tried with Stack and Positioned, but the IconButton's gesture didn't work
+                      SizedBox(width: 42),
+                      GestureDetector(
+                        onLongPress: () {
+                          if (isFirstTry && !setting.isDeveloperOption) {
+                            Fluttertoast.showToast(msg: '(⌐■_■)');
+                            isFirstTry = false;
+                          } else {
+                            if (!setting.isDeveloperOption) {
+                              Fluttertoast.showToast(
+                                  msg: 'Developer mode discovered',
+                                  toastLength: Toast.LENGTH_LONG,
+                                  backgroundColor: Colors.teal);
 
-                          setting.isDeveloperOption = true;
-                        }
-                        // Show the debug dialog
-                        showDialog(
-                          context: context,
-                          builder: (context) => const DebugDialog(),
-                        );
-                      }
-                    },
-                    child: Hero(
-                      tag: kAppIconTag,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(18),
-                        child: CachedNetworkImage(
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.scaleDown,
-                          imageUrl: kAppIconUrl,
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
+                              setting.isDeveloperOption = true;
+                            }
+                            // Show the debug dialog
+                            showDialog(
+                              context: context,
+                              builder: (context) => const DebugDialog(),
+                            );
+                          }
+                        },
+                        child: Hero(
+                          tag: kAppIconTag,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(18),
+                            child: CachedNetworkImage(
+                              width: 70,
+                              height: 70,
+                              fit: BoxFit.scaleDown,
+                              imageUrl: kAppIconUrl,
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) => Padding(
+                                padding: const EdgeInsets.all(18.0),
+                                child: CircularProgressIndicator(
+                                    value: downloadProgress.progress),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const FaIcon(FontAwesomeIcons.exclamation),
+                            ),
                           ),
-                          errorWidget: (context, url, error) =>
-                              const FaIcon(FontAwesomeIcons.exclamation),
                         ),
                       ),
-                    ),
+                      // Share App Button
+                      IconButton(
+                        tooltip: AppLocalizations.of(context)!.contributeShare,
+                        onPressed: () {
+                          Share.share(
+                              AppLocalizations.of(context)!
+                                  .contributeShareContent(
+                                      envPlayStoreListingShortLink,
+                                      envWebappUrl),
+                              subject: AppLocalizations.of(context)!
+                                  .contributeShareSubject);
+                        },
+                        icon: Icon(Icons.adaptive.share),
+                      )
+                    ],
                   ),
                   const Text(
                     '\nMPT 2024',
@@ -114,29 +137,6 @@ class AboutAppPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Card(
-                    clipBehavior: Clip.hardEdge,
-                    child: InkWell(
-                      child: ListTile(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4)),
-                        title: Text(
-                          AppLocalizations.of(context)!.aboutContribution,
-                          textAlign: TextAlign.center,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              settings: const RouteSettings(
-                                  name: 'Contribution Page'),
-                              builder: (_) => const ContributionPage(),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
                   Card(
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
