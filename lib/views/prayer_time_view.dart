@@ -162,6 +162,9 @@ class SolatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // if not Malaysia timezone
+    final isOtherTimezone =
+        time.timeZoneOffset.compareTo(const Duration(hours: 8)) != 0;
     return Consumer<SettingProvider>(
       builder: (_, value, __) => Container(
         constraints: const BoxConstraints(maxWidth: 320),
@@ -184,13 +187,17 @@ class SolatCard extends StatelessWidget {
             }),
             child: Center(
               child: Text(
-                AppLocalizations.of(context)!
-                    .getPtTimeAt(name, time.format(value.use12hour)),
+                AppLocalizations.of(context)!.getPtTimeAt(
+                    name,
+                    // Known bug: Time tak updated bila tukar timezone kat setting
+                    // and return to app page
+                    time.format(value.use12hour) +
+                        (isOtherTimezone ? ' (${time.timeZoneName})' : '')),
                 style: TextStyle(
-                    fontSize: value.prayerFontSize,
-                    fontWeight: isCurrentPrayerTime
-                        ? FontWeight.bold
-                        : FontWeight.normal),
+                  fontSize: value.prayerFontSize,
+                  fontWeight:
+                      isCurrentPrayerTime ? FontWeight.bold : FontWeight.normal,
+                ),
               ),
             ),
           ),

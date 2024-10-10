@@ -21,6 +21,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import 'constants.dart';
 import 'env.dart';
+import 'features/home/views/home_page.dart';
 import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'features/kompas_kiblat/views/qibla_page.dart';
 import 'firebase_options.dart';
@@ -34,7 +35,6 @@ import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'utils/sharing_fab.dart';
-import 'views/app_body.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/prayer_full_table.dart';
@@ -178,7 +178,7 @@ class MyHomePage extends StatelessWidget {
         floatingActionButton: const ShareFAB(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: const SingleChildScrollView(
-          child: AppBody(),
+          child: HomePage(),
         ),
       ),
     );

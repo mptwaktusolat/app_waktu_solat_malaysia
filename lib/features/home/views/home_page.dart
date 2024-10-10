@@ -13,28 +13,30 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../components/ads_widget.dart';
-import '../constants.dart';
-import '../features/check_updates/services/update_checker_service.dart';
-import '../features/check_updates/views/whats_new_update.dart';
-import '../features/home/views/components/exact_alarm_permission_off_sheet.dart';
-import '../features/home/views/components/notification_permission_off_sheet.dart';
-import '../location_utils/location_database.dart';
-import '../providers/location_provider.dart';
-import '../providers/updater_provider.dart';
-import '../utils/prayer_data_handler.dart';
-import 'notif_prompt.dart';
-import 'prayer_time_view.dart';
-import 'zone_chooser.dart';
+import '../../../constants.dart';
+import '../../../location_utils/location_database.dart';
+import '../../../providers/location_provider.dart';
+import '../../../providers/updater_provider.dart';
+import '../../../utils/prayer_data_handler.dart';
+import '../../../views/prayer_time_view.dart';
+import '../../../views/zone_chooser.dart';
+import '../../check_updates/services/update_checker_service.dart';
+import '../../check_updates/views/whats_new_update.dart';
+import 'components/ads_widget.dart';
+import 'components/exact_alarm_permission_off_sheet.dart';
+import 'components/notif_prompt.dart';
+import 'components/notification_permission_off_sheet.dart';
+import 'components/timezone_prompt.dart';
 
-class AppBody extends StatefulWidget {
-  const AppBody({super.key});
+/// This page is the main view of the app
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<AppBody> createState() => _AppBodyState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _AppBodyState extends State<AppBody> {
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -194,6 +196,7 @@ class _AppBodyState extends State<AppBody> {
                 ),
                 const SizedBox(height: 3),
                 const AdsWidget(),
+                const TimezonePrompt(),
                 const NotifPrompt(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 26),

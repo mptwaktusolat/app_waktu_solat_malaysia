@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../constants.dart';
+import '../../../../constants.dart';
 
 class AdsWidget extends StatefulWidget {
   const AdsWidget({super.key});
@@ -68,10 +68,6 @@ class _AdsWidgetState extends State<AdsWidget> {
           child: AdWidget(ad: _ad));
     } else {
       return const SizedBox.shrink();
-      // return const Placeholder(
-      //   fallbackHeight: 50,
-      //   fallbackWidth: 320,
-      // );
     }
   }
 }
