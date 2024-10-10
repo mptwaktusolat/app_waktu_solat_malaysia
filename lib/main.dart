@@ -168,7 +168,7 @@ class MyHomePage extends StatelessWidget {
               style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
           elevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary,
-          foregroundColor: Theme.of(context).colorScheme.background,
+          foregroundColor: Theme.of(context).colorScheme.surface,
           centerTitle: true,
           toolbarHeight: 50,
         ),

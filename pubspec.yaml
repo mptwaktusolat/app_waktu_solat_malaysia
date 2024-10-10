@@ -3,8 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-# After update this value, check the flutter version in the [environment.flutter]
-version: 2.12.5+150
+version: 2.12.6+151
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
