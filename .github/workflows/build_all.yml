@@ -21,7 +21,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-          flutter-version-file: pubspec.yaml # path to pubspec.yaml
 
       # File can be encoded to base64 on https://base64.guru/converter/encode/file
       - name: Decoding android/key.properties

@@ -8,9 +8,6 @@ version: 2.12.5+150
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
-  # For CI use only. Used in workflow that have [flutter-version-file]
-  # Put this version same as the version used in development environment to have predictable output
-  flutter: 3.24.1
 
 dependencies:
   flutter:
