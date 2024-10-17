@@ -328,8 +328,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
             TextButton.icon(
               icon: const FaIcon(FontAwesomeIcons.github, size: 13),
               onPressed: () {
-                final githubIssueUrl =
-                    Uri.https(envGithubRepoLink).resolve('/issues').toString();
+                final githubIssueUrl = '$envGithubRepoLink/issues';
                 LaunchUrl.normalLaunchUrl(url: githubIssueUrl);
               },
               label: Text(AppLocalizations.of(context)!.feedbackReportGithub),
