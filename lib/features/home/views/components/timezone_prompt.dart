@@ -1,4 +1,5 @@
 import 'package:admonitions/admonitions.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class TimezonePrompt extends StatefulWidget {
@@ -33,7 +34,7 @@ class _TimezonePromptState extends State<TimezonePrompt> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: PastelAdmonition.caution(
           text:
-              'Your device timezone is different than the date & time shown here. Please set your timezone to Malaysia (UTC+08:00).',
+              AppLocalizations.of(context)!.appBodyWrongDeviceTimezone,
         ),
       );
     }
