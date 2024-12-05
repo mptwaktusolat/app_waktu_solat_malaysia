@@ -50,8 +50,7 @@ Future<void> scheduleSinglePrayerNotification({
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.alarmClock,
       uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation
-              .absoluteTime); // This literally schedules the notification
+          UILocalNotificationDateInterpretation.absoluteTime);
 }
 
 /// Single prayer azan notification
@@ -90,8 +89,7 @@ Future<void> scheduleSingleAzanNotification({
       id, title, body, scheduledTime, platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.alarmClock,
       uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation
-              .absoluteTime); // This literally schedules the notification
+          UILocalNotificationDateInterpretation.absoluteTime);
 }
 
 /// Schedule alert notification
@@ -121,11 +119,10 @@ Future<void> scheduleAlertNotification(
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       payload: payload,
       uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation
-              .absoluteTime); // This literally schedules the notification
+          UILocalNotificationDateInterpretation.absoluteTime);
 }
 
-/// To test if the notification is working
+/// For debugging:  To test if the notification is working
 Future<void> showDebugNotification() async {
   const AndroidNotificationDetails androidPlatformChannelSpecifics =
       AndroidNotificationDetails(
@@ -142,7 +139,7 @@ Future<void> showDebugNotification() async {
       .show(0, 'Debug', 'For developer purposes', platformChannelSpecifics);
 }
 
-/// Play default notification immediately
+/// For debugging: Play default notification immediately
 Future<void> fireDefaultNotification({
   required String message,
 }) async {
@@ -163,10 +160,10 @@ Future<void> fireDefaultNotification({
     'Default notification',
     message,
     platformChannelSpecifics,
-  ); // This literally schedules the notification
+  );
 }
 
-/// Play selected azan immediately
+/// For debugging: Play selected azan immediately
 Future<void> fireAzanNotification({
   required MyNotificationType type,
   required String message,
@@ -192,5 +189,5 @@ Future<void> fireAzanNotification({
       MyNotificationType.shortAzan.index * 2,
       type.name,
       message,
-      platformChannelSpecifics); // This literally schedules the notification
+      platformChannelSpecifics);
 }

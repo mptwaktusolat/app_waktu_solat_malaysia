@@ -1,4 +1,5 @@
 // Keep environment variables here https://12factor.net/config
+// This environment variables is NOT SENSITIVE. It is ok to add to VCS.
 
 // API base
 const envApiBaseHost = 'mpt-server.vercel.app';

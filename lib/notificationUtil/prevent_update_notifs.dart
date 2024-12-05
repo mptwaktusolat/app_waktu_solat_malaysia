@@ -5,6 +5,9 @@ import '../constants.dart';
 import '../utils/date_and_time.dart';
 import '../utils/debug_toast.dart';
 
+/// In [PrayTimeList] widget, we call update notification everytime the widget
+/// rebuild (i.e. user change zone, etc.).
+/// This function is to prevent the notification from being rescheduled too often
 class PreventUpdatingNotifs {
   static bool shouldUpdate() {
     // forece update if user change location, or through the setting page
