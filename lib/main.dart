@@ -195,7 +195,9 @@ void initGetStorage() {
   get.writeIfNull(kIsFirstRun, true);
   get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
   get.writeIfNull(kStoredTimeIs12, true);
-  get.writeIfNull(kStoredShowOtherPrayerTime, false);
+  // Many people doesn't realive they have the ability to toggle Imsak, Syuruk,
+  // Dhuha display, so we make them shown by default. See issue: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/171.
+  get.writeIfNull(kStoredShowOtherPrayerTime, true);
   get.writeIfNull(kShouldUpdateNotif, true);
   get.writeIfNull(kStoredLastUpdateNotif, 0);
   get.writeIfNull(kStoredNotificationLimit, false);
