@@ -1,3 +1,4 @@
+import 'package:admonitions/admonitions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,25 +32,8 @@ class _QiblaPageState extends State<QiblaPage> {
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child: Container(
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                  color: Colors.amber.withOpacity(.3),
-                  borderRadius: BorderRadius.circular(16)),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const FaIcon(FontAwesomeIcons.circleInfo),
-                  const SizedBox(width: 15),
-                  Flexible(
-                    child: Text(
-                      AppLocalizations.of(context)!.qiblaOverheadWarn,
-                      // textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
+            child: PastelAdmonition.caution(
+              text: AppLocalizations.of(context)!.qiblaOverheadWarn,
             ),
           ),
           Align(

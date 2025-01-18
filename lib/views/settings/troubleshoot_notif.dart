@@ -1,3 +1,4 @@
+import 'package:admonitions/admonitions.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,12 @@ class TroubleshootNotif extends StatelessWidget {
                     return const SizedBox.shrink();
                   }
 
-                  return const _DeviceOKAdmonition();
+                  return PastelAdmonition.tip(
+                    text: AppLocalizations.of(context)!.notifTsAdmonition,
+                    icon: FaIcon(
+                      FontAwesomeIcons.check,
+                    ),
+                  );
                 },
               ),
               MarkdownBody(
@@ -63,31 +69,6 @@ class TroubleshootNotif extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _DeviceOKAdmonition extends StatelessWidget {
-  const _DeviceOKAdmonition();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-          color: Colors.green.withOpacity(.3),
-          borderRadius: BorderRadius.circular(16)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const FaIcon(FontAwesomeIcons.check),
-          const SizedBox(width: 15),
-          Flexible(
-            child: Text(AppLocalizations.of(context)!.notifTsAdmonition),
-          )
-        ],
       ),
     );
   }

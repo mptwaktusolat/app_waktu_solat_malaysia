@@ -104,7 +104,7 @@ class AboutAppPage extends StatelessWidget {
                     ],
                   ),
                   const Text(
-                    '\nMPT 2024',
+                    '\nMalaysia Prayer Time',
                     textAlign: TextAlign.center,
                   ),
                   GestureDetector(
@@ -126,7 +126,7 @@ class AboutAppPage extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                        color: Theme.of(context).bottomAppBarTheme.color,
+                        color: Theme.of(context).colorScheme.secondaryContainer,
                         borderRadius: BorderRadius.circular(10)),
                     child: MarkdownBody(
                       data: AppLocalizations.of(context)!.aboutJakim,
@@ -256,7 +256,7 @@ class AboutAppPage extends StatelessWidget {
                             url: 'https://iqfareez.com'),
                         child: Text(
                           AppLocalizations.of(context)!
-                              .aboutLegalese("2020-2024"),
+                              .aboutLegalese("2020-2025"),
                           style: Theme.of(context).textTheme.labelMedium,
                           textAlign: TextAlign.center,
                         ),

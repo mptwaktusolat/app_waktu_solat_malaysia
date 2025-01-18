@@ -38,7 +38,7 @@
             android:ellipsize="end"
             android:gravity="end"
             android:maxLines="1"
-            android:text="18/05/2024"
+            android:text="28/6/2025"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />

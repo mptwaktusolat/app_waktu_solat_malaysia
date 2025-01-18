@@ -67,7 +67,7 @@ class PrayerFullTable extends StatelessWidget {
                       Uri.https(envApiBaseHost, '/api/mosque/$_locationCode')
                           .toString(),
                   fit: BoxFit.cover,
-                  color: Colors.black.withOpacity(0.7),
+                  color: Colors.black.withValues(alpha: 0.7),
                   colorBlendMode: switch (Theme.of(context).brightness) {
                     Brightness.light => BlendMode.dstATop,
                     Brightness.dark => BlendMode.multiply,
