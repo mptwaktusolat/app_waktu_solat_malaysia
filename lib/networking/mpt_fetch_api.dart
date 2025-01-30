@@ -61,7 +61,8 @@ class MptApiFetch {
       // then parse the JSON.
       return jsonDecode(response.body);
     } else {
-      throw 'Error getting mpt-server api';
+      throw Exception(
+          'Failed to fetch data from the server (${response.statusCode}). Please try again later.');
     }
   }
 
