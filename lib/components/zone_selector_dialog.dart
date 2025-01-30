@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import '../location_utils/location_database.dart';
 import '../models/jakim_zones.dart';
 import '../providers/location_provider.dart';
@@ -38,7 +39,8 @@ class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final bool isWideScreen = MediaQuery.of(context).size.width > 768;
+    final bool isWideScreen =
+        MediaQuery.of(context).size.width > kTabletBreakpoint;
 
     // Use [WillPopScope] over [PopScope] for now. Using [PopScope] may introoduce unwanted behavior https://imgur.com/a/prW2NsL
     return WillPopScope(

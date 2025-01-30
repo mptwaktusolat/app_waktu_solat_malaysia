@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../constants.dart';
 import '../models/mpt_server_solat.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
@@ -79,7 +80,7 @@ class _PrayTimeListState extends State<PrayTimeList> {
 
         return LayoutBuilder(
           builder: (context, constraints) {
-            if (constraints.maxWidth < 600) {
+            if (constraints.maxWidth < kTabletBreakpoint) {
               return AnimationLimiter(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
