@@ -72,6 +72,7 @@ flutter:
   assets:
     - assets/qibla/
     - assets/3d/
+    - assets/images/
     - assets/OFL.txt
     - assets/json/
   #   - assets/grouped.json

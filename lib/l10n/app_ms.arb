@@ -230,7 +230,7 @@
   "notifEndSubh": "Tamat waktu Subuh",
   "whatsUpdateTitle": "Baru sahaja dikemas kini kepada versi terkini.",
   "whatsUpdateContent": "Apa yang baharu dalam kemaskini ini, baca lanjut di [sini]({releaseNotesLink}).",
-  "whatsUpdateChangelog": "Baca Nota keluaran",
+  "whatsUpdateChangelog": "Nota keluaran",
   "updatePageError": "Ralat berlaku semasa menyemak kemas kini",
   "updatePageTryAgain": "Sila cuba lagi",
   "updatePageAvailable": "Kemas kini tersedia",
@@ -239,7 +239,6 @@
   "updatePageCurrentVer": "Anda ada: **{version}**",
   "updatePageLatestVer": "Terkini tersedia: **{version}**",
   "updatePageGPlay": "Dapatkan kemas kini di Google Play",
-  "updatePageBeta": "Dapatkan versi beta",
   "tasbihResetDialog": "Pastikan set semula ?",
   "tasbihReset": "Set semula"
 }

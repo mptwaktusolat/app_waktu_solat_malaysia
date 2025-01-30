@@ -361,7 +361,7 @@
       }
     }
   },
-  "whatsUpdateChangelog": "Read release notes",
+  "whatsUpdateChangelog": "Release notes",
   "updatePageError": "Sorry. Error occurred when checking for update",
   "updatePageTryAgain": "Please try again",
   "updatePageAvailable": "Updates available",
@@ -391,7 +391,6 @@
     }
   },
   "updatePageGPlay": "Get updates on Google Play",
-  "updatePageBeta": "Get beta versions",
   "tasbihResetDialog": "Confirm reset ?",
   "tasbihReset": "Reset"
 }

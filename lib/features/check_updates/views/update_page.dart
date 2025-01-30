@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gap/gap.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../../constants.dart';
 import '../../../env.dart';
 import '../../../utils/launch_url.dart';
 import '../model/check_version_response.dart';
@@ -30,10 +33,6 @@ class _UpdatePageState extends State<UpdatePage> {
     final packageInfo = await PackageInfo.fromPlatform();
 
     return (githubReleases, packageInfo);
-  }
-
-  int _daySinceRelease(DateTime releaseDate) {
-    return releaseDate.difference(DateTime.now()).inDays.abs();
   }
 
   @override
@@ -71,43 +70,134 @@ class _UpdatePageState extends State<UpdatePage> {
             final latestVersion = snapshot.data!.$1;
             final currentVersion = snapshot.data!.$2;
 
-            return Container(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.updatePageAvailable,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                  const SizedBox(height: 30),
-                  Text(latestVersion.releaseTitle,
-                      style: Theme.of(context).textTheme.headlineSmall!),
-                  Text(
-                    switch (_daySinceRelease(latestVersion.publishedAt)) {
-                      0 =>
-                        AppLocalizations.of(context)!.updatePageReleasedToday,
-                      _ => AppLocalizations.of(context)!.updatePageReleased(
-                          _daySinceRelease(latestVersion.publishedAt)),
-                    },
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(height: 20),
-                  MarkdownBody(
-                      data: AppLocalizations.of(context)!
-                          .updatePageCurrentVer(currentVersion.version)),
-                  MarkdownBody(
-                      data: AppLocalizations.of(context)!
-                          .updatePageLatestVer(latestVersion.version)),
-                  const SizedBox(height: 20),
-                  const _CallToActions()
-                ],
-              ),
-            );
+            return LayoutBuilder(builder: (context, constraints) {
+              if (constraints.maxWidth > kTabletBreakpoint) {
+                return _WideLayout(
+                    latestVersion: latestVersion,
+                    currentVersion: currentVersion);
+              }
+              return _DefaultLayout(
+                  latestVersion: latestVersion, currentVersion: currentVersion);
+            });
           },
         ),
+      ),
+    );
+  }
+}
+
+class _DefaultLayout extends StatelessWidget {
+  const _DefaultLayout({
+    required this.latestVersion,
+    required this.currentVersion,
+  });
+
+  final CheckVersionResponse latestVersion;
+  final PackageInfo currentVersion;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/images/upgrade-up-circle.svg',
+            colorFilter: ColorFilter.mode(
+                Theme.of(context).textTheme.displayLarge!.color!,
+                BlendMode.srcIn),
+            width: 110,
+            height: 110,
+          ),
+          Gap(8),
+          Text(
+            AppLocalizations.of(context)!.updatePageAvailable,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          Gap(35),
+          const SizedBox(height: 30),
+          Text(latestVersion.releaseTitle,
+              style: Theme.of(context).textTheme.headlineLarge!),
+          _ReleaseSinceWidget(latestVersion: latestVersion),
+          Gap(35),
+          MarkdownBody(
+              data: AppLocalizations.of(context)!
+                  .updatePageLatestVer(latestVersion.version)),
+          MarkdownBody(
+              data: AppLocalizations.of(context)!
+                  .updatePageCurrentVer(currentVersion.version)),
+          Gap(35),
+          const _CallToActions()
+        ],
+      ),
+    );
+  }
+}
+
+class _WideLayout extends StatelessWidget {
+  const _WideLayout({
+    required this.latestVersion,
+    required this.currentVersion,
+  });
+
+  final CheckVersionResponse latestVersion;
+  final PackageInfo currentVersion;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      width: double.infinity,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/upgrade-up-circle.svg',
+                  colorFilter: ColorFilter.mode(
+                      Theme.of(context).textTheme.displayLarge!.color!,
+                      BlendMode.srcIn),
+                  width: 110,
+                  height: 110,
+                ),
+                Gap(8),
+                Text(
+                  AppLocalizations.of(context)!.updatePageAvailable,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Gap(35),
+                const SizedBox(height: 30),
+                Text(latestVersion.releaseTitle,
+                    style: Theme.of(context).textTheme.headlineLarge!),
+                _ReleaseSinceWidget(latestVersion: latestVersion),
+                Gap(35),
+                MarkdownBody(
+                    data: AppLocalizations.of(context)!
+                        .updatePageLatestVer(latestVersion.version)),
+                MarkdownBody(
+                    data: AppLocalizations.of(context)!
+                        .updatePageCurrentVer(currentVersion.version)),
+                Gap(35),
+                const _CallToActions()
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -134,23 +224,38 @@ class _CallToActions extends StatelessWidget {
               },
               icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
               label: Text(AppLocalizations.of(context)!.updatePageGPlay)),
-          OutlinedButton(
+          TextButton(
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: envReleaseNotesLink);
             },
             child: Text(AppLocalizations.of(context)!.whatsUpdateChangelog),
           ),
-          const Divider(),
-          OutlinedButton(
-            onPressed: () {
-              final githubReleasesUrl =
-                  Uri.parse(envGithubLink).resolve('/releases').toString();
-              LaunchUrl.normalLaunchUrl(url: githubReleasesUrl);
-            },
-            child: Text(AppLocalizations.of(context)!.updatePageBeta),
-          ),
         ],
       ),
+    );
+  }
+}
+
+class _ReleaseSinceWidget extends StatelessWidget {
+  const _ReleaseSinceWidget({required this.latestVersion});
+
+  final CheckVersionResponse latestVersion;
+
+  int _daySinceRelease(DateTime releaseDate) {
+    return releaseDate.difference(DateTime.now()).inDays.abs();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      switch (_daySinceRelease(latestVersion.publishedAt)) {
+        0 => AppLocalizations.of(context)!.updatePageReleasedToday,
+        _ => AppLocalizations.of(context)!
+            .updatePageReleased(_daySinceRelease(latestVersion.publishedAt)),
+      },
+      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            fontStyle: FontStyle.italic,
+          ),
     );
   }
 }
