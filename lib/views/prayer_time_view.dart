@@ -10,7 +10,7 @@ import '../models/mpt_server_solat.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../providers/setting_provider.dart';
-import '../utils/date_and_time.dart';
+import '../shared/extensions/date_time_extensions.dart';
 import '../utils/prayer_data_handler.dart';
 
 String? location;
@@ -246,7 +246,7 @@ class SolatCard extends StatelessWidget {
           child: InkWell(
             splashColor: Theme.of(context).colorScheme.surfaceContainerHighest,
             onLongPress: () => Clipboard.setData(ClipboardData(
-                    text: '$name: ${time.format(value.use12hour)}'))
+                    text: '$name: ${time.readable(value.use12hour)}'))
                 .then((value) {
               Fluttertoast.showToast(
                 msg: AppLocalizations.of(context)!.getPtCopied,
@@ -261,7 +261,7 @@ class SolatCard extends StatelessWidget {
                     name,
                     // Known bug: Time tak updated bila tukar timezone kat setting
                     // and return to app page
-                    time.format(value.use12hour) +
+                    time.readable(value.use12hour) +
                         (isOtherTimezone ? ' (${time.timeZoneName})' : '')),
                 style: TextStyle(
                   fontSize: value.prayerFontSize,

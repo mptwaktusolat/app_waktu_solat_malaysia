@@ -1,14 +1,6 @@
 import 'package:intl/intl.dart';
 
-extension TimeFormat on DateTime {
-  /// Format dateTime
-  String format(bool is12hr) {
-    final formatToReadable = is12hr ? DateFormat('h:mm a') : DateFormat('HH:mm');
-    return formatToReadable.format(this);
-  }
-}
-
-class DateAndTime {
+class DateTimeUtil {
   /// check if input date is in this month
   static bool isSameMonthFromMillis(int millis) {
     final savedMonth = DateTime.fromMillisecondsSinceEpoch(millis).month;

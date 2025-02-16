@@ -14,7 +14,8 @@ import '../env.dart';
 import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
-import '../utils/date_and_time.dart';
+import '../shared/extensions/date_time_extensions.dart';
+import '../shared/utils/date_time_utils.dart';
 import 'settings/full_prayer_table_settings.dart';
 
 class PrayerFullTable extends StatelessWidget {
@@ -75,7 +76,7 @@ class PrayerFullTable extends StatelessWidget {
                 ),
                 centerTitle: true,
                 title: Text(
-                    '${AppLocalizations.of(context)?.timetableTitle(DateAndTime.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
+                    '${AppLocalizations.of(context)?.timetableTitle(DateTimeUtil.monthName(_month, AppLocalizations.of(context)!.localeName))} ($_locationCode)',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -309,7 +310,7 @@ class _PrayerDataTable extends StatelessWidget {
                     child: Opacity(
                       opacity: (index < _todayIndex) ? 0.55 : 1.0,
                       child: Text(
-                        day.format(_is12HourFormat),
+                        day.readable(_is12HourFormat),
                         style: TextStyle(
                             fontWeight:
                                 index == _todayIndex ? FontWeight.bold : null),
@@ -323,10 +324,10 @@ class _PrayerDataTable extends StatelessWidget {
                   Opacity(
                     opacity: (index < _todayIndex) ? 0.55 : 1.0,
                     child: Text(
-                      '~${DateAndTime.nightOneThird(
+                      '~${DateTimeUtil.nightOneThird(
                         _model.prayers[index].maghrib,
                         _model.prayers[index].fajr,
-                      ).format(_is12HourFormat)}',
+                      ).readable(_is12HourFormat)}',
                       style: TextStyle(
                           fontWeight:
                               index == _todayIndex ? FontWeight.bold : null),

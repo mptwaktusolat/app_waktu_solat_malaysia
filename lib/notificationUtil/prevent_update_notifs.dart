@@ -2,7 +2,7 @@
 
 import 'package:get_storage/get_storage.dart';
 import '../constants.dart';
-import '../utils/date_and_time.dart';
+import '../shared/utils/date_time_utils.dart';
 import '../utils/debug_toast.dart';
 
 /// In [PrayTimeList] widget, we call update notification everytime the widget
@@ -19,7 +19,7 @@ class PreventUpdatingNotifs {
     }
 
     //notification will update if not in the same month
-    if (!DateAndTime.isSameMonthFromMillis(
+    if (!DateTimeUtil.isSameMonthFromMillis(
         GetStorage().read(kStoredLastUpdateNotif))) {
       return true;
     }

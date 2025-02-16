@@ -24,6 +24,7 @@ import 'env.dart';
 import 'features/home/views/home_page.dart';
 import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'features/kompas_kiblat/views/qibla_page.dart';
+import 'features/sharing/views/share_floating_action_button.dart';
 import 'firebase_options.dart';
 import 'location_utils/location_database.dart';
 import 'models/jakim_zones.dart';
@@ -34,7 +35,6 @@ import 'providers/setting_provider.dart';
 import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
-import 'utils/sharing_fab.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/prayer_full_table.dart';
@@ -175,7 +175,7 @@ class MyHomePage extends StatelessWidget {
         // known issue that causes white line appear between appbar and widget below
         // https://github.com/flutter/flutter/issues/14288
         bottomNavigationBar: const MyBottomAppBar(),
-        floatingActionButton: const ShareFAB(),
+        floatingActionButton: const ShareFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: const SingleChildScrollView(
           child: HomePage(),

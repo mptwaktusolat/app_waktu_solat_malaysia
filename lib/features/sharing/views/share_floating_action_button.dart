@@ -7,13 +7,13 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../constants.dart';
-import '../providers/setting_provider.dart';
-import 'copy_and_share.dart';
-import 'launch_url.dart';
+import '../../../constants.dart';
+import '../../../providers/setting_provider.dart';
+import '../../../utils/launch_url.dart';
+import '../utils/share_text_builder.dart';
 
-class ShareFAB extends StatelessWidget {
-  const ShareFAB({super.key});
+class ShareFloatingActionButton extends StatelessWidget {
+  const ShareFloatingActionButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +53,7 @@ class ShareFAB extends StatelessWidget {
     });
   }
 
+  // TODO (Fareez): Perhaps refactor this to another component file
   void showShareDialog(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
@@ -119,23 +120,36 @@ class ShareFAB extends StatelessWidget {
   }
 
   void _shareToWhatsApp(BuildContext context) {
-    final message =
-        CopyAndShare.buildMessage(context, shareTarget: ShareTarget.whatsapp);
+    final use12hourFormat =
+        Provider.of<SettingProvider>(context, listen: false).use12hour;
+    final message = ShareTextBuilder(AppLocalizations.of(context)!,
+            use12hourFormat: use12hourFormat)
+        .formatWhatsApp();
     LaunchUrl.normalLaunchUrl(
       url: 'whatsapp://send/?text=$message',
     );
   }
 
-  void _shareUniversal(BuildContext context) =>
-      Share.share(CopyAndShare.buildMessage(context),
-          subject: AppLocalizations.of(context)!.shareSubject);
+  void _shareUniversal(BuildContext context) {
+    final use12hourFormat =
+        Provider.of<SettingProvider>(context, listen: false).use12hour;
+    final message = ShareTextBuilder(AppLocalizations.of(context)!,
+            use12hourFormat: use12hourFormat)
+        .formatPlainText();
+    Share.share(message, subject: AppLocalizations.of(context)!.shareSubject);
+  }
 
-  void copy(BuildContext context) =>
-      Clipboard.setData(ClipboardData(text: CopyAndShare.buildMessage(context)))
-          .then(
-        (value) {
-          Fluttertoast.showToast(
-              msg: AppLocalizations.of(context)!.shareTimetableCopied);
-        },
-      );
+  void copy(BuildContext context) {
+    final use12hourFormat =
+        Provider.of<SettingProvider>(context, listen: false).use12hour;
+    final message = ShareTextBuilder(AppLocalizations.of(context)!,
+            use12hourFormat: use12hourFormat)
+        .formatPlainText();
+    Clipboard.setData(ClipboardData(text: message)).then(
+      (value) {
+        Fluttertoast.showToast(
+            msg: AppLocalizations.of(context)!.shareTimetableCopied);
+      },
+    );
+  }
 }
