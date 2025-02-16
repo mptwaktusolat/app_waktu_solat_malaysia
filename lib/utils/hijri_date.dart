@@ -64,4 +64,15 @@ class HijriDate {
   String dMMM() {
     return "$day $monthName";
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is HijriDate) {
+      return day == other.day && month == other.month && year == other.year;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => dMY().hashCode;
 }

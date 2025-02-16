@@ -47,7 +47,6 @@ class MptServerSolat {
 }
 
 class Prayers {
-  late DateTime day;
   late HijriDate hijri;
   late DateTime imsak;
   late DateTime fajr;
@@ -59,7 +58,6 @@ class Prayers {
   late DateTime isha;
 
   Prayers({
-    required this.day,
     required this.hijri,
     required this.imsak,
     required this.isha,
@@ -81,15 +79,12 @@ class Prayers {
     asr = DateTime.fromMillisecondsSinceEpoch(json['asr'] * 1000);
     maghrib = DateTime.fromMillisecondsSinceEpoch(json['maghrib'] * 1000);
     isha = DateTime.fromMillisecondsSinceEpoch(json['isha'] * 1000);
-
-    day = fajr;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['isha'] = isha.millisecondsSinceEpoch;
     data['syuruk'] = syuruk.millisecondsSinceEpoch;
-    data['day'] = day.millisecondsSinceEpoch;
     data['dhuhr'] = dhuhr.millisecondsSinceEpoch;
     data['maghrib'] = maghrib.millisecondsSinceEpoch;
     data['fajr'] = fajr.millisecondsSinceEpoch;
