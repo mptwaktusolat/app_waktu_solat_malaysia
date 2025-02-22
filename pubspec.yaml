@@ -29,7 +29,7 @@ dependencies:
   provider: ^6.0.0
   flutter_local_notifications: ^18.0.1
   app_settings: ^5.0.0
-  flutter_web_browser: ^0.17.0
+  flutter_custom_tabs: ^2.1.0
   geocoding: ^3.0.0
   font_awesome_flutter: ^10.1.0
   flutter_qiblah: ^3.0.3
@@ -42,8 +42,9 @@ dependencies:
   flutter_markdown: ^0.7.1
   firebase_analytics: ^11.2.0
   auto_start_flutter:
-    # Issue https://github.com/seena98/auto_start_flutter/issues/6
-    git: https://github.com/iqfareez/auto_start_flutter.git
+    git:
+      url: https://github.com/iqfareez/auto_start_flutter.git
+      ref: migrate-v1-to-v2-embedding
   timezone: ^0.10.0
   quick_actions: ^1.0.0
   firebase_crashlytics: ^4.0.3
