@@ -9,7 +9,7 @@ import '../../../models/mpt_server_solat.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 import '../../../utils/prayer_data_handler.dart';
 
-enum ShareTarget { universal, whatsapp }
+enum ShareTarget { universal, copy, whatsapp, image }
 
 /// Builder for share text.
 class ShareTextBuilder {

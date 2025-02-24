@@ -11,6 +11,8 @@ import '../../../constants.dart';
 import '../../../providers/setting_provider.dart';
 import '../../../utils/launch_url.dart';
 import '../utils/share_text_builder.dart';
+import 'share_image_preview_page.dart';
+import 'share_target_selection.dart';
 
 class ShareFloatingActionButton extends StatelessWidget {
   const ShareFloatingActionButton({super.key});
@@ -30,7 +32,7 @@ class ShareFloatingActionButton extends StatelessWidget {
               _shareToWhatsApp(context);
               break;
             case 3:
-              copy(context);
+              _copy(context);
               break;
             default:
               showShareDialog(context);
@@ -58,62 +60,22 @@ class ShareFloatingActionButton extends StatelessWidget {
     await showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.sharePlainTitle),
-              subtitle: Text(AppLocalizations.of(context)!.sharePlainDesc),
-              onTap: () {
-                Navigator.pop(context);
-                _shareUniversal(context);
-              },
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.shareWhatsappTitle),
-              subtitle: Text(AppLocalizations.of(context)!.shareWhatsappDesc),
-              trailing: FaIcon(
-                FontAwesomeIcons.whatsapp,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                _shareToWhatsApp(context);
-              },
-            ),
-            ListTile(
-              title: Text(AppLocalizations.of(context)!.shareCopy),
-              trailing: FaIcon(
-                FontAwesomeIcons.clone,
-                color: Theme.of(context).colorScheme.secondary,
-              ),
-              onTap: () {
-                copy(context);
-                Navigator.pop(context);
-              },
-            ),
-            // Message should only show once
-            // Show only if it is not open before
-            if (!(GetStorage().read<bool?>(kHasOpenSharingDialog) ?? false))
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: RichText(
-                  text: TextSpan(
-                    text: AppLocalizations.of(context)!.shareSettingPrompt,
-                    style: DefaultTextStyle.of(context)
-                        .style
-                        .copyWith(fontSize: 12),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: AppLocalizations.of(context)!
-                              .shareSettingPromptDestination,
-                          style: const TextStyle(fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ),
-              ),
-          ],
-        );
+        return ShareTargetSelection(onShareTargetSelected: (target) {
+          switch (target) {
+            case ShareTarget.universal:
+              _shareUniversal(context);
+              break;
+            case ShareTarget.whatsapp:
+              _shareToWhatsApp(context);
+              break;
+            case ShareTarget.copy:
+              _copy(context);
+              break;
+            case ShareTarget.image:
+              _imageShare(context);
+              break;
+          }
+        });
       },
     );
     GetStorage().write(kHasOpenSharingDialog, true);
@@ -139,7 +101,7 @@ class ShareFloatingActionButton extends StatelessWidget {
     Share.share(message, subject: AppLocalizations.of(context)!.shareSubject);
   }
 
-  void copy(BuildContext context) {
+  void _copy(BuildContext context) {
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
     final message = ShareTextBuilder(AppLocalizations.of(context)!,
@@ -150,6 +112,24 @@ class ShareFloatingActionButton extends StatelessWidget {
         Fluttertoast.showToast(
             msg: AppLocalizations.of(context)!.shareTimetableCopied);
       },
+    );
+  }
+
+  void _imageShare(BuildContext context) {
+    // final use12hourFormat =
+    //     Provider.of<SettingProvider>(context, listen: false).use12hour;
+    // final message = ShareTextBuilder(AppLocalizations.of(context)!,
+    //         use12hourFormat: use12hourFormat)
+    //     .formatPlainText();
+    // Clipboard.setData(ClipboardData(text: message)).then(
+    //   (value) {
+    //     Fluttertoast.showToast(
+    //         msg: AppLocalizations.of(context)!.shareTimetableCopied);
+    //   },
+    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ShareImagePreviewPage()),
     );
   }
 }
