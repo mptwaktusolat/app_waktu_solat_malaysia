@@ -14,119 +14,145 @@ import '../utils/share_text_builder.dart';
 import 'share_image_preview_page.dart';
 import 'share_target_selection.dart';
 
+/// A floating action button that provides prayer time sharing functionality.
+///
+/// This widget allows users to quickly share prayer times through various
+/// methods, including system share, WhatsApp, clipboard, or as an image.
 class ShareFloatingActionButton extends StatelessWidget {
   const ShareFloatingActionButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<SettingProvider>(builder: (_, setting, __) {
+      final localizations = AppLocalizations.of(context)!;
+
       return FloatingActionButton(
         mini: true,
-        tooltip: AppLocalizations.of(context)!.shareTooltip,
-        onPressed: () {
-          switch (setting.sharingFormat) {
-            case 1:
-              _shareUniversal(context);
-              break;
-            case 2:
-              _shareToWhatsApp(context);
-              break;
-            case 3:
-              _copy(context);
-              break;
-            default:
-              showShareDialog(context);
-              break;
-          }
-        },
-        child: Builder(
-          builder: (context) {
-            switch (setting.sharingFormat) {
-              case 2:
-                return const FaIcon(FontAwesomeIcons.whatsapp);
-              case 3:
-                return const FaIcon(FontAwesomeIcons.clone);
-              default:
-                return const FaIcon(FontAwesomeIcons.shareNodes);
-            }
-          },
-        ),
+        tooltip: localizations.shareTooltip,
+        onPressed: () =>
+            _handleShareButtonPressed(context, setting.sharingFormat),
+        child: _buildShareIcon(setting.sharingFormat),
       );
     });
   }
 
-  // TODO (Fareez): Perhaps refactor this to another component file
-  void showShareDialog(BuildContext context) async {
+  /// Handles the share button press based on user's preferred sharing format.
+  ///
+  /// [context] The build context.
+  /// [sharingFormat] The user's preferred sharing format from settings.
+  void _handleShareButtonPressed(BuildContext context, int sharingFormat) {
+    switch (sharingFormat) {
+      case 1:
+        shareUniversal(context);
+        break;
+      case 2:
+        shareToWhatsApp(context);
+        break;
+      case 3:
+        copyToClipboard(context);
+        break;
+      default:
+        showShareDialog(context);
+        break;
+    }
+  }
+
+  /// Builds the appropriate icon based on the sharing format.
+  Widget _buildShareIcon(int sharingFormat) {
+    switch (sharingFormat) {
+      case 2:
+        return const FaIcon(FontAwesomeIcons.whatsapp);
+      case 3:
+        return const FaIcon(FontAwesomeIcons.clone);
+      default:
+        return const FaIcon(FontAwesomeIcons.shareNodes);
+    }
+  }
+
+  /// Shows a modal bottom sheet with sharing options.
+  ///
+  /// This method also marks that the user has seen the sharing dialog.
+  Future<void> showShareDialog(BuildContext context) async {
     await showModalBottomSheet(
       context: context,
       builder: (context) {
-        return ShareTargetSelection(onShareTargetSelected: (target) {
-          switch (target) {
-            case ShareTarget.universal:
-              _shareUniversal(context);
-              break;
-            case ShareTarget.whatsapp:
-              _shareToWhatsApp(context);
-              break;
-            case ShareTarget.copy:
-              _copy(context);
-              break;
-            case ShareTarget.image:
-              _imageShare(context);
-              break;
-          }
-        });
+        return ShareTargetSelection(
+          onShareTargetSelected: (target) =>
+              _handleShareTargetSelection(context, target),
+        );
       },
     );
-    GetStorage().write(kHasOpenSharingDialog, true);
+    // Mark that the user has seen the sharing dialog
+    await GetStorage().write(kHasOpenSharingDialog, true);
   }
 
-  void _shareToWhatsApp(BuildContext context) {
+  /// Handles the selected sharing target from the share dialog.
+  void _handleShareTargetSelection(BuildContext context, ShareTarget target) {
+    switch (target) {
+      case ShareTarget.universal:
+        shareUniversal(context);
+        break;
+      case ShareTarget.whatsapp:
+        shareToWhatsApp(context);
+        break;
+      case ShareTarget.copy:
+        copyToClipboard(context);
+        break;
+      case ShareTarget.image:
+        shareAsImage(context);
+        break;
+    }
+  }
+
+  /// Shares prayer times directly to WhatsApp.
+  ///
+  /// Formats the text specifically for WhatsApp and opens the WhatsApp app.
+  void shareToWhatsApp(BuildContext context) {
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
     final message = ShareTextBuilder(AppLocalizations.of(context)!,
             use12hourFormat: use12hourFormat)
         .formatWhatsApp();
+
     LaunchUrl.normalLaunchUrl(
       url: 'whatsapp://send/?text=$message',
     );
   }
 
-  void _shareUniversal(BuildContext context) {
+  /// Shares prayer times using the system share dialog.
+  ///
+  /// Uses the plain text format to share with any app.
+  void shareUniversal(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
-    final message = ShareTextBuilder(AppLocalizations.of(context)!,
-            use12hourFormat: use12hourFormat)
-        .formatPlainText();
-    Share.share(message, subject: AppLocalizations.of(context)!.shareSubject);
+    final message =
+        ShareTextBuilder(localizations, use12hourFormat: use12hourFormat)
+            .formatPlainText();
+
+    Share.share(message, subject: localizations.shareSubject);
   }
 
-  void _copy(BuildContext context) {
+  /// Copies prayer times to the clipboard.
+  ///
+  /// Shows a toast message when copying is successful.
+  void copyToClipboard(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
-    final message = ShareTextBuilder(AppLocalizations.of(context)!,
-            use12hourFormat: use12hourFormat)
-        .formatPlainText();
+    final message =
+        ShareTextBuilder(localizations, use12hourFormat: use12hourFormat)
+            .formatPlainText();
+
     Clipboard.setData(ClipboardData(text: message)).then(
-      (value) {
-        Fluttertoast.showToast(
-            msg: AppLocalizations.of(context)!.shareTimetableCopied);
-      },
+      (_) => Fluttertoast.showToast(msg: localizations.shareTimetableCopied),
     );
   }
 
-  void _imageShare(BuildContext context) {
-    // final use12hourFormat =
-    //     Provider.of<SettingProvider>(context, listen: false).use12hour;
-    // final message = ShareTextBuilder(AppLocalizations.of(context)!,
-    //         use12hourFormat: use12hourFormat)
-    //     .formatPlainText();
-    // Clipboard.setData(ClipboardData(text: message)).then(
-    //   (value) {
-    //     Fluttertoast.showToast(
-    //         msg: AppLocalizations.of(context)!.shareTimetableCopied);
-    //   },
-    // );
+  /// Opens the image sharing preview page.
+  ///
+  /// Allows users to select a prayer time card design and share it as an image.
+  void shareAsImage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ShareImagePreviewPage()),
