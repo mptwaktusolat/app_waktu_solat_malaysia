@@ -9,30 +9,51 @@ import '../../../models/mpt_server_solat.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 import '../../../utils/prayer_data_handler.dart';
 
-enum ShareTarget { universal, copy, whatsapp, image }
+/// Defines different targets for sharing prayer times.
+enum ShareTarget {
+  /// Share using the system share sheet
+  universal,
 
-/// Builder for share text.
+  /// Copy to clipboard
+  copy,
+
+  /// Share directly to WhatsApp
+  whatsapp,
+
+  /// Share as an image
+  image
+}
+
+/// Builder for generating formatted text for prayer time sharing.
+///
+/// This class creates properly formatted strings for different sharing targets
+/// such as plain text, WhatsApp, etc. with appropriate formatting and emojis.
 class ShareTextBuilder {
-  /// Instance of [AppLocalizations].
+  /// Instance of [AppLocalizations] for localized strings.
   final AppLocalizations _appLocalizations;
 
-  /// Whether to use 12-hour format.
+  /// Whether to use 12-hour format (true) or 24-hour format (false).
   final bool _use12hourFormat;
 
-  /// Formatted date string.
+  /// Formatted date string for the current date.
   final String _date;
 
-  /// Daerah name.
+  /// Current district name.
   final String _daerah;
 
-  /// Negeri name.
+  /// Current state name.
   final String _negeri;
 
-  /// Prayer times.
+  /// Prayer times for the current day.
   final Prayers _times;
 
+  /// Padding length used for aligning text in WhatsApp format.
   final int _padLength = 8;
 
+  /// Creates a new instance of [ShareTextBuilder].
+  ///
+  /// [_appLocalizations] provides localized strings.
+  /// [use12hourFormat] determines if times should be displayed in 12-hour format.
   ShareTextBuilder(this._appLocalizations, {bool use12hourFormat = false})
       : _use12hourFormat = use12hourFormat,
         _date = DateFormat('EEEE, d MMMM yyyy', _appLocalizations.localeName)
@@ -43,7 +64,9 @@ class ShareTextBuilder {
             GetStorage().read(kStoredLocationJakimCode)),
         _times = PrayDataHandler.today();
 
-  /// Format the text for sharing. This is for plain text.
+  /// Formats prayer time text for sharing as plain text.
+  ///
+  /// Returns a string with prayer times formatted for general sharing.
   String formatPlainText() {
     final StringBuffer message = StringBuffer();
     message.write(_appLocalizations.shareTitle);
@@ -68,7 +91,9 @@ class ShareTextBuilder {
     return message.toString();
   }
 
-  /// Format the text for sharing. This is for WhatsApp.
+  /// Formats prayer time text specifically for WhatsApp sharing.
+  ///
+  /// Returns a string with prayer times formatted with WhatsApp markdown styling.
   String formatWhatsApp() {
     final StringBuffer message = StringBuffer();
     message.write(_appLocalizations.shareTitle);
