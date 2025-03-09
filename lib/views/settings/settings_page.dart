@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -44,10 +43,6 @@ class SettingsPage extends StatelessWidget {
                   child:
                       Text(AppLocalizations.of(context)!.settingNotification)),
               const NotificationSetting(),
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(AppLocalizations.of(context)!.settingSharing)),
-              const SharingSetting(),
               Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(AppLocalizations.of(context)!.settingMore)),
@@ -120,42 +115,6 @@ class FontSizeSetting extends StatelessWidget {
             divisions: 6,
             value: value.prayerFontSize,
             onChanged: (double newValue) => value.prayerFontSize = newValue,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class SharingSetting extends StatelessWidget {
-  const SharingSetting({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Consumer<SettingProvider>(
-        builder: (_, value, __) => ListTile(
-          title: Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 2.0),
-            child: Text(
-              AppLocalizations.of(context)!.settingShareDefault,
-            ),
-          ),
-          subtitle: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            // pakai SegmentedButton tak lawa sangat
-            child: CupertinoSlidingSegmentedControl(
-              groupValue: value.sharingFormat,
-              onValueChanged: (dynamic newValue) =>
-                  value.sharingFormat = newValue,
-              children: {
-                //defaulted to always ask
-                0: Text(AppLocalizations.of(context)!.settingShareAsk),
-                1: Text(AppLocalizations.of(context)!.settingPlain),
-                2: const Text("WhatsApp"),
-                3: Text(AppLocalizations.of(context)!.settingCopy)
-              },
-            ),
           ),
         ),
       ),

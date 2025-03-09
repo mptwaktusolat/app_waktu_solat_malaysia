@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get_storage/get_storage.dart';
 
-import '../../../constants.dart';
 import '../utils/share_text_builder.dart';
 
 /// A widget that displays different sharing options in a bottom sheet.
@@ -59,23 +57,6 @@ class ShareTargetSelection extends StatelessWidget {
           color: colorScheme.secondary,
           target: ShareTarget.image,
         ),
-        // Display onboarding message if user hasn't seen the sharing dialog before
-        if (!(GetStorage().read<bool?>(kHasOpenSharingDialog) ?? false))
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: RichText(
-              text: TextSpan(
-                text: appLocalizations.shareSettingPrompt,
-                style:
-                    DefaultTextStyle.of(context).style.copyWith(fontSize: 12),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: appLocalizations.shareSettingPromptDestination,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                ],
-              ),
-            ),
-          ),
       ],
     );
   }
