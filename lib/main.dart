@@ -203,7 +203,6 @@ void initGetStorage() {
   get.writeIfNull(kStoredNotificationLimit, false);
   get.writeIfNull(kIsDebugMode, false);
   get.writeIfNull(kDiscoveredDeveloperOption, false);
-  get.writeIfNull(kSharingFormat, 0);
   get.writeIfNull(kFontSize, 16.0);
   // make default to default locale
   final localeName = Platform.localeName.split('_').first;

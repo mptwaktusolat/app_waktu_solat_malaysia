@@ -97,9 +97,7 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
 
     return ElevatedButton.icon(
       onPressed: () => _shareSelectedCard(context),
-      //TODO: Add a localized message
-      // label: Text(localizations.share),
-      label: Text('Share'),
+      label: Text(localizations.genericShare),
       icon: Icon(Icons.adaptive.share),
     );
   }
@@ -114,9 +112,7 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
 
     if (imageBytes == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        //TODO: Add a localized message for image sharing failure
-        // SnackBar(content: Text(localizations.shareImageFailed)),
-        SnackBar(content: Text('Failed to capture image. Please try again.')),
+        SnackBar(content: Text(localizations.shareImageFailed)),
       );
       return;
     }
@@ -131,9 +127,7 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
     // Share the image
     await Share.shareXFiles(
       [xFile],
-      //TODO: Add a localized message
-      // text: localizations.shareImageText,
-      text: 'Check out this prayer time card!',
+      text: localizations.shareSubject,
     );
   }
 }
