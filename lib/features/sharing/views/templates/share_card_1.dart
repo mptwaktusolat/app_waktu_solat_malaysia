@@ -1,5 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,9 @@ class ShareCard1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedDate = DateFormat('EEEE, d MMMM yyyy').format(now);
+    final String formattedDate = DateFormat.yMMMMEEEEd(
+      Localizations.localeOf(context).languageCode,
+    ).format(now);
     final String location =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;
@@ -65,9 +68,21 @@ class ShareCard1 extends StatelessWidget {
             }),
             Spacer(),
             Center(
-              child: Text(
-                'Waktu Solat Malaysia',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/app-logo-minimal-50w.png',
+                    height: 24,
+                    width: 24,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                  Gap(8),
+                  Text(
+                    AppLocalizations.of(context)!.appTitle,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
           ],
