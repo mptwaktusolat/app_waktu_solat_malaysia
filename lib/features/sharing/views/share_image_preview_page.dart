@@ -47,22 +47,40 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: Text(localizations.shareImage),
+        elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Card preview carousel
-          _buildCardCarousel(),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [
+              colorScheme.primaryContainer,
+              colorScheme.primaryContainer.withOpacity(0.7),
+              colorScheme.primaryContainer.withOpacity(0.3),
+              colorScheme.primaryContainer.withOpacity(0.0),
+            ],
+            stops: const [0.0, 0.4, 0.7, 1.0],
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Card preview carousel
+            _buildCardCarousel(),
 
-          const Gap(25),
+            const Gap(25),
 
-          // Share button
-          _buildShareButton(context),
-        ],
+            // Share button
+            _buildShareButton(context),
+          ],
+        ),
       ),
     );
   }
