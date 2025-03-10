@@ -38,8 +38,8 @@ android {
 
     defaultConfig {
         applicationId = "live.iqfareez.waktusolatmalaysia"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // Note: When updating the minSdk version, remember to reflect the
+        // changes in update_checker_service.dart as well
         minSdk = 21
         targetSdk = 34
         versionCode = flutter.versionCode
