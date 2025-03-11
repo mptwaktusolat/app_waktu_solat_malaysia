@@ -177,8 +177,8 @@ class PrayerFullTable extends StatelessWidget {
                                       );
                                     },
                                     label: Text(
-                                      (AppLocalizations.of(context)!
-                                          .timetableExportShare),
+                                      AppLocalizations.of(context)!
+                                          .genericShare,
                                     ),
                                   ),
                                 ],
