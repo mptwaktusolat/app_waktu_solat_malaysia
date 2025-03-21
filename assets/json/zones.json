@@ -19,7 +19,6 @@
     "negeri": "Johor",
     "daerah": "Batu Pahat, Muar, Segamat, Gemas Johor, Tangkak"
   },
-
   {
     "jakimCode": "KDH01",
     "negeri": "Kedah",
@@ -55,7 +54,6 @@
     "negeri": "Kedah",
     "daerah": "Puncak Gunung Jerai"
   },
-
   {
     "jakimCode": "KTN01",
     "negeri": "Kelantan",
@@ -71,7 +69,6 @@
     "negeri": "Melaka",
     "daerah": "SELURUH NEGERI MELAKA"
   },
-
   {
     "jakimCode": "NGS01",
     "negeri": "Negeri Sembilan",
@@ -87,7 +84,6 @@
     "negeri": "Negeri Sembilan",
     "daerah": "Port Dickson, Seremban"
   },
-
   {
     "jakimCode": "PHG01",
     "negeri": "Pahang",
@@ -96,7 +92,7 @@
   {
     "jakimCode": "PHG02",
     "negeri": "Pahang",
-    "daerah": "Kuantan, Pekan, Rompin, Muadzam Shah"
+    "daerah": "Kuantan, Pekan, Muadzam Shah"
   },
   {
     "jakimCode": "PHG03",
@@ -117,6 +113,11 @@
     "jakimCode": "PHG06",
     "negeri": "Pahang",
     "daerah": "Cameron Highlands, Genting Higlands, Bukit Fraser"
+  },
+  {
+    "jakimCode": "PHG07",
+    "negeri": "Pahang",
+    "daerah": "Zon Khas Daerah Rompin, (Mukim Rompin, Mukim Endau, Mukim Pontian)"
   },
 
   {
