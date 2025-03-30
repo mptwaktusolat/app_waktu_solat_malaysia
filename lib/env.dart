@@ -3,6 +3,7 @@
 
 // API base
 const envApiBaseHost = 'mpt-server.vercel.app';
+const feedbackSubmissionUrl = 'https://feedback.waktusolat.app/api/send';
 
 //App info
 const envPlayStoreListingLink =

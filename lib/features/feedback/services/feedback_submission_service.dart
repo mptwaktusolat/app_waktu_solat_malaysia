@@ -9,8 +9,8 @@ class FeedbackSubmissionService {
   static Future<void> submitFeedback(String message,
       {String? email, Map<String, dynamic>? otherPayloads}) async {
     final payload = {
-      'User email': email,
-      'User message': message,
+      'email': email,
+      'message': message,
     };
 
     final body = {
@@ -18,7 +18,7 @@ class FeedbackSubmissionService {
       if (otherPayloads != null) ...otherPayloads,
     };
 
-    final feedbackApiUri = Uri.https(envApiBaseHost).resolve('/api/feedback');
+    final feedbackApiUri = Uri.parse(feedbackSubmissionUrl);
 
     await http.post(
       feedbackApiUri,
