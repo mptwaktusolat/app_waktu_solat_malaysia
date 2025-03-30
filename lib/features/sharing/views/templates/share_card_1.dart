@@ -36,11 +36,11 @@ class ShareCard1 extends BaseShareCard {
                 children: [
                   Text(
                     entry.key,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 20),
                   ),
                   Text(
                     entry.value,
-                    style: const TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
