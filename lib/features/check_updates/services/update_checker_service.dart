@@ -15,7 +15,7 @@ class UpdateCheckerService {
     final AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
     final int deviceSdk = androidInfo.version.sdkInt;
-    const int minSdk = 21;
+    const int minSdk = 23;
     if (deviceSdk < minSdk) return false;
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();

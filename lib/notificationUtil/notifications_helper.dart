@@ -47,10 +47,13 @@ Future<void> scheduleSinglePrayerNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-      id, title, body, scheduledTime, platformChannelSpecifics,
-      androidScheduleMode: AndroidScheduleMode.alarmClock,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime);
+    id,
+    title,
+    body,
+    scheduledTime,
+    platformChannelSpecifics,
+    androidScheduleMode: AndroidScheduleMode.alarmClock,
+  );
 }
 
 /// Single prayer azan notification
@@ -86,10 +89,13 @@ Future<void> scheduleSingleAzanNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-      id, title, body, scheduledTime, platformChannelSpecifics,
-      androidScheduleMode: AndroidScheduleMode.alarmClock,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime);
+    id,
+    title,
+    body,
+    scheduledTime,
+    platformChannelSpecifics,
+    androidScheduleMode: AndroidScheduleMode.alarmClock,
+  );
 }
 
 /// Schedule alert notification
@@ -115,11 +121,14 @@ Future<void> scheduleAlertNotification(
   final platformChannelSpecifics =
       NotificationDetails(android: androidSpecifics);
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-      id, title, body, scheduledTime, platformChannelSpecifics,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      payload: payload,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime);
+    id,
+    title,
+    body,
+    scheduledTime,
+    platformChannelSpecifics,
+    androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+    payload: payload,
+  );
 }
 
 /// For debugging:  To test if the notification is working
