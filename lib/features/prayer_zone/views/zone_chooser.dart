@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
@@ -10,19 +9,17 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart' hide Location;
 import 'package:geolocator/geolocator.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
-import '../components/zone_selector_dialog.dart';
-import '../env.dart';
-import '../location_utils/location_data.dart';
-import '../location_utils/location_database.dart';
-import '../location_utils/location_coordinate_model.dart';
-import '../models/jakim_zones.dart';
-import '../models/mpt_server_zone_info.dart';
-import '../providers/location_provider.dart';
-import '../utils/debug_toast.dart';
+import '../../../constants.dart';
+import '../../../location_utils/location_coordinate_model.dart';
+import '../../../location_utils/location_data.dart';
+import '../../../location_utils/location_database.dart';
+import '../../../models/jakim_zones.dart';
+import '../../../providers/location_provider.dart';
+import '../../../utils/debug_toast.dart';
+import '../services/prayer_zone_services.dart';
+import 'manual_zone_picker_page.dart';
 
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
@@ -54,12 +51,12 @@ class LocationChooser {
 
   static Future<LocationCoordinateData> _getAllLocationData() async {
     final Position pos = await LocationData.getCurrentLocation();
-    DebugToast.show(pos.toString());
     late List<dynamic> response;
     try {
       response = await Future.wait([
         placemarkFromCoordinates(pos.latitude, pos.longitude),
-        _getJakimCodeNearby(pos),
+        PrayerZoneServices.getNearestJakimZonedFomCoordinates(
+            pos.latitude, pos.longitude),
       ]);
     } catch (e) {
       Fluttertoast.showToast(msg: e.toString());
@@ -82,24 +79,6 @@ class LocationChooser {
         lng: null);
   }
 
-  static Future<String> _getJakimCodeNearby(Position position) async {
-    final uri = Uri.https(envApiBaseHost, 'api/zones/gps', {
-      'lat': position.latitude.toString(),
-      'long': position.longitude.toString(),
-    });
-    final res = await http.get(uri);
-
-    if (res.statusCode == 200) {
-      final result = MptServerZoneInfo.fromJson(jsonDecode(res.body));
-      return result.zone;
-    } else if (res.statusCode == 404) {
-      // location not in bound
-      throw 'Location is outside of Malaysia';
-    } else {
-      throw 'Error getting jakim code';
-    }
-  }
-
   static Future<bool> showLocationChooser(BuildContext context) async {
     final bool? res = await showDialog(
       context: context,
@@ -120,7 +99,6 @@ class LocationChooser {
                   } else if (snapshot.hasData) {
                     return ZoneSuccessWidget(coordinateData: snapshot.data!);
                   } else {
-                    DebugToast.show('Error: ${snapshot.error}');
                     return const ZoneErrorWidget();
                   }
                 }),
@@ -134,7 +112,7 @@ class LocationChooser {
   static Future<void> openManualZoneSelector(BuildContext context) async {
     final JakimZones? newZone =
         await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return const ZoneSelectorDialog();
+      return const ManualZonePickerPage();
     }));
 
     if (newZone == null) return;

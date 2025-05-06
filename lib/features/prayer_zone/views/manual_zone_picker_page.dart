@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
-import '../location_utils/location_database.dart';
-import '../models/jakim_zones.dart';
-import '../providers/location_provider.dart';
+import '../../../constants.dart';
+import '../../../location_utils/location_database.dart';
+import '../../../models/jakim_zones.dart';
+import '../../../providers/location_provider.dart';
 
 enum CurrentView { state, zone }
 
 /// Dialog manually select prayer time zone
-class ZoneSelectorDialog extends StatefulWidget {
-  const ZoneSelectorDialog({super.key});
+class ManualZonePickerPage extends StatefulWidget {
+  const ManualZonePickerPage({super.key});
 
   @override
-  State<ZoneSelectorDialog> createState() => _ZoneSelectorDialogState();
+  State<ManualZonePickerPage> createState() => _ManualZonePickerPageState();
 }
 
-class _ZoneSelectorDialogState extends State<ZoneSelectorDialog> {
+class _ManualZonePickerPageState extends State<ManualZonePickerPage> {
   final allZones = LocationDatabase.allLocation;
   late final List<String> negeriList;
   List<JakimZones> jakimZonesInSelectedNegeri = [];
