@@ -17,7 +17,6 @@ import '../../../location_utils/location_data.dart';
 import '../../../location_utils/location_database.dart';
 import '../../../models/jakim_zones.dart';
 import '../../../providers/location_provider.dart';
-import '../../../utils/debug_toast.dart';
 import '../services/prayer_zone_services.dart';
 import 'manual_zone_picker_page.dart';
 

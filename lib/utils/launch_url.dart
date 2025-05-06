@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_custom_tabs/flutter_custom_tabs_lite.dart'
     as custom_tabs;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class LaunchUrl {

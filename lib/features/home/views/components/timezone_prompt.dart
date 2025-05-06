@@ -1,6 +1,6 @@
 import 'package:admonitions/admonitions.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TimezonePrompt extends StatefulWidget {
   const TimezonePrompt({super.key});
@@ -33,8 +33,7 @@ class _TimezonePromptState extends State<TimezonePrompt> {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
         child: PastelAdmonition.caution(
-          text:
-              AppLocalizations.of(context)!.appBodyWrongDeviceTimezone,
+          text: AppLocalizations.of(context)!.appBodyWrongDeviceTimezone,
         ),
       );
     }

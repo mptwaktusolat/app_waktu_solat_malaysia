@@ -8,8 +8,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/launch_url.dart';
-import 'qibla_compass.dart';
 import 'no_compass_sensor.dart';
+import 'qibla_compass.dart';
 
 /// Entry point for the Qibla page
 class QiblaPage extends StatefulWidget {
