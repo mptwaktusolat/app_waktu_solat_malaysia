@@ -8,7 +8,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../constants.dart';
 import '../../../env.dart';
-import '../../../utils/launch_url.dart';
+import '../../../shared/utils/launch_url.dart';
 import '../model/check_version_response.dart';
 import '../services/update_checker_service.dart';
 

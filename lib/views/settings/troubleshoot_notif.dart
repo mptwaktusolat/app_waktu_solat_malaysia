@@ -7,7 +7,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../env.dart';
-import '../../utils/launch_url.dart';
+import '../../shared/utils/launch_url.dart';
 
 final _mdStyleSheet = MarkdownStyleSheet(
   textAlign: WrapAlignment.spaceAround,

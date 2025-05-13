@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
 import '../../../env.dart';
-import '../../../utils/launch_url.dart';
+import '../../../shared/utils/launch_url.dart';
 import '../viewmodels/feedback_view_model.dart';
 
 /// FeedbackPage is a widget that allows users to submit feedback.

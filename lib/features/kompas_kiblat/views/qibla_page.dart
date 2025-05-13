@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../utils/launch_url.dart';
+import '../../../shared/utils/launch_url.dart';
 import 'no_compass_sensor.dart';
 import 'qibla_compass.dart';
 
@@ -88,8 +88,7 @@ class CompassActionButtons extends StatelessWidget {
       children: [
         OutlinedButton(
           onPressed: () {
-            LaunchUrl.normalLaunchUrl(
-                url: 'https://$_qiblaFinderUrl', useCustomTabs: true);
+            LaunchUrl.launchInCustomTab(url: 'https://$_qiblaFinderUrl');
           },
           onLongPress: () {
             Clipboard.setData(ClipboardData(text: _qiblaFinderUrl)).then(

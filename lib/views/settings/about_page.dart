@@ -13,7 +13,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../constants.dart';
 import '../../env.dart';
 import '../../providers/setting_provider.dart';
-import '../../utils/launch_url.dart';
+import '../../shared/utils/launch_url.dart';
 import '../debug_dialog.dart';
 
 class AboutAppPage extends StatelessWidget {
@@ -132,8 +132,8 @@ class AboutAppPage extends StatelessWidget {
                       data: AppLocalizations.of(context)!.aboutJakim,
                       styleSheet:
                           MarkdownStyleSheet(textAlign: WrapAlignment.center),
-                      onTapLink: (_, href, __) =>
-                          LaunchUrl.normalLaunchUrl(url: href!),
+                      onTapLink: (_, href, __) => LaunchUrl.launchInSheetView(
+                          context: context, url: href!),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -146,8 +146,8 @@ class AboutAppPage extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutReleaseNotes,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () => LaunchUrl.normalLaunchUrl(
-                          url: envReleaseNotesLink, useCustomTabs: true),
+                      onTap: () =>
+                          LaunchUrl.launchInCustomTab(url: envReleaseNotesLink),
                     ),
                   ),
                   Card(
@@ -206,8 +206,8 @@ class AboutAppPage extends StatelessWidget {
                         AppLocalizations.of(context)!.aboutPrivacy,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () => LaunchUrl.normalLaunchUrl(
-                          url: envPrivacyPolicyLink, useCustomTabs: true),
+                      onTap: () => LaunchUrl.launchInCustomTab(
+                          url: envPrivacyPolicyLink),
                     ),
                   ),
                   const Divider(height: 16),

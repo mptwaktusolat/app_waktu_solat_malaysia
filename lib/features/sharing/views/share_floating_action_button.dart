@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../providers/setting_provider.dart';
-import '../../../utils/launch_url.dart';
+import '../../../shared/utils/launch_url.dart';
 import '../utils/share_text_builder.dart';
 import 'share_image_preview_page.dart';
 import 'share_target_selection.dart';
