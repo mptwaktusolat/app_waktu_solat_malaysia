@@ -82,7 +82,6 @@ class ShareFloatingActionButton extends StatelessWidget {
   }
 
   /// Shares prayer times using the system share dialog.
-  ///
   /// Uses the plain text format to share with any app.
   void shareUniversal(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
@@ -92,7 +91,9 @@ class ShareFloatingActionButton extends StatelessWidget {
         ShareTextBuilder(localizations, use12hourFormat: use12hourFormat)
             .formatPlainText();
 
-    Share.share(message, subject: localizations.shareSubject);
+    SharePlus.instance.share(
+      ShareParams(text: message, subject: localizations.shareSubject),
+    );
   }
 
   /// Copies prayer times to the clipboard.

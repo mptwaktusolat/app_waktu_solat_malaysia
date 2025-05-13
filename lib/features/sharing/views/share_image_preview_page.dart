@@ -143,10 +143,10 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
         XFile.fromData(imageBytes, name: tempFileName, mimeType: 'image/jpeg');
 
     // Share the image
-    await Share.shareXFiles(
-      [xFile],
+    await SharePlus.instance.share(ShareParams(
+      files: [xFile],
       text: localizations.shareSubject,
-    );
+    ));
   }
 }
 

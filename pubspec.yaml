@@ -22,7 +22,7 @@ dependencies:
   cached_network_image: ^3.0.0
   url_launcher: ^6.0.3
   device_info_plus: ^11.0.0
-  share_plus: ^10.0.0
+  share_plus: ^11.0.0
   geolocator: ^13.0.1
   flutter_spinkit: ^5.0.0
   flutter_svg: ^2.0.0

@@ -167,13 +167,15 @@ class PrayerFullTable extends StatelessWidget {
                                       size: 14,
                                     ),
                                     onPressed: () {
-                                      Share.shareXFiles(
-                                        [
-                                          XFile(snapshot.data!.path),
-                                        ],
-                                        subject: AppLocalizations.of(context)!
-                                            .timetableExportFileShareSubject(
-                                                'https://go.iqfareez.com/mpt'),
+                                      SharePlus.instance.share(
+                                        ShareParams(
+                                          files: [
+                                            XFile(snapshot.data!.path),
+                                          ],
+                                          subject: AppLocalizations.of(context)!
+                                              .timetableExportFileShareSubject(
+                                                  'https://waktusolat.app'),
+                                        ),
                                       );
                                     },
                                     label: Text(

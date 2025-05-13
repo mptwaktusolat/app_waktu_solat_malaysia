@@ -91,13 +91,13 @@ class AboutAppPage extends StatelessWidget {
                       IconButton(
                         tooltip: AppLocalizations.of(context)!.contributeShare,
                         onPressed: () {
-                          Share.share(
-                              AppLocalizations.of(context)!
+                          SharePlus.instance.share(ShareParams(
+                              text: AppLocalizations.of(context)!
                                   .contributeShareContent(
                                       envPlayStoreListingShortLink,
                                       envWebappUrl),
                               subject: AppLocalizations.of(context)!
-                                  .contributeShareSubject);
+                                  .contributeShareSubject));
                         },
                         icon: Icon(Icons.adaptive.share),
                       )
