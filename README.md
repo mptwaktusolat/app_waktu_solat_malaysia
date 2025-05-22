@@ -69,28 +69,6 @@ _Web app working directory is moved to its own [repo](https://github.com/mptwakt
 
 <!-- https://github.com/webmaxru/progressive-web-apps-logo -->
 
-## Try the pre-releases
-
-The pre-release track allows you to test the latest version of the app, which may include new features, bug fixes, or experimental features that are not yet ready for production in [discussions](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/discussions).
-
-To try the pre-release version, download and install the `.apk` file from the [releases](https://github.com/mptwaktusolat/app_waktu_solat_malaysia/releases) page (look for the **pre-release** tag). Please don't forget to share your feedback and comments.
-
-Note: Pre-release versions are not always submitted to the Google Play Store (Beta track).
-
-## Devlogs
-
-[![Part 1](https://img.shields.io/badge/highlights-Part%201-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODcyMTc0ODcwODEzNjM1)
-[![Part 2](https://img.shields.io/badge/highlights-Part%202-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ2MjI5MzM4MjczODAw)
-[![Part 3](https://img.shields.io/badge/highlights-Part%203-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTM5MTYyNTU1MTQ0MjYx)
-[![Part 4](https://img.shields.io/badge/highlights-Part%204-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3ODg2ODQ3MDQwMjc2ODM3)
-[![Part 5](https://img.shields.io/badge/highlights-Part%205-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE1MTkzNDAzODk3MDk1)
-[![Part 6](https://img.shields.io/badge/highlights-Part%206-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA1NDI3MDQ1NDEzMDA0)
-[![Part 7](https://img.shields.io/badge/highlights-Part%207-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTE4NTU0NjEzMTg1NjQ0)
-[![Part 8](https://img.shields.io/badge/highlights-Part%208-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTU1MjM0NjM0OTAxMzg5)
-[![Part 9](https://img.shields.io/badge/highlights-Part%209-blueviolet?style=for-the-badge)](https://www.instagram.com/stories/highlights/17961012149100642/)
-[![Part 10](https://img.shields.io/badge/highlights-Part%2010-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MjcxMDUwODc3MTM1ODUy)
-[![Part 11](https://img.shields.io/badge/highlights-Part%2010-blueviolet?style=for-the-badge)](https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTc0NDgyMDQxNTA5ODcw)
-
 ## Motivation
 
 <!-- A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists. -->
