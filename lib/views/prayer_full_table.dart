@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../constants.dart';
 import '../env.dart';
+import '../l10n/app_localizations.dart';
 import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';

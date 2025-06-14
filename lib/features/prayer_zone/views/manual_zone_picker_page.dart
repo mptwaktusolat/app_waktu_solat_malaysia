@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
 import '../../../models/jakim_zones.dart';
 import '../../../providers/location_provider.dart';

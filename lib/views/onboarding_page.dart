@@ -1,7 +1,6 @@
 import 'package:auto_start_flutter/auto_start_flutter.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -13,6 +12,7 @@ import '../features/onboarding/views/components/autostart_setting_dialog.dart';
 import '../features/onboarding/views/components/notification_exact_alarm_permission_dialog.dart';
 import '../features/onboarding/views/components/notification_permission_dialog.dart';
 import '../features/prayer_zone/views/zone_chooser.dart';
+import '../l10n/app_localizations.dart';
 import '../main.dart';
 import '../providers/locale_provider.dart';
 import 'settings/notification_page_setting.dart';

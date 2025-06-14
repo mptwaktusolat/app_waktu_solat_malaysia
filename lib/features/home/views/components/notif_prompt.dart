@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../../views/settings/notification_page_setting.dart';
 
 /// It will ask "Is notification is show at prayer time" in appbody

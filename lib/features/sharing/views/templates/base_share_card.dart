@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/extensions/date_time_extensions.dart';
 import '../../../../utils/prayer_data_handler.dart';

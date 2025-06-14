@@ -1,7 +1,6 @@
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,6 +9,7 @@ import 'package:restart_app/restart_app.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../constants.dart';
+import '../../l10n/app_localizations.dart';
 import '../../notificationUtil/notifications_helper.dart';
 import '../../providers/setting_provider.dart';
 import 'troubleshoot_notif.dart';

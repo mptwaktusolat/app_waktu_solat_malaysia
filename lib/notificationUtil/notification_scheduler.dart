@@ -1,9 +1,9 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
 
 import '../constants.dart';
+import '../l10n/app_localizations.dart';
 import '../location_utils/location_database.dart';
 import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';

@@ -17,7 +17,7 @@ class LocationDatabase {
     return res.first.negeri;
   }
 
-  static daerah(String jakimCode) {
+  static String daerah(String jakimCode) {
     jakimCode = jakimCode.toUpperCase();
     final res = allLocation.where((element) => element.jakimCode == jakimCode);
 

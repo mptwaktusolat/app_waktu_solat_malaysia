@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,6 +11,7 @@ import '../features/check_updates/views/update_page.dart';
 import '../features/feedback/views/feedback_page.dart';
 import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import '../features/kompas_kiblat/views/qibla_page.dart';
+import '../l10n/app_localizations.dart';
 import '../providers/updater_provider.dart';
 import '../shared/utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';

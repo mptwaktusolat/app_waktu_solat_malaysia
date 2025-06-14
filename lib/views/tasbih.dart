@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../constants.dart';
+import '../l10n/app_localizations.dart';
 import '../utils/tasbih_colors.dart';
 
 class Tasbih extends StatefulWidget {

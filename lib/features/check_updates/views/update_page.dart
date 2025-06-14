@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +7,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../constants.dart';
 import '../../../env.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/launch_url.dart';
 import '../model/check_version_response.dart';
 import '../services/update_checker_service.dart';

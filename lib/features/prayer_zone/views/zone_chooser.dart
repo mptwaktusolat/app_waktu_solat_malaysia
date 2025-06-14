@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,6 +11,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_coordinate_model.dart';
 import '../../../location_utils/location_data.dart';
 import '../../../location_utils/location_database.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../l10n/app_localizations.dart';
 import '../utils/share_text_builder.dart';
 
 /// A widget that displays different sharing options in a bottom sheet.

@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,6 +11,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../constants.dart';
 import '../../env.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/setting_provider.dart';
 import '../../shared/utils/launch_url.dart';
 import '../debug_dialog.dart';

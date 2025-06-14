@@ -20,7 +20,7 @@ class _QiblaCompassState extends State<QiblaCompass> {
   final _locationStreamController =
       StreamController<LocationStatus>.broadcast();
 
-  get stream => _locationStreamController.stream;
+  Stream<LocationStatus> get stream => _locationStreamController.stream;
 
   bool _isVibrating = false;
 

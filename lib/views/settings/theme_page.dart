@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../providers/theme_controller.dart';
 
 class ThemesPage extends StatefulWidget {
@@ -66,7 +66,7 @@ class AnimatedMoon extends StatelessWidget {
     this.width,
     this.isDarkMode,
     AnimationController? animationController,
-  })  : _animationController = animationController;
+  }) : _animationController = animationController;
 
   final double? width;
   final bool? isDarkMode;
