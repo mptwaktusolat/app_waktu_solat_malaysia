@@ -39,15 +39,17 @@ class TasbihColors {
     Color(0xffBE5869),
   ];
 
-  static List<BeadColor> beadDesigns() => [
-        BeadColor("Between Night and Day", _betweenNightAndDay),
-        BeadColor("Blush", _blush),
-        BeadColor("Timber", _timber),
-        BeadColor("Flickr", _flickr),
-        BeadColor("Vine", _vine),
-        BeadColor("Predawn", _predown),
-        BeadColor("Poncho", _poncho),
-      ];
+  static final List<BeadColor> _beadDesigns = [
+    BeadColor("Between Night and Day", _betweenNightAndDay),
+    BeadColor("Blush", _blush),
+    BeadColor("Timber", _timber),
+    BeadColor("Flickr", _flickr),
+    BeadColor("Vine", _vine),
+    BeadColor("Predawn", _predown),
+    BeadColor("Poncho", _poncho),
+  ];
+
+  static List<BeadColor> beadDesigns() => _beadDesigns;
 }
 
 class BeadColor {

@@ -24,6 +24,7 @@ import 'features/home/views/home_page.dart';
 import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'features/kompas_kiblat/views/qibla_page.dart';
 import 'features/sharing/views/share_floating_action_button.dart';
+import 'features/tasbih/views/tasbih_page.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 import 'location_utils/location_database.dart';
@@ -39,7 +40,6 @@ import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/prayer_full_table.dart';
 import 'views/settings/notification_page_setting.dart';
-import 'views/tasbih.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -232,7 +232,7 @@ void _configureQuickAction(BuildContext context) {
           context,
           MaterialPageRoute(
             settings: const RouteSettings(name: 'Tasbih'),
-            builder: (_) => const Tasbih(),
+            builder: (_) => const TasbihPage(),
           ),
         );
         break;

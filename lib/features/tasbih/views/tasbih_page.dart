@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../constants.dart';
-import '../l10n/app_localizations.dart';
-import '../utils/tasbih_colors.dart';
+import '../../../constants.dart';
+import '../../../l10n/app_localizations.dart';
+import 'components/tasbih_bead.dart';
+import 'components/tasbih_colors.dart';
 
-class Tasbih extends StatefulWidget {
-  const Tasbih({super.key});
+class TasbihPage extends StatefulWidget {
+  const TasbihPage({super.key});
 
   @override
-  State<Tasbih> createState() => _TasbihState();
+  State<TasbihPage> createState() => _TasbihPageState();
 }
 
-class _TasbihState extends State<Tasbih> {
+class _TasbihPageState extends State<TasbihPage> {
   final PageController _controller =
       PageController(viewportFraction: 0.1, initialPage: 5);
 
@@ -139,31 +140,6 @@ class _TasbihState extends State<Tasbih> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class TasbihBead extends StatelessWidget {
-  const TasbihBead({
-    super.key,
-    required this.gradientColor,
-  });
-
-  final List<Color> gradientColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 34,
-      height: 34,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: gradientColor,
-        ),
-        shape: BoxShape.circle,
       ),
     );
   }
