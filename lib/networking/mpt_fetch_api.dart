@@ -1,73 +1,40 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
 import '../env.dart';
-import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
 
 class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,
   /// fetch data from mpt-server's API
-  static Future<MptServerSolat> fetchMpt(String location) async {
-    // build the URI
-    final queryParams = {
-      'year': DateTime.now().year.toString(),
-      'month': DateTime.now().month.toString(),
-    };
-    final api =
-        Uri.https(envApiBaseHost, 'api/v2/solat/$location', queryParams);
-
+  static Future<MPTWaktuSolatV2> fetchMpt(String location) async {
     // Generate hashcode from api url
     // so that the cache key is unique for different location, month & year
     // and we no longer need a method to check the data is valid based on the paramaters above
-    final requestCacheKey = 'waktusolat-cache-${api.toString().hashCode}';
+    final requestCacheKey = 'waktusolat-cache-${location.hashCode}';
     final cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 
-    final apiResponse = await _mptServerApi(api);
-
-    late final MptServerSolat mptServerSolat;
+    late final MPTWaktuSolatV2 data;
     try {
       // If issue https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/216 like
       // this ever happens again, the data will not be saved to cache
-      mptServerSolat = MptServerSolat.fromJson(apiResponse);
-      _saveToCache(requestCacheKey, apiResponse);
+      data = await WaktuSolat.getWaktuSolatV2(location);
+      _saveToCache(requestCacheKey, data.toJson());
     } catch (e) {
       rethrow;
     }
 
-    return mptServerSolat;
+    return data;
   }
 
-  /// Call MPT Server api to get prayer times data
-  static Future<dynamic> _mptServerApi(Uri apiUri) async {
-    DebugToast.show('Using mpt-server api');
-    GetStorage()
-        .write(kStoredApiPrayerCall, apiUri.toString()); //for debug dialog
-    final response = await http.get(apiUri).timeout(
-          const Duration(seconds: 6),
-          onTimeout: () => http.Response('Error', 408),
-        );
-    await FirebaseAnalytics.instance
-        .logEvent(name: kEventFetch, parameters: {"type": "mpt-server"});
-    if (response.statusCode == 200) {
-      // If the server did return a 200 OK response,
-      // then parse the JSON.
-      return jsonDecode(response.body);
-    } else {
-      throw Exception(
-          'Failed to fetch data from the server (${response.statusCode}). Please try again later.');
-    }
-  }
-
-  /// Read from cache, if cache not available, return null
-  static MptServerSolat? _readFromCache(String cacheKey) {
+  static MPTWaktuSolatV2? _readFromCache(String cacheKey) {
     if (GetStorage().read(cacheKey) == null) return null;
 
     final cachedData = GetStorage().read(cacheKey);
@@ -77,7 +44,7 @@ class MptApiFetch {
     FirebaseAnalytics.instance
         .logEvent(name: kEventFetch, parameters: {"type": "cached"});
 
-    final parsedModel = MptServerSolat.fromJson(cachedData);
+    final parsedModel = MPTWaktuSolatV2.fromJson(cachedData);
     return parsedModel;
   }
 

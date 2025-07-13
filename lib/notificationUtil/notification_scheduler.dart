@@ -1,11 +1,11 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
 import '../l10n/app_localizations.dart';
 import '../location_utils/location_database.dart';
-import '../models/mpt_server_solat.dart';
 import '../utils/debug_toast.dart';
 import '../views/settings/notification_page_setting.dart';
 import 'notifications_helper.dart';
@@ -25,7 +25,7 @@ class MyNotifScheduler {
 
   /// Schedule notification for each prayer time.
   static void schedulePrayNotification(
-      AppLocalizations appLocalizationsInstance, List<Prayers> times) async {
+      AppLocalizations appLocalizationsInstance, List<MptPrayer> times) async {
     if (!await _canScheduleNotification()) {
       print(
           'Notifications are not scheduled. Schedule notification permission is not granted huhu');
@@ -80,7 +80,7 @@ class MyNotifScheduler {
   /// Classic Notification Scheduler, default notification sound
   static Future<void> _defaultScheduler(
       AppLocalizations appLocalizations,
-      List<Prayers> times,
+      List<MptPrayer> times,
       DateTime currentDateTime,
       String currentLocation) async {
     for (var dayTime in times) {
@@ -161,7 +161,7 @@ class MyNotifScheduler {
 
   /// Notification but with azan
   static void _azanScheduler(AppLocalizations appLocalizations,
-      List<Prayers> times, DateTime currentDateTime, String currentLocation,
+      List<MptPrayer> times, DateTime currentDateTime, String currentLocation,
       {bool short = false}) async {
     for (var dayTime in times) {
       if (dayTime.fajr.isAfter(currentDateTime)) {

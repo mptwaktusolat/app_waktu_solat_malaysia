@@ -1,11 +1,11 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../constants.dart';
 import '../../../env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
-import '../../../models/mpt_server_solat.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 import '../../../utils/prayer_data_handler.dart';
 
@@ -45,7 +45,7 @@ class ShareTextBuilder {
   final String _negeri;
 
   /// Prayer times for the current day.
-  final Prayers _times;
+  final MptPrayer _times;
 
   /// Padding length used for aligning text in WhatsApp format.
   final int _padLength = 8;

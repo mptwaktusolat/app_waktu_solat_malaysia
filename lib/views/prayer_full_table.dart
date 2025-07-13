@@ -7,11 +7,11 @@ import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
 import '../env.dart';
 import '../l10n/app_localizations.dart';
-import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import '../providers/timetable_provider.dart';
 import '../shared/extensions/date_time_extensions.dart';
@@ -107,7 +107,7 @@ class PrayerFullTable extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
               future: MptApiFetch.fetchMpt(_locationCode),
-              builder: (_, AsyncSnapshot<MptServerSolat> snapshot) {
+              builder: (_, AsyncSnapshot<MPTWaktuSolatV2> snapshot) {
                 if (snapshot.hasData) {
                   return _PrayerDataTable(
                     todayIndex: _todayIndex,
@@ -222,7 +222,7 @@ class PrayerFullTable extends StatelessWidget {
 
 class _PrayerDataTable extends StatelessWidget {
   const _PrayerDataTable({
-    required MptServerSolat model,
+    required MPTWaktuSolatV2 model,
     required int todayIndex,
     required int year,
     required int month,
@@ -237,7 +237,7 @@ class _PrayerDataTable extends StatelessWidget {
   final int _year;
   final int _month;
   final bool _is12HourFormat;
-  final MptServerSolat _model;
+  final MPTWaktuSolatV2 _model;
 
   @override
   Widget build(BuildContext context) {

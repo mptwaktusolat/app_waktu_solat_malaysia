@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
 import '../l10n/app_localizations.dart';
-import '../models/mpt_server_solat.dart';
 import '../notificationUtil/notification_scheduler.dart';
 import '../notificationUtil/prevent_update_notifs.dart';
 import '../providers/setting_provider.dart';
@@ -17,7 +17,7 @@ String? location;
 
 class PrayTimeList extends StatefulWidget {
   const PrayTimeList({super.key, this.prayerTime});
-  final MptServerSolat? prayerTime;
+  final MPTWaktuSolatV2? prayerTime;
 
   @override
   State<PrayTimeList> createState() => _PrayTimeListState();

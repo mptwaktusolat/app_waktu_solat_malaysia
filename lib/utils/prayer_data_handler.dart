@@ -1,15 +1,15 @@
 import 'package:get_storage/get_storage.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
 import '../location_utils/location_database.dart';
-import '../models/mpt_server_solat.dart';
 import '../networking/mpt_fetch_api.dart';
 import 'homescreen.dart';
 
 final int _day = DateTime.now().day;
 
 class PrayDataHandler {
-  static MptServerSolat? _mptServerSolat;
+  static MPTWaktuSolatV2? _mptServerSolat;
 
   /// This function must be called everytime the zone is changed
   /// Returns the hijri date
@@ -28,15 +28,15 @@ class PrayDataHandler {
   }
 
   // Return all data for a montth
-  static List<Prayers> month() {
+  static List<MptPrayer> month() {
     return _mptServerSolat!.prayers;
   }
 
-  static Prayers today() {
+  static MptPrayer today() {
     return _mptServerSolat!.prayers[_day - 1];
   }
 
   /// remove past date for notification scheduling
-  static List<Prayers> notificationTimes() =>
+  static List<MptPrayer> notificationTimes() =>
       _mptServerSolat!.prayers.sublist(_day - 1);
 }

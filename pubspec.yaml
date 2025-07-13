@@ -13,50 +13,53 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  http: ^1.1.0
-  intl: ^0.20.2
-  google_fonts: ^6.1.0
-  fluttertoast: ^8.0.3
-  package_info_plus: ^8.0.0
-  get_storage: ^2.0.1
-  cached_network_image: ^3.0.0
-  url_launcher: ^6.0.3
-  device_info_plus: ^11.0.0
-  share_plus: ^11.0.0
-  geolocator: ^13.0.1
-  flutter_spinkit: ^5.0.0
-  flutter_svg: ^2.0.0
-  provider: ^6.0.0
-  flutter_local_notifications: ^19.1.0
+
+  admonitions: ^1.1.0
   app_settings: ^6.1.1
-  flutter_custom_tabs: ^2.1.0
-  geocoding: ^4.0.0
-  font_awesome_flutter: ^10.1.0
-  flutter_qiblah: ^3.0.3
-  firebase_core: ^3.2.0
-  email_validator: ^3.0.0
-  introduction_screen: ^3.0.0
-  in_app_review: ^2.0.2
-  google_mobile_ads: ^6.0.0
-  restart_app: ^1.0.3
-  flutter_markdown: ^0.7.1
-  firebase_analytics: ^11.2.0
   auto_start_flutter:
     git:
-      url: https://github.com/iqfareez/auto_start_flutter.git
-      ref: migrate-v1-to-v2-embedding
-  timezone: ^0.10.0
-  quick_actions: ^1.0.0
-  firebase_crashlytics: ^4.0.3
+      url: https://github.com/seena98/auto_start_flutter.git
+      ref: master
+  cached_network_image: ^3.0.0
+  device_info_plus: ^11.0.0
   dynamic_color: ^1.6.2
+  email_validator: ^3.0.0
+  firebase_analytics: ^11.2.0
+  firebase_core: ^3.2.0
+  firebase_crashlytics: ^4.0.3
+  flutter_custom_tabs: ^2.1.0
+  flutter_local_notifications: ^19.1.0
+  flutter_markdown: ^0.7.1
+  flutter_qiblah: ^3.0.3
+  flutter_spinkit: ^5.0.0
   flutter_staggered_animations: ^1.1.1
-  path_provider: ^2.1.1
-  open_file: ^3.3.2
-  home_widget: ^0.8.0
-  permission_handler: ^12.0.0+1
-  hotspot: ^0.1.3
-  admonitions: ^1.1.0
+  flutter_svg: ^2.0.0
+  fluttertoast: ^8.0.3
+  font_awesome_flutter: ^10.1.0
   gap: ^3.0.1
+  geocoding: ^4.0.0
+  geolocator: ^13.0.1
+  get_storage: ^2.0.1
+  google_fonts: ^6.1.0
+  google_mobile_ads: ^6.0.0
+  home_widget: ^0.8.0
+  hotspot: ^0.1.3
+  http: ^1.1.0
+  in_app_review: ^2.0.2
+  intl: ^0.20.2
+  introduction_screen: ^3.0.0
+  open_file: ^3.3.2
+  package_info_plus: ^8.0.0
+  path_provider: ^2.1.1
+  permission_handler: ^12.0.0+1
+  provider: ^6.0.0
+  quick_actions: ^1.0.0
+  restart_app: ^1.0.3
+  share_plus: ^11.0.0
+  timezone: ^0.10.0
+  url_launcher: ^6.0.3
+  waktusolat_api_client:
+    git: https://github.com/mptwaktusolat/waktusolat_api_client.git
 
 dev_dependencies:
   flutter_test:
