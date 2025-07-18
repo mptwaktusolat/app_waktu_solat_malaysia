@@ -1302,9 +1302,11 @@ packages:
   waktusolat_api_client:
     dependency: "direct main"
     description:
-      path: "../waktusolat_api_client"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "9ff89c57875411ca752f659cf90797c4db0a12cb"
+      url: "https://github.com/mptwaktusolat/waktusolat_api_client.git"
+    source: git
     version: "1.0.0"
   web:
     dependency: transitive
@@ -1379,5 +1381,5 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
-  dart: ">=3.8.0 <4.0.0"
+  dart: ">=3.8.1 <4.0.0"
   flutter: ">=3.27.0"
