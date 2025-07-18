@@ -41,7 +41,7 @@ android {
         // Note: When updating the minSdk version, remember to reflect the
         // changes in update_checker_service.dart as well
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
