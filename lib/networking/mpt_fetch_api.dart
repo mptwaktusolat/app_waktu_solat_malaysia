@@ -7,12 +7,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
-import '../env.dart';
 import '../utils/debug_toast.dart';
 
 class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,
-  /// fetch data from mpt-server's API
+  /// fetch data from WaktuSolat's API
   static Future<MPTWaktuSolatV2> fetchMpt(String location) async {
     // Generate hashcode from api url
     // so that the cache key is unique for different location, month & year
@@ -56,12 +55,6 @@ class MptApiFetch {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
 
-    final options = {
-      'year': year.toString(),
-      'month': month.toString(),
-      'zone': zone,
-    };
-
     final fileSuffix = '$zone-$year-$month';
     final tempDir = await getTemporaryDirectory();
     final file = File('${tempDir.path}/jadual_solat_$fileSuffix.pdf');
@@ -70,8 +63,9 @@ class MptApiFetch {
     if (await file.exists()) return file;
 
     // If not exist, download from server
-    final url = Uri.https(envApiBaseHost, 'api/jadual_solat', options);
-    final data = await http.get(url);
+    final url =
+        WaktuSolat.getJadualSolatDownloadUrl(zone, year: year, month: month);
+    final data = await http.get(Uri.parse(url));
 
     return file.writeAsBytes(data.bodyBytes);
   }
