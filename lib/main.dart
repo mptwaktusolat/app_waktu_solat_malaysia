@@ -19,7 +19,6 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import 'constants.dart';
-import 'env.dart';
 import 'features/home/views/home_page.dart';
 import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'features/kompas_kiblat/views/qibla_page.dart';
@@ -77,10 +76,6 @@ void main() async {
 
   /// Increment app launch counter
   GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
-
-  if (kDebugMode) {
-    HttpOverrides.global = MyHttpOverrides();
-  }
 
   runApp(const MyApp());
 
@@ -289,15 +284,5 @@ void _showReviewPrompt() async {
   if (appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
     inAppReview.requestReview();
-  }
-}
-
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    // allow mpt-server to bypass when there is error certificate expired
-    // happened in Android 5 (emulator), not happens in recent Android versions
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (_, String host, __) => host == envApiBaseHost;
   }
 }
