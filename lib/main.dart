@@ -22,6 +22,7 @@ import 'constants.dart';
 import 'features/home/views/home_page.dart';
 import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import 'features/kompas_kiblat/views/qibla_page.dart';
+import 'features/monthly_timetable/views/monthly_timetable_page.dart';
 import 'features/sharing/views/share_floating_action_button.dart';
 import 'features/tasbih/views/tasbih_page.dart';
 import 'firebase_options.dart';
@@ -37,7 +38,6 @@ import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
-import 'views/prayer_full_table.dart';
 import 'views/settings/notification_page_setting.dart';
 
 void main() async {
@@ -236,7 +236,7 @@ void _configureQuickAction(BuildContext context) {
           context,
           MaterialPageRoute(
             settings: const RouteSettings(name: 'Full timetable'),
-            builder: (context) => PrayerFullTable(),
+            builder: (context) => MonthlyTimetablePage(),
           ),
         );
         break;

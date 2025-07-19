@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../l10n/app_localizations.dart';
-import '../../providers/timetable_provider.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../providers/timetable_provider.dart';
 
 enum HijriStyle { full, short }
 
-class FullPrayerTableSettings extends StatelessWidget {
-  const FullPrayerTableSettings({super.key});
+class MonthlyTimetableSettings extends StatelessWidget {
+  const MonthlyTimetableSettings({super.key});
 
   @override
   Widget build(BuildContext context) {

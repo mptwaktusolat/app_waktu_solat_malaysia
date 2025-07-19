@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../constants.dart';
-import '../views/settings/full_prayer_table_settings.dart';
+import '../features/monthly_timetable/views/monthly_timetable_settings.dart';
 
 class TimetableProvider extends ChangeNotifier {
   bool _showHijri = GetStorage().read(kTimetableHijri) ?? true;

@@ -9,17 +9,17 @@ import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../constants.dart';
-import '../env.dart';
-import '../l10n/app_localizations.dart';
-import '../networking/mpt_fetch_api.dart';
-import '../providers/timetable_provider.dart';
-import '../shared/extensions/date_time_extensions.dart';
-import '../shared/utils/date_time_utils.dart';
-import 'settings/full_prayer_table_settings.dart';
+import '../../../constants.dart';
+import '../../../env.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../networking/mpt_fetch_api.dart';
+import '../../../providers/timetable_provider.dart';
+import '../../../shared/extensions/date_time_extensions.dart';
+import '../../../shared/utils/date_time_utils.dart';
+import 'monthly_timetable_settings.dart';
 
-class PrayerFullTable extends StatelessWidget {
-  PrayerFullTable({super.key});
+class MonthlyTimetablePage extends StatelessWidget {
+  MonthlyTimetablePage({super.key});
 
   final GlobalKey<NestedScrollViewState> nestedScrollKey = GlobalKey();
   final int _todayIndex = DateTime.now().day - 1;
@@ -91,7 +91,7 @@ class PrayerFullTable extends StatelessWidget {
                       MaterialPageRoute(
                         settings: const RouteSettings(
                             name: 'Prayer Timetable Settings'),
-                        builder: (_) => const FullPrayerTableSettings(),
+                        builder: (_) => const MonthlyTimetableSettings(),
                       ),
                     );
                   },

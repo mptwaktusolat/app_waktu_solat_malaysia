@@ -11,12 +11,12 @@ import '../features/check_updates/views/update_page.dart';
 import '../features/feedback/views/feedback_page.dart';
 import '../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import '../features/kompas_kiblat/views/qibla_page.dart';
+import '../features/monthly_timetable/views/monthly_timetable_page.dart';
 import '../features/tasbih/views/tasbih_page.dart';
 import '../l10n/app_localizations.dart';
 import '../providers/updater_provider.dart';
 import '../shared/utils/launch_url.dart';
 import '../utils/my_mpt_icons_icons.dart';
-import 'prayer_full_table.dart';
 import 'settings/settings_page.dart';
 import 'settings/theme_page.dart';
 
@@ -54,10 +54,13 @@ class MyBottomAppBar extends StatelessWidget {
                 icon: const FaIcon(FontAwesomeIcons.calendarDays),
                 tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
                       settings:
                           const RouteSettings(name: 'Full Prayer Timetable'),
-                      builder: (_) => PrayerFullTable()));
+                      builder: (_) => MonthlyTimetablePage(),
+                    ),
+                  );
                 },
               ),
               IconButton(
