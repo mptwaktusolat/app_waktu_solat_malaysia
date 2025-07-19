@@ -37,10 +37,12 @@ class MonthlyTimetablePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // Scroll to today's date after page loaded
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // delay a bit so user can see the scrol animation
+      // delay a bit so user can see the scroll animation
       Future.delayed(Durations.long4, () {
+        // Day 1 most probably always visible, so don't animate if it's Day 1
+        if (_todayIndex == 0) return;
         innerController.animateTo(
-          // according to the docs, each data row have height of [kMinInteractiveDimension],
+          // Each data row have height of [kMinInteractiveDimension],
           // so we just multiply with the day to get the offset
           kMinInteractiveDimension * (_todayIndex - 1),
           duration: Durations.long4,
