@@ -21,8 +21,7 @@ class PrayDataHandler {
     if (widgetLocation == null || widgetLocation.isEmpty) {
       widgetLocation = LocationDatabase.daerah(zone);
     }
-    Homescreen.savePrayerDataAndUpdateWidget(
-        _mptServerSolat!.toJson(), widgetLocation!);
+    Homescreen.savePrayerDataAndUpdateWidget(_mptServerSolat!, widgetLocation!);
 
     return today().hijri.toString();
   }

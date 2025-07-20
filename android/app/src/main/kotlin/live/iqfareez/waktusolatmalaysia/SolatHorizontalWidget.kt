@@ -144,8 +144,8 @@ internal fun updateAppWidget(
     val timeFormat = SimpleDateFormat("h:mm a")
     timeFormat.timeZone = gmt8TimeZone
 
-    fun formatTime(timeInMillis: Long): String {
-        val date = Date(timeInMillis)
+    fun formatTime(timeInSeconds: Long): String {
+        val date = Date(timeInSeconds * 1000)
         return timeFormat.format(date)
     }
 
