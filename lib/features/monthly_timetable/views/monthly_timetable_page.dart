@@ -18,13 +18,21 @@ import '../../../shared/extensions/date_time_extensions.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import 'monthly_timetable_settings.dart';
 
-class MonthlyTimetablePage extends StatelessWidget {
-  MonthlyTimetablePage({super.key});
+class MonthlyTimetablePage extends StatefulWidget {
+  const MonthlyTimetablePage({super.key});
 
+  @override
+  State<MonthlyTimetablePage> createState() => _MonthlyTimetablePageState();
+}
+
+class _MonthlyTimetablePageState extends State<MonthlyTimetablePage> {
   final GlobalKey<NestedScrollViewState> nestedScrollKey = GlobalKey();
+  late final Future<MPTWaktuSolatV2> _waktuSolatDataFuture;
+
   final int _todayIndex = DateTime.now().day - 1;
   final int _month = DateTime.now().month;
   final int _year = DateTime.now().year;
+
   final String _locationCode = GetStorage().read(kStoredLocationJakimCode);
   final bool _is12HourFormat = GetStorage().read(kStoredTimeIs12);
 
@@ -34,23 +42,31 @@ class MonthlyTimetablePage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // Scroll to today's date after page loaded
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      // delay a bit so user can see the scroll animation
-      Future.delayed(Durations.long4, () {
-        // Day 1 most probably always visible, so don't animate if it's Day 1
-        if (_todayIndex == 0) return;
-        innerController.animateTo(
-          // Each data row have height of [kMinInteractiveDimension],
-          // so we just multiply with the day to get the offset
-          kMinInteractiveDimension * (_todayIndex - 1),
-          duration: Durations.long4,
-          curve: Curves.easeInOut,
-        );
-      });
-    });
+  void initState() {
+    super.initState();
 
+    _waktuSolatDataFuture = MptApiFetch.fetchMpt(_locationCode);
+    // Scroll to today's date after timetable loaded
+    _waktuSolatDataFuture.then((_) => _scrollToToday());
+  }
+
+  void _scrollToToday() {
+    // delay a bit so user can see the scroll animation
+    Future.delayed(Duration(milliseconds: 850), () {
+      // Day 1 most probably always visible, so don't animate if it's Day 1
+      if (_todayIndex == 0) return;
+      innerController.animateTo(
+        // Each data row have height of [kMinInteractiveDimension],
+        // so we just multiply with the day to get the offset
+        kMinInteractiveDimension * (_todayIndex - 1),
+        duration: Durations.long4,
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       // https://stackoverflow.com/questions/51948252/hide-appbar-on-scroll-flutter
       body: NestedScrollView(
@@ -108,7 +124,7 @@ class MonthlyTimetablePage extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: FutureBuilder(
-              future: MptApiFetch.fetchMpt(_locationCode),
+              future: _waktuSolatDataFuture,
               builder: (_, AsyncSnapshot<MPTWaktuSolatV2> snapshot) {
                 if (snapshot.hasData) {
                   return _PrayerDataTable(
@@ -119,9 +135,20 @@ class MonthlyTimetablePage extends StatelessWidget {
                     is12HourFormat: _is12HourFormat,
                   );
                 }
-                return Center(
+                if (snapshot.hasError) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(snapshot.error.toString()),
+                    ),
+                  );
+                }
+                return Padding(
+                  padding: const EdgeInsets.all(28.0),
                   child: SpinKitFadingCube(
-                      size: 35, color: Theme.of(context).colorScheme.primary),
+                    size: 35,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 );
               },
             ),

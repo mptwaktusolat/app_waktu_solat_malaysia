@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -13,43 +14,36 @@ class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,
   /// fetch data from WaktuSolat's API
   static Future<MPTWaktuSolatV2> fetchMpt(String location) async {
-    // Generate hashcode from api url
-    // so that the cache key is unique for different location, month & year
-    // and we no longer need a method to check the data is valid based on the paramaters above
-    final requestCacheKey = 'waktusolat-cache-${location.hashCode}';
+    final year = DateTime.now().year;
+    final month = DateTime.now().month;
+
+    final requestCacheKey = 'waktusolat-v2-cache-$location-$year-$month';
     final cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 
-    late final MPTWaktuSolatV2 data;
-    try {
-      // If issue https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/216 like
-      // this ever happens again, the data will not be saved to cache
-      data = await WaktuSolat.getWaktuSolatV2(location);
-      _saveToCache(requestCacheKey, data.toJson());
-    } catch (e) {
-      rethrow;
-    }
+    final MPTWaktuSolatV2 data =
+        await WaktuSolat.getWaktuSolatV2(location, year: year, month: month);
+    _saveToCache(requestCacheKey, data);
 
     return data;
   }
 
   static MPTWaktuSolatV2? _readFromCache(String cacheKey) {
-    if (GetStorage().read(cacheKey) == null) return null;
+    if (!GetStorage().hasData(cacheKey)) return null;
 
     final cachedData = GetStorage().read(cacheKey);
-    if (cachedData == null) return null;
 
     DebugToast.show('Using cached response');
     FirebaseAnalytics.instance
         .logEvent(name: kEventFetch, parameters: {"type": "cached"});
 
-    final parsedModel = MPTWaktuSolatV2.fromJson(cachedData);
+    final parsedModel = MPTWaktuSolatV2.fromJson(jsonDecode(cachedData));
     return parsedModel;
   }
 
   /// Save to cache
-  static void _saveToCache(String cacheKey, Map<String, dynamic> response) =>
-      GetStorage().write(cacheKey, response);
+  static void _saveToCache(String cacheKey, MPTWaktuSolatV2 response) =>
+      GetStorage().write(cacheKey, jsonEncode(response.toJson()));
 
   static Future<File> downloadJadualSolat(String zone) async {
     final year = DateTime.now().year;

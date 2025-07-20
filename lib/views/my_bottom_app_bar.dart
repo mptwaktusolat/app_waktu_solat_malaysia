@@ -58,7 +58,7 @@ class MyBottomAppBar extends StatelessWidget {
                     MaterialPageRoute(
                       settings:
                           const RouteSettings(name: 'Full Prayer Timetable'),
-                      builder: (_) => MonthlyTimetablePage(),
+                      builder: (_) => const MonthlyTimetablePage(),
                     ),
                   );
                 },

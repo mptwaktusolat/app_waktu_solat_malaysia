@@ -236,7 +236,7 @@ void _configureQuickAction(BuildContext context) {
           context,
           MaterialPageRoute(
             settings: const RouteSettings(name: 'Full timetable'),
-            builder: (context) => MonthlyTimetablePage(),
+            builder: (context) => const MonthlyTimetablePage(),
           ),
         );
         break;
