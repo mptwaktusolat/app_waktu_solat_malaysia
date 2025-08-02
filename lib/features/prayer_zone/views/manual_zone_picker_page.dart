@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
-import '../../../models/jakim_zones.dart';
 import '../../../providers/location_provider.dart';
+import '../../../shared/models/jakim_zones.dart';
 
 enum CurrentView { state, zone }
 

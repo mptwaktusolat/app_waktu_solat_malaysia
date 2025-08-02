@@ -1,0 +1,3 @@
+# dependency_overrides:
+#   waktusolat_api_client:
+#     path: ../waktusolat_api_client

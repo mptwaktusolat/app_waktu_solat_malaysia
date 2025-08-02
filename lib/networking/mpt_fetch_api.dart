@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../constants.dart';
-import '../utils/debug_toast.dart';
+import '../shared/utils/debug_toast.dart';
 
 class MptApiFetch {
   /// Attempt to read from cache first, if cache not available,

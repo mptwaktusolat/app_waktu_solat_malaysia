@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:waktusolatmalaysia/utils/hijri_date.dart';
+import 'package:waktusolatmalaysia/shared/models/hijri_date.dart';
 
 void main() {
   test('From JAKIM API response, parse to HijriDate object', () async {

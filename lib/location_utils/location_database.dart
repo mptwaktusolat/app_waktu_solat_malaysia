@@ -1,4 +1,4 @@
-import '../models/jakim_zones.dart';
+import '../shared/models/jakim_zones.dart';
 
 class LocationDatabase {
   static late List<JakimZones> allLocation;
