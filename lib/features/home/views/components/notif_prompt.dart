@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../../../constants.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../../shared/utils/app_launch_counter.dart';
 import '../../../../views/settings/notification_page_setting.dart';
 
 /// It will ask "Is notification is show at prayer time" in appbody
@@ -21,7 +22,7 @@ class _NotifPromptState extends State<NotifPrompt> {
   void initState() {
     super.initState();
     _shouldShowNotifPrompt = GetStorage().read(kShowNotifPrompt) &&
-        GetStorage().read(kAppLaunchCount) > 5;
+        AppLaunchCounter.getAppLaunches() > 5;
   }
 
   @override

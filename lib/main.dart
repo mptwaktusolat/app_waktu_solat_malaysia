@@ -36,6 +36,7 @@ import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'shared/models/jakim_zones.dart';
+import 'shared/utils/app_launch_counter.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 import 'views/settings/notification_page_setting.dart';
@@ -75,7 +76,7 @@ void main() async {
   });
 
   /// Increment app launch counter
-  GetStorage().write(kAppLaunchCount, GetStorage().read(kAppLaunchCount) + 1);
+  AppLaunchCounter.incrementAppLaunches();
 
   runApp(const MyApp());
 
@@ -279,7 +280,7 @@ Future _initializeJakimZoneData() async {
 void _showReviewPrompt() async {
   final InAppReview inAppReview = InAppReview.instance;
 
-  final int appLaunchCount = GetStorage().read(kAppLaunchCount);
+  final int appLaunchCount = AppLaunchCounter.getAppLaunches();
 
   if (appLaunchCount == 10 && await inAppReview.isAvailable()) {
     await Future.delayed(const Duration(seconds: 2));
