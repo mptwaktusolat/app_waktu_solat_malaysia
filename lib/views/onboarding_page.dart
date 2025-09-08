@@ -291,18 +291,19 @@ class _OnboardingPageState extends State<OnboardingPage>
           activeShape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
         ),
-        overrideNext: TextButton(
-          child: Text(AppLocalizations.of(context)!.onboardingNext,
-              style: const TextStyle(fontWeight: FontWeight.w600)),
-          onPressed: () async {
-            /// Request necessary permissions for notification when transitioning to page 3 to final page
-            if (!_isDoneSetPermission &&
-                _introScreenKey.currentState!.controller.page!.toInt() == 3) {
-              await _requestNecessaryNotificationPermissions();
-            }
-            _introScreenKey.currentState?.next();
-          },
-        ),
+        overrideNext: (context, onNext) => TextButton(
+              child: Text(AppLocalizations.of(context)!.onboardingNext,
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
+              onPressed: () async {
+                /// Request necessary permissions for notification when transitioning to page 3 to final page
+                if (!_isDoneSetPermission &&
+                    _introScreenKey.currentState!.controller.page!.toInt() ==
+                        3) {
+                  await _requestNecessaryNotificationPermissions();
+                }
+                onNext?.call();
+              },
+            ),
         done: Text(AppLocalizations.of(context)!.onboardingDone,
             style: const TextStyle(fontWeight: FontWeight.w600)),
         doneSemantic: "Done button",
