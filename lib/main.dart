@@ -1,86 +1,38 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hotspot/hotspot.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_actions/quick_actions.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 import 'constants.dart';
 import 'features/home/views/home_page.dart';
-import 'features/kompas_kiblat/views/qibla_disclaimer_page.dart';
-import 'features/kompas_kiblat/views/qibla_page.dart';
-import 'features/monthly_timetable/views/monthly_timetable_page.dart';
 import 'features/sharing/views/share_floating_action_button.dart';
-import 'features/tasbih/views/tasbih_page.dart';
-import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
-import 'location_utils/location_database.dart';
-import 'notificationUtil/notifications_helper.dart';
 import 'providers/locale_provider.dart';
 import 'providers/location_provider.dart';
 import 'providers/setting_provider.dart';
 import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
-import 'shared/models/jakim_zones.dart';
 import 'shared/utils/app_launch_counter.dart';
+import 'utils/quick_action_registrar.dart';
+import 'utils/startup_routine.dart';
 import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
-import 'views/settings/notification_page_setting.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await GetStorage.init();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  MobileAds.instance.initialize();
-
-  // Pass all uncaught errors from the framework to Crashlytics.
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-  PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-    return true;
-  };
-
-  // Disable analytics & crashlytics when in debug mode
-  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-  FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
-
-  await _configureLocalTimeZone();
-  await initNotifications();
-
-  initGetStorage();
-  await _initializeJakimZoneData();
-
-  LicenseRegistry.addLicense(() async* {
-    // This adds SIL license to the registrar
-    final license = await rootBundle.loadString('assets/OFL.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
-
-  /// Increment app launch counter
-  AppLaunchCounter.incrementAppLaunches();
+  await StartupRoutine.initialize();
 
   runApp(const MyApp());
 
-  _showReviewPrompt();
+  StartupRoutine.showReviewPrompt();
+
+  /// Increment app launch counter
+  AppLaunchCounter.incrementAppLaunches();
 }
 
 class MyApp extends StatelessWidget {
@@ -143,7 +95,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _configureQuickAction(context);
+    QuickActionRegistrar.registerQuickActions(context);
     return HotspotProvider(
       actionBuilder: (context, controller) {
         return HotspotActionBuilder(
@@ -178,112 +130,5 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-void initGetStorage() {
-  // init default settings
-  final GetStorage get = GetStorage();
-  get.writeIfNull(kHasShowQiblaWarning, false);
-  get.writeIfNull(kNotificationType, MyNotificationType.azan.index);
-  get.writeIfNull(kShowNotifPrompt, true);
-  get.writeIfNull(kAppLaunchCount, 0);
-  get.writeIfNull(kIsFirstRun, true);
-  get.writeIfNull(kStoredLocationJakimCode, 'WLY01');
-  get.writeIfNull(kStoredTimeIs12, true);
-  // Many people doesn't realive they have the ability to toggle Imsak, Syuruk,
-  // Dhuha display, so we make them shown by default. See issue: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/171.
-  get.writeIfNull(kStoredShowOtherPrayerTime, true);
-  get.writeIfNull(kShouldUpdateNotif, true);
-  get.writeIfNull(kStoredLastUpdateNotif, 0);
-  get.writeIfNull(kStoredNotificationLimit, false);
-  get.writeIfNull(kIsDebugMode, false);
-  get.writeIfNull(kDiscoveredDeveloperOption, false);
-  get.writeIfNull(kFontSize, 16.0);
-  // make default to default locale
-  final localeName = Platform.localeName.split('_').first;
-  get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
-  get.writeIfNull(kAppTheme, ThemeMode.light.name);
-  get.writeIfNull(kNotificationSheetKeepOff, false);
-}
-
-/// Launcher icon shortcuts
-void _configureQuickAction(BuildContext context) {
-  const QuickActions quickActions = QuickActions();
-  quickActions.initialize((shortcutType) {
-    switch (shortcutType) {
-      case 'action_qibla':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            settings: const RouteSettings(name: 'Qibla'),
-            builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                ? const QiblaPage()
-                : const QiblaDisclaimerPage(),
-          ),
-        );
-        break;
-      case 'action_tasbih':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            settings: const RouteSettings(name: 'Tasbih'),
-            builder: (_) => const TasbihPage(),
-          ),
-        );
-        break;
-      case 'action_timetable':
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            settings: const RouteSettings(name: 'Full timetable'),
-            builder: (context) => const MonthlyTimetablePage(),
-          ),
-        );
-        break;
-      default:
-        print('Unknown shortcut');
-    }
-  });
-
-  quickActions.setShortcutItems(<ShortcutItem>[
-    ShortcutItem(
-        type: 'action_qibla',
-        localizedTitle: AppLocalizations.of(context)!.qiblaTitle,
-        icon: 'ic_shortcut_kaaba'),
-    ShortcutItem(
-        type: 'action_timetable',
-        localizedTitle: AppLocalizations.of(context)!.menuTimetableTooltip,
-        icon: 'ic_shortcut_calendar'),
-    const ShortcutItem(
-        type: 'action_tasbih',
-        localizedTitle: 'Tasbih',
-        icon: 'ic_shortcut_tasbih')
-  ]);
-}
-
-Future<void> _configureLocalTimeZone() async {
-  // use for notification
-  tz.initializeTimeZones();
-  const String timeZoneName = 'Asia/Kuala_Lumpur';
-  tz.setLocalLocation(tz.getLocation(timeZoneName));
-}
-
-Future _initializeJakimZoneData() async {
-  final String data = await rootBundle.loadString('assets/json/zones.json');
-  final List<dynamic> jsonDecoded = json.decode(data);
-  LocationDatabase.allLocation =
-      List.from(jsonDecoded.map((e) => JakimZones.fromJson(e)));
-}
-
-/// Show InAppReview if all conditions are met
-void _showReviewPrompt() async {
-  final InAppReview inAppReview = InAppReview.instance;
-
-  final int appLaunchCount = AppLaunchCounter.getAppLaunches();
-
-  if (appLaunchCount == 10 && await inAppReview.isAvailable()) {
-    await Future.delayed(const Duration(seconds: 2));
-    inAppReview.requestReview();
   }
 }
