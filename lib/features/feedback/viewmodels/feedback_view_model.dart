@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -57,7 +58,12 @@ class FeedbackViewModel extends ChangeNotifier {
           otherPayloads: {
             'app_info': appMetadata,
             if (logIsChecked) 'device_info': deviceInfo,
-            if (isSensitiveChecked) 'additional_info': sensitiveData
+            if (isSensitiveChecked) 'additional_info': sensitiveData,
+            'flutter_info': {
+              'channel': FlutterVersion.channel,
+              'version': FlutterVersion.version,
+              'dart_sdk': FlutterVersion.dartVersion,
+            },
           },
         );
 
