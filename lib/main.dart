@@ -8,6 +8,7 @@ import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
 import 'constants.dart';
+import 'features/bottom_menus/views/bottom_menu_bar.dart';
 import 'features/home/views/home_page.dart';
 import 'features/sharing/views/share_floating_action_button.dart';
 import 'l10n/app_localizations.dart';
@@ -20,7 +21,6 @@ import 'providers/updater_provider.dart';
 import 'shared/utils/app_launch_counter.dart';
 import 'utils/quick_action_registrar.dart';
 import 'utils/startup_routine.dart';
-import 'views/my_bottom_app_bar.dart';
 import 'views/onboarding_page.dart';
 
 void main() async {
@@ -122,7 +122,7 @@ class MyHomePage extends StatelessWidget {
         ),
         // known issue that causes white line appear between appbar and widget below
         // https://github.com/flutter/flutter/issues/14288
-        bottomNavigationBar: const MyBottomAppBar(),
+        bottomNavigationBar: const BottomMenuBar(),
         floatingActionButton: const ShareFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         body: const SingleChildScrollView(
