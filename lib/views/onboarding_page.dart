@@ -277,6 +277,13 @@ class _OnboardingPageState extends State<OnboardingPage>
       ),
     ];
     return IntroductionScreen(
+        // enable safe area at the bottom. https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/258
+        safeAreaList: [
+          false,
+          false,
+          false,
+          true
+        ],
         key: _introScreenKey,
         pages: pages,
         dotsDecorator: DotsDecorator(
