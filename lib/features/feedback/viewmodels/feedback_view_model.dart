@@ -59,7 +59,8 @@ class FeedbackViewModel extends ChangeNotifier {
             'app_info': appMetadata,
             if (logIsChecked) 'device_info': deviceInfo,
             if (isSensitiveChecked) 'additional_info': sensitiveData,
-            'flutter_info': {
+            'platform_info': {
+              'platform': 'Flutter',
               'channel': FlutterVersion.channel,
               'version': FlutterVersion.version,
               'dart_sdk': FlutterVersion.dartVersion,
