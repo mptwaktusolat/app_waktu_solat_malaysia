@@ -23,15 +23,6 @@ class DebugDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           ListTile(
-            title: const Text('Prayer time API calls'),
-            subtitle: Text(GetStorage().read(kStoredApiPrayerCall).toString()),
-            onLongPress: () {
-              Clipboard.setData(ClipboardData(
-                      text: GetStorage().read(kStoredApiPrayerCall)))
-                  .then((value) => Fluttertoast.showToast(msg: 'Copied url'));
-            },
-          ),
-          ListTile(
             title: const Text('Last position'),
             subtitle: Text(LocationData.position?.toString() ?? 'null'),
             onLongPress: () {

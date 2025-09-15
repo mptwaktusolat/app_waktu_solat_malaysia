@@ -3,7 +3,6 @@ const kStoredLocationJakimCode = "storedJakimCode";
 const kIsFirstRun = "storedFirstRunApp";
 const kStoredTimeIs12 = "storedTimeFormat";
 const kStoredShowOtherPrayerTime = "storedshowothertime";
-const kStoredApiPrayerCall = "storedApiPrayCall";
 const kShouldUpdateNotif = "storedShouldUpdateNotif";
 const kStoredLastUpdateNotif = "storedLastUpdateNotif";
 const kStoredNotificationLimit = "storedNotificationLimit";

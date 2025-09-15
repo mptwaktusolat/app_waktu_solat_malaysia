@@ -104,7 +104,6 @@ class FeedbackViewModel extends ChangeNotifier {
       appMetadata = {
         'App version': packageInfo.version,
         'App build number': packageInfo.buildNumber,
-        'Prayer API': GetStorage().read(kStoredApiPrayerCall),
         'zone': GetStorage().read(kStoredLocationJakimCode),
         'app locale': locale,
       };
