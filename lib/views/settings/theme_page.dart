@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../providers/theme_controller.dart';
+import '../../shared/components/animated_moon.dart';
 
 class ThemesPage extends StatefulWidget {
   const ThemesPage({super.key});
@@ -60,72 +61,6 @@ class _ThemesPageState extends State<ThemesPage>
   }
 }
 
-class AnimatedMoon extends StatelessWidget {
-  AnimatedMoon({
-    super.key,
-    this.width,
-    this.isDarkMode,
-    AnimationController? animationController,
-  }) : _animationController = animationController;
-
-  final double? width;
-  final bool? isDarkMode;
-  final AnimationController? _animationController;
-
-  // moon animation swatches (light)
-  final List<Color> lightSwatches = [
-    const Color(0xDDFF0080),
-    const Color(0xDDFF8C00),
-  ];
-
-  // moon animation swatches (dark)
-  final List<Color> darkSwatches = [
-    const Color(0xFF8983F7),
-    const Color(0xFFA3DAFB),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.scale(
-      scale: 1.6,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: width! * 0.35,
-            height: width! * 0.35,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                colors: isDarkMode! ? darkSwatches : lightSwatches,
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-              ),
-            ),
-          ),
-          Transform.translate(
-            offset: const Offset(40, 0),
-            child: ScaleTransition(
-              scale: _animationController!.drive(
-                Tween<double>(begin: 0.0, end: 1.0).chain(
-                  CurveTween(curve: Curves.decelerate),
-                ),
-              ),
-              alignment: Alignment.topRight,
-              child: Container(
-                width: width! * 0.26,
-                height: width! * 0.26,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).scaffoldBackgroundColor),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class ThemesOption extends StatefulWidget {
   const ThemesOption({super.key});
   @override
@@ -142,22 +77,23 @@ class _ThemesOptionState extends State<ThemesOption> {
     };
     return Consumer<ThemeProvider>(
       builder: (_, setting, __) {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: themeOptions.length,
-          itemBuilder: (_, index) {
-            return RadioListTile(
-                title: Text(themeOptions.keys.elementAt(index)),
-                subtitle: index == 0
-                    ? Text(AppLocalizations.of(context)!.themeSupportedDevice)
-                    : null,
-                value: themeOptions.values.elementAt(index),
-                groupValue: setting.themeMode,
-                onChanged: (dynamic value) {
-                  setting.themeMode = value;
-                });
+        return RadioGroup(
+          onChanged: (dynamic value) {
+            setting.themeMode = value;
           },
+          groupValue: setting.themeMode,
+          child: Column(
+            children: [
+              for (var theme in themeOptions.entries)
+                RadioListTile(
+                  title: Text(theme.key),
+                  subtitle: theme.value == ThemeMode.system
+                      ? Text(AppLocalizations.of(context)!.themeSupportedDevice)
+                      : null,
+                  value: theme.value,
+                )
+            ],
+          ),
         );
       },
     );

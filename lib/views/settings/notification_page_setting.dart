@@ -26,7 +26,7 @@ class NotificationPageSetting extends StatefulWidget {
 }
 
 class _NotificationPageSettingState extends State<NotificationPageSetting> {
-  MyNotificationType _type =
+  MyNotificationType _notificationType =
       MyNotificationType.values[GetStorage().read(kNotificationType)];
 
   // to make sure only one banner is shown at a time
@@ -82,12 +82,17 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
               child: Text(AppLocalizations.of(context)!.notifSettingBasic)),
           Card(
               clipBehavior: Clip.hardEdge,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  RadioListTile(
+              child: RadioGroup(
+                onChanged: (MyNotificationType? value) {
+                  setState(() => _notificationType = value!);
+                  _handleRestartBanner();
+                },
+                groupValue: _notificationType,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RadioListTile(
                       value: MyNotificationType.noazan,
-                      groupValue: _type,
                       title: Row(
                         children: [
                           Text(AppLocalizations.of(context)!
@@ -105,13 +110,9 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                               icon: const Icon(Icons.play_arrow)),
                         ],
                       ),
-                      onChanged: (MyNotificationType? type) {
-                        setState(() => _type = type!);
-                        _handleRestartBanner();
-                      }),
-                  RadioListTile(
+                    ),
+                    RadioListTile(
                       value: MyNotificationType.shortAzan,
-                      groupValue: _type,
                       title: Row(
                         children: [
                           Text(AppLocalizations.of(context)!
@@ -131,13 +132,9 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                           ),
                         ],
                       ),
-                      onChanged: (MyNotificationType? type) {
-                        setState(() => _type = type!);
-                        _handleRestartBanner();
-                      }),
-                  RadioListTile(
+                    ),
+                    RadioListTile(
                       value: MyNotificationType.azan,
-                      groupValue: _type,
                       title: Row(
                         children: [
                           Text(AppLocalizations.of(context)!
@@ -157,11 +154,9 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                           ),
                         ],
                       ),
-                      onChanged: (MyNotificationType? type) {
-                        setState(() => _type = type!);
-                        _handleRestartBanner();
-                      }),
-                ],
+                    ),
+                  ],
+                ),
               )),
           Card(
             clipBehavior: Clip.hardEdge,
@@ -308,7 +303,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
         MyNotificationType.values[GetStorage().read(kNotificationType)];
 
     // show if new type is different from the old one (stored in storage)
-    if (_type != currentNotifType) {
+    if (_notificationType != currentNotifType) {
       // if material banner already shown, do nothing
       if (_bannerController != null) return;
 
@@ -324,7 +319,7 @@ class _NotificationPageSettingState extends State<NotificationPageSetting> {
                 // mark as need to update notification
                 // when the app restart
                 GetStorage().write(kShouldUpdateNotif, true);
-                GetStorage().write(kNotificationType, _type.index);
+                GetStorage().write(kNotificationType, _notificationType.index);
                 Restart.restartApp();
               },
             )

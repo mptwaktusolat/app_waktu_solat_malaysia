@@ -15,6 +15,7 @@ import '../features/prayer_zone/views/zone_chooser.dart';
 import '../l10n/app_localizations.dart';
 import '../main.dart';
 import '../providers/locale_provider.dart';
+import '../shared/components/animated_moon.dart';
 import 'settings/notification_page_setting.dart';
 import 'settings/theme_page.dart';
 
@@ -165,23 +166,22 @@ class _OnboardingPageState extends State<OnboardingPage>
         ),
         decoration: _pageDecoration,
         bodyWidget: Consumer<LocaleProvider>(builder: (_, value, __) {
-          return Column(mainAxisSize: MainAxisSize.min, children: [
-            RadioListTile(
+          return RadioGroup(
+            onChanged: (String? newValue) {
+              value.appLocale = newValue!;
+            },
+            groupValue: value.appLocale,
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              RadioListTile(
                 value: "en",
-                groupValue: value.appLocale,
                 title: const Text("English"),
-                onChanged: (String? newValue) {
-                  value.appLocale = newValue!;
-                }),
-            RadioListTile(
+              ),
+              RadioListTile(
                 value: "ms",
-                groupValue: value.appLocale,
                 title: const Text("Bahasa Malaysia"),
-                onChanged: (String? newValue) {
-                  GetStorage().write(kAppLanguage, newValue);
-                  value.appLocale = newValue!;
-                }),
-          ]);
+              ),
+            ]),
+          );
         }),
       ),
       PageViewModel(
@@ -243,33 +243,28 @@ class _OnboardingPageState extends State<OnboardingPage>
         image: Image.asset('assets/3d/Clock.png', width: 200),
         title: AppLocalizations.of(context)!.onboardingNotifOption,
         decoration: _pageDecoration,
-        bodyWidget: Column(mainAxisSize: MainAxisSize.min, children: [
-          RadioListTile(
+        bodyWidget: RadioGroup(
+          onChanged: (MyNotificationType? type) {
+            GetStorage().write(kNotificationType, type?.index);
+            setState(() => _notificationType = type!);
+          },
+          groupValue: _notificationType,
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            RadioListTile(
               value: MyNotificationType.noazan,
-              groupValue: _notificationType,
               title: Text(AppLocalizations.of(context)!.onboardingNotifDefault),
-              onChanged: (MyNotificationType? type) {
-                GetStorage().write(kNotificationType, type?.index);
-                setState(() => _notificationType = type!);
-              }),
-          RadioListTile(
+            ),
+            RadioListTile(
               value: MyNotificationType.shortAzan,
-              groupValue: _notificationType,
               title:
                   Text(AppLocalizations.of(context)!.onboardingNotifShortAzan),
-              onChanged: (MyNotificationType? type) {
-                GetStorage().write(kNotificationType, type?.index);
-                setState(() => _notificationType = type!);
-              }),
-          RadioListTile(
+            ),
+            RadioListTile(
               value: MyNotificationType.azan,
-              groupValue: _notificationType,
               title: Text(AppLocalizations.of(context)!.onboardingNotifAzan),
-              onChanged: (MyNotificationType? type) {
-                GetStorage().write(kNotificationType, type?.index);
-                setState(() => _notificationType = type!);
-              }),
-        ]),
+            ),
+          ]),
+        ),
       ),
       PageViewModel(
         title: AppLocalizations.of(context)!.onboardingFinish,
