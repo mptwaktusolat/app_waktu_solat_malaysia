@@ -379,10 +379,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: "20ca0a9c82ce0c855ac62a2e580ab867f3fbea82680a90647f7953832d0850ae"
+      sha256: "7ed76be64e8a7d01dfdf250b8434618e2a028c9dfa2a3c41dc9b531d4b3fc8a5"
       url: "https://pub.dev"
     source: hosted
-    version: "19.4.0"
+    version: "19.4.2"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
@@ -403,10 +403,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_local_notifications_windows
-      sha256: ed46d7ae4ec9d19e4c8fa2badac5fe27ba87a3fe387343ce726f927af074ec98
+      sha256: "8d658f0d367c48bd420e7cf2d26655e2d1130147bca1eea917e576ca76668aaf"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -448,10 +448,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_svg
-      sha256: de82e6bf958cec7190fbc1c5298282c851228e35ae2b14e2b103e7f777818c64
+      sha256: b9c2ad5872518a27507ab432d1fb97e8813b05f0fc693f9d40fad06d073e0678
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.13"
+    version: "2.2.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -586,10 +586,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_fonts
-      sha256: df9763500dadba0155373e9cb44e202ce21bd9ed5de6bdbd05c5854e86839cb8
+      sha256: ebc94ed30fd13cefd397cb1658b593f21571f014b7d1197eeb41fb95f05d899a
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.0"
+    version: "6.3.1"
   google_mobile_ads:
     dependency: "direct main"
     description:
@@ -634,10 +634,10 @@ packages:
     dependency: "direct main"
     description:
       name: in_app_review
-      sha256: "36a06771b88fb0e79985b15e7f2ac0f1142e903fe72517f3c055d78bc3bc1819"
+      sha256: ab26ac54dbd802896af78c670b265eaeab7ecddd6af4d0751e9604b60574817f
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.11"
   in_app_review_platform_interface:
     dependency: transitive
     description:
@@ -674,10 +674,10 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "8dcda04c3fc16c14f48a7bb586d4be1f0d1572731b6d81d51772ef47c02081e0"
+      sha256: "33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de"
       url: "https://pub.dev"
     source: hosted
-    version: "11.0.1"
+    version: "11.0.2"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
@@ -866,10 +866,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: d0d310befe2c8ab9e7f393288ccbb11b60c019c6b5afc21973eeee4dda2b35e9
+      sha256: "993381400e94d18469750e5b9dcb8206f15bc09f9da86b9e44a9b0092a0066db"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.17"
+    version: "2.2.18"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -994,10 +994,10 @@ packages:
     dependency: transitive
     description:
       name: quick_actions_android
-      sha256: aef966262e997271662db864c2684b441a3990b0ca628442561765fa0b21c29b
+      sha256: "612c9d53364c641ddcdeafed83c68fc14efb1bf4f686979d755024fc976fc888"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.22"
+    version: "1.0.23"
   quick_actions_ios:
     dependency: transitive
     description:
@@ -1191,10 +1191,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "0aedad096a85b49df2e4725fa32118f9fa580f3b14af7a2d2221896a02cd5656"
+      sha256: "199bc33e746088546a39cc5f36bac5a278c5e53b40cb3196f99e7345fdcfae6b"
       url: "https://pub.dev"
     source: hosted
-    version: "6.3.17"
+    version: "6.3.22"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -1263,18 +1263,18 @@ packages:
     dependency: transitive
     description:
       name: vector_graphics_codec
-      sha256: c86987475f162fadff579e7320c7ddda04cd2fdeffbe1129227a85d9ac9e03da
+      sha256: "99fd9fbd34d9f9a32efd7b6a6aae14125d8237b10403b422a6a6dfeac2806146"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.11+1"
+    version: "1.1.13"
   vector_graphics_compiler:
     dependency: transitive
     description:
       name: vector_graphics_compiler
-      sha256: "12faff3f73b1741a36ca7e31b292ddeb629af819ca9efe9953b70bd63fc8cd81"
+      sha256: d354a7ec6931e6047785f4db12a1f61ec3d43b207fc0790f863818543f8ff0dc
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.11+1"
+    version: "1.1.19"
   vector_math:
     dependency: transitive
     description:
@@ -1320,10 +1320,10 @@ packages:
     dependency: transitive
     description:
       name: webview_flutter_android
-      sha256: "0a42444056b24ed832bdf3442d65c5194f6416f7e782152384944053c2ecc9a3"
+      sha256: "3c4eb4fcc252b40c2b5ce7be20d0481428b70f3ff589b0a8b8aaeb64c6bed701"
       url: "https://pub.dev"
     source: hosted
-    version: "4.10.0"
+    version: "4.10.2"
   webview_flutter_platform_interface:
     dependency: transitive
     description:
@@ -1374,4 +1374,4 @@ packages:
     version: "6.6.1"
 sdks:
   dart: ">=3.9.0 <4.0.0"
-  flutter: ">=3.29.0"
+  flutter: ">=3.35.0"
