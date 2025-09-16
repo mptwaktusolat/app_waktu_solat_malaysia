@@ -22,42 +22,44 @@ class ShareTargetSelection extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final appLocalizations = AppLocalizations.of(context)!;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildShareOption(
-          context: context,
-          title: appLocalizations.sharePlainTitle,
-          subtitle: appLocalizations.sharePlainDesc,
-          icon: FontAwesomeIcons.font,
-          color: colorScheme.secondary,
-          target: ShareTarget.universal,
-        ),
-        _buildShareOption(
-          context: context,
-          title: appLocalizations.shareWhatsappTitle,
-          subtitle: appLocalizations.shareWhatsappDesc,
-          icon: FontAwesomeIcons.whatsapp,
-          color: colorScheme.secondary,
-          target: ShareTarget.whatsapp,
-        ),
-        _buildShareOption(
-          context: context,
-          title: appLocalizations.shareCopy,
-          subtitle: null,
-          icon: FontAwesomeIcons.clone,
-          color: colorScheme.secondary,
-          target: ShareTarget.copy,
-        ),
-        _buildShareOption(
-          context: context,
-          title: appLocalizations.shareImage,
-          subtitle: null,
-          icon: FontAwesomeIcons.image,
-          color: colorScheme.secondary,
-          target: ShareTarget.image,
-        ),
-      ],
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildShareOption(
+            context: context,
+            title: appLocalizations.sharePlainTitle,
+            subtitle: appLocalizations.sharePlainDesc,
+            icon: FontAwesomeIcons.font,
+            color: colorScheme.secondary,
+            target: ShareTarget.universal,
+          ),
+          _buildShareOption(
+            context: context,
+            title: appLocalizations.shareWhatsappTitle,
+            subtitle: appLocalizations.shareWhatsappDesc,
+            icon: FontAwesomeIcons.whatsapp,
+            color: colorScheme.secondary,
+            target: ShareTarget.whatsapp,
+          ),
+          _buildShareOption(
+            context: context,
+            title: appLocalizations.shareCopy,
+            subtitle: null,
+            icon: FontAwesomeIcons.clone,
+            color: colorScheme.secondary,
+            target: ShareTarget.copy,
+          ),
+          _buildShareOption(
+            context: context,
+            title: appLocalizations.shareImage,
+            subtitle: null,
+            icon: FontAwesomeIcons.image,
+            color: colorScheme.secondary,
+            target: ShareTarget.image,
+          ),
+        ],
+      ),
     );
   }
 
