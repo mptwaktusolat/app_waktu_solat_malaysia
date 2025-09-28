@@ -13,13 +13,13 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../constants.dart';
-import '../firebase_options.dart';
-import '../location_utils/location_database.dart';
-import '../notificationUtil/notifications_helper.dart';
-import '../shared/models/jakim_zones.dart';
-import '../shared/utils/app_launch_counter.dart';
-import '../views/settings/notification_page_setting.dart';
+import '../../constants.dart';
+import '../../firebase_options.dart';
+import '../../location_utils/location_database.dart';
+import '../../notificationUtil/notifications_helper.dart';
+import '../models/jakim_zones.dart';
+import 'app_launch_counter.dart';
+import '../../views/settings/notification_page_setting.dart';
 
 class StartupRoutine {
   static Future<void> initialize() async {

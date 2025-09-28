@@ -4,7 +4,7 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../constants.dart';
 import '../location_utils/location_database.dart';
 import '../networking/mpt_fetch_api.dart';
-import 'homescreen.dart';
+import '../shared/utils/homescreen.dart';
 
 final int _day = DateTime.now().day;
 

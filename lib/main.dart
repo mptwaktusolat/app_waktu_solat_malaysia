@@ -19,8 +19,8 @@ import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
 import 'shared/utils/app_launch_counter.dart';
-import 'utils/quick_action_registrar.dart';
-import 'utils/startup_routine.dart';
+import 'shared/utils/quick_action_registrar.dart';
+import 'shared/utils/startup_routine.dart';
 import 'views/onboarding_page.dart';
 
 void main() async {

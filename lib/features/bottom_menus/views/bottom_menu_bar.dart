@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import '../../../constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/updater_provider.dart';
-import '../../../utils/my_mpt_icons_icons.dart';
+import '../../../shared/utils/my_mpt_icons_icons.dart';
 import '../../kompas_kiblat/views/qibla_disclaimer_page.dart';
 import '../../kompas_kiblat/views/qibla_page.dart';
 import '../../monthly_timetable/views/monthly_timetable_page.dart';
