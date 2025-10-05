@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/setting_provider.dart';
 import '../../../shared/utils/launch_url.dart';
+import '../../prayer_time/providers/prayer_time_provider.dart';
 import '../utils/share_text_builder.dart';
 import 'share_image_preview_page.dart';
 import 'share_target_selection.dart';
@@ -70,11 +71,18 @@ class ShareFloatingActionButton extends StatelessWidget {
   ///
   /// Formats the text specifically for WhatsApp and opens the WhatsApp app.
   void shareToWhatsApp(BuildContext context) {
+    final prayerProvider =
+        Provider.of<PrayerTimeProvider>(context, listen: false);
+    final today = prayerProvider.getTodayPrayer();
+    if (today == null) return;
+
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
-    final message = ShareTextBuilder(AppLocalizations.of(context)!,
-            use12hourFormat: use12hourFormat)
-        .formatWhatsApp();
+    final message = ShareTextBuilder(
+      AppLocalizations.of(context)!,
+      today,
+      use12hourFormat: use12hourFormat,
+    ).formatWhatsApp();
 
     LaunchUrl.normalLaunchUrl(
       url: 'whatsapp://send/?text=$message',
@@ -84,12 +92,19 @@ class ShareFloatingActionButton extends StatelessWidget {
   /// Shares prayer times using the system share dialog.
   /// Uses the plain text format to share with any app.
   void shareUniversal(BuildContext context) {
+    final prayerProvider =
+        Provider.of<PrayerTimeProvider>(context, listen: false);
+    final today = prayerProvider.getTodayPrayer();
+    if (today == null) return;
+
     final localizations = AppLocalizations.of(context)!;
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
-    final message =
-        ShareTextBuilder(localizations, use12hourFormat: use12hourFormat)
-            .formatPlainText();
+    final message = ShareTextBuilder(
+      localizations,
+      today,
+      use12hourFormat: use12hourFormat,
+    ).formatPlainText();
 
     SharePlus.instance.share(
       ShareParams(text: message, subject: localizations.shareSubject),
@@ -100,12 +115,19 @@ class ShareFloatingActionButton extends StatelessWidget {
   ///
   /// Shows a toast message when copying is successful.
   void copyToClipboard(BuildContext context) {
+    final prayerProvider =
+        Provider.of<PrayerTimeProvider>(context, listen: false);
+    final today = prayerProvider.getTodayPrayer();
+    if (today == null) return;
+
     final localizations = AppLocalizations.of(context)!;
     final use12hourFormat =
         Provider.of<SettingProvider>(context, listen: false).use12hour;
-    final message =
-        ShareTextBuilder(localizations, use12hourFormat: use12hourFormat)
-            .formatPlainText();
+    final message = ShareTextBuilder(
+      localizations,
+      today,
+      use12hourFormat: use12hourFormat,
+    ).formatPlainText();
 
     Clipboard.setData(ClipboardData(text: message)).then(
       (_) => Fluttertoast.showToast(msg: localizations.shareTimetableCopied),

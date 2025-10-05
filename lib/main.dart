@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'constants.dart';
 import 'features/bottom_menus/views/bottom_menu_bar.dart';
 import 'features/home/views/home_page.dart';
+import 'features/prayer_time/providers/prayer_time_provider.dart';
 import 'features/sharing/views/share_floating_action_button.dart';
 import 'l10n/app_localizations.dart';
 import 'providers/locale_provider.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SettingProvider()),
         ChangeNotifierProvider(create: (_) => LocationProvider()),
+        ChangeNotifierProvider(create: (_) => PrayerTimeProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UpdaterProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
