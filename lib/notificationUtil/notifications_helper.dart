@@ -15,9 +15,14 @@ class NotificationClass {
 
 Future<void> initNotifications() async {
   const initializationSettingsAndroid = AndroidInitializationSettings('icon');
+  final DarwinInitializationSettings initializationSettingsDarwin =
+      DarwinInitializationSettings();
 
-  const initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
+  // TODO: Complete the ios side setup. https://pub.dev/packages/flutter_local_notifications#-ios-setup
+  final initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: initializationSettingsDarwin,
+  );
   await FlutterLocalNotificationsPlugin().initialize(initializationSettings);
 }
 
