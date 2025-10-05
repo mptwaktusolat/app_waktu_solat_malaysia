@@ -23,10 +23,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -68,4 +65,16 @@ class DefaultFirebaseOptions {
     databaseURL: 'https://malaysia-waktu-solat.firebaseio.com',
     storageBucket: 'malaysia-waktu-solat.appspot.com',
   );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAtO_RCilt-GifewCMybUbHZO7EPTqqGR8',
+    appId: '1:1012545476549:ios:4101a5c6a995c6f45a9dac',
+    messagingSenderId: '1012545476549',
+    projectId: 'malaysia-waktu-solat',
+    databaseURL: 'https://malaysia-waktu-solat.firebaseio.com',
+    storageBucket: 'malaysia-waktu-solat.appspot.com',
+    androidClientId: '1012545476549-nmbjd650586u2iquu0q0h3rrguekc8kp.apps.googleusercontent.com',
+    iosBundleId: 'live.iqfareez.waktusolatmalaysia',
+  );
+
 }

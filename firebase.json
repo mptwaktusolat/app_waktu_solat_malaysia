@@ -12,8 +12,17 @@
         "lib/firebase_options.dart": {
           "projectId": "malaysia-waktu-solat",
           "configurations": {
-            "android": "1:1012545476549:android:631d6aab3ef111555a9dac"
+            "android": "1:1012545476549:android:631d6aab3ef111555a9dac",
+            "ios": "1:1012545476549:ios:4101a5c6a995c6f45a9dac"
           }
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "malaysia-waktu-solat",
+          "appId": "1:1012545476549:ios:4101a5c6a995c6f45a9dac",
+          "uploadDebugSymbols": true,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
         }
       }
     }
