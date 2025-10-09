@@ -7,7 +7,6 @@ import '../../../env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
-import '../../../utils/prayer_data_handler.dart';
 
 /// Defines different targets for sharing prayer times.
 enum ShareTarget {
@@ -53,16 +52,19 @@ class ShareTextBuilder {
   /// Creates a new instance of [ShareTextBuilder].
   ///
   /// [_appLocalizations] provides localized strings.
+  /// [times] is the prayer times data for today
   /// [use12hourFormat] determines if times should be displayed in 12-hour format.
-  ShareTextBuilder(this._appLocalizations, {bool use12hourFormat = false})
-      : _use12hourFormat = use12hourFormat,
+  ShareTextBuilder(
+    this._appLocalizations,
+    this._times, {
+    bool use12hourFormat = false,
+  })  : _use12hourFormat = use12hourFormat,
         _date = DateFormat('EEEE, d MMMM yyyy', _appLocalizations.localeName)
             .format(DateTime.now()),
         _daerah = LocationDatabase.daerah(
             GetStorage().read(kStoredLocationJakimCode)),
         _negeri = LocationDatabase.negeri(
-            GetStorage().read(kStoredLocationJakimCode)),
-        _times = PrayDataHandler.today();
+            GetStorage().read(kStoredLocationJakimCode));
 
   /// Formats prayer time text for sharing as plain text.
   ///

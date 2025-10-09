@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/extensions/date_time_extensions.dart';
-import '../../../../utils/prayer_data_handler.dart';
+import '../../../prayer_time/providers/prayer_time_provider.dart';
 
 /// A base class for share card widgets that can be captured as images.
 ///
@@ -38,7 +38,14 @@ abstract class BaseShareCard extends StatelessWidget {
     final String location =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;
-    final today = PrayDataHandler.today();
+
+    final today = Provider.of<PrayerTimeProvider>(context, listen: false)
+        .getTodayPrayer();
+
+    if (today == null) {
+      return const SizedBox.shrink();
+    }
+
     final Map<String, String> prayerTimes = {
       AppLocalizations.of(context)!.fajrName: today.fajr.readable(true),
       AppLocalizations.of(context)!.dhuhrName: today.dhuhr.readable(true),

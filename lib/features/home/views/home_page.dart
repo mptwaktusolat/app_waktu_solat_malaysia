@@ -17,10 +17,10 @@ import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
 import '../../../providers/location_provider.dart';
 import '../../../providers/updater_provider.dart';
-import '../../../utils/prayer_data_handler.dart';
-import '../../../views/prayer_time_view.dart';
 import '../../check_updates/services/update_checker_service.dart';
 import '../../check_updates/views/whats_new_update.dart';
+import '../../prayer_time/providers/prayer_time_provider.dart';
+import '../../prayer_time/views/prayer_time_list_widget.dart';
 import '../../prayer_zone/views/zone_chooser.dart';
 import 'components/ads_widget.dart';
 import 'components/exact_alarm_permission_off_sheet.dart';
@@ -159,64 +159,74 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LocationProvider>(
-      builder: (_, value, __) {
-        return FutureBuilder<String>(
-          future: PrayDataHandler.init(value.currentLocationCode),
-          builder: (_, snapshot) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.surfaceTint,
-                    borderRadius: const BorderRadius.vertical(
-                        bottom: Radius.circular(40)),
-                  ),
-                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(
-                        child: DateWidget(hijriDate: snapshot.data ?? "..."),
-                      ),
-                      Expanded(
-                        child: const ZoneWidget().withHotspot(
-                          order: 1,
-                          title: AppLocalizations.of(context)!
-                              .onboardingCoachmarkLocationTitle,
-                          text: AppLocalizations.of(context)!
-                              .onboardingCoachmarkLocationContent,
-                          flow: kOnboardingCoachmarkFlow,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 3),
-                const AdsWidget(),
-                const TimezonePrompt(),
-                const NotifPrompt(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 26),
-                  child: Builder(builder: (_) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Loading();
-                    }
-                    if (snapshot.hasError) {
-                      return ErrorWidget(
-                          errorMessage: snapshot.error.toString(),
-                          onRetryPressed: () => setState(() {}));
-                    }
+    return Consumer2<LocationProvider, PrayerTimeProvider>(
+      builder: (context, locationProvider, prayerProvider, _) {
+        // Load prayer data when location changes or on first load
+        if (prayerProvider.currentZone !=
+            locationProvider.currentLocationCode) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            prayerProvider
+                .loadPrayerTimes(locationProvider.currentLocationCode);
+          });
+        }
 
-                    // display the list of prayer timee
-                    return const PrayTimeList();
-                  }),
-                ),
-              ],
-            );
-          },
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceTint,
+                borderRadius:
+                    const BorderRadius.vertical(bottom: Radius.circular(40)),
+              ),
+              padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: DateWidget(
+                      hijriDate: prayerProvider.hijriDate ?? "...",
+                    ),
+                  ),
+                  Expanded(
+                    child: const ZoneWidget().withHotspot(
+                      order: 1,
+                      title: AppLocalizations.of(context)!
+                          .onboardingCoachmarkLocationTitle,
+                      text: AppLocalizations.of(context)!
+                          .onboardingCoachmarkLocationContent,
+                      flow: kOnboardingCoachmarkFlow,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 3),
+            const AdsWidget(),
+            const TimezonePrompt(),
+            const NotifPrompt(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 26),
+              child: Builder(builder: (_) {
+                if (prayerProvider.isLoading) {
+                  return const Loading();
+                }
+                if (prayerProvider.errorMessage != null) {
+                  return ErrorWidget(
+                    errorMessage: prayerProvider.errorMessage!,
+                    onRetryPressed: () {
+                      prayerProvider
+                          .refresh(locationProvider.currentLocationCode);
+                    },
+                  );
+                }
+
+                // Display the list of prayer times
+                return const PrayerTimeListWidget();
+              }),
+            ),
+          ],
         );
       },
     );
