@@ -8,6 +8,7 @@ import '../../../../location_utils/location_coordinate_model.dart';
 import '../../../../location_utils/location_database.dart';
 import '../../../../providers/location_provider.dart';
 import '../zone_chooser.dart';
+import 'location_bubble_widget.dart';
 
 class ZoneSuccessWidget extends StatelessWidget {
   const ZoneSuccessWidget({super.key, required this.coordinateData});
@@ -46,7 +47,10 @@ class ZoneSuccessWidget extends StatelessWidget {
                 trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _LocationBubble(coordinateData.zone.toUpperCase()),
+                    LocationBubbleWidget(
+                      coordinateData.zone.toUpperCase(),
+                      isSelected: true,
+                    ),
                   ],
                 ),
                 title: Text(
@@ -90,29 +94,6 @@ class ZoneSuccessWidget extends StatelessWidget {
           ],
         );
       },
-    );
-  }
-}
-
-/// Widget to show Jakim code
-class _LocationBubble extends StatelessWidget {
-  const _LocationBubble(this.shortCode);
-
-  final String shortCode;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(4.0),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
-        border: Border.all(color: Theme.of(context).colorScheme.primary),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Text(
-        shortCode,
-        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
-      ),
     );
   }
 }
