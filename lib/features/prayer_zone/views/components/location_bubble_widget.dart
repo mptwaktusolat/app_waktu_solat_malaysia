@@ -26,8 +26,8 @@ class LocationBubbleWidget extends StatelessWidget {
         shortCode,
         style: TextStyle(
           color: isSelected
-              ? Theme.of(context).colorScheme.primaryContainer
-              : Theme.of(context).colorScheme.primary,
+              ? Theme.of(context).colorScheme.onPrimary
+              : Theme.of(context).colorScheme.onPrimaryContainer,
         ),
       ),
     );
