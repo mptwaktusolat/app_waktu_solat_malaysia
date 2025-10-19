@@ -12,7 +12,7 @@
   "asrName": "Asar",
   "maghribName": "Maghrib",
   "ishaName": "Isyak",
-  "genericShare" : "Kongsi",
+  "genericShare": "Kongsi",
   "getPtFetch": "Mendapatkan waktu solat. Tunggu sat.",
   "getPtError": "Alamak, terdapat ralat. Sila cuba semula.",
   "getPtRetry": "Cuba semula",
@@ -26,7 +26,7 @@
   "appBodyCurrentLocation": "Lokasi ditetapkan di {daerah} di {negeri}",
   "appBodyChangeLocation": "Ubah",
   "appBodyLocSemanticLabel": "Butang untuk mengubah lokasi",
-  "appBodyWrongDeviceTimezone" : "Zon waktu peranti anda berbeza dengan tarikh dan masa yang ditunjukkan di sini. Sila tetapkan zon waktu anda ke Malaysia (UTC+08:00).",
+  "appBodyWrongDeviceTimezone": "Zon waktu peranti anda berbeza dengan tarikh dan masa yang ditunjukkan di sini. Sila tetapkan zon waktu anda ke Malaysia (UTC+08:00).",
   "onboardingCoachmarkLocationTitle": "Zon waktu solat anda",
   "onboardingCoachmarkLocationContent": "Tetapan atau tukar zon waktu solat anda di sini",
   "onboardingCoachmarkUtilitiesTitle": "Utiliti tambahan di hujung jari",
@@ -82,7 +82,7 @@
   "shareWhatsappDesc": "Menggunakan pemformatan WhatsApp",
   "shareCopy": "Salin ke papan keratan",
   "shareImage": "Kongsi sebagai Gambar",
-  "shareImageFailed" : "Gagal berkongsi gambar",
+  "shareImageFailed": "Gagal berkongsi gambar",
   "shareSubject": "Waktu Solat Malaysia untuk hari ini",
   "shareTimetableCopied": "Jadual disalin",
   "settingTitle": "Tetapan",
@@ -166,9 +166,15 @@
   "zoneErrorPara2": "Sila **cuba semula** atau pilih untuk **menetapkan lokasi sendiri**.",
   "zoneOpenLocationSettings": "Buka Tetapan Lokasi",
   "zoneLoading": "Memuatkan",
-  "zoneManualSelectState": "Pilih negeri",
   "zoneManualSelectZone": "Pilih zon",
-  "zoneManualSave": "Simpan",
+  "zoneUpdatedSuccess": "Zon waktu solat ditetapkan kepada {zone}",
+  "@zoneUpdatedSuccess": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
   "notifSettingBasic": "Asas",
   "notifSettingChangesDetect": "Perubahan akan berkesan selepas memulakan semula aplikasi.",
   "notifSettingRestartApp": "Mulakan semula",

@@ -18,7 +18,7 @@
   "asrName": "Asr",
   "maghribName": "Maghrib",
   "ishaName": "Isha",
-  "genericShare" : "Share",
+  "genericShare": "Share",
   "getPtFetch": "Fetching prayer time. Please wait.",
   "getPtError": "Unexpected error. Please retry",
   "getPtRetry": "Retry",
@@ -157,7 +157,7 @@
   "shareWhatsappDesc": "Using WhatsApp formatting",
   "shareCopy": "Copy to clipboard",
   "shareImage": "Share as Image",
-  "shareImageFailed" : "Failed to share image",
+  "shareImageFailed": "Failed to share image",
   "shareSubject": "Malaysia prayer time for today",
   "shareTimetableCopied": "Timetable copied",
   "settingTitle": "Settings",
@@ -262,9 +262,15 @@
   "zoneErrorPara2": "Please **retry** or choose location **manually**.",
   "zoneOpenLocationSettings": "Open Location Settings",
   "zoneLoading": "Loading",
-  "zoneManualSelectState": "Select state",
   "zoneManualSelectZone": "Select zone",
-  "zoneManualSave": "Save",
+  "zoneUpdatedSuccess": "Prayer zone set to {zone}",
+  "@zoneUpdatedSuccess": {
+    "placeholders": {
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
   "notifSettingBasic": "Basic",
   "notifSettingChangesDetect": "Changes will take effect after restarting the app",
   "notifSettingRestartApp": "Restart",

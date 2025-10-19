@@ -16,7 +16,7 @@ import '../../../shared/models/jakim_zones.dart';
 import 'components/zone_error_widget.dart';
 import 'components/zone_loading_widget.dart';
 import 'components/zone_success_widget.dart';
-import 'manual_zone_picker_page.dart';
+import 'zone_list_page.dart';
 
 ///This widget is rendered as Location button at header part.
 ///Also handle the location selection
@@ -106,7 +106,7 @@ class LocationChooser {
   static Future<void> openManualZoneSelector(BuildContext context) async {
     final JakimZones? newZone =
         await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-      return const ManualZonePickerPage();
+      return const ZoneListPage();
     }));
 
     if (newZone == null) return;

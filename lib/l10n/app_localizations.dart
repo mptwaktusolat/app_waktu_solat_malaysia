@@ -1100,23 +1100,17 @@ abstract class AppLocalizations {
   /// **'Loading'**
   String get zoneLoading;
 
-  /// No description provided for @zoneManualSelectState.
-  ///
-  /// In en, this message translates to:
-  /// **'Select state'**
-  String get zoneManualSelectState;
-
   /// No description provided for @zoneManualSelectZone.
   ///
   /// In en, this message translates to:
   /// **'Select zone'**
   String get zoneManualSelectZone;
 
-  /// No description provided for @zoneManualSave.
+  /// No description provided for @zoneUpdatedSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Save'**
-  String get zoneManualSave;
+  /// **'Prayer zone set to {zone}'**
+  String zoneUpdatedSuccess(String zone);
 
   /// No description provided for @notifSettingBasic.
   ///

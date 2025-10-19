@@ -553,13 +553,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get zoneLoading => 'Loading';
 
   @override
-  String get zoneManualSelectState => 'Select state';
-
-  @override
   String get zoneManualSelectZone => 'Select zone';
 
   @override
-  String get zoneManualSave => 'Save';
+  String zoneUpdatedSuccess(String zone) {
+    return 'Prayer zone set to $zone';
+  }
 
   @override
   String get notifSettingBasic => 'Basic';

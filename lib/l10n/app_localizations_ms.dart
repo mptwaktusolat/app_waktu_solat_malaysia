@@ -556,13 +556,12 @@ class AppLocalizationsMs extends AppLocalizations {
   String get zoneLoading => 'Memuatkan';
 
   @override
-  String get zoneManualSelectState => 'Pilih negeri';
-
-  @override
   String get zoneManualSelectZone => 'Pilih zon';
 
   @override
-  String get zoneManualSave => 'Simpan';
+  String zoneUpdatedSuccess(String zone) {
+    return 'Zon waktu solat ditetapkan kepada $zone';
+  }
 
   @override
   String get notifSettingBasic => 'Asas';
