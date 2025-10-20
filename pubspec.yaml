@@ -21,7 +21,7 @@ dependencies:
       url: https://github.com/seena98/auto_start_flutter.git
       ref: master
   cached_network_image: ^3.0.0
-  device_info_plus: ^11.0.0
+  device_info_plus: ^12.2.0
   dynamic_color: ^1.6.2
   email_validator: ^3.0.0
   firebase_analytics: ^12.0.1
@@ -34,7 +34,7 @@ dependencies:
   flutter_spinkit: ^5.0.0
   flutter_staggered_animations: ^1.1.1
   flutter_svg: ^2.0.0
-  fluttertoast: ^8.0.3
+  fluttertoast: ^9.0.0
   font_awesome_flutter: ^10.1.0
   gap: ^3.0.1
   geocoding: ^4.0.0
@@ -49,13 +49,13 @@ dependencies:
   intl: ^0.20.2
   introduction_screen: ^4.0.0
   open_file: ^3.3.2
-  package_info_plus: ^8.0.0
+  package_info_plus: ^9.0.0
   path_provider: ^2.1.1
   permission_handler: ^12.0.0+1
   provider: ^6.0.0
   quick_actions: ^1.0.0
   restart_app: ^1.0.3
-  share_plus: ^11.0.0
+  share_plus: ^12.0.1
   timezone: ^0.10.0
   url_launcher: ^6.0.3
   waktusolat_api_client:
