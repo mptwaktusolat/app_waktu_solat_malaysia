@@ -1,12 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../constants.dart';
@@ -16,6 +13,7 @@ import '../../../networking/mpt_fetch_api.dart';
 import '../../../providers/timetable_provider.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 import '../../../shared/utils/date_time_utils.dart';
+import '../components/pdf_timetable_download_sheet.dart';
 import 'monthly_timetable_settings.dart';
 
 class MonthlyTimetablePage extends StatefulWidget {
@@ -155,94 +153,10 @@ class _MonthlyTimetablePageState extends State<MonthlyTimetablePage> {
           ),
         ),
       ),
+      // Export PDF timetable button
       floatingActionButton: FloatingActionButton(
         tooltip: AppLocalizations.of(context)!.timetableExportTooltip,
-        onPressed: () {
-          showModalBottomSheet(
-              context: context,
-              builder: (_) {
-                return SizedBox(
-                  height: 100,
-                  child: FutureBuilder(
-                      future: MptApiFetch.downloadJadualSolat(_locationCode),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Center(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(AppLocalizations.of(context)!
-                                        .timetableExportSuccess),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  ElevatedButton.icon(
-                                    icon: const FaIcon(
-                                        FontAwesomeIcons.squareArrowUpRight,
-                                        size: 14),
-                                    onPressed: () {
-                                      OpenFile.open(snapshot.data!.path);
-                                      Navigator.pop(context);
-                                    },
-                                    label: Text(AppLocalizations.of(context)!
-                                        .timetableExportOpen),
-                                  ),
-                                  const SizedBox(width: 5),
-                                  ElevatedButton.icon(
-                                    icon: const FaIcon(
-                                      FontAwesomeIcons.share,
-                                      size: 14,
-                                    ),
-                                    onPressed: () {
-                                      SharePlus.instance.share(
-                                        ShareParams(
-                                          files: [
-                                            XFile(snapshot.data!.path),
-                                          ],
-                                          subject: AppLocalizations.of(context)!
-                                              .timetableExportFileShareSubject(
-                                                  'https://waktusolat.app'),
-                                        ),
-                                      );
-                                    },
-                                    label: Text(
-                                      AppLocalizations.of(context)!
-                                          .genericShare,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }
-                        if (snapshot.hasError) {
-                          return Center(
-                            child: Text(AppLocalizations.of(context)!
-                                .timetableExportError(
-                                    snapshot.error.toString())),
-                          );
-                        }
-                        return Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(AppLocalizations.of(context)!
-                                  .timetableExportExporting),
-                              const SizedBox(width: 20),
-                              SpinKitDualRing(
-                                color: Theme.of(context).colorScheme.primary,
-                                size: 30,
-                                lineWidth: 5,
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
-                );
-              });
-        },
+        onPressed: () => openPdfTimetableDownloadSheet(context, _locationCode),
         child: const Icon(Icons.download),
       ),
     );

@@ -160,7 +160,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get timetableExportExporting => 'Sedang dieksport';
 
   @override
-  String get timetableExportSuccess => 'Fail PDF jadual solat sudah dijana';
+  String get timetableExportSuccess => 'Fail PDF jadual solat sudah dijana.';
 
   @override
   String get timetableExportOpen => 'Buka';

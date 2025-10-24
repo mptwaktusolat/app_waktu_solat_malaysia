@@ -80,7 +80,7 @@
   "timetableDate": "Date",
   "timetableExportTooltip": "Export timetable as PDF",
   "timetableExportExporting": "Exporting",
-  "timetableExportSuccess": "Prayer timetable PDF file is ready",
+  "timetableExportSuccess": "Prayer timetable PDF file is ready.",
   "timetableExportOpen": "Open",
   "timetableExportError": "Sorry. Error occurred when exporting timetable. Please try again. {error}",
   "@timetableExportError": {

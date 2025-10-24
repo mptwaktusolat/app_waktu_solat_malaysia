@@ -377,7 +377,7 @@ abstract class AppLocalizations {
   /// No description provided for @timetableExportSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Prayer timetable PDF file is ready'**
+  /// **'Prayer timetable PDF file is ready.'**
   String get timetableExportSuccess;
 
   /// No description provided for @timetableExportOpen.

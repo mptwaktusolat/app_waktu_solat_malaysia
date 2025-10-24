@@ -160,7 +160,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get timetableExportExporting => 'Exporting';
 
   @override
-  String get timetableExportSuccess => 'Prayer timetable PDF file is ready';
+  String get timetableExportSuccess => 'Prayer timetable PDF file is ready.';
 
   @override
   String get timetableExportOpen => 'Open';
