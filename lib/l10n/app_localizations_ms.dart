@@ -771,4 +771,10 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get tasbihReset => 'Set semula';
+
+  @override
+  String get tasbihResetTooltip => 'Set semula kaunter tasbih';
+
+  @override
+  String get tasbihColorPickerTooltip => 'Pilih warna manik tasbih';
 }

@@ -1453,6 +1453,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reset'**
   String get tasbihReset;
+
+  /// No description provided for @tasbihResetTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset tasbih counter'**
+  String get tasbihResetTooltip;
+
+  /// No description provided for @tasbihColorPickerTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose tasbih bead color'**
+  String get tasbihColorPickerTooltip;
 }
 
 class _AppLocalizationsDelegate

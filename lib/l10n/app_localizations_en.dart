@@ -766,4 +766,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tasbihReset => 'Reset';
+
+  @override
+  String get tasbihResetTooltip => 'Reset tasbih counter';
+
+  @override
+  String get tasbihColorPickerTooltip => 'Choose tasbih bead color';
 }

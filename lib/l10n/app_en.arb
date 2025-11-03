@@ -393,5 +393,7 @@
   },
   "updatePageGPlay": "Get updates on Google Play",
   "tasbihResetDialog": "Confirm reset ?",
-  "tasbihReset": "Reset"
+  "tasbihReset": "Reset",
+  "tasbihResetTooltip": "Reset tasbih counter",
+  "tasbihColorPickerTooltip": "Choose tasbih bead color"
 }

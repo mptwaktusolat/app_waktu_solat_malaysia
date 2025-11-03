@@ -241,5 +241,7 @@
   "updatePageLatestVer": "Terkini tersedia: **{version}**",
   "updatePageGPlay": "Dapatkan kemas kini di Google Play",
   "tasbihResetDialog": "Pastikan set semula ?",
-  "tasbihReset": "Set semula"
+  "tasbihReset": "Set semula",
+  "tasbihResetTooltip": "Set semula kaunter tasbih",
+  "tasbihColorPickerTooltip": "Pilih warna manik tasbih"
 }

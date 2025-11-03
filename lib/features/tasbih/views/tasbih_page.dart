@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gap/gap.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../../constants.dart';
@@ -28,6 +29,14 @@ class _TasbihPageState extends State<TasbihPage> {
     HapticFeedback.lightImpact();
     setState(() {
       GetStorage().write(kTasbihCount, ++_counter);
+    });
+  }
+
+  /// Update the tasbih bead color
+  void _updateTasbihColour(int tasbihColorKey) {
+    setState(() {
+      _tasbihColourindex = tasbihColorKey;
+      GetStorage().write(kTasbihGradientColour, tasbihColorKey);
     });
   }
 
@@ -65,39 +74,36 @@ class _TasbihPageState extends State<TasbihPage> {
                 ),
               );
             },
+            tooltip: AppLocalizations.of(context)!.tasbihResetTooltip,
             icon: const Icon(Icons.restart_alt),
           ),
-          PopupMenuButton(
-            icon: const Icon(Icons.palette_outlined),
-            itemBuilder: (context) {
-              return List.generate(
-                      TasbihColors.beadDesigns().length, (index) => index)
-                  .map(
-                    (e) => PopupMenuItem(
-                      value: e,
-                      child: TextButton.icon(
-                        icon: TasbihBead(
-                            gradientColor:
-                                TasbihColors.beadDesigns()[e].gradient),
-                        label: Text(TasbihColors.beadDesigns()[e].name,
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .color)),
-                        onPressed: null,
+          MenuAnchor(
+            menuChildren: TasbihColors.beadDesigns()
+                .asMap()
+                .entries
+                .map((e) => MenuItemButton(
+                      onPressed: () => _updateTasbihColour(e.key),
+                      child: Row(
+                        children: [
+                          TasbihBead(gradientColor: e.value.gradient),
+                          Gap(8),
+                          Text(e.value.name)
+                        ],
                       ),
-                    ),
-                  )
-                  .toList();
-            },
-            onSelected: (int? value) {
-              if (value == null) return;
-
-              setState(() {
-                _tasbihColourindex = value;
-                GetStorage().write(kTasbihGradientColour, value);
-              });
+                    ))
+                .toList(),
+            builder: (context, controller, _) {
+              return IconButton(
+                onPressed: () {
+                  if (controller.isOpen) {
+                    controller.close();
+                  } else {
+                    controller.open();
+                  }
+                },
+                icon: const Icon(Icons.palette_outlined),
+                tooltip: AppLocalizations.of(context)!.tasbihColorPickerTooltip,
+              );
             },
           ),
         ],
