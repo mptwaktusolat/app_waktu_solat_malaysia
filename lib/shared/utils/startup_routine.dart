@@ -13,7 +13,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../../constants.dart';
+import '../constants/constants.dart';
 import '../../firebase_options.dart';
 import '../../location_utils/location_database.dart';
 import '../../notificationUtil/notifications_helper.dart';

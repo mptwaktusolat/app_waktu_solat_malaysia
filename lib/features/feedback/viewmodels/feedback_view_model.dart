@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../location_utils/location_data.dart';
 import '../services/feedback_submission_service.dart';
 

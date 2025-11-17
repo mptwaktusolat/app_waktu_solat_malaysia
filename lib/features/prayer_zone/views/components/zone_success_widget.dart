@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../constants.dart';
+import '../../../../shared/constants/constants.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../location_utils/location_coordinate_model.dart';
 import '../../../../location_utils/location_database.dart';

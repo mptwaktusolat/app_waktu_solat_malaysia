@@ -1,6 +1,6 @@
 import 'package:get_storage/get_storage.dart';
 
-import '../../constants.dart';
+import '../constants/constants.dart';
 
 /// A utility class to manage the application launch count.
 /// This class uses [GetStorage] to persist the launch count.

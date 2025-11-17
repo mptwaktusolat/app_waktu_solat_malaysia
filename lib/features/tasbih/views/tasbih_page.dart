@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:gap/gap.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import 'components/tasbih_bead.dart';
 import 'components/tasbih_colors.dart';

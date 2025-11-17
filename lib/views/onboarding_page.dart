@@ -7,7 +7,7 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
+import '../shared/constants/constants.dart';
 import '../features/onboarding/views/components/autostart_setting_dialog.dart';
 import '../features/onboarding/views/components/notification_exact_alarm_permission_dialog.dart';
 import '../features/onboarding/views/components/notification_permission_dialog.dart';

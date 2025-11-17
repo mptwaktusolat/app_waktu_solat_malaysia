@@ -12,7 +12,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../location_utils/location_database.dart';
 import '../../../providers/location_provider.dart';

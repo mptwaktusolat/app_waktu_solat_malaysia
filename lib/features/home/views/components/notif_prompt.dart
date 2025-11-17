@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../constants.dart';
+import '../../../../shared/constants/constants.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/utils/app_launch_counter.dart';
 import '../../../../views/settings/notification_page_setting.dart';

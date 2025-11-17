@@ -2,7 +2,7 @@
 // This environment variables is NOT SENSITIVE. It is ok to add to VCS.
 
 // API base
-const envApiBaseHost = 'mpt-server.vercel.app';
+const envMediaApiBaseHost = 'mpt-server.vercel.app';
 const feedbackSubmissionUrl = 'https://feedback.waktusolat.app/api/send';
 
 //App info

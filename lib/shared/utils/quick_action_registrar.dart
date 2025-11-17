@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-import '../../constants.dart';
+import '../constants/constants.dart';
 import '../../features/kompas_kiblat/views/qibla_disclaimer_page.dart';
 import '../../features/kompas_kiblat/views/qibla_page.dart';
 import '../../features/monthly_timetable/views/monthly_timetable_page.dart';

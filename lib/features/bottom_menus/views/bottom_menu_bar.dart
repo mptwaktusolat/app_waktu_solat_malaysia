@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/updater_provider.dart';
 import '../../../shared/utils/my_mpt_icons_icons.dart';

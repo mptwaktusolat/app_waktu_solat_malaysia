@@ -5,8 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-import '../../../constants.dart';
-import '../../../env.dart';
+import '../../../shared/constants/constants.dart';
+import '../../../shared/constants/env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/launch_url.dart';
 import '../model/check_version_response.dart';

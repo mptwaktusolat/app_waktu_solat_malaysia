@@ -6,8 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../../../constants.dart';
-import '../../../env.dart';
+import '../../../shared/constants/constants.dart';
+import '../../../shared/constants/env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../networking/mpt_fetch_api.dart';
 import '../../../providers/timetable_provider.dart';
@@ -80,9 +80,9 @@ class _MonthlyTimetablePageState extends State<MonthlyTimetablePage> {
                 titlePadding: const EdgeInsetsDirectional.only(
                     start: 4, bottom: 16, end: 4),
                 background: CachedNetworkImage(
-                  imageUrl:
-                      Uri.https(envApiBaseHost, '/api/mosque/$_locationCode')
-                          .toString(),
+                  imageUrl: Uri.https(
+                          envMediaApiBaseHost, '/api/mosque/$_locationCode')
+                      .toString(),
                   fit: BoxFit.cover,
                   color: Colors.black.withValues(alpha: 0.7),
                   colorBlendMode: switch (Theme.of(context).brightness) {

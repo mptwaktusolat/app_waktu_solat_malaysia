@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../constants.dart';
+import '../shared/constants/constants.dart';
 import '../shared/utils/debug_toast.dart';
 
 class MptApiFetch {

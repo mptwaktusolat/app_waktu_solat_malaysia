@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import 'qibla_page.dart';
 

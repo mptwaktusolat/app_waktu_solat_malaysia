@@ -2,7 +2,7 @@
 
 import 'package:get_storage/get_storage.dart';
 
-import '../constants.dart';
+import '../shared/constants/constants.dart';
 import '../shared/utils/date_time_utils.dart';
 import '../shared/utils/debug_toast.dart';
 

@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../constants.dart';
+import '../shared/constants/constants.dart';
 import '../location_utils/location_data.dart';
 import 'dev/widget_data_page.dart';
 

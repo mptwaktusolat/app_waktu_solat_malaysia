@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-import '../../../env.dart';
+import '../../../shared/constants/env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/launch_url.dart';
 

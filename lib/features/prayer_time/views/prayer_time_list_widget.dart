@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../../../constants.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../notificationUtil/notification_scheduler.dart';
 import '../../../notificationUtil/prevent_update_notifs.dart';
