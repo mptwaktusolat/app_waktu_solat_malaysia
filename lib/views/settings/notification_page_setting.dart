@@ -10,7 +10,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../../shared/constants/constants.dart';
 import '../../l10n/app_localizations.dart';
-import '../../notificationUtil/notifications_helper.dart';
+import '../../shared/services/notification_services/notifications_helper.dart';
 import '../../providers/setting_provider.dart';
 import 'troubleshoot_notif.dart';
 

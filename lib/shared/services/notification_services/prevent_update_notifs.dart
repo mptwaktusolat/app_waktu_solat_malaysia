@@ -2,9 +2,9 @@
 
 import 'package:get_storage/get_storage.dart';
 
-import '../shared/constants/constants.dart';
-import '../shared/utils/date_time_utils.dart';
-import '../shared/utils/debug_toast.dart';
+import '../../constants/constants.dart';
+import '../../utils/date_time_utils.dart';
+import '../../utils/debug_toast.dart';
 
 /// In [PrayTimeList] widget, we call update notification everytime the widget
 /// rebuild (i.e. user change zone, etc.).

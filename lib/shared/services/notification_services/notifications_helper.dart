@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart';
 
-import '../views/settings/notification_page_setting.dart';
+import '../../../views/settings/notification_page_setting.dart';
 
 class NotificationClass {
   final int? id;

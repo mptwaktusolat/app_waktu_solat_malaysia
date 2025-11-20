@@ -7,8 +7,8 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../notificationUtil/notification_scheduler.dart';
-import '../../../notificationUtil/prevent_update_notifs.dart';
+import '../../../shared/services/notification_services/notification_scheduler.dart';
+import '../../../shared/services/notification_services/prevent_update_notifs.dart';
 import '../../../providers/setting_provider.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 import '../providers/prayer_time_provider.dart';
