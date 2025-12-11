@@ -14,7 +14,7 @@ import 'package:provider/provider.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../location_utils/location_database.dart';
+import '../../../shared/services/location_service/location_database.dart';
 import '../../../providers/location_provider.dart';
 import '../../../providers/updater_provider.dart';
 import '../../check_updates/services/update_checker_service.dart';

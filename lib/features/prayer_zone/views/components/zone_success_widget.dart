@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../shared/constants/constants.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../location_utils/location_coordinate_model.dart';
-import '../../../../location_utils/location_database.dart';
+import '../../../../shared/models/location_coordinate_model.dart';
+import '../../../../shared/services/location_service/location_database.dart';
 import '../../../../providers/location_provider.dart';
 import '../zone_chooser.dart';
 import 'location_bubble_widget.dart';

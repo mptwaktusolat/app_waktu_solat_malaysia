@@ -15,7 +15,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../constants/constants.dart';
 import '../../firebase_options.dart';
-import '../../location_utils/location_database.dart';
+import '../services/location_service/location_database.dart';
 import '../services/notification_services/notifications_helper.dart';
 import '../models/jakim_zones.dart';
 import 'app_launch_counter.dart';

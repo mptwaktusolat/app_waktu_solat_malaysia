@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../location_utils/location_database.dart';
+import '../../../shared/services/location_service/location_database.dart';
 import '../../../providers/location_provider.dart';
 import '../../../shared/models/jakim_zones.dart';
 import 'components/location_bubble_widget.dart';

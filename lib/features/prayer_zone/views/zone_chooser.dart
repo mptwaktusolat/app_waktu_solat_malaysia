@@ -9,8 +9,8 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../location_utils/location_coordinate_model.dart';
-import '../../../location_utils/location_data.dart';
+import '../../../shared/models/location_coordinate_model.dart';
+import '../../../shared/services/location_service/location_data.dart';
 import '../../../providers/location_provider.dart';
 import '../../../shared/models/jakim_zones.dart';
 import 'components/zone_error_widget.dart';
@@ -62,15 +62,14 @@ class LocationChooser {
     // for [lokasi], the priority us `subLocality`. If empty, `locality`.
     // If empty, fallback to `name`.
     return LocationCoordinateData(
-        zone: zone,
-        negeri: firstPlacemark.administrativeArea,
-        lokasi: firstPlacemark.subLocality!.isNotEmpty
-            ? firstPlacemark.subLocality
-            : firstPlacemark.locality!.isNotEmpty
-                ? firstPlacemark.locality
-                : firstPlacemark.name,
-        lat: null,
-        lng: null);
+      zone: zone,
+      negeri: firstPlacemark.administrativeArea,
+      lokasi: firstPlacemark.subLocality!.isNotEmpty
+          ? firstPlacemark.subLocality
+          : firstPlacemark.locality!.isNotEmpty
+              ? firstPlacemark.locality
+              : firstPlacemark.name,
+    );
   }
 
   static Future<bool> showLocationChooser(BuildContext context) async {

@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:restart_app/restart_app.dart';
 
 import '../shared/constants/constants.dart';
-import '../location_utils/location_data.dart';
+import '../shared/services/location_service/location_data.dart';
 import 'dev/widget_data_page.dart';
 
 class DebugDialog extends StatelessWidget {

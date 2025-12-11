@@ -5,7 +5,7 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/env.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../location_utils/location_database.dart';
+import '../../../shared/services/location_service/location_database.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
 
 /// Defines different targets for sharing prayer times.

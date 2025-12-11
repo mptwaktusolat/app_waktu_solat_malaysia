@@ -2,7 +2,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../shared/constants/constants.dart';
-import '../../../location_utils/location_database.dart';
+import '../../../shared/services/location_service/location_database.dart';
 import '../../../networking/mpt_fetch_api.dart';
 import '../../../shared/utils/homescreen.dart';
 
