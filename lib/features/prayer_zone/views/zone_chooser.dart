@@ -7,12 +7,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/location_provider.dart';
+import '../../../shared/constants/constants.dart';
+import '../../../shared/models/jakim_zones.dart';
 import '../../../shared/models/location_coordinate_model.dart';
 import '../../../shared/services/location_service/location_data.dart';
-import '../../../providers/location_provider.dart';
-import '../../../shared/models/jakim_zones.dart';
 import 'components/zone_error_widget.dart';
 import 'components/zone_loading_widget.dart';
 import 'components/zone_success_widget.dart';

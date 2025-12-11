@@ -9,10 +9,10 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../shared/constants/constants.dart';
-import '../../shared/constants/env.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/setting_provider.dart';
+import '../../shared/constants/constants.dart';
+import '../../shared/constants/env.dart';
 import '../../shared/utils/launch_url.dart';
 import '../debug_dialog.dart';
 

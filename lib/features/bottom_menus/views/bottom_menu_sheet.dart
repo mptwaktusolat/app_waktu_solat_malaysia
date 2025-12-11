@@ -3,9 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../shared/constants/env.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/updater_provider.dart';
+import '../../../shared/constants/env.dart';
 import '../../../shared/utils/launch_url.dart';
 import '../../../views/settings/settings_page.dart';
 import '../../../views/settings/theme_page.dart';

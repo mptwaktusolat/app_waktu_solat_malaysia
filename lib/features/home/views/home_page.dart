@@ -12,11 +12,11 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/services/location_service/location_database.dart';
 import '../../../providers/location_provider.dart';
 import '../../../providers/updater_provider.dart';
+import '../../../shared/constants/constants.dart';
+import '../../../shared/services/location_service/location_database.dart';
 import '../../check_updates/services/update_checker_service.dart';
 import '../../check_updates/views/whats_new_update.dart';
 import '../../prayer_time/providers/prayer_time_provider.dart';

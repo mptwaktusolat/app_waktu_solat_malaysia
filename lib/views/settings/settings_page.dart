@@ -6,10 +6,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
-import '../../shared/constants/constants.dart';
 import '../../l10n/app_localizations.dart';
 import '../../providers/locale_provider.dart';
 import '../../providers/setting_provider.dart';
+import '../../shared/constants/constants.dart';
 import 'about_page.dart';
 import 'notification_page_setting.dart';
 

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,13 +13,13 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../constants/constants.dart';
 import '../../firebase_options.dart';
+import '../../views/settings/notification_page_setting.dart';
+import '../constants/constants.dart';
+import '../models/jakim_zones.dart';
 import '../services/location_service/location_database.dart';
 import '../services/notification_services/notifications_helper.dart';
-import '../models/jakim_zones.dart';
 import 'app_launch_counter.dart';
-import '../../views/settings/notification_page_setting.dart';
 
 class StartupRoutine {
   static Future<void> initialize() async {

@@ -4,9 +4,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
-import '../../../shared/constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/updater_provider.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../shared/utils/my_mpt_icons_icons.dart';
 import '../../kompas_kiblat/views/qibla_disclaimer_page.dart';
 import '../../kompas_kiblat/views/qibla_page.dart';

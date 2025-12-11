@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
-import 'shared/constants/constants.dart';
 import 'features/bottom_menus/views/bottom_menu_bar.dart';
 import 'features/home/views/home_page.dart';
 import 'features/prayer_time/providers/prayer_time_provider.dart';
@@ -19,6 +18,7 @@ import 'providers/setting_provider.dart';
 import 'providers/theme_controller.dart';
 import 'providers/timetable_provider.dart';
 import 'providers/updater_provider.dart';
+import 'shared/constants/constants.dart';
 import 'shared/utils/app_launch_counter.dart';
 import 'shared/utils/quick_action_registrar.dart';
 import 'shared/utils/startup_routine.dart';

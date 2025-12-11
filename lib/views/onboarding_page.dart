@@ -7,7 +7,6 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
-import '../shared/constants/constants.dart';
 import '../features/onboarding/views/components/autostart_setting_dialog.dart';
 import '../features/onboarding/views/components/notification_exact_alarm_permission_dialog.dart';
 import '../features/onboarding/views/components/notification_permission_dialog.dart';
@@ -16,6 +15,7 @@ import '../l10n/app_localizations.dart';
 import '../main.dart';
 import '../providers/locale_provider.dart';
 import '../shared/components/animated_moon.dart';
+import '../shared/constants/constants.dart';
 import 'settings/notification_page_setting.dart';
 import 'settings/theme_page.dart';
 

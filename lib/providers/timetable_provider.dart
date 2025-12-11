@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../shared/constants/constants.dart';
 import '../features/monthly_timetable/views/monthly_timetable_settings.dart';
+import '../shared/constants/constants.dart';
 
 class TimetableProvider extends ChangeNotifier {
   bool _showHijri = GetStorage().read(kTimetableHijri) ?? true;

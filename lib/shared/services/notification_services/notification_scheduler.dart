@@ -3,11 +3,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:timezone/timezone.dart' hide LocationDatabase;
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../../constants/constants.dart';
 import '../../../l10n/app_localizations.dart';
-import '../location_service/location_database.dart';
-import '../../utils/debug_toast.dart';
 import '../../../views/settings/notification_page_setting.dart';
+import '../../constants/constants.dart';
+import '../../utils/debug_toast.dart';
+import '../location_service/location_database.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
