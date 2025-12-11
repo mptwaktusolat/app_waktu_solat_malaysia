@@ -28,49 +28,51 @@ class _QiblaPageState extends State<QiblaPage> {
         title: Text(AppLocalizations.of(context)!.qiblaTitle),
         centerTitle: true,
       ),
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topCenter,
-            child: PastelAdmonition.caution(
-              text: AppLocalizations.of(context)!.qiblaOverheadWarn,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: PastelAdmonition.caution(
+                text: AppLocalizations.of(context)!.qiblaOverheadWarn,
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: FutureBuilder(
-              future: _deviceSupport,
-              builder: (_, AsyncSnapshot<bool?> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                    ),
-                  );
-                }
+            Align(
+              alignment: Alignment.center,
+              child: FutureBuilder(
+                future: _deviceSupport,
+                builder: (_, AsyncSnapshot<bool?> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      ),
+                    );
+                  }
 
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Error: ${snapshot.error.toString()}'),
-                  );
-                }
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error.toString()}'),
+                    );
+                  }
 
-                if (snapshot.hasData && snapshot.data!) {
-                  return const QiblaCompass();
-                } else {
-                  return const NoCompassSensor();
-                }
-              },
+                  if (snapshot.hasData && snapshot.data!) {
+                    return const QiblaCompass();
+                  } else {
+                    return const NoCompassSensor();
+                  }
+                },
+              ),
             ),
-          ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 16.0),
-              child: CompassActionButtons(),
+            const Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 16.0),
+                child: CompassActionButtons(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
