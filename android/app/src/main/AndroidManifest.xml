@@ -12,6 +12,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <receiver
+            android:label="@string/widget_vertical_label"
             android:name=".SolatVerticalWidget"
             android:exported="false">
             <intent-filter>
@@ -23,6 +24,7 @@
                 android:resource="@xml/solat_vertical_widget_info" />
         </receiver>
         <receiver
+            android:label="@string/widget_horizontal_label"
             android:name=".SolatHorizontalWidget"
             android:exported="false">
             <intent-filter>

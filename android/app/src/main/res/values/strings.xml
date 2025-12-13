@@ -4,4 +4,6 @@
     <string name="app_widget_description">View 5 daily prayers at a glance</string>
     <string name="widget_outdated_message">The data is outdated. Tap here to open the app to refresh with a new data</string>
     <string name="widget_date_label">Date</string>
+    <string name="widget_horizontal_label">Row layout</string>
+    <string name="widget_vertical_label">Column layout</string>
 </resources>
