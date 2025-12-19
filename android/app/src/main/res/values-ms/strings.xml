@@ -6,4 +6,7 @@
     <string name="widget_date_label">Tarikh</string>
     <string name="widget_horizontal_label">Jenis Memanjang</string>
     <string name="widget_vertical_label">Jenis Menegak</string>
+    <string name="title_activity_time_widget_settings">Tetapan Widget</string>
+    <string name="display_header">Paparan</string>
+    <string name="date_type_title">Gunakan tarikh hijrah</string>
 </resources>

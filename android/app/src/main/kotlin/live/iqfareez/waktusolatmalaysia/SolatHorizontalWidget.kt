@@ -12,6 +12,7 @@ import android.os.Build
 import android.util.Log
 import android.view.View
 import android.widget.RemoteViews
+import androidx.preference.PreferenceManager
 import es.antonborri.home_widget.HomeWidgetPlugin
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -47,6 +48,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
                 R.layout.solat_horizontal_widget
             )
         }
+
         Log.i(LOG_TAG, "onUpdate: Scheduling for next widget update..")
         scheduleNextUpdate(context);
     }
@@ -70,7 +72,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
     }
 }
 
-// Used by both widgets -> SolatHorizontalWidget & SolwatVerticalWidget
+// Used by both widgets -> SolatHorizontalWidget & SolatVerticalWidget
 internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
@@ -90,7 +92,7 @@ internal fun updateAppWidget(
     // Set the click listener for the widget
     views.setOnClickPendingIntent(android.R.id.background, pendingIntent)
 
-    // Parse the JSON in SharedPreferences
+    // Get the json from SharedPreferences
     val prayerData = widgetData.getString("prayer_data", null);
 
     // If data not available, display outdated layout
@@ -140,9 +142,9 @@ internal fun updateAppWidget(
     val maghribTime = todayPrayer.getLong("maghrib")
     val isyakTime = todayPrayer.getLong("isha")
 
-    val gmt8TimeZone = TimeZone.getTimeZone("GMT+8")
+    val malaysiaTimeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
     val timeFormat = SimpleDateFormat("h:mm a")
-    timeFormat.timeZone = gmt8TimeZone
+    timeFormat.timeZone = malaysiaTimeZone
 
     fun formatTime(timeInSeconds: Long): String {
         val date = Date(timeInSeconds * 1000)
@@ -156,13 +158,20 @@ internal fun updateAppWidget(
     val formattedIsyakTime = formatTime(isyakTime)
 
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    dateFormat.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur") // Set Malaysia timezone
+    dateFormat.timeZone = malaysiaTimeZone;
     val formattedDate = dateFormat.format(Date())
 
     val widgetTitle = "${parsed.get("zone")}: ${widgetData.getString("widget_title", null)}"
 
-    //  Set content
-    views.setTextViewText(R.id.widget_date, formattedDate)
+    // Use widget setting to set appropriate content
+    val widgetSettings = PreferenceManager.getDefaultSharedPreferences(context);
+    val showHijriDate = widgetSettings.getBoolean("hijri_date_preference", false);
+    if (showHijriDate) {
+        val hijriDateToday = todayPrayer.getString("hijri")
+        views.setTextViewText(R.id.widget_date, hijriDateToday);
+    } else {
+        views.setTextViewText(R.id.widget_date, formattedDate)
+    }
 
     Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data");
 

@@ -14,4 +14,6 @@
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
     </style>
+
+    <style name="Theme.Android" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
