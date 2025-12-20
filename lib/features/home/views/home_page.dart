@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
         .write(kIsFirstRun, false); // app no longer consider as first run
 
     if (shouldShowDialog) {
-      await showDialog(
+      await showModalBottomSheet(
           context: context, builder: (_) => const WhatsNewUpdateDialog());
     }
     GetStorage().write(version,

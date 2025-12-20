@@ -1379,13 +1379,13 @@ abstract class AppLocalizations {
   /// No description provided for @whatsUpdateTitle.
   ///
   /// In en, this message translates to:
-  /// **'Just updated to the latest version.'**
+  /// **'App updated to the latest version'**
   String get whatsUpdateTitle;
 
   /// No description provided for @whatsUpdateContent.
   ///
   /// In en, this message translates to:
-  /// **'What\'s new in this update? Read the release notes [here]({releaseNotesLink}).'**
+  /// **'What\'s new in this update? Read the [release notes]({releaseNotesLink}) for information.'**
   String whatsUpdateContent(String releaseNotesLink);
 
   /// No description provided for @whatsUpdateChangelog.

@@ -720,11 +720,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifEndSubh => 'Ends of Fajr';
 
   @override
-  String get whatsUpdateTitle => 'Just updated to the latest version.';
+  String get whatsUpdateTitle => 'App updated to the latest version';
 
   @override
   String whatsUpdateContent(String releaseNotesLink) {
-    return 'What\'s new in this update? Read the release notes [here]($releaseNotesLink).';
+    return 'What\'s new in this update? Read the [release notes]($releaseNotesLink) for information.';
   }
 
   @override

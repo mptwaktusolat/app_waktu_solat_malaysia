@@ -353,8 +353,8 @@
     }
   },
   "notifEndSubh": "Ends of Fajr",
-  "whatsUpdateTitle": "Just updated to the latest version.",
-  "whatsUpdateContent": "What's new in this update? Read the release notes [here]({releaseNotesLink}).",
+  "whatsUpdateTitle": "App updated to the latest version",
+  "whatsUpdateContent": "What's new in this update? Read the [release notes]({releaseNotesLink}) for information.",
   "@whatsUpdateContent": {
     "placeholders": {
       "releaseNotesLink": {
