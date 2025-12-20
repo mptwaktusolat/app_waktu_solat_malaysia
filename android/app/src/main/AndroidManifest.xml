@@ -64,7 +64,7 @@
         <activity
             android:name=".HomeWidgetPreferencesActivity"
             android:exported="false"
-            android:label="@string/title_activity_home_widget_preferences"
+            android:label="@string/title_activity_time_widget_settings"
             android:theme="@style/Theme.Android">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
