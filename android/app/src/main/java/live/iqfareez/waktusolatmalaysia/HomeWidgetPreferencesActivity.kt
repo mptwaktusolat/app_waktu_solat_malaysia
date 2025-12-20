@@ -74,6 +74,7 @@ fun SettingsComponent(modifier: Modifier = Modifier) {
                 key = "hijri_date_preference",
                 defaultValue = false,
                 title = { Text(text = stringResource(R.string.date_type_title)) },
+                summary = { Text(text = stringResource(R.string.date_type_summary)) },
             )
         }
     }
