@@ -725,12 +725,11 @@ class AppLocalizationsMs extends AppLocalizations {
   String get notifEndSubh => 'Tamat waktu Subuh';
 
   @override
-  String get whatsUpdateTitle =>
-      'Baru sahaja dikemas kini kepada versi terkini.';
+  String get whatsUpdateTitle => 'Aplikasi selesai dikemaskini';
 
   @override
   String whatsUpdateContent(String releaseNotesLink) {
-    return 'Apa yang baharu dalam kemaskini ini, baca lanjut di [sini]($releaseNotesLink).';
+    return 'Baca maklumat versi baharu di [changelog]($releaseNotesLink).';
   }
 
   @override
