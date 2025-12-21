@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import es.antonborri.home_widget.HomeWidgetPlugin
+import live.iqfareez.waktusolatmalaysia.model.MptHijriDate
 import live.iqfareez.waktusolatmalaysia.ui.theme.AndroidTheme
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.rememberPreferenceState
@@ -69,8 +70,8 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
                     topBar = {
                         TopAppBar(
                             colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                titleContentColor = MaterialTheme.colorScheme.primary,
+                                containerColor = MaterialTheme.colorScheme.surfaceContainer,
+                                titleContentColor = MaterialTheme.colorScheme.onSurface,
                             ),
                             actions = {
                                 TextButton(onClick = { finishConfiguration() }) {
@@ -104,22 +105,24 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
         val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
 
         val remoteViews = RemoteViews(this.getPackageName(), providerInfo.initialLayout);
-        val widgetData = HomeWidgetPlugin.getData(this)
-        val prayerData = widgetData.getString("prayer_data", null);
-        if (prayerData == null) {
-            Log.e(TAG, "handlePreferenceChange: prayerData is null. Cannot update widget.")
-            return
-        }
-        val parsed = JSONObject(prayerData)
-        val prayers = parsed.getJSONArray("prayers")
 
-        val calendar = Calendar.getInstance()
-        val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1;
-        val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
 
         if (isHijriDateEnabled) {
+            val widgetData = HomeWidgetPlugin.getData(this)
+            val prayerData = widgetData.getString("prayer_data", null);
+            if (prayerData == null) {
+                Log.w(TAG, "handlePreferenceChange: prayerData is null. Cannot update widget.")
+                return
+            }
+            val parsed = JSONObject(prayerData)
+            val prayers = parsed.getJSONArray("prayers")
+
+            val calendar = Calendar.getInstance()
+            val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1;
+            val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
             val hijriDateToday = todayPrayer.getString("hijri")
-            remoteViews.setTextViewText(R.id.widget_date, hijriDateToday);
+            val hijriParsed = MptHijriDate.parseFromHijriString(hijriDateToday)
+            remoteViews.setTextViewText(R.id.widget_date, hijriParsed.dMY());
         } else {
             val malaysiaTimeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
             val formattedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -128,7 +131,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
             remoteViews.setTextViewText(R.id.widget_date, formattedDate)
         }
 
-        Log.d(TAG, "handlePreferenceChange: Now partially update widget $widgetData")
+        Log.d(TAG, "handlePreferenceChange: Now partially update widget $appWidgetId")
 
         // We partially update widget for performance reason. Read more on https://developer.android.com/develop/ui/views/appwidgets/advanced#update-widgets
         appWidgetManager.partiallyUpdateAppWidget(appWidgetId, remoteViews)

@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.RemoteViews
 import androidx.preference.PreferenceManager
 import es.antonborri.home_widget.HomeWidgetPlugin
+import live.iqfareez.waktusolatmalaysia.model.MptHijriDate
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.YearMonth
@@ -168,7 +169,8 @@ internal fun updateAppWidget(
     val showHijriDate = widgetSettings.getBoolean("hijri_date_preference", false);
     if (showHijriDate) {
         val hijriDateToday = todayPrayer.getString("hijri")
-        views.setTextViewText(R.id.widget_date, hijriDateToday);
+        val hijriParsed = MptHijriDate.parseFromHijriString(hijriDateToday)
+        views.setTextViewText(R.id.widget_date, hijriParsed.dMY());
     } else {
         views.setTextViewText(R.id.widget_date, formattedDate)
     }
