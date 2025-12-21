@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -51,15 +49,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _checkForUpdate() async {
-    try {
-      final res = await UpdateCheckerService.updatesAvailable();
-      if (!res) return;
+    final res = await UpdateCheckerService.updatesAvailable();
+    if (!res) return;
 
-      Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
-    } on SocketException catch (e) {
-      debugPrint('Error checking for update: $e');
-      return;
-    }
+    Provider.of<UpdaterProvider>(context, listen: false).needForUpdate = res;
   }
 
   /// Show update dialog if app if recently updated
