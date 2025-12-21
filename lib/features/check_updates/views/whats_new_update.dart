@@ -15,7 +15,7 @@ class WhatsNewUpdateDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MptBottomDialog(
-      icon: FaIcon(FontAwesomeIcons.check),
+      icon: const FaIcon(FontAwesomeIcons.check),
       title: AppLocalizations.of(context)!.whatsUpdateTitle,
       content: Column(
         mainAxisSize: MainAxisSize.min,
