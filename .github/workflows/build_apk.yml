@@ -30,11 +30,13 @@ jobs:
         with:
           distribution: "zulu"
           java-version: "17"
+          cache: "gradle"
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: ${{ inputs.flutterChannel }}
+          cache: true
 
       - name: Decoding android/key.properties
         run: echo "${{ secrets.KEY_PROP }}" | base64 --decode > android/key.properties
