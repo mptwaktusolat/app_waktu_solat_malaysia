@@ -11,4 +11,6 @@
     <string name="date_type_title">Use Hijri Date</string>
     <string name="date_type_summary">Example: 12 Jak. 1447</string>
     <string name="action_done">Done</string>
+    <string name="syuruk_visibility_title">Show Syuruk Time</string>
+    <string name="syuruk_visibility_summary">Toggle the visibility of Syuruk (Sunrise) time</string>
 </resources>

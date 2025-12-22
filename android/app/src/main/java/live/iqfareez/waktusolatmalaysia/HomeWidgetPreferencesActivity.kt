@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.RemoteViews
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -92,7 +93,10 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding),
                         appWidgetId = appWidgetId,
                         onHijriDatePreferenceChanged = { isHijriDateEnabled ->
-                            handlePreferenceChange(isHijriDateEnabled)
+                            handleHijriDatePrefChanged(isHijriDateEnabled)
+                        },
+                        onSyurukTimePreferenceChanged = { isSyurukTimeEnabled ->
+                            handleSyurukTimePrefChanged(isSyurukTimeEnabled)
                         }
                     )
                 }
@@ -103,7 +107,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
     /**
      * Update the widget date display based on the preference.
      */
-    private fun handlePreferenceChange(isHijriDateEnabled: Boolean) {
+    private fun handleHijriDatePrefChanged(isHijriDateEnabled: Boolean) {
         Log.d(
             TAG,
             "handlePreferenceChange: isHijriDateEnabled is $isHijriDateEnabled"
@@ -114,7 +118,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
 
         // Save to SharedPreferences
         val sharedPref = this.getWidgetSharedPreferences(appWidgetId)
-        with (sharedPref.edit()) {
+        with(sharedPref.edit()) {
             putBoolean(Constants.SP_HIJRI_DATE_PREFERENCE, isHijriDateEnabled)
             apply()
         }
@@ -151,6 +155,38 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
         appWidgetManager.partiallyUpdateAppWidget(appWidgetId, remoteViews)
     }
 
+    /**
+     * Handle the syuruk time preference
+     */
+    private fun handleSyurukTimePrefChanged(isSyurukTimeEnabled: Boolean) {
+        Log.d(
+            TAG,
+            "handleSyurukTimePreferenceChanged: isSyurukTimeEnabled is $isSyurukTimeEnabled"
+        )
+        // It is the responsibility of the configuration activity to update the app widget
+        val appWidgetManager = AppWidgetManager.getInstance(this)
+        val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
+
+        // Save to SharedPreferences
+        val sharedPref = this.getWidgetSharedPreferences(appWidgetId)
+        with(sharedPref.edit()) {
+            putBoolean(Constants.SP_SHOW_SYURUK_PREFERENCE, isSyurukTimeEnabled)
+            apply()
+        }
+
+        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout);
+
+        remoteViews.setViewVisibility(
+            R.id.syuruk_layout,
+            if (isSyurukTimeEnabled) View.VISIBLE else View.GONE
+        )
+
+        Log.d(TAG, "handleSyurukTimePreferenceChanged: Now partially update widget $appWidgetId")
+
+        // We partially update widget for performance reason. Read more on https://developer.android.com/develop/ui/views/appwidgets/advanced#update-widgets
+        appWidgetManager.partiallyUpdateAppWidget(appWidgetId, remoteViews)
+    }
+
     private fun finishConfiguration() {
         // Make sure we pass back the original appWidgetId
         val resultValue = Intent()
@@ -164,9 +200,9 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
 fun SettingsComponent(
     modifier: Modifier = Modifier,
     appWidgetId: Int = AppWidgetManager.INVALID_APPWIDGET_ID,
-    onHijriDatePreferenceChanged: (Boolean) -> Unit = {}
+    onHijriDatePreferenceChanged: (Boolean) -> Unit = {},
+    onSyurukTimePreferenceChanged: (Boolean) -> Unit = {},
 ) {
-    // This component use components from https://github.com/zhanghai/ComposePreference
     val context = LocalContext.current
     val sharedPref = context.getWidgetSharedPreferences(appWidgetId)
 
@@ -174,6 +210,11 @@ fun SettingsComponent(
         mutableStateOf(sharedPref.getBoolean(Constants.SP_HIJRI_DATE_PREFERENCE, false))
     }
 
+    var isSyurukTimeEnabled by remember {
+        mutableStateOf(sharedPref.getBoolean(Constants.SP_SHOW_SYURUK_PREFERENCE, false))
+    }
+
+    // This composable use components from https://github.com/zhanghai/ComposePreference
     ProvidePreferenceTheme {
         Column(modifier = modifier) {
             SwitchPreference(
@@ -183,6 +224,15 @@ fun SettingsComponent(
                 onValueChange = {
                     isHijriDateEnabled = it
                     onHijriDatePreferenceChanged(it)
+                },
+            )
+            SwitchPreference(
+                title = { Text(text = stringResource(R.string.syuruk_visibility_title)) },
+                summary = { Text(text = stringResource(R.string.syuruk_visibility_summary)) },
+                value = isSyurukTimeEnabled,
+                onValueChange = {
+                    isSyurukTimeEnabled = it
+                    onSyurukTimePreferenceChanged(it)
                 },
             )
         }

@@ -11,4 +11,6 @@
     <string name="date_type_title">Gunakan tarikh hijrah</string>
     <string name="date_type_summary">Contoh: 12 Jak. 1447</string>
     <string name="action_done">Selesai</string>
+    <string name="syuruk_visibility_title">Paparkan waktu Syuruk</string>
+    <string name="syuruk_visibility_summary">Ubah paparan waktu Syuruk</string>
 </resources>

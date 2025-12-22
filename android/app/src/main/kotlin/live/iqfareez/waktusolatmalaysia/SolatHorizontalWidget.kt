@@ -142,6 +142,7 @@ internal fun updateAppWidget(
     val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject
 
     val subuhTime = todayPrayer.getLong("fajr")
+    val syurukTime = todayPrayer.getLong("syuruk")
     val zohorTime = todayPrayer.getLong("dhuhr")
     val asarTime = todayPrayer.getLong("asr")
     val maghribTime = todayPrayer.getLong("maghrib")
@@ -157,6 +158,7 @@ internal fun updateAppWidget(
     }
 
     val formattedSubuhTime = formatTime(subuhTime)
+    val formattedSyurukTime = formatTime(syurukTime)
     val formattedZohorTime = formatTime(zohorTime)
     val formattedAsarTime = formatTime(asarTime)
     val formattedMaghribTime = formatTime(maghribTime)
@@ -179,7 +181,14 @@ internal fun updateAppWidget(
         views.setTextViewText(R.id.widget_date, formattedDate)
     }
 
-    Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data");
+    // 2. Syuruk Visibility setting
+    val showSyurukLayout = widgetPreferences.getBoolean(Constants.SP_SHOW_SYURUK_PREFERENCE, false)
+    views.setViewVisibility(
+        R.id.syuruk_layout,
+        if (showSyurukLayout) View.VISIBLE else View.GONE
+    )
+
+    Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data")
 
     views.setTextViewText(
         R.id.widget_title, widgetTitle
@@ -225,7 +234,7 @@ private fun scheduleNextUpdate(context: Context) {
             // guarantee the timing to be run exact as the time we assigned to it
             alarmManager.set(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
             Log.d(LOG_TAG, "scheduleNextUpdate: Didn't have permission-Scheduled NOT exact alarm")
-            return;
+            return
         }
     }
 
@@ -244,7 +253,7 @@ fun isDateValid(jsonDate: String): Boolean {
         return input.lowercase().replaceFirstChar { it.uppercase() }
     }
 
-    val jsonFixed = toTitleCase(jsonDate);
+    val jsonFixed = toTitleCase(jsonDate)
     return try {
         // Parse the JSON date into YearMonth
         val formatter = DateTimeFormatter.ofPattern("MMM-yyyy", Locale.ENGLISH)
@@ -254,7 +263,7 @@ fun isDateValid(jsonDate: String): Boolean {
         val currentMonthYear = YearMonth.now()
 
         // Check if the parsed date is after or equal to the current month and year
-        !date.isBefore(currentMonthYear) && !date.isAfter(currentMonthYear);
+        !date.isBefore(currentMonthYear) && !date.isAfter(currentMonthYear)
     } catch (e: Exception) {
         // Handle parsing or other exceptions
         e.printStackTrace()
