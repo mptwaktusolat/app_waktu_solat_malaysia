@@ -46,7 +46,7 @@ private const val TAG = "HomeWidgetPreferencesActivity"
 
 @OptIn(ExperimentalMaterial3Api::class)
 class HomeWidgetPreferencesActivity : ComponentActivity() {
-    var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
+    var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -114,7 +114,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
         )
         // It is the responsibility of the configuration activity to update the app widget
         val appWidgetManager = AppWidgetManager.getInstance(this)
-        val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
+        val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId)
 
         // Save to SharedPreferences
         val sharedPref = this.getWidgetSharedPreferences(appWidgetId)
@@ -123,11 +123,11 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
             apply()
         }
 
-        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout);
+        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout)
 
         if (isHijriDateEnabled) {
             val widgetData = HomeWidgetPlugin.getData(this)
-            val prayerData = widgetData.getString("prayer_data", null);
+            val prayerData = widgetData.getString("prayer_data", null)
             if (prayerData == null) {
                 Log.w(TAG, "handlePreferenceChange: prayerData is null. Cannot update widget.")
                 return
@@ -136,11 +136,11 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
             val prayers = parsed.getJSONArray("prayers")
 
             val calendar = Calendar.getInstance()
-            val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1;
-            val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
+            val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1
+            val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject
             val hijriDateToday = todayPrayer.getString("hijri")
             val hijriParsed = MptHijriDate.parseFromHijriString(hijriDateToday)
-            remoteViews.setTextViewText(R.id.widget_date, hijriParsed.dMY());
+            remoteViews.setTextViewText(R.id.widget_date, hijriParsed.dMY())
         } else {
             val malaysiaTimeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
             val formattedDate = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -165,7 +165,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
         )
         // It is the responsibility of the configuration activity to update the app widget
         val appWidgetManager = AppWidgetManager.getInstance(this)
-        val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
+        val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId)
 
         // Save to SharedPreferences
         val sharedPref = this.getWidgetSharedPreferences(appWidgetId)
@@ -174,7 +174,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
             apply()
         }
 
-        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout);
+        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout)
 
         remoteViews.setViewVisibility(
             R.id.syuruk_layout,

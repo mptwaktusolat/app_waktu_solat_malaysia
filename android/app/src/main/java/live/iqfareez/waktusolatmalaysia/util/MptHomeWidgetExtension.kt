@@ -8,5 +8,5 @@ import android.content.SharedPreferences
  */
 fun Context.getWidgetSharedPreferences(appWidgetId: Int): SharedPreferences {
     val name = "widget-preference-$appWidgetId"
-    return this.getSharedPreferences(name, Context.MODE_PRIVATE);
+    return this.getSharedPreferences(name, Context.MODE_PRIVATE)
 }
