@@ -8,9 +8,9 @@ import android.widget.RemoteViews
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,17 +19,21 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import es.antonborri.home_widget.HomeWidgetPlugin
+import live.iqfareez.waktusolatmalaysia.common.Constants
 import live.iqfareez.waktusolatmalaysia.model.MptHijriDate
 import live.iqfareez.waktusolatmalaysia.ui.theme.AndroidTheme
-import me.zhanghai.compose.preference.ProvidePreferenceLocals
-import me.zhanghai.compose.preference.rememberPreferenceState
-import me.zhanghai.compose.preference.switchPreference
+import live.iqfareez.waktusolatmalaysia.util.getWidgetSharedPreferences
+import me.zhanghai.compose.preference.ProvidePreferenceTheme
+import me.zhanghai.compose.preference.SwitchPreference
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -75,7 +79,7 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
                             ),
                             actions = {
                                 TextButton(onClick = { finishConfiguration() }) {
-                                    Text(text = stringResource(R.string.action_done),)
+                                    Text(text = stringResource(R.string.action_done))
                                 }
                             },
                             title = {
@@ -86,7 +90,8 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
                 ) { innerPadding ->
                     SettingsComponent(
                         modifier = Modifier.padding(innerPadding),
-                        onPreferenceChanged = { isHijriDateEnabled ->
+                        appWidgetId = appWidgetId,
+                        onHijriDatePreferenceChanged = { isHijriDateEnabled ->
                             handlePreferenceChange(isHijriDateEnabled)
                         }
                     )
@@ -99,13 +104,22 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
      * Update the widget date display based on the preference.
      */
     private fun handlePreferenceChange(isHijriDateEnabled: Boolean) {
-        Log.d(TAG, "handlePreferenceChange: isHijriDateEnabled is $isHijriDateEnabled")
+        Log.d(
+            TAG,
+            "handlePreferenceChange: isHijriDateEnabled is $isHijriDateEnabled"
+        )
         // It is the responsibility of the configuration activity to update the app widget
         val appWidgetManager = AppWidgetManager.getInstance(this)
         val providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
 
-        val remoteViews = RemoteViews(this.getPackageName(), providerInfo.initialLayout);
+        // Save to SharedPreferences
+        val sharedPref = this.getWidgetSharedPreferences(appWidgetId)
+        with (sharedPref.edit()) {
+            putBoolean(Constants.SP_HIJRI_DATE_PREFERENCE, isHijriDateEnabled)
+            apply()
+        }
 
+        val remoteViews = RemoteViews(this.packageName, providerInfo.initialLayout);
 
         if (isHijriDateEnabled) {
             val widgetData = HomeWidgetPlugin.getData(this)
@@ -149,25 +163,27 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
 @Composable
 fun SettingsComponent(
     modifier: Modifier = Modifier,
-    onPreferenceChanged: (Boolean) -> Unit = {}
+    appWidgetId: Int = AppWidgetManager.INVALID_APPWIDGET_ID,
+    onHijriDatePreferenceChanged: (Boolean) -> Unit = {}
 ) {
     // This component use components from https://github.com/zhanghai/ComposePreference
-    ProvidePreferenceLocals {
-        val hijriDateState = rememberPreferenceState(
-            key = "hijri_date_preference",
-            defaultValue = false
-        )
-        val isHijriDateEnabled by hijriDateState
+    val context = LocalContext.current
+    val sharedPref = context.getWidgetSharedPreferences(appWidgetId)
 
-        LaunchedEffect(isHijriDateEnabled) {
-            onPreferenceChanged(isHijriDateEnabled)
-        }
-        LazyColumn(modifier = modifier) {
-            switchPreference(
-                key = "hijri_date_preference",
-                defaultValue = false,
+    var isHijriDateEnabled by remember {
+        mutableStateOf(sharedPref.getBoolean(Constants.SP_HIJRI_DATE_PREFERENCE, false))
+    }
+
+    ProvidePreferenceTheme {
+        Column(modifier = modifier) {
+            SwitchPreference(
                 title = { Text(text = stringResource(R.string.date_type_title)) },
                 summary = { Text(text = stringResource(R.string.date_type_summary)) },
+                value = isHijriDateEnabled,
+                onValueChange = {
+                    isHijriDateEnabled = it
+                    onHijriDatePreferenceChanged(it)
+                },
             )
         }
     }
