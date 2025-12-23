@@ -3,10 +3,10 @@ package live.iqfareez.waktusolatmalaysia.model
 /**
  * Mpt's implementation of Hijri date
  *
- * NOTE: There is existing tool in the SDK that we can use to handle Hijri; which is the HijrahDate &
- * IslamicCalendar classes. However, the are some issues:
- * - The month names is different than what is use here (Malaysia). Eg Jamadil Akhir is written as "Jum. II"
- * - Some day are invalid to parse. Eg '1447-06-30; would throw Invalid Hijrah day of month: 30
+ * NOTE: There is existing class provided by the SDK that we can use to handle Hijri; which is the
+ * HijrahDate (Java) & IslamicCalendar (Android). However, the are notable issues:
+ * - The month names is different than what is use here (Malaysia). Eg Jamadil Akhir is written as "Jumada II"
+ * - Some day are invalid to parse. Eg '1447-06-30; would throw "Invalid Hijrah day of month: 30"
  *
  * See also Dart implementation in: <root>\lib\shared\models\hijri_date.dart
  */
