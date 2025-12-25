@@ -77,7 +77,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Subuh"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
@@ -87,11 +89,13 @@
                 android:id="@+id/subuh_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Syuruk -->
@@ -105,7 +109,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Syuruk"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
@@ -115,11 +121,13 @@
                 android:id="@+id/syuruk_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!-- Zohor -->
@@ -132,17 +140,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Zohor"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/zuhur_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
@@ -159,17 +171,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Asar"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/asar_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
@@ -186,17 +202,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Maghrib"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/maghrib_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
@@ -213,17 +233,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="Isyak"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/isyak_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:gravity="center"
+                android:maxLines="1"
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
