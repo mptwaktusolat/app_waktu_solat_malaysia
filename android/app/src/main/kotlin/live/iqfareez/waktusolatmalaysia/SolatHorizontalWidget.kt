@@ -13,6 +13,9 @@ import android.util.Log
 import android.view.View
 import android.widget.RemoteViews
 import es.antonborri.home_widget.HomeWidgetPlugin
+import live.iqfareez.waktusolatmalaysia.common.Constants
+import live.iqfareez.waktusolatmalaysia.model.MptHijriDate
+import live.iqfareez.waktusolatmalaysia.util.getWidgetSharedPreferences
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.YearMonth
@@ -38,17 +41,20 @@ class SolatHorizontalWidget : AppWidgetProvider() {
         val widgetData = HomeWidgetPlugin.getData(context)
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
+            val widgetPreference = context.getWidgetSharedPreferences(appWidgetId)
             Log.i(LOG_TAG, "onUpdate: SolatHorizontalWidget called")
             updateAppWidget(
                 context,
                 appWidgetManager,
                 appWidgetId,
                 widgetData,
+                widgetPreference,
                 R.layout.solat_horizontal_widget
             )
         }
+
         Log.i(LOG_TAG, "onUpdate: Scheduling for next widget update..")
-        scheduleNextUpdate(context);
+        scheduleNextUpdate(context)
     }
 
     override fun onEnabled(context: Context) {
@@ -60,7 +66,7 @@ class SolatHorizontalWidget : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent);
+        super.onReceive(context, intent)
         if (intent.action.equals(ACTION_SCHEDULED_UPDATE)) {
             val manager = AppWidgetManager.getInstance(context)
             val ids =
@@ -70,12 +76,13 @@ class SolatHorizontalWidget : AppWidgetProvider() {
     }
 }
 
-// Used by both widgets -> SolatHorizontalWidget & SolwatVerticalWidget
+// Used by both widgets -> SolatHorizontalWidget & SolatVerticalWidget
 internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int,
     widgetData: SharedPreferences,
+    widgetPreferences: SharedPreferences,
     layoutId: Int
 ) {
     // Construct the RemoteViews object
@@ -90,16 +97,16 @@ internal fun updateAppWidget(
     // Set the click listener for the widget
     views.setOnClickPendingIntent(android.R.id.background, pendingIntent)
 
-    // Parse the JSON in SharedPreferences
-    val prayerData = widgetData.getString("prayer_data", null);
+    // Get the json from SharedPreferences
+    val prayerData = widgetData.getString("prayer_data", null)
 
     // If data not available, display outdated layout
     if (prayerData == null) {
-        Log.i(LOG_TAG, "updateAppWidget: Prayer data is not available");
-        views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
-        views.setViewVisibility(R.id.prayer_layout, View.GONE);
+        Log.i(LOG_TAG, "updateAppWidget: Prayer data is not available")
+        views.setViewVisibility(R.id.outdated_text, View.VISIBLE)
+        views.setViewVisibility(R.id.prayer_layout, View.GONE)
         appWidgetManager.updateAppWidget(appWidgetId, views)
-        return;
+        return
     }
 
     val parsed = JSONObject(prayerData)
@@ -109,11 +116,11 @@ internal fun updateAppWidget(
         Log.i(
             LOG_TAG,
             "updateAppWidget: Data ${parsed.get("month")}-${parsed.get("year")} is invalid"
-        );
-        views.setViewVisibility(R.id.outdated_text, View.VISIBLE);
-        views.setViewVisibility(R.id.prayer_layout, View.GONE);
+        )
+        views.setViewVisibility(R.id.outdated_text, View.VISIBLE)
+        views.setViewVisibility(R.id.prayer_layout, View.GONE)
         appWidgetManager.updateAppWidget(appWidgetId, views)
-        return;
+        return
     }
 
     Log.i(
@@ -125,24 +132,25 @@ internal fun updateAppWidget(
 
     // If the prayer layout is hidden previously, make sure we unhide it to show
     // the data. https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/224
-    views.setViewVisibility(R.id.outdated_text, View.GONE);
-    views.setViewVisibility(R.id.prayer_layout, View.VISIBLE);
+    views.setViewVisibility(R.id.outdated_text, View.GONE)
+    views.setViewVisibility(R.id.prayer_layout, View.VISIBLE)
 
     val prayers = parsed.getJSONArray("prayers")
 
     val calendar = Calendar.getInstance()
-    val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1;
-    val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject;
+    val todayIndex = calendar.get(Calendar.DAY_OF_MONTH) - 1
+    val todayPrayer: JSONObject = prayers.get(todayIndex) as JSONObject
 
     val subuhTime = todayPrayer.getLong("fajr")
+    val syurukTime = todayPrayer.getLong("syuruk")
     val zohorTime = todayPrayer.getLong("dhuhr")
     val asarTime = todayPrayer.getLong("asr")
     val maghribTime = todayPrayer.getLong("maghrib")
     val isyakTime = todayPrayer.getLong("isha")
 
-    val gmt8TimeZone = TimeZone.getTimeZone("GMT+8")
+    val malaysiaTimeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur")
     val timeFormat = SimpleDateFormat("h:mm a")
-    timeFormat.timeZone = gmt8TimeZone
+    timeFormat.timeZone = malaysiaTimeZone
 
     fun formatTime(timeInSeconds: Long): String {
         val date = Date(timeInSeconds * 1000)
@@ -150,41 +158,48 @@ internal fun updateAppWidget(
     }
 
     val formattedSubuhTime = formatTime(subuhTime)
+    val formattedSyurukTime = formatTime(syurukTime)
     val formattedZohorTime = formatTime(zohorTime)
     val formattedAsarTime = formatTime(asarTime)
     val formattedMaghribTime = formatTime(maghribTime)
     val formattedIsyakTime = formatTime(isyakTime)
 
     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    dateFormat.timeZone = TimeZone.getTimeZone("Asia/Kuala_Lumpur") // Set Malaysia timezone
+    dateFormat.timeZone = malaysiaTimeZone
     val formattedDate = dateFormat.format(Date())
 
     val widgetTitle = "${parsed.get("zone")}: ${widgetData.getString("widget_title", null)}"
 
-    //  Set content
-    views.setTextViewText(R.id.widget_date, formattedDate)
+    // Use widget setting to set appropriate content
+    // 1. Hijri Date Setting
+    val showHijriDate = widgetPreferences.getBoolean(Constants.SP_HIJRI_DATE_PREFERENCE, false)
+    if (showHijriDate) {
+        val hijriDateToday = todayPrayer.getString("hijri")
+        val hijriParsed = MptHijriDate.parseFromHijriString(hijriDateToday)
+        views.setTextViewText(R.id.widget_date, hijriParsed.dMY())
+    } else {
+        views.setTextViewText(R.id.widget_date, formattedDate)
+    }
 
-    Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data");
+    // 2. Syuruk Visibility setting
+    val showSyurukLayout = widgetPreferences.getBoolean(Constants.SP_SHOW_SYURUK_PREFERENCE, false)
+    views.setViewVisibility(
+        R.id.syuruk_layout,
+        if (showSyurukLayout) View.VISIBLE else View.GONE
+    )
+
+    Log.i(LOG_TAG, "updateAppWidget: Updating widget prayer data")
 
     views.setTextViewText(
         R.id.widget_title, widgetTitle
             ?: "Please open app to set widget data"
     )
-    views.setTextViewText(
-        R.id.subuh_time, formattedSubuhTime
-    )
-    views.setTextViewText(
-        R.id.zuhur_time, formattedZohorTime
-    )
-    views.setTextViewText(
-        R.id.asar_time, formattedAsarTime
-    )
-    views.setTextViewText(
-        R.id.maghrib_time, formattedMaghribTime
-    )
-    views.setTextViewText(
-        R.id.isyak_time, formattedIsyakTime
-    )
+    views.setTextViewText(R.id.subuh_time, formattedSubuhTime)
+    views.setTextViewText(R.id.syuruk_time, formattedSyurukTime)
+    views.setTextViewText(R.id.zuhur_time, formattedZohorTime)
+    views.setTextViewText(R.id.asar_time, formattedAsarTime)
+    views.setTextViewText(R.id.maghrib_time, formattedMaghribTime)
+    views.setTextViewText(R.id.isyak_time, formattedIsyakTime)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)
@@ -219,7 +234,7 @@ private fun scheduleNextUpdate(context: Context) {
             // guarantee the timing to be run exact as the time we assigned to it
             alarmManager.set(AlarmManager.RTC, midnight.timeInMillis, pendingIntent)
             Log.d(LOG_TAG, "scheduleNextUpdate: Didn't have permission-Scheduled NOT exact alarm")
-            return;
+            return
         }
     }
 
@@ -238,7 +253,7 @@ fun isDateValid(jsonDate: String): Boolean {
         return input.lowercase().replaceFirstChar { it.uppercase() }
     }
 
-    val jsonFixed = toTitleCase(jsonDate);
+    val jsonFixed = toTitleCase(jsonDate)
     return try {
         // Parse the JSON date into YearMonth
         val formatter = DateTimeFormatter.ofPattern("MMM-yyyy", Locale.ENGLISH)
@@ -248,7 +263,7 @@ fun isDateValid(jsonDate: String): Boolean {
         val currentMonthYear = YearMonth.now()
 
         // Check if the parsed date is after or equal to the current month and year
-        !date.isBefore(currentMonthYear) && !date.isAfter(currentMonthYear);
+        !date.isBefore(currentMonthYear) && !date.isAfter(currentMonthYear)
     } catch (e: Exception) {
         // Handle parsing or other exceptions
         e.printStackTrace()

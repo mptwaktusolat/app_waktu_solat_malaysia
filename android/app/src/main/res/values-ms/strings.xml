@@ -6,4 +6,11 @@
     <string name="widget_date_label">Tarikh</string>
     <string name="widget_horizontal_label">Jenis Memanjang</string>
     <string name="widget_vertical_label">Jenis Menegak</string>
+    <string name="title_activity_time_widget_settings">Tetapan Widget</string>
+    <string name="display_header">Paparan</string>
+    <string name="date_type_title">Gunakan tarikh hijrah</string>
+    <string name="date_type_summary">Contoh: 12 Jak. 1447</string>
+    <string name="action_done">Selesai</string>
+    <string name="syuruk_visibility_title">Paparkan waktu Syuruk</string>
+    <string name="syuruk_visibility_summary">Ubah paparan waktu Syuruk</string>
 </resources>

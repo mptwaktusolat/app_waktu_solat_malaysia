@@ -6,4 +6,11 @@
     <string name="widget_date_label">Date</string>
     <string name="widget_horizontal_label">Row Layout</string>
     <string name="widget_vertical_label">Column Layout</string>
+    <string name="title_activity_time_widget_settings">Widget Settings</string>
+    <string name="display_header">Display</string>
+    <string name="date_type_title">Use Hijri Date</string>
+    <string name="date_type_summary">Example: 12 Jak. 1447</string>
+    <string name="action_done">Done</string>
+    <string name="syuruk_visibility_title">Show Syuruk Time</string>
+    <string name="syuruk_visibility_summary">Toggle the visibility of Syuruk (Sunrise) time</string>
 </resources>
