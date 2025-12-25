@@ -75,16 +75,26 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
                     topBar = {
                         TopAppBar(
                             colors = TopAppBarDefaults.topAppBarColors(
-                                containerColor = MaterialTheme.colorScheme.surfaceContainer,
-                                titleContentColor = MaterialTheme.colorScheme.onSurface,
+                                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
                             ),
                             actions = {
-                                TextButton(onClick = { finishConfiguration() }) {
+                                TextButton(
+                                    onClick = { finishConfiguration() },
+                                    colors = androidx.compose.material3.ButtonDefaults.textButtonColors(
+                                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                ) {
                                     Text(text = stringResource(R.string.action_done))
                                 }
                             },
                             title = {
-                                Text(stringResource(R.string.title_activity_time_widget_settings))
+                                Text(
+                                    text = stringResource(R.string.title_activity_time_widget_settings),
+                                    style = MaterialTheme.typography.titleLarge.copy(
+                                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+                                    )
+                                )
                             }
                         )
                     },
