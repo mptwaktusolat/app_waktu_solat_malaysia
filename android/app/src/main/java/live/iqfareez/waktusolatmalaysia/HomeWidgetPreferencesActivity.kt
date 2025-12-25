@@ -50,9 +50,11 @@ class HomeWidgetPreferencesActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Set the result to CANCELED.  This will cause the widget host to cancel
+        // Set the result to CANCELED. This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.
-        // NOTE: If we put RESULT_OK here instead, it will crash on Xiaomi phone.
+        // NOTE: If we put RESULT_OK here instead, and the widgetFeatures not including the
+        // configuration_optional, it will crash on Xiaomi phone and the widget will not be added.
+        // See video: https://imgur.com/NinShqO
         setResult(RESULT_CANCELED)
 
         // Find the widget id from the intent.
