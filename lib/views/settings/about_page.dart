@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -70,19 +68,11 @@ class AboutAppPage extends StatelessWidget {
                           tag: kAppIconTag,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(18),
-                            child: CachedNetworkImage(
+                            child: Image.asset(
+                              'assets/images/app-icon-small.png',
                               width: 70,
                               height: 70,
                               fit: BoxFit.scaleDown,
-                              imageUrl: kAppIconUrl,
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) => Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: CircularProgressIndicator(
-                                    value: downloadProgress.progress),
-                              ),
-                              errorWidget: (context, url, error) =>
-                                  const FaIcon(FontAwesomeIcons.exclamation),
                             ),
                           ),
                         ),
@@ -178,22 +168,17 @@ class AboutAppPage extends StatelessWidget {
                       ),
                       onTap: () {
                         showLicensePage(
-                            context: context,
-                            applicationName: packageInfo!.appName,
-                            applicationVersion: packageInfo!.version,
-                            applicationIcon: Hero(
-                              tag: kAppIconTag,
-                              child: CachedNetworkImage(
-                                width: 70,
-                                imageUrl: kAppIconUrl,
-                                progressIndicatorBuilder:
-                                    (context, url, downloadProgress) =>
-                                        CircularProgressIndicator(
-                                            value: downloadProgress.progress),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                              ),
-                            ));
+                          context: context,
+                          applicationName: packageInfo!.appName,
+                          applicationVersion: packageInfo!.version,
+                          applicationIcon: Hero(
+                            tag: kAppIconTag,
+                            child: Image.asset(
+                              'assets/images/app-icon-small.png',
+                              width: 70,
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),

@@ -32,10 +32,6 @@ const kOnboardingCoachmarkFlow = 'onboarding';
 // Screen size
 const kTabletBreakpoint = 768.0;
 
-//Network image
-const kAppIconUrl =
-    'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/icon%20(Custom).png?alt=media&token=9efb706e-4bf3-4e60-af8e-9a88ee6db60c';
-
 //Network Image (Scenery time images)
 // const kWaktuSubuhImage =
 //     'https://firebasestorage.googleapis.com/v0/b/malaysia-waktu-solat.appspot.com/o/Scenery%2FtimeDay1%20(Custom).jpg?alt=media&token=293ecf62-033a-4925-802b-9c8e3167c2c0';
