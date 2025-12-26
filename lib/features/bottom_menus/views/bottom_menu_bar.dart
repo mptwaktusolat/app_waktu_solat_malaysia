@@ -28,9 +28,14 @@ class BottomMenuBar extends StatelessWidget {
             return IconButton(
               tooltip: AppLocalizations.of(context)?.menuTooltip,
               icon: setting.needForUpdate
-                  ? const Badge(
-                      smallSize: 12,
-                      child: FaIcon(FontAwesomeIcons.bars),
+                  ? Badge(
+                      offset: Offset(5, -5),
+                      label: FaIcon(
+                        FontAwesomeIcons.download,
+                        size: 8,
+                        color: Theme.of(context).colorScheme.onError,
+                      ),
+                      child: const FaIcon(FontAwesomeIcons.bars),
                     )
                   : const FaIcon(FontAwesomeIcons.bars),
               onPressed: () => _showMenuModalBottomSheet(context),
