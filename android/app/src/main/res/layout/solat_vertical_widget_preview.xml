@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:maxLines="1"
-            android:text="13/04/2023"
+            android:text="6/7/2026"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp" />
