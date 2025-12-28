@@ -3,7 +3,7 @@
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat-square&logo=Flutter&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
 ![Maintenance](https://img.shields.io/maintenance/yes/2026?style=flat-square)
-[![Installs](https://img.shields.io/badge/installs-50k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
+[![Installs](https://img.shields.io/badge/installs-90k+-informational?style=flat-square)](https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
 ![License](https://img.shields.io/github/license/mptwaktusolat/app_waktu_solat_malaysia?style=flat-square)
 [![style: flutter_lints](https://img.shields.io/badge/style-flutter__lints-4BC0F5.svg?style=flat-square)](https://pub.dev/packages/flutter_lints)
