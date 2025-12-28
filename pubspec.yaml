@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.13.8-pre.4+166
+version: 2.13.8+167
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -15,11 +15,8 @@ dependencies:
     sdk: flutter
 
   admonitions: ^1.1.0
-  app_settings: ^6.1.1
-  auto_start_flutter:
-    git:
-      url: https://github.com/seena98/auto_start_flutter.git
-      ref: master
+  app_settings: ^7.0.0
+  auto_start_flutter: ^0.1.7
   cached_network_image: ^3.0.0
   device_info_plus: ^12.2.0
   dynamic_color: ^1.6.2
@@ -41,7 +38,7 @@ dependencies:
   geolocator: ^13.0.1
   get_storage: ^2.0.1
   google_fonts: ^6.1.0
-  google_mobile_ads: ^6.0.0
+  google_mobile_ads: ^7.0.0
   home_widget: ^0.8.0
   hotspot: ^0.1.3
   http: ^1.1.0
