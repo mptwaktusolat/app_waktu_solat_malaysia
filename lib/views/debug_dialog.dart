@@ -13,6 +13,15 @@ class DebugDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// Build Flutter version info string
+    String getFlutterVersionInfo() {
+      final StringBuffer buffer = StringBuffer();
+      buffer.write('Version: ${FlutterVersion.version}');
+      buffer.write(' ');
+      buffer.write('Channel: ${FlutterVersion.channel}');
+      return buffer.toString();
+    }
+
     return Dialog(
       child: ListView(
         shrinkWrap: true,
@@ -31,10 +40,6 @@ class DebugDialog extends StatelessWidget {
                   .then((value) =>
                       Fluttertoast.showToast(msg: 'Copied position'));
             },
-          ),
-          ListTile(
-            title: const Text('Current zone'),
-            subtitle: Text('${GetStorage().read(kStoredLocationJakimCode)}'),
           ),
           ListTile(
               title: const Text('Disable ads for 10 minutes'),
@@ -56,6 +61,10 @@ class DebugDialog extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => const WidgetDataPage()),
               );
             },
+          ),
+          ListTile(
+            title: const Text('Flutter Version'),
+            subtitle: Text(getFlutterVersionInfo()),
           ),
         ],
       ),
