@@ -23,7 +23,8 @@ Future<void> initNotifications() async {
     android: initializationSettingsAndroid,
     iOS: initializationSettingsDarwin,
   );
-  await FlutterLocalNotificationsPlugin().initialize(initializationSettings);
+  await FlutterLocalNotificationsPlugin()
+      .initialize(settings: initializationSettings);
 }
 
 /// Single prayer notification without azan
@@ -52,11 +53,11 @@ Future<void> scheduleSinglePrayerNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-    id,
-    title,
-    body,
-    scheduledTime,
-    platformChannelSpecifics,
+    id: id,
+    title: title,
+    body: body,
+    scheduledDate: scheduledTime,
+    notificationDetails: platformChannelSpecifics,
     androidScheduleMode: AndroidScheduleMode.alarmClock,
   );
 }
@@ -94,11 +95,11 @@ Future<void> scheduleSingleAzanNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-    id,
-    title,
-    body,
-    scheduledTime,
-    platformChannelSpecifics,
+    id: id,
+    title: title,
+    body: body,
+    scheduledDate: scheduledTime,
+    notificationDetails: platformChannelSpecifics,
     androidScheduleMode: AndroidScheduleMode.alarmClock,
   );
 }
@@ -126,11 +127,11 @@ Future<void> scheduleAlertNotification(
   final platformChannelSpecifics =
       NotificationDetails(android: androidSpecifics);
   await FlutterLocalNotificationsPlugin().zonedSchedule(
-    id,
-    title,
-    body,
-    scheduledTime,
-    platformChannelSpecifics,
+    id: id,
+    title: title,
+    body: body,
+    scheduledDate: scheduledTime,
+    notificationDetails: platformChannelSpecifics,
     androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
     payload: payload,
   );
@@ -149,8 +150,12 @@ Future<void> showDebugNotification() async {
   const NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
   );
-  await FlutterLocalNotificationsPlugin()
-      .show(0, 'Debug', 'For developer purposes', platformChannelSpecifics);
+  await FlutterLocalNotificationsPlugin().show(
+    id: 0,
+    title: 'Debug',
+    body: 'For developer purposes',
+    notificationDetails: platformChannelSpecifics,
+  );
 }
 
 /// For debugging: Play default notification immediately
@@ -170,10 +175,10 @@ Future<void> fireDefaultNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().show(
-    344, // just random id
-    'Default notification',
-    message,
-    platformChannelSpecifics,
+    id: 344, // just random id
+    title: 'Default notification',
+    body: message,
+    notificationDetails: platformChannelSpecifics,
   );
 }
 
@@ -200,8 +205,9 @@ Future<void> fireAzanNotification({
       NotificationDetails(android: androidSpecifics);
 
   await FlutterLocalNotificationsPlugin().show(
-      MyNotificationType.shortAzan.index * 2,
-      type.name,
-      message,
-      platformChannelSpecifics);
+    id: MyNotificationType.shortAzan.index * 2,
+    title: type.name,
+    body: message,
+    notificationDetails: platformChannelSpecifics,
+  );
 }
