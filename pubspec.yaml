@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 2.13.9-pre.1+168
+version: 2.13.9+168
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
