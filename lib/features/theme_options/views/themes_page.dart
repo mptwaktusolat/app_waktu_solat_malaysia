@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../providers/theme_controller.dart';
 import '../../../shared/components/animated_moon.dart';
+import '../../../shared/constants/constants.dart';
+import 'theme_options.dart';
 
 class ThemesPage extends StatefulWidget {
   const ThemesPage({super.key});
@@ -23,79 +23,64 @@ class _ThemesPageState extends State<ThemesPage>
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    if (isDarkMode) {
+      _animationController!.forward();
+    } else {
+      _animationController!.reverse();
+    }
+
+    final moonWidget = Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return AnimatedMoon(
+              animationController: _animationController,
+              width: constraints.maxWidth,
+              isDarkMode: isDarkMode,
+            );
+          },
+        ),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.themeTitle),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Builder(
-                builder: (context) {
-                  final bool isDarkMode =
-                      Theme.of(context).brightness == Brightness.dark;
-                  if (isDarkMode) {
-                    _animationController!.forward();
-                  } else {
-                    _animationController!.reverse();
-                  }
-                  return Center(
-                    child: AnimatedMoon(
-                      animationController: _animationController,
-                      width: MediaQuery.of(context).size.width,
-                      isDarkMode: isDarkMode,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          const Expanded(child: ThemesOption()),
-        ],
-      ),
-    );
-  }
-}
-
-class ThemesOption extends StatefulWidget {
-  const ThemesOption({super.key});
-  @override
-  State<ThemesOption> createState() => _ThemesOptionState();
-}
-
-class _ThemesOptionState extends State<ThemesOption> {
-  @override
-  Widget build(BuildContext context) {
-    final Map<String, ThemeMode> themeOptions = {
-      AppLocalizations.of(context)!.themeOptionSystem: ThemeMode.system,
-      AppLocalizations.of(context)!.themeOptionLight: ThemeMode.light,
-      AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
-    };
-    return Consumer<ThemeProvider>(
-      builder: (_, setting, __) {
-        return RadioGroup(
-          onChanged: (dynamic value) {
-            setting.themeMode = value;
-          },
-          groupValue: setting.themeMode,
-          child: Column(
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxWidth >= kTabletBreakpoint) {
+            // Tablet layout
+            return Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: moonWidget,
+                  ),
+                ),
+                const Expanded(child: ThemeOptions()),
+              ],
+            );
+          }
+          // Phone layout
+          return Column(
             children: [
-              for (var theme in themeOptions.entries)
-                RadioListTile(
-                  title: Text(theme.key),
-                  subtitle: theme.value == ThemeMode.system
-                      ? Text(AppLocalizations.of(context)!.themeSupportedDevice)
-                      : null,
-                  value: theme.value,
-                )
+              Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: moonWidget,
+                ),
+              ),
+              const Expanded(child: ThemeOptions()),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

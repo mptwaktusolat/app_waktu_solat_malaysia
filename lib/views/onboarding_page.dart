@@ -11,13 +11,13 @@ import '../features/onboarding/views/components/autostart_setting_dialog.dart';
 import '../features/onboarding/views/components/notification_exact_alarm_permission_dialog.dart';
 import '../features/onboarding/views/components/notification_permission_dialog.dart';
 import '../features/prayer_zone/views/zone_chooser.dart';
+import '../features/theme_options/views/theme_options.dart';
 import '../l10n/app_localizations.dart';
 import '../main.dart';
 import '../providers/locale_provider.dart';
 import '../shared/components/animated_moon.dart';
 import '../shared/constants/constants.dart';
 import 'settings/notification_page_setting.dart';
-import 'settings/theme_page.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -235,7 +235,7 @@ class _OnboardingPageState extends State<OnboardingPage>
             },
           ),
         ),
-        bodyWidget: const ThemesOption(),
+        bodyWidget: const ThemeOptions(),
         title: AppLocalizations.of(context)!.onboardingThemeFav,
         decoration: _pageDecoration,
       ),
