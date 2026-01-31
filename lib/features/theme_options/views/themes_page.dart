@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../l10n/app_localizations.dart';
-import '../../providers/theme_controller.dart';
-import '../../shared/components/animated_moon.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../../providers/theme_controller.dart';
+import '../../../shared/components/animated_moon.dart';
 
 class ThemesPage extends StatefulWidget {
   const ThemesPage({super.key});

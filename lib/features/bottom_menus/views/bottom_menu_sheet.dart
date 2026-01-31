@@ -8,9 +8,9 @@ import '../../../providers/updater_provider.dart';
 import '../../../shared/constants/env.dart';
 import '../../../shared/utils/launch_url.dart';
 import '../../../views/settings/settings_page.dart';
-import '../../../views/settings/theme_page.dart';
 import '../../check_updates/views/update_page.dart';
 import '../../feedback/views/feedback_page.dart';
+import '../../theme_options/views/themes_page.dart';
 
 /// The bottom menu sheet that appears when the menu button is pressed
 class BottomMenuSheet extends StatelessWidget {
