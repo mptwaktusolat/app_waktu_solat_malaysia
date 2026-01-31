@@ -530,6 +530,12 @@ abstract class AppLocalizations {
   /// **'Privacy Policy'**
   String get aboutPrivacy;
 
+  /// No description provided for @aboutRestartOnboardingPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart Onboarding Page'**
+  String get aboutRestartOnboardingPage;
+
   /// No description provided for @aboutFaq.
   ///
   /// In en, this message translates to:

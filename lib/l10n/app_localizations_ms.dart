@@ -248,6 +248,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get aboutPrivacy => 'Notis Privasi';
 
   @override
+  String get aboutRestartOnboardingPage => 'Mulakan Semula Halaman Pengenalan';
+
+  @override
   String get aboutFaq => 'Dokumentasi';
 
   @override

@@ -248,6 +248,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get aboutPrivacy => 'Privacy Policy';
 
   @override
+  String get aboutRestartOnboardingPage => 'Restart Onboarding Page';
+
+  @override
   String get aboutFaq => 'Documentation';
 
   @override

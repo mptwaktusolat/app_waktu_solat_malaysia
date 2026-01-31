@@ -13,6 +13,7 @@ import '../../shared/constants/constants.dart';
 import '../../shared/constants/env.dart';
 import '../../shared/utils/launch_url.dart';
 import '../debug_dialog.dart';
+import '../onboarding_page.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key, this.packageInfo});
@@ -193,6 +194,21 @@ class AboutAppPage extends StatelessWidget {
                       ),
                       onTap: () => LaunchUrl.launchInCustomTab(
                           url: envPrivacyPolicyLink),
+                    ),
+                  ),
+                  Card(
+                    clipBehavior: Clip.hardEdge,
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4)),
+                      title: Text(
+                        AppLocalizations.of(context)!
+                            .aboutRestartOnboardingPage,
+                        textAlign: TextAlign.center,
+                      ),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => OnboardingPage()),
+                      ),
                     ),
                   ),
                   const Divider(height: 16),
