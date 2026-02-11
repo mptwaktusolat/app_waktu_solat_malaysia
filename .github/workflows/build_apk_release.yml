@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.2
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -21,6 +21,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+          cache: true
 
       # File can be encoded to base64 on https://base64.guru/converter/encode/file
       - name: Decoding android/key.properties
@@ -39,7 +40,7 @@ jobs:
           echo ":white_check_mark: Build split apk" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload apks
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: apk-releases
           path: build/app/outputs/apk/release/*.apk
@@ -53,10 +54,10 @@ jobs:
     needs: build_android_apk
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6.0.2
 
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7.0.0
         with:
           name: apk-releases
 
