@@ -16,7 +16,7 @@ dependencies:
 
   admonitions: ^1.1.0
   app_settings: ^7.0.0
-  auto_start_flutter: ^0.2.1
+  auto_start_flutter: ^0.4.3
   cached_network_image: ^3.0.0
   device_info_plus: ^12.2.0
   dynamic_color: ^1.6.2
@@ -35,7 +35,7 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   gap: ^3.0.1
   geocoding: ^4.0.0
-  geolocator: ^13.0.1
+  geolocator: ^14.0.2
   get_storage: ^2.0.1
   google_fonts: ^8.0.0
   google_mobile_ads: ^7.0.0
