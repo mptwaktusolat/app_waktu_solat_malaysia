@@ -1,7 +1,7 @@
 name: waktusolatmalaysia
 description: App waktu solat seluruh Malaysia
 
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: "none"
 
 version: 2.13.9+168
 
@@ -69,24 +69,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/qibla/
     - assets/3d/
     - assets/images/
     - assets/OFL.txt
     - assets/json/
-  #   - assets/grouped.json
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     # Adding custom icon guide: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Custom-Icons
     - family: MyMptIcons
       fonts:
         - asset: assets/fonts/MyMptIcons.ttf
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
