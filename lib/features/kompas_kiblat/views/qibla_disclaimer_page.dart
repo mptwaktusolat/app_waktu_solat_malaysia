@@ -15,48 +15,126 @@ class QiblaDisclaimerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
-          child: Column(
-            children: [
-              const Spacer(),
-              FaIcon(FontAwesomeIcons.triangleExclamation,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > constraints.maxHeight &&
+                constraints.maxWidth >= kTabletBreakpoint) {
+              return _buildHorizontalLayout(context);
+            }
+            return _buildVerticalLayout(context);
+          },
+        ),
+      ),
+    );
+  }
+
+  /// Builds the horizontal layout for tablet/landscape mode
+  Widget _buildHorizontalLayout(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
+      child: Row(
+        children: [
+          // Left side: Warning icon only
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: FaIcon(FontAwesomeIcons.triangleExclamation,
                   color: Theme.of(context).brightness == Brightness.dark
                       ? Colors.green
                       : Colors.green.shade700,
-                  size: 45),
-              const SizedBox(height: 15),
-              SingleChildScrollView(
-                child: MarkdownBody(
-                  data: AppLocalizations.of(context)!.qiblaWarnBody,
-                  styleSheet: MarkdownStyleSheet(
-                      unorderedListAlign: WrapAlignment.spaceBetween),
-                ),
-              ),
-              SvgPicture.asset(
-                'assets/qibla/compass callibrate.svg',
-                width: 150,
-              ),
-              const Spacer(),
-              FilledButton(
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                child: Text(AppLocalizations.of(context)!.qiblaWarnProceed),
-                onPressed: () {
-                  GetStorage().write(kHasShowQiblaWarning, true);
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      // no need route settings here, already defined in bottom
-                      // ap bar icon
-                      builder: (_) => const QiblaPage(),
-                    ),
-                  );
-                },
-              )
-            ],
+                  size: 60),
+            ),
           ),
-        ),
+          const SizedBox(width: 24),
+          // Right side: Text content, SVG image, and button
+          Expanded(
+            flex: 3,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        MarkdownBody(
+                          data: AppLocalizations.of(context)!.qiblaWarnBody,
+                          styleSheet: MarkdownStyleSheet(
+                              unorderedListAlign: WrapAlignment.spaceBetween),
+                        ),
+                        SvgPicture.asset(
+                          'assets/qibla/compass callibrate.svg',
+                          width: 200,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  child: Text(AppLocalizations.of(context)!.qiblaWarnProceed),
+                  onPressed: () {
+                    GetStorage().write(kHasShowQiblaWarning, true);
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        // no need route settings here, already defined in bottom
+                        // ap bar icon
+                        builder: (_) => const QiblaPage(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Builds the vertical layout for mobile portrait mode
+  Widget _buildVerticalLayout(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
+      child: Column(
+        children: [
+          const Spacer(),
+          FaIcon(FontAwesomeIcons.triangleExclamation,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.green
+                  : Colors.green.shade700,
+              size: 45),
+          const SizedBox(height: 15),
+          SingleChildScrollView(
+            child: MarkdownBody(
+              data: AppLocalizations.of(context)!.qiblaWarnBody,
+              styleSheet: MarkdownStyleSheet(
+                  unorderedListAlign: WrapAlignment.spaceBetween),
+            ),
+          ),
+          SvgPicture.asset(
+            'assets/qibla/compass callibrate.svg',
+            width: 150,
+          ),
+          const Spacer(),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+            child: Text(AppLocalizations.of(context)!.qiblaWarnProceed),
+            onPressed: () {
+              GetStorage().write(kHasShowQiblaWarning, true);
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  // no need route settings here, already defined in bottom
+                  // ap bar icon
+                  builder: (_) => const QiblaPage(),
+                ),
+              );
+            },
+          )
+        ],
       ),
     );
   }
