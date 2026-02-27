@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import 'base_share_card.dart';
 
@@ -11,6 +12,7 @@ class ShareCard2 extends BaseShareCard {
     required String formattedDate,
     required String location,
     required Map<String, String> prayerTimes,
+    required HijriDate hijriDate,
   }) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
