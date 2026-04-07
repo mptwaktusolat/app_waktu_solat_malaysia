@@ -77,17 +77,17 @@ abstract class BaseShareCard extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/app-logo-minimal-50w.png',
-          height: 24,
-          width: 24,
-          color: Theme.of(context).colorScheme.primary,
+          height: 12,
+          width: 12,
+          color: Colors.white.withAlpha(200),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 4),
         Text(
           AppLocalizations.of(context)!.appTitle,
           style: GoogleFonts.dmSans(
-            fontSize: 16,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
-            color: Theme.of(context).colorScheme.primary,
+            color: Colors.white.withAlpha(200),
           ),
         ),
       ],

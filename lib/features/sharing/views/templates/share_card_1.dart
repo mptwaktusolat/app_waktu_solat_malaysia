@@ -135,38 +135,61 @@ class ShareCard1 extends BaseShareCard {
                         color: colorScheme.scrim.withValues(alpha: 0.55),
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      child: Row(
-                        children: prayerTimes.entries
-                            .map(
-                              (entry) => Expanded(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      entry.key.toUpperCase(),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.archivo(
-                                        color: colorScheme.onPrimary,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 10,
-                                      ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          const horizontalSpacing = 8.0;
+                          const runSpacing = 10.0;
+                          const minItemWidth = 58.0;
+
+                          final itemCount = prayerTimes.length;
+                          final maxItemsPerRow = itemCount == 0
+                              ? 1
+                              : (constraints.maxWidth /
+                                      (minItemWidth + horizontalSpacing))
+                                  .floor()
+                                  .clamp(1, itemCount);
+
+                          final itemWidth = (constraints.maxWidth -
+                                  ((maxItemsPerRow - 1) * horizontalSpacing)) /
+                              maxItemsPerRow;
+
+                          return Wrap(
+                            spacing: horizontalSpacing,
+                            runSpacing: runSpacing,
+                            children: prayerTimes.entries
+                                .map(
+                                  (entry) => SizedBox(
+                                    width: itemWidth,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          entry.key.toUpperCase(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.archivo(
+                                            color: colorScheme.onPrimary,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 2),
+                                        Text(
+                                          entry.value,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.archivo(
+                                            color: colorScheme.onPrimary,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(height: 2),
-                                    Text(
-                                      entry.value,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.archivo(
-                                        color: colorScheme.onPrimary,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
-                            .toList(),
+                                  ),
+                                )
+                                .toList(),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(height: 10),
