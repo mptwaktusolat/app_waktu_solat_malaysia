@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../firebase_options.dart';
@@ -56,8 +56,7 @@ class StartupRoutine {
   static Future<void> _configureLocalTimeZone() async {
     // use for notification
     tz.initializeTimeZones();
-    const String timeZoneName = 'Asia/Kuala_Lumpur';
-    tz.setLocalLocation(tz.getLocation(timeZoneName));
+    tz.setLocalLocation(tz.getLocation('Asia/Kuala_Lumpur'));
   }
 
   /// Initialize GetStorage with default values
