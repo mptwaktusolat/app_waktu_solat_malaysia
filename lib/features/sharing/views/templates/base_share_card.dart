@@ -7,6 +7,7 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/extensions/date_time_extensions.dart';
+import '../../../../shared/services/location_service/location_database.dart';
 import '../../../prayer_time/providers/prayer_time_provider.dart';
 
 /// A base class for share card widgets that can be captured as images.
@@ -38,9 +39,10 @@ abstract class BaseShareCard extends StatelessWidget {
     final String formattedDate = DateFormat.yMMMMEEEEd(
       Localizations.localeOf(context).languageCode,
     ).format(now);
-    final String location =
+    final String currentJakimCode =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;
+    final String locationDetail = LocationDatabase.daerah(currentJakimCode);
 
     final today = Provider.of<PrayerTimeProvider>(context, listen: false)
         .getTodayPrayer();
@@ -63,7 +65,7 @@ abstract class BaseShareCard extends StatelessWidget {
       child: buildCardContent(
         context,
         formattedDate: formattedDate,
-        location: location,
+        location: '$currentJakimCode - $locationDetail',
         prayerTimes: prayerTimes,
         hijriDate: hijriDate,
       ),

@@ -31,11 +31,11 @@ class ShareCard1 extends BaseShareCard {
     final hijriDateFormatted = hijriDate.dMMM();
 
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(8),
       child: AspectRatio(
         aspectRatio: 1,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(12),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -62,6 +62,7 @@ class ShareCard1 extends BaseShareCard {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
+                    // Year widget
                     Text(
                       '${hijriYear}H / ${masihiYear}M',
                       textAlign: TextAlign.center,
@@ -72,6 +73,7 @@ class ShareCard1 extends BaseShareCard {
                       ),
                     ),
                     const SizedBox(height: 8),
+                    // Title widget
                     Text(
                       'WAKTU SOLAT',
                       textAlign: TextAlign.center,
@@ -82,6 +84,7 @@ class ShareCard1 extends BaseShareCard {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    // Tarikh widget
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 16,
@@ -103,6 +106,7 @@ class ShareCard1 extends BaseShareCard {
                       ),
                     ),
                     const Spacer(),
+                    // Zone widget
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(
@@ -111,7 +115,7 @@ class ShareCard1 extends BaseShareCard {
                       ),
                       decoration: BoxDecoration(
                         color: colorScheme.surface.withValues(alpha: 0.9),
-                        borderRadius: BorderRadius.circular(999),
+                        borderRadius: BorderRadius.circular(99),
                       ),
                       child: Text(
                         location,
@@ -120,11 +124,12 @@ class ShareCard1 extends BaseShareCard {
                         style: GoogleFonts.archivo(
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
-                          fontSize: 13,
+                          fontSize: 12,
                         ),
                       ),
                     ),
                     const SizedBox(height: 10),
+                    // Prayer times widget
                     Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(
@@ -193,6 +198,7 @@ class ShareCard1 extends BaseShareCard {
                       ),
                     ),
                     const SizedBox(height: 10),
+                    // App logo widget
                     buildAppLogo(context),
                   ],
                 ),
