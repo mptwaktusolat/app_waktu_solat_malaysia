@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import 'base_share_card.dart';
 
 class ShareCard2 extends BaseShareCard {
   const ShareCard2({super.key, super.repaintBoundaryKey});
+
+  @override
+  Widget buildAppLogo(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          'assets/images/app-logo-minimal-50w.png',
+          height: 20,
+          width: 20,
+          color: Colors.teal,
+        ),
+        const SizedBox(width: 4),
+        Text(
+          AppLocalizations.of(context)!.appTitle,
+          style: GoogleFonts.dmSerifText(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.teal,
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget buildCardContent(
