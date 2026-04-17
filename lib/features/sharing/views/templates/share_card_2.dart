@@ -51,9 +51,9 @@ class ShareCard2 extends BaseShareCard {
           const SizedBox(height: 10),
           Text(
             formattedDate,
-            style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+            style: TextStyle(fontSize: 16, color: Colors.grey[900]),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 4),
           Text(
             location,
             style: TextStyle(fontSize: 14, color: Colors.grey[600]),
@@ -68,7 +68,7 @@ class ShareCard2 extends BaseShareCard {
                   Text(
                     entry.key,
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+                        fontSize: 20, fontWeight: FontWeight.w400),
                   ),
                   Text(
                     entry.value,

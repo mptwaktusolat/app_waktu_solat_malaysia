@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
@@ -142,10 +143,14 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
     final xFile =
         XFile.fromData(imageBytes, name: tempFileName, mimeType: 'image/jpeg');
 
+    final todayFormatttedDate =
+        DateFormat('dd/MM/yyyy', localizations.localeName)
+            .format(DateTime.now());
+
     // Share the image
     await SharePlus.instance.share(ShareParams(
       files: [xFile],
-      text: localizations.shareSubject,
+      text: localizations.shareSubject(todayFormatttedDate),
     ));
   }
 }
