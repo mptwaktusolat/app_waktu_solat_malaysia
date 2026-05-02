@@ -43,15 +43,15 @@ class ShareCard1 extends BaseShareCard {
                 'assets/images/mosque_bgs/pexels-rohit-george-1141376880-31730748-optim.jpg',
                 fit: BoxFit.cover,
               ),
+              // darken the image with a dark gradient
               DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      colorScheme.scrim.withValues(alpha: 0.45),
-                      colorScheme.scrim.withValues(alpha: 0.5),
-                      colorScheme.scrim.withValues(alpha: 0.7),
+                      colorScheme.shadow.withValues(alpha: 0.1),
+                      colorScheme.shadow.withValues(alpha: 0.5),
                     ],
                   ),
                 ),
@@ -67,7 +67,7 @@ class ShareCard1 extends BaseShareCard {
                       '${hijriYear}H / ${masihiYear}M',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.archivo(
-                        color: colorScheme.onPrimary,
+                        color: Colors.white,
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                       ),
@@ -78,7 +78,7 @@ class ShareCard1 extends BaseShareCard {
                       'WAKTU SOLAT',
                       textAlign: TextAlign.center,
                       style: GoogleFonts.archivo(
-                        color: colorScheme.onPrimary,
+                        color: Colors.white,
                         fontWeight: FontWeight.w800,
                         fontSize: 32,
                       ),
@@ -137,7 +137,7 @@ class ShareCard1 extends BaseShareCard {
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
-                        color: colorScheme.scrim.withValues(alpha: 0.55),
+                        color: colorScheme.surface.withValues(alpha: 0.9),
                         borderRadius: BorderRadius.circular(14),
                       ),
                       child: LayoutBuilder(
@@ -172,7 +172,7 @@ class ShareCard1 extends BaseShareCard {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.archivo(
-                                            color: colorScheme.onPrimary,
+                                            color: colorScheme.onSurface,
                                             fontWeight: FontWeight.w700,
                                             fontSize: 10,
                                           ),
@@ -183,7 +183,7 @@ class ShareCard1 extends BaseShareCard {
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: GoogleFonts.archivo(
-                                            color: colorScheme.onPrimary,
+                                            color: colorScheme.onSurface,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 13,
                                           ),

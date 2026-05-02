@@ -40,6 +40,8 @@ class ShareCard2 extends BaseShareCard {
     required Map<String, String> prayerTimes,
     required HijriDate hijriDate,
   }) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Column(
@@ -51,12 +53,15 @@ class ShareCard2 extends BaseShareCard {
           const SizedBox(height: 10),
           Text(
             formattedDate,
-            style: TextStyle(fontSize: 16, color: Colors.grey[900]),
+            style: TextStyle(fontSize: 16, color: colorScheme.onSurface),
           ),
           const SizedBox(height: 4),
           Text(
             location,
-            style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+            style: TextStyle(
+              fontSize: 14,
+              color: colorScheme.onSurface.withValues(alpha: 0.8),
+            ),
           ),
           const SizedBox(height: 20),
           ...prayerTimes.entries.map((entry) {
