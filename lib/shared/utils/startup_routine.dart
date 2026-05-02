@@ -38,8 +38,8 @@ class StartupRoutine {
     };
 
     // Disable analytics & crashlytics when in debug mode
-    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(!kDebugMode);
-    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!kDebugMode);
+    FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(kReleaseMode);
+    FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(kReleaseMode);
 
     await _configureLocalTimeZone();
     await initNotifications();
