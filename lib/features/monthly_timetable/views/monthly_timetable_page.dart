@@ -122,12 +122,17 @@ class _MonthlyTimetablePageState extends State<MonthlyTimetablePage> {
               future: _waktuSolatDataFuture,
               builder: (_, AsyncSnapshot<MPTWaktuSolatV2> snapshot) {
                 if (snapshot.hasData) {
-                  return PrayerDataTable(
-                    todayIndex: _todayIndex,
-                    model: snapshot.data!,
-                    year: _year,
-                    month: _month,
-                    is12HourFormat: _is12HourFormat,
+                  return Padding(
+                    // Add padding to avoid the data blocked by FAB
+                    padding: const EdgeInsets.only(
+                        bottom: kBottomNavigationBarHeight * 2),
+                    child: PrayerDataTable(
+                      todayIndex: _todayIndex,
+                      model: snapshot.data!,
+                      year: _year,
+                      month: _month,
+                      is12HourFormat: _is12HourFormat,
+                    ),
                   );
                 }
                 if (snapshot.hasError) {
