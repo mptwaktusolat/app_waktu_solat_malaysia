@@ -72,12 +72,12 @@ class ShareCard2 extends BaseShareCard {
                 children: [
                   Text(
                     entry.key,
-                    style: const TextStyle(
+                    style: GoogleFonts.archivo(
                         fontSize: 20, fontWeight: FontWeight.w400),
                   ),
                   Text(
                     entry.value,
-                    style: const TextStyle(
+                    style: GoogleFonts.archivo(
                         fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ],

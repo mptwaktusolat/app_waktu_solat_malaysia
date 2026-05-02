@@ -36,7 +36,9 @@ abstract class BaseShareCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedDate = DateFormat('EEEE, d MMM yyyy').format(now);
+    final String locale = Localizations.localeOf(context).languageCode;
+    final String formattedDate =
+        DateFormat('EEEE, d MMM yyyy', locale).format(now);
     final String currentJakimCode =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;

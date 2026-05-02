@@ -289,6 +289,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shareImageFailed => 'Failed to share image';
 
   @override
+  String get sharePrayerTimeTitle => 'Prayer Time';
+
+  @override
   String shareSubject(String date) {
     return 'Malaysia prayer time for today: $date';
   }

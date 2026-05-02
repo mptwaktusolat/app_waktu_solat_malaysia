@@ -289,6 +289,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get shareImageFailed => 'Gagal berkongsi gambar';
 
   @override
+  String get sharePrayerTimeTitle => 'Waktu Solat';
+
+  @override
   String shareSubject(String date) {
     return 'Waktu Solat Malaysia untuk hari ini: $date';
   }

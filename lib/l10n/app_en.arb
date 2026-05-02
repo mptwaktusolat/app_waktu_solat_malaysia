@@ -159,6 +159,7 @@
   "shareCopy": "Copy to clipboard",
   "shareImage": "Share as Image",
   "shareImageFailed": "Failed to share image",
+  "sharePrayerTimeTitle": "Prayer Time",
   "shareSubject": "Malaysia prayer time for today: {date}",
   "@shareSubject": {
     "placeholders": {

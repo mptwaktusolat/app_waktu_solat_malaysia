@@ -608,6 +608,12 @@ abstract class AppLocalizations {
   /// **'Failed to share image'**
   String get shareImageFailed;
 
+  /// No description provided for @sharePrayerTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Time'**
+  String get sharePrayerTimeTitle;
+
   /// No description provided for @shareSubject.
   ///
   /// In en, this message translates to:

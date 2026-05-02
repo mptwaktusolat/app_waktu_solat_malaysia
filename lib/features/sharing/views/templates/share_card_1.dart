@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
+import '../../../../l10n/app_localizations.dart';
 import 'base_share_card.dart';
 
 class ShareCard1 extends BaseShareCard {
@@ -75,7 +76,9 @@ class ShareCard1 extends BaseShareCard {
                     const SizedBox(height: 8),
                     // Title widget
                     Text(
-                      'WAKTU SOLAT',
+                      AppLocalizations.of(context)!
+                          .sharePrayerTimeTitle
+                          .toUpperCase(),
                       textAlign: TextAlign.center,
                       style: GoogleFonts.archivo(
                         color: Colors.white,
