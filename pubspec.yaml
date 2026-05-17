@@ -3,7 +3,7 @@ description: App waktu solat seluruh Malaysia
 
 publish_to: "none"
 
-version: 2.13.11+170
+version: 2.14.0-pre.2+172
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -70,11 +70,12 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/qibla/
     - assets/3d/
     - assets/images/
-    - assets/OFL.txt
+    - assets/images/mosque_bgs/
     - assets/json/
+    - assets/OFL.txt
+    - assets/qibla/
   fonts:
     # Adding custom icon guide: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Custom-Icons
     - family: MyMptIcons

@@ -1,8 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../../providers/locale_provider.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../shared/utils/screenshot_widget.dart';
 import 'templates/share_card_1.dart';
 import 'templates/share_card_2.dart';
@@ -54,6 +60,11 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
       appBar: AppBar(
         title: Text(localizations.shareImage),
         elevation: 0,
+        actions: [
+          // show toggle only when debugging
+          if (kDebugMode || GetStorage().read(kDiscoveredDeveloperOption))
+            _buildLocaleToggle(context),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -82,6 +93,24 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
           ],
         ),
       ),
+    );
+  }
+
+  /// Builds the locale toggle button for switching between English and Malay.
+  Widget _buildLocaleToggle(BuildContext context) {
+    return Consumer<LocaleProvider>(
+      builder: (context, localeProvider, _) {
+        final isMs = localeProvider.appLocale == 'ms';
+        return TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.amber,
+          ),
+          onPressed: () {
+            localeProvider.appLocale = isMs ? 'en' : 'ms';
+          },
+          child: Text(isMs ? 'EN' : 'MS'),
+        );
+      },
     );
   }
 
@@ -142,10 +171,14 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
     final xFile =
         XFile.fromData(imageBytes, name: tempFileName, mimeType: 'image/jpeg');
 
+    final todayFormatttedDate =
+        DateFormat('dd/MM/yyyy', localizations.localeName)
+            .format(DateTime.now());
+
     // Share the image
     await SharePlus.instance.share(ShareParams(
       files: [xFile],
-      text: localizations.shareSubject,
+      text: localizations.shareSubject(todayFormatttedDate),
     ));
   }
 }

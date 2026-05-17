@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -106,8 +107,14 @@ class ShareFloatingActionButton extends StatelessWidget {
       use12hourFormat: use12hourFormat,
     ).formatPlainText();
 
+    final todayFormatttedDate =
+        DateFormat('dd/MM/yyyy', localizations.localeName)
+            .format(DateTime.now());
+
     SharePlus.instance.share(
-      ShareParams(text: message, subject: localizations.shareSubject),
+      ShareParams(
+          text: message,
+          subject: localizations.shareSubject(todayFormatttedDate)),
     );
   }
 

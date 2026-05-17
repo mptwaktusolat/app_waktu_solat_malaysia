@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/extensions/date_time_extensions.dart';
+import '../../../../shared/services/location_service/location_database.dart';
 import '../../../prayer_time/providers/prayer_time_provider.dart';
 
 /// A base class for share card widgets that can be captured as images.
@@ -27,17 +30,19 @@ abstract class BaseShareCard extends StatelessWidget {
     required String formattedDate,
     required String location,
     required Map<String, String> prayerTimes,
+    required HijriDate hijriDate,
   });
 
   @override
   Widget build(BuildContext context) {
     final DateTime now = DateTime.now();
-    final String formattedDate = DateFormat.yMMMMEEEEd(
-      Localizations.localeOf(context).languageCode,
-    ).format(now);
-    final String location =
+    final String locale = Localizations.localeOf(context).languageCode;
+    final String formattedDate =
+        DateFormat('EEEE, d MMM yyyy', locale).format(now);
+    final String currentJakimCode =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;
+    final String locationDetail = LocationDatabase.daerah(currentJakimCode);
 
     final today = Provider.of<PrayerTimeProvider>(context, listen: false)
         .getTodayPrayer();
@@ -54,12 +59,15 @@ abstract class BaseShareCard extends StatelessWidget {
       AppLocalizations.of(context)!.ishaName: today.isha.readable(true),
     };
 
+    final hijriDate = today.hijri;
+
     return Material(
       child: buildCardContent(
         context,
         formattedDate: formattedDate,
-        location: location,
+        location: '$currentJakimCode - $locationDetail',
         prayerTimes: prayerTimes,
+        hijriDate: hijriDate,
       ),
     );
   }
@@ -71,14 +79,18 @@ abstract class BaseShareCard extends StatelessWidget {
       children: [
         Image.asset(
           'assets/images/app-logo-minimal-50w.png',
-          height: 24,
-          width: 24,
-          color: Theme.of(context).colorScheme.primary,
+          height: 12,
+          width: 12,
+          color: Colors.white.withAlpha(200),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: 4),
         Text(
           AppLocalizations.of(context)!.appTitle,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: GoogleFonts.dmSans(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.white.withAlpha(200),
+          ),
         ),
       ],
     );
