@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/locale_provider.dart';
+import '../../../shared/constants/constants.dart';
 import '../../../shared/utils/screenshot_widget.dart';
 import 'templates/share_card_1.dart';
 import 'templates/share_card_2.dart';
@@ -60,7 +62,8 @@ class _ShareImagePreviewPageState extends State<ShareImagePreviewPage> {
         elevation: 0,
         actions: [
           // show toggle only when debugging
-          if (kDebugMode) _buildLocaleToggle(context),
+          if (kDebugMode || GetStorage().read(kDiscoveredDeveloperOption))
+            _buildLocaleToggle(context),
         ],
       ),
       body: Container(
