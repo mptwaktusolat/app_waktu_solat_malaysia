@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:restart_app/restart_app.dart';
 
+import '../providers/setting_provider.dart';
 import '../shared/constants/constants.dart';
 import '../shared/services/location_service/location_data.dart';
 import 'dev/widget_data_page.dart';
@@ -65,6 +67,15 @@ class DebugDialog extends StatelessWidget {
           ListTile(
             title: const Text('Flutter Version'),
             subtitle: Text(getFlutterVersionInfo()),
+          ),
+          ListTile(
+            title: const Text('Turn off developer mode'),
+            onTap: () {
+              Provider.of<SettingProvider>(context, listen: false)
+                  .isDeveloperOption = false;
+              Fluttertoast.showToast(msg: 'Developer mode turned off');
+              Navigator.of(context).pop();
+            },
           ),
         ],
       ),
