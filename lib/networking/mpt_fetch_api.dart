@@ -17,7 +17,8 @@ class MptApiFetch {
     final year = DateTime.now().year;
     final month = DateTime.now().month;
 
-    final requestCacheKey = 'waktusolat-v2-cache-$location-$year-$month';
+    // Build cache key
+    final requestCacheKey = '$kNetworkCacheKeyPrefix-$location-$year-$month';
     final cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 

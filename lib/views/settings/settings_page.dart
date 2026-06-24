@@ -228,7 +228,7 @@ class ClearCachedMptResponse extends StatelessWidget {
           final cachedKeys = GetStorage()
               .getKeys()
               .where((element) =>
-                  element.toString().startsWith('mpt-server-cache'))
+                  element.toString().startsWith(kNetworkCacheKeyPrefix))
               .toList();
           // delete the cache file
           await cachedKeys.forEach((element) => GetStorage().remove(element));
