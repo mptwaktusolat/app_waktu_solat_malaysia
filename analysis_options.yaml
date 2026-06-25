@@ -30,3 +30,8 @@ linter:
     prefer_final_locals: true
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+# Recommended fixes for this issue: https://github.com/Dart-Code/Dart-Code/issues/6073
+analyzer:
+  exclude:
+    - build/
