@@ -7,9 +7,9 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../networking/mpt_fetch_api.dart';
 import '../../../shared/constants/constants.dart';
-import '../../../shared/constants/env.dart';
 import '../../../shared/utils/date_time_utils.dart';
 import '../components/pdf_timetable_download_sheet.dart';
+import '../data/mosque_background_images.dart';
 import 'components/prayer_data_table.dart';
 import 'monthly_timetable_settings.dart';
 
@@ -77,8 +77,8 @@ class _MonthlyTimetablePageState extends State<MonthlyTimetablePage> {
                 titlePadding: const EdgeInsetsDirectional.only(
                     start: 4, bottom: 16, end: 4),
                 background: CachedNetworkImage(
-                  imageUrl: Uri.https(
-                          envMediaApiBaseHost, '/api/mosque/$_locationCode')
+                  imageUrl: MosqueBackgroundImages.getMosqueUriFromZoneCode(
+                          _locationCode)
                       .toString(),
                   fit: BoxFit.cover,
                   color: Colors.black.withValues(alpha: 0.7),
