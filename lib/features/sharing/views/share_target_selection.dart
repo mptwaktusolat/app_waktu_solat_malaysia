@@ -30,7 +30,7 @@ class ShareTargetSelection extends StatelessWidget {
             context: context,
             title: appLocalizations.sharePlainTitle,
             subtitle: appLocalizations.sharePlainDesc,
-            icon: FontAwesomeIcons.font,
+            faIcon: FontAwesomeIcons.font,
             color: colorScheme.secondary,
             target: ShareTarget.universal,
           ),
@@ -38,7 +38,7 @@ class ShareTargetSelection extends StatelessWidget {
             context: context,
             title: appLocalizations.shareWhatsappTitle,
             subtitle: appLocalizations.shareWhatsappDesc,
-            icon: FontAwesomeIcons.whatsapp,
+            faIcon: FontAwesomeIcons.whatsapp,
             color: colorScheme.secondary,
             target: ShareTarget.whatsapp,
           ),
@@ -46,7 +46,7 @@ class ShareTargetSelection extends StatelessWidget {
             context: context,
             title: appLocalizations.shareCopy,
             subtitle: null,
-            icon: FontAwesomeIcons.clone,
+            faIcon: FontAwesomeIcons.clone,
             color: colorScheme.secondary,
             target: ShareTarget.copy,
           ),
@@ -54,7 +54,7 @@ class ShareTargetSelection extends StatelessWidget {
             context: context,
             title: appLocalizations.shareImage,
             subtitle: null,
-            icon: FontAwesomeIcons.image,
+            faIcon: FontAwesomeIcons.image,
             color: colorScheme.secondary,
             target: ShareTarget.image,
           ),
@@ -67,7 +67,7 @@ class ShareTargetSelection extends StatelessWidget {
   Widget _buildShareOption({
     required BuildContext context,
     required String title,
-    required IconData icon,
+    required FaIconData faIcon,
     required Color color,
     required ShareTarget target,
     String? subtitle,
@@ -75,7 +75,7 @@ class ShareTargetSelection extends StatelessWidget {
     return ListTile(
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle) : null,
-      trailing: FaIcon(icon, color: color),
+      trailing: FaIcon(faIcon, color: color),
       onTap: () {
         Navigator.pop(context);
         onShareTargetSelected(target);
