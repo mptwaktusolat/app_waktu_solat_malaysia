@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="100" height="100" src="./android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" alt="App icon" />
+</p>
+
 # Malaysia Prayer Time app / Apl Waktu Solat Malaysia
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=flat-square&logo=Flutter&logoColor=white)
