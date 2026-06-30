@@ -27,7 +27,8 @@ class ShareFloatingActionButton extends StatelessWidget {
       final localizations = AppLocalizations.of(context)!;
 
       return FloatingActionButton(
-        mini: true,
+        backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onTertiaryContainer,
         tooltip: localizations.shareTooltip,
         onPressed: () => showShareDialog(context),
         child: FaIcon(FontAwesomeIcons.shareNodes),

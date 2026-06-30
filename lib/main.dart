@@ -68,14 +68,16 @@ class MyApp extends StatelessWidget {
               theme: ThemeData(
                 colorScheme: lightDynamic ??
                     ColorScheme.fromSeed(seedColor: _primaryColour),
+                cardTheme:
+                    CardThemeData(surfaceTintColor: lightDynamic?.surfaceTint),
                 useMaterial3: true,
               ),
               darkTheme: ThemeData.dark().copyWith(
                 colorScheme: darkDynamic ??
                     ColorScheme.fromSeed(
-                      seedColor: _primaryColour,
-                      brightness: Brightness.dark,
-                    ),
+                        seedColor: _primaryColour, brightness: Brightness.dark),
+                cardTheme:
+                    CardThemeData(surfaceTintColor: darkDynamic?.surfaceTint),
               ),
               themeMode: themeValue.themeMode,
               localizationsDelegates: AppLocalizations.localizationsDelegates,

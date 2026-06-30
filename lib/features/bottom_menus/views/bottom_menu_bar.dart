@@ -21,89 +21,95 @@ class BottomMenuBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomAppBar(
-      child: Row(
-        children: [
-          Consumer<UpdaterProvider>(builder: (_, setting, __) {
-            return IconButton(
-              tooltip: AppLocalizations.of(context)?.menuTooltip,
-              icon: setting.needForUpdate
-                  ? Badge(
-                      offset: Offset(5, -5),
-                      label: FaIcon(
-                        FontAwesomeIcons.download,
-                        size: 8,
-                        color: Theme.of(context).colorScheme.onError,
+    return Theme(
+      data: ThemeData(
+          // Set theme icon for the whole icon widget for this component
+          iconTheme: IconThemeData(
+              color: Theme.of(context).colorScheme.onPrimaryContainer)),
+      child: BottomAppBar(
+        color: Theme.of(context).colorScheme.primaryContainer.withAlpha(100),
+        child: Row(
+          children: [
+            Consumer<UpdaterProvider>(builder: (_, setting, __) {
+              return IconButton(
+                tooltip: AppLocalizations.of(context)?.menuTooltip,
+                icon: setting.needForUpdate
+                    ? Badge(
+                        offset: Offset(5, -5),
+                        label: FaIcon(
+                          FontAwesomeIcons.download,
+                          size: 8,
+                          color: Theme.of(context).colorScheme.onError,
+                        ),
+                        child: FaIcon(FontAwesomeIcons.bars),
+                      )
+                    : FaIcon(FontAwesomeIcons.bars),
+                onPressed: () => _showMenuModalBottomSheet(context),
+              ).withHotspot(
+                order: 3,
+                title: AppLocalizations.of(context)!
+                    .onboardingCoachmarkSettingTitle,
+                text: AppLocalizations.of(context)!
+                    .onboardingCoachmarkSettingContent,
+                flow: kOnboardingCoachmarkFlow,
+              );
+            }),
+            // These buttons were grouped into Row because we want to combine
+            // the coachmark
+            Row(
+              children: [
+                IconButton(
+                  icon: FaIcon(FontAwesomeIcons.calendarDays),
+                  tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        settings:
+                            const RouteSettings(name: 'Full Prayer Timetable'),
+                        builder: (_) => const MonthlyTimetablePage(),
                       ),
-                      child: const FaIcon(FontAwesomeIcons.bars),
-                    )
-                  : const FaIcon(FontAwesomeIcons.bars),
-              onPressed: () => _showMenuModalBottomSheet(context),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: FaIcon(FontAwesomeIcons.kaaba),
+                  tooltip: AppLocalizations.of(context)?.qiblaTitle,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        settings: const RouteSettings(name: 'Qibla'),
+                        builder: (_) => GetStorage().read(kHasShowQiblaWarning)
+                            ? const QiblaPage()
+                            : const QiblaDisclaimerPage(),
+                      ),
+                    );
+                  },
+                ),
+                IconButton(
+                  icon: Icon(MyMptIcons.tasbih_plain),
+                  tooltip: "Tasbih",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        settings: const RouteSettings(name: 'Tasbih'),
+                        builder: (_) => const TasbihPage(),
+                      ),
+                    );
+                  },
+                )
+              ],
             ).withHotspot(
-              order: 3,
-              title:
-                  AppLocalizations.of(context)!.onboardingCoachmarkSettingTitle,
+              order: 2,
+              title: AppLocalizations.of(context)!
+                  .onboardingCoachmarkUtilitiesTitle,
               text: AppLocalizations.of(context)!
-                  .onboardingCoachmarkSettingContent,
+                  .onboardingCoachmarkUtilitiesContent,
               flow: kOnboardingCoachmarkFlow,
-            );
-          }),
-          // These buttons were grouped into Row because we want to combine
-          // the coachmark
-          Row(
-            children: [
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.calendarDays),
-                tooltip: AppLocalizations.of(context)!.menuTimetableTooltip,
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      settings:
-                          const RouteSettings(name: 'Full Prayer Timetable'),
-                      builder: (_) => const MonthlyTimetablePage(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const FaIcon(FontAwesomeIcons.kaaba),
-                // color: iconColour,
-                tooltip: AppLocalizations.of(context)?.qiblaTitle,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      settings: const RouteSettings(name: 'Qibla'),
-                      builder: (_) => GetStorage().read(kHasShowQiblaWarning)
-                          ? const QiblaPage()
-                          : const QiblaDisclaimerPage(),
-                    ),
-                  );
-                },
-              ),
-              IconButton(
-                icon: const Icon(MyMptIcons.tasbih_plain),
-                tooltip: "Tasbih",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      settings: const RouteSettings(name: 'Tasbih'),
-                      builder: (_) => const TasbihPage(),
-                    ),
-                  );
-                },
-              )
-            ],
-          ).withHotspot(
-            order: 2,
-            title:
-                AppLocalizations.of(context)!.onboardingCoachmarkUtilitiesTitle,
-            text: AppLocalizations.of(context)!
-                .onboardingCoachmarkUtilitiesContent,
-            flow: kOnboardingCoachmarkFlow,
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

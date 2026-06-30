@@ -256,10 +256,7 @@ class PrayerTimeCard extends StatelessWidget {
     return Consumer<SettingProvider>(
       builder: (_, settings, __) => Container(
         constraints: const BoxConstraints(maxWidth: 320),
-        margin: EdgeInsets.symmetric(
-          vertical: MediaQuery.of(context).size.height / 320,
-        ),
-        height: isOptional ? 55 : 80,
+        height: isOptional ? 55 : 78,
         child: Card(
           clipBehavior: Clip.hardEdge,
           child: InkWell(
