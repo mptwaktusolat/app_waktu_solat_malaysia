@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -174,9 +175,12 @@ class AboutAppPage extends StatelessWidget {
                           applicationVersion: packageInfo!.version,
                           applicationIcon: Hero(
                             tag: kAppIconTag,
-                            child: Image.asset(
-                              'assets/images/app-icon-small.png',
-                              width: 70,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(18),
+                              child: Image.asset(
+                                'assets/images/app-icon-small.png',
+                                width: 70,
+                              ),
                             ),
                           ),
                         );
