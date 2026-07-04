@@ -196,6 +196,7 @@ class AboutAppPage extends StatelessWidget {
                           url: envPrivacyPolicyLink),
                     ),
                   ),
+                  // Restart Onboarding Page
                   Card(
                     clipBehavior: Clip.hardEdge,
                     child: ListTile(
@@ -206,9 +207,13 @@ class AboutAppPage extends StatelessWidget {
                             .aboutRestartOnboardingPage,
                         textAlign: TextAlign.center,
                       ),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => OnboardingPage()),
-                      ),
+                      onTap: () {
+                        // set to false so that the onboarding page will be shown again
+                        GetStorage().write(kCoachmarkOnboardingShown, false);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => OnboardingPage()),
+                        );
+                      },
                     ),
                   ),
                   const Divider(height: 16),
