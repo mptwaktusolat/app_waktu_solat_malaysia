@@ -65,7 +65,7 @@ jobs:
         run: curl -s https://gist.githubusercontent.com/iqfareez/f57405016cc8bcc51cdcd2879c88807a/raw/5d9bbed7231a9e56bf24b88ab5286cee73dae173/rename_apk.sh | bash -s MPT .
 
       - name: Upload file to the assets release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3.0.1
         with:
           files: "*.apk"
 
