@@ -10,8 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../firebase_options.dart';
 import '../../views/settings/notification_page_setting.dart';
@@ -50,6 +52,15 @@ class StartupRoutine {
     await _initializeJakimZoneData();
 
     _registerLicenses();
+
+    await _configureDefaultUserAgent();
+  }
+
+  /// Configure user agent when calling waktu solat API
+  static Future<void> _configureDefaultUserAgent() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    final uaString = '${packageInfo.packageName}/${packageInfo.version}';
+    WaktuSolatApi.setUserAgent(uaString);
   }
 
   /// Configure local timezone for notifications
