@@ -58,7 +58,7 @@ dependencies:
   waktusolat_api_client:
     git:
       url: https://github.com/mptwaktusolat/waktusolat_api_client.git
-      ref: feature/add-chopper
+      ref: main
 
 dev_dependencies:
   flutter_test:

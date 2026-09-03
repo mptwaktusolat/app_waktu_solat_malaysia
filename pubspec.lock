@@ -1430,8 +1430,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "feature/add-chopper"
-      resolved-ref: "3585dce96551a69a060ee2e8ff7af8b6bc8ec924"
+      ref: main
+      resolved-ref: e842eb684d6faf1d3413b56bfade5bfe693dda6b
       url: "https://github.com/mptwaktusolat/waktusolat_api_client.git"
     source: git
     version: "2.0.0"
