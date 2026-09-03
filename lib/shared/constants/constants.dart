@@ -38,5 +38,5 @@ const kAppIconTag = 'appIconTag';
 // analytics events name
 const kEventFetch = 'api_fetch';
 
-// cache key
-const kNetworkCacheKeyPrefix = 'waktusolat-v2-cache';
+// cache key. Update with random number to force bust.
+const kNetworkCacheKeyPrefix = 'waktusolat-v2-cache-sNlDFpJxA3';

@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
@@ -22,8 +21,8 @@ class MptApiFetch {
     final cacheData = _readFromCache(requestCacheKey);
     if (cacheData != null) return cacheData;
 
-    final MPTWaktuSolatV2 data =
-        await WaktuSolat.getWaktuSolatV2(location, year: year, month: month);
+    final MPTWaktuSolatV2 data = await WaktuSolat.api.solatV2
+        .getPrayerTimeByZone(location, year: year, month: month);
     _saveToCache(requestCacheKey, data);
 
     return data;
@@ -58,10 +57,9 @@ class MptApiFetch {
     if (await file.exists()) return file;
 
     // If not exist, download from server
-    final url =
-        WaktuSolat.getJadualSolatDownloadUrl(zone, year: year, month: month);
-    final data = await http.get(Uri.parse(url));
+    final data = await WaktuSolat.api.jadualSolat
+        .getJadualSolat(zone, year: year, month: month);
 
-    return file.writeAsBytes(data.bodyBytes);
+    return file.writeAsBytes(data);
   }
 }

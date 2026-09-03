@@ -52,7 +52,7 @@ class LocationChooser {
     final Future<List<Placemark>> placemarksFuture =
         placemarkFromCoordinates(pos.latitude, pos.longitude);
     final Future<MptZoneByGPS> jakimZoneFuture =
-        WaktuSolat.getZoneByCoordinates(pos.latitude, pos.longitude);
+        WaktuSolat.api.zones.getZonesByGps(pos.latitude, pos.longitude);
     final (placemarks, jakimZone) =
         await (placemarksFuture, jakimZoneFuture).wait;
 
