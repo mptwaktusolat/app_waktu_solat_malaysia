@@ -28,7 +28,7 @@
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textFontWeight="500" />
 
         <TextView
             android:id="@+id/widget_date"
@@ -41,7 +41,8 @@
             android:text="23/2/2026"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="14sp" />
+            android:textSize="@dimen/widget_prayer_label_text_size"
+            android:textFontWeight="500" />
     </LinearLayout>
 
 
@@ -66,7 +67,7 @@
                 android:text="Subuh"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/subuh_time"
@@ -76,7 +77,8 @@
                 android:text="5.57 am"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size"
+                android:textFontWeight="500" />
         </LinearLayout>
 
         <!-- Zohor -->
@@ -93,7 +95,7 @@
                 android:text="Zohor"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/zuhur_time"
@@ -103,7 +105,8 @@
                 android:text="1.04 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size"
+                android:textFontWeight="500" />
         </LinearLayout>
 
         <!-- Asar -->
@@ -120,7 +123,7 @@
                 android:text="Asar"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/asar_time"
@@ -130,7 +133,8 @@
                 android:text="4.28 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size"
+                android:textFontWeight="500" />
         </LinearLayout>
 
         <!-- Maghrib -->
@@ -147,7 +151,7 @@
                 android:text="Maghrib"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/maghrib_time"
@@ -157,7 +161,8 @@
                 android:text="7.10 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size"
+                android:textFontWeight="500" />
         </LinearLayout>
 
         <!-- Isyak -->
@@ -174,7 +179,7 @@
                 android:text="Isyak"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/isyak_time"
@@ -184,7 +189,8 @@
                 android:text="8.23 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="14sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size"
+                android:textFontWeight="500" />
         </LinearLayout>
     </LinearLayout>
 
