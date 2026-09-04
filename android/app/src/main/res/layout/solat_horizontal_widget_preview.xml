@@ -12,9 +12,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryContainer"
         android:orientation="horizontal"
-        android:paddingVertical="8dp"
         android:paddingHorizontal="14dp"
-        >
+        android:paddingVertical="4dp">
 
         <TextView
             android:id="@+id/widget_title"
@@ -27,8 +26,8 @@
             android:text="SGR01: Taman Kinrara (Selangor)"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="14sp"
-            android:textFontWeight="500" />
+            android:textFontWeight="500"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/widget_date"
@@ -41,8 +40,8 @@
             android:text="23/2/2026"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="@dimen/widget_prayer_label_text_size"
-            android:textFontWeight="500" />
+            android:textFontWeight="500"
+            android:textSize="13sp" />
     </LinearLayout>
 
 
@@ -50,8 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
 
         <!-- Subuh -->
         <LinearLayout
@@ -77,8 +75,8 @@
                 android:text="5.57 am"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
         </LinearLayout>
 
         <!-- Zohor -->
@@ -105,8 +103,8 @@
                 android:text="1.04 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
         </LinearLayout>
 
         <!-- Asar -->
@@ -133,8 +131,8 @@
                 android:text="4.28 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
         </LinearLayout>
 
         <!-- Maghrib -->
@@ -161,8 +159,8 @@
                 android:text="7.10 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
         </LinearLayout>
 
         <!-- Isyak -->
@@ -189,8 +187,8 @@
                 android:text="8.23 pm"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
         </LinearLayout>
     </LinearLayout>
 

@@ -18,14 +18,14 @@
             android:id="@+id/widget_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:ellipsize="end"
             android:text=""
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="12sp"
-            android:textFontWeight="500" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/widget_date"
@@ -87,8 +87,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
@@ -118,8 +118,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
@@ -148,8 +148,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
@@ -178,8 +178,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
@@ -208,8 +208,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
@@ -238,8 +238,8 @@
                 android:text="-"
                 android:textAlignment="gravity"
                 android:textColor="?android:attr/textColorPrimary"
-                android:textSize="@dimen/widget_prayer_label_text_size"
-                android:textFontWeight="500" />
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
