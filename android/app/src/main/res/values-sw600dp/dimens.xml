@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="widget_prayer_label_text_size">16sp</dimen>
+</resources>

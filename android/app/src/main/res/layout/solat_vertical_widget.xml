@@ -6,63 +6,69 @@
     android:orientation="vertical"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
+    <!-- Header section with zone and date -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimaryContainer"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="6dp">
 
         <TextView
             android:id="@+id/widget_title"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text=""
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textFontWeight="500"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/widget_date"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/widget_date_label"
             android:textAlignment="gravity"
             android:textColor="?attr/colorOnPrimaryContainer"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
+    <!-- Outdated warning message -->
     <TextView
         android:id="@+id/outdated_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="@string/widget_outdated_message"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="13sp"
         android:visibility="gone" />
 
+    <!-- Prayer times list container -->
     <LinearLayout
+        android:id="@+id/prayer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:padding="4dp"
         android:visibility="visible">
 
-        <!-- Subuh-->
+        <!-- Subuh -->
         <LinearLayout
-            android:id="@+id/prayer_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,7 +76,7 @@
                 android:layout_weight="1"
                 android:text="Subuh"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/subuh_time"
@@ -80,22 +86,20 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
         <!-- Syuruk -->
         <LinearLayout
             android:id="@+id/syuruk_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -103,7 +107,7 @@
                 android:layout_weight="1"
                 android:text="Syuruk"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/syuruk_time"
@@ -113,22 +117,19 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
+
         </LinearLayout>
 
-        <!-- TODO: Perhaps get rid of this and find a way to distribute the elements -->
-        <!--  in the column-->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <!-- Zohor-->
+        <!-- Zohor -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -136,7 +137,7 @@
                 android:layout_weight="1"
                 android:text="Zohor"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/zuhur_time"
@@ -146,21 +147,19 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <!-- Asar-->
+        <!-- Asar -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -168,7 +167,7 @@
                 android:layout_weight="1"
                 android:text="Asar"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/asar_time"
@@ -178,21 +177,19 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <!-- Maghrib-->
+        <!-- Maghrib -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -200,7 +197,7 @@
                 android:layout_weight="1"
                 android:text="Maghrib"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/maghrib_time"
@@ -210,21 +207,19 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <!-- Isyak-->
+        <!-- Isyak -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
-            android:padding="4dp">
+            android:padding="6dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -232,7 +227,7 @@
                 android:layout_weight="1"
                 android:text="Isyak"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
             <TextView
                 android:id="@+id/isyak_time"
@@ -242,14 +237,11 @@
                 android:gravity="end"
                 android:text="-"
                 android:textAlignment="gravity"
-                android:textColor="?android:attr/textColorPrimary" />
+                android:textColor="?android:attr/textColorPrimary"
+                android:textFontWeight="500"
+                android:textSize="@dimen/widget_prayer_label_text_size" />
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
 
     </LinearLayout>
 
