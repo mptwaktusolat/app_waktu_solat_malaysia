@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../../l10n/app_localizations.dart';
@@ -22,7 +21,8 @@ class ShareCard2 extends BaseShareCard {
         const SizedBox(width: 4),
         Text(
           AppLocalizations.of(context)!.appTitle,
-          style: GoogleFonts.dmSerifText(
+          style: const TextStyle(
+            fontFamily: 'Archivo',
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.teal,
@@ -72,13 +72,17 @@ class ShareCard2 extends BaseShareCard {
                 children: [
                   Text(
                     entry.key,
-                    style: GoogleFonts.archivo(
-                        fontSize: 20, fontWeight: FontWeight.w400),
+                    style: const TextStyle(
+                        fontFamily: 'Archivo',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400),
                   ),
                   Text(
                     entry.value,
-                    style: GoogleFonts.archivo(
-                        fontSize: 20, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontFamily: 'Archivo',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
                   ),
                 ],
               ),

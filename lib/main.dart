@@ -3,7 +3,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hotspot/hotspot.dart';
 import 'package:provider/provider.dart';
 
@@ -116,8 +115,13 @@ class MyHomePage extends StatelessWidget {
             statusBarColor: Colors.transparent,
             statusBarIconBrightness: Brightness.light,
           ),
-          title: Text(AppLocalizations.of(context)!.appbarTitle,
-              style: GoogleFonts.balooTamma2(fontWeight: FontWeight.bold)),
+          title: Text(
+            AppLocalizations.of(context)!.appbarTitle,
+            style: const TextStyle(
+              fontFamily: 'BalooTamma2',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           elevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primary,
           foregroundColor: Theme.of(context).colorScheme.surface,

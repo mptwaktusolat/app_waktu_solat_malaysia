@@ -3,7 +3,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hotspot/hotspot.dart';
 import 'package:intl/intl.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -173,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius:
                     const BorderRadius.vertical(bottom: Radius.circular(40)),
               ),
-              padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+              padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -280,14 +279,13 @@ class ZoneWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   FaIcon(FontAwesomeIcons.locationDot,
-                      color: Theme.of(context).colorScheme.onPrimary, size: 15),
+                      color: Theme.of(context).colorScheme.onPrimary, size: 14),
                   Text(
-                    '  ${shortCode.substring(0, 3).toUpperCase()}  ${shortCode.substring(3, 5)}',
-                    style: GoogleFonts.montserrat(
-                      textStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.onPrimary,
-                        fontSize: 13,
-                      ),
+                    '  ${shortCode.substring(0, 3).toUpperCase()} ${shortCode.substring(3, 5)}',
+                    style: TextStyle(
+                      fontFamily: 'Manrope',
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontSize: 14,
                     ),
                   ),
                 ],
@@ -318,22 +316,17 @@ class DateWidget extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                DateFormat('EEEE', AppLocalizations.of(context)?.localeName)
-                    .format(DateTime.now()),
-                style: GoogleFonts.leagueSpartan(
-                    color: Theme.of(context).colorScheme.onPrimary),
-                // style: GoogleFonts.leagueSpartan(),
-              ),
-              Text(
                 hijriDate,
-                style: GoogleFonts.acme(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 17),
-                // style: GoogleFonts.acme(),
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontSize: 15.6,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               Text(
-                DateFormat(
-                        'd MMM yyyy', AppLocalizations.of(context)?.localeName)
+                DateFormat('E, d MMM yyyy',
+                        AppLocalizations.of(context)?.localeName)
                     .format(DateTime.now()),
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.onPrimary,

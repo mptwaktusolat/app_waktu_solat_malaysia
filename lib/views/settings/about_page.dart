@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -111,7 +110,9 @@ class AboutAppPage extends StatelessWidget {
                       AppLocalizations.of(context)!
                           .aboutVersion(packageInfo!.version),
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),

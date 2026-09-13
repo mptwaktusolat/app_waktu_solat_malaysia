@@ -37,7 +37,6 @@ dependencies:
   geocoding: ^4.0.0
   geolocator: ^14.0.2
   get_storage: ^2.0.1
-  google_fonts: ^8.0.0
   google_mobile_ads: ^9.0.0
   home_widget: ^0.9.0
   hotspot: ^0.1.3
@@ -76,9 +75,41 @@ flutter:
     - assets/images/
     - assets/images/mosque_bgs/
     - assets/json/
-    - assets/OFL.txt
     - assets/qibla/
+    - fonts/Manrope/OFL.txt
+    - fonts/Archivo/OFL.txt
+    - fonts/Baloo_Tamma_2/OFL.txt
   fonts:
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope/static/Manrope-Regular.ttf
+          weight: 400
+        - asset: fonts/Manrope/static/Manrope-Medium.ttf
+          weight: 500
+        - asset: fonts/Manrope/static/Manrope-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Manrope/static/Manrope-Bold.ttf
+          weight: 700
+        - asset: fonts/Manrope/static/Manrope-ExtraBold.ttf
+          weight: 800
+    - family: Archivo
+      fonts:
+        - asset: fonts/Archivo/static/Archivo-Regular.ttf
+          weight: 400
+        - asset: fonts/Archivo/static/Archivo-Medium.ttf
+          weight: 500
+        - asset: fonts/Archivo/static/Archivo-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Archivo/static/Archivo-Bold.ttf
+          weight: 700
+        - asset: fonts/Archivo/static/Archivo-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Archivo/static/Archivo-Black.ttf
+          weight: 900
+    - family: BalooTamma2
+      fonts:
+        - asset: fonts/Baloo_Tamma_2/static/BalooTamma2-Bold.ttf
+          weight: 700
     # Adding custom icon guide: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/wiki/Custom-Icons
     - family: MyMptIcons
       fonts:

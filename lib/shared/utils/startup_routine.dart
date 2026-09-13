@@ -107,10 +107,19 @@ class StartupRoutine {
 
   /// Register licenses for fonts
   static void _registerLicenses() {
+    // add font licenses
     LicenseRegistry.addLicense(() async* {
-      // This adds SIL license to the registrar
-      final license = await rootBundle.loadString('assets/OFL.txt');
-      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+      final manropeLicense =
+          await rootBundle.loadString('fonts/Manrope/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['Manrope'], manropeLicense);
+
+      final archivoLicense =
+          await rootBundle.loadString('fonts/Archivo/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['Archivo'], archivoLicense);
+
+      final balooLicense =
+          await rootBundle.loadString('fonts/Baloo_Tamma_2/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['Baloo Tamma 2'], balooLicense);
     });
   }
 

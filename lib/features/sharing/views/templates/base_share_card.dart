@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
@@ -86,7 +85,8 @@ abstract class BaseShareCard extends StatelessWidget {
         const SizedBox(width: 4),
         Text(
           AppLocalizations.of(context)!.appTitle,
-          style: GoogleFonts.dmSans(
+          style: TextStyle(
+            fontFamily: 'Manrope',
             fontSize: 12,
             fontWeight: FontWeight.bold,
             color: Colors.white.withAlpha(200),

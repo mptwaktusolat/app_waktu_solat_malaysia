@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
@@ -67,7 +66,8 @@ class ShareCard1 extends BaseShareCard {
                     Text(
                       '${hijriYear}H / ${masihiYear}M',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.archivo(
+                      style: const TextStyle(
+                        fontFamily: 'Archivo',
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
@@ -80,7 +80,8 @@ class ShareCard1 extends BaseShareCard {
                           .sharePrayerTimeTitle
                           .toUpperCase(),
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.archivo(
+                      style: const TextStyle(
+                        fontFamily: 'Archivo',
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
                         fontSize: 32,
@@ -101,7 +102,8 @@ class ShareCard1 extends BaseShareCard {
                         '${hijriDateFormatted.toUpperCase()} | ${masihiDate.toUpperCase()}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.archivo(
+                        style: TextStyle(
+                          fontFamily: 'Archivo',
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w700,
                           fontSize: 12,
@@ -124,7 +126,8 @@ class ShareCard1 extends BaseShareCard {
                         location,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.archivo(
+                        style: TextStyle(
+                          fontFamily: 'Archivo',
                           color: colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
@@ -174,7 +177,8 @@ class ShareCard1 extends BaseShareCard {
                                           entry.key.toUpperCase(),
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.archivo(
+                                          style: TextStyle(
+                                            fontFamily: 'Archivo',
                                             color: colorScheme.onSurface,
                                             fontWeight: FontWeight.w700,
                                             fontSize: 10,
@@ -185,7 +189,8 @@ class ShareCard1 extends BaseShareCard {
                                           entry.value,
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.archivo(
+                                          style: TextStyle(
+                                            fontFamily: 'Archivo',
                                             color: colorScheme.onSurface,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 13,
