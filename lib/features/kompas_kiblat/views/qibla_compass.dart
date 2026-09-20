@@ -1,166 +1,110 @@
-import 'dart:async';
-import 'dart:math' show pi;
+import 'dart:math' as math;
 
+import 'package:admonitions/admonitions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_qiblah/flutter_qiblah.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geolocator/geolocator.dart';
 
+import '../../../l10n/app_localizations.dart';
+import '../controllers/qibla_compass_controller.dart';
+import '../services/qibla_heading_service.dart';
+import 'compass_calibration_dialog.dart';
 import 'location_error_widget.dart';
+import 'no_compass_sensor.dart';
+
+part 'components/compass_accuracy_indicator.dart';
+part 'components/compass_graphic.dart';
+part 'components/loading_state.dart';
+part 'components/location_and_bearing.dart';
+part 'components/ready_compass.dart';
 
 class QiblaCompass extends StatefulWidget {
-  const QiblaCompass({super.key});
+  const QiblaCompass({super.key, this.controller});
+
+  final QiblaCompassController? controller;
+
   @override
   State<QiblaCompass> createState() => _QiblaCompassState();
 }
 
-class _QiblaCompassState extends State<QiblaCompass> {
-  final _locationStreamController =
-      StreamController<LocationStatus>.broadcast();
-
-  Stream<LocationStatus> get stream => _locationStreamController.stream;
-
-  bool _isVibrating = false;
+class _QiblaCompassState extends State<QiblaCompass>
+    with WidgetsBindingObserver {
+  late final QiblaCompassController _controller;
+  late final bool _ownsController;
 
   @override
   void initState() {
-    _checkLocationStatus();
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _ownsController = widget.controller == null;
+    _controller = widget.controller ??
+        QiblaCompassController(onAligned: HapticFeedback.mediumImpact);
+    _controller.addListener(_onControllerChanged);
+    _controller.initialize();
+  }
+
+  void _onControllerChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        _controller.resumeCompass();
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.hidden:
+      case AppLifecycleState.paused:
+      case AppLifecycleState.detached:
+        _controller.pauseCompass();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(8.0),
-      child: StreamBuilder(
-        stream: stream,
-        builder: (_, AsyncSnapshot<LocationStatus> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CupertinoActivityIndicator();
-          }
-          if (snapshot.data!.enabled == true) {
-            switch (snapshot.data!.status) {
-              case LocationPermission.always:
-              case LocationPermission.whileInUse:
-                return QiblahCompassWidget(
-                  onStraightAngle: _handleStraightAngle,
-                );
-
-              case LocationPermission.denied:
-                return LocationErrorWidget(
-                  error: "Location service permission denied",
-                  callback: _checkLocationStatus,
-                );
-              case LocationPermission.deniedForever:
-                return LocationErrorWidget(
-                  error: "Location service denied Forever !",
-                  callback: _checkLocationStatus,
-                );
-              // case GeolocationStatus.unknown:
-              //   return LocationErrorWidget(
-              //     error: "Unknown Location service error",
-              //     callback: _checkLocationStatus,
-              //   );
-              default:
-                return Container();
-            }
-          } else {
-            return LocationErrorWidget(
-              error: "Please enable Location service",
-              callback: _checkLocationStatus,
-            );
-          }
-        },
-      ),
-    );
-  }
-
-  void _handleStraightAngle(bool isStraight) {
-    if (isStraight && !_isVibrating) {
-      _vibrate();
-      _isVibrating = true;
-    } else if (!isStraight && _isVibrating) {
-      // Vibration.cancel();
-      _isVibrating = false;
-    }
-  }
-
-  void _vibrate() async {
-    HapticFeedback.mediumImpact();
-    //   if (await Vibration.hasVibrator()) {
-    //     Vibration.vibrate();
-    //   }
-  }
-
-  Future<void> _checkLocationStatus() async {
-    final locationStatus = await FlutterQiblah.checkLocationStatus();
-    if (locationStatus.enabled &&
-        locationStatus.status == LocationPermission.denied) {
-      await FlutterQiblah.requestPermissions();
-      final s = await FlutterQiblah.checkLocationStatus();
-      _locationStreamController.sink.add(s);
-    } else {
-      _locationStreamController.sink.add(locationStatus);
+    final localizations = AppLocalizations.of(context)!;
+    switch (_controller.status) {
+      case QiblaCompassStatus.loading:
+        return _LoadingState(message: localizations.qiblaLoadingLocation);
+      case QiblaCompassStatus.locationServiceDisabled:
+        return LocationErrorWidget(
+          error: localizations.qiblaLocationServiceDisabled,
+          actionLabel: localizations.qiblaOpenLocationSettings,
+          onPressed: _controller.openLocationSettings,
+        );
+      case QiblaCompassStatus.permissionDenied:
+        return LocationErrorWidget(
+          error: localizations.qiblaPermissionDenied,
+          actionLabel: localizations.qiblaRetry,
+          onPressed: _controller.retry,
+        );
+      case QiblaCompassStatus.permissionDeniedForever:
+        return LocationErrorWidget(
+          error: localizations.qiblaPermissionDeniedForever,
+          actionLabel: localizations.qiblaOpenAppSettings,
+          onPressed: _controller.openAppSettings,
+        );
+      case QiblaCompassStatus.ready:
+      case QiblaCompassStatus.noSensor:
+        return _ReadyCompass(controller: _controller);
+      case QiblaCompassStatus.error:
+        if (_controller.hasLocation) {
+          return _ReadyCompass(controller: _controller);
+        }
+        return LocationErrorWidget(
+          error: localizations.qiblaCompassError,
+          actionLabel: localizations.qiblaRetry,
+          onPressed: _controller.retry,
+        );
     }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _controller.removeListener(_onControllerChanged);
+    if (_ownsController) _controller.dispose();
     super.dispose();
-    _locationStreamController.close();
-    FlutterQiblah().dispose();
-  }
-}
-
-class QiblahCompassWidget extends StatelessWidget {
-  QiblahCompassWidget({super.key, required this.onStraightAngle});
-
-  final void Function(bool) onStraightAngle;
-  final _kaabaSvg = SvgPicture.asset('assets/qibla/kaaba.svg');
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: FlutterQiblah.qiblahStream,
-      builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CupertinoActivityIndicator();
-        }
-
-        final qiblahDirection = snapshot.data!;
-        final angle = qiblahDirection.qiblah * (pi / 180) * -1;
-        final isStraightAngle = _isStraightLineAngle(qiblahDirection.qiblah);
-
-        // Notify parent widget about the straight angle
-        onStraightAngle(isStraightAngle);
-
-        return Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Transform.rotate(
-              angle: angle,
-              child: SvgPicture.asset(
-                'assets/qibla/compass.svg', // compass
-                colorFilter: ColorFilter.mode(
-                    Theme.of(context).colorScheme.primary, BlendMode.srcIn),
-              ),
-            ),
-            _kaabaSvg,
-            SvgPicture.asset(
-              'assets/qibla/needle.svg', //needle
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.primary, BlendMode.srcIn),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  bool _isStraightLineAngle(double angle) {
-    return (angle % 360).toInt() == 0;
   }
 }

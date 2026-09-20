@@ -199,12 +199,34 @@
   "qiblaWarnProceed": "I understood",
   "qiblaTitle": "Qibla Compass",
   "qiblaOverheadWarn": "Avoid placing the device close to metal object or electrical appliances.",
-  "qiblaCopyUrl": "URL copied :)",
-  "qiblaCalibrationTip": "Calibration tip",
   "qiblaCalibrate": "Move your phone in 'figure 8 pattern'",
   "qiblaCalibrateDone": "Done",
+  "qiblaCompassAccuracy": "Compass accuracy",
+  "qiblaAccuracyHigh": "High",
+  "qiblaAccuracyMedium": "Medium",
+  "qiblaAccuracyLow": "Low",
+  "qiblaAccuracyUnavailable": "Unavailable",
+  "qiblaCalibrateNow": "Calibrate now",
   "qiblaErrNoCompass": "Sorry. No compass sensor is available in this device.",
   "qiblaErrBack": "Go back",
+  "qiblaHeadingDegrees": "Qibla heading: {degrees}°",
+  "@qiblaHeadingDegrees": {
+    "placeholders": {
+      "degrees": {
+        "type": "int"
+      }
+    }
+  },
+  "qiblaOutsideMalaysiaWarning": "Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.",
+  "qiblaLoadingLocation": "Getting your current location…",
+  "qiblaLocationServiceDisabled": "Location services are turned off. Turn them on to determine the Qibla direction.",
+  "qiblaPermissionDenied": "Location permission was denied. Allow location access to determine the Qibla direction.",
+  "qiblaPermissionDeniedForever": "Location permission is disabled for this app. Enable it in app settings to determine the Qibla direction.",
+  "qiblaOpenLocationSettings": "Open location settings",
+  "qiblaOpenAppSettings": "Open app settings",
+  "qiblaRetry": "Retry",
+  "qiblaUnknownLocation": "Unknown location",
+  "qiblaCompassError": "Unable to load the Qibla compass. Please try again.",
   "feedbackTitle": "Feedback",
   "feedbackFieldEmpty": "Field can't be empty",
   "feedbackWriteHere": "Please leave your feedback/report here",

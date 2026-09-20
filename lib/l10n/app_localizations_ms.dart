@@ -354,16 +354,28 @@ class AppLocalizationsMs extends AppLocalizations {
       'Elakkan meletakkan peranti berdekatan dengan objek logam atau peralatan elektrik.';
 
   @override
-  String get qiblaCopyUrl => 'Pautan disalin :)';
-
-  @override
-  String get qiblaCalibrationTip => 'Tip kalibrasi';
-
-  @override
   String get qiblaCalibrate => 'Gerakkan telefon anda dalam \'corak angka 8\'';
 
   @override
   String get qiblaCalibrateDone => 'Selesai';
+
+  @override
+  String get qiblaCompassAccuracy => 'Ketepatan kompas';
+
+  @override
+  String get qiblaAccuracyHigh => 'Tinggi';
+
+  @override
+  String get qiblaAccuracyMedium => 'Sederhana';
+
+  @override
+  String get qiblaAccuracyLow => 'Rendah';
+
+  @override
+  String get qiblaAccuracyUnavailable => 'Tidak tersedia';
+
+  @override
+  String get qiblaCalibrateNow => 'Kalibrasi sekarang';
 
   @override
   String get qiblaErrNoCompass =>
@@ -371,6 +383,46 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get qiblaErrBack => 'Kembali';
+
+  @override
+  String qiblaHeadingDegrees(int degrees) {
+    return 'Arah Kiblat: $degrees°';
+  }
+
+  @override
+  String get qiblaOutsideMalaysiaWarning =>
+      'Ketepatan kompas mungkin berbeza di luar Malaysia atau apabila negara tidak dapat dikenal pasti kerana utara magnet boleh berbeza daripada utara sebenar. Gunakan ciri ini sebagai panduan.';
+
+  @override
+  String get qiblaLoadingLocation => 'Mendapatkan lokasi semasa anda…';
+
+  @override
+  String get qiblaLocationServiceDisabled =>
+      'Perkhidmatan lokasi dimatikan. Hidupkannya untuk menentukan arah Kiblat.';
+
+  @override
+  String get qiblaPermissionDenied =>
+      'Kebenaran lokasi ditolak. Benarkan akses lokasi untuk menentukan arah Kiblat.';
+
+  @override
+  String get qiblaPermissionDeniedForever =>
+      'Kebenaran lokasi dimatikan untuk apl ini. Hidupkannya dalam tetapan apl untuk menentukan arah Kiblat.';
+
+  @override
+  String get qiblaOpenLocationSettings => 'Buka tetapan lokasi';
+
+  @override
+  String get qiblaOpenAppSettings => 'Buka tetapan apl';
+
+  @override
+  String get qiblaRetry => 'Cuba semula';
+
+  @override
+  String get qiblaUnknownLocation => 'Lokasi tidak diketahui';
+
+  @override
+  String get qiblaCompassError =>
+      'Kompas Kiblat tidak dapat dimuatkan. Sila cuba lagi.';
 
   @override
   String get feedbackTitle => 'Maklum Balas';

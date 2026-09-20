@@ -722,18 +722,6 @@ abstract class AppLocalizations {
   /// **'Avoid placing the device close to metal object or electrical appliances.'**
   String get qiblaOverheadWarn;
 
-  /// No description provided for @qiblaCopyUrl.
-  ///
-  /// In en, this message translates to:
-  /// **'URL copied :)'**
-  String get qiblaCopyUrl;
-
-  /// No description provided for @qiblaCalibrationTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Calibration tip'**
-  String get qiblaCalibrationTip;
-
   /// No description provided for @qiblaCalibrate.
   ///
   /// In en, this message translates to:
@@ -746,6 +734,42 @@ abstract class AppLocalizations {
   /// **'Done'**
   String get qiblaCalibrateDone;
 
+  /// No description provided for @qiblaCompassAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Compass accuracy'**
+  String get qiblaCompassAccuracy;
+
+  /// No description provided for @qiblaAccuracyHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get qiblaAccuracyHigh;
+
+  /// No description provided for @qiblaAccuracyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get qiblaAccuracyMedium;
+
+  /// No description provided for @qiblaAccuracyLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get qiblaAccuracyLow;
+
+  /// No description provided for @qiblaAccuracyUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get qiblaAccuracyUnavailable;
+
+  /// No description provided for @qiblaCalibrateNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Calibrate now'**
+  String get qiblaCalibrateNow;
+
   /// No description provided for @qiblaErrNoCompass.
   ///
   /// In en, this message translates to:
@@ -757,6 +781,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go back'**
   String get qiblaErrBack;
+
+  /// No description provided for @qiblaHeadingDegrees.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla heading: {degrees}°'**
+  String qiblaHeadingDegrees(int degrees);
+
+  /// No description provided for @qiblaOutsideMalaysiaWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.'**
+  String get qiblaOutsideMalaysiaWarning;
+
+  /// No description provided for @qiblaLoadingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting your current location…'**
+  String get qiblaLoadingLocation;
+
+  /// No description provided for @qiblaLocationServiceDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are turned off. Turn them on to determine the Qibla direction.'**
+  String get qiblaLocationServiceDisabled;
+
+  /// No description provided for @qiblaPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was denied. Allow location access to determine the Qibla direction.'**
+  String get qiblaPermissionDenied;
+
+  /// No description provided for @qiblaPermissionDeniedForever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission is disabled for this app. Enable it in app settings to determine the Qibla direction.'**
+  String get qiblaPermissionDeniedForever;
+
+  /// No description provided for @qiblaOpenLocationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open location settings'**
+  String get qiblaOpenLocationSettings;
+
+  /// No description provided for @qiblaOpenAppSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open app settings'**
+  String get qiblaOpenAppSettings;
+
+  /// No description provided for @qiblaRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get qiblaRetry;
+
+  /// No description provided for @qiblaUnknownLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown location'**
+  String get qiblaUnknownLocation;
+
+  /// No description provided for @qiblaCompassError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the Qibla compass. Please try again.'**
+  String get qiblaCompassError;
 
   /// No description provided for @feedbackTitle.
   ///

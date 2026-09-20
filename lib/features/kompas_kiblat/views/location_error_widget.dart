@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class LocationErrorWidget extends StatelessWidget {
-  final String? error;
-  final Function? callback;
+  const LocationErrorWidget({
+    super.key,
+    required this.error,
+    required this.actionLabel,
+    required this.onPressed,
+  });
 
-  const LocationErrorWidget({super.key, this.error, this.callback});
+  final String error;
+  final String actionLabel;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +27,15 @@ class LocationErrorWidget extends StatelessWidget {
           ),
           box,
           Text(
-            error!,
+            error,
+            textAlign: TextAlign.center,
             style: const TextStyle(
                 color: Colors.redAccent, fontWeight: FontWeight.bold),
           ),
           box,
           ElevatedButton(
-            child: const Text("Retry"),
-            onPressed: () {
-              if (callback != null) callback!();
-            },
+            onPressed: onPressed,
+            child: Text(actionLabel),
           ),
         ],
       ),

@@ -354,16 +354,28 @@ class AppLocalizationsEn extends AppLocalizations {
       'Avoid placing the device close to metal object or electrical appliances.';
 
   @override
-  String get qiblaCopyUrl => 'URL copied :)';
-
-  @override
-  String get qiblaCalibrationTip => 'Calibration tip';
-
-  @override
   String get qiblaCalibrate => 'Move your phone in \'figure 8 pattern\'';
 
   @override
   String get qiblaCalibrateDone => 'Done';
+
+  @override
+  String get qiblaCompassAccuracy => 'Compass accuracy';
+
+  @override
+  String get qiblaAccuracyHigh => 'High';
+
+  @override
+  String get qiblaAccuracyMedium => 'Medium';
+
+  @override
+  String get qiblaAccuracyLow => 'Low';
+
+  @override
+  String get qiblaAccuracyUnavailable => 'Unavailable';
+
+  @override
+  String get qiblaCalibrateNow => 'Calibrate now';
 
   @override
   String get qiblaErrNoCompass =>
@@ -371,6 +383,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get qiblaErrBack => 'Go back';
+
+  @override
+  String qiblaHeadingDegrees(int degrees) {
+    return 'Qibla heading: $degrees°';
+  }
+
+  @override
+  String get qiblaOutsideMalaysiaWarning =>
+      'Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.';
+
+  @override
+  String get qiblaLoadingLocation => 'Getting your current location…';
+
+  @override
+  String get qiblaLocationServiceDisabled =>
+      'Location services are turned off. Turn them on to determine the Qibla direction.';
+
+  @override
+  String get qiblaPermissionDenied =>
+      'Location permission was denied. Allow location access to determine the Qibla direction.';
+
+  @override
+  String get qiblaPermissionDeniedForever =>
+      'Location permission is disabled for this app. Enable it in app settings to determine the Qibla direction.';
+
+  @override
+  String get qiblaOpenLocationSettings => 'Open location settings';
+
+  @override
+  String get qiblaOpenAppSettings => 'Open app settings';
+
+  @override
+  String get qiblaRetry => 'Retry';
+
+  @override
+  String get qiblaUnknownLocation => 'Unknown location';
+
+  @override
+  String get qiblaCompassError =>
+      'Unable to load the Qibla compass. Please try again.';
 
   @override
   String get feedbackTitle => 'Feedback';
