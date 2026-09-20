@@ -54,6 +54,9 @@ class QiblaCompassController extends ChangeNotifier {
 
   bool get hasLocation => qiblaBearing != null && locationLabel != null;
 
+  QiblaHeadingAccuracy get headingAccuracyLevel =>
+      QiblaHeadingAccuracy.fromDegrees(headingAccuracy);
+
   bool get shouldShowOutsideMalaysiaWarning =>
       !isCountryResolutionPending && isoCountryCode?.toUpperCase() != 'MY';
 

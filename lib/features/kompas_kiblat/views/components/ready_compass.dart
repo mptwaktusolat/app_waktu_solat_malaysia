@@ -29,27 +29,37 @@ class _ReadyCompass extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxHeight < 360) {
-            return Row(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: SingleChildScrollView(child: details),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  flex: 5,
-                  child: _buildDirectionalContent(context),
-                ),
-              ],
-            );
-          }
+          final content = constraints.maxHeight < 360
+              ? Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: SingleChildScrollView(child: details),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      flex: 5,
+                      child: _buildDirectionalContent(context),
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    details,
+                    const SizedBox(height: 8),
+                    Expanded(child: _buildDirectionalContent(context)),
+                  ],
+                );
 
           return Column(
             children: [
-              details,
-              const SizedBox(height: 8),
-              Expanded(child: _buildDirectionalContent(context)),
+              Expanded(child: content),
+              if (controller.displayTurnDegrees != null) ...[
+                const SizedBox(height: 8),
+                _CompassAccuracyIndicator(
+                  accuracy: controller.headingAccuracyLevel,
+                ),
+              ],
             ],
           );
         },

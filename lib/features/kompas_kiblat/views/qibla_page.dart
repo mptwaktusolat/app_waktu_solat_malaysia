@@ -1,12 +1,7 @@
 import 'package:admonitions/admonitions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/utils/launch_url.dart';
 import 'qibla_compass.dart';
 
 /// Entry point for the Qibla page
@@ -37,21 +32,14 @@ class QiblaPage extends StatelessWidget {
   Widget _buildHorizontalLayout(BuildContext context) {
     return Row(
       children: [
-        // Left side: Warning and buttons (1/4)
+        // Left side: Warning (1/4)
         Expanded(
           flex: 1,
           child: Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  PastelAdmonition.caution(
-                    text: AppLocalizations.of(context)!.qiblaOverheadWarn,
-                  ),
-                  const SizedBox(height: 24),
-                  _buildActionButtons(context, isVertical: true),
-                ],
+              child: PastelAdmonition.caution(
+                text: AppLocalizations.of(context)!.qiblaOverheadWarn,
               ),
             ),
           ),
@@ -72,85 +60,7 @@ class QiblaPage extends StatelessWidget {
               text: AppLocalizations.of(context)!.qiblaOverheadWarn),
         ),
         const Expanded(child: QiblaCompass()),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(8, 4, 8, 12),
-          child: _buildActionButtons(context, isVertical: false),
-        ),
       ],
     );
   }
-
-  /// Builds action buttons with optional vertical layout
-  Widget _buildActionButtons(BuildContext context, {required bool isVertical}) {
-    final buttons = [
-      OutlinedButton(
-        onPressed: () {
-          LaunchUrl.launchInCustomTab(url: 'https://g.co/qiblafinder');
-        },
-        onLongPress: () {
-          Clipboard.setData(const ClipboardData(text: 'g.co/qiblafinder')).then(
-              (value) => Fluttertoast.showToast(
-                  msg: AppLocalizations.of(context)!.qiblaCopyUrl));
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Google Qiblafinder'),
-            const SizedBox(width: 8),
-            const FaIcon(FontAwesomeIcons.squareUpRight, size: 13)
-          ],
-        ),
-      ),
-      OutlinedButton(
-        onPressed: () => _showCalibrateCompassDialog(context),
-        child: Text(AppLocalizations.of(context)!.qiblaCalibrationTip),
-      ),
-    ];
-
-    if (isVertical) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: buttons
-            .map((btn) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: btn,
-                ))
-            .toList(),
-      );
-    } else {
-      return Wrap(
-        alignment: WrapAlignment.center,
-        spacing: 10,
-        runSpacing: 4,
-        children: buttons,
-      );
-    }
-  }
-}
-
-void _showCalibrateCompassDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        insetPadding: const EdgeInsets.all(10),
-        title: Text(
-          AppLocalizations.of(context)!.qiblaCalibrate,
-          textAlign: TextAlign.center,
-        ),
-        content: SvgPicture.asset(
-          'assets/qibla/compass callibrate.svg',
-          height: 230,
-        ),
-        contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text(AppLocalizations.of(context)!.qiblaCalibrateDone))
-        ],
-      );
-    },
-  );
 }

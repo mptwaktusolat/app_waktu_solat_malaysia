@@ -354,16 +354,28 @@ class AppLocalizationsEn extends AppLocalizations {
       'Avoid placing the device close to metal object or electrical appliances.';
 
   @override
-  String get qiblaCopyUrl => 'URL copied :)';
-
-  @override
-  String get qiblaCalibrationTip => 'Calibration tip';
-
-  @override
   String get qiblaCalibrate => 'Move your phone in \'figure 8 pattern\'';
 
   @override
   String get qiblaCalibrateDone => 'Done';
+
+  @override
+  String get qiblaCompassAccuracy => 'Compass accuracy';
+
+  @override
+  String get qiblaAccuracyHigh => 'High';
+
+  @override
+  String get qiblaAccuracyMedium => 'Medium';
+
+  @override
+  String get qiblaAccuracyLow => 'Low';
+
+  @override
+  String get qiblaAccuracyUnavailable => 'Unavailable';
+
+  @override
+  String get qiblaCalibrateNow => 'Calibrate now';
 
   @override
   String get qiblaErrNoCompass =>

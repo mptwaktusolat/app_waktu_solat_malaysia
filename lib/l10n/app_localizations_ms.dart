@@ -354,16 +354,28 @@ class AppLocalizationsMs extends AppLocalizations {
       'Elakkan meletakkan peranti berdekatan dengan objek logam atau peralatan elektrik.';
 
   @override
-  String get qiblaCopyUrl => 'Pautan disalin :)';
-
-  @override
-  String get qiblaCalibrationTip => 'Tip kalibrasi';
-
-  @override
   String get qiblaCalibrate => 'Gerakkan telefon anda dalam \'corak angka 8\'';
 
   @override
   String get qiblaCalibrateDone => 'Selesai';
+
+  @override
+  String get qiblaCompassAccuracy => 'Ketepatan kompas';
+
+  @override
+  String get qiblaAccuracyHigh => 'Tinggi';
+
+  @override
+  String get qiblaAccuracyMedium => 'Sederhana';
+
+  @override
+  String get qiblaAccuracyLow => 'Rendah';
+
+  @override
+  String get qiblaAccuracyUnavailable => 'Tidak tersedia';
+
+  @override
+  String get qiblaCalibrateNow => 'Kalibrasi sekarang';
 
   @override
   String get qiblaErrNoCompass =>

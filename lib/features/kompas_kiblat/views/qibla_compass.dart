@@ -7,10 +7,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../controllers/qibla_compass_controller.dart';
+import '../services/qibla_heading_service.dart';
+import 'compass_calibration_dialog.dart';
 import 'location_error_widget.dart';
 import 'no_compass_sensor.dart';
 
 part 'components/accuracy_warning.dart';
+part 'components/compass_accuracy_indicator.dart';
 part 'components/compass_graphic.dart';
 part 'components/loading_state.dart';
 part 'components/location_and_bearing.dart';

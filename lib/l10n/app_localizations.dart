@@ -722,18 +722,6 @@ abstract class AppLocalizations {
   /// **'Avoid placing the device close to metal object or electrical appliances.'**
   String get qiblaOverheadWarn;
 
-  /// No description provided for @qiblaCopyUrl.
-  ///
-  /// In en, this message translates to:
-  /// **'URL copied :)'**
-  String get qiblaCopyUrl;
-
-  /// No description provided for @qiblaCalibrationTip.
-  ///
-  /// In en, this message translates to:
-  /// **'Calibration tip'**
-  String get qiblaCalibrationTip;
-
   /// No description provided for @qiblaCalibrate.
   ///
   /// In en, this message translates to:
@@ -745,6 +733,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done'**
   String get qiblaCalibrateDone;
+
+  /// No description provided for @qiblaCompassAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Compass accuracy'**
+  String get qiblaCompassAccuracy;
+
+  /// No description provided for @qiblaAccuracyHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get qiblaAccuracyHigh;
+
+  /// No description provided for @qiblaAccuracyMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get qiblaAccuracyMedium;
+
+  /// No description provided for @qiblaAccuracyLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get qiblaAccuracyLow;
+
+  /// No description provided for @qiblaAccuracyUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable'**
+  String get qiblaAccuracyUnavailable;
+
+  /// No description provided for @qiblaCalibrateNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Calibrate now'**
+  String get qiblaCalibrateNow;
 
   /// No description provided for @qiblaErrNoCompass.
   ///
