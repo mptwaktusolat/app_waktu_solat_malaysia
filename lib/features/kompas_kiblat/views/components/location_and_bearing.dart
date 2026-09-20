@@ -27,7 +27,7 @@ class _LocationAndBearing extends StatelessWidget {
               const SizedBox(width: 4),
               Flexible(
                 child: Text(
-                  '${localizations.qiblaCurrentLocation}: $location',
+                  location,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

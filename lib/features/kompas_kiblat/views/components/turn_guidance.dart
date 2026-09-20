@@ -15,7 +15,7 @@ class _TurnGuidance extends StatelessWidget {
 
     if (controller.isAligned) {
       message = localizations.qiblaAligned;
-      icon = Icons.check_circle_outline;
+      icon = Icons.check;
     } else if (turn > 0) {
       message = localizations.qiblaTurnRight(turn.abs().round());
       icon = Icons.rotate_right;

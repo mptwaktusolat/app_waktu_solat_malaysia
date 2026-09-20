@@ -205,7 +205,6 @@
   "qiblaCalibrateDone": "Done",
   "qiblaErrNoCompass": "Sorry. No compass sensor is available in this device.",
   "qiblaErrBack": "Go back",
-  "qiblaCurrentLocation": "Current location",
   "qiblaHeadingDegrees": "Qibla heading: {degrees}°",
   "@qiblaHeadingDegrees": {
     "placeholders": {

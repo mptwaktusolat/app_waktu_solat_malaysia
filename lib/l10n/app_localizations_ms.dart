@@ -373,9 +373,6 @@ class AppLocalizationsMs extends AppLocalizations {
   String get qiblaErrBack => 'Kembali';
 
   @override
-  String get qiblaCurrentLocation => 'Lokasi semasa';
-
-  @override
   String qiblaHeadingDegrees(int degrees) {
     return 'Arah Kiblat: $degrees°';
   }

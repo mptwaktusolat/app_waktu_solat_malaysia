@@ -758,12 +758,6 @@ abstract class AppLocalizations {
   /// **'Go back'**
   String get qiblaErrBack;
 
-  /// No description provided for @qiblaCurrentLocation.
-  ///
-  /// In en, this message translates to:
-  /// **'Current location'**
-  String get qiblaCurrentLocation;
-
   /// No description provided for @qiblaHeadingDegrees.
   ///
   /// In en, this message translates to:

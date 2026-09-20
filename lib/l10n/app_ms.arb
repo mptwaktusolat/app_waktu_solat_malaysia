@@ -109,7 +109,6 @@
   "qiblaCalibrateDone": "Selesai",
   "qiblaErrNoCompass": "Maaf. Tiada penderia kompas terdapat dalam peranti ini.",
   "qiblaErrBack": "Kembali",
-  "qiblaCurrentLocation": "Lokasi semasa",
   "qiblaHeadingDegrees": "Arah Kiblat: {degrees}°",
   "qiblaTurnLeft": "Pusing {degrees}° ke kiri",
   "qiblaTurnRight": "Pusing {degrees}° ke kanan",

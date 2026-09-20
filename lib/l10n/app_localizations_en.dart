@@ -373,9 +373,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get qiblaErrBack => 'Go back';
 
   @override
-  String get qiblaCurrentLocation => 'Current location';
-
-  @override
   String qiblaHeadingDegrees(int degrees) {
     return 'Qibla heading: $degrees°';
   }
