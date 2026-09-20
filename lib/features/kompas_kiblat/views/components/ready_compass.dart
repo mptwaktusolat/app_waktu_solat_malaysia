@@ -11,17 +11,17 @@ class _ReadyCompass extends StatelessWidget {
     final details = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        if (controller.shouldShowOutsideMalaysiaWarning) ...[
+          PastelAdmonition.caution(
+            text: localizations.qiblaOutsideMalaysiaWarning,
+          ),
+          const SizedBox(height: 8),
+        ],
         _LocationAndBearing(
           location:
               controller.locationLabel ?? localizations.qiblaUnknownLocation,
           bearing: controller.qiblaBearing!,
         ),
-        if (controller.shouldShowOutsideMalaysiaWarning) ...[
-          const SizedBox(height: 8),
-          _AccuracyWarning(
-            message: localizations.qiblaOutsideMalaysiaWarning,
-          ),
-        ],
       ],
     );
 

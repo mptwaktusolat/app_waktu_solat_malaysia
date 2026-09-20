@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:admonitions/admonitions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +13,6 @@ import 'compass_calibration_dialog.dart';
 import 'location_error_widget.dart';
 import 'no_compass_sensor.dart';
 
-part 'components/accuracy_warning.dart';
 part 'components/compass_accuracy_indicator.dart';
 part 'components/compass_graphic.dart';
 part 'components/loading_state.dart';
