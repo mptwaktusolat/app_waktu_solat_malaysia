@@ -25,9 +25,9 @@ dependencies:
   firebase_core: ^4.1.0
   firebase_crashlytics: ^5.0.1
   flutter_custom_tabs: ^2.1.0
+  flutter_device_compass: ^2.2.0
   flutter_local_notifications: ^22.0.1
   flutter_markdown: ^0.7.1
-  flutter_qiblah: ^3.0.3
   flutter_spinkit: ^5.0.0
   flutter_staggered_animations: ^1.1.1
   flutter_svg: ^2.0.0

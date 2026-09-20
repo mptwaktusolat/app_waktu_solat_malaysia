@@ -373,6 +373,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String get qiblaErrBack => 'Go back';
 
   @override
+  String get qiblaCurrentLocation => 'Current location';
+
+  @override
+  String qiblaHeadingDegrees(int degrees) {
+    return 'Qibla heading: $degrees°';
+  }
+
+  @override
+  String qiblaTurnLeft(int degrees) {
+    return 'Turn $degrees° left';
+  }
+
+  @override
+  String qiblaTurnRight(int degrees) {
+    return 'Turn $degrees° right';
+  }
+
+  @override
+  String get qiblaAligned => 'You are facing the Qibla';
+
+  @override
+  String get qiblaOutsideMalaysiaWarning =>
+      'Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.';
+
+  @override
+  String get qiblaLoadingLocation => 'Getting your current location…';
+
+  @override
+  String get qiblaLocationServiceDisabled =>
+      'Location services are turned off. Turn them on to determine the Qibla direction.';
+
+  @override
+  String get qiblaPermissionDenied =>
+      'Location permission was denied. Allow location access to determine the Qibla direction.';
+
+  @override
+  String get qiblaPermissionDeniedForever =>
+      'Location permission is disabled for this app. Enable it in app settings to determine the Qibla direction.';
+
+  @override
+  String get qiblaOpenLocationSettings => 'Open location settings';
+
+  @override
+  String get qiblaOpenAppSettings => 'Open app settings';
+
+  @override
+  String get qiblaRetry => 'Retry';
+
+  @override
+  String get qiblaUnknownLocation => 'Unknown location';
+
+  @override
+  String get qiblaCompassError =>
+      'Unable to load the Qibla compass. Please try again.';
+
+  @override
   String get feedbackTitle => 'Feedback';
 
   @override

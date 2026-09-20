@@ -1,0 +1,121 @@
+part of '../qibla_compass.dart';
+
+class _ReadyCompass extends StatelessWidget {
+  const _ReadyCompass({required this.controller});
+
+  final QiblaCompassController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    final details = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _LocationAndBearing(
+          location:
+              controller.locationLabel ?? localizations.qiblaUnknownLocation,
+          bearing: controller.qiblaBearing!,
+        ),
+        if (controller.shouldShowOutsideMalaysiaWarning) ...[
+          const SizedBox(height: 8),
+          _AccuracyWarning(
+            message: localizations.qiblaOutsideMalaysiaWarning,
+          ),
+        ],
+      ],
+    );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          if (constraints.maxHeight < 360) {
+            return Row(
+              children: [
+                Expanded(
+                  flex: 4,
+                  child: SingleChildScrollView(child: details),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  flex: 5,
+                  child: _buildDirectionalContent(context),
+                ),
+              ],
+            );
+          }
+
+          return Column(
+            children: [
+              details,
+              const SizedBox(height: 8),
+              Expanded(child: _buildDirectionalContent(context)),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildDirectionalContent(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
+    if (controller.status == QiblaCompassStatus.noSensor) {
+      return const NoCompassSensor();
+    }
+    if (controller.status == QiblaCompassStatus.error) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.explore_off_outlined,
+              size: 72,
+              color: Colors.redAccent,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              localizations.qiblaCompassError,
+              textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.redAccent),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton(
+              onPressed: controller.retry,
+              child: Text(localizations.qiblaRetry),
+            ),
+          ],
+        ),
+      );
+    }
+    if (controller.sensorAvailable == null ||
+        controller.displayTurnDegrees == null) {
+      return const Center(child: CupertinoActivityIndicator());
+    }
+
+    return Column(
+      children: [
+        Expanded(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final size = math.min(
+                constraints.maxWidth,
+                constraints.maxHeight,
+              );
+              return Center(
+                child: SizedBox.square(
+                  dimension: size,
+                  child: _CompassGraphic(
+                    turnDegrees: controller.displayTurnDegrees!,
+                    isAligned: controller.isAligned,
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 6),
+        _TurnGuidance(controller: controller),
+      ],
+    );
+  }
+}

@@ -7,32 +7,23 @@ class NoCompassSensor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const box = SizedBox(height: 32);
-
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           const Icon(
             Icons.explore_off_outlined,
-            size: 130,
+            size: 88,
             color: Colors.redAccent,
           ),
-          box,
+          const SizedBox(height: 20),
           Text(
             AppLocalizations.of(context)!.qiblaErrNoCompass,
             textAlign: TextAlign.center,
             style: const TextStyle(
                 color: Colors.redAccent, fontWeight: FontWeight.bold),
           ),
-          box,
-          ElevatedButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              AppLocalizations.of(context)!.qiblaErrBack,
-            ),
-          )
         ],
       ),
     );

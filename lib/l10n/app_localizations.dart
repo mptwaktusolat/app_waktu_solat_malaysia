@@ -758,6 +758,96 @@ abstract class AppLocalizations {
   /// **'Go back'**
   String get qiblaErrBack;
 
+  /// No description provided for @qiblaCurrentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get qiblaCurrentLocation;
+
+  /// No description provided for @qiblaHeadingDegrees.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla heading: {degrees}°'**
+  String qiblaHeadingDegrees(int degrees);
+
+  /// No description provided for @qiblaTurnLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn {degrees}° left'**
+  String qiblaTurnLeft(int degrees);
+
+  /// No description provided for @qiblaTurnRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn {degrees}° right'**
+  String qiblaTurnRight(int degrees);
+
+  /// No description provided for @qiblaAligned.
+  ///
+  /// In en, this message translates to:
+  /// **'You are facing the Qibla'**
+  String get qiblaAligned;
+
+  /// No description provided for @qiblaOutsideMalaysiaWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.'**
+  String get qiblaOutsideMalaysiaWarning;
+
+  /// No description provided for @qiblaLoadingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting your current location…'**
+  String get qiblaLoadingLocation;
+
+  /// No description provided for @qiblaLocationServiceDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Location services are turned off. Turn them on to determine the Qibla direction.'**
+  String get qiblaLocationServiceDisabled;
+
+  /// No description provided for @qiblaPermissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was denied. Allow location access to determine the Qibla direction.'**
+  String get qiblaPermissionDenied;
+
+  /// No description provided for @qiblaPermissionDeniedForever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission is disabled for this app. Enable it in app settings to determine the Qibla direction.'**
+  String get qiblaPermissionDeniedForever;
+
+  /// No description provided for @qiblaOpenLocationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open location settings'**
+  String get qiblaOpenLocationSettings;
+
+  /// No description provided for @qiblaOpenAppSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open app settings'**
+  String get qiblaOpenAppSettings;
+
+  /// No description provided for @qiblaRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get qiblaRetry;
+
+  /// No description provided for @qiblaUnknownLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown location'**
+  String get qiblaUnknownLocation;
+
+  /// No description provided for @qiblaCompassError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load the Qibla compass. Please try again.'**
+  String get qiblaCompassError;
+
   /// No description provided for @feedbackTitle.
   ///
   /// In en, this message translates to:
