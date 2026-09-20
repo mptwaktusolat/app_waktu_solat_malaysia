@@ -112,7 +112,7 @@ class _ReadyCompass extends StatelessWidget {
           child: SizedBox.square(
             dimension: size,
             child: _CompassGraphic(
-              turnDegrees: controller.displayTurnDegrees!,
+              rotationDegrees: controller.displayTurnDegrees!,
               isAligned: controller.isAligned,
             ),
           ),

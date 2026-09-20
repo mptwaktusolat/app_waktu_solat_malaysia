@@ -1,9 +1,10 @@
 part of '../qibla_compass.dart';
 
 class _CompassGraphic extends StatelessWidget {
-  const _CompassGraphic({required this.turnDegrees, required this.isAligned});
+  const _CompassGraphic(
+      {required this.rotationDegrees, required this.isAligned});
 
-  final double turnDegrees;
+  final double rotationDegrees;
   final bool isAligned;
 
   @override
@@ -15,7 +16,7 @@ class _CompassGraphic extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         AnimatedRotation(
-          turns: turnDegrees / 360,
+          turns: rotationDegrees / 360,
           duration: const Duration(milliseconds: 140),
           curve: Curves.easeOut,
           child: SvgPicture.asset(

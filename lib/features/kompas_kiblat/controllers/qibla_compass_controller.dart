@@ -44,7 +44,6 @@ class QiblaCompassController extends ChangeNotifier {
   String? isoCountryCode;
   double? qiblaBearing;
   double? heading;
-  double? turnDegrees;
   double? displayTurnDegrees;
   double? headingAccuracy;
   bool? sensorAvailable;
@@ -134,9 +133,7 @@ class QiblaCompassController extends ChangeNotifier {
   }
 
   Future<void> _resolvePlace(
-    QiblaCoordinates coordinates,
-    int generation,
-  ) async {
+      QiblaCoordinates coordinates, int generation) async {
     try {
       final place = await _locationService.reverseGeocode(coordinates);
       if (!_isCurrent(generation)) return;
@@ -145,7 +142,8 @@ class QiblaCompassController extends ChangeNotifier {
         isoCountryCode = _nonEmpty(place.isoCountryCode)?.toUpperCase();
       }
     } catch (_) {
-      // Coordinates remain a useful, non-blocking fallback.
+      // Ignore reverse-geocoding failures so a missing place name does not stop
+      // the compass
     } finally {
       if (_isCurrent(generation)) {
         isCountryResolutionPending = false;
@@ -209,7 +207,6 @@ class QiblaCompassController extends ChangeNotifier {
       fromHeading: heading!,
       toBearing: bearing,
     );
-    turnDegrees = nextTurn;
     displayTurnDegrees = displayTurnDegrees == null
         ? nextTurn
         : QiblaMath.unwrapAngle(
@@ -238,7 +235,6 @@ class QiblaCompassController extends ChangeNotifier {
     isoCountryCode = null;
     qiblaBearing = null;
     heading = null;
-    turnDegrees = null;
     displayTurnDegrees = null;
     headingAccuracy = null;
     sensorAvailable = null;
