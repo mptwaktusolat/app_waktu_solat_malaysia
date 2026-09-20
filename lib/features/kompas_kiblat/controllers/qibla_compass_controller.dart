@@ -22,9 +22,8 @@ class QiblaCompassController extends ChangeNotifier {
     QiblaLocationService? locationService,
     QiblaHeadingService? headingService,
     this.onAligned,
-  })  : _locationService =
-            locationService ?? const GeolocatorQiblaLocationService(),
-        _headingService = headingService ?? const DeviceQiblaHeadingService();
+  })  : _locationService = locationService ?? const QiblaLocationService(),
+        _headingService = headingService ?? const QiblaHeadingService();
 
   static const Duration _locationTimeout = Duration(seconds: 15);
   static const double _alignedThreshold = 2;
@@ -265,18 +264,10 @@ class QiblaCompassController extends ChangeNotifier {
     _headingSubscription = null;
   }
 
-  static String formatLocation(
-    QiblaPlace place, {
-    required QiblaCoordinates fallback,
-  }) {
-    final area = [
-      place.subLocality,
-      place.locality,
-      place.subAdministrativeArea,
-    ].map(_nonEmpty).whereType<String>().firstOrNull;
-
+  static String formatLocation(QiblaPlace place,
+      {required QiblaCoordinates fallback}) {
     final parts = <String>[];
-    for (final value in [area, place.administrativeArea, place.country]) {
+    for (final value in [place.administrativeArea, place.country]) {
       final part = _nonEmpty(value);
       if (part == null) continue;
       if (parts.any((item) => item.toLowerCase() == part.toLowerCase())) {

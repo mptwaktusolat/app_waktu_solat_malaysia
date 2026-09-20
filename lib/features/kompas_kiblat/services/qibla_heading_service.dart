@@ -10,19 +10,11 @@ class QiblaHeadingReading {
   final double? accuracy;
 }
 
-abstract class QiblaHeadingService {
-  Future<bool> hasSensors();
+class QiblaHeadingService {
+  const QiblaHeadingService();
 
-  Stream<QiblaHeadingReading> get readings;
-}
-
-class DeviceQiblaHeadingService implements QiblaHeadingService {
-  const DeviceQiblaHeadingService();
-
-  @override
   Future<bool> hasSensors() async => await FlutterCompass.hasSensors ?? false;
 
-  @override
   Stream<QiblaHeadingReading> get readings {
     final events = FlutterCompass.eventsFor(CompassUpdateOptions.balanced);
     if (events == null) {

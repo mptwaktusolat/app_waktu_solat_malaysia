@@ -29,29 +29,11 @@ class QiblaPlace {
   final String? isoCountryCode;
 }
 
-abstract class QiblaLocationService {
-  Future<bool> isLocationServiceEnabled();
+class QiblaLocationService {
+  const QiblaLocationService();
 
-  Future<LocationPermission> checkPermission();
-
-  Future<LocationPermission> requestPermission();
-
-  Future<QiblaCoordinates> getCurrentPosition();
-
-  Future<QiblaPlace?> reverseGeocode(QiblaCoordinates coordinates);
-
-  Future<bool> openLocationSettings();
-
-  Future<bool> openAppSettings();
-}
-
-class GeolocatorQiblaLocationService implements QiblaLocationService {
-  const GeolocatorQiblaLocationService();
-
-  @override
   Future<LocationPermission> checkPermission() => Geolocator.checkPermission();
 
-  @override
   Future<QiblaCoordinates> getCurrentPosition() async {
     final position = await Geolocator.getCurrentPosition(
       locationSettings: const LocationSettings(
@@ -64,17 +46,13 @@ class GeolocatorQiblaLocationService implements QiblaLocationService {
     );
   }
 
-  @override
   Future<bool> isLocationServiceEnabled() =>
       Geolocator.isLocationServiceEnabled();
 
-  @override
   Future<bool> openAppSettings() => Geolocator.openAppSettings();
 
-  @override
   Future<bool> openLocationSettings() => Geolocator.openLocationSettings();
 
-  @override
   Future<QiblaPlace?> reverseGeocode(QiblaCoordinates coordinates) async {
     final placemarks = await placemarkFromCoordinates(
       coordinates.latitude,
@@ -93,7 +71,6 @@ class GeolocatorQiblaLocationService implements QiblaLocationService {
     );
   }
 
-  @override
   Future<LocationPermission> requestPermission() =>
       Geolocator.requestPermission();
 }
