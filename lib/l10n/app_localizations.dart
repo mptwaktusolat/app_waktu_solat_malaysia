@@ -764,24 +764,6 @@ abstract class AppLocalizations {
   /// **'Qibla heading: {degrees}°'**
   String qiblaHeadingDegrees(int degrees);
 
-  /// No description provided for @qiblaTurnLeft.
-  ///
-  /// In en, this message translates to:
-  /// **'Turn {degrees}° left'**
-  String qiblaTurnLeft(int degrees);
-
-  /// No description provided for @qiblaTurnRight.
-  ///
-  /// In en, this message translates to:
-  /// **'Turn {degrees}° right'**
-  String qiblaTurnRight(int degrees);
-
-  /// No description provided for @qiblaAligned.
-  ///
-  /// In en, this message translates to:
-  /// **'You are facing the Qibla'**
-  String get qiblaAligned;
-
   /// No description provided for @qiblaOutsideMalaysiaWarning.
   ///
   /// In en, this message translates to:

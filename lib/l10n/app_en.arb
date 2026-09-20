@@ -213,23 +213,6 @@
       }
     }
   },
-  "qiblaTurnLeft": "Turn {degrees}° left",
-  "@qiblaTurnLeft": {
-    "placeholders": {
-      "degrees": {
-        "type": "int"
-      }
-    }
-  },
-  "qiblaTurnRight": "Turn {degrees}° right",
-  "@qiblaTurnRight": {
-    "placeholders": {
-      "degrees": {
-        "type": "int"
-      }
-    }
-  },
-  "qiblaAligned": "You are facing the Qibla",
   "qiblaOutsideMalaysiaWarning": "Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.",
   "qiblaLoadingLocation": "Getting your current location…",
   "qiblaLocationServiceDisabled": "Location services are turned off. Turn them on to determine the Qibla direction.",

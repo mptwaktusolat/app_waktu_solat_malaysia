@@ -378,19 +378,6 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
-  String qiblaTurnLeft(int degrees) {
-    return 'Pusing $degrees° ke kiri';
-  }
-
-  @override
-  String qiblaTurnRight(int degrees) {
-    return 'Pusing $degrees° ke kanan';
-  }
-
-  @override
-  String get qiblaAligned => 'Anda sedang menghadap Kiblat';
-
-  @override
   String get qiblaOutsideMalaysiaWarning =>
       'Ketepatan kompas mungkin berbeza di luar Malaysia atau apabila negara tidak dapat dikenal pasti kerana utara magnet boleh berbeza daripada utara sebenar. Gunakan ciri ini sebagai panduan.';
 

@@ -378,19 +378,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String qiblaTurnLeft(int degrees) {
-    return 'Turn $degrees° left';
-  }
-
-  @override
-  String qiblaTurnRight(int degrees) {
-    return 'Turn $degrees° right';
-  }
-
-  @override
-  String get qiblaAligned => 'You are facing the Qibla';
-
-  @override
   String get qiblaOutsideMalaysiaWarning =>
       'Compass accuracy may vary outside Malaysia or when the country cannot be determined because magnetic north can differ from true north. Use this as a guide.';
 

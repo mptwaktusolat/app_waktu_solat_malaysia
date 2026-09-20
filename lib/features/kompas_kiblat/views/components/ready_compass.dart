@@ -92,30 +92,22 @@ class _ReadyCompass extends StatelessWidget {
       return const Center(child: CupertinoActivityIndicator());
     }
 
-    return Column(
-      children: [
-        Expanded(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final size = math.min(
-                constraints.maxWidth,
-                constraints.maxHeight,
-              );
-              return Center(
-                child: SizedBox.square(
-                  dimension: size,
-                  child: _CompassGraphic(
-                    turnDegrees: controller.displayTurnDegrees!,
-                    isAligned: controller.isAligned,
-                  ),
-                ),
-              );
-            },
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final size = math.min(
+          constraints.maxWidth,
+          constraints.maxHeight,
+        );
+        return Center(
+          child: SizedBox.square(
+            dimension: size,
+            child: _CompassGraphic(
+              turnDegrees: controller.displayTurnDegrees!,
+              isAligned: controller.isAligned,
+            ),
           ),
-        ),
-        const SizedBox(height: 6),
-        _TurnGuidance(controller: controller),
-      ],
+        );
+      },
     );
   }
 }

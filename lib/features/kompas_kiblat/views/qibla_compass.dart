@@ -15,7 +15,6 @@ part 'components/compass_graphic.dart';
 part 'components/loading_state.dart';
 part 'components/location_and_bearing.dart';
 part 'components/ready_compass.dart';
-part 'components/turn_guidance.dart';
 
 class QiblaCompass extends StatefulWidget {
   const QiblaCompass({super.key, this.controller});
