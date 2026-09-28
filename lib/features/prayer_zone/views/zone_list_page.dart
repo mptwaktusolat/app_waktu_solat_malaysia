@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
-import '../../../shared/services/location_service/location_database.dart';
 import '../../../providers/location_provider.dart';
-import '../../../shared/models/jakim_zones.dart';
+import '../../../shared/models/prayer_zone.dart';
+import '../../../shared/services/prayer_zone_catalog.dart';
 import 'components/location_bubble_widget.dart';
 
 /// A page that shows available prayer time zones.
@@ -29,11 +28,58 @@ class _ZoneListPageState extends State<ZoneListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _MasterDetailFlow(
-      detailPageFABlessGutterWidth: _getGutterSize(context),
-      title: Text(AppLocalizations.of(context)!.zoneManualSelectZone),
-      detailPageBuilder: _prayerZonesPage,
-      masterViewBuilder: _prayerZonesView,
+    final catalog = PrayerZoneCatalog.instance;
+    return ListenableBuilder(
+      listenable: catalog,
+      builder: (context, _) {
+        if (!catalog.hasZones) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                AppLocalizations.of(context)!.zoneManualSelectZone,
+              ),
+            ),
+            body: Center(
+              child: catalog.initialLoadError == null
+                  ? const CircularProgressIndicator()
+                  : Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!
+                                .zoneCatalogueLoadError,
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 12),
+                          FilledButton(
+                            onPressed: catalog.isInitialLoading
+                                ? null
+                                : catalog.refresh,
+                            child: Text(
+                              AppLocalizations.of(context)!.zoneCatalogueRetry,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+            ),
+          );
+        }
+
+        return _MasterDetailFlow(
+          key: ValueKey(catalog.zones),
+          detailPageFABlessGutterWidth: _getGutterSize(context),
+          title: Text(AppLocalizations.of(context)!.zoneManualSelectZone),
+          detailPageBuilder: _prayerZonesPage,
+          masterViewBuilder: (context, isLateral) => _PrayerZonesView(
+            isLateral: isLateral,
+            selectedId: selectedId,
+            zones: catalog.zones,
+          ),
+        );
+      },
     );
   }
 
@@ -46,25 +92,24 @@ class _ZoneListPageState extends State<ZoneListPage> {
       scrollController: scrollController,
     );
   }
-
-  Widget _prayerZonesView(final BuildContext _, final bool isLateral) {
-    return _PrayerZonesView(isLateral: isLateral, selectedId: selectedId);
-  }
 }
 
 class _PrayerZonesView extends StatefulWidget {
-  const _PrayerZonesView({required this.isLateral, required this.selectedId});
+  const _PrayerZonesView({
+    required this.isLateral,
+    required this.selectedId,
+    required this.zones,
+  });
 
   final bool isLateral;
   final ValueNotifier<int?> selectedId;
+  final List<PrayerZone> zones;
 
   @override
   _PrayerZonesViewState createState() => _PrayerZonesViewState();
 }
 
 class _PrayerZonesViewState extends State<_PrayerZonesView> {
-  final allZones = LocationDatabase.allLocation;
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -81,7 +126,7 @@ class _PrayerZonesViewState extends State<_PrayerZonesView> {
                   child: _negeriList(
                     context,
                     selectedId,
-                    allZones,
+                    widget.zones,
                     widget.isLateral,
                   ),
                 ),
@@ -96,7 +141,7 @@ class _PrayerZonesViewState extends State<_PrayerZonesView> {
   Widget _negeriList(
     final BuildContext context,
     final int? selectedId,
-    final List<JakimZones> data,
+    final List<PrayerZone> data,
     final bool drawSelection,
   ) {
     final negeriNameList = data.map((e) => e.negeri).toSet().toList()
@@ -105,7 +150,7 @@ class _PrayerZonesViewState extends State<_PrayerZonesView> {
       itemCount: negeriNameList.length,
       itemBuilder: (BuildContext context, int index) {
         final String negeriName = negeriNameList[index];
-        final List<JakimZones> daerahList = data
+        final List<PrayerZone> daerahList = data
             .where((element) => element.negeri == negeriName)
             .toList(growable: false);
         return _PrayerZoneListTile(
@@ -163,7 +208,7 @@ class _PrayerZonesPage extends StatefulWidget {
   });
 
   final String negeriName;
-  final List<JakimZones> zoneEntries;
+  final List<PrayerZone> zoneEntries;
   final ScrollController? scrollController;
 
   @override
@@ -185,7 +230,7 @@ class _PrayerZonesPageState extends State<_PrayerZonesPage> {
         builder: (context, locationProvider, child) {
           final jakimCode = locationProvider.currentLocationCode;
           return Column(
-            children: widget.zoneEntries.map((JakimZones jakimZone) {
+            children: widget.zoneEntries.map((PrayerZone jakimZone) {
               return ListTile(
                 selected: jakimZone.jakimCode == jakimCode,
                 leading: LocationBubbleWidget(
@@ -194,10 +239,7 @@ class _PrayerZonesPageState extends State<_PrayerZonesPage> {
                 ),
                 title: Text(jakimZone.daerah),
                 onTap: () {
-                  locationProvider.currentLocationCode = jakimZone.jakimCode;
-                  Fluttertoast.showToast(
-                      msg: AppLocalizations.of(context)!
-                          .zoneUpdatedSuccess(jakimZone.daerah));
+                  Navigator.of(context, rootNavigator: true).pop(jakimZone);
                 },
               );
             }).toList(),
@@ -357,6 +399,7 @@ class _MasterDetailFlow extends StatefulWidget {
   /// Creates a master detail navigation flow which is either nested or
   /// lateral depending on screen width.
   const _MasterDetailFlow({
+    super.key,
     required this.detailPageBuilder,
     required this.masterViewBuilder,
     this.detailPageFABlessGutterWidth,
@@ -489,7 +532,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
     final MaterialPageRoute<void> masterPageRoute = _masterPageRoute(context);
 
     return NavigatorPopHandler(
-      onPop: () {
+      onPopWithResult: (_) {
         _navigatorKey.currentState!.maybePop();
       },
       child: Navigator(
@@ -803,7 +846,7 @@ class _DetailArguments {
   const _DetailArguments(this.packageName, this.daerahEntries);
 
   final String packageName;
-  final List<JakimZones> daerahEntries;
+  final List<PrayerZone> daerahEntries;
 
   @override
   bool operator ==(final Object other) {

@@ -62,8 +62,7 @@ import 'app_localizations_ms.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -93,10 +91,7 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('en'),
-    Locale('ms')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('en'), Locale('ms')];
 
   /// app title material app
   ///
@@ -1208,6 +1203,18 @@ abstract class AppLocalizations {
   /// **'Select zone'**
   String get zoneManualSelectZone;
 
+  /// No description provided for @zoneCatalogueLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer zones could not be loaded. Check your internet connection and try again.'**
+  String get zoneCatalogueLoadError;
+
+  /// No description provided for @zoneCatalogueRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get zoneCatalogueRetry;
+
   /// No description provided for @zoneUpdatedSuccess.
   ///
   /// In en, this message translates to:
@@ -1569,8 +1576,7 @@ abstract class AppLocalizations {
   String get tasbihColorPickerTooltip;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1579,8 +1585,7 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'ms'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'ms'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;

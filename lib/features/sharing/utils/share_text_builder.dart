@@ -6,7 +6,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/env.dart';
 import '../../../shared/extensions/date_time_extensions.dart';
-import '../../../shared/services/location_service/location_database.dart';
+import '../../../shared/services/prayer_zone_catalog.dart';
 
 /// Defines different targets for sharing prayer times.
 enum ShareTarget {
@@ -59,12 +59,12 @@ class ShareTextBuilder {
     this._times, {
     bool use12hourFormat = false,
   })  : _use12hourFormat = use12hourFormat,
-        _date = DateFormat('EEEE, d MMMM yyyy', _appLocalizations.localeName)
-            .format(DateTime.now()),
-        _daerah = LocationDatabase.daerah(
-            GetStorage().read(kStoredLocationJakimCode)),
-        _negeri = LocationDatabase.negeri(
-            GetStorage().read(kStoredLocationJakimCode));
+        _date =
+            DateFormat('EEEE, d MMMM yyyy', _appLocalizations.localeName).format(DateTime.now()),
+        _daerah = PrayerZoneCatalog.instance
+            .daerahForCode(GetStorage().read<String>(kStoredLocationJakimCode)),
+        _negeri = PrayerZoneCatalog.instance
+            .negeriForCode(GetStorage().read<String>(kStoredLocationJakimCode));
 
   /// Formats prayer time text for sharing as plain text.
   ///
@@ -78,16 +78,13 @@ class ShareTextBuilder {
     message.writeln('📍 $_daerah ($_negeri)');
     message.writeln('📆 ${_times.hijri}H');
     message.writeln();
-    message.writeln(
-        '☁ ${_appLocalizations.fajrName}: ${_times.fajr.readable(_use12hourFormat)}');
-    message.writeln(
-        '🌞 ${_appLocalizations.dhuhrName}: ${_times.dhuhr.readable(_use12hourFormat)}');
-    message.writeln(
-        '☀ ${_appLocalizations.asrName}: ${_times.asr.readable(_use12hourFormat)}');
+    message.writeln('☁ ${_appLocalizations.fajrName}: ${_times.fajr.readable(_use12hourFormat)}');
+    message
+        .writeln('🌞 ${_appLocalizations.dhuhrName}: ${_times.dhuhr.readable(_use12hourFormat)}');
+    message.writeln('☀ ${_appLocalizations.asrName}: ${_times.asr.readable(_use12hourFormat)}');
     message.writeln(
         '🌙 ${_appLocalizations.maghribName}: ${_times.maghrib.readable(_use12hourFormat)}');
-    message.writeln(
-        '⭐ ${_appLocalizations.ishaName}: ${_times.isha.readable(_use12hourFormat)}');
+    message.writeln('⭐ ${_appLocalizations.ishaName}: ${_times.isha.readable(_use12hourFormat)}');
     message.writeln();
     message.write(_appLocalizations.shareGetApp(envAppWebsite));
     return message.toString();

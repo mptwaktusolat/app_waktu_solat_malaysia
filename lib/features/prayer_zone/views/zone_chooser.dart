@@ -10,7 +10,7 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../providers/location_provider.dart';
 import '../../../shared/constants/constants.dart';
-import '../../../shared/models/jakim_zones.dart';
+import '../../../shared/models/prayer_zone.dart';
 import '../../../shared/models/location_coordinate_model.dart';
 import '../../../shared/services/location_service/location_data.dart';
 import 'components/zone_error_widget.dart';
@@ -22,8 +22,7 @@ import 'zone_list_page.dart';
 ///Also handle the location selection
 class LocationChooser {
   static void onNewLocationSaved(BuildContext context) {
-    GetStorage().write(
-        kShouldUpdateNotif, true); //if zone changes, update the notification
+    GetStorage().write(kShouldUpdateNotif, true); //if zone changes, update the notification
     //this setState will be called when user select a new location, this will
     //update the Text short code
     ScaffoldMessenger.of(context).showSnackBar(
@@ -34,9 +33,8 @@ class LocationChooser {
           children: [
             Icon(
               Icons.pin_drop_rounded,
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.black87
-                  : Colors.white70,
+              color:
+                  Theme.of(context).brightness == Brightness.dark ? Colors.black87 : Colors.white70,
             ),
             const SizedBox(width: 10),
             Text(AppLocalizations.of(context)!.zoneUpdatedToast),
@@ -53,8 +51,7 @@ class LocationChooser {
         placemarkFromCoordinates(pos.latitude, pos.longitude);
     final Future<MptZoneByGPS> jakimZoneFuture =
         WaktuSolat.api.zones.getZonesByGps(pos.latitude, pos.longitude);
-    final (placemarks, jakimZone) =
-        await (placemarksFuture, jakimZoneFuture).wait;
+    final (placemarks, jakimZone) = await (placemarksFuture, jakimZoneFuture).wait;
 
     final firstPlacemark = placemarks.first;
     final String zone = jakimZone.zone;
@@ -84,8 +81,7 @@ class LocationChooser {
             padding: const EdgeInsets.fromLTRB(8, 16, 8, 4),
             height: 250,
             child: FutureBuilder(
-                future:
-                    _getAllLocationData().timeout(const Duration(seconds: 12)),
+                future: _getAllLocationData().timeout(const Duration(seconds: 12)),
                 builder: (_, AsyncSnapshot<LocationCoordinateData> snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const ZoneLoadingWidget();
@@ -103,16 +99,14 @@ class LocationChooser {
   }
 
   static Future<void> openManualZoneSelector(BuildContext context) async {
-    final JakimZones? newZone =
-        await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+    final PrayerZone? newZone = await Navigator.of(context).push(MaterialPageRoute(builder: (_) {
       return const ZoneListPage();
     }));
 
     if (newZone == null) return;
 
-    Provider.of<LocationProvider>(context, listen: false).currentLocationCode =
-        newZone.jakimCode;
-    onNewLocationSaved(context);
+    Provider.of<LocationProvider>(context, listen: false).currentLocationCode = newZone.jakimCode;
     GetStorage().write(kWidgetLocation, newZone.daerah);
+    onNewLocationSaved(context);
   }
 }

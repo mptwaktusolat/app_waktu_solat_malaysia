@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -18,9 +17,8 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../firebase_options.dart';
 import '../../views/settings/notification_page_setting.dart';
 import '../constants/constants.dart';
-import '../models/jakim_zones.dart';
-import '../services/location_service/location_database.dart';
 import '../services/notification_services/notifications_helper.dart';
+import '../services/prayer_zone_catalog.dart';
 import 'app_launch_counter.dart';
 
 class StartupRoutine {
@@ -49,11 +47,10 @@ class StartupRoutine {
     await GetStorage.init();
     _initGetStorageData();
 
-    await _initializeJakimZoneData();
+    await _configureDefaultUserAgent();
+    PrayerZoneCatalog.instance.initialize();
 
     _registerLicenses();
-
-    await _configureDefaultUserAgent();
   }
 
   /// Configure user agent when calling waktu solat API
@@ -95,14 +92,6 @@ class StartupRoutine {
     get.writeIfNull(kAppLanguage, localeName == "ms" ? "ms" : "en");
     get.writeIfNull(kAppTheme, ThemeMode.light.name);
     get.writeIfNull(kNotificationSheetKeepOff, false);
-  }
-
-  /// Load Jakim zone data from assets to memory
-  static Future<void> _initializeJakimZoneData() async {
-    final String data = await rootBundle.loadString('assets/json/zones.json');
-    final List<dynamic> jsonDecoded = json.decode(data);
-    LocationDatabase.allLocation =
-        List.from(jsonDecoded.map((e) => JakimZones.fromJson(e)));
   }
 
   /// Register licenses for fonts

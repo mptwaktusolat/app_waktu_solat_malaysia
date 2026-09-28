@@ -106,16 +106,14 @@ class AppLocalizationsMs extends AppLocalizations {
       'Tetapan atau tukar zon waktu solat anda di sini';
 
   @override
-  String get onboardingCoachmarkUtilitiesTitle =>
-      'Utiliti tambahan di hujung jari';
+  String get onboardingCoachmarkUtilitiesTitle => 'Utiliti tambahan di hujung jari';
 
   @override
   String get onboardingCoachmarkUtilitiesContent =>
       'Cari jadual bulananan, arab kiblat, dan tasbih digital di sini';
 
   @override
-  String get onboardingCoachmarkSettingTitle =>
-      'Sesuaikan aplikasi ikut cita rasa anda';
+  String get onboardingCoachmarkSettingTitle => 'Sesuaikan aplikasi ikut cita rasa anda';
 
   @override
   String get onboardingCoachmarkSettingContent =>
@@ -378,8 +376,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get qiblaCalibrateNow => 'Kalibrasi sekarang';
 
   @override
-  String get qiblaErrNoCompass =>
-      'Maaf. Tiada penderia kompas terdapat dalam peranti ini.';
+  String get qiblaErrNoCompass => 'Maaf. Tiada penderia kompas terdapat dalam peranti ini.';
 
   @override
   String get qiblaErrBack => 'Kembali';
@@ -421,8 +418,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get qiblaUnknownLocation => 'Lokasi tidak diketahui';
 
   @override
-  String get qiblaCompassError =>
-      'Kompas Kiblat tidak dapat dimuatkan. Sila cuba lagi.';
+  String get qiblaCompassError => 'Kompas Kiblat tidak dapat dimuatkan. Sila cuba lagi.';
 
   @override
   String get feedbackTitle => 'Maklum Balas';
@@ -431,8 +427,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get feedbackFieldEmpty => 'Ruang tidak boleh kosong';
 
   @override
-  String get feedbackWriteHere =>
-      'Sila tinggalkan maklum balas/laporan anda di sini';
+  String get feedbackWriteHere => 'Sila tinggalkan maklum balas/laporan anda di sini';
 
   @override
   String get feedbackIncorrectEmail => 'Format e-mel salah';
@@ -456,8 +451,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get feedbackDeviceInfoRecommended => '(Disyorkan)';
 
   @override
-  String get feedbackTroubleDeviceInfo =>
-      'Masalah mendapatkan maklumat peranti';
+  String get feedbackTroubleDeviceInfo => 'Masalah mendapatkan maklumat peranti';
 
   @override
   String get feedbackGettingInfo => 'Sedang mendapatkan maklumat peranti...';
@@ -497,8 +491,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get feedbackReportGithub => 'Lapor / Ikuti isu-isu di GitHub';
 
   @override
-  String get feedbackThanks =>
-      'Terima kasih atas maklum balas anda yang berharga.';
+  String get feedbackThanks => 'Terima kasih atas maklum balas anda yang berharga.';
 
   @override
   String get onboardingChooseLang => 'Pilih bahasa';
@@ -619,6 +612,13 @@ class AppLocalizationsMs extends AppLocalizations {
   String get zoneManualSelectZone => 'Pilih zon';
 
   @override
+  String get zoneCatalogueLoadError =>
+      'Senarai zon solat tidak dapat dimuatkan. Semak sambungan internet anda dan cuba lagi.';
+
+  @override
+  String get zoneCatalogueRetry => 'Cuba semula';
+
+  @override
   String zoneUpdatedSuccess(String zone) {
     return 'Zon waktu solat ditetapkan kepada $zone';
   }
@@ -634,15 +634,13 @@ class AppLocalizationsMs extends AppLocalizations {
   String get notifSettingRestartApp => 'Mulakan semula';
 
   @override
-  String get notificationSettingPlayNotifTooltip =>
-      'Bunyikan notifikasi percubaan';
+  String get notificationSettingPlayNotifTooltip => 'Bunyikan notifikasi percubaan';
 
   @override
   String get notifSettingSysSetting => 'Pemberitahuan apl Tetapan Sistem';
 
   @override
-  String get notifSettingSysSettingDesc =>
-      'Sesuaikan bunyi, ubah saluran pemberitahuan dll.';
+  String get notifSettingSysSettingDesc => 'Sesuaikan bunyi, ubah saluran pemberitahuan dll.';
 
   @override
   String get notifSettingTroubleshoot => 'Penyelesaian masalah';
@@ -657,8 +655,7 @@ class AppLocalizationsMs extends AppLocalizations {
   }
 
   @override
-  String get notifSettingAdvancedTroubleshoot =>
-      'Penyelesaian masalah lanjutan';
+  String get notifSettingAdvancedTroubleshoot => 'Penyelesaian masalah lanjutan';
 
   @override
   String get notifSettingLimitNotif => 'Hadkan penjadualan pemberitahuan';
@@ -668,8 +665,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Hidupkan jika anda mengalami kelembapan yang melampau dalam apl. Pemberitahuan akan dijadualkan setiap minggu. Lalai adalah MATI (bulanan).';
 
   @override
-  String get notifSettingForceReschedule =>
-      'Paksa penjadualan pemberitahuan semula...';
+  String get notifSettingForceReschedule => 'Paksa penjadualan pemberitahuan semula...';
 
   @override
   String get notifSettingForceRescheduleDesc =>
@@ -682,12 +678,10 @@ class AppLocalizationsMs extends AppLocalizations {
   String get notifSettingProceed => 'Teruskan';
 
   @override
-  String get notifSettingNotifDemo =>
-      'Notifikasi/azan akan berbunyi seperti ini';
+  String get notifSettingNotifDemo => 'Notifikasi/azan akan berbunyi seperti ini';
 
   @override
-  String get notifSettingsExactAlarmPermissionTitle =>
-      'Kebenaran Penjadualan Pemberitahuan';
+  String get notifSettingsExactAlarmPermissionTitle => 'Kebenaran Penjadualan Pemberitahuan';
 
   @override
   String get notifSettingsExactAlarmPermissionGrantedSubtitle =>
@@ -698,8 +692,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'Kebenaran tidak diberikan. Aplikasi tidak dapat menghantar pemberitahuan azan. Ketik di sini untuk memberikan kebenaran';
 
   @override
-  String get notifSheetExactAlarmTitle =>
-      'Hidupkan kebenaran set notifikasi tepat waktu';
+  String get notifSheetExactAlarmTitle => 'Hidupkan kebenaran set notifikasi tepat waktu';
 
   @override
   String get notifSheetExactAlarmDescription =>
@@ -745,8 +738,7 @@ class AppLocalizationsMs extends AppLocalizations {
   String get contributeCopied => 'Disalin ke papan keratan';
 
   @override
-  String get notifTsAdmonition =>
-      'Peranti anda mungkin tidak terjejas dengan isu khusus ini.';
+  String get notifTsAdmonition => 'Peranti anda mungkin tidak terjejas dengan isu khusus ini.';
 
   @override
   String get notifTsPara1 =>

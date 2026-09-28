@@ -13,7 +13,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../../providers/location_provider.dart';
 import '../../../providers/updater_provider.dart';
 import '../../../shared/constants/constants.dart';
-import '../../../shared/services/location_service/location_database.dart';
+import '../../../shared/services/prayer_zone_catalog.dart';
 import '../../check_updates/services/update_checker_service.dart';
 import '../../check_updates/views/whats_new_update.dart';
 import '../../prayer_time/providers/prayer_time_provider.dart';
@@ -256,13 +256,15 @@ class ZoneWidget extends StatelessWidget {
                 LocationChooser.showLocationChooser(context);
               },
               onLongPress: () {
+                final zoneCatalog = PrayerZoneCatalog.instance;
+                final zone = zoneCatalog.zoneByCode(value.currentLocationCode);
+                final locationDescription = zone == null
+                    ? zoneCatalog.daerahForCode(value.currentLocationCode)
+                    : AppLocalizations.of(context)!
+                        .appBodyCurrentLocation(zone.daerah, zone.negeri);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text(AppLocalizations.of(context)!
-                        .appBodyCurrentLocation(
-                            LocationDatabase.daerah(value.currentLocationCode),
-                            LocationDatabase.negeri(
-                                value.currentLocationCode))),
+                    content: Text(locationDescription),
                     behavior: SnackBarBehavior.floating,
                     action: SnackBarAction(
                       label:

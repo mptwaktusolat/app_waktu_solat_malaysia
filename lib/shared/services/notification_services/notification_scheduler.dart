@@ -1,13 +1,13 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:timezone/timezone.dart' hide LocationDatabase;
+import 'package:timezone/timezone.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../views/settings/notification_page_setting.dart';
 import '../../constants/constants.dart';
 import '../../utils/debug_toast.dart';
-import '../location_service/location_database.dart';
+import '../prayer_zone_catalog.dart';
 import 'notifications_helper.dart';
 
 class MyNotifScheduler {
@@ -15,9 +15,8 @@ class MyNotifScheduler {
   static Future<bool> _canScheduleNotification() async {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
-    final androidNotif =
-        flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
+    final androidNotif = flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     // underlying implementation: https://github.com/MaikuB/flutter_local_notifications/blob/ca71c96ba2a245175b44471e2e41e4958d480876/flutter_local_notifications/android/src/main/java/com/dexterous/flutterlocalnotifications/FlutterLocalNotificationsPlugin.java#L2119
     final res = await androidNotif?.canScheduleExactNotifications();
     return res ?? false;
@@ -34,8 +33,9 @@ class MyNotifScheduler {
     await FlutterLocalNotificationsPlugin().cancelAll(); //reset all
     final currentDateTime = DateTime.now();
 
-    final String currentDaerah =
-        LocationDatabase.daerah(GetStorage().read(kStoredLocationJakimCode));
+    final String currentDaerah = PrayerZoneCatalog.instance.daerahForCode(
+      GetStorage().read<String>(kStoredLocationJakimCode),
+    );
 
     //if true, notification is scheduled by at most 7 days
     if (GetStorage().read(kStoredNotificationLimit)) {
@@ -48,17 +48,14 @@ class MyNotifScheduler {
     switch (notifType) {
       case MyNotificationType.noazan:
         DebugToast.show('Notification: Default sound');
-        _defaultScheduler(
-            appLocalizationsInstance, times, currentDateTime, currentDaerah);
+        _defaultScheduler(appLocalizationsInstance, times, currentDateTime, currentDaerah);
         break;
       case MyNotificationType.azan:
         DebugToast.show('Notification: Azan');
-        _azanScheduler(
-            appLocalizationsInstance, times, currentDateTime, currentDaerah);
+        _azanScheduler(appLocalizationsInstance, times, currentDateTime, currentDaerah);
         break;
       case MyNotificationType.shortAzan:
-        _azanScheduler(
-            appLocalizationsInstance, times, currentDateTime, currentDaerah,
+        _azanScheduler(appLocalizationsInstance, times, currentDateTime, currentDaerah,
             short: true);
     }
 
@@ -68,21 +65,16 @@ class MyNotifScheduler {
       body: appLocalizationsInstance.notifMonthlyReminderDesc,
       // if month (12 + 1) = 13, it will auto-increment to next year
       //2021-01-01 00:05:00.000+0800
-      scheduledTime: TZDateTime.local(
-          currentDateTime.year, currentDateTime.month + 1, 1, 0, 5),
+      scheduledTime: TZDateTime.local(currentDateTime.year, currentDateTime.month + 1, 1, 0, 5),
     );
 
     //This timestamp is later used to determine wether notification should be updated or not
-    GetStorage()
-        .write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
+    GetStorage().write(kStoredLastUpdateNotif, DateTime.now().millisecondsSinceEpoch);
   }
 
   /// Classic Notification Scheduler, default notification sound
-  static Future<void> _defaultScheduler(
-      AppLocalizations appLocalizations,
-      List<MptPrayer> times,
-      DateTime currentDateTime,
-      String currentLocation) async {
+  static Future<void> _defaultScheduler(AppLocalizations appLocalizations, List<MptPrayer> times,
+      DateTime currentDateTime, String currentLocation) async {
     for (var dayTime in times) {
       if (dayTime.fajr.isAfter(currentDateTime)) {
         //to make sure the time is in future
@@ -90,9 +82,8 @@ class MyNotifScheduler {
           name: 'Fajr',
           // Note: previosly, there was a bug with this id.
           // Read more: https://github.com/mptwaktusolat/app_waktu_solat_malaysia/issues/201
-          id: int.parse(dayTime.fajr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.fajr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
           body: appLocalizations.notifIn(currentLocation),
@@ -101,9 +92,8 @@ class MyNotifScheduler {
       if (dayTime.syuruk.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Syuruk',
-          id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.syuruk.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.sunriseName),
           body: appLocalizations.notifIn(currentLocation),
           summary: appLocalizations.notifEndSubh,
@@ -113,22 +103,19 @@ class MyNotifScheduler {
       if (dayTime.dhuhr.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Zuhr',
-          id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.dhuhr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.dhuhrName),
           body: appLocalizations.notifIn(currentLocation),
-          summary:
-              dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
+          summary: dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
         );
       }
       if (dayTime.asr.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Asr',
-          id: int.parse(dayTime.asr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.asr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.asrName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.asr, local),
@@ -137,9 +124,8 @@ class MyNotifScheduler {
       if (dayTime.maghrib.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Maghrib',
-          id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.maghrib.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.maghribName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.maghrib, local),
@@ -148,9 +134,8 @@ class MyNotifScheduler {
       if (dayTime.isha.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Isya\'',
-          id: int.parse(dayTime.isha.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.isha.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.ishaName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.isha, local),
@@ -160,17 +145,16 @@ class MyNotifScheduler {
   }
 
   /// Notification but with azan
-  static void _azanScheduler(AppLocalizations appLocalizations,
-      List<MptPrayer> times, DateTime currentDateTime, String currentLocation,
+  static void _azanScheduler(AppLocalizations appLocalizations, List<MptPrayer> times,
+      DateTime currentDateTime, String currentLocation,
       {bool short = false}) async {
     for (var dayTime in times) {
       if (dayTime.fajr.isAfter(currentDateTime)) {
         //to make sure the time is in future
         await scheduleSingleAzanNotification(
           name: short ? 'Fajr short' : 'Fajr',
-          id: int.parse(dayTime.fajr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.fajr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.fajrName),
           scheduledTime: TZDateTime.from(dayTime.fajr, local),
           body: appLocalizations.notifIn(currentLocation),
@@ -180,9 +164,8 @@ class MyNotifScheduler {
       if (dayTime.syuruk.isAfter(currentDateTime)) {
         await scheduleSinglePrayerNotification(
           name: 'Syuruk',
-          id: int.parse(dayTime.syuruk.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.syuruk.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.sunriseName),
           body: appLocalizations.notifIn(currentLocation),
           summary: appLocalizations.notifEndSubh,
@@ -192,13 +175,11 @@ class MyNotifScheduler {
       if (dayTime.dhuhr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Zuhr short' : 'Zuhr',
-          id: int.parse(dayTime.dhuhr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.dhuhr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.dhuhrName),
           body: appLocalizations.notifIn(currentLocation),
-          summary:
-              dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
+          summary: dayTime.dhuhr.weekday == DateTime.friday ? 'Salam Jumaat' : null,
           scheduledTime: TZDateTime.from(dayTime.dhuhr, local),
           customSound: short ? 'azan_short_lamy2005' : 'azan_kurdhi2010',
         );
@@ -206,9 +187,8 @@ class MyNotifScheduler {
       if (dayTime.asr.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Asr short' : 'Asr',
-          id: int.parse(dayTime.asr.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.asr.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.asrName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.asr, local),
@@ -218,9 +198,8 @@ class MyNotifScheduler {
       if (dayTime.maghrib.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Maghrib short' : 'Maghrib',
-          id: int.parse(dayTime.maghrib.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.maghrib.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.maghribName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.maghrib, local),
@@ -230,9 +209,8 @@ class MyNotifScheduler {
       if (dayTime.isha.isAfter(currentDateTime)) {
         await scheduleSingleAzanNotification(
           name: short ? 'Isya\' short' : 'Isya\'',
-          id: int.parse(dayTime.isha.millisecondsSinceEpoch
-              .toString()
-              .replaceAll(RegExp(r'0+$'), "")),
+          id: int.parse(
+              dayTime.isha.millisecondsSinceEpoch.toString().replaceAll(RegExp(r'0+$'), "")),
           title: appLocalizations.notifItsTime(appLocalizations.ishaName),
           body: appLocalizations.notifIn(currentLocation),
           scheduledTime: TZDateTime.from(dayTime.isha, local),

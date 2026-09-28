@@ -6,7 +6,7 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/constants/constants.dart';
 import '../../../../shared/models/location_coordinate_model.dart';
-import '../../../../shared/services/location_service/location_database.dart';
+import '../../../../shared/services/prayer_zone_catalog.dart';
 import '../zone_chooser.dart';
 import 'location_bubble_widget.dart';
 
@@ -17,81 +17,93 @@ class ZoneSuccessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<LocationProvider>(
-      builder: (_, value, __) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Center(
-                  child: Text(AppLocalizations.of(context)!.zoneYourLocation)),
-            ),
-            Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    coordinateData.lokasi!,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.bold),
+    final zoneCatalog = PrayerZoneCatalog.instance;
+    return ListenableBuilder(
+      listenable: zoneCatalog,
+      builder: (context, _) {
+        final prayerZone = zoneCatalog.zoneByCode(coordinateData.zone);
+        return Consumer<LocationProvider>(
+          builder: (_, value, __) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Center(child: Text(AppLocalizations.of(context)!.zoneYourLocation)),
+                ),
+                Expanded(
+                    flex: 3,
+                    child: Center(
+                      child: Text(
+                        coordinateData.lokasi!,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                    )),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Theme.of(context).colorScheme.surfaceTint.withAlpha(26),
                   ),
-                )),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Theme.of(context).colorScheme.surfaceTint.withAlpha(26),
-              ),
-              child: ListTile(
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LocationBubbleWidget(
-                      coordinateData.zone.toUpperCase(),
-                      isSelected: true,
+                  child: ListTile(
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LocationBubbleWidget(
+                          coordinateData.zone.toUpperCase(),
+                          isSelected: true,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                title: Text(
-                  LocationDatabase.daerah(coordinateData.zone),
-                  style: const TextStyle(
-                      fontSize: 13, height: 1.1, fontWeight: FontWeight.normal),
-                ),
-                subtitle: Text(
-                  LocationDatabase.negeri(coordinateData.zone),
-                  style: const TextStyle(fontSize: 11),
-                ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: OverflowBar(
-                overflowAlignment: OverflowBarAlignment.end,
-                children: [
-                  TextButton(
-                    child: Text(AppLocalizations.of(context)!.zoneSetManually),
-                    onPressed: () async {
-                      await LocationChooser.openManualZoneSelector(context);
-                      Navigator.pop(context);
-                    },
+                    title: Text(
+                      prayerZone?.daerah ?? zoneCatalog.daerahForCode(coordinateData.zone),
+                      style:
+                          const TextStyle(fontSize: 13, height: 1.1, fontWeight: FontWeight.normal),
+                    ),
+                    subtitle: prayerZone == null
+                        ? null
+                        : Text(
+                            prayerZone.negeri,
+                            style: const TextStyle(fontSize: 11),
+                          ),
                   ),
-                  TextButton(
-                    child: Text(AppLocalizations.of(context)!.zoneSetThis),
-                    onPressed: () {
-                      value.currentLocationCode = coordinateData.zone;
-                      LocationChooser.onNewLocationSaved(context);
-                      GetStorage().write(kWidgetLocation,
-                          coordinateData.lokasi ?? coordinateData.negeri);
+                ),
+                const SizedBox(height: 5),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: OverflowBar(
+                    overflowAlignment: OverflowBarAlignment.end,
+                    children: [
+                      TextButton(
+                        child: Text(AppLocalizations.of(context)!.zoneSetManually),
+                        onPressed: () async {
+                          await LocationChooser.openManualZoneSelector(context);
+                          Navigator.pop(context);
+                        },
+                      ),
+                      TextButton(
+                        child: Text(AppLocalizations.of(context)!.zoneSetThis),
+                        onPressed: () {
+                          final gpsLocation = coordinateData.lokasi?.trim();
+                          value.currentLocationCode = coordinateData.zone;
+                          LocationChooser.onNewLocationSaved(context);
+                          GetStorage().write(
+                            kWidgetLocation,
+                            gpsLocation != null && gpsLocation.isNotEmpty
+                                ? gpsLocation
+                                : zoneCatalog.daerahForCode(coordinateData.zone),
+                          );
 
-                      Navigator.pop(context, true);
-                    },
+                          Navigator.pop(context, true);
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ],
+                ),
+              ],
+            );
+          },
         );
       },
     );

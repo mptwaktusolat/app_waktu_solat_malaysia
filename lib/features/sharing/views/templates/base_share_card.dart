@@ -6,7 +6,7 @@ import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../providers/location_provider.dart';
 import '../../../../shared/extensions/date_time_extensions.dart';
-import '../../../../shared/services/location_service/location_database.dart';
+import '../../../../shared/services/prayer_zone_catalog.dart';
 import '../../../prayer_time/providers/prayer_time_provider.dart';
 
 /// A base class for share card widgets that can be captured as images.
@@ -41,7 +41,11 @@ abstract class BaseShareCard extends StatelessWidget {
     final String currentJakimCode =
         Provider.of<LocationProvider>(context, listen: false)
             .currentLocationCode;
-    final String locationDetail = LocationDatabase.daerah(currentJakimCode);
+    final zoneCatalog = PrayerZoneCatalog.instance;
+    final zone = zoneCatalog.zoneByCode(currentJakimCode);
+    final String location = zone == null
+        ? zoneCatalog.daerahForCode(currentJakimCode)
+        : '${zone.jakimCode} - ${zone.daerah}';
 
     final today = Provider.of<PrayerTimeProvider>(context, listen: false)
         .getTodayPrayer();
@@ -64,7 +68,7 @@ abstract class BaseShareCard extends StatelessWidget {
       child: buildCardContent(
         context,
         formattedDate: formattedDate,
-        location: '$currentJakimCode - $locationDetail',
+        location: location,
         prayerTimes: prayerTimes,
         hijriDate: hijriDate,
       ),

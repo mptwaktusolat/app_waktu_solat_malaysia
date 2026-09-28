@@ -42,3 +42,6 @@ analyzer:
     - windows/**
     - macos/**
     - linux/**
+
+formatter:
+  page_width: 100

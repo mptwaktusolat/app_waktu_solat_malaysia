@@ -294,6 +294,8 @@
   "zoneOpenLocationSettings": "Open Location Settings",
   "zoneLoading": "Loading",
   "zoneManualSelectZone": "Select zone",
+  "zoneCatalogueLoadError": "Prayer zones could not be loaded. Check your internet connection and try again.",
+  "zoneCatalogueRetry": "Retry",
   "zoneUpdatedSuccess": "Prayer zone set to {zone}",
   "@zoneUpdatedSuccess": {
     "placeholders": {

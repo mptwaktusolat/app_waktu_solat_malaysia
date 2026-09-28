@@ -25,6 +25,8 @@ const kNoAdsStartTime = "noAdsStartTime";
 const kWidgetLocation = "widgetLocation";
 const kNotificationSheetKeepOff = "notifSheetKeepOff";
 const kCoachmarkOnboardingShown = "coachmarkOnboardingShown";
+const kPrayerZoneCache = "prayerZoneCatalogue";
+const kPrayerZoneCacheTimestamp = "prayerZoneCatalogueFetchedAt";
 
 // Hotspot Flow (Coachmarks)
 const kOnboardingCoachmarkFlow = 'onboarding';

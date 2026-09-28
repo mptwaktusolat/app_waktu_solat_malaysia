@@ -1,13 +1,14 @@
 import 'package:get_storage/get_storage.dart';
 import 'package:waktusolat_api_client/waktusolat_api_client.dart';
 
-import '../../../shared/constants/constants.dart';
-import '../../../shared/services/location_service/location_database.dart';
 import '../../../networking/mpt_fetch_api.dart';
+import '../../../shared/constants/constants.dart';
+import '../../../shared/services/prayer_zone_catalog.dart';
 import '../../../shared/utils/homescreen.dart';
 
 /// Service class responsible for fetching and managing prayer time data.
 class PrayerTimeService {
+  final PrayerZoneCatalog _zoneCatalog = PrayerZoneCatalog.instance;
   MPTWaktuSolatV2? _prayerData;
   final int _currentDay = DateTime.now().day;
 
@@ -28,20 +29,21 @@ class PrayerTimeService {
   Future<void> _updateWidgetData(String zone) async {
     if (_prayerData == null) return;
 
-    var widgetLocation = GetStorage().read(kWidgetLocation);
-    if (widgetLocation == null || widgetLocation.isEmpty) {
-      widgetLocation = LocationDatabase.daerah(zone);
+    String widgetTitle = _zoneCatalog.daerahForCode(zone);
+
+    final storedLocation = GetStorage().read<String>(kWidgetLocation);
+    if (storedLocation != null && storedLocation.trim().isNotEmpty) {
+      widgetTitle = storedLocation;
     }
-    await Homescreen.savePrayerDataAndUpdateWidget(
-        _prayerData!, widgetLocation!);
+
+    await Homescreen.savePrayerDataAndUpdateWidget(_prayerData!, widgetTitle);
   }
 
   /// Returns prayer data for today only.
   /// Throws [StateError] if prayer data hasn't been loaded yet.
   MptPrayer getTodayPrayer() {
     if (_prayerData == null) {
-      throw StateError(
-          'Prayer data not loaded. Call loadPrayerTimeData first.');
+      throw StateError('Prayer data not loaded. Call loadPrayerTimeData first.');
     }
     return _prayerData!.prayers[_currentDay - 1];
   }
@@ -50,8 +52,7 @@ class PrayerTimeService {
   /// Throws [StateError] if prayer data hasn't been loaded yet.
   List<MptPrayer> getMonthPrayers() {
     if (_prayerData == null) {
-      throw StateError(
-          'Prayer data not loaded. Call loadPrayerTimeData first.');
+      throw StateError('Prayer data not loaded. Call loadPrayerTimeData first.');
     }
     return _prayerData!.prayers;
   }
@@ -61,8 +62,7 @@ class PrayerTimeService {
   /// Throws [StateError] if prayer data hasn't been loaded yet.
   List<MptPrayer> getPrayersForNotification() {
     if (_prayerData == null) {
-      throw StateError(
-          'Prayer data not loaded. Call loadPrayerTimeData first.');
+      throw StateError('Prayer data not loaded. Call loadPrayerTimeData first.');
     }
     return _prayerData!.prayers.sublist(_currentDay - 1);
   }

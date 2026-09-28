@@ -68,8 +68,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get getPtCopied => 'Copied';
 
   @override
-  String get appBodyNotifPrompt =>
-      'Did notification(s) from this app shows at prayer time?';
+  String get appBodyNotifPrompt => 'Did notification(s) from this app shows at prayer time?';
 
   @override
   String get appBodyNotifPromptYes => 'Yes';
@@ -102,20 +101,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingCoachmarkLocationTitle => 'Prayer time location';
 
   @override
-  String get onboardingCoachmarkLocationContent =>
-      'Set or change your prayer time location here';
+  String get onboardingCoachmarkLocationContent => 'Set or change your prayer time location here';
 
   @override
-  String get onboardingCoachmarkUtilitiesTitle =>
-      'Additional utilities at your fingertips';
+  String get onboardingCoachmarkUtilitiesTitle => 'Additional utilities at your fingertips';
 
   @override
   String get onboardingCoachmarkUtilitiesContent =>
       'Find the monthly timetable, compass, and digital tasbih here';
 
   @override
-  String get onboardingCoachmarkSettingTitle =>
-      'Customize the app to suit your style';
+  String get onboardingCoachmarkSettingTitle => 'Customize the app to suit your style';
 
   @override
   String get onboardingCoachmarkSettingContent =>
@@ -378,8 +374,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get qiblaCalibrateNow => 'Calibrate now';
 
   @override
-  String get qiblaErrNoCompass =>
-      'Sorry. No compass sensor is available in this device.';
+  String get qiblaErrNoCompass => 'Sorry. No compass sensor is available in this device.';
 
   @override
   String get qiblaErrBack => 'Go back';
@@ -421,8 +416,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get qiblaUnknownLocation => 'Unknown location';
 
   @override
-  String get qiblaCompassError =>
-      'Unable to load the Qibla compass. Please try again.';
+  String get qiblaCompassError => 'Unable to load the Qibla compass. Please try again.';
 
   @override
   String get feedbackTitle => 'Feedback';
@@ -599,12 +593,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get zoneError => 'Error';
 
   @override
-  String get zoneErrorPara1 =>
-      'Check your **internet connection** or **location services**.';
+  String get zoneErrorPara1 => 'Check your **internet connection** or **location services**.';
 
   @override
-  String get zoneErrorPara2 =>
-      'Please **retry** or choose location **manually**.';
+  String get zoneErrorPara2 => 'Please **retry** or choose location **manually**.';
 
   @override
   String get zoneOpenLocationSettings => 'Open Location Settings';
@@ -616,6 +608,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get zoneManualSelectZone => 'Select zone';
 
   @override
+  String get zoneCatalogueLoadError =>
+      'Prayer zones could not be loaded. Check your internet connection and try again.';
+
+  @override
+  String get zoneCatalogueRetry => 'Retry';
+
+  @override
   String zoneUpdatedSuccess(String zone) {
     return 'Prayer zone set to $zone';
   }
@@ -624,8 +623,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifSettingBasic => 'Basic';
 
   @override
-  String get notifSettingChangesDetect =>
-      'Changes will take effect after restarting the app';
+  String get notifSettingChangesDetect => 'Changes will take effect after restarting the app';
 
   @override
   String get notifSettingRestartApp => 'Restart';
@@ -644,8 +642,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifSettingTroubleshoot => 'Troubleshooting';
 
   @override
-  String get notifSettingTroubleshootDesc =>
-      'Fix notification not working on some devices';
+  String get notifSettingTroubleshootDesc => 'Fix notification not working on some devices';
 
   @override
   String notifSettingTroubleshootExample(String phonesModel) {
@@ -663,8 +660,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Enable if you experience an extreme slowdown in app. Notification will schedule weekly basis. Default is OFF (monthly).';
 
   @override
-  String get notifSettingForceReschedule =>
-      'Force rescheduling notification...';
+  String get notifSettingForceReschedule => 'Force rescheduling notification...';
 
   @override
   String get notifSettingForceRescheduleDesc =>
@@ -677,12 +673,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notifSettingProceed => 'Proceed';
 
   @override
-  String get notifSettingNotifDemo =>
-      'This is how the notification/azan will sound like';
+  String get notifSettingNotifDemo => 'This is how the notification/azan will sound like';
 
   @override
-  String get notifSettingsExactAlarmPermissionTitle =>
-      'Notification scheduling permission';
+  String get notifSettingsExactAlarmPermissionTitle => 'Notification scheduling permission';
 
   @override
   String get notifSettingsExactAlarmPermissionGrantedSubtitle =>
@@ -693,8 +687,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Permission not granted. The app cannot send the azan notification. Tap here to grant permission';
 
   @override
-  String get notifSheetExactAlarmTitle =>
-      'Enable setting exact notifications permission';
+  String get notifSheetExactAlarmTitle => 'Enable setting exact notifications permission';
 
   @override
   String get notifSheetExactAlarmDescription =>
@@ -740,8 +733,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contributeCopied => 'Copied to clipboard';
 
   @override
-  String get notifTsAdmonition =>
-      'Your device may not be affected with this particular issue.';
+  String get notifTsAdmonition => 'Your device may not be affected with this particular issue.';
 
   @override
   String get notifTsPara1 =>
@@ -791,8 +783,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get whatsUpdateChangelog => 'Release notes';
 
   @override
-  String get updatePageError =>
-      'Sorry. Error occurred when checking for update';
+  String get updatePageError => 'Sorry. Error occurred when checking for update';
 
   @override
   String get updatePageTryAgain => 'Please try again';

@@ -184,6 +184,8 @@
   "zoneOpenLocationSettings": "Buka Tetapan Lokasi",
   "zoneLoading": "Memuatkan",
   "zoneManualSelectZone": "Pilih zon",
+  "zoneCatalogueLoadError": "Senarai zon solat tidak dapat dimuatkan. Semak sambungan internet anda dan cuba lagi.",
+  "zoneCatalogueRetry": "Cuba semula",
   "zoneUpdatedSuccess": "Zon waktu solat ditetapkan kepada {zone}",
   "@zoneUpdatedSuccess": {
     "placeholders": {
