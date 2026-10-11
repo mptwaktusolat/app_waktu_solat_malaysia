@@ -15,7 +15,7 @@ class FeedbackSubmissionService {
 
     final body = {
       ...payload,
-      if (otherPayloads != null) ...otherPayloads,
+      ...?otherPayloads,
     };
 
     final feedbackApiUri = Uri.parse(feedbackSubmissionUrl);

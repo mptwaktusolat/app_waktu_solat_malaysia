@@ -233,7 +233,7 @@ class ZoneWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LocationProvider>(
-      builder: (_, value, __) {
+      builder: (_, value, _) {
         final String shortCode = value.currentLocationCode;
         return Container(
           margin: const EdgeInsets.all(5.0),

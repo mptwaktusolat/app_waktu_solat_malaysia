@@ -69,7 +69,7 @@ class BottomMenuSheet extends StatelessWidget {
               thickness: 1,
               height: 0.0,
             ),
-            Consumer<UpdaterProvider>(builder: (_, setting, __) {
+            Consumer<UpdaterProvider>(builder: (_, setting, _) {
               if (setting.needForUpdate) {
                 return ListTile(
                   title: Row(

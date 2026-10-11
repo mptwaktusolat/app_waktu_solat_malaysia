@@ -76,7 +76,7 @@ class MptBottomDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Gap(8),
-            if (content != null) content!,
+            ?content,
             if (actions != null)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),

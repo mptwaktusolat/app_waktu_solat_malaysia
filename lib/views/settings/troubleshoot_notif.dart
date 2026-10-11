@@ -63,7 +63,7 @@ class TroubleshootNotif extends StatelessWidget {
                       .resolve('/docs/troubleshoot/notifications')
                       .toString(),
                 ),
-                onTapLink: (_, href, __) =>
+                onTapLink: (_, href, _) =>
                     LaunchUrl.normalLaunchUrl(url: href!),
               ),
             ],

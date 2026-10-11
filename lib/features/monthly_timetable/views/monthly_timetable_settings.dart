@@ -17,7 +17,7 @@ class MonthlyTimetableSettings extends StatelessWidget {
         centerTitle: true,
       ),
       body: Consumer<TimetableProvider>(
-        builder: (_, value, __) => ListView(
+        builder: (_, value, _) => ListView(
           padding: const EdgeInsets.all(16),
           children: [
             Card(

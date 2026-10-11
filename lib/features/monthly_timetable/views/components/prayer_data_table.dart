@@ -32,7 +32,7 @@ class PrayerDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<TimetableProvider>(
-      builder: (_, value, __) => DataTable(
+      builder: (_, value, _) => DataTable(
         columnSpacing: 30,
         // Map of title and tooltip
         columns: {

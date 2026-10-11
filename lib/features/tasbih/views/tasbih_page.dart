@@ -138,7 +138,7 @@ class _TasbihPageState extends State<TasbihPage> {
                 controller: _controller,
                 itemCount: null,
                 scrollDirection: Axis.vertical,
-                itemBuilder: (_, __) => TasbihBead(
+                itemBuilder: (_, _) => TasbihBead(
                     gradientColor:
                         TasbihColors.beadDesigns()[_tasbihColourindex]
                             .gradient),

@@ -24,7 +24,7 @@ class SettingsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Consumer<SettingProvider>(
-        builder: (_, setting, __) {
+        builder: (_, setting, _) {
           return ListView(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             children: [
@@ -71,7 +71,7 @@ class LocaleSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Consumer<LocaleProvider>(
-        builder: (_, value, __) {
+        builder: (_, value, _) {
           return ListTile(
             title: Text(AppLocalizations.of(context)!.settingLocaleTitle),
             trailing: DropdownButton<String>(
@@ -103,7 +103,7 @@ class FontSizeSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Consumer<SettingProvider>(
-        builder: (_, value, __) => ListTile(
+        builder: (_, value, _) => ListTile(
           title: Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(AppLocalizations.of(context)!.settingFontSize),
@@ -308,7 +308,7 @@ class OtherTimesSettings extends StatelessWidget {
     return Card(
       clipBehavior: Clip.hardEdge,
       child: Consumer<SettingProvider>(
-        builder: (_, value, __) => SwitchListTile(
+        builder: (_, value, _) => SwitchListTile(
           title: Text(AppLocalizations.of(context)!.settingOtherPrayer),
           // display 'Imsak, Syuruk & DHuha' according to locale
           subtitle: Text(
@@ -328,7 +328,7 @@ class TimeFormatSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Consumer<SettingProvider>(
-        builder: (_, value, __) => ListTile(
+        builder: (_, value, _) => ListTile(
           title: Text(AppLocalizations.of(context)!.settingTimeFormat),
           trailing: DropdownButton(
             icon: const Padding(

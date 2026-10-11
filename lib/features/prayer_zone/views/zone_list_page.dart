@@ -606,7 +606,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow>
   Widget _lateralUI(BuildContext context) {
     _builtLayout = _LayoutMode.lateral;
     return _MasterDetailScaffold(
-      actionBuilder: (_, __) => const <Widget>[],
+      actionBuilder: (_, _) => const <Widget>[],
       detailPageBuilder: (BuildContext context, Object? args,
               ScrollController? scrollController) =>
           widget.detailPageBuilder(

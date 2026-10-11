@@ -25,7 +25,7 @@ class BottomMenuBar extends StatelessWidget {
       color: Theme.of(context).colorScheme.primaryContainer.withAlpha(100),
       child: Row(
         children: [
-          Consumer<UpdaterProvider>(builder: (_, setting, __) {
+          Consumer<UpdaterProvider>(builder: (_, setting, _) {
             return IconButton(
               tooltip: AppLocalizations.of(context)?.menuTooltip,
               icon: setting.needForUpdate

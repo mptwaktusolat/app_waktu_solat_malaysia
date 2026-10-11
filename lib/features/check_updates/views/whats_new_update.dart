@@ -23,7 +23,7 @@ class WhatsNewUpdateDialog extends StatelessWidget {
           MarkdownBody(
             data: AppLocalizations.of(context)!
                 .whatsUpdateContent(envReleaseNotesLink),
-            onTapLink: (_, href, __) => LaunchUrl.normalLaunchUrl(url: href!),
+            onTapLink: (_, href, _) => LaunchUrl.normalLaunchUrl(url: href!),
           ),
         ],
       ),

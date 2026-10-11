@@ -165,7 +165,7 @@ class _OnboardingPageState extends State<OnboardingPage>
           width: 200,
         ),
         decoration: _pageDecoration,
-        bodyWidget: Consumer<LocaleProvider>(builder: (_, value, __) {
+        bodyWidget: Consumer<LocaleProvider>(builder: (_, value, _) {
           return RadioGroup(
             onChanged: (String? newValue) {
               value.appLocale = newValue!;

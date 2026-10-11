@@ -19,7 +19,7 @@ class _ThemeOptionsState extends State<ThemeOptions> {
       AppLocalizations.of(context)!.themeOptionDark: ThemeMode.dark
     };
     return Consumer<ThemeProvider>(
-      builder: (_, setting, __) {
+      builder: (_, setting, _) {
         return RadioGroup(
           onChanged: (dynamic value) {
             setting.themeMode = value;

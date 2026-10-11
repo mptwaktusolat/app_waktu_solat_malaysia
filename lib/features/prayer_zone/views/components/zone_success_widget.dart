@@ -23,7 +23,7 @@ class ZoneSuccessWidget extends StatelessWidget {
       builder: (context, _) {
         final prayerZone = zoneCatalog.zoneByCode(coordinateData.zone);
         return Consumer<LocationProvider>(
-          builder: (_, value, __) {
+          builder: (_, value, _) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,

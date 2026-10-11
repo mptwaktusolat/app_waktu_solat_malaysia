@@ -33,7 +33,7 @@ class AboutAppPage extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8.0),
           child: Consumer<SettingProvider>(
-            builder: (_, setting, __) {
+            builder: (_, setting, _) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -125,7 +125,7 @@ class AboutAppPage extends StatelessWidget {
                       data: AppLocalizations.of(context)!.aboutJakim,
                       styleSheet:
                           MarkdownStyleSheet(textAlign: WrapAlignment.center),
-                      onTapLink: (_, href, __) => LaunchUrl.launchInSheetView(
+                      onTapLink: (_, href, _) => LaunchUrl.launchInSheetView(
                           context: context, url: href!),
                     ),
                   ),

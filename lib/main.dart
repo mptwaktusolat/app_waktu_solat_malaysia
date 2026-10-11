@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TimetableProvider()),
       ],
       child: Consumer2<ThemeProvider, LocaleProvider>(
-        builder: (_, themeValue, localeValue, __) {
+        builder: (_, themeValue, localeValue, _) {
           return DynamicColorBuilder(
               builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
             return MaterialApp(

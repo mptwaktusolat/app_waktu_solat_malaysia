@@ -73,7 +73,7 @@ class _PrayerTimeListWidgetState extends State<PrayerTimeListWidget> {
         }
 
         return Consumer<SettingProvider>(
-          builder: (_, setting, __) {
+          builder: (_, setting, _) {
             final bool showOtherPrayerTime = setting.showOtherPrayerTime;
             final now = DateTime.now();
 
@@ -254,7 +254,7 @@ class PrayerTimeCard extends StatelessWidget {
         time.timeZoneOffset.compareTo(const Duration(hours: 8)) != 0;
 
     return Consumer<SettingProvider>(
-      builder: (_, settings, __) => Container(
+      builder: (_, settings, _) => Container(
         constraints: const BoxConstraints(maxWidth: 320),
         height: isOptional ? 55 : 78,
         child: Card(

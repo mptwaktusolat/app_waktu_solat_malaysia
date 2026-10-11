@@ -23,7 +23,7 @@ class ShareFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SettingProvider>(builder: (_, setting, __) {
+    return Consumer<SettingProvider>(builder: (_, setting, _) {
       final localizations = AppLocalizations.of(context)!;
 
       return FloatingActionButton(
