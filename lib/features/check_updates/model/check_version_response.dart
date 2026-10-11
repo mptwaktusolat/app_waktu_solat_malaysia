@@ -1,21 +1,44 @@
-/// Response model for https://waktusolat.app/api/check_version
+import 'package:json_annotation/json_annotation.dart';
+
+part 'check_version_response.g.dart';
+
+/// Response model for https://waktusolat.app/check_version.json
+@JsonSerializable(explicitToJson: true)
 class CheckVersionResponse {
+  @JsonKey(name: 'android')
+  final AndroidVersionResponse android;
+
+  CheckVersionResponse({required this.android});
+
+  factory CheckVersionResponse.fromJson(Map<String, dynamic> json) =>
+      _$CheckVersionResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CheckVersionResponseToJson(this);
+
+  @override
+  String toString() {
+    return 'CheckVersionResponse{android: $android}';
+  }
+}
+
+@JsonSerializable()
+class AndroidVersionResponse {
   /// GitHub release tag
-  late String tag;
+  final String tag;
 
   /// GitHub release title
-  late String releaseTitle;
+  final String releaseTitle;
 
   /// App version (first part of tag split by `+`)
-  late String version;
+  final String version;
 
   /// App build number (second part of tag split by `+`)
-  late int buildNumber;
+  final int buildNumber;
 
   /// GitHub release published date
-  late DateTime publishedAt;
+  final DateTime publishedAt;
 
-  CheckVersionResponse({
+  AndroidVersionResponse({
     required this.tag,
     required this.releaseTitle,
     required this.version,
@@ -23,21 +46,13 @@ class CheckVersionResponse {
     required this.publishedAt,
   });
 
-  CheckVersionResponse.fromJson(Map<String, dynamic> json) {
-    tag = json["tag"];
-    releaseTitle = json["releaseTitle"];
-    version = json["version"];
-    buildNumber = json["buildNumber"];
-    publishedAt = DateTime.parse(json["publishedAt"]);
-  }
+  factory AndroidVersionResponse.fromJson(Map<String, dynamic> json) =>
+      _$AndroidVersionResponseFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data["tag"] = tag;
-    data["releaseTitle"] = releaseTitle;
-    data["version"] = version;
-    data["buildNumber"] = buildNumber;
-    data["publishedAt"] = publishedAt;
-    return data;
+  Map<String, dynamic> toJson() => _$AndroidVersionResponseToJson(this);
+
+  @override
+  String toString() {
+    return 'AndroidVersionResponse{tag: $tag, releaseTitle: $releaseTitle, version: $version, buildNumber: $buildNumber, publishedAt: $publishedAt}';
   }
 }

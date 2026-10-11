@@ -6,7 +6,7 @@ publish_to: "none"
 version: 2.14.3+176
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -44,6 +44,7 @@ dependencies:
   in_app_review: ^2.0.2
   intl: ^0.20.2
   introduction_screen: ^4.0.0
+  json_annotation: ^4.12.0
   open_file: ^4.0.0
   package_info_plus: ^10.1.0
   path_provider: ^2.1.1
@@ -62,7 +63,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^2.16.2
   flutter_lints: ^6.0.0
+  json_serializable: ^6.14.1
 
 flutter:
   generate: true

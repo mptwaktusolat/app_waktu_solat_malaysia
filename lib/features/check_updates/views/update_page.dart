@@ -43,42 +43,37 @@ class _UpdatePageState extends State<UpdatePage> {
           future: updateInfo,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return LinearProgressIndicator(
-                color: Theme.of(context).primaryColor,
-              );
+              return LinearProgressIndicator(color: Theme.of(context).primaryColor);
             }
 
             if (snapshot.hasError) {
               return Center(
-                  child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.updatePageError,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  Text(
-                    snapshot.error.toString(),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                  const SizedBox(height: 20),
-                  Text(AppLocalizations.of(context)!.updatePageTryAgain),
-                ],
-              ));
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.updatePageError,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    Text(snapshot.error.toString(), style: Theme.of(context).textTheme.bodySmall),
+                    const SizedBox(height: 20),
+                    Text(AppLocalizations.of(context)!.updatePageTryAgain),
+                  ],
+                ),
+              );
             }
 
             final latestVersion = snapshot.data!.$1;
             final currentVersion = snapshot.data!.$2;
 
-            return LayoutBuilder(builder: (context, constraints) {
-              if (constraints.maxWidth > kTabletBreakpoint) {
-                return _WideLayout(
-                    latestVersion: latestVersion,
-                    currentVersion: currentVersion);
-              }
-              return _DefaultLayout(
-                  latestVersion: latestVersion, currentVersion: currentVersion);
-            });
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                if (constraints.maxWidth > kTabletBreakpoint) {
+                  return _WideLayout(latestVersion: latestVersion, currentVersion: currentVersion);
+                }
+                return _DefaultLayout(latestVersion: latestVersion, currentVersion: currentVersion);
+              },
+            );
           },
         ),
       ),
@@ -87,10 +82,7 @@ class _UpdatePageState extends State<UpdatePage> {
 }
 
 class _DefaultLayout extends StatelessWidget {
-  const _DefaultLayout({
-    required this.latestVersion,
-    required this.currentVersion,
-  });
+  const _DefaultLayout({required this.latestVersion, required this.currentVersion});
 
   final CheckVersionResponse latestVersion;
   final PackageInfo currentVersion;
@@ -107,8 +99,9 @@ class _DefaultLayout extends StatelessWidget {
           SvgPicture.asset(
             'assets/images/upgrade-up-circle.svg',
             colorFilter: ColorFilter.mode(
-                Theme.of(context).textTheme.displayLarge!.color!,
-                BlendMode.srcIn),
+              Theme.of(context).textTheme.displayLarge!.color!,
+              BlendMode.srcIn,
+            ),
             width: 110,
             height: 110,
           ),
@@ -119,19 +112,21 @@ class _DefaultLayout extends StatelessWidget {
           ),
           Gap(35),
           const SizedBox(height: 30),
-          Text(latestVersion.releaseTitle,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headlineLarge!),
+          Text(
+            latestVersion.android.releaseTitle,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineLarge!,
+          ),
           _ReleaseSinceWidget(latestVersion: latestVersion),
           Gap(35),
           MarkdownBody(
-              data: AppLocalizations.of(context)!
-                  .updatePageLatestVer(latestVersion.version)),
+            data: AppLocalizations.of(context)!.updatePageLatestVer(latestVersion.android.version),
+          ),
           MarkdownBody(
-              data: AppLocalizations.of(context)!
-                  .updatePageCurrentVer(currentVersion.version)),
+            data: AppLocalizations.of(context)!.updatePageCurrentVer(currentVersion.version),
+          ),
           Gap(35),
-          const _CallToActions()
+          const _CallToActions(),
         ],
       ),
     );
@@ -139,10 +134,7 @@ class _DefaultLayout extends StatelessWidget {
 }
 
 class _WideLayout extends StatelessWidget {
-  const _WideLayout({
-    required this.latestVersion,
-    required this.currentVersion,
-  });
+  const _WideLayout({required this.latestVersion, required this.currentVersion});
 
   final CheckVersionResponse latestVersion;
   final PackageInfo currentVersion;
@@ -162,8 +154,9 @@ class _WideLayout extends StatelessWidget {
                 SvgPicture.asset(
                   'assets/images/upgrade-up-circle.svg',
                   colorFilter: ColorFilter.mode(
-                      Theme.of(context).textTheme.displayLarge!.color!,
-                      BlendMode.srcIn),
+                    Theme.of(context).textTheme.displayLarge!.color!,
+                    BlendMode.srcIn,
+                  ),
                   width: 110,
                   height: 110,
                 ),
@@ -183,19 +176,23 @@ class _WideLayout extends StatelessWidget {
               children: [
                 Gap(35),
                 const SizedBox(height: 30),
-                Text(latestVersion.releaseTitle,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineLarge!),
+                Text(
+                  latestVersion.android.releaseTitle,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineLarge!,
+                ),
                 _ReleaseSinceWidget(latestVersion: latestVersion),
                 Gap(35),
                 MarkdownBody(
-                    data: AppLocalizations.of(context)!
-                        .updatePageLatestVer(latestVersion.version)),
+                  data: AppLocalizations.of(
+                    context,
+                  )!.updatePageLatestVer(latestVersion.android.version),
+                ),
                 MarkdownBody(
-                    data: AppLocalizations.of(context)!
-                        .updatePageCurrentVer(currentVersion.version)),
+                  data: AppLocalizations.of(context)!.updatePageCurrentVer(currentVersion.version),
+                ),
                 Gap(35),
-                const _CallToActions()
+                const _CallToActions(),
               ],
             ),
           ),
@@ -217,15 +214,16 @@ class _CallToActions extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-              ),
-              onPressed: () {
-                LaunchUrl.normalLaunchUrl(url: envPlayStoreListingLink);
-              },
-              icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
-              label: Text(AppLocalizations.of(context)!.updatePageGPlay)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            ),
+            onPressed: () {
+              LaunchUrl.normalLaunchUrl(url: envPlayStoreListingLink);
+            },
+            icon: const FaIcon(FontAwesomeIcons.googlePlay, size: 16),
+            label: Text(AppLocalizations.of(context)!.updatePageGPlay),
+          ),
           TextButton(
             onPressed: () {
               LaunchUrl.normalLaunchUrl(url: envReleaseNotesLink);
@@ -249,15 +247,11 @@ class _ReleaseSinceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      switch (_daySinceRelease(latestVersion.publishedAt)) {
-        0 => AppLocalizations.of(context)!.updatePageReleasedToday,
-        _ => AppLocalizations.of(context)!
-            .updatePageReleased(_daySinceRelease(latestVersion.publishedAt)),
-      },
-      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            fontStyle: FontStyle.italic,
-          ),
-    );
+    return Text(switch (_daySinceRelease(latestVersion.android.publishedAt)) {
+      0 => AppLocalizations.of(context)!.updatePageReleasedToday,
+      _ => AppLocalizations.of(
+        context,
+      )!.updatePageReleased(_daySinceRelease(latestVersion.android.publishedAt)),
+    }, style: Theme.of(context).textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic));
   }
 }

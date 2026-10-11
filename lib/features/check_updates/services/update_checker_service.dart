@@ -20,23 +20,19 @@ class UpdateCheckerService {
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-    final response =
-        await http.get(Uri.parse('https://waktusolat.app/api/check_version'));
+    final response = await http.get(Uri.parse('https://waktusolat.app/check_version.json'));
 
-    final remoteRelease =
-        CheckVersionResponse.fromJson(jsonDecode(response.body));
+    final remoteRelease = CheckVersionResponse.fromJson(jsonDecode(response.body));
 
     final int appBuildNumber = int.parse(packageInfo.buildNumber);
 
-    return (appBuildNumber < remoteRelease.buildNumber);
+    return (appBuildNumber < remoteRelease.android.buildNumber);
   }
 
   static Future<CheckVersionResponse> getUpdateInfo() async {
-    final response =
-        await http.get(Uri.parse('https://waktusolat.app/api/check_version'));
+    final response = await http.get(Uri.parse('https://waktusolat.app/check_version.json'));
 
-    final remoteRelease =
-        CheckVersionResponse.fromJson(jsonDecode(response.body));
+    final remoteRelease = CheckVersionResponse.fromJson(jsonDecode(response.body));
     return remoteRelease;
   }
 }
