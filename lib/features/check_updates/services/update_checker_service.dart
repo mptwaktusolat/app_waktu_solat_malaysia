@@ -6,6 +6,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 
 import '../model/check_version_response.dart';
 
+const checkVersionUrl = 'https://waktusolat.app/check_version.json';
+
 /// Compare app version with GitHub releases version
 class UpdateCheckerService {
   /// Check if installed app has lower version number than remote version
@@ -20,7 +22,7 @@ class UpdateCheckerService {
 
     final PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
-    final response = await http.get(Uri.parse('https://waktusolat.app/check_version.json'));
+    final response = await http.get(Uri.parse(checkVersionUrl));
 
     final remoteRelease = CheckVersionResponse.fromJson(jsonDecode(response.body));
 
@@ -30,7 +32,7 @@ class UpdateCheckerService {
   }
 
   static Future<CheckVersionResponse> getUpdateInfo() async {
-    final response = await http.get(Uri.parse('https://waktusolat.app/check_version.json'));
+    final response = await http.get(Uri.parse(checkVersionUrl));
 
     final remoteRelease = CheckVersionResponse.fromJson(jsonDecode(response.body));
     return remoteRelease;
