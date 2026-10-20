@@ -428,5 +428,21 @@
   "tasbihResetDialog": "Confirm reset ?",
   "tasbihReset": "Reset",
   "tasbihResetTooltip": "Reset tasbih counter",
-  "tasbihColorPickerTooltip": "Choose tasbih bead color"
+  "tasbihColorPickerTooltip": "Choose tasbih bead color",
+  "onboardingPermissionsTitle": "Permissions",
+  "onboardingPermissionsLocation": "Location",
+  "onboardingPermissionsLocationDesc": "Prayer zone and Qibla, while using the app.",
+  "onboardingPermissionsNotifications": "Notifications",
+  "onboardingPermissionsNotificationsDesc": "Prayer reminders and azan alerts.",
+  "onboardingPermissionsAlarms": "Alarms & reminders",
+  "onboardingPermissionsAlarmsDesc": "Prayer alerts at the right time.",
+  "onboardingPermissionsAutostart": "Autostart",
+  "onboardingPermissionsAutostartDesc": "Keep reminders and widgets running after a restart.",
+  "onboardingPermissionsMarkDone": "Mark as done",
+  "onboardingPermissionsManualCheck": "Tick after enabling it. The app cannot verify this.",
+  "onboardingPermissionsError": "Some settings could not be checked or opened. Try again, or continue and set them up later.",
+  "onboardingPermissionsWarningTitle": "Continue with incomplete setup?",
+  "onboardingPermissionsWarningBody": "Some permissions or phone settings are still off or unconfirmed. Prayer notifications may be delayed or missing, and widgets may not update correctly. Without location access, select your prayer zone manually and enable access later to use the Qibla compass. You can enable permissions later in settings.",
+  "onboardingPermissionsReview": "Review checklist",
+  "onboardingPermissionsContinue": "Continue anyway"
 }

@@ -828,4 +828,57 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get tasbihColorPickerTooltip => 'Pilih warna manik tasbih';
+
+  @override
+  String get onboardingPermissionsTitle => 'Kebenaran';
+
+  @override
+  String get onboardingPermissionsLocation => 'Lokasi';
+
+  @override
+  String get onboardingPermissionsLocationDesc =>
+      'Zon solat dan kiblat semasa menggunakan aplikasi.';
+
+  @override
+  String get onboardingPermissionsNotifications => 'Pemberitahuan';
+
+  @override
+  String get onboardingPermissionsNotificationsDesc => 'Peringatan solat dan azan.';
+
+  @override
+  String get onboardingPermissionsAlarms => 'Penggera & peringatan';
+
+  @override
+  String get onboardingPermissionsAlarmsDesc => 'Peringatan solat tepat pada waktunya.';
+
+  @override
+  String get onboardingPermissionsAutostart => 'Autostart';
+
+  @override
+  String get onboardingPermissionsAutostartDesc =>
+      'Kekalkan peringatan dan widget selepas telefon dihidupkan semula.';
+
+  @override
+  String get onboardingPermissionsMarkDone => 'Tandakan selesai';
+
+  @override
+  String get onboardingPermissionsManualCheck =>
+      'Tandakan selepas diaktifkan. Aplikasi tidak dapat mengesahkannya.';
+
+  @override
+  String get onboardingPermissionsError =>
+      'Sesetengah tetapan tidak dapat disemak atau dibuka. Cuba lagi, atau teruskan dan tetapkannya kemudian.';
+
+  @override
+  String get onboardingPermissionsWarningTitle => 'Teruskan tanpa melengkapkan tetapan?';
+
+  @override
+  String get onboardingPermissionsWarningBody =>
+      'Sesetengah kebenaran atau tetapan telefon masih belum diaktifkan atau disahkan. Pemberitahuan solat mungkin lewat atau tidak diterima, dan widget mungkin tidak dikemas kini dengan betul. Tanpa akses lokasi, pilih zon solat secara manual dan aktifkan akses kemudian untuk menggunakan kompas kiblat. Anda boleh mengaktifkan kebenaran kemudian dalam tetapan.';
+
+  @override
+  String get onboardingPermissionsReview => 'Semak senarai';
+
+  @override
+  String get onboardingPermissionsContinue => 'Teruskan juga';
 }

@@ -38,9 +38,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
+    final isFirstRun = GetStorage().read<bool>(kIsFirstRun) ?? false;
     _checkForUpdate();
     _showUpdateNotesAndNotFirstRun();
-    _promptScheduleNotificationPermission();
+    // Skip prompt permission if first run because onboarding already ask the user
+    if (!isFirstRun) _promptScheduleNotificationPermission();
 
     Future.delayed(const Duration(milliseconds: 550)).then((_) {
       _showOnboardingCoachmarks();
@@ -56,21 +58,17 @@ class _HomePageState extends State<HomePage> {
 
   /// Show update dialog if app if recently updated
   void _showUpdateNotesAndNotFirstRun() async {
-    final version =
-        await PackageInfo.fromPlatform().then((value) => value.version);
+    final version = await PackageInfo.fromPlatform().then((value) => value.version);
 
-    final bool shouldShowDialog = !GetStorage().read(kIsFirstRun) &&
-        GetStorage().read<String>(version) == null;
+    final bool shouldShowDialog =
+        !GetStorage().read(kIsFirstRun) && GetStorage().read<String>(version) == null;
 
-    GetStorage()
-        .write(kIsFirstRun, false); // app no longer consider as first run
+    GetStorage().write(kIsFirstRun, false); // app no longer consider as first run
 
     if (shouldShowDialog) {
-      await showModalBottomSheet(
-          context: context, builder: (_) => const WhatsNewUpdateDialog());
+      await showModalBottomSheet(context: context, builder: (_) => const WhatsNewUpdateDialog());
     }
-    GetStorage().write(version,
-        DateTime.now().toString()); // write something to the version key
+    GetStorage().write(version, DateTime.now().toString()); // write something to the version key
   }
 
   /// Request schedule notification permission. The permission already requested from the onboarding page,
@@ -107,10 +105,8 @@ class _HomePageState extends State<HomePage> {
       }
     }
 
-    final isScheduleExactAlarmGranted =
-        await Permission.scheduleExactAlarm.status;
-    debugPrint(
-        'Schedule exact alarm permission status: $isScheduleExactAlarmGranted');
+    final isScheduleExactAlarmGranted = await Permission.scheduleExactAlarm.status;
+    debugPrint('Schedule exact alarm permission status: $isScheduleExactAlarmGranted');
 
     if (isScheduleExactAlarmGranted.isGranted) return;
 
@@ -135,13 +131,11 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    Fluttertoast.showToast(
-        msg: 'Thank you for granting the permissions needed');
+    Fluttertoast.showToast(msg: 'Thank you for granting the permissions needed');
   }
 
   void _showOnboardingCoachmarks() async {
-    final coachmarkOnboardingShown =
-        GetStorage().read(kCoachmarkOnboardingShown) ?? false;
+    final coachmarkOnboardingShown = GetStorage().read(kCoachmarkOnboardingShown) ?? false;
 
     if (!coachmarkOnboardingShown) {
       HotspotProvider.of(context).startFlow(kOnboardingCoachmarkFlow);
@@ -154,11 +148,9 @@ class _HomePageState extends State<HomePage> {
     return Consumer2<LocationProvider, PrayerTimeProvider>(
       builder: (context, locationProvider, prayerProvider, _) {
         // Load prayer data when location changes or on first load
-        if (prayerProvider.currentZone !=
-            locationProvider.currentLocationCode) {
+        if (prayerProvider.currentZone != locationProvider.currentLocationCode) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            prayerProvider
-                .loadPrayerTimes(locationProvider.currentLocationCode);
+            prayerProvider.loadPrayerTimes(locationProvider.currentLocationCode);
           });
         }
 
@@ -169,25 +161,18 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surfaceTint,
-                borderRadius:
-                    const BorderRadius.vertical(bottom: Radius.circular(40)),
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(40)),
               ),
               padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
-                    child: DateWidget(
-                      hijriDate: prayerProvider.hijriDate ?? "...",
-                    ),
-                  ),
+                  Expanded(child: DateWidget(hijriDate: prayerProvider.hijriDate ?? "...")),
                   Expanded(
                     child: const ZoneWidget().withHotspot(
                       order: 1,
-                      title: AppLocalizations.of(context)!
-                          .onboardingCoachmarkLocationTitle,
-                      text: AppLocalizations.of(context)!
-                          .onboardingCoachmarkLocationContent,
+                      title: AppLocalizations.of(context)!.onboardingCoachmarkLocationTitle,
+                      text: AppLocalizations.of(context)!.onboardingCoachmarkLocationContent,
                       flow: kOnboardingCoachmarkFlow,
                     ),
                   ),
@@ -200,23 +185,24 @@ class _HomePageState extends State<HomePage> {
             const NotifPrompt(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 26),
-              child: Builder(builder: (_) {
-                if (prayerProvider.isLoading) {
-                  return const Loading();
-                }
-                if (prayerProvider.errorMessage != null) {
-                  return ErrorWidget(
-                    errorMessage: prayerProvider.errorMessage!,
-                    onRetryPressed: () {
-                      prayerProvider
-                          .refresh(locationProvider.currentLocationCode);
-                    },
-                  );
-                }
+              child: Builder(
+                builder: (_) {
+                  if (prayerProvider.isLoading) {
+                    return const Loading();
+                  }
+                  if (prayerProvider.errorMessage != null) {
+                    return ErrorWidget(
+                      errorMessage: prayerProvider.errorMessage!,
+                      onRetryPressed: () {
+                        prayerProvider.refresh(locationProvider.currentLocationCode);
+                      },
+                    );
+                  }
 
-                // Display the list of prayer times
-                return const PrayerTimeListWidget();
-              }),
+                  // Display the list of prayer times
+                  return const PrayerTimeListWidget();
+                },
+              ),
             ),
           ],
         );
@@ -226,9 +212,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class ZoneWidget extends StatelessWidget {
-  const ZoneWidget({
-    super.key,
-  });
+  const ZoneWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -247,9 +231,7 @@ class ZoneWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                  ),
+                  side: BorderSide(color: Theme.of(context).colorScheme.onPrimary),
                 ),
               ),
               onPressed: () {
@@ -260,15 +242,15 @@ class ZoneWidget extends StatelessWidget {
                 final zone = zoneCatalog.zoneByCode(value.currentLocationCode);
                 final locationDescription = zone == null
                     ? zoneCatalog.daerahForCode(value.currentLocationCode)
-                    : AppLocalizations.of(context)!
-                        .appBodyCurrentLocation(zone.daerah, zone.negeri);
+                    : AppLocalizations.of(
+                        context,
+                      )!.appBodyCurrentLocation(zone.daerah, zone.negeri);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(locationDescription),
                     behavior: SnackBarBehavior.floating,
                     action: SnackBarAction(
-                      label:
-                          AppLocalizations.of(context)!.appBodyChangeLocation,
+                      label: AppLocalizations.of(context)!.appBodyChangeLocation,
                       onPressed: () {
                         LocationChooser.openManualZoneSelector(context);
                       },
@@ -280,8 +262,11 @@ class ZoneWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  FaIcon(FontAwesomeIcons.locationDot,
-                      color: Theme.of(context).colorScheme.onPrimary, size: 14),
+                  FaIcon(
+                    FontAwesomeIcons.locationDot,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    size: 14,
+                  ),
                   Text(
                     '  ${shortCode.substring(0, 3).toUpperCase()} ${shortCode.substring(3, 5)}',
                     style: TextStyle(
@@ -327,12 +312,11 @@ class DateWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                DateFormat('E, d MMM yyyy',
-                        AppLocalizations.of(context)?.localeName)
-                    .format(DateTime.now()),
-                style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
-                    fontSize: 12),
+                DateFormat(
+                  'E, d MMM yyyy',
+                  AppLocalizations.of(context)?.localeName,
+                ).format(DateTime.now()),
+                style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 12),
               ),
             ],
           ),
@@ -355,20 +339,14 @@ class ErrorWidget extends StatelessWidget {
       children: <Widget>[
         const SizedBox(height: 15),
         Text(
-          errorMessage!.isEmpty
-              ? AppLocalizations.of(context)!.getPtError
-              : errorMessage!,
+          errorMessage!.isEmpty ? AppLocalizations.of(context)!.getPtError : errorMessage!,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
+          style: const TextStyle(fontSize: 18),
         ),
         const SizedBox(height: 8),
         ElevatedButton(
           onPressed: onRetryPressed as void Function()?,
-          child: Text(
-            AppLocalizations.of(context)!.getPtRetry,
-          ),
+          child: Text(AppLocalizations.of(context)!.getPtRetry),
         ),
         const SizedBox(height: 350),
       ],
@@ -386,16 +364,11 @@ class Loading extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.getPtFetch,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
+          style: const TextStyle(fontSize: 18),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 200),
-          child: SpinKitChasingDots(
-            size: 35,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          child: SpinKitChasingDots(size: 35, color: Theme.of(context).colorScheme.primary),
         ),
       ],
     );

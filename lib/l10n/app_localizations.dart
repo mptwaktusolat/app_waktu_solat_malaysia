@@ -1574,6 +1574,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose tasbih bead color'**
   String get tasbihColorPickerTooltip;
+
+  /// No description provided for @onboardingPermissionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get onboardingPermissionsTitle;
+
+  /// No description provided for @onboardingPermissionsLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get onboardingPermissionsLocation;
+
+  /// No description provided for @onboardingPermissionsLocationDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer zone and Qibla, while using the app.'**
+  String get onboardingPermissionsLocationDesc;
+
+  /// No description provided for @onboardingPermissionsNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get onboardingPermissionsNotifications;
+
+  /// No description provided for @onboardingPermissionsNotificationsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer reminders and azan alerts.'**
+  String get onboardingPermissionsNotificationsDesc;
+
+  /// No description provided for @onboardingPermissionsAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms & reminders'**
+  String get onboardingPermissionsAlarms;
+
+  /// No description provided for @onboardingPermissionsAlarmsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer alerts at the right time.'**
+  String get onboardingPermissionsAlarmsDesc;
+
+  /// No description provided for @onboardingPermissionsAutostart.
+  ///
+  /// In en, this message translates to:
+  /// **'Autostart'**
+  String get onboardingPermissionsAutostart;
+
+  /// No description provided for @onboardingPermissionsAutostartDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep reminders and widgets running after a restart.'**
+  String get onboardingPermissionsAutostartDesc;
+
+  /// No description provided for @onboardingPermissionsMarkDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as done'**
+  String get onboardingPermissionsMarkDone;
+
+  /// No description provided for @onboardingPermissionsManualCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick after enabling it. The app cannot verify this.'**
+  String get onboardingPermissionsManualCheck;
+
+  /// No description provided for @onboardingPermissionsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Some settings could not be checked or opened. Try again, or continue and set them up later.'**
+  String get onboardingPermissionsError;
+
+  /// No description provided for @onboardingPermissionsWarningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with incomplete setup?'**
+  String get onboardingPermissionsWarningTitle;
+
+  /// No description provided for @onboardingPermissionsWarningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Some permissions or phone settings are still off or unconfirmed. Prayer notifications may be delayed or missing, and widgets may not update correctly. Without location access, select your prayer zone manually and enable access later to use the Qibla compass. You can enable permissions later in settings.'**
+  String get onboardingPermissionsWarningBody;
+
+  /// No description provided for @onboardingPermissionsReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Review checklist'**
+  String get onboardingPermissionsReview;
+
+  /// No description provided for @onboardingPermissionsContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue anyway'**
+  String get onboardingPermissionsContinue;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

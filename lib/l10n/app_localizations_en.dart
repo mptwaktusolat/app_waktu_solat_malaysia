@@ -823,4 +823,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tasbihColorPickerTooltip => 'Choose tasbih bead color';
+
+  @override
+  String get onboardingPermissionsTitle => 'Permissions';
+
+  @override
+  String get onboardingPermissionsLocation => 'Location';
+
+  @override
+  String get onboardingPermissionsLocationDesc => 'Prayer zone and Qibla, while using the app.';
+
+  @override
+  String get onboardingPermissionsNotifications => 'Notifications';
+
+  @override
+  String get onboardingPermissionsNotificationsDesc => 'Prayer reminders and azan alerts.';
+
+  @override
+  String get onboardingPermissionsAlarms => 'Alarms & reminders';
+
+  @override
+  String get onboardingPermissionsAlarmsDesc => 'Prayer alerts at the right time.';
+
+  @override
+  String get onboardingPermissionsAutostart => 'Autostart';
+
+  @override
+  String get onboardingPermissionsAutostartDesc =>
+      'Keep reminders and widgets running after a restart.';
+
+  @override
+  String get onboardingPermissionsMarkDone => 'Mark as done';
+
+  @override
+  String get onboardingPermissionsManualCheck =>
+      'Tick after enabling it. The app cannot verify this.';
+
+  @override
+  String get onboardingPermissionsError =>
+      'Some settings could not be checked or opened. Try again, or continue and set them up later.';
+
+  @override
+  String get onboardingPermissionsWarningTitle => 'Continue with incomplete setup?';
+
+  @override
+  String get onboardingPermissionsWarningBody =>
+      'Some permissions or phone settings are still off or unconfirmed. Prayer notifications may be delayed or missing, and widgets may not update correctly. Without location access, select your prayer zone manually and enable access later to use the Qibla compass. You can enable permissions later in settings.';
+
+  @override
+  String get onboardingPermissionsReview => 'Review checklist';
+
+  @override
+  String get onboardingPermissionsContinue => 'Continue anyway';
 }

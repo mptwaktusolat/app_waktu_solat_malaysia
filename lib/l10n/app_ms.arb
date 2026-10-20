@@ -262,5 +262,21 @@
   "tasbihResetDialog": "Pastikan set semula ?",
   "tasbihReset": "Set semula",
   "tasbihResetTooltip": "Set semula kaunter tasbih",
-  "tasbihColorPickerTooltip": "Pilih warna manik tasbih"
+  "tasbihColorPickerTooltip": "Pilih warna manik tasbih",
+  "onboardingPermissionsTitle": "Kebenaran",
+  "onboardingPermissionsLocation": "Lokasi",
+  "onboardingPermissionsLocationDesc": "Zon solat dan kiblat semasa menggunakan aplikasi.",
+  "onboardingPermissionsNotifications": "Pemberitahuan",
+  "onboardingPermissionsNotificationsDesc": "Peringatan solat dan azan.",
+  "onboardingPermissionsAlarms": "Penggera & peringatan",
+  "onboardingPermissionsAlarmsDesc": "Peringatan solat tepat pada waktunya.",
+  "onboardingPermissionsAutostart": "Autostart",
+  "onboardingPermissionsAutostartDesc": "Kekalkan peringatan dan widget selepas telefon dihidupkan semula.",
+  "onboardingPermissionsMarkDone": "Tandakan selesai",
+  "onboardingPermissionsManualCheck": "Tandakan selepas diaktifkan. Aplikasi tidak dapat mengesahkannya.",
+  "onboardingPermissionsError": "Sesetengah tetapan tidak dapat disemak atau dibuka. Cuba lagi, atau teruskan dan tetapkannya kemudian.",
+  "onboardingPermissionsWarningTitle": "Teruskan tanpa melengkapkan tetapan?",
+  "onboardingPermissionsWarningBody": "Sesetengah kebenaran atau tetapan telefon masih belum diaktifkan atau disahkan. Pemberitahuan solat mungkin lewat atau tidak diterima, dan widget mungkin tidak dikemas kini dengan betul. Tanpa akses lokasi, pilih zon solat secara manual dan aktifkan akses kemudian untuk menggunakan kompas kiblat. Anda boleh mengaktifkan kebenaran kemudian dalam tetapan.",
+  "onboardingPermissionsReview": "Semak senarai",
+  "onboardingPermissionsContinue": "Teruskan juga"
 }
