@@ -61,10 +61,10 @@ packages:
     dependency: "direct main"
     description:
       name: auto_start_flutter
-      sha256: cb518769b6d4ae3ce4cf62d018b1a2ab78fc7946c2e18edcfcd8c466763251e5
+      sha256: f2be9cb6df73021b459022796c34231277fd1859d8664f19451b54b8f8788bc2
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   boolean_selector:
     dependency: transitive
     description:
