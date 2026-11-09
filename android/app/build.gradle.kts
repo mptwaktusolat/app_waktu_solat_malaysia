@@ -18,7 +18,8 @@ if (keystorePropertiesFile.exists()) {
     FileInputStream(keystorePropertiesFile).use(keystoreProperties::load)
 }
 
-val hasReleaseSigningConfig = keystorePropertiesFile.exists()
+// Pull requests from forks get no secrets, so CI writes an empty key.properties
+val hasReleaseSigningConfig = keystoreProperties.getProperty("storeFile") != null
 
 if (!hasReleaseSigningConfig) {
     System.err.println(
